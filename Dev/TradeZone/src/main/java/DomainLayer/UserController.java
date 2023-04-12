@@ -28,7 +28,7 @@ public class UserController {
         return guestUserName;
     }
 
-    public synchronized void guestLogOut(String guestUserName) throws Exception {
+    public synchronized boolean guestLogOut(String guestUserName) throws Exception {
         if (guestUserName == null || guestUserName == "")
             throw new Exception("Can't log out: guestUserName is null or empty");
 
@@ -37,13 +37,19 @@ public class UserController {
 
         // TODO: check if we want to delete all guest pointers( his cart products)
         guests.remove(guestUserName);
+        return true;
     }
-    public void register(String guestUserName, String newMemberUserName, String password) throws Exception {
+
+    public boolean exitMarket(String userName) throws Exception {
+        throw new ExecutionControl.NotImplementedException("");
+    }
+    public boolean register(String guestUserName, String newMemberUserName, String password) throws Exception {
         registerValidateParameters(guestUserName, newMemberUserName, password);
         newMemberUserName = newMemberUserName.strip().toLowerCase();
         members.put(newMemberUserName, new Member(newMemberUserName, password));
         membersNamesConcurrentSet.add(newMemberUserName);
         //TODO: add user to database
+        return true;
     }
 
     private void registerValidateParameters(String guestUserName, String newMemberUserName, String password) throws Exception {
