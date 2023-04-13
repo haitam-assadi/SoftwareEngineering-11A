@@ -86,8 +86,8 @@ public class Market {
         throw new ExecutionControl.NotImplementedException("");
     }
 
-    public boolean addNewProductToStock(String memberUserName, String storeName, ProductDTO newProduct, Integer amount) throws ExecutionControl.NotImplementedException {
-        throw new ExecutionControl.NotImplementedException("");
+    public boolean addNewProductToStock(String memberUserName, String storeName, ProductDTO newProduct,Integer price,  Integer amount) throws Exception {
+        return storeController.addNewProductToStock(memberUserName,storeName,newProduct,price,amount);
     }
     public boolean removeProductFromStock(String memberUserName, String storeName, String productName) throws ExecutionControl.NotImplementedException {
         throw new ExecutionControl.NotImplementedException("");

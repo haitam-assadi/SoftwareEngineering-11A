@@ -1,5 +1,6 @@
 package DomainLayer;
 
+import DomainLayer.DTO.ProductDTO;
 import jdk.jshell.spi.ExecutionControl;
 
 import java.util.Set;
@@ -118,7 +119,6 @@ public class UserController {
 
         return members.get(UserName);
     }
-
 
 
 
