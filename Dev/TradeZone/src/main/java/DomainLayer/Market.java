@@ -85,15 +85,14 @@ public class Market {
     public StoreDTO createStore(String memberUserName, String newStoreName) throws ExecutionControl.NotImplementedException {
         throw new ExecutionControl.NotImplementedException("");
     }
-
-    public boolean addNewProductToStock(String memberUserName, String storeName, ProductDTO newProduct,Integer price,  Integer amount) throws Exception {
-        return storeController.addNewProductToStock(memberUserName,storeName,newProduct,price,amount);
+    public boolean addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Integer price, String details, Integer amount) throws Exception {
+        return storeController.addNewProductToStock(memberUserName,storeName,nameProduct,category,price,details,amount);
     }
-    public boolean removeProductFromStock(String memberUserName, String storeName, String productName) throws ExecutionControl.NotImplementedException {
-        throw new ExecutionControl.NotImplementedException("");
+    public boolean removeProductFromStock(String memberUserName, String storeName, String productName) throws Exception {
+        return storeController.removeProductFromStock(memberUserName, storeName, productName);
     }
-    public boolean updateProductDetails(String memberUserName, String storeName, String productName, ProductDTO newProductDetails) throws ExecutionControl.NotImplementedException {
-        throw new ExecutionControl.NotImplementedException("");
+    public boolean updateProductDetails(String memberUserName, String storeName, String productName, String newProductDetails) throws Exception {
+        return storeController.updateProductDetails(memberUserName, storeName, productName, newProductDetails);
     }
 
     public boolean updateProductAmount(String memberUserName, String storeName, String productName, Integer newAmount) throws ExecutionControl.NotImplementedException {
