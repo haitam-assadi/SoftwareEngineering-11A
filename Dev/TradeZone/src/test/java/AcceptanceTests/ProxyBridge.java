@@ -73,9 +73,8 @@ public class ProxyBridge implements Bridge{
     }
 
     @Override
-    public boolean addNewProductToStock(String memberUserName, String storeName, String product_name, int price, int amount) {
-        if(realBridge!=null){
-            return realBridge.addNewProductToStock(memberUserName, storeName, product_name, price, amount);
+    public boolean  addNewProductToStock(String memberUserName, String storeName, String product_name,String category, int price, String description, int amount){        if(realBridge!=null){
+            return realBridge.addNewProductToStock(memberUserName, storeName, product_name, category,price, description,amount);
         }
         throw new UnsupportedOperationException();
     }
@@ -84,6 +83,102 @@ public class ProxyBridge implements Bridge{
     public boolean removeProductFromStock(String memberUserName, String storeName, String productName) {
         if(realBridge!=null){
             return realBridge.removeProductFromStock(memberUserName, storeName, productName);
+        }
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public boolean addCategory(String userName, String categoryName) {
+        if(realBridge!=null){
+            realBridge.addCategory(userName,categoryName);
+        }
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public boolean getCategory(String categoryName) {
+        if(realBridge!=null){
+            realBridge.getCategory(categoryName);
+        }
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public boolean updateProductName(String memberUserName, String storeName, String productName, String newName) {
+        if(realBridge!=null){
+            return realBridge.updateProductName(memberUserName, storeName, productName, newName);
+        }
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public boolean updateProductPrice(String memberUserName, String storeName, String productName, int price) {
+        if(realBridge!=null){
+            return realBridge.updateProductPrice(memberUserName, storeName, productName, price);
+        }
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public boolean updateProductDescription(String memberUserName, String storeName, String productName, String newDescription) {
+        if(realBridge!=null){
+            return realBridge.updateProductDescription(memberUserName, storeName, productName, newDescription);
+        }
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public boolean updateProductAmount(String memberUserName, String storeName, String productName, int amount) {
+        if(realBridge!=null){
+            return realBridge.updateProductAmount(memberUserName, storeName, productName, amount);
+        }
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public int getProductPrice(String s) {
+        if(realBridge!=null){
+            return realBridge.getProductPrice(s);
+        }
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public String getProductDescription(String s) {
+        if(realBridge!=null){
+            return realBridge.getProductDescription(s);
+        }
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public int getProductAmount(String s) {
+        if(realBridge!=null){
+            return realBridge.getProductAmount(s);
+        }
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public boolean appointMemberAsStoreOwner(String memberUserName, String storeName, String newOwnerUserName) {
+        if(realBridge!=null){
+            return realBridge.appointMemberAsStoreOwner(memberUserName, storeName, newOwnerUserName);
+        }
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public List<String> getStoreOwners(String storeName) {
+        if(realBridge!=null){
+            return realBridge.getStoreOwners(storeName);
+        }
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public String getOwnerAppointer(String OwnerName, String storeName) {
+        if(realBridge!=null){
+            return realBridge.getOwnerAppointer(OwnerName,storeName);
         }
         throw new UnsupportedOperationException();
     }

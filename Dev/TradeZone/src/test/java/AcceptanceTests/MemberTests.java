@@ -156,6 +156,8 @@ public class MemberTests {
             Assertions.assertTrue(stores.contains(storeName));
             String storeFounder = proxy.getStoreFounder(storeName);
             Assertions.assertEquals(userName, storeFounder);
+            String appointer = proxy.getOwnerAppointer(storeFounder,storeName);
+            Assertions.assertTrue(appointer.isEmpty() || appointer == null);
         }catch (Exception e){
             Assertions.fail(e.getMessage());
         }
@@ -180,68 +182,8 @@ public class MemberTests {
         }
     }
 
-    //II.4.1
-    //add product test
-    @Test
-    public void add_new_product_success(){
-        try{
-            String userName = "Moslem Asaad";
-            proxy.login(user, userName, "12345");
-            String storeName = proxy.createStore(userName, "Moslem store");
-            proxy.addNewProductToStock(userName,storeName,"iphone 14",3000,50);
-            Assertions.assertTrue(proxy.getStoreProducts(storeName).contains("iphone 14"));
-        }catch (Exception e){
-            Assertions.fail(e.getMessage());
-        }
-    }
 
-    @Test
-    public void add_new_product_repeated_productName_fail(){
-        try{
-            String userName = "Moslem Asaad";
-            proxy.login(user, userName, "12345");
-            String storeName = proxy.createStore(userName, "Moslem store");
-            proxy.addNewProductToStock(userName,storeName,"iphone 14",3000,50);
-            List<String> products = proxy.getStoreProducts(storeName);
-            int len = products.size();
-            proxy.addNewProductToStock(userName,storeName,"iphone 14",1500,10);
-            Assertions.assertTrue(products.contains("iphone 14"));
-            Assertions.assertEquals(len,proxy.getStoreProducts(storeName).size());
-        }catch (Exception e){
-            Assertions.fail(e.getMessage());
-        }
-    }
 
-    //delete product test
-    @Test
-    public void delete_product_test_success(){
-        try{
-            String userName = "Moslem Asaad";
-            proxy.login(user, userName, "12345");
-            String storeName = proxy.createStore(userName, "Moslem store");
-            proxy.addNewProductToStock(userName,storeName,"iphone 14",3000,50);
-            proxy.removeProductFromStock(userName,storeName,"iphone 14");
-            Assertions.assertFalse(proxy.getStoreProducts(storeName).contains("iphone 14"));
-        }catch (Exception e){
-            Assertions.fail(e.getMessage());
-        }
-    }
-
-    @Test
-    public void delete_product_test_not_exist_fail(){
-        try{
-            String userName = "Moslem Asaad";
-            proxy.login(user, userName, "12345");
-            String storeName = proxy.createStore(userName, "Moslem store");
-            proxy.addNewProductToStock(userName,storeName,"iphone 14",3000,50);
-            List<String> products = proxy.getStoreProducts(storeName);
-            int len = products.size();
-            Assertions.assertFalse(proxy.removeProductFromStock(userName,storeName,"iphone 11"));
-            Assertions.assertEquals(len,proxy.getStoreProducts(storeName).size());
-        }catch (Exception e){
-            Assertions.fail(e.getMessage());
-        }
-    }
 
 
 
