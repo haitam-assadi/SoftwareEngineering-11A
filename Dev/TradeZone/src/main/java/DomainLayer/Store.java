@@ -55,6 +55,47 @@ public class Store {
         return stock.updateProductDetails(productName,newProductDetails);
     }
     public StoreDTO getStoreInfo(){
-        return new StoreDTO();
+        List<String> ownersNames = this.storeOwners.values().stream().map(Role::getUserName).toList();
+        List<String> managersNames = this.storeManagers.values().stream().map(Role::getUserName).toList();
+        return new StoreDTO(storeName, storeFounder.getUserName(), ownersNames, managersNames, stock.getProductsInfo());
+    }
+    public ProductDTO getProductInfo(String productName) throws Exception {
+        return stock.getProductInfo(productName);
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public String getStoreName() {
+        return storeName;
+    }
+
+    public Stock getStock() {
+        return stock;
+    }
+
+    public StoreFounder getStoreFounder() {
+        return storeFounder;
+    }
+
+    public ConcurrentHashMap<String, StoreOwner> getStoreOwners() {
+        return storeOwners;
+    }
+
+    public ConcurrentHashMap<String, StoreManager> getStoreManagers() {
+        return storeManagers;
+    }
+
+    public List<Deal> getStoreDeals() {
+        return storeDeals;
+    }
+
+    public List<DiscountPolicy> getStoreDiscountPolicies() {
+        return storeDiscountPolicies;
+    }
+
+    public List<PaymentPolicy> getStorePaymentPolicies() {
+        return storePaymentPolicies;
     }
 }

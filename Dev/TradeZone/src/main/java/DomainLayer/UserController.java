@@ -120,6 +120,20 @@ public class UserController {
         return members.get(UserName);
     }
 
+    public void isGuestOrLoggedInMember(String userName) throws Exception {
+        if(userName==null || userName == "")
+            throw new Exception("userName is null or empty");
+        userName = userName.strip().toLowerCase();
+
+        if(! (guests.containsKey(userName) || membersNamesConcurrentSet.contains(userName)))
+            throw new Exception(""+ userName+" is not a user!");
+
+        if(!onlineMembers.keySet().contains(userName))
+            //TODO synchronization check
+            throw new Exception("Member:"+ userName+" is not logged in!");
+    }
+
+
 
 
 
