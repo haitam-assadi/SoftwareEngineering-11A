@@ -22,6 +22,7 @@ public class UserController {
         guestsCounter=0;
     }
 
+    //TODO: CHECK WERE WE DO THE MEMBER ONLINE
     public synchronized String loginAsGuest(){
         String guestUserName = "Guest_"+ guestsCounter;
         guestsCounter++;
@@ -121,6 +122,17 @@ public class UserController {
     }
 
 
-
-
+    public boolean appointMemberAsStoreOwner(String memberUserName, String storeName, String newOwnerUserName) throws Exception {
+        if(memberUserName==null || memberUserName == "")
+            throw new Exception("can't appoint member: memberUserName "+memberUserName+"is null or empty");
+        if(newOwnerUserName==null || newOwnerUserName == "")
+            throw new Exception("can't appoint member: newOwnerUserName "+newOwnerUserName+"is null or empty");
+        if(!membersNamesConcurrentSet.contains(memberUserName))
+            throw new Exception("can't getMember: userName "+ memberUserName+" does not exists!");
+        if(!membersNamesConcurrentSet.contains(newOwnerUserName))
+            throw new Exception("can't getMember: userName "+ newOwnerUserName+" does not exists!");
+        if(!onlineMembers.containsKey(memberUserName))
+            throw new Exception("the memberUserName: "+ memberUserName+" is not online");
+        return members.get(memberUserName).appointMemberAsStoreOwner(storeName,newOwnerUserName);
+    }
 }

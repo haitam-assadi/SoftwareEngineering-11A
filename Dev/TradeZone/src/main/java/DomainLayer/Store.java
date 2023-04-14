@@ -25,7 +25,7 @@ public class Store {
         stock = new Stock();
     }
 
-    public boolean addNewProductToStock(String memberUserName,String nameProduct,String category, Integer price, String details, Integer amount) throws Exception {
+    public boolean addNewProductToStock(String memberUserName,String nameProduct,String category, Double price, String details, Integer amount) throws Exception {
         if(amount < 0)
             throw new Exception("the amount of the product cannot be negative");
         if(price < 0)
@@ -45,16 +45,29 @@ public class Store {
         return stock.removeProductFromStock(productName);
     }
 
-    public boolean updateProductDetails(String memberUserName, String productName, String newProductDetails) throws Exception {
-        if(newProductDetails == null || newProductDetails == "")
-            throw new Exception("the details of the product cannot be null");
-        if(newProductDetails.length()>300)
-            throw new Exception("the details of the product is too long");
+    public boolean updateProductDescription(String memberUserName, String productName, String newProductDescription) throws Exception {
+        if(newProductDescription == null || newProductDescription == "")
+            throw new Exception("the Description of the product cannot be null");
+        if(newProductDescription.length()>300)
+            throw new Exception("the Description of the product is too long");
         if(!storeFounder.getUserName().equals(memberUserName) || !storeOwners.containsKey(memberUserName))
             throw new Exception("can't add new product to stock : userName "+ memberUserName +" is not an owner to the store");
-        return stock.updateProductDetails(productName,newProductDetails);
+        return stock.updateProductDescription(productName,newProductDescription);
     }
-    public StoreDTO getStoreInfo(){
-        return new StoreDTO();
+
+    public boolean updateProductAmount(String memberUserName, String productName, Integer newAmount) throws Exception {
+        if(newAmount < 0)
+            throw new Exception("the amount of the product cannot be negative");
+        if(!storeFounder.getUserName().equals(memberUserName) || !storeOwners.containsKey(memberUserName))
+            throw new Exception("can't add new product to stock : userName "+ memberUserName +" is not an owner to the store");
+        return stock.updateProductAmount(productName,newAmount);
+    }
+
+    public boolean updateProductPrice(String memberUserName, String productName, Double newPrice) throws Exception {
+        if(newPrice < 0)
+            throw new Exception("the price of the product cannot be negative");
+        if(!storeFounder.getUserName().equals(memberUserName) || !storeOwners.containsKey(memberUserName))
+            throw new Exception("can't add new product to stock : userName "+ memberUserName +" is not an owner to the store");
+        return stock.updateProductPrice(productName,newPrice);
     }
 }

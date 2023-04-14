@@ -22,6 +22,4 @@ public class Member extends User{
     public String getPassword() {
         return password;
     }
-
-
 }
