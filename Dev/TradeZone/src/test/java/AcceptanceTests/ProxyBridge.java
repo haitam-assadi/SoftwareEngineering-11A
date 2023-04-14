@@ -1,5 +1,6 @@
 package AcceptanceTests;
 
+import java.util.Collection;
 import java.util.List;
 
 public class ProxyBridge implements Bridge{
@@ -13,6 +14,15 @@ public class ProxyBridge implements Bridge{
         this.realBridge = realBridge;
     }
 
+
+    @Override
+    public boolean initializeMarket() {
+        if(realBridge!=null){
+            realBridge.initializeMarket();
+        }
+        return true;
+        //throw new UnsupportedOperationException();
+    }
 
     @Override
     public String enterMarket() {
@@ -42,6 +52,38 @@ public class ProxyBridge implements Bridge{
     public String login(String guestUserName, String MemberUserName, String password) {
         if(realBridge!=null){
             return realBridge.login(guestUserName, MemberUserName, password);
+        }
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public String memberLogOut(String memberUserName) {
+        if(realBridge!=null){
+            return realBridge.memberLogOut(memberUserName);
+        }
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public String createStore(String memberUserName, String newStoreName) {
+        if(realBridge!=null){
+            return realBridge.createStore(memberUserName,newStoreName);
+        }
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public boolean addNewProductToStock(String memberUserName, String storeName, String product_name, int price, int amount) {
+        if(realBridge!=null){
+            return realBridge.addNewProductToStock(memberUserName, storeName, product_name, price, amount);
+        }
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public boolean removeProductFromStock(String memberUserName, String storeName, String productName) {
+        if(realBridge!=null){
+            return realBridge.removeProductFromStock(memberUserName, storeName, productName);
         }
         throw new UnsupportedOperationException();
     }
@@ -77,6 +119,27 @@ public class ProxyBridge implements Bridge{
     public String getMemberPassword(String memberName) {
         if(realBridge!=null){
             return realBridge.getMemberPassword( memberName);
+        }
+        throw new UnsupportedOperationException();
+    }
+
+    public List<String> getAllStores() {
+        if(realBridge!=null){
+            return realBridge.getAllStores();
+        }
+        throw new UnsupportedOperationException();
+    }
+
+    public String getStoreFounder(String storeName) {
+        if(realBridge!=null){
+            return realBridge.getStoreFounder();
+        }
+        throw new UnsupportedOperationException();
+    }
+
+    public List<String> getStoreProducts(String storeName) {
+        if(realBridge!=null){
+            return realBridge.getStoreProducts(storeName);
         }
         throw new UnsupportedOperationException();
     }

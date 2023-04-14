@@ -79,7 +79,7 @@ public class Market {
     public List<BagDTO> getCartContent(String userName) throws ExecutionControl.NotImplementedException {
         throw new ExecutionControl.NotImplementedException("");
     }
-    public boolean memberLogOut(String memberUserName) throws ExecutionControl.NotImplementedException {
+    public String memberLogOut(String memberUserName) throws ExecutionControl.NotImplementedException {
         throw new ExecutionControl.NotImplementedException("");
     }
     public StoreDTO createStore(String memberUserName, String newStoreName) throws ExecutionControl.NotImplementedException {
