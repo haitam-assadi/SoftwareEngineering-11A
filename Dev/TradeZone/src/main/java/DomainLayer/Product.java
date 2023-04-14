@@ -11,7 +11,7 @@ public class Product {
     private String name;
     private String category;
     private Double price;
-    private String description;
+    private String description ;
     private ConcurrentHashMap<String,Category> productCategories;
 
     public Product(String name,Stock stock,String category, Double price,String description){
@@ -26,11 +26,23 @@ public class Product {
         return name;
     }
 
+    public void setDescription(String newProductDescription) {
+        this.description = newProductDescription;
+    }
+
     public String getCategory() {
         return category;
     }
 
     public ProductDTO getProductInfo(){
         return new ProductDTO(this.name,this.price, this.description);
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double newPrice) {
+        this.price = newPrice;
     }
 }
