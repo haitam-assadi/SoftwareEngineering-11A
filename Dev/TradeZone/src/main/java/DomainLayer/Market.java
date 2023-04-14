@@ -29,11 +29,13 @@ public class Market {
     public String login(String guestUserName, String MemberUserName, String password) throws Exception {
         return userController.login(guestUserName, MemberUserName, password);
     }
-    public StoreDTO getStoreInfo(String userName, String storeName) throws ExecutionControl.NotImplementedException {
-        throw new ExecutionControl.NotImplementedException("");
+    public StoreDTO getStoreInfo(String userName, String storeName) throws Exception {
+        userController.isGuestOrLoggedInMember(userName);
+        return storeController.getStoreInfo(storeName);
     }
-    public ProductDTO getProductInfoFromStore(String userName, String storeName, String productName) throws ExecutionControl.NotImplementedException {
-        throw new ExecutionControl.NotImplementedException("");
+    public ProductDTO getProductInfoFromStore(String userName, String storeName, String productName) throws Exception {
+        userController.isGuestOrLoggedInMember(userName);
+        return storeController.getProductInfoFromStore(storeName, productName);
     }
 
     public List<ProductDTO> getProductInfoFromMarketByName(String userName, String productName) throws ExecutionControl.NotImplementedException {
@@ -73,7 +75,7 @@ public class Market {
     public boolean removeFromCart(String userName, String storeName, String productName) throws ExecutionControl.NotImplementedException {
         throw new ExecutionControl.NotImplementedException("");
     }
-    public boolean changeProductAmount(String userName, String storeName, String productName, Integer newAmount) throws ExecutionControl.NotImplementedException {
+    public boolean changeProductAmountInCart(String userName, String storeName, String productName, Integer newAmount) throws ExecutionControl.NotImplementedException {
         throw new ExecutionControl.NotImplementedException("");
     }
     public List<BagDTO> getCartContent(String userName) throws ExecutionControl.NotImplementedException {
@@ -103,11 +105,12 @@ public class Market {
         return storeController.updateProductPrice(memberUserName, storeName, productName, newPrice);
     }
 
-    public boolean appointMemberAsStoreOwner(String memberUserName, String storeName, String newOwnerUserName) throws Exception {
-        return userController.appointMemberAsStoreOwner(memberUserName,storeName,newOwnerUserName);
+    public boolean appointOtherMemberAsStoreOwner(String memberUserName, String storeName, String newOwnerUserName) throws Exception {
+        Store store = storeController.getStore(storeName); // TODO: MAYBE WE NEED TO CHECK IF STORE IS ACTIVE
+        return userController.appointOtherMemberAsStoreOwner(memberUserName,store,newOwnerUserName);
     }
 
-    public boolean appointMemberAsStoreManager(String memberUserName, String storeName, String newManagerUserName) throws ExecutionControl.NotImplementedException {
+    public boolean appointOtherMemberAsStoreManager(String memberUserName, String storeName, String newManagerUserName) throws ExecutionControl.NotImplementedException {
         throw new ExecutionControl.NotImplementedException("");
     }
 

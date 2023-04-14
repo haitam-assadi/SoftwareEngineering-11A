@@ -1,5 +1,8 @@
 package DomainLayer;
 
+import DomainLayer.DTO.ProductDTO;
+
+import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class Product {
@@ -11,11 +14,12 @@ public class Product {
     private String description ;
     private ConcurrentHashMap<String,Category> productCategories;
 
-    public Product(String name,String category, Double price,String description){
+    public Product(String name,Stock stock,String category, Double price,String description){
         this.name = name;
+        this.stock=stock;
         this.category = category;
         this.price = price;
-        this.description = description;
+        this.description=description;
     }
 
     public String getName() {
@@ -28,6 +32,10 @@ public class Product {
 
     public String getCategory() {
         return category;
+    }
+
+    public ProductDTO getProductInfo(){
+        return new ProductDTO(this.name,this.price, this.description);
     }
 
     public Double getPrice() {
