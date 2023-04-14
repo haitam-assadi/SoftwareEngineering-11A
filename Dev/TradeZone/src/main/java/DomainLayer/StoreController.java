@@ -3,6 +3,7 @@ package DomainLayer;
 import DomainLayer.DTO.ProductDTO;
 import DomainLayer.DTO.StoreDTO;
 
+import java.security.PublicKey;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class StoreController {
@@ -57,6 +58,12 @@ public class StoreController {
     public ProductDTO getProductInfoFromStore(String storeName, String productName) throws Exception {
         isActiveStore(storeName);
         return stores.get(storeName).getProductInfo(productName);
+    }
+
+    public Store getStore(String storeName) throws Exception {
+        isStore(storeName);
+        storeName = storeName.strip().toLowerCase();
+        return stores.get(storeName);
     }
 
 

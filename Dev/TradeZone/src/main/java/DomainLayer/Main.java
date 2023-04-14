@@ -9,9 +9,9 @@ public class Main {
     public static void main(String[] args) {
         Member member1 = new Member("aa","pass");
         Member member2 = new Member("bb","pass");
-        StoreOwner role1 = new StoreOwner();
+        StoreOwner role1 = new StoreOwner(member1);
         role1.member=member1;
-        StoreOwner role2 = new StoreOwner();
+        StoreOwner role2 = new StoreOwner(member2);
         role2.member=member2;
 
 

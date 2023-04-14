@@ -41,5 +41,18 @@ public class Member extends User{
         }
     }
 
+    public boolean appointMemberAsStoreOwner(Store store, AbstractStoreOwner myBoss) throws Exception {
+        roles.putIfAbsent(RoleEnum.StoreOwner, new StoreOwner(this));
+        StoreOwner storeOwnerRole =  (StoreOwner) roles.get(RoleEnum.StoreOwner);
+
+        storeOwnerRole.appointMemberAsStoreOwner(store,myBoss);
+        store.appointMemberAsStoreOwner(storeOwnerRole);
+        return true;
+    }
+    public StoreOwner getStoreOwner(){
+        StoreOwner storeOwnerRole =  (StoreOwner) roles.get(RoleEnum.StoreOwner);
+        return storeOwnerRole;
+    }
+
 
 }

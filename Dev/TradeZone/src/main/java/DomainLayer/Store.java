@@ -79,6 +79,27 @@ public class Store {
     public ProductDTO getProductInfo(String productName) throws Exception {
         return stock.getProductInfo(productName);
     }
+    public boolean isAlreadyStoreOwner(String memberUserName){
+        if(storeFounder.getUserName().equals(memberUserName))
+            return true;
+
+        else if (storeOwners.keySet().contains(memberUserName))
+            return true;
+
+        else return false;
+    }
+
+    public boolean appointMemberAsStoreOwner(StoreOwner storeOwner) throws Exception {
+        if(storeOwners.containsKey(storeOwner.getUserName()))
+            throw new Exception(""+storeOwner.getUserName()+" is already owner for this store");
+        storeOwners.put(storeOwner.getUserName(), storeOwner);
+        return true;
+    }
+
+
+
+
+
 
     public boolean isActive() {
         return isActive;

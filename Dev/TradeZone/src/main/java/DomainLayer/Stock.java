@@ -16,12 +16,12 @@ public class Stock {
         stockProducts =new ConcurrentHashMap<>();
         stockCategories = new ConcurrentHashMap<>();
     }
-    public boolean addNewProductToStock(String nameProduct,String category, Double price, String details, Integer amount) throws Exception {
+    public boolean addNewProductToStock(String nameProduct,String category, Double price, String description, Integer amount) throws Exception {
         if(stockProducts.containsKey(nameProduct))
             throw new Exception("can't add new product to stock : productName "+ nameProduct+" is in the stock!");
         if(!stockCategories.containsKey(category))
             stockCategories.put(category, new Category(category));
-        Product product = new Product(nameProduct,category,price,details);
+        Product product = new Product(nameProduct,this, category,price,description);
         stockCategories.get(category).putProductInCategory(product);
         ConcurrentHashMap<Product,Integer> productAmount = new ConcurrentHashMap<Product, Integer>();
         productAmount.put(product,amount);

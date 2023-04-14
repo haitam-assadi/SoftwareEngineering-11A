@@ -9,15 +9,16 @@ public class AbstractStoreOwner extends Role{
     private ConcurrentHashMap<String, List<StoreOwner>> appointedOwners;
     private ConcurrentHashMap<String, List<StoreManager>> appointedManagers;
 
+    public AbstractStoreOwner(Member member) {
+        super(member);
+    }
 
 
-    public boolean appointMemberAsStoreOwner(Store store, Member otherMember) throws Exception {
+    public boolean appointOtherMemberAsStoreOwner(Store store, Member otherMember) throws Exception {
         String storeName = store.getStoreName();
-        //TODO : CHECK IF Member is already owner
-        otherMember.
-
-
+        otherMember.appointMemberAsStoreOwner(store, this);
         appointedOwners.putIfAbsent(storeName, new ArrayList<>());
-        appointedOwners.get(storeName).add(otherMember);
+        appointedOwners.get(storeName).add(otherMember.getStoreOwner());
+        return true;
     }
 }

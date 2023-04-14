@@ -1,6 +1,5 @@
 package DomainLayer;
 
-import DomainLayer.DTO.ProductDTO;
 import jdk.jshell.spi.ExecutionControl;
 
 import java.util.Set;
@@ -133,20 +132,28 @@ public class UserController {
             //TODO synchronization check
             throw new Exception("Member:"+ userName+" is not logged in!");
     }
-
-
-
-    public boolean appointMemberAsStoreOwner(String memberUserName, String storeName, String newOwnerUserName) throws Exception {
+    public void isMember(String memberUserName) throws Exception {
         if(memberUserName==null || memberUserName == "")
-            throw new Exception("can't appoint member: memberUserName "+memberUserName+"is null or empty");
-        if(newOwnerUserName==null || newOwnerUserName == "")
-            throw new Exception("can't appoint member: newOwnerUserName "+newOwnerUserName+"is null or empty");
+            throw new Exception("memberUserName is null or empty");
+
         if(!membersNamesConcurrentSet.contains(memberUserName))
-            throw new Exception("can't getMember: userName "+ memberUserName+" does not exists!");
-        if(!membersNamesConcurrentSet.contains(newOwnerUserName))
-            throw new Exception("can't getMember: userName "+ newOwnerUserName+" does not exists!");
+            throw new Exception("userName "+ memberUserName+" does not exists!");
+
+    }
+
+    public void isOnlineMember(String memberUserName) throws Exception {
+        isMember(memberUserName);
         if(!onlineMembers.containsKey(memberUserName))
             throw new Exception("the memberUserName: "+ memberUserName+" is not online");
-        return members.get(memberUserName).appointMemberAsStoreOwner(storeName,newOwnerUserName);
+    }
+
+
+
+    public boolean appointOtherMemberAsStoreOwner(String memberUserName, Store store, String newOwnerUserName) throws Exception {
+        isOnlineMember(memberUserName);
+        isMember(newOwnerUserName);
+        Member member = getMember(memberUserName);
+        Member otherMember = getMember(newOwnerUserName);
+        return member.appointOtherMemberAsStoreOwner(store, otherMember);
     }
 }

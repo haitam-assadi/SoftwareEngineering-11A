@@ -105,8 +105,9 @@ public class Market {
         return storeController.updateProductPrice(memberUserName, storeName, productName, newPrice);
     }
 
-    public boolean appointOtherMemberAsStoreOwner(String memberUserName, String storeName, String newOwnerUserName) throws ExecutionControl.NotImplementedException {
-        return userController.appointMemberAsStoreOwner(memberUserName,storeName,newOwnerUserName);
+    public boolean appointOtherMemberAsStoreOwner(String memberUserName, String storeName, String newOwnerUserName) throws Exception {
+        Store store = storeController.getStore(storeName); // TODO: MAYBE WE NEED TO CHECK IF STORE IS ACTIVE
+        return userController.appointOtherMemberAsStoreOwner(memberUserName,store,newOwnerUserName);
     }
 
     public boolean appointOtherMemberAsStoreManager(String memberUserName, String storeName, String newManagerUserName) throws ExecutionControl.NotImplementedException {
