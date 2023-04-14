@@ -2,20 +2,20 @@ package DomainLayer.DTO;
 
 public class ProductDTO {
     private String name;
-    private Integer price;
-    private String details;
+    private Double price;
+    private String description;
     private Integer amount;
 
-    public ProductDTO(String name,Integer price,String details, Integer amount){
+    public ProductDTO(String name,Double price,String description, Integer amount){
         this.name = name;
         this.price = price;
-        this.details = details;
+        this.description = description;
         this.amount = amount;
     }
     public String getName() {
         return name;
     }
-    public Integer getPrice() {
+    public Double getPrice() {
         return price;
     }
 
@@ -23,6 +23,6 @@ public class ProductDTO {
         return amount;
     }
     public String getDetails() {
-        return details;
+        return description;
     }
 }

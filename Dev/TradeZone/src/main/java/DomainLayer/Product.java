@@ -7,28 +7,34 @@ public class Product {
     private Stock stock;
     private String name;
     private String category;
-    private Integer price;
-    private String details;
-    private Integer amount;
+    private Double price;
+    private String description ;
     private ConcurrentHashMap<String,Category> productCategories;
 
-    public Product(String name,String category, Integer price,String details, Integer amount){
+    public Product(String name,String category, Double price,String description){
         this.name = name;
         this.category = category;
         this.price = price;
-        this.details = details;
-        this.amount = amount;
+        this.description = description;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setDetails(String newProductDetails) {
-        this.details = newProductDetails;
+    public void setDescription(String newProductDescription) {
+        this.description = newProductDescription;
     }
 
     public String getCategory() {
         return category;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double newPrice) {
+        this.price = newPrice;
     }
 }

@@ -85,22 +85,26 @@ public class Market {
     public StoreDTO createStore(String memberUserName, String newStoreName) throws ExecutionControl.NotImplementedException {
         throw new ExecutionControl.NotImplementedException("");
     }
-    public boolean addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Integer price, String details, Integer amount) throws Exception {
+    public boolean addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String details, Integer amount) throws Exception {
         return storeController.addNewProductToStock(memberUserName,storeName,nameProduct,category,price,details,amount);
     }
     public boolean removeProductFromStock(String memberUserName, String storeName, String productName) throws Exception {
         return storeController.removeProductFromStock(memberUserName, storeName, productName);
     }
-    public boolean updateProductDetails(String memberUserName, String storeName, String productName, String newProductDetails) throws Exception {
-        return storeController.updateProductDetails(memberUserName, storeName, productName, newProductDetails);
+    public boolean updateProductDescription(String memberUserName, String storeName, String productName, String newProductDescription) throws Exception {
+        return storeController.updateProductDescription(memberUserName, storeName, productName, newProductDescription);
     }
 
-    public boolean updateProductAmount(String memberUserName, String storeName, String productName, Integer newAmount) throws ExecutionControl.NotImplementedException {
-        throw new ExecutionControl.NotImplementedException("");
+    public boolean updateProductAmount(String memberUserName, String storeName, String productName, Integer newAmount) throws Exception {
+        return storeController.updateProductAmount(memberUserName, storeName, productName, newAmount);
     }
 
-    public boolean appointMemberAsStoreOwner(String memberUserName, String storeName, String newOwnerUserName) throws ExecutionControl.NotImplementedException {
-        throw new ExecutionControl.NotImplementedException("");
+    public boolean updateProductPrice(String memberUserName, String storeName, String productName, Double newPrice) throws Exception {
+        return storeController.updateProductPrice(memberUserName, storeName, productName, newPrice);
+    }
+
+    public boolean appointMemberAsStoreOwner(String memberUserName, String storeName, String newOwnerUserName) throws Exception {
+        return userController.appointMemberAsStoreOwner(memberUserName,storeName,newOwnerUserName);
     }
 
     public boolean appointMemberAsStoreManager(String memberUserName, String storeName, String newManagerUserName) throws ExecutionControl.NotImplementedException {
