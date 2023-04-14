@@ -112,21 +112,23 @@ public class Market {
         throw new ExecutionControl.NotImplementedException("");
     }
 
-    public boolean closeStore(String memberUserName, String storeName) throws ExecutionControl.NotImplementedException {
-        throw new ExecutionControl.NotImplementedException("");
+    public boolean closeStore(String memberUserName, String storeName) throws Exception {
+        return storeController.closeStore(memberUserName, storeName);
+        //TODO: adel, not completed.
     }
 
-    public List<MemberDTO> getStoreOwnersInfo(String memberUserName, String storeName) throws ExecutionControl.NotImplementedException {
+    public List<MemberDTO> getStoreWorkersInfo(String memberUserName, String storeName) throws Exception {
         // TODO: low priority , DON'T test it, dont forget to change function parameters
-        throw new ExecutionControl.NotImplementedException("");
+        return storeController.getStoreWorkersInfo(memberUserName, storeName);
     }
 
-    public List<DealDTO> getStoreDeals(String memberUserName, String storeName) throws ExecutionControl.NotImplementedException {
-        throw new ExecutionControl.NotImplementedException("");
+    public List<DealDTO> getStoreDeals(String memberUserName, String storeName) throws Exception {
+        return this.storeController.getStoreDeals(memberUserName, storeName);
     }
 
-    public List<DealDTO> getMemberDeals(String systemManagerUserName, String otherMemberUserName) throws ExecutionControl.NotImplementedException {
-        throw new ExecutionControl.NotImplementedException("");
+    public List<DealDTO> getMemberDeals(String systemManagerUserName, String otherMemberUserName) throws Exception {
+        this.userController.checkMemberRole(systemManagerUserName, otherMemberUserName);
+        return this.storeController.getMemberDeals(otherMemberUserName);
     }
 
 }
