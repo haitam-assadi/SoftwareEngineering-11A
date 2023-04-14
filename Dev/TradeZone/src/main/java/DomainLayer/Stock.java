@@ -2,10 +2,11 @@ package DomainLayer;
 
 import DomainLayer.DTO.ProductDTO;
 
+import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class Stock {
-    private ConcurrentHashMap<String, Product> stockProducts;
+    private ConcurrentHashMap<String, ConcurrentHashMap<Product,Integer>> stockProducts;
     private ConcurrentHashMap<String,Category> stockCategories;
 
     public Stock(){

@@ -1,11 +1,16 @@
 package DomainLayer;
 
+import java.util.concurrent.ConcurrentHashMap;
+
 public class Product {
+
+    private Stock stock;
     private String name;
     private String category;
     private Integer price;
     private String details;
     private Integer amount;
+    private ConcurrentHashMap<String,Category> productCategories;
 
     public Product(String name,String category, Integer price,String details, Integer amount){
         this.name = name;

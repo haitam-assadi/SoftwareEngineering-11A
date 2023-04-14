@@ -1,4 +1,4 @@
 package DomainLayer;
 
-public class SystemManager {
+public class SystemManager extends Role{
 }

@@ -3,6 +3,8 @@ package DomainLayer;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class Category {
+
+    private Stock stock;
     private String categoryName;
     private ConcurrentHashMap<String,Product> categoryProducts;
 
