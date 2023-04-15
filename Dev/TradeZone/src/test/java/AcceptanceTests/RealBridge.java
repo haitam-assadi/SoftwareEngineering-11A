@@ -170,7 +170,22 @@ public class RealBridge implements Bridge{
     }
 
     @Override
+    public int getProductAmountInCart(String userName, String storeName, String productName) {
+        return 0;
+    }
+
+    @Override
     public Map<String, List<String>> getCartContent(String userName) {
         return new HashMap<>();
+    }
+
+    @Override
+    public boolean removeProductFromCart(String userName, String storeName, String productName) {
+        return false;
+    }
+
+    @Override
+    public boolean changeProductAmountInCart(String userName, String storeName, String productName, Integer newAmount) {
+        return false;
     }
 }

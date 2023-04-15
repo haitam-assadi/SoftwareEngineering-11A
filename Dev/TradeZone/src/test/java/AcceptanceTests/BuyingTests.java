@@ -193,7 +193,9 @@ public class BuyingTests {
     }
 
     @Test
-    public void add_product_to_cart_success(){ // TODO: add assert equal(3, getBag.getProductAmount)
+    public void add_product_to_cart_success(){
+        // TODO: add assert equal(3, getBag.getProductAmount)
+        // TODO: check all the fields of product
         try{
             // guest
             int productAmount = proxy.getProductAmount(storeName2, "gaming mouse 1");
@@ -231,7 +233,7 @@ public class BuyingTests {
     }
 
     @Test
-    public void add_product_does_not_exist_to_cart(){
+    public void add_product_does_not_exist_to_cart_fail(){
         try{
             // guest
             Assertions.assertFalse(proxy.addToCart(guest_name, storeName2, "mouse", 10));
@@ -246,7 +248,38 @@ public class BuyingTests {
     }
 
     @Test
-    public void add_product_twice_to_cart(){
+    public void add_product_to_cart_after_deletion_fail(){
+        try{
+            proxy.removeProductFromStock(store_founder, storeName2, "iphone 14");
+            // guest
+            Assertions.assertFalse(proxy.addToCart(guest_name, storeName2, "iphone 14", 10));
+            Assertions.assertFalse(proxy.getBag(guest_name, storeName2).contains("iphone 14"));
+
+            // member
+            Assertions.assertFalse(proxy.addToCart(member_name, storeName2, "iphone 14", 10));
+            Assertions.assertFalse(proxy.getBag(member_name, storeName2).contains("iphone 14"));
+        } catch (Exception e){
+            Assertions.fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void add_product_from_store_does_not_exist_fail(){
+        try{
+            // guest
+            Assertions.assertFalse(proxy.addToCart(guest_name, "bad store name", "gaming mouse 1", 10));
+            Assertions.assertFalse(proxy.getBag(guest_name, "bad store name").contains("gaming mouse 1"));
+
+            // member
+            Assertions.assertFalse(proxy.addToCart(member_name, "bad store name", "gaming mouse 1", 10));
+            Assertions.assertFalse(proxy.getBag(member_name, "bad store name").contains("gaming mouse 1"));
+        } catch (Exception e){
+            Assertions.fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void add_product_twice_to_cart_fail(){
         try{
             // guest
             Assertions.assertTrue(proxy.addToCart(guest_name, storeName2, "gaming mouse 1", 5));
@@ -262,6 +295,7 @@ public class BuyingTests {
         }
     }
 
+    //TODO: add test that change product price and check if changed in the cart
     @Test
     public void guest_get_cart_content_success(){
         try{
@@ -306,7 +340,161 @@ public class BuyingTests {
         }
     }
 
-    // get_cart_content_failed
-    // change cart content
+    @Test
+    public void get_empty_cart_content_success(){
+        try{
+            // guest
+            Assertions.assertEquals(0, proxy.getCartContent(guest_name).size()); // empty
+
+            // member
+            Assertions.assertEquals(0, proxy.getCartContent(guest_name).size()); // empty
+        } catch (Exception e){
+            Assertions.fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void guest_remove_product_from_cart_success(){
+        try {
+            proxy.addToCart(guest_name, storeName1, "iphone 14", 1);
+            proxy.addToCart(guest_name, storeName1, "gaming chair 1", 3);
+            proxy.addToCart(guest_name, storeName2, "iphone 14", 1);
+            Map<String, List<String>> cart = proxy.getCartContent(guest_name);
+            Assertions.assertEquals(2, cart.size()); // 2 bags
+            Assertions.assertTrue(proxy.removeProductFromCart(guest_name, storeName2, "iphone 14"));
+            cart = proxy.getCartContent(guest_name);
+            Assertions.assertEquals(1, cart.size()); // 1 bag
+            Assertions.assertTrue(cart.containsKey(storeName1));
+            Assertions.assertFalse(cart.containsKey(storeName2));
+            Assertions.assertEquals(2, cart.get(storeName1).size());
+            Assertions.assertTrue(cart.get(storeName1).contains("iphone 14"));
+            Assertions.assertTrue(cart.get(storeName1).contains("gaming chair 1"));
+            // TODO: add assert equal(?, getBag.getProductAmountInBag)
+        } catch (Exception e){
+            Assertions.fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void member_remove_product_from_cart_success(){
+        try {
+            proxy.addToCart(member_name, storeName1, "iphone 14", 1);
+            proxy.addToCart(member_name, storeName1, "gaming chair 1", 3);
+            proxy.addToCart(member_name, storeName2, "iphone 14", 1);
+            Map<String, List<String>> cart = proxy.getCartContent(member_name);
+            Assertions.assertEquals(2, cart.size()); // 2 bags
+            Assertions.assertTrue(proxy.removeProductFromCart(member_name, storeName2, "iphone 14"));
+            cart = proxy.getCartContent(member_name);
+            Assertions.assertEquals(1, cart.size()); // 1 bag
+            Assertions.assertTrue(cart.containsKey(storeName1));
+            Assertions.assertFalse(cart.containsKey(storeName2));
+            Assertions.assertEquals(2, cart.get(storeName1).size());
+            Assertions.assertTrue(cart.get(storeName1).contains("iphone 14"));
+            Assertions.assertTrue(cart.get(storeName1).contains("gaming chair 1"));
+            // TODO: add assert equal(?, getBag.getProductAmountInBag)
+        } catch (Exception e){
+            Assertions.fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void remove_product_does_not_exist_in_cart(){
+        try{
+            // guest
+            proxy.addToCart(guest_name, storeName1, "iphone 14", 1);
+            Assertions.assertFalse(proxy.removeProductFromCart(guest_name, storeName1, "gaming chair 1"));
+            Map<String, List<String>> cart = proxy.getCartContent(guest_name);
+            Assertions.assertEquals(1, cart.size()); // not changed
+            Assertions.assertTrue(cart.containsKey(storeName1)); // not changed
+            Assertions.assertTrue(cart.get(storeName1).contains("iphone 14")); // not changed
+
+            // member
+            proxy.addToCart(member_name, storeName1, "iphone 14", 1);
+            Assertions.assertFalse(proxy.removeProductFromCart(member_name, storeName1, "gaming chair 1"));
+            cart = proxy.getCartContent(member_name);
+            Assertions.assertEquals(1, cart.size()); // not changed
+            Assertions.assertTrue(cart.containsKey(storeName1)); // not changed
+            Assertions.assertTrue(cart.get(storeName1).contains("iphone 14")); // not changed
+        } catch (Exception e){
+            Assertions.fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void remove_product_from_cart_bad_store_name(){
+        try{
+            // guest
+            proxy.addToCart(guest_name, storeName1, "iphone 14", 1);
+            Assertions.assertFalse(proxy.removeProductFromCart(guest_name, "bad store name", "iphone 14"));
+            Map<String, List<String>> cart = proxy.getCartContent(guest_name);
+            Assertions.assertEquals(1, cart.size()); // not changed
+            Assertions.assertTrue(cart.containsKey(storeName1)); // not changed
+            Assertions.assertTrue(cart.get(storeName1).contains("iphone 14")); // not changed
+
+            // member
+            proxy.addToCart(member_name, storeName1, "iphone 14", 1);
+            Assertions.assertFalse(proxy.removeProductFromCart(member_name, "bad store name", "iphone 14"));
+            cart = proxy.getCartContent(member_name);
+            Assertions.assertEquals(1, cart.size()); // not changed
+            Assertions.assertTrue(cart.containsKey(storeName1)); // not changed
+            Assertions.assertTrue(cart.get(storeName1).contains("iphone 14")); // not changed
+        } catch (Exception e){
+            Assertions.fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void change_product_amount_in_cart_success(){
+        try
+        {
+            // guest
+            proxy.addToCart(guest_name, storeName1, "iphone 14", 1);
+            Assertions.assertEquals(1, proxy.getProductAmountInCart(guest_name, storeName1, "iphone 14"));
+            Assertions.assertTrue(proxy.changeProductAmountInCart(guest_name, storeName1, "iphone 14", 5));
+            Assertions.assertEquals(5, proxy.getProductAmountInCart(guest_name, storeName1, "iphone 14"));
+            // TODO: check bag/cart total price
+
+            // member
+            proxy.addToCart(member_name, storeName1, "iphone 14", 1);
+            Assertions.assertEquals(1, proxy.getProductAmountInCart(member_name, storeName1, "iphone 14"));
+            Assertions.assertTrue(proxy.changeProductAmountInCart(member_name, storeName1, "iphone 14", 5));
+            Assertions.assertEquals(5, proxy.getProductAmountInCart(member_name, storeName1, "iphone 14"));
+            // TODO: check bag/cart total price
+
+        } catch (Exception e){
+            Assertions.fail(e.getMessage());
+        }
+
+    }
+
+    @Test
+    public void change_product_amount_in_cart_bad_amount(){
+        // guest
+        proxy.addToCart(guest_name, storeName1, "iphone 14", 1);
+        Assertions.assertEquals(1, proxy.getProductAmountInCart(guest_name, storeName1, "iphone 14"));
+        // larger
+        Assertions.assertFalse(proxy.changeProductAmountInCart(guest_name, storeName1, "iphone 14", 1000)); // we have 50 iphone 14 in storeName1
+        Assertions.assertEquals(1, proxy.getProductAmountInCart(guest_name, storeName1, "iphone 14")); // not changed
+        // negative
+        Assertions.assertFalse(proxy.changeProductAmountInCart(guest_name, storeName1, "iphone 14", -10));
+        Assertions.assertEquals(1, proxy.getProductAmountInCart(guest_name, storeName1, "iphone 14")); // not changed
+        // TODO: check bag/cart total price
+
+        // member
+        proxy.addToCart(member_name, storeName1, "iphone 14", 1);
+        Assertions.assertEquals(1, proxy.getProductAmountInCart(member_name, storeName1, "iphone 14"));
+        // larger
+        Assertions.assertFalse(proxy.changeProductAmountInCart(member_name, storeName1, "iphone 14", 1000)); // we have 50 iphone 14 in storeName1
+        Assertions.assertEquals(1, proxy.getProductAmountInCart(member_name, storeName1, "iphone 14"));
+        // negative
+        Assertions.assertFalse(proxy.changeProductAmountInCart(member_name, storeName1, "iphone 14", -10));
+        Assertions.assertEquals(1, proxy.getProductAmountInCart(member_name, storeName1, "iphone 14"));
+
+        // TODO: check bag/cart total price
+    }
+
+    // change amount: bad store name, bad product name
+    // check getProductAmount in previous functions
+    // add function (in bridge) getProductPrice ?
 
 }

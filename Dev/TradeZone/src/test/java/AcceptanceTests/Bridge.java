@@ -2,6 +2,7 @@ package AcceptanceTests;
 
 import DomainLayer.DTO.ProductDTO;
 import DomainLayer.DTO.StoreDTO;
+import jdk.jshell.spi.ExecutionControl;
 
 import java.util.Collection;
 import java.util.List;
@@ -67,11 +68,17 @@ public interface Bridge {
 
     public Map<String, List<String>> getProductInfoFromMarketByKeyword(String userName, String keyword); // map <storeName, List<productName>>
 
-    // II.2.3
+    // II.2.3 + II.2.4
     public boolean addToCart(String userName, String storeName, String productName, Integer amount);
 
     public List<String> getBag(String userName, String storeName);
 
+    public int getProductAmountInCart(String userName, String storeName, String productName);
+
     public Map<String, List<String>> getCartContent(String userName); // map: <string bag.storeName, list<productName>>
+
+    public boolean removeProductFromCart(String userName, String storeName, String productName);
+
+    public boolean changeProductAmountInCart (String userName, String storeName, String productName, Integer newAmount);
 
 }
