@@ -110,8 +110,9 @@ public class Market {
         return userController.appointOtherMemberAsStoreOwner(memberUserName,store,newOwnerUserName);
     }
 
-    public boolean appointOtherMemberAsStoreManager(String memberUserName, String storeName, String newManagerUserName) throws ExecutionControl.NotImplementedException {
-        throw new ExecutionControl.NotImplementedException("");
+    public boolean appointOtherMemberAsStoreManager(String memberUserName, String storeName, String newManagerUserName) throws Exception {
+        Store store = storeController.getStore(storeName); // TODO: MAYBE WE NEED TO CHECK IF STORE IS ACTIVE
+        return userController.appointOtherMemberAsStoreManager(memberUserName,store,newManagerUserName);
     }
 
     public boolean changeManagerPermissions(String memberUserName, String storeName, String managerUserName) throws ExecutionControl.NotImplementedException {
