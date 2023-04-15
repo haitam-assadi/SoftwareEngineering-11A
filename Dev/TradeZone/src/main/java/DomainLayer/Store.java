@@ -6,10 +6,7 @@ import DomainLayer.DTO.ProductDTO;
 import DomainLayer.DTO.StoreDTO;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class Store {
@@ -34,6 +31,10 @@ public class Store {
         storeOwners.put(member.userName,new StoreOwner(member));// **************ASK IF WE WANT TO DO THIS OR NOT**********************
         storeManagers = new ConcurrentHashMap<>();
         stock = new Stock();
+    }
+
+    public Store(StoreFounder founder ) {
+
     }
 
     public boolean addNewProductToStock(String memberUserName,String nameProduct,String category, Double price, String details, Integer amount) throws Exception {
@@ -232,5 +233,14 @@ public class Store {
     public StoreDTO createStore() {
         StoreDTO storeDTO = new StoreDTO(storeName,storeFounder.getUserName(),storeOwners.keySet().stream().toList(),storeManagers.keySet().stream().toList(),new LinkedList<>());
         return storeDTO;
+    }
+
+    //Currently added for testing
+    public void addDeal(Deal deal){
+        this.storeDeals.add(deal);
+    }
+
+    public void setStock(Stock stock){
+        this.stock = stock;
     }
 }
