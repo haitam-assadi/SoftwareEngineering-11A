@@ -2,6 +2,7 @@ package AcceptanceTests;
 
 import DomainLayer.DTO.ProductDTO;
 import DomainLayer.DTO.StoreDTO;
+import jdk.jshell.spi.ExecutionControl;
 
 import java.util.Collection;
 import java.util.List;
@@ -35,7 +36,7 @@ public interface Bridge {
    //II.4.1.2
     public boolean removeProductFromStock(String memberUserName, String storeName, String productName);
 
-    public boolean addCategory(String userName, String categoryName,String storeName);
+    public boolean addCategory(String userName, String categoryName, String storeName);
 
     public boolean getCategory(String userName, String categoryName,String storeName);
 
@@ -49,7 +50,7 @@ public interface Bridge {
 
     String getProductDescription(String s);
 
-    int getProductAmount(String s);
+    int getProductAmount(String storeName, String s);
 
     //II.4.4
     public boolean appointMemberAsStoreOwner(String memberUserName, String storeName, String newOwnerUserName);
@@ -57,6 +58,11 @@ public interface Bridge {
     List<String> getStoreOwners(String storeName);
 
     String getOwnerAppointer(String OwnerName, String storeName);
+
+
+    public List<String> getStoreProducts(String userName, String storeName);
+
+
 
     public boolean appointMemberAsStoreManager(String memberUserName, String storeName, String newOwnerUserName);
 
@@ -74,4 +80,29 @@ public interface Bridge {
 
     //II.4.11
     public Map<Integer,List<String>> getStoreRulesInfo(String ownerName,String storeName);
+
+
+
+
+
+    // II.2.2
+    public Map<String, String> getProductInfoFromMarketByName(String userName, String productName); // map <storeName, productName>
+
+    public Map<String, List<String>> getProductInfoFromMarketByCategory(String userName, String categoryName); // map <storeName, List<productName>>
+
+    public Map<String, List<String>> getProductInfoFromMarketByKeyword(String userName, String keyword); // map <storeName, List<productName>>
+
+    // II.2.3 + II.2.4
+    public boolean addToCart(String userName, String storeName, String productName, Integer amount);
+
+    public List<String> getBag(String userName, String storeName);
+
+    public int getProductAmountInCart(String userName, String storeName, String productName);
+
+    public Map<String, List<String>> getCartContent(String userName); // map: <string bag.storeName, list<productName>>
+
+    public boolean removeProductFromCart(String userName, String storeName, String productName);
+
+    public boolean changeProductAmountInCart (String userName, String storeName, String productName, Integer newAmount);
+
 }

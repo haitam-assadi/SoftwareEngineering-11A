@@ -177,7 +177,7 @@ public class StoreTests {
             Assertions.assertTrue(proxy.addCategory(store_founder,"Iphones",storeName));
             proxy.addNewProductToStock(store_founder, storeName, "iphone 14", "Iphones", 3000, "256 Gb", 50);
             Assertions.assertTrue(proxy.updateProductAmount(store_founder,storeName,"Iphone 14",150));
-            Assertions.assertNotEquals(proxy.getProductAmount("Iphone 14"), 50);
+            Assertions.assertNotEquals(proxy.getProductAmount(storeName,"Iphone 14"), 50);
         }catch (Exception e){
             Assertions.fail(e.getMessage());
         }
@@ -373,10 +373,6 @@ public class StoreTests {
             Assertions.fail(e.getMessage());
         }
     }
-
-
-
-
 
 
 

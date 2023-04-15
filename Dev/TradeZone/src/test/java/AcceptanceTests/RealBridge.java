@@ -1,5 +1,6 @@
 package AcceptanceTests;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -52,7 +53,7 @@ public class RealBridge implements Bridge{
     }
 
     @Override
-    public boolean addCategory(String userName, String categoryName,String storeName) {
+    public boolean addCategory(String userName, String categoryName, String storeName) {
         return false;
     }
 
@@ -92,7 +93,7 @@ public class RealBridge implements Bridge{
     }
 
     @Override
-    public int getProductAmount(String s) {
+    public int getProductAmount(String storeName, String s) {
         return 0;
     }
 
@@ -174,7 +175,52 @@ public class RealBridge implements Bridge{
         return "";
     }
 
-    public List<String> getStoreProducts(String userName,String storeName) {
+    public List<String> getStoreProducts(String userName, String storeName) {
         return new LinkedList<>();
+    }
+
+    @Override
+    public Map<String, String> getProductInfoFromMarketByName(String userName, String productName) {
+        return new HashMap<>();
+    }
+
+    @Override
+    public Map<String, List<String>> getProductInfoFromMarketByCategory(String userName, String categoryName) {
+        return new HashMap<>();
+    }
+
+    @Override
+    public Map<String, List<String>> getProductInfoFromMarketByKeyword(String userName, String keyword) {
+        return new HashMap<>();
+    }
+
+    @Override
+    public boolean addToCart(String userName, String storeName, String productName, Integer amount) {
+        return true;
+    }
+
+    @Override
+    public List<String> getBag(String userName, String storeName) {
+        return new LinkedList<>();
+    }
+
+    @Override
+    public int getProductAmountInCart(String userName, String storeName, String productName) {
+        return 0;
+    }
+
+    @Override
+    public Map<String, List<String>> getCartContent(String userName) {
+        return new HashMap<>();
+    }
+
+    @Override
+    public boolean removeProductFromCart(String userName, String storeName, String productName) {
+        return false;
+    }
+
+    @Override
+    public boolean changeProductAmountInCart(String userName, String storeName, String productName, Integer newAmount) {
+        return false;
     }
 }

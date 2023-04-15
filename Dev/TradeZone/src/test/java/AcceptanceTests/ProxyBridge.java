@@ -89,9 +89,9 @@ public class ProxyBridge implements Bridge{
     }
 
     @Override
-    public boolean addCategory(String userName, String categoryName,String storeName) {
+    public boolean addCategory(String userName, String categoryName, String storeName) {
         if(realBridge!=null){
-            realBridge.addCategory(userName,categoryName,storeName);
+            realBridge.addCategory(userName,categoryName, storeName);
         }
         throw new UnsupportedOperationException();
     }
@@ -153,9 +153,9 @@ public class ProxyBridge implements Bridge{
     }
 
     @Override
-    public int getProductAmount(String s) {
+    public int getProductAmount(String storeName, String s) {
         if(realBridge!=null){
-            return realBridge.getProductAmount(s);
+            return realBridge.getProductAmount(storeName, s);
         }
         throw new UnsupportedOperationException();
     }
@@ -289,10 +289,81 @@ public class ProxyBridge implements Bridge{
         throw new UnsupportedOperationException();
     }
 
-    public List<String> getStoreProducts(String userName,String storeName) {
+    public List<String> getStoreProducts(String userName, String storeName) {
         if(realBridge!=null){
             return realBridge.getStoreProducts(userName,storeName);
         }
         throw new UnsupportedOperationException();
     }
+
+    @Override
+    public Map<String, String> getProductInfoFromMarketByName(String userName, String productName) {
+        if(realBridge!=null){
+            return realBridge.getProductInfoFromMarketByName(userName, productName);
+        }
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public Map<String, List<String>> getProductInfoFromMarketByCategory(String userName, String categoryName) {
+        if(realBridge!=null){
+            return realBridge.getProductInfoFromMarketByCategory(userName, categoryName);
+        }
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public Map<String, List<String>> getProductInfoFromMarketByKeyword(String userName, String keyword) {
+        if(realBridge!=null){
+            return realBridge.getProductInfoFromMarketByKeyword(userName, keyword);
+        }
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public boolean addToCart(String userName, String storeName, String productName, Integer amount) {
+        if(realBridge!=null){
+            return realBridge.addToCart(userName, storeName, productName, amount);
+        }
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public List<String> getBag(String userName, String storeName) {
+        if(realBridge!=null){
+            return realBridge.getBag(userName, storeName);
+        }
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public int getProductAmountInCart(String userName, String storeName, String productName) {
+        if(realBridge!=null){
+            return realBridge.getProductAmountInCart(userName, storeName, productName);
+        }
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public Map<String, List<String>> getCartContent(String userName) {
+        if(realBridge!=null){
+            return realBridge.getCartContent(userName);
+        }
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public boolean removeProductFromCart(String userName, String storeName, String productName) {
+        if(realBridge!=null){
+            return realBridge.removeProductFromCart(userName, storeName, productName);
+        }
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public boolean changeProductAmountInCart(String userName, String storeName, String productName, Integer newAmount) {
+        if(realBridge!=null){
+            return realBridge.changeProductAmountInCart(userName, storeName, productName, newAmount);
+        }
+        throw new UnsupportedOperationException();    }
 }
