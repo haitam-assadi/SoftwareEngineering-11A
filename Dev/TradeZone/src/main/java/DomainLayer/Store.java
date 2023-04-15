@@ -34,7 +34,13 @@ public class Store {
     }
 
     public Store(StoreFounder founder ) {
-
+        this.storeName = "";
+        this.storeFounder = founder;
+        isActive = true;
+        storeOwners = new ConcurrentHashMap<String, StoreOwner>();
+        storeManagers = new ConcurrentHashMap<String, StoreManager>();
+        stock = new Stock();
+        storeDeals = new ArrayList<Deal>();
     }
 
     public boolean addNewProductToStock(String memberUserName,String nameProduct,String category, Double price, String details, Integer amount) throws Exception {
@@ -46,13 +52,13 @@ public class Store {
             throw new Exception("the details of the product cannot be null");
         if(details.length()>300)
             throw new Exception("the details of the product is too long");
-        if(!storeFounder.getUserName().equals(memberUserName) || !storeOwners.containsKey(memberUserName))
+        if(!storeFounder.getUserName().equals(memberUserName) && !storeOwners.containsKey(memberUserName))
             throw new Exception("can't add new product to stock : userName "+ memberUserName +" is not an owner to the store");
         return stock.addNewProductToStock(nameProduct,category,price,details,amount);
     }
 
     public boolean removeProductFromStock(String memberUserName, String productName) throws Exception {
-        if(!storeFounder.getUserName().equals(memberUserName) || !storeOwners.containsKey(memberUserName))
+        if(!storeFounder.getUserName().equals(memberUserName) && !storeOwners.containsKey(memberUserName))
             throw new Exception("can't add new product to stock : userName "+ memberUserName +" is not an owner to the store");
         return stock.removeProductFromStock(productName);
     }
