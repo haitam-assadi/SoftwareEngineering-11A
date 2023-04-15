@@ -1,6 +1,7 @@
 package DomainLayer;
 
 import java.util.concurrent.ConcurrentHashMap;
+import DomainLayer.DTO.MemberDTO;
 
 public abstract class Role {
 
@@ -36,5 +37,22 @@ public abstract class Role {
         // check if null or empty
         storeName = storeName.strip().toLowerCase();
         return responsibleForStores.containsKey(storeName);
+    }
+
+    public boolean appointMemberAsStoreManager(Store store, AbstractStoreOwner myBoss) throws Exception {
+        String storeName = store.getStoreName();
+        if(responsibleForStores.containsKey(storeName))
+            throw new Exception(""+getUserName()+" is already manager or owner for this store");
+        responsibleForStores.put(storeName, store);
+        myBossesForStores.put(storeName, myBoss);
+        return true;
+    }
+
+    public MemberDTO getMemberDTO() {
+        return this.member.getMemberDTO(this.myRole.name());
+    }
+
+    public void addNotification(String sender, String date, String description) {
+        this.member.addNotification(sender, date, description);
     }
 }

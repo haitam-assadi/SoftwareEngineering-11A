@@ -1,7 +1,10 @@
 package DomainLayer;
 
+import DomainLayer.DTO.DealDTO;
+import DomainLayer.DTO.ProductDTO;
 import jdk.jshell.spi.ExecutionControl;
 
+import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -193,4 +196,25 @@ public class UserController {
         Member otherMember = getMember(newOwnerUserName);
         return member.appointOtherMemberAsStoreOwner(store, otherMember);
     }
+
+    public boolean appointOtherMemberAsStoreManager(String memberUserName, Store store, String newManagerUserName) throws Exception {
+        assertIsMemberLoggedIn(memberUserName);
+        assertIsMember(newManagerUserName);
+        Member member = getMember(memberUserName);
+        Member otherMember = getMember(newManagerUserName);
+        return member.appointOtherMemberAsStoreManager(store, otherMember);
+    }
+
+    public void checkMemberRole(String systemManagerUserName, String otherMemberUserName) throws Exception {
+        if(!this.members.containsKey(systemManagerUserName)){
+            throw new Exception(systemManagerUserName + "has to be a member to get member's deals.");
+        }
+        if(!this.members.containsKey(otherMemberUserName)){
+            throw new Exception(otherMemberUserName + "has to be a member to get his deals.");
+        }
+        if(!this.members.get(systemManagerUserName).containsRole("SystemManager")){
+            throw new Exception(systemManagerUserName + "has to be a system manager to get member's deals.");
+        }
+    }
+
 }
