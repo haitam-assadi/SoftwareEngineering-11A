@@ -28,4 +28,17 @@ public abstract class User {
     }
 
 
+    public boolean addToCart(Store store, String productName, Integer amount) throws Exception {
+        return cart.addToCart(store,productName,amount);
+    }
+
+    public boolean changeProductAmountInCart(Store store, String productName, Integer newAmount) throws Exception {
+        return cart.changeProductAmountInCart(store,productName,newAmount);
+    }
+
+    public boolean removeFromCart(Store store, String productName) throws Exception {
+        return cart.removeFromCart(store,productName);
+    }
+
+
 }

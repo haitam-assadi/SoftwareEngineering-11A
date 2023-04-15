@@ -80,6 +80,14 @@ public class Store {
         return stock.getProductInfo(productName);
     }
 
+    public Product getProduct(String productName) throws Exception {
+        return stock.getProduct(productName);
+    }
+
+    public Product getProductWithAmount(String productName, Integer amount) throws Exception {
+        return stock.getProductWithAmount(productName, amount);
+    }
+
     public boolean containsProduct(String productName) throws Exception {
         return stock.containsProduct(productName);
     }

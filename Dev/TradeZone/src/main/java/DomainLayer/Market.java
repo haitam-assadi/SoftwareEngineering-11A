@@ -14,7 +14,7 @@ public class Market {
         this.storeController = new StoreController();
     }
     //TODO: Implement this requirements: 2.5, 3.3(maybe), 4.12(for storeManager)
-
+    //TODO: closeStore req is not implemented as it should be , i(Ahmad) didn't pay attention to close stores handling..
     public String enterMarket(){
         return userController.loginAsGuest();
     }
@@ -30,21 +30,22 @@ public class Market {
         return userController.login(guestUserName, MemberUserName, password);
     }
     public StoreDTO getStoreInfo(String userName, String storeName) throws Exception {
-        userController.isGuestOrLoggedInMember(userName);
+        userController.assertIsGuestOrLoggedInMember(userName);
         return storeController.getStoreInfo(storeName);
     }
     public ProductDTO getProductInfoFromStore(String userName, String storeName, String productName) throws Exception {
-        userController.isGuestOrLoggedInMember(userName);
+        userController.assertIsGuestOrLoggedInMember(userName);
         return storeController.getProductInfoFromStore(storeName, productName);
     }
 
     public List<ProductDTO> getProductInfoFromMarketByName(String userName, String productName) throws Exception {
-        userController.isGuestOrLoggedInMember(userName);
+        userController.assertIsGuestOrLoggedInMember(userName);
         return storeController.getProductInfoFromMarketByName(productName);
     }
 
-    public List<ProductDTO> getProductInfoFromMarketByCategory(String userName, String categoryName) throws ExecutionControl.NotImplementedException {
-        throw new ExecutionControl.NotImplementedException("");
+    public List<ProductDTO> getProductInfoFromMarketByCategory(String userName, String categoryName) throws Exception {
+        userController.assertIsGuestOrLoggedInMember(userName);
+        return storeController.getProductInfoFromMarketByCategory(categoryName);
     }
 
     public List<ProductDTO> getProductInfoFromMarketByKeyword(String userName, String keyword) throws ExecutionControl.NotImplementedException {
@@ -70,14 +71,23 @@ public class Market {
         throw new ExecutionControl.NotImplementedException("");
     }
 
-    public boolean addToCart(String userName, String storeName, String productName, Integer amount) throws ExecutionControl.NotImplementedException {
-        throw new ExecutionControl.NotImplementedException("");
+    public boolean addToCart(String userName, String storeName, String productName, Integer amount) throws Exception {
+        userController.assertIsGuestOrLoggedInMember(userName);
+        storeController.assertIsStore(storeName);
+        User user = userController.getUser(userName);
+        return user.addToCart(storeController.getStore(storeName), productName, amount);
     }
-    public boolean removeFromCart(String userName, String storeName, String productName) throws ExecutionControl.NotImplementedException {
-        throw new ExecutionControl.NotImplementedException("");
+    public boolean removeFromCart(String userName, String storeName, String productName) throws Exception {
+        userController.assertIsGuestOrLoggedInMember(userName);
+        storeController.assertIsStore(storeName);
+        User user = userController.getUser(userName);
+        return user.removeFromCart(storeController.getStore(storeName), productName);
     }
-    public boolean changeProductAmountInCart(String userName, String storeName, String productName, Integer newAmount) throws ExecutionControl.NotImplementedException {
-        throw new ExecutionControl.NotImplementedException("");
+    public boolean changeProductAmountInCart(String userName, String storeName, String productName, Integer newAmount) throws Exception {
+        userController.assertIsGuestOrLoggedInMember(userName);
+        storeController.assertIsStore(storeName);
+        User user = userController.getUser(userName);
+        return user.changeProductAmountInCart(storeController.getStore(storeName), productName, newAmount);
     }
     public List<BagDTO> getCartContent(String userName) throws ExecutionControl.NotImplementedException {
         throw new ExecutionControl.NotImplementedException("");

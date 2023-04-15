@@ -17,6 +17,7 @@ public class Main {
 
         ConcurrentHashMap<String, StoreOwner> storeOwners= new ConcurrentHashMap<>();
         storeOwners.put("sadasd",role1);
+        storeOwners.put("sadasd",role2);
         storeOwners.put("sadasud",role2);
         List<String> ownersNames= storeOwners.values().stream().map(Role::getUserName).toList();
         System.out.println(ownersNames);
