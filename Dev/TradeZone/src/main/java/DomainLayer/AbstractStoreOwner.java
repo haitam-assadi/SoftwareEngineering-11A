@@ -22,7 +22,7 @@ public class AbstractStoreOwner extends Role{
         return true;
     }
 
-    public boolean appointOtherMemberAsStoreManager(Store store, Member otherMember) {
+    public boolean appointOtherMemberAsStoreManager(Store store, Member otherMember) throws Exception {
         String storeName = store.getStoreName();
         otherMember.appointMemberAsStoreManager(store, this);
         appointedManagers.putIfAbsent(storeName, new ArrayList<>());

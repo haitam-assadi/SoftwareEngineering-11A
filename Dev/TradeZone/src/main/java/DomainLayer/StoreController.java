@@ -1,13 +1,18 @@
 package DomainLayer;
 
+import DomainLayer.DTO.DealDTO;
+import DomainLayer.DTO.MemberDTO;
 import DomainLayer.DTO.ProductDTO;
 import DomainLayer.DTO.StoreDTO;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.security.PublicKey;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class StoreController {
     private ConcurrentHashMap<String, Store> stores;
+
 
     public StoreController() {
         stores = new ConcurrentHashMap<>();
@@ -81,4 +86,34 @@ public class StoreController {
         if(!stores.get(storeName).isActive())
             throw new Exception(""+ storeName+" is not Active!");
     }
+
+    public boolean closeStore(String memberUserName, String storeName) throws Exception {
+        if(this.stores.containsKey(storeName)){
+            return this.stores.get(storeName).closeStore(memberUserName);
+        }
+        throw new Exception("There is no store with the name: " + storeName);
+    }
+
+    public List<MemberDTO> getStoreWorkersInfo(String memberUserName, String storeName) throws Exception {
+        if(this.stores.containsKey(storeName)){
+            return this.stores.get(storeName).getStoreWorkersInfo(memberUserName);
+        }
+        throw new Exception("There is no store with the name: " + storeName);
+    }
+
+    public List<DealDTO> getStoreDeals(String memberUserName, String storeName) throws Exception {
+        if(this.stores.containsKey(storeName)){
+            return this.stores.get(storeName).getStoreDeals(memberUserName);
+        }
+        throw new Exception("There is no store with the name: " + storeName);
+    }
+
+    public List<DealDTO> getMemberDeals(String otherMemberUserName) {
+        List<DealDTO> deals = new ArrayList<DealDTO>();
+        for(Store store : this.stores.values()){
+            deals = store.getMemberDeals(otherMemberUserName, deals);
+        }
+        return deals;
+    }
+
 }

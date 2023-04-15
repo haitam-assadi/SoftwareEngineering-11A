@@ -27,5 +27,4 @@ public abstract class User {
         return this.cart;
     }
 
-
 }

@@ -1,6 +1,7 @@
 package DomainLayer;
 
 import java.util.concurrent.ConcurrentHashMap;
+import DomainLayer.DTO.MemberDTO;
 
 public abstract class Role {
 
@@ -45,5 +46,13 @@ public abstract class Role {
         responsibleForStores.put(storeName, store);
         myBossesForStores.put(storeName, myBoss);
         return true;
+    }
+
+    public MemberDTO getMemberDTO() {
+        return this.member.getMemberDTO(this.myRole.name());
+    }
+
+    public void addNotification(String sender, String date, String description) {
+        this.member.addNotification(sender, date, description);
     }
 }

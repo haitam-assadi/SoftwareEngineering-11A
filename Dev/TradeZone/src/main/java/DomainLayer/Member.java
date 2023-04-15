@@ -1,5 +1,7 @@
 package DomainLayer;
 
+import DomainLayer.DTO.MemberDTO;
+
 import java.security.PrivateKey;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
@@ -10,9 +12,11 @@ enum RoleEnum {
 }
 public class Member extends User{
 
+    private ConcurrentHashMap<RoleEnum, Role> roles;
+
+    private List<Notification> userNotifications;
     private boolean isSystemManager;
     private SystemManager systemManager;
-    public ConcurrentHashMap<RoleEnum, Role> roles;
     private String password;
 
     public Member(String userName, String password) {
@@ -26,6 +30,9 @@ public class Member extends User{
         return password;
     }
 
+    public MemberDTO getMemberDTO(String jobTitle) {
+        return new MemberDTO(this.userName, jobTitle);
+    }
     public boolean appointOtherMemberAsStoreOwner(Store store, Member otherMember) throws Exception {
         AbstractStoreOwner owner = null;
         String storeName = store.getStoreName();
@@ -56,6 +63,17 @@ public class Member extends User{
         return storeOwnerRole;
     }
 
+    public void addNotification(String sender, String date, String description){
+        this.userNotifications.add(new Notification(sender, date, description));
+    }
+
+    public boolean containsRole(String roleTitle) {
+        for(RoleEnum role : this.roles.keySet()){
+            if(role.toString().equals(roleTitle))
+                return true;
+        }
+        return false;
+    }
     public boolean appointOtherMemberAsStoreManager(Store store, Member otherMember) throws Exception {
         AbstractStoreOwner owner = null;
         String storeName = store.getStoreName();
