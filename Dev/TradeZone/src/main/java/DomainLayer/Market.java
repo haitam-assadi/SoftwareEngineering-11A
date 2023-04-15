@@ -38,8 +38,9 @@ public class Market {
         return storeController.getProductInfoFromStore(storeName, productName);
     }
 
-    public List<ProductDTO> getProductInfoFromMarketByName(String userName, String productName) throws ExecutionControl.NotImplementedException {
-        throw new ExecutionControl.NotImplementedException("");
+    public List<ProductDTO> getProductInfoFromMarketByName(String userName, String productName) throws Exception {
+        userController.isGuestOrLoggedInMember(userName);
+        return storeController.getProductInfoFromMarketByName(productName);
     }
 
     public List<ProductDTO> getProductInfoFromMarketByCategory(String userName, String categoryName) throws ExecutionControl.NotImplementedException {

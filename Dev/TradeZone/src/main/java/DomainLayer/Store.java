@@ -79,6 +79,19 @@ public class Store {
     public ProductDTO getProductInfo(String productName) throws Exception {
         return stock.getProductInfo(productName);
     }
+
+    public boolean containsProduct(String productName) throws Exception {
+        return stock.containsProduct(productName);
+    }
+
+    public List<ProductDTO> getProductsInfoByCategory(String categoryName) throws Exception {
+        return stock.getProductsInfoByCategory(categoryName);
+    }
+
+    public boolean containsCategory(String categoryName) throws Exception {
+        return stock.containsCategory(categoryName);
+    }
+
     public boolean isAlreadyStoreOwner(String memberUserName){
         if(storeFounder.getUserName().equals(memberUserName))
             return true;

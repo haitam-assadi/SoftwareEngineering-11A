@@ -4,6 +4,8 @@ import DomainLayer.DTO.ProductDTO;
 import DomainLayer.DTO.StoreDTO;
 
 import java.security.PublicKey;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class StoreController {
@@ -58,6 +60,16 @@ public class StoreController {
     public ProductDTO getProductInfoFromStore(String storeName, String productName) throws Exception {
         isActiveStore(storeName);
         return stores.get(storeName).getProductInfo(productName);
+    }
+
+    public List<ProductDTO> getProductInfoFromMarketByName(String productName) throws Exception {
+        List<ProductDTO> productDTOList = new ArrayList<>();
+        for(Store store: stores.values())
+            //TODO:: does store needs to be active so we can ask for products info ??
+            if(store.containsProduct(productName))
+                productDTOList.add(store.getProductInfo(productName));
+
+        return productDTOList;
     }
 
     public Store getStore(String storeName) throws Exception {
