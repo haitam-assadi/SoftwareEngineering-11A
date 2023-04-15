@@ -217,4 +217,11 @@ public class UserController {
         }
     }
 
+    public String memberLogOut(String memberUserName) throws Exception {
+        //TODO: CHECK IF THE CART OF THE MEMBER IS NOT DELETED
+        assertIsMemberLoggedIn(memberUserName);
+        loggedInMembers.remove(memberUserName);
+        String newGuest = loginAsGuest();
+        return newGuest;
+    }
 }

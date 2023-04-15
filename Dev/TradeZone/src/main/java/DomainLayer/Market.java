@@ -89,14 +89,19 @@ public class Market {
         User user = userController.getUser(userName);
         return user.changeProductAmountInCart(storeController.getStore(storeName), productName, newAmount);
     }
-    public List<BagDTO> getCartContent(String userName) throws ExecutionControl.NotImplementedException {
-        throw new ExecutionControl.NotImplementedException("");
+    public List<BagDTO> getCartContent(String userName) throws Exception {
+        userController.assertIsGuestOrLoggedInMember(userName);
+        User user = userController.getUser(userName);
+        return user.getCartContent(user);
     }
-    public boolean memberLogOut(String memberUserName) throws ExecutionControl.NotImplementedException {
-        throw new ExecutionControl.NotImplementedException("");
+    public String memberLogOut(String memberUserName) throws Exception {
+        // TODO: THE RETURN OF THE THIS FUNCTION IS THE NEW GUEST USER NAME
+        return userController.memberLogOut(memberUserName);
     }
-    public StoreDTO createStore(String memberUserName, String newStoreName) throws ExecutionControl.NotImplementedException {
-        throw new ExecutionControl.NotImplementedException("");
+    public StoreDTO createStore(String memberUserName, String newStoreName) throws Exception {
+        userController.isMemberLoggedIn(memberUserName);
+        Member member = userController.getMember(memberUserName);
+        return storeController.createStore(member,newStoreName);
     }
     public boolean addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String details, Integer amount) throws Exception {
         return storeController.addNewProductToStock(memberUserName,storeName,nameProduct,category,price,details,amount);

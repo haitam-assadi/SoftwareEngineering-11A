@@ -5,8 +5,8 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class Bag {
 
-    Cart cart;
-    Store storeBag;
+    private Cart cart;
+    private Store storeBag;
     private ConcurrentHashMap<String, ConcurrentHashMap<Product,Integer>> bagContent;
 
     public Bag(Store storeBag) {
@@ -38,5 +38,24 @@ public class Bag {
             throw new Exception("bag does not contain "+productName+" product");
         bagContent.remove(productName);
         return true;
+    }
+
+    public Cart getCart() {
+        return cart;
+    }
+
+    public Store getStoreBag() {
+        return storeBag;
+    }
+    public ConcurrentHashMap<String,Integer> getProductWithAmount(){
+        List<String> productsNameBag =  bagContent.keySet().stream().toList();
+        ConcurrentHashMap<String,Integer> productNameAmount = new ConcurrentHashMap<>();
+        for (int i=0;i<productsNameBag.size();i++){
+            String productName = productsNameBag.get(i);
+            ConcurrentHashMap<Product,Integer> productIntegerConcurrentHashMap = bagContent.get(productName);
+            Integer productAmount = productIntegerConcurrentHashMap.get(productIntegerConcurrentHashMap.keys().nextElement());
+            productNameAmount.put(productName,productAmount);
+        }
+        return productNameAmount;
     }
 }

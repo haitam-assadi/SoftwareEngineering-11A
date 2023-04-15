@@ -2,6 +2,7 @@ package DomainLayer;
 
 import java.lang.reflect.Array;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -13,8 +14,11 @@ public class Main {
         role1.member=member1;
         StoreOwner role2 = new StoreOwner(member2);
         role2.member=member2;
+        List<String> haitam = new LinkedList<>();
+        haitam.add("haitam1");
+        haitam.add("haitam2");
 
-
+        System.out.println(haitam.get(0));
         ConcurrentHashMap<String, StoreOwner> storeOwners= new ConcurrentHashMap<>();
         storeOwners.put("sadasd",role1);
         storeOwners.put("sadasd",role2);
