@@ -5,6 +5,7 @@ import DomainLayer.DTO.StoreDTO;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 public interface Bridge {
 
@@ -34,9 +35,9 @@ public interface Bridge {
    //II.4.1.2
     public boolean removeProductFromStock(String memberUserName, String storeName, String productName);
 
-    public boolean addCategory(String userName, String categoryName);
+    public boolean addCategory(String userName, String categoryName,String storeName);
 
-    public boolean getCategory(String categoryName);
+    public boolean getCategory(String userName, String categoryName,String storeName);
 
     //II.4.1.3
     public boolean updateProductName(String memberUserName, String storeName, String productName, String newName);
@@ -56,4 +57,21 @@ public interface Bridge {
     List<String> getStoreOwners(String storeName);
 
     String getOwnerAppointer(String OwnerName, String storeName);
+
+    public boolean appointMemberAsStoreManager(String memberUserName, String storeName, String newOwnerUserName);
+
+
+    List<String> getStoreManagers(String storeName);
+
+    String getManagerAppointer(String ManagerName, String storeName);
+
+    //II.4.9
+    public String closeStore(String memberUserName, String storeName);
+
+    public boolean canGetStoreInfo(String userName, String storeName);
+
+    String getStoreNotification(String memberName, String storeName);
+
+    //II.4.11
+    public Map<Integer,List<String>> getStoreRulesInfo(String ownerName,String storeName);
 }
