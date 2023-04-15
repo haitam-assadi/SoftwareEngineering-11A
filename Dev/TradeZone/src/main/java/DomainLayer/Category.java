@@ -20,7 +20,7 @@ public class Category {
         return true;
     }
 
-    public boolean updateProductDetailsInCategory(Product product) throws Exception {
+    public boolean updateProductDescriptionInCategory(Product product) throws Exception {
         if(!categoryProducts.containsKey(product.getName()))
             throw new Exception("the product is not in the category");
         categoryProducts.remove(product.getName());

@@ -14,7 +14,6 @@ public class UserController {
     private ConcurrentHashMap<String, Member> onlineMembers;
     private ConcurrentHashMap<String, Guest> guests;
     private ConcurrentHashMap<String, Member> members;
-
     private Set<String> membersNamesConcurrentSet;
 
     public UserController(){
@@ -25,6 +24,7 @@ public class UserController {
         guestsCounter=0;
     }
 
+    //TODO: CHECK WERE WE DO THE MEMBER ONLINE
     public synchronized String loginAsGuest(){
         String guestUserName = "Guest_"+ guestsCounter;
         guestsCounter++;
@@ -123,6 +123,51 @@ public class UserController {
         return members.get(UserName);
     }
 
+    public void isGuestOrLoggedInMember(String userName) throws Exception {
+        if(userName==null || userName == "")
+            throw new Exception("userName is null or empty");
+        userName = userName.strip().toLowerCase();
+
+        if(! (guests.containsKey(userName) || membersNamesConcurrentSet.contains(userName)))
+            throw new Exception(""+ userName+" is not a user!");
+
+        if(!onlineMembers.keySet().contains(userName))
+            //TODO synchronization check
+            throw new Exception("Member:"+ userName+" is not logged in!");
+    }
+    public void isMember(String memberUserName) throws Exception {
+        if(memberUserName==null || memberUserName == "")
+            throw new Exception("memberUserName is null or empty");
+
+        if(!membersNamesConcurrentSet.contains(memberUserName))
+            throw new Exception("userName "+ memberUserName+" does not exists!");
+
+    }
+
+    public void isOnlineMember(String memberUserName) throws Exception {
+        isMember(memberUserName);
+        if(!onlineMembers.containsKey(memberUserName))
+            throw new Exception("the memberUserName: "+ memberUserName+" is not online");
+    }
+
+
+
+    public boolean appointOtherMemberAsStoreOwner(String memberUserName, Store store, String newOwnerUserName) throws Exception {
+        isOnlineMember(memberUserName);
+        isMember(newOwnerUserName);
+        Member member = getMember(memberUserName);
+        Member otherMember = getMember(newOwnerUserName);
+        return member.appointOtherMemberAsStoreOwner(store, otherMember);
+    }
+
+    public boolean appointOtherMemberAsStoreManager(String memberUserName, Store store, String newManagerUserName) throws Exception {
+        isOnlineMember(memberUserName);
+        isMember(newManagerUserName);
+        Member member = getMember(memberUserName);
+        Member otherMember = getMember(newManagerUserName);
+        return member.appointOtherMemberAsStoreManager(store, otherMember);
+    }
+
     public void checkMemberRole(String systemManagerUserName, String otherMemberUserName) throws Exception {
         if(!this.members.containsKey(systemManagerUserName)){
             throw new Exception(systemManagerUserName + "has to be a member to get member's deals.");
@@ -134,4 +179,5 @@ public class UserController {
             throw new Exception(systemManagerUserName + "has to be a system manager to get member's deals.");
         }
     }
+
 }
