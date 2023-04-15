@@ -279,4 +279,12 @@ public class ProxyBridge implements Bridge{
         }
         throw new UnsupportedOperationException();
     }
+
+    @Override
+    public Map<String, List<String>> getCartContent(String userName) {
+        if(realBridge!=null){
+            return realBridge.getCartContent(userName);
+        }
+        throw new UnsupportedOperationException();
+    }
 }

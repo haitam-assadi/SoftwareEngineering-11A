@@ -1,10 +1,8 @@
 package AcceptanceTests;
-import org.junit.Assert;
 import org.junit.jupiter.api.*;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -195,7 +193,7 @@ public class BuyingTests {
     }
 
     @Test
-    public void add_product_to_cart_success(){
+    public void add_product_to_cart_success(){ // TODO: add assert equal(3, getBag.getProductAmount)
         try{
             // guest
             int productAmount = proxy.getProductAmount(storeName2, "gaming mouse 1");
@@ -247,7 +245,68 @@ public class BuyingTests {
         }
     }
 
-    
+    @Test
+    public void add_product_twice_to_cart(){
+        try{
+            // guest
+            Assertions.assertTrue(proxy.addToCart(guest_name, storeName2, "gaming mouse 1", 5));
+            Assertions.assertFalse(proxy.addToCart(guest_name, storeName2, "gaming mouse 1", 2));
+            //  TODO: add assert equal(?, getBag.getProductAmountInBag)
 
+            // member
+            Assertions.assertTrue(proxy.addToCart(member_name, storeName2, "gaming mouse 1", 5));
+            Assertions.assertFalse(proxy.addToCart(member_name, storeName2, "gaming mouse 1", 2));
+            //  TODO: add assert equal(?, getBag.getProductAmountInBag)
+        } catch (Exception e){
+            Assertions.fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void guest_get_cart_content_success(){
+        try{
+            proxy.addToCart(guest_name, storeName1, "iphone 14", 1);
+            proxy.addToCart(guest_name, storeName1, "gaming chair 1", 3);
+            proxy.addToCart(guest_name, storeName2, "iphone 14", 1);
+            Map<String, List<String>> cart = proxy.getCartContent(guest_name);
+            Assertions.assertEquals(2, cart.size()); // 2 bags
+            Assertions.assertTrue(cart.containsKey(storeName1));
+            Assertions.assertTrue(cart.containsKey(storeName2));
+            Assertions.assertEquals(2, cart.get(storeName1).size());
+            Assertions.assertEquals(1, cart.get(storeName2).size());
+            Assertions.assertTrue(cart.get(storeName1).contains("iphone 14"));
+            Assertions.assertTrue(cart.get(storeName1).contains("gaming chair 1"));
+            Assertions.assertTrue(cart.get(storeName2).contains("iphone 14"));
+            // TODO: add assert equal(?, getBag.getProductAmountInBag)
+
+        } catch (Exception e){
+            Assertions.fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void member_get_cart_content_success(){
+        try{
+            proxy.addToCart(member_name, storeName1, "iphone 14", 1);
+            proxy.addToCart(member_name, storeName1, "gaming chair 1", 3);
+            proxy.addToCart(member_name, storeName2, "iphone 14", 1);
+            Map<String, List<String>> cart = proxy.getCartContent(member_name);
+            Assertions.assertEquals(2, cart.size()); // 2 bags
+            Assertions.assertTrue(cart.containsKey(storeName1));
+            Assertions.assertTrue(cart.containsKey(storeName2));
+            Assertions.assertEquals(2, cart.get(storeName1).size());
+            Assertions.assertEquals(1, cart.get(storeName2).size());
+            Assertions.assertTrue(cart.get(storeName1).contains("iphone 14"));
+            Assertions.assertTrue(cart.get(storeName1).contains("gaming chair 1"));
+            Assertions.assertTrue(cart.get(storeName2).contains("iphone 14"));
+            // TODO: add assert equal(?, getBag.getProductAmountInBag)
+
+        } catch (Exception e){
+            Assertions.fail(e.getMessage());
+        }
+    }
+
+    // get_cart_content_failed
+    // change cart content
 
 }

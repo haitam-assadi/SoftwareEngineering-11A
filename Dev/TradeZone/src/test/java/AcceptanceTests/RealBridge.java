@@ -168,4 +168,9 @@ public class RealBridge implements Bridge{
     public List<String> getBag(String userName, String storeName) {
         return new LinkedList<>();
     }
+
+    @Override
+    public Map<String, List<String>> getCartContent(String userName) {
+        return new HashMap<>();
+    }
 }

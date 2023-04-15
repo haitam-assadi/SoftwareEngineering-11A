@@ -72,4 +72,6 @@ public interface Bridge {
 
     public List<String> getBag(String userName, String storeName);
 
+    public Map<String, List<String>> getCartContent(String userName); // map: <string bag.storeName, list<productName>>
+
 }
