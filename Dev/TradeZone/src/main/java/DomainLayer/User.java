@@ -1,5 +1,7 @@
 package DomainLayer;
 
+import DomainLayer.DTO.BagDTO;
+
 import java.util.List;
 
 public abstract class User {
@@ -41,4 +43,7 @@ public abstract class User {
     }
 
 
+    public List<BagDTO> getCartContent(User user) throws Exception {
+        return cart.getCartContent(user);
+    }
 }

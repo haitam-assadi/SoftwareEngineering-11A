@@ -103,6 +103,10 @@ public class StoreController {
         if(!isStore(storeName))
             throw new Exception("store: "+ storeName+" does not exists!");
     }
+    public void assertIsNotStore(String storeName) throws Exception {
+        if(isStore(storeName))
+            throw new Exception("store: "+ storeName+" is already store");
+    }
 
     public boolean isStore(String storeName) throws Exception {
         if(storeName==null || storeName == "")
@@ -114,9 +118,6 @@ public class StoreController {
 
         return true;
     }
-
-
-
 
     public void isActiveStore(String storeName) throws Exception {
         assertIsStore(storeName);
@@ -153,4 +154,10 @@ public class StoreController {
         return deals;
     }
 
+    public StoreDTO createStore(Member member, String newStoreName) throws Exception {
+        assertIsNotStore(newStoreName);
+        Store newStore = new Store(newStoreName,member);
+        stores.put(newStoreName,newStore);
+        return newStore.createStore();
+    }
 }

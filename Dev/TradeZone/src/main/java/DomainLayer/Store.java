@@ -8,6 +8,7 @@ import DomainLayer.DTO.StoreDTO;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -24,8 +25,14 @@ public class Store {
     private List<Deal> storeDeals;
     private List<DiscountPolicy> storeDiscountPolicies;
     private List<PaymentPolicy> storePaymentPolicies;
-    public Store() {
+
+    public Store(String storeName, Member member ) {
+        this.storeName = storeName;
+        storeFounder = new StoreFounder(member) ;
+        isActive = true;
         storeOwners = new ConcurrentHashMap<>();
+        storeOwners.put(member.userName,new StoreOwner(member));// **************ASK IF WE WANT TO DO THIS OR NOT**********************
+        storeManagers = new ConcurrentHashMap<>();
         stock = new Stock();
     }
 
@@ -220,5 +227,10 @@ public class Store {
             }
         }
         return deals;
+    }
+
+    public StoreDTO createStore() {
+        StoreDTO storeDTO = new StoreDTO(storeName,storeFounder.getUserName(),storeOwners.keySet().stream().toList(),storeManagers.keySet().stream().toList(),new LinkedList<>());
+        return storeDTO;
     }
 }
