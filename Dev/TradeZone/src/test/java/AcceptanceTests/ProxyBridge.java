@@ -153,9 +153,9 @@ public class ProxyBridge implements Bridge{
     }
 
     @Override
-    public int getProductAmount(String s) {
+    public int getProductAmount(String storeName, String s) {
         if(realBridge!=null){
-            return realBridge.getProductAmount(s);
+            return realBridge.getProductAmount(storeName, s);
         }
         throw new UnsupportedOperationException();
     }
@@ -260,6 +260,22 @@ public class ProxyBridge implements Bridge{
     public Map<String, List<String>> getProductInfoFromMarketByKeyword(String userName, String keyword) {
         if(realBridge!=null){
             return realBridge.getProductInfoFromMarketByKeyword(userName, keyword);
+        }
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public boolean addToCart(String userName, String storeName, String productName, Integer amount) {
+        if(realBridge!=null){
+            return realBridge.addToCart(userName, storeName, productName, amount);
+        }
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public List<String> getBag(String userName, String storeName) {
+        if(realBridge!=null){
+            return realBridge.getBag(userName, storeName);
         }
         throw new UnsupportedOperationException();
     }

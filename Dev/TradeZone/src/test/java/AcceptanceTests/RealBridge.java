@@ -93,7 +93,7 @@ public class RealBridge implements Bridge{
     }
 
     @Override
-    public int getProductAmount(String s) {
+    public int getProductAmount(String storeName, String s) {
         return 0;
     }
 
@@ -157,5 +157,15 @@ public class RealBridge implements Bridge{
     @Override
     public Map<String, List<String>> getProductInfoFromMarketByKeyword(String userName, String keyword) {
         return new HashMap<>();
+    }
+
+    @Override
+    public boolean addToCart(String userName, String storeName, String productName, Integer amount) {
+        return true;
+    }
+
+    @Override
+    public List<String> getBag(String userName, String storeName) {
+        return new LinkedList<>();
     }
 }

@@ -194,6 +194,60 @@ public class BuyingTests {
         }
     }
 
+    @Test
+    public void add_product_to_cart_success(){
+        try{
+            // guest
+            int productAmount = proxy.getProductAmount(storeName2, "gaming mouse 1");
+            Assertions.assertTrue(proxy.addToCart(guest_name, storeName2, "gaming mouse 1", 3));
+            Assertions.assertTrue(proxy.getBag(guest_name, storeName2).contains("gaming mouse 1"));
+            Assertions.assertEquals(productAmount, proxy.getProductAmount(storeName2, "gaming mouse 1")); // product amount in stock is not changed
+
+            // member
+            productAmount = proxy.getProductAmount(storeName2, "gaming mouse 1");
+            Assertions.assertTrue(proxy.addToCart(member_name, storeName2, "gaming mouse 1", 3));
+            Assertions.assertTrue(proxy.getBag(member_name, storeName2).contains("gaming mouse 1"));
+            Assertions.assertEquals(productAmount, proxy.getProductAmount(storeName2, "gaming mouse 1")); // product amount in stock is not changed
+        } catch (Exception e){
+            Assertions.fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void add_larger_amount_of_product_to_cart_fail(){
+        try{
+            // guest
+            int productAmount = proxy.getProductAmount(storeName2, "gaming mouse 1");
+            Assertions.assertFalse(proxy.addToCart(guest_name, storeName2, "gaming mouse 1", productAmount + 10));
+            Assertions.assertFalse(proxy.getBag(guest_name, storeName2).contains("gaming mouse 1"));
+            Assertions.assertEquals(productAmount, proxy.getProductAmount(storeName2, "gaming mouse 1")); // product amount in stock is not changed
+
+            // member
+            productAmount = proxy.getProductAmount(storeName2, "gaming mouse 1");
+            Assertions.assertFalse(proxy.addToCart(member_name, storeName2, "gaming mouse 1", productAmount + 10));
+            Assertions.assertFalse(proxy.getBag(guest_name, storeName2).contains("gaming mouse 1"));
+            Assertions.assertEquals(productAmount, proxy.getProductAmount(storeName2, "gaming mouse 1")); // product amount in stock is not changed
+        } catch (Exception e){
+            Assertions.fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void add_product_does_not_exist_to_cart(){
+        try{
+            // guest
+            Assertions.assertFalse(proxy.addToCart(guest_name, storeName2, "mouse", 10));
+            Assertions.assertFalse(proxy.getBag(guest_name, storeName2).contains("mouse"));
+
+            // member
+            Assertions.assertFalse(proxy.addToCart(member_name, storeName2, "mouse", 10));
+            Assertions.assertFalse(proxy.getBag(guest_name, storeName2).contains("mouse"));
+        } catch (Exception e){
+            Assertions.fail(e.getMessage());
+        }
+    }
+
     
+
 
 }

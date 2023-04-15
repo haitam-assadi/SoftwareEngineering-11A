@@ -49,7 +49,7 @@ public interface Bridge {
 
     String getProductDescription(String s);
 
-    int getProductAmount(String s);
+    int getProductAmount(String storeName, String s);
 
     //II.4.4
     public boolean appointMemberAsStoreOwner(String memberUserName, String storeName, String newOwnerUserName);
@@ -67,6 +67,9 @@ public interface Bridge {
 
     public Map<String, List<String>> getProductInfoFromMarketByKeyword(String userName, String keyword); // map <storeName, List<productName>>
 
+    // II.2.3
+    public boolean addToCart(String userName, String storeName, String productName, Integer amount);
 
+    public List<String> getBag(String userName, String storeName);
 
 }
