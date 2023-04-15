@@ -1,7 +1,9 @@
 package AcceptanceTests;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 public class RealBridge implements Bridge{
 
@@ -51,7 +53,7 @@ public class RealBridge implements Bridge{
     }
 
     @Override
-    public boolean addCategory(String userName, String categoryName) {
+    public boolean addCategory(String userName, String categoryName, String storeName) {
         return false;
     }
 
@@ -138,7 +140,22 @@ public class RealBridge implements Bridge{
         return "";
     }
 
-    public List<String> getStoreProducts(String storeName) {
+    public List<String> getStoreProducts(String userName, String storeName) {
         return new LinkedList<>();
+    }
+
+    @Override
+    public Map<String, String> getProductInfoFromMarketByName(String userName, String productName) {
+        return new HashMap<>();
+    }
+
+    @Override
+    public Map<String, List<String>> getProductInfoFromMarketByCategory(String userName, String categoryName) {
+        return new HashMap<>();
+    }
+
+    @Override
+    public Map<String, List<String>> getProductInfoFromMarketByKeyword(String userName, String keyword) {
+        return new HashMap<>();
     }
 }

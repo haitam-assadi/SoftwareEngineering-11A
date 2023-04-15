@@ -5,6 +5,7 @@ import DomainLayer.DTO.StoreDTO;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 public interface Bridge {
 
@@ -34,7 +35,7 @@ public interface Bridge {
    //II.4.1.2
     public boolean removeProductFromStock(String memberUserName, String storeName, String productName);
 
-    public boolean addCategory(String userName, String categoryName);
+    public boolean addCategory(String userName, String categoryName, String storeName);
 
     public boolean getCategory(String categoryName);
 
@@ -56,4 +57,16 @@ public interface Bridge {
     List<String> getStoreOwners(String storeName);
 
     String getOwnerAppointer(String OwnerName, String storeName);
+
+    public List<String> getStoreProducts(String userName, String storeName);
+
+    // II.2.2
+    public Map<String, String> getProductInfoFromMarketByName(String userName, String productName); // map <storeName, productName>
+
+    public Map<String, List<String>> getProductInfoFromMarketByCategory(String userName, String categoryName); // map <storeName, List<productName>>
+
+    public Map<String, List<String>> getProductInfoFromMarketByKeyword(String userName, String keyword); // map <storeName, List<productName>>
+
+
+
 }

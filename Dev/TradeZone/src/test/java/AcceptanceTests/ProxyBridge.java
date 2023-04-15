@@ -2,6 +2,7 @@ package AcceptanceTests;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 public class ProxyBridge implements Bridge{
     public RealBridge realBridge;
@@ -88,9 +89,9 @@ public class ProxyBridge implements Bridge{
     }
 
     @Override
-    public boolean addCategory(String userName, String categoryName) {
+    public boolean addCategory(String userName, String categoryName, String storeName) {
         if(realBridge!=null){
-            realBridge.addCategory(userName,categoryName);
+            realBridge.addCategory(userName,categoryName, storeName);
         }
         throw new UnsupportedOperationException();
     }
@@ -232,9 +233,33 @@ public class ProxyBridge implements Bridge{
         throw new UnsupportedOperationException();
     }
 
-    public List<String> getStoreProducts(String storeName) {
+    public List<String> getStoreProducts(String userName, String storeName) {
         if(realBridge!=null){
             return realBridge.getStoreProducts(storeName);
+        }
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public Map<String, String> getProductInfoFromMarketByName(String userName, String productName) {
+        if(realBridge!=null){
+            return realBridge.getProductInfoFromMarketByName(userName, productName);
+        }
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public Map<String, List<String>> getProductInfoFromMarketByCategory(String userName, String categoryName) {
+        if(realBridge!=null){
+            return realBridge.getProductInfoFromMarketByCategory(userName, categoryName);
+        }
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public Map<String, List<String>> getProductInfoFromMarketByKeyword(String userName, String keyword) {
+        if(realBridge!=null){
+            return realBridge.getProductInfoFromMarketByKeyword(userName, keyword);
         }
         throw new UnsupportedOperationException();
     }
