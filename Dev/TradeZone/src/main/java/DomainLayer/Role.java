@@ -37,4 +37,13 @@ public abstract class Role {
         storeName = storeName.strip().toLowerCase();
         return responsibleForStores.containsKey(storeName);
     }
+
+    public boolean appointMemberAsStoreManager(Store store, AbstractStoreOwner myBoss) throws Exception {
+        String storeName = store.getStoreName();
+        if(responsibleForStores.containsKey(storeName))
+            throw new Exception(""+getUserName()+" is already manager or owner for this store");
+        responsibleForStores.put(storeName, store);
+        myBossesForStores.put(storeName, myBoss);
+        return true;
+    }
 }

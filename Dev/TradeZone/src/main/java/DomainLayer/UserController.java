@@ -156,4 +156,13 @@ public class UserController {
         Member otherMember = getMember(newOwnerUserName);
         return member.appointOtherMemberAsStoreOwner(store, otherMember);
     }
+
+    public boolean appointOtherMemberAsStoreManager(String memberUserName, Store store, String newManagerUserName) throws Exception {
+        isOnlineMember(memberUserName);
+        isMember(newManagerUserName);
+        Member member = getMember(memberUserName);
+        Member otherMember = getMember(newManagerUserName);
+        return member.appointOtherMemberAsStoreManager(store, otherMember);
+    }
+
 }

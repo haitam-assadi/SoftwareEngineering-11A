@@ -89,6 +89,10 @@ public class Store {
         else return false;
     }
 
+    public boolean isAlreadyStoreManager(String memberUserName) {
+        return storeManagers.keySet().contains(memberUserName);
+    }
+
     public boolean appointMemberAsStoreOwner(StoreOwner storeOwner) throws Exception {
         if(storeOwners.containsKey(storeOwner.getUserName()))
             throw new Exception(""+storeOwner.getUserName()+" is already owner for this store");
@@ -96,10 +100,12 @@ public class Store {
         return true;
     }
 
-
-
-
-
+    public boolean appointMemberAsStoreManager(StoreManager storeManager) throws Exception {
+        if(storeManagers.containsKey(storeManager.getUserName()))
+            throw new Exception(""+storeManager.getUserName()+" is already manager for this store");
+        storeManagers.put(storeManager.getUserName(), storeManager);
+        return true;
+    }
 
     public boolean isActive() {
         return isActive;

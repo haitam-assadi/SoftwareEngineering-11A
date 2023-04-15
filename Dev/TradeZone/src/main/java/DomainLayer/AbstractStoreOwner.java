@@ -21,4 +21,12 @@ public class AbstractStoreOwner extends Role{
         appointedOwners.get(storeName).add(otherMember.getStoreOwner());
         return true;
     }
+
+    public boolean appointOtherMemberAsStoreManager(Store store, Member otherMember) {
+        String storeName = store.getStoreName();
+        otherMember.appointMemberAsStoreManager(store, this);
+        appointedManagers.putIfAbsent(storeName, new ArrayList<>());
+        appointedManagers.get(storeName).add(otherMember.getStoreManager());
+        return true;
+    }
 }
