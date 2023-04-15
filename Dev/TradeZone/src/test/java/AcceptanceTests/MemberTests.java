@@ -182,6 +182,29 @@ public class MemberTests {
         }
     }
 
+    @Test
+    public void create_2stores_success(){
+        try {
+            String userName = "Moslem Asaad";
+            proxy.login(user, userName, "12345");
+            List<String> stores = proxy.getAllStores();
+            String storeName = proxy.createStore(userName, "verit");
+            Assertions.assertTrue(stores.contains(storeName));
+            String storeFounder = proxy.getStoreFounder(storeName);
+            Assertions.assertEquals(userName, storeFounder);
+            String appointer = proxy.getOwnerAppointer(storeFounder,storeName);
+            Assertions.assertTrue(appointer.isEmpty() || appointer == null);
+            storeName = proxy.createStore(userName, "Moslem Store");
+            Assertions.assertTrue(stores.contains(storeName));
+            storeFounder = proxy.getStoreFounder(storeName);
+            Assertions.assertEquals(userName, storeFounder);
+            appointer = proxy.getOwnerAppointer(storeFounder,storeName);
+            Assertions.assertTrue(appointer.isEmpty() || appointer == null);
+        }catch (Exception e){
+            Assertions.fail(e.getMessage());
+        }
+    }
+
 
 
 

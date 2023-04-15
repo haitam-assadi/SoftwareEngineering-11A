@@ -58,7 +58,7 @@ public class RealBridge implements Bridge{
     }
 
     @Override
-    public boolean getCategory(String categoryName) {
+    public boolean getCategory(String userName, String categoryName,String storeName) {
         return false;
     }
 
@@ -109,6 +109,41 @@ public class RealBridge implements Bridge{
 
     @Override
     public String getOwnerAppointer(String OwnerName, String storeName) {
+        return null;
+    }
+
+    @Override
+    public boolean appointMemberAsStoreManager(String memberUserName, String storeName, String newOwnerUserName) {
+        return false;
+    }
+
+    @Override
+    public List<String> getStoreManagers(String storeName) {
+        return null;
+    }
+
+    @Override
+    public String getManagerAppointer(String ManagerName, String storeName) {
+        return null;
+    }
+
+    @Override
+    public String closeStore(String memberUserName, String storeName) {
+        return "";
+    }
+
+    @Override
+    public boolean canGetStoreInfo(String userName, String storeName) {
+        return false;
+    }
+
+    @Override
+    public String getStoreNotification(String memberName, String storeName) {
+        return null;
+    }
+
+    @Override
+    public Map<Integer, List<String>> getStoreRulesInfo(String ownerName, String storeName) {
         return null;
     }
 
