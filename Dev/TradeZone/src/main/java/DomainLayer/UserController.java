@@ -11,20 +11,20 @@ import java.util.concurrent.ConcurrentHashMap;
 public class UserController {
     private long guestsCounter;
 
-    private ConcurrentHashMap<String, Member> onlineMembers;
+    private ConcurrentHashMap<String, Member> loggedInMembers;
     private ConcurrentHashMap<String, Guest> guests;
     private ConcurrentHashMap<String, Member> members;
     private Set<String> membersNamesConcurrentSet;
 
     public UserController(){
-        onlineMembers = new ConcurrentHashMap<>();
+        loggedInMembers = new ConcurrentHashMap<>();
         guests = new ConcurrentHashMap<>();
         members = new ConcurrentHashMap<>();
         membersNamesConcurrentSet = ConcurrentHashMap.newKeySet();
         guestsCounter=0;
     }
 
-    //TODO: CHECK WERE WE DO THE MEMBER ONLINE
+    //TODO: CHECK WERE WE DO THE MEMBER logged in
     public synchronized String loginAsGuest(){
         String guestUserName = "Guest_"+ guestsCounter;
         guestsCounter++;
@@ -86,7 +86,7 @@ public class UserController {
         if(!member.getPassword().equals(password))
             throw new Exception("incorrect password!");
 
-        onlineMembers.put(MemberUserName, member);
+        loggedInMembers.put(MemberUserName, member);
         return MemberUserName;
     }
 
@@ -107,62 +107,99 @@ public class UserController {
         if(!membersNamesConcurrentSet.contains(MemberUserName))
             throw new Exception("can't login: userName "+ MemberUserName+" does not exists!");
 
-        if(!onlineMembers.keySet().contains(MemberUserName))
+        if(!loggedInMembers.keySet().contains(MemberUserName))
             //TODO synchronization check
             throw new Exception("can't login:"+ MemberUserName+" already logged in!");
 
     }
 
-    private Member getMember(String UserName) throws Exception {
-        if(!membersNamesConcurrentSet.contains(UserName))
-            throw new Exception("can't getMember: userName "+ UserName+" does not exists!");
-        if(!members.containsKey(UserName))
-            // TODO: read from database AND add to members hashmap
-            throw new ExecutionControl.NotImplementedException("");
+    public Member getMember(String userName) throws Exception {
+        assertIsMember(userName);
 
-        return members.get(UserName);
+        userName = userName.strip().toLowerCase();
+        if(!members.containsKey(userName))
+            // TODO: read from database AND add to members hashmap
+            throw new Exception("user needs to be read from database");
+
+        return members.get(userName);
+    }
+    public User getUser(String userName) throws Exception {
+        if(isGuest(userName))
+            return guests.get(userName);
+
+        if(isMember(userName))
+            return getMember(userName);
+
+        throw new Exception("can't getUser: userName "+ userName+" does not exists!");
     }
 
-    public void isGuestOrLoggedInMember(String userName) throws Exception {
-        if(userName==null || userName == "")
-            throw new Exception("userName is null or empty");
-        userName = userName.strip().toLowerCase();
-
-        if(! (guests.containsKey(userName) || membersNamesConcurrentSet.contains(userName)))
+    public void assertIsGuestOrLoggedInMember(String userName) throws Exception {
+        if(! (isGuest(userName) || isMember(userName)))
             throw new Exception(""+ userName+" is not a user!");
 
-        if(!onlineMembers.keySet().contains(userName))
+        if(!isMemberLoggedIn(userName))
             //TODO synchronization check
             throw new Exception("Member:"+ userName+" is not logged in!");
     }
-    public void isMember(String memberUserName) throws Exception {
+
+
+    public boolean isGuest(String userName) throws Exception {
+        if(userName==null || userName == "")
+            throw new Exception("userName is null or empty");
+
+        userName = userName.strip().toLowerCase();
+        if(!guests.containsKey(userName) )
+            return false;
+
+        return true;
+    }
+    public void assertIsGuest(String userName) throws Exception {
+        if(!isGuest(userName))
+            throw new Exception("userName "+ userName+" does not exists!");
+    }
+
+    public boolean isMember(String memberUserName) throws Exception {
         if(memberUserName==null || memberUserName == "")
             throw new Exception("memberUserName is null or empty");
 
+        memberUserName = memberUserName.strip().toLowerCase();
         if(!membersNamesConcurrentSet.contains(memberUserName))
+            return false;
+
+        return true;
+    }
+
+    public void assertIsMember(String memberUserName) throws Exception {
+        if(!isMember(memberUserName))
             throw new Exception("userName "+ memberUserName+" does not exists!");
-
     }
 
-    public void isOnlineMember(String memberUserName) throws Exception {
-        isMember(memberUserName);
-        if(!onlineMembers.containsKey(memberUserName))
-            throw new Exception("the memberUserName: "+ memberUserName+" is not online");
+    public boolean isMemberLoggedIn(String memberUserName) throws Exception {
+        assertIsMember(memberUserName);
+        memberUserName = memberUserName.strip().toLowerCase();
+
+        if(!loggedInMembers.containsKey(memberUserName))
+            return false;
+
+        return true;
     }
 
-
+    public void assertIsMemberLoggedIn(String memberUserName) throws Exception {
+        if(!isMemberLoggedIn(memberUserName))
+            throw new Exception(""+ memberUserName+" is not logged in");
+    }
 
     public boolean appointOtherMemberAsStoreOwner(String memberUserName, Store store, String newOwnerUserName) throws Exception {
-        isOnlineMember(memberUserName);
-        isMember(newOwnerUserName);
+        assertIsMemberLoggedIn(memberUserName); // assert
+        assertIsMember(newOwnerUserName); // assert
         Member member = getMember(memberUserName);
         Member otherMember = getMember(newOwnerUserName);
         return member.appointOtherMemberAsStoreOwner(store, otherMember);
     }
 
     public boolean appointOtherMemberAsStoreManager(String memberUserName, Store store, String newManagerUserName) throws Exception {
-        isOnlineMember(memberUserName);
-        isMember(newManagerUserName);
+        assertIsMemberLoggedIn(memberUserName);
+        assertIsMember(newManagerUserName);
         Member member = getMember(memberUserName);
         Member otherMember = getMember(newManagerUserName);
         return member.appointOtherMemberAsStoreManager(store, otherMember);

@@ -1,7 +1,7 @@
 package DomainLayer;
 
 import DomainLayer.DTO.ProductDTO;
-import DomainLayer.DTO.StoreDTO;
+import jdk.jshell.spi.ExecutionControl;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -83,17 +83,67 @@ public class Stock {
 
     public ProductDTO getProductInfo(String productName) throws Exception {
         //TODO: do we allow return info about products with amount == 0 ?????
-        isProduct(productName);
+        if(!containsProduct(productName))
+            throw new Exception(""+productName+"product does not exist in this store!");
+
         productName = productName.strip().toLowerCase();
         return stockProducts.get(productName).keys().nextElement().getProductInfo();
     }
 
-    public void isProduct(String productName) throws Exception {
+    public Product getProduct(String productName) throws Exception {
+        //TODO: do we allow return info about products with amount == 0 ?????
+        if(!containsProduct(productName))
+            throw new Exception(""+productName+"product does not exist in this store!");
+
+        productName = productName.strip().toLowerCase();
+        return stockProducts.get(productName).keys().nextElement();
+    }
+
+    public Product getProductWithAmount(String productName, Integer amount) throws Exception {
+        //TODO: do we allow return info about products with amount == 0 ?????
+        if(!containsProduct(productName))
+            throw new Exception(""+productName+" product does not exist in this store!");
+
+        Integer currentProductAmount = ((Integer)stockProducts.get(productName).values().toArray()[0]);
+        if( currentProductAmount < amount)
+            throw new Exception(""+productName+" have only "+ currentProductAmount +" amount in stock!");
+
+        productName = productName.strip().toLowerCase();
+        return stockProducts.get(productName).keys().nextElement();
+    }
+
+    public boolean containsProduct(String productName) throws Exception {
         if(productName == null || productName == "")
             throw new Exception("productName is null or empty!");
 
         productName = productName.strip().toLowerCase();
-        if(! stockProducts.containsKey(productName))
-            throw new Exception(""+productName+"product does not exist in this store!");
+        if(!stockProducts.containsKey(productName))
+            return false;
+
+        return true;
+    }
+
+    public boolean containsCategory(String categoryName) throws Exception {
+        if(categoryName == null || categoryName == "")
+            throw new Exception("categoryName is null or empty!");
+
+        categoryName = categoryName.strip().toLowerCase();
+        if(!stockCategories.containsKey(categoryName))
+            return false;
+
+        return true;
+    }
+
+
+    public List<ProductDTO> getProductsInfoByCategory(String categoryName) throws Exception {
+
+        //TODO: do we allow return info about products with amount == 0 ?????
+        if(!containsCategory(categoryName))
+            throw new Exception(""+categoryName+"category does not exist in this store!");
+
+        categoryName = categoryName.strip().toLowerCase();
+
+        return stockCategories.get(categoryName).getProductsInfo();
+
     }
 }

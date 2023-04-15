@@ -7,16 +7,19 @@ import DomainLayer.DTO.StoreDTO;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ArrayList;
+import java.util.List;
 import java.security.PublicKey;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class StoreController {
     private ConcurrentHashMap<String, Store> stores;
 
-
     public StoreController() {
         stores = new ConcurrentHashMap<>();
     }
+
+    //TODO: isStore() method currentlu checking if storeName exists in hashmap, this does not work with lazyLoad
     //TODO: ahmed when you want to open a new store, check if the name of the store unique
 
     public boolean addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String details, Integer amount) throws Exception {
@@ -65,24 +68,58 @@ public class StoreController {
         return stores.get(storeName).getProductInfo(productName);
     }
 
-    public Store getStore(String storeName) throws Exception {
-        isStore(storeName);
-        storeName = storeName.strip().toLowerCase();
-        return stores.get(storeName);
+    public List<ProductDTO> getProductInfoFromMarketByName(String productName) throws Exception {
+        List<ProductDTO> productDTOList = new ArrayList<>();
+        for(Store store: stores.values())
+            //TODO:: does store needs to be active so we can ask for products info ??
+            if(store.containsProduct(productName))
+                productDTOList.add(store.getProductInfo(productName));
+
+        return productDTOList;
     }
 
+    public List<ProductDTO> getProductInfoFromMarketByCategory(String categoryName) throws Exception {
+        List<ProductDTO> productDTOList = new ArrayList<>();
+        for(Store store: stores.values())
+            //TODO:: does store needs to be active so we can ask for products info ??
+            if(store.containsCategory(categoryName))
+                productDTOList.addAll(store.getProductsInfoByCategory(categoryName));
 
-    public void isStore(String storeName) throws Exception {
-        if(storeName==null || storeName == "")
-            throw new Exception("storeName is null or empty");
+        return productDTOList;
+    }
+
+    public Store getStore(String storeName) throws Exception {
+        assertIsStore(storeName);
         storeName = storeName.strip().toLowerCase();
 
         if(!stores.containsKey(storeName))
-            throw new Exception(""+ storeName+" does not exists!");
+            // TODO: read from database AND add to members hashmap
+            throw new Exception("store needs to be read from database");
+
+        return stores.get(storeName);
     }
 
+    public void assertIsStore(String storeName) throws Exception {
+        if(!isStore(storeName))
+            throw new Exception("store: "+ storeName+" does not exists!");
+    }
+
+    public boolean isStore(String storeName) throws Exception {
+        if(storeName==null || storeName == "")
+            throw new Exception("store name is null or empty");
+        storeName = storeName.strip().toLowerCase();
+
+        if(!stores.containsKey(storeName)) // TODO for Lazy load , maybe we need to change to set of names
+            return false;
+
+        return true;
+    }
+
+
+
+
     public void isActiveStore(String storeName) throws Exception {
-        isStore(storeName);
+        assertIsStore(storeName);
         if(!stores.get(storeName).isActive())
             throw new Exception(""+ storeName+" is not Active!");
     }

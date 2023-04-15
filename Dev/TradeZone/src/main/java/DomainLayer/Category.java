@@ -1,5 +1,9 @@
 package DomainLayer;
 
+import DomainLayer.DTO.ProductDTO;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class Category {
@@ -26,5 +30,16 @@ public class Category {
         categoryProducts.remove(product.getName());
         categoryProducts.put(product.getName(), product);
         return true;
+    }
+    public List<ProductDTO> getProductsInfo(){
+        List<ProductDTO> productDTOList = new ArrayList<>();
+        for (Product product:categoryProducts.values())
+            productDTOList.add(product.getProductInfo());
+
+        return productDTOList;
+    }
+
+    public String getCategoryName() {
+        return categoryName;
     }
 }
