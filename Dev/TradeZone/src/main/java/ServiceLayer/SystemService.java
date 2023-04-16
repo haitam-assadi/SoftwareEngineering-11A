@@ -60,229 +60,203 @@ public class SystemService {
         }
     }
 
-    public ProductDTO getProductInfoFromStore(String userName, String storeName, String productName){
+    public ResponseT<ProductDTO> getProductInfoFromStore(String userName, String storeName, String productName){
         try{
-
+            return new ResponseT<>(market.getProductInfoFromStore(userName, storeName, productName));
         }catch(Exception e){
-
+            return new ResponseT<>("getProductInfoFromStore: "+e.getMessage());
         }
-        return null;
     }
 
-    public List<ProductDTO> getProductInfoFromMarketByName(String userName, String productName){
+    public ResponseT<List<ProductDTO>> getProductInfoFromMarketByName(String userName, String productName){
         try{
-
+            return new ResponseT<>(market.getProductInfoFromMarketByName(userName,productName));
         }catch(Exception e){
-
+            return new ResponseT<>("getProductInfoFromMarketByName: "+e.getMessage());
         }
-        return null;
     }
 
-    public List<ProductDTO> getProductInfoFromMarketByCategory(String userName, String categoryName){
+    public ResponseT<List<ProductDTO>> getProductInfoFromMarketByCategory(String userName, String categoryName){
         try{
-
+            return new ResponseT<>(market.getProductInfoFromMarketByCategory(userName,categoryName));
         }catch(Exception e){
-
+            return new ResponseT<>("getProductInfoFromMarketByCategory: "+e.getMessage());
         }
-        return null;
     }
 
-    public List<ProductDTO> getProductInfoFromMarketByKeyword(String userName, String keyword){
+    public ResponseT<List<ProductDTO>> getProductInfoFromMarketByKeyword(String userName, String keyword){
         try{
-
+            return new ResponseT<>(market.getProductInfoFromMarketByKeyword(userName,keyword));
         }catch(Exception e){
-
+            return new ResponseT<>("getProductInfoFromMarketByKeyword: "+e.getMessage());
         }
-        return null;
     }
 
-    public List<ProductDTO> filterByPrice(String userName, List<ProductDTO> productsInfo, Integer minPrice, Integer maxPrice){
+    public ResponseT<List<ProductDTO>> filterByPrice(String userName, List<ProductDTO> productsInfo, Integer minPrice, Integer maxPrice){
         try{
-
+            return new ResponseT<>(market.filterByPrice(userName,productsInfo, minPrice, maxPrice));
         }catch(Exception e){
-
+            return new ResponseT<>("filterByPrice: "+e.getMessage());
         }
-        return null;
     }
 
-    public List<ProductDTO> filterByCategory(String userName, List<ProductDTO> productsInfo, String categoryName){
+    public ResponseT<List<ProductDTO>> filterByCategory(String userName, List<ProductDTO> productsInfo, String categoryName){
         try{
-
+            return new ResponseT<>(market.filterByCategory(userName,productsInfo, categoryName));
         }catch(Exception e){
-
+            return new ResponseT<>("filterByCategory: "+e.getMessage());
         }
-        return null;
     }
 
-    public List<ProductDTO> filterByProductRate(String userName, List<ProductDTO> productsInfo, Integer productRate){
+    public ResponseT<List<ProductDTO>> filterByProductRate(String userName, List<ProductDTO> productsInfo, Integer productRate){
         try{
-
+            return new ResponseT<>(market.filterByProductRate(userName,productsInfo, productRate));
         }catch(Exception e){
-
+            return new ResponseT<>("filterByProductRate: "+e.getMessage());
         }
-        return null;
     }
 
-    public List<ProductDTO> filterByStoreRate(String userName, List<ProductDTO> productsInfo, Integer storeRate){
+    public ResponseT<List<ProductDTO>> filterByStoreRate(String userName, List<ProductDTO> productsInfo, Integer storeRate){
         try{
-
+            return new ResponseT<>(market.filterByStoreRate(userName,productsInfo, storeRate));
         }catch(Exception e){
-
+            return new ResponseT<>("filterByStoreRate: "+e.getMessage());
         }
-        return null;
     }
 
-    public boolean addToCart(String userName, String storeName, String productName, Integer amount){
+    public ResponseT<Boolean> addToCart(String userName, String storeName, String productName, Integer amount){
         try{
-
+            return new ResponseT<>(market.addToCart(userName,storeName, productName,amount));
         }catch(Exception e){
-
+            return new ResponseT<>("addToCart: "+e.getMessage());
         }
-        return false;
     }
-    public boolean removeFromCart(String userName, String storeName, String productName){
+    public ResponseT<Boolean> removeFromCart(String userName, String storeName, String productName){
         try{
-
+            return new ResponseT<>(market.removeFromCart(userName,storeName, productName));
         }catch(Exception e){
-
+            return new ResponseT<>("removeFromCart: "+e.getMessage());
         }
-        return false;
     }
-    public boolean changeProductAmountInCart(String userName, String storeName, String productName, Integer newAmount){
+    public ResponseT<Boolean> changeProductAmountInCart(String userName, String storeName, String productName, Integer newAmount){
         try{
-
+            return new ResponseT<>(market.changeProductAmountInCart(userName,storeName, productName,newAmount));
         }catch(Exception e){
-
+            return new ResponseT<>("changeProductAmountInCart: "+e.getMessage());
         }
-        return false;
     }
-    public List<BagDTO> getCartContent(String userName){
+    public ResponseT<List<BagDTO>> getCartContent(String userName){
         try{
-
+            return new ResponseT<>(market.getCartContent(userName));
         }catch(Exception e){
-
+            return new ResponseT<>("getCartContent: "+e.getMessage());
         }
-        return null;
     }
-    public String memberLogOut(String memberUserName){
+    public ResponseT<String> memberLogOut(String memberUserName){
         try{
-
+            return new ResponseT<>(market.memberLogOut(memberUserName));
         }catch(Exception e){
-
+            return new ResponseT<>("memberLogOut: "+e.getMessage());
         }
-        return null;
     }
-    public StoreDTO createStore(String memberUserName, String newStoreName){
+    public ResponseT<StoreDTO> createStore(String memberUserName, String newStoreName){
         try{
-
+            return new ResponseT<>(market.createStore(memberUserName, newStoreName));
         }catch(Exception e){
-
+            return new ResponseT<>("createStore: "+e.getMessage());
         }
-        return null;
     }
-    public boolean addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount){
+    public ResponseT<Boolean> addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount){
         try{
-
+            return new ResponseT<>(market.addNewProductToStock(memberUserName, storeName, nameProduct,category,price,description,amount));
         }catch(Exception e){
-
+            return new ResponseT<>("addNewProductToStock: "+e.getMessage());
         }
-        return false;
     }
-    public boolean removeProductFromStock(String memberUserName, String storeName, String productName){
+    public ResponseT<Boolean> removeProductFromStock(String memberUserName, String storeName, String productName){
         try{
-
+            return new ResponseT<>(market.removeProductFromStock(memberUserName, storeName, productName));
         }catch(Exception e){
-
+            return new ResponseT<>("removeProductFromStock: "+e.getMessage());
         }
-        return false;
     }
-    public boolean updateProductDescription(String memberUserName, String storeName, String productName, String newProductDescription){
+    public ResponseT<Boolean> updateProductDescription(String memberUserName, String storeName, String productName, String newProductDescription){
         try{
-
+            return new ResponseT<>(market.updateProductDescription(memberUserName, storeName, productName,newProductDescription));
         }catch(Exception e){
-
+            return new ResponseT<>("updateProductDescription: "+e.getMessage());
         }
-        return false;
     }
 
-    public boolean updateProductAmount(String memberUserName, String storeName, String productName, Integer newAmount){
+    public ResponseT<Boolean> updateProductAmount(String memberUserName, String storeName, String productName, Integer newAmount){
         try{
-
+            return new ResponseT<>(market.updateProductAmount(memberUserName, storeName, productName,newAmount));
         }catch(Exception e){
-
+            return new ResponseT<>("updateProductAmount: "+e.getMessage());
         }
-        return false;
     }
 
-    public boolean updateProductPrice(String memberUserName, String storeName, String productName, Double newPrice){
+    public ResponseT<Boolean> updateProductPrice(String memberUserName, String storeName, String productName, Double newPrice){
         try{
-
+            return new ResponseT<>(market.updateProductPrice(memberUserName, storeName, productName,newPrice));
         }catch(Exception e){
-
+            return new ResponseT<>("updateProductPrice: "+e.getMessage());
         }
-        return false;
     }
 
-    public boolean appointOtherMemberAsStoreOwner(String memberUserName, String storeName, String newOwnerUserName){
+    public ResponseT<Boolean> appointOtherMemberAsStoreOwner(String memberUserName, String storeName, String newOwnerUserName){
         try{
-
+            return new ResponseT<>(market.appointOtherMemberAsStoreOwner(memberUserName, storeName, newOwnerUserName));
         }catch(Exception e){
-
+            return new ResponseT<>("appointOtherMemberAsStoreOwner: "+e.getMessage());
         }
-        return false;
     }
 
-    public boolean appointOtherMemberAsStoreManager(String memberUserName, String storeName, String newManagerUserName){
+    public ResponseT<Boolean> appointOtherMemberAsStoreManager(String memberUserName, String storeName, String newManagerUserName){
         try{
-
+            return new ResponseT<>(market.appointOtherMemberAsStoreManager(memberUserName, storeName, newManagerUserName));
         }catch(Exception e){
-
+            return new ResponseT<>("appointOtherMemberAsStoreManager: "+e.getMessage());
         }
-        return false;
     }
 
-    public boolean changeManagerPermissions(String memberUserName, String storeName, String managerUserName){
+    public ResponseT<Boolean> changeManagerPermissions(String memberUserName, String storeName, String managerUserName){
         try{
-
+            return new ResponseT<>(market.changeManagerPermissions(memberUserName, storeName, managerUserName));
         }catch(Exception e){
-
+            return new ResponseT<>("changeManagerPermissions: "+e.getMessage());
         }
-        return false;
     }
 
-    public boolean closeStore(String memberUserName, String storeName){
+    public ResponseT<Boolean> closeStore(String memberUserName, String storeName){
         try{
-
+            return new ResponseT<>(market.closeStore(memberUserName, storeName));
         }catch(Exception e){
-
+            return new ResponseT<>("closeStore: "+e.getMessage());
         }
-        return false;
     }
 
-    public List<MemberDTO> getStoreWorkersInfo(String memberUserName, String storeName){
+    public ResponseT<List<MemberDTO>> getStoreWorkersInfo(String memberUserName, String storeName){
         try{
-
+            return new ResponseT<>(market.getStoreWorkersInfo(memberUserName, storeName));
         }catch(Exception e){
-
+            return new ResponseT<>("getStoreWorkersInfo: "+e.getMessage());
         }
-        return null;
     }
 
-    public List<DealDTO> getStoreDeals(String memberUserName, String storeName){
+    public ResponseT<List<DealDTO>> getStoreDeals(String memberUserName, String storeName){
         try{
-
+            return new ResponseT<>(market.getStoreDeals(memberUserName, storeName));
         }catch(Exception e){
-
+            return new ResponseT<>("getStoreDeals: "+e.getMessage());
         }
-        return null;
     }
 
-    public List<DealDTO> getMemberDeals(String systemManagerUserName, String otherMemberUserName){
+    public ResponseT<List<DealDTO>> getMemberDeals(String systemManagerUserName, String otherMemberUserName){
         try{
-
+            return new ResponseT<>(market.getMemberDeals(systemManagerUserName, otherMemberUserName));
         }catch(Exception e){
-
+            return new ResponseT<>("getMemberDeals: "+e.getMessage());
         }
-        return null;
     }
 }
