@@ -1,7 +1,6 @@
 package DomainLayer;
 
-import DomainLayer.DTO.ProductDTO;
-import jdk.jshell.spi.ExecutionControl;
+import DTO.ProductDTO;
 
 import java.util.ArrayList;
 import java.util.Collection;

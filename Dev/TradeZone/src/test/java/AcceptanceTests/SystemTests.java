@@ -4,7 +4,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 @TestInstance(value = TestInstance.Lifecycle.PER_CLASS)
 public class SystemTests {
-/*
+
     private ProxyBridge proxy;
     @Mock
     private Bridge bridge;
@@ -23,6 +23,5 @@ public class SystemTests {
             Assertions.fail(e.getMessage());
         }
     }
-    */
 
 }

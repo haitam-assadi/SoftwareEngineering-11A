@@ -1,8 +1,7 @@
 package DomainLayer;
 
-import DomainLayer.DTO.MemberDTO;
+import DTO.MemberDTO;
 
-import java.security.PrivateKey;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;

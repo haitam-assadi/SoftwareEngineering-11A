@@ -1,6 +1,6 @@
 package DomainLayer;
 
-import DomainLayer.DTO.BagDTO;
+import DTO.BagDTO;
 
 import java.util.ArrayList;
 import java.util.List;

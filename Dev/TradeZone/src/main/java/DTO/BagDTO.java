@@ -1,7 +1,4 @@
-package DomainLayer.DTO;
-
-import DomainLayer.Cart;
-import DomainLayer.Store;
+package DTO;
 
 import java.util.concurrent.ConcurrentHashMap;
 

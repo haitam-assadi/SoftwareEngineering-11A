@@ -1,5 +1,6 @@
 package ServiceLayer;
 
+import DTO.*;
 import DomainLayer.DTO.*;
 import DomainLayer.Market;
 
