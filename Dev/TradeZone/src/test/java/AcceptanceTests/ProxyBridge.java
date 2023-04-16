@@ -1,6 +1,7 @@
 package AcceptanceTests;
 
-import java.util.Collection;
+import ServiceLayer.ResponseT;
+
 import java.util.List;
 import java.util.Map;
 
@@ -17,353 +18,341 @@ public class ProxyBridge implements Bridge{
 
 
     @Override
-    public boolean initializeMarket() {
+    public ResponseT<Boolean> initializeMarket() {
         if(realBridge!=null){
-            realBridge.initializeMarket();
+            return realBridge.initializeMarket();
         }
-        return true;
-        //throw new UnsupportedOperationException();
+        return new ResponseT<>("proxy implementation");
     }
 
     @Override
-    public String enterMarket() {
+    public ResponseT<String> enterMarket() {
         if(realBridge!=null){
             return realBridge.enterMarket();
         }
-        throw new UnsupportedOperationException();
+        return new ResponseT<>("proxy implementation");
     }
 
     @Override
-    public boolean exitMarket(String userName) {
+    public ResponseT<Boolean> exitMarket(String userName) {
         if(realBridge!=null){
             return realBridge.exitMarket(userName);
         }
-        throw new UnsupportedOperationException();
+        return new ResponseT<>("proxy implementation");
     }
 
     @Override
-    public boolean register(String guestUserName, String newMemberUserName, String password) {
+    public ResponseT<Boolean> register(String guestUserName, String newMemberUserName, String password) {
         if(realBridge!=null){
             return realBridge.register(guestUserName, newMemberUserName, password);
         }
-        throw new UnsupportedOperationException();
+        return new ResponseT<>("proxy implementation");
     }
 
     @Override
-    public String login(String guestUserName, String MemberUserName, String password) {
+    public ResponseT<String> login(String guestUserName, String MemberUserName, String password) {
         if(realBridge!=null){
             return realBridge.login(guestUserName, MemberUserName, password);
         }
-        throw new UnsupportedOperationException();
+        return new ResponseT<>("proxy implementation");
     }
 
     @Override
-    public String memberLogOut(String memberUserName) {
+    public ResponseT<String> memberLogOut(String memberUserName) {
         if(realBridge!=null){
             return realBridge.memberLogOut(memberUserName);
         }
-        throw new UnsupportedOperationException();
+        return new ResponseT<>("proxy implementation");
     }
 
     @Override
-    public String createStore(String memberUserName, String newStoreName) {
+    public ResponseT<String> createStore(String memberUserName, String newStoreName) {
         if(realBridge!=null){
             return realBridge.createStore(memberUserName,newStoreName);
         }
-        throw new UnsupportedOperationException();
+        return new ResponseT<>("proxy implementation");
     }
 
     @Override
-    public boolean  addNewProductToStock(String memberUserName, String storeName, String product_name,String category, int price, String description, int amount){        if(realBridge!=null){
+    public ResponseT<Boolean>  addNewProductToStock(String memberUserName, String storeName, String product_name,String category, int price, String description, int amount){        if(realBridge!=null){
             return realBridge.addNewProductToStock(memberUserName, storeName, product_name, category,price, description,amount);
         }
-        throw new UnsupportedOperationException();
+        return new ResponseT<>("proxy implementation");
     }
 
     @Override
-    public boolean removeProductFromStock(String memberUserName, String storeName, String productName) {
+    public ResponseT<Boolean> removeProductFromStock(String memberUserName, String storeName, String productName) {
         if(realBridge!=null){
             return realBridge.removeProductFromStock(memberUserName, storeName, productName);
         }
-        throw new UnsupportedOperationException();
+        return new ResponseT<>("proxy implementation");
     }
 
     @Override
-    public boolean addCategory(String userName, String categoryName, String storeName) {
+    public ResponseT<Boolean> addCategory(String userName, String categoryName, String storeName) {
         if(realBridge!=null){
             realBridge.addCategory(userName,categoryName, storeName);
         }
-        throw new UnsupportedOperationException();
+        return new ResponseT<>("proxy implementation");
     }
 
     @Override
-    public boolean getCategory(String userName, String categoryName,String storeName) {
+    public ResponseT<Boolean> getCategory(String userName, String categoryName,String storeName) {
         if(realBridge!=null){
             realBridge.getCategory(userName, categoryName, storeName);
         }
-        throw new UnsupportedOperationException();
+        return new ResponseT<>("proxy implementation");
     }
 
     @Override
-    public boolean updateProductName(String memberUserName, String storeName, String productName, String newName) {
+    public ResponseT<Boolean> updateProductName(String memberUserName, String storeName, String productName, String newName) {
         if(realBridge!=null){
             return realBridge.updateProductName(memberUserName, storeName, productName, newName);
         }
-        throw new UnsupportedOperationException();
+        return new ResponseT<>("proxy implementation");
     }
 
     @Override
-    public boolean updateProductPrice(String memberUserName, String storeName, String productName, int price) {
+    public ResponseT<Boolean> updateProductPrice(String memberUserName, String storeName, String productName, int price) {
         if(realBridge!=null){
             return realBridge.updateProductPrice(memberUserName, storeName, productName, price);
         }
-        throw new UnsupportedOperationException();
+        return new ResponseT<>("proxy implementation");
     }
 
     @Override
-    public boolean updateProductDescription(String memberUserName, String storeName, String productName, String newDescription) {
+    public ResponseT<Boolean> updateProductDescription(String memberUserName, String storeName, String productName, String newDescription) {
         if(realBridge!=null){
             return realBridge.updateProductDescription(memberUserName, storeName, productName, newDescription);
         }
-        throw new UnsupportedOperationException();
+        return new ResponseT<>("proxy implementation");
     }
 
     @Override
-    public boolean updateProductAmount(String memberUserName, String storeName, String productName, int amount) {
+    public ResponseT<Boolean> updateProductAmount(String memberUserName, String storeName, String productName, int amount) {
         if(realBridge!=null){
             return realBridge.updateProductAmount(memberUserName, storeName, productName, amount);
         }
-        throw new UnsupportedOperationException();
+        return new ResponseT<>("proxy implementation");
     }
 
     @Override
-    public int getProductPrice(String s) {
+    public ResponseT<Integer> getProductPrice(String s) {
         if(realBridge!=null){
             return realBridge.getProductPrice(s);
         }
-        throw new UnsupportedOperationException();
+        return new ResponseT<>("proxy implementation");
     }
 
     @Override
-    public String getProductDescription(String s) {
+    public ResponseT<String> getProductDescription(String s) {
         if(realBridge!=null){
             return realBridge.getProductDescription(s);
         }
-        throw new UnsupportedOperationException();
+        return new ResponseT<>("proxy implementation");
     }
 
     @Override
-    public int getProductAmount(String storeName, String s) {
+    public ResponseT<Integer> getProductAmount(String storeName, String s) {
         if(realBridge!=null){
             return realBridge.getProductAmount(storeName, s);
         }
-        throw new UnsupportedOperationException();
+        return new ResponseT<>("proxy implementation");
     }
 
     @Override
-    public boolean appointMemberAsStoreOwner(String memberUserName, String storeName, String newOwnerUserName) {
+    public ResponseT<Boolean> appointMemberAsStoreOwner(String memberUserName, String storeName, String newOwnerUserName) {
         if(realBridge!=null){
             return realBridge.appointMemberAsStoreOwner(memberUserName, storeName, newOwnerUserName);
         }
-        throw new UnsupportedOperationException();
+        return new ResponseT<>("proxy implementation");
     }
 
     @Override
-    public List<String> getStoreOwners(String storeName) {
+    public ResponseT<List<String>> getStoreOwners(String storeName) {
         if(realBridge!=null){
             return realBridge.getStoreOwners(storeName);
         }
-        throw new UnsupportedOperationException();
+        return new ResponseT<>("proxy implementation");
     }
 
     @Override
-    public String getOwnerAppointer(String OwnerName, String storeName) {
+    public ResponseT<String> getOwnerAppointer(String OwnerName, String storeName) {
         if(realBridge!=null){
             return realBridge.getOwnerAppointer(OwnerName,storeName);
         }
-        throw new UnsupportedOperationException();
+        return new ResponseT<>("proxy implementation");
     }
 
     @Override
-    public boolean appointMemberAsStoreManager(String memberUserName, String storeName, String newOwnerUserName) {
+    public ResponseT<Boolean> appointMemberAsStoreManager(String memberUserName, String storeName, String newOwnerUserName) {
         if(realBridge!=null){
             return realBridge.appointMemberAsStoreManager(memberUserName, storeName, newOwnerUserName);
         }
-        throw new UnsupportedOperationException();
+        return new ResponseT<>("proxy implementation");
     }
 
     @Override
-    public List<String> getStoreManagers(String storeName) {
+    public ResponseT<List<String>> getStoreManagers(String storeName) {
         if(realBridge!=null){
             return realBridge.getStoreManagers(storeName);
         }
-        throw new UnsupportedOperationException();
+        return new ResponseT<>("proxy implementation");
     }
 
     @Override
-    public String getManagerAppointer(String ManagerName, String storeName) {
+    public ResponseT<String> getManagerAppointer(String ManagerName, String storeName) {
         if(realBridge!=null){
             return realBridge.getManagerAppointer(ManagerName,storeName);
         }
-        throw new UnsupportedOperationException();
+        return new ResponseT<>("proxy implementation");
     }
 
     @Override
-    public String closeStore(String memberUserName, String storeName) {
+    public ResponseT<String> closeStore(String memberUserName, String storeName) {
         if(realBridge!=null){
             return realBridge.closeStore(memberUserName,storeName);
         }
-        throw new UnsupportedOperationException();
+        return new ResponseT<>("proxy implementation");
     }
 
     @Override
-    public boolean canGetStoreInfo(String userName, String storeName) {
+    public ResponseT<Boolean> canGetStoreInfo(String userName, String storeName) {
         if(realBridge!=null){
             return realBridge.canGetStoreInfo(userName,storeName);
         }
-        throw new UnsupportedOperationException();
+        return new ResponseT<>("proxy implementation");
     }
 
     @Override
-    public String getStoreNotification(String memberName, String storeName) {
+    public ResponseT<String> getStoreNotification(String memberName, String storeName) {
         if(realBridge!=null){
             return realBridge.getStoreNotification(memberName,storeName);
         }
-        throw new UnsupportedOperationException();
+        return new ResponseT<>("proxy implementation");
     }
 
     @Override
-    public Map<Integer, List<String>> getStoreRulesInfo(String ownerName, String storeName) {
+    public ResponseT<Map<Integer, List<String>>> getStoreRulesInfo(String ownerName, String storeName) {
         if(realBridge!=null){
             return realBridge.getStoreRulesInfo(ownerName,storeName);
         }
-        throw new UnsupportedOperationException();
+        return new ResponseT<>("proxy implementation");
     }
 
-    public List<String> getAllgusts() {
+    public ResponseT<List<String>> getAllGuests() {
         if(realBridge!=null){
-            return realBridge.getAllguests();
+            return realBridge.getAllGuests();
         }
-        throw new UnsupportedOperationException();
+        return new ResponseT<>("proxy implementation");
     }
 
-    public int getUserCart(String user) {
-        if(realBridge!=null){
-            return realBridge.getUserCart();
-        }
-        throw new UnsupportedOperationException();
+    public ResponseT<Integer> getUserCart(String user) {
+
+        return new ResponseT<>("proxy implementation");
     }
 
-    public List<String> getAllOnlineMembers() {
-        if(realBridge!=null){
-            return realBridge.getAllOnlineMembers();
-        }
-        throw new UnsupportedOperationException();
+    public ResponseT<List<String>> getAllOnlineMembers() {
+
+        return new ResponseT<>("proxy implementation");
     }
 
-    public List<String> getAllMembers() {
-        if(realBridge!=null){
-            return realBridge.getAllMembers();
-        }
-        throw new UnsupportedOperationException();
+    public ResponseT<List<String>> getAllMembers() {
+
+        return new ResponseT<>("proxy implementation");
     }
 
-    public String getMemberPassword(String memberName) {
-        if(realBridge!=null){
-            return realBridge.getMemberPassword( memberName);
-        }
-        throw new UnsupportedOperationException();
+    public ResponseT<String> getMemberPassword(String memberName) {
+
+        return new ResponseT<>("proxy implementation");
     }
 
-    public List<String> getAllStores() {
-        if(realBridge!=null){
-            return realBridge.getAllStores();
-        }
-        throw new UnsupportedOperationException();
+    public ResponseT<List<String>> getAllStores() {
+
+        return new ResponseT<>("proxy implementation");
     }
 
-    public String getStoreFounder(String storeName) {
-        if(realBridge!=null){
-            return realBridge.getStoreFounder();
-        }
-        throw new UnsupportedOperationException();
+    public ResponseT<String> getStoreFounder(String storeName) {
+
+        return new ResponseT<>("proxy implementation");
     }
 
-    public List<String> getStoreProducts(String userName, String storeName) {
+    public ResponseT<List<String>> getStoreProducts(String userName, String storeName) {
         if(realBridge!=null){
             return realBridge.getStoreProducts(userName,storeName);
         }
-        throw new UnsupportedOperationException();
+        return new ResponseT<>("proxy implementation");
     }
 
     @Override
-    public Map<String, String> getProductInfoFromMarketByName(String userName, String productName) {
+    public ResponseT<Map<String, String>> getProductInfoFromMarketByName(String userName, String productName) {
         if(realBridge!=null){
             return realBridge.getProductInfoFromMarketByName(userName, productName);
         }
-        throw new UnsupportedOperationException();
+        return new ResponseT<>("proxy implementation");
     }
 
     @Override
-    public Map<String, List<String>> getProductInfoFromMarketByCategory(String userName, String categoryName) {
+    public ResponseT<Map<String, List<String>>> getProductInfoFromMarketByCategory(String userName, String categoryName) {
         if(realBridge!=null){
             return realBridge.getProductInfoFromMarketByCategory(userName, categoryName);
         }
-        throw new UnsupportedOperationException();
+        return new ResponseT<>("proxy implementation");
     }
 
     @Override
-    public Map<String, List<String>> getProductInfoFromMarketByKeyword(String userName, String keyword) {
+    public ResponseT<Map<String, List<String>>> getProductInfoFromMarketByKeyword(String userName, String keyword) {
         if(realBridge!=null){
             return realBridge.getProductInfoFromMarketByKeyword(userName, keyword);
         }
-        throw new UnsupportedOperationException();
+        return new ResponseT<>("proxy implementation");
     }
 
     @Override
-    public boolean addToCart(String userName, String storeName, String productName, Integer amount) {
+    public ResponseT<Boolean> addToCart(String userName, String storeName, String productName, Integer amount) {
         if(realBridge!=null){
             return realBridge.addToCart(userName, storeName, productName, amount);
         }
-        throw new UnsupportedOperationException();
+        return new ResponseT<>("proxy implementation");
     }
 
     @Override
-    public List<String> getBag(String userName, String storeName) {
+    public ResponseT<List<String>> getBag(String userName, String storeName) {
         if(realBridge!=null){
             return realBridge.getBag(userName, storeName);
         }
-        throw new UnsupportedOperationException();
+        return new ResponseT<>("proxy implementation");
     }
 
     @Override
-    public int getProductAmountInCart(String userName, String storeName, String productName) {
+    public ResponseT<Integer> getProductAmountInCart(String userName, String storeName, String productName) {
         if(realBridge!=null){
             return realBridge.getProductAmountInCart(userName, storeName, productName);
         }
-        throw new UnsupportedOperationException();
+        return new ResponseT<>("proxy implementation");
     }
 
     @Override
-    public Map<String, List<String>> getCartContent(String userName) {
+    public ResponseT<Map<String, List<String>>> getCartContent(String userName) {
         if(realBridge!=null){
             return realBridge.getCartContent(userName);
         }
-        throw new UnsupportedOperationException();
+        return new ResponseT<>("proxy implementation");
     }
 
     @Override
-    public boolean removeProductFromCart(String userName, String storeName, String productName) {
+    public ResponseT<Boolean> removeProductFromCart(String userName, String storeName, String productName) {
         if(realBridge!=null){
             return realBridge.removeProductFromCart(userName, storeName, productName);
         }
-        throw new UnsupportedOperationException();
+        return new ResponseT<>("proxy implementation");
     }
 
     @Override
-    public boolean changeProductAmountInCart(String userName, String storeName, String productName, Integer newAmount) {
+    public ResponseT<Boolean> changeProductAmountInCart(String userName, String storeName, String productName, Integer newAmount) {
         if(realBridge!=null){
             return realBridge.changeProductAmountInCart(userName, storeName, productName, newAmount);
         }
-        throw new UnsupportedOperationException();    }
+        return new ResponseT<>("proxy implementation");
+    }
 }

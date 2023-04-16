@@ -7,6 +7,7 @@ public class StoreFounder extends AbstractStoreOwner{
 
     public StoreFounder(Member member) {
         super(member);
+        this.myRole = RoleEnum.StoreFounder;
     }
 
     @Override

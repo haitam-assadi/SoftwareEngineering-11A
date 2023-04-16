@@ -17,8 +17,9 @@ public class Main {
         List<String> haitam = new LinkedList<>();
         haitam.add("haitam1");
         haitam.add("haitam2");
+        String stt = "  ";
 
-        System.out.println(haitam.get(0));
+        System.out.println(stt.isBlank());
         ConcurrentHashMap<String, StoreOwner> storeOwners= new ConcurrentHashMap<>();
         storeOwners.put("sadasd",role1);
         storeOwners.put("sadasd",role2);

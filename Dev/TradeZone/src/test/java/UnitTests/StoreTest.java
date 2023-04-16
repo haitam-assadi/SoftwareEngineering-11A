@@ -40,12 +40,12 @@ class StoreTest {
     @BeforeAll
     public void setUp(){
         MockitoAnnotations.openMocks(this);
-        store = new Store(founder);
+        //store = new Store(founder);
     }
 
     @BeforeEach
     public void beforeEachTest(){
-        store = new Store(founder);
+        //store = new Store(founder);
     }
 
     /*

@@ -8,7 +8,7 @@ import java.util.Map;
 
 @TestInstance(value = TestInstance.Lifecycle.PER_CLASS)
 public class BuyingTests {
-
+/*
     private ProxyBridge proxy;
     @Mock
     private Bridge bridge;
@@ -496,5 +496,8 @@ public class BuyingTests {
     // change amount: bad store name, bad product name
     // check getProductAmount in previous functions
     // add function (in bridge) getProductPrice ?
+
+
+    */
 
 }

@@ -6,13 +6,11 @@ import DomainLayer.Store;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class BagDTO {
-    private Cart cart;
-    private Store storeBag;
-    ConcurrentHashMap<String,Integer> productNameAmount;
+    public String storeBag;
+    public ConcurrentHashMap<ProductDTO, Integer> bagContent;
 
-    public BagDTO(Cart cart, Store storeBag, ConcurrentHashMap<String,Integer> productNameAmount){
-        this.cart = cart;
+    public BagDTO(String storeBag, ConcurrentHashMap<ProductDTO,Integer> bagContent){
         this.storeBag = storeBag;
-        this.productNameAmount = productNameAmount;
+        this.bagContent=bagContent;
     }
 }

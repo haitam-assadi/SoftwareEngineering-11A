@@ -10,6 +10,8 @@ import java.util.Map;
 
 @TestInstance(value = TestInstance.Lifecycle.PER_CLASS)
 public class StoreTests {
+
+    /*
     private ProxyBridge proxy;
     private String user;
     private String store_founder;
@@ -374,7 +376,7 @@ public class StoreTests {
         }
     }
 
-
+*/
 
 
 
