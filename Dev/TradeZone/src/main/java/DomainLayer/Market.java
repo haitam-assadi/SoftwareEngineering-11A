@@ -1,5 +1,6 @@
 package DomainLayer;
 
+import DTO.*;
 import DomainLayer.DTO.*;
 import jdk.jshell.spi.ExecutionControl;
 

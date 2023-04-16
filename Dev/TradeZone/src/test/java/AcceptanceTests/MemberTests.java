@@ -7,7 +7,6 @@ import java.util.List;
 @TestInstance(value = TestInstance.Lifecycle.PER_CLASS)
 public class MemberTests {
 
-/*
     private ProxyBridge proxy;
     private String user;
     @Mock
@@ -30,10 +29,10 @@ public class MemberTests {
     @Test
     public void login_success(){
         try{
-            List<String> guests = proxy.getAllGuests();
+            List<String> guests = proxy.getAllgusts();
             if(guests.size()>0){
                 proxy.login(user,"Moslem Asaad","12345");
-                guests = proxy.getAllGuests();
+                guests = proxy.getAllgusts();
                 Assertions.assertTrue(proxy.getAllOnlineMembers().contains("Moslem Asaad"));
                 Assertions.assertFalse(guests.contains(user));
                 Assertions.assertNotEquals(-1,proxy.getUserCart("Moslem Asaad"));
@@ -46,11 +45,11 @@ public class MemberTests {
     @Test
     public void login_failed_wrong_password(){
         try{
-            List<String> guests = proxy.getAllGuests();
+            List<String> guests = proxy.getAllgusts();
             if(guests.size()>0){
                 int cart = proxy.getUserCart(user);
                 proxy.login(user,"Moslem Asaad","");
-                guests = proxy.getAllGuests();
+                guests = proxy.getAllgusts();
                 Assertions.assertFalse(proxy.getAllOnlineMembers().contains("Moslem Asaad"));
                 Assertions.assertTrue(guests.contains(user));
                 Assertions.assertEquals(cart,proxy.getUserCart(user));
@@ -63,10 +62,10 @@ public class MemberTests {
     @Test
     public void login_failed_member_not_exist(){
         try{
-            List<String> guests = proxy.getAllGuests();
+            List<String> guests = proxy.getAllgusts();
             if(guests.size()>0){
                 proxy.login(user,"Obiq","12345");
-                guests = proxy.getAllGuests();
+                guests = proxy.getAllgusts();
                 Assertions.assertFalse(proxy.getAllOnlineMembers().contains("Obiq"));
                 Assertions.assertTrue(guests.contains(user));
             }
@@ -155,7 +154,7 @@ public class MemberTests {
             List<String> stores = proxy.getAllStores();
             String storeName = proxy.createStore(userName, "verit");
             Assertions.assertTrue(stores.contains(storeName));
-            String storeFounder = proxy.getStoreFounder(storeName);
+            String storeFounder = proxy.getStoreFounderName(userName, storeName);
             Assertions.assertEquals(userName, storeFounder);
             String appointer = proxy.getOwnerAppointer(storeFounder,storeName);
             Assertions.assertTrue(appointer.isEmpty() || appointer == null);
@@ -172,7 +171,7 @@ public class MemberTests {
             List<String> stores = proxy.getAllStores();
             String storeName = proxy.createStore(userName, "verit");
             Assertions.assertTrue(stores.contains(storeName));
-            String storeFounder = proxy.getStoreFounder(storeName);
+            String storeFounder = proxy.getStoreFounderName(userName, storeName);
             Assertions.assertEquals(userName, storeFounder);
             int len = stores.size();
             String storeName1 = proxy.createStore(userName, "verit");//should return any thing but not verit
@@ -191,13 +190,13 @@ public class MemberTests {
             List<String> stores = proxy.getAllStores();
             String storeName = proxy.createStore(userName, "verit");
             Assertions.assertTrue(stores.contains(storeName));
-            String storeFounder = proxy.getStoreFounder(storeName);
+            String storeFounder = proxy.getStoreFounderName(userName, storeName);
             Assertions.assertEquals(userName, storeFounder);
             String appointer = proxy.getOwnerAppointer(storeFounder,storeName);
             Assertions.assertTrue(appointer.isEmpty() || appointer == null);
             storeName = proxy.createStore(userName, "Moslem Store");
             Assertions.assertTrue(stores.contains(storeName));
-            storeFounder = proxy.getStoreFounder(storeName);
+            storeFounder = proxy.getStoreFounderName(userName, storeName);
             Assertions.assertEquals(userName, storeFounder);
             appointer = proxy.getOwnerAppointer(storeFounder,storeName);
             Assertions.assertTrue(appointer.isEmpty() || appointer == null);
@@ -207,7 +206,6 @@ public class MemberTests {
     }
 
 
-*/
 
 
 

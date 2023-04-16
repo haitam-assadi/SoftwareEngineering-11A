@@ -1,7 +1,7 @@
 package DomainLayer;
 
-import DomainLayer.DTO.BagDTO;
-import DomainLayer.DTO.ProductDTO;
+import DTO.BagDTO;
+import DTO.ProductDTO;
 
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;

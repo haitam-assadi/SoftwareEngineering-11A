@@ -1,6 +1,6 @@
 package DomainLayer;
 
-import DomainLayer.DTO.ProductDTO;
+import DTO.ProductDTO;
 
 import java.util.ArrayList;
 import java.util.List;

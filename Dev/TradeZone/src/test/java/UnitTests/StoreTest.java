@@ -1,8 +1,8 @@
 package UnitTests;
 
 import DomainLayer.*;
-import DomainLayer.DTO.DealDTO;
-import DomainLayer.DTO.MemberDTO;
+import DTO.DealDTO;
+import DTO.MemberDTO;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -13,9 +13,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 @TestInstance(value = TestInstance.Lifecycle.PER_CLASS)

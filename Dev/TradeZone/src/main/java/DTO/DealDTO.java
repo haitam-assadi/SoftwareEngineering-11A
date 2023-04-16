@@ -1,17 +1,17 @@
-package DomainLayer.DTO;
+package DTO;
 
 import java.util.HashMap;
 import java.util.List;
 
 public class DealDTO {
-    String storeName;
-    String date;
-    String username;
-    HashMap<String, Double> products_prices;              //<productName, productPrice>
+    public String storeName;
+    public String date;
+    public String username;
+    public HashMap<String, Double> products_prices;              //<productName, productPrice>
 
-    HashMap<String, Integer> products_amount;              //<productName, productAmount>
+    public HashMap<String, Integer> products_amount;              //<productName, productAmount>
 
-    double totalPrice;
+    public double totalPrice;
 
     public DealDTO(String storeName, String date, String username, HashMap<String, Double> products_prices,
                    HashMap<String, Integer> products_amount, double totalPrice){

@@ -1,8 +1,7 @@
 package DomainLayer;
 
-import DomainLayer.DTO.ProductDTO;
+import DTO.ProductDTO;
 
-import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class Product {

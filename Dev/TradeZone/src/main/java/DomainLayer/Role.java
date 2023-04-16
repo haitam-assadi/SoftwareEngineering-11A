@@ -1,7 +1,7 @@
 package DomainLayer;
 
 import java.util.concurrent.ConcurrentHashMap;
-import DomainLayer.DTO.MemberDTO;
+import DTO.MemberDTO;
 
 public abstract class Role {
 

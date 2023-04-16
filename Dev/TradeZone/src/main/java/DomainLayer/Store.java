@@ -1,9 +1,9 @@
 package DomainLayer;
 
-import DomainLayer.DTO.DealDTO;
-import DomainLayer.DTO.MemberDTO;
-import DomainLayer.DTO.ProductDTO;
-import DomainLayer.DTO.StoreDTO;
+import DTO.DealDTO;
+import DTO.MemberDTO;
+import DTO.ProductDTO;
+import DTO.StoreDTO;
 
 import java.time.LocalDate;
 import java.util.*;
