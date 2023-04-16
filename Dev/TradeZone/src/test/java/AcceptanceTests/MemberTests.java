@@ -1,4 +1,6 @@
 package AcceptanceTests;
+import AcceptanceTests.Bridge;
+import AcceptanceTests.ProxyBridge;
 import org.junit.jupiter.api.*;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;

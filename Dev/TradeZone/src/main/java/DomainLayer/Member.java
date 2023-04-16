@@ -19,11 +19,14 @@ public class Member extends User{
     private SystemManager systemManager;
     private String password;
 
+    private AbstractStoreOwner abstractOwner;
+
     public Member(String userName, String password) {
         super(userName);
         this.isSystemManager=false;
         systemManager = null;
         this.password = password;
+        this.roles = new ConcurrentHashMap<RoleEnum, Role>();
     }
 
     public String getPassword() {
@@ -34,16 +37,16 @@ public class Member extends User{
         return new MemberDTO(this.userName, jobTitle);
     }
     public boolean appointOtherMemberAsStoreOwner(Store store, Member otherMember) throws Exception {
-        AbstractStoreOwner owner = null;
+        //AbstractStoreOwner owner = null;
         String storeName = store.getStoreName();
         if(roles.containsKey(RoleEnum.StoreFounder) && roles.get(RoleEnum.StoreFounder).haveStore(storeName))
-            owner = (StoreFounder)roles.get(RoleEnum.StoreFounder);
+            this.abstractOwner = (StoreFounder)roles.get(RoleEnum.StoreFounder);
         else if (roles.containsKey(RoleEnum.StoreOwner) && roles.get(RoleEnum.StoreOwner).haveStore(storeName))
-            owner = (StoreOwner)roles.get(RoleEnum.StoreOwner);
+            this.abstractOwner = (StoreOwner)roles.get(RoleEnum.StoreOwner);
 
-        if(owner == null) throw new Exception(""+getUserName()+" is not owner for "+storeName);
+        if(this.abstractOwner == null) throw new Exception(""+getUserName()+" is not owner for "+storeName);
         else{
-            owner.appointOtherMemberAsStoreOwner(store,otherMember);
+            this.abstractOwner.appointOtherMemberAsStoreOwner(store,otherMember);
             return true;
         }
     }
@@ -75,16 +78,16 @@ public class Member extends User{
         return false;
     }
     public boolean appointOtherMemberAsStoreManager(Store store, Member otherMember) throws Exception {
-        AbstractStoreOwner owner = null;
+        //AbstractStoreOwner owner = null;
         String storeName = store.getStoreName();
         if(roles.containsKey(RoleEnum.StoreFounder) && roles.get(RoleEnum.StoreFounder).haveStore(storeName))
-            owner = (StoreFounder)roles.get(RoleEnum.StoreFounder);
+            this.abstractOwner = (StoreFounder)roles.get(RoleEnum.StoreFounder);
         else if (roles.containsKey(RoleEnum.StoreOwner) && roles.get(RoleEnum.StoreOwner).haveStore(storeName))
-            owner = (StoreOwner)roles.get(RoleEnum.StoreOwner);
+            this.abstractOwner = (StoreOwner)roles.get(RoleEnum.StoreOwner);
 
-        if(owner == null) throw new Exception(""+getUserName()+" is not owner for "+storeName);
+        if(this.abstractOwner == null) throw new Exception(""+getUserName()+" is not owner for "+storeName);
         else{
-            owner.appointOtherMemberAsStoreManager(store,otherMember);
+            this.abstractOwner.appointOtherMemberAsStoreManager(store,otherMember);
             return true;
         }
     }
@@ -105,5 +108,24 @@ public class Member extends User{
     public StoreManager getStoreManager(){
         StoreManager storeManagerRole =  (StoreManager) roles.get(RoleEnum.StoreManager);
         return storeManagerRole;
+    }
+
+    //Currently added for testing
+    public void addRole(RoleEnum roleEnum, Role role){
+        this.roles.put(roleEnum, role);
+    }
+
+    public RoleEnum getRoleEnum(String role){
+        switch (role){
+            case "StoreOwner":
+                return RoleEnum.StoreOwner;
+            case "StoreFounder":
+                return RoleEnum.StoreFounder;
+            default: return null;
+        }
+    }
+
+    public void setAbstractOwner(AbstractStoreOwner owner){
+        this.abstractOwner = owner;
     }
 }

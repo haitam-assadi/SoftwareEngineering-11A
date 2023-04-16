@@ -55,4 +55,9 @@ public abstract class Role {
     public void addNotification(String sender, String date, String description) {
         this.member.addNotification(sender, date, description);
     }
+
+    //Currenly added for testing:
+    public void addStore(String storeName, Store store){
+        responsibleForStores.put(storeName, store);
+    }
 }
