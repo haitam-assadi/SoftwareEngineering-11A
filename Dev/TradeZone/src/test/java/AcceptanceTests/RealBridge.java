@@ -18,6 +18,8 @@ public class RealBridge implements Bridge{
 
     @Override
     public ResponseT<String> enterMarket() {
+        if(systemService.enterMarket().ErrorOccurred)
+
         return systemService.enterMarket();
     }
 
@@ -91,11 +93,13 @@ public class RealBridge implements Bridge{
     }
 
     @Override
+    // delete it
     public ResponseT<Integer> getProductPrice(String s) {
         return null;
     }
 
     @Override
+    // delete it
     public ResponseT<String> getProductDescription(String s) {
         return null;
     }
@@ -111,6 +115,7 @@ public class RealBridge implements Bridge{
     }
 
     @Override
+    // delete it
     public ResponseT<List<String>> getStoreOwners(String storeName) {
         return null;
     }
@@ -131,6 +136,7 @@ public class RealBridge implements Bridge{
     }
 
     @Override
+    // delete it
     public ResponseT<List<String>> getStoreManagers(String storeName) {
         return null;
     }
@@ -181,6 +187,7 @@ public class RealBridge implements Bridge{
     }
 
     @Override
+    // dont do the implement
     public ResponseT<List<String>> getBag(String userName, String storeName) {
         return null;
     }
