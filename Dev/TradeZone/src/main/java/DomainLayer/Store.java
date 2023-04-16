@@ -23,42 +23,66 @@ public class Store {
     private List<DiscountPolicy> storeDiscountPolicies;
     private List<PaymentPolicy> storePaymentPolicies;
 
-    public Store(String storeName, Member member ) {
+    public Store(String storeName) {
         this.storeName = storeName;
-        storeFounder = new StoreFounder(member) ;
-        isActive = true;
-        storeOwners = new ConcurrentHashMap<>();
-        storeOwners.put(member.userName,new StoreOwner(member));// **************ASK IF WE WANT TO DO THIS OR NOT**********************
-        storeManagers = new ConcurrentHashMap<>();
         stock = new Stock();
+        isActive = true;
+        storeFounder = null;
+        storeOwners = new ConcurrentHashMap<>();
+        storeManagers = new ConcurrentHashMap<>();
+        storeDeals = new ArrayList<>();
+        storeDiscountPolicies = new ArrayList<>();
+        storePaymentPolicies = new ArrayList<>();
+    }
+    public void setStoreFounderAtStoreCreation(StoreFounder storeFounder) throws Exception {
+        if(this.alreadyHaveFounder()){
+            throw new Exception("store already have a founder");
+        }
+        this.storeFounder = storeFounder;
     }
 
-    public Store(StoreFounder founder ) {
-
+    public boolean alreadyHaveFounder(){
+        return storeFounder!=null;
     }
 
-    public boolean addNewProductToStock(String memberUserName,String nameProduct,String category, Double price, String details, Integer amount) throws Exception {
-        if(amount < 0)
-            throw new Exception("the amount of the product cannot be negative");
-        if(price < 0)
-            throw new Exception("the price of the product cannot be negative");
-        if(details == null || details == "")
-            throw new Exception("the details of the product cannot be null");
-        if(details.length()>300)
-            throw new Exception("the details of the product is too long");
-        if(!storeFounder.getUserName().equals(memberUserName) || !storeOwners.containsKey(memberUserName))
+    public boolean isOwnerOrFounder(String memberUserName) throws Exception {
+        assertStringIsNotNullOrBlank(memberUserName);
+        if(!storeFounder.getUserName().equals(memberUserName) && !storeOwners.containsKey(memberUserName))
+            return false;
+
+        return true;
+    }
+    public void assertIsOwnerOrFounder(String memberUserName) throws Exception {
+        if(!isOwnerOrFounder(memberUserName))
             throw new Exception("can't add new product to stock : userName "+ memberUserName +" is not an owner to the store");
-        return stock.addNewProductToStock(nameProduct,category,price,details,amount);
+    }
+
+
+    public void assertStringIsNotNullOrBlank(String st) throws Exception {
+        if(st==null || st.isBlank())
+            throw new Exception("string is null or empty");
+    }
+
+    public boolean addNewProductToStock(String memberUserName,String nameProduct,String category, Double price, String description, Integer amount) throws Exception {
+        assertIsOwnerOrFounder(memberUserName);
+        if(amount == null || amount < 0)
+            throw new Exception("the amount of the product cannot be negative or null");
+        if(price==null ||  price < 0)
+            throw new Exception("the price of the product cannot be negative or null");
+        if(description.length()>300)
+            throw new Exception("the description of the product is too long");
+
+
+        return stock.addNewProductToStock(nameProduct,category,price,description,amount);
     }
 
     public boolean removeProductFromStock(String memberUserName, String productName) throws Exception {
-        if(!storeFounder.getUserName().equals(memberUserName) || !storeOwners.containsKey(memberUserName))
-            throw new Exception("can't add new product to stock : userName "+ memberUserName +" is not an owner to the store");
+        assertIsOwnerOrFounder(memberUserName);
         return stock.removeProductFromStock(productName);
     }
 
     public boolean updateProductDescription(String memberUserName, String productName, String newProductDescription) throws Exception {
-        if(newProductDescription == null || newProductDescription == "")
+        if(newProductDescription == null || newProductDescription.isBlank())
             throw new Exception("the Description of the product cannot be null");
         if(newProductDescription.length()>300)
             throw new Exception("the Description of the product is too long");
@@ -228,11 +252,6 @@ public class Store {
             }
         }
         return deals;
-    }
-
-    public StoreDTO createStore() {
-        StoreDTO storeDTO = new StoreDTO(storeName,storeFounder.getUserName(),storeOwners.keySet().stream().toList(),storeManagers.keySet().stream().toList(),new LinkedList<>());
-        return storeDTO;
     }
 
     //Currently added for testing

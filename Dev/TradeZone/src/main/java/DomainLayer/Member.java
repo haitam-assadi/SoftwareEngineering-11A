@@ -3,6 +3,7 @@ package DomainLayer;
 import DomainLayer.DTO.MemberDTO;
 
 import java.security.PrivateKey;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 enum RoleEnum {
@@ -21,9 +22,11 @@ public class Member extends User{
 
     public Member(String userName, String password) {
         super(userName);
+        this.password = password;
+        roles = new ConcurrentHashMap<>();
+        userNotifications = new ArrayList<>();
         this.isSystemManager=false;
         systemManager = null;
-        this.password = password;
     }
 
     public String getPassword() {
@@ -102,6 +105,19 @@ public class Member extends User{
         store.appointMemberAsStoreManager(storeManagerRole);//TODO: CHECK IF OWNER IN THE STORE
         return true;
     }
+
+    public boolean appointMemberAsStoreFounder(Store store) throws Exception {
+        if(store.alreadyHaveFounder())
+            throw new Exception("store "+store.getStoreName()+" already have a founder");
+
+        roles.putIfAbsent(RoleEnum.StoreFounder, new StoreFounder(this));
+        StoreFounder storeFounderRole =  (StoreFounder) roles.get(RoleEnum.StoreFounder);
+
+        storeFounderRole.appointMemberAsStoreFounder(store);
+        store.setStoreFounderAtStoreCreation(storeFounderRole);
+        return true;
+    }
+
     public StoreManager getStoreManager(){
         StoreManager storeManagerRole =  (StoreManager) roles.get(RoleEnum.StoreManager);
         return storeManagerRole;

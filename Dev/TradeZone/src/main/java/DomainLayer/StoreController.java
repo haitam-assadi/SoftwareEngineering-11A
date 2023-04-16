@@ -22,37 +22,32 @@ public class StoreController {
     //TODO: isStore() method currentlu checking if storeName exists in hashmap, this does not work with lazyLoad
     //TODO: ahmed when you want to open a new store, check if the name of the store unique
 
-    public boolean addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String details, Integer amount) throws Exception {
-        if(!stores.containsKey(storeName))
-            throw new Exception("can't add new product to stock : storeName "+ storeName+" does not exists!");
+    public boolean addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount) throws Exception {
+        assertIsStore(storeName);
         Store store = stores.get(storeName);
-        return store.addNewProductToStock(memberUserName,nameProduct,category,price,details,amount);
+        return store.addNewProductToStock(memberUserName,nameProduct,category,price,description,amount);
     }
 
     public boolean removeProductFromStock(String memberUserName, String storeName, String productName) throws Exception {
-        if(!stores.containsKey(storeName))
-            throw new Exception("can't remove product from stock : storeName "+ storeName+" does not exists!");
+        assertIsStore(storeName);
         Store store = stores.get(storeName);
         return store.removeProductFromStock(memberUserName, productName);
     }
 
     public boolean updateProductDescription(String memberUserName, String storeName, String productName, String newProductDescription) throws Exception {
-        if(!stores.containsKey(storeName))
-            throw new Exception("can't remove product from stock : storeName "+ storeName+" does not exists!");
+        assertIsStore(storeName);
         Store store = stores.get(storeName);
         return store.updateProductDescription(memberUserName, productName, newProductDescription);
     }
 
     public boolean updateProductAmount(String memberUserName, String storeName, String productName, Integer newAmount) throws Exception {
-        if(!stores.containsKey(storeName))
-            throw new Exception("can't remove product from stock : storeName "+ storeName+" does not exists!");
+        assertIsStore(storeName);
         Store store = stores.get(storeName);
         return store.updateProductAmount(memberUserName, productName, newAmount);
     }
 
     public boolean updateProductPrice(String memberUserName, String storeName, String productName, Double newPrice) throws Exception {
-        if(!stores.containsKey(storeName))
-            throw new Exception("can't remove product from stock : storeName "+ storeName+" does not exists!");
+        assertIsStore(storeName);
         Store store = stores.get(storeName);
         return store.updateProductPrice(memberUserName, productName, newPrice);
     }
@@ -109,7 +104,7 @@ public class StoreController {
     }
 
     public boolean isStore(String storeName) throws Exception {
-        if(storeName==null || storeName == "")
+        if(storeName==null || storeName.isBlank())
             throw new Exception("store name is null or empty");
         storeName = storeName.strip().toLowerCase();
 
@@ -154,10 +149,12 @@ public class StoreController {
         return deals;
     }
 
-    public StoreDTO createStore(Member member, String newStoreName) throws Exception {
+    public Store createStore(String newStoreName) throws Exception {
         assertIsNotStore(newStoreName);
-        Store newStore = new Store(newStoreName,member);
+
+        newStoreName = newStoreName.strip().toLowerCase();
+        Store newStore = new Store(newStoreName);
         stores.put(newStoreName,newStore);
-        return newStore.createStore();
+        return newStore;
     }
 }

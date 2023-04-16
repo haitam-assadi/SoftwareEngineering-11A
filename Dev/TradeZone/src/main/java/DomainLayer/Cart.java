@@ -12,6 +12,7 @@ public class Cart {
     private ConcurrentHashMap<String, Bag> bags;
     public Cart(User cartOwner){
         this.cartOwner = cartOwner;
+        bags = new ConcurrentHashMap<>();
     }
 
 
@@ -35,14 +36,10 @@ public class Cart {
         return bags.get(store.getStoreName()).removeProduct(productName);
     }
 
-    public List<BagDTO> getCartContent(User user) throws Exception {
-        if(!cartOwner.equals(user))
-            throw new Exception("user name : "+ user.userName +" is not the owner of the cart");
+    public List<BagDTO> getCartContent(){
         List<BagDTO> bagsDTO = new LinkedList<>();
-        List<Bag> listBags = bags.values().stream().toList();
-        for (int i=0;i<listBags.size();i++){
-            bagsDTO.add(new BagDTO(listBags.get(i).getCart(), listBags.get(i).getStoreBag(), listBags.get(i).getProductWithAmount()));
-        }
+        for(Bag bag: bags.values())
+            bagsDTO.add(bag.getBagInfo());
         return bagsDTO;
     }
 }
