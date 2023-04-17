@@ -18,7 +18,7 @@ public class ProxyBridge implements Bridge{
 
 
     @Override
-    public boolean initializeMarket() {
+    public boolean initializeMarket() throws Exception{
         if(realBridge!=null){
             return realBridge.initializeMarket();
         }
@@ -26,7 +26,7 @@ public class ProxyBridge implements Bridge{
     }
 
     @Override
-    public String enterMarket() {
+    public String enterMarket() throws Exception{
         if(realBridge!=null){
             return realBridge.enterMarket();
         }
@@ -34,7 +34,7 @@ public class ProxyBridge implements Bridge{
     }
 
     @Override
-    public boolean exitMarket(String userName) {
+    public boolean exitMarket(String userName) throws Exception{
         if(realBridge!=null){
             return realBridge.exitMarket(userName);
         }
@@ -66,7 +66,7 @@ public class ProxyBridge implements Bridge{
     }
 
     @Override
-    public String createStore(String memberUserName, String newStoreName) {
+    public String createStore(String memberUserName, String newStoreName) throws Exception{
         if(realBridge!=null){
             return realBridge.createStore(memberUserName,newStoreName);
         }
@@ -74,14 +74,15 @@ public class ProxyBridge implements Bridge{
     }
 
     @Override
-    public boolean  addNewProductToStock(String memberUserName, String storeName, String product_name,String category, Double price, String description, int amount){        if(realBridge!=null){
+    public boolean  addNewProductToStock(String memberUserName, String storeName, String product_name,String category, Double price, String description, int amount) throws Exception{
+        if(realBridge!=null){
         return realBridge.addNewProductToStock(memberUserName, storeName, product_name, category,price, description,amount);
     }
         return false;
     }
 
     @Override
-    public boolean removeProductFromStock(String memberUserName, String storeName, String productName) {
+    public boolean removeProductFromStock(String memberUserName, String storeName, String productName) throws Exception {
         if(realBridge!=null){
             return realBridge.removeProductFromStock(memberUserName, storeName, productName);
         }
@@ -89,7 +90,7 @@ public class ProxyBridge implements Bridge{
     }
 
     @Override
-    public boolean addCategory(String userName, String categoryName, String storeName) {
+    public boolean addCategory(String userName, String categoryName, String storeName) throws Exception {
         if(realBridge!=null){
             realBridge.addCategory(userName,categoryName, storeName);
         }
@@ -97,7 +98,7 @@ public class ProxyBridge implements Bridge{
     }
 
     @Override
-    public boolean getCategory(String userName, String categoryName,String storeName) {
+    public boolean getCategory(String userName, String categoryName,String storeName) throws Exception {
         if(realBridge!=null){
             realBridge.getCategory(userName, categoryName, storeName);
         }
@@ -105,7 +106,7 @@ public class ProxyBridge implements Bridge{
     }
 
     @Override
-    public boolean updateProductName(String memberUserName, String storeName, String productName, String newName) {
+    public boolean updateProductName(String memberUserName, String storeName, String productName, String newName) throws Exception {
         if(realBridge!=null){
             return realBridge.updateProductName(memberUserName, storeName, productName, newName);
         }
@@ -113,7 +114,7 @@ public class ProxyBridge implements Bridge{
     }
 
     @Override
-    public boolean updateProductPrice(String memberUserName, String storeName, String productName, Double price) {
+    public boolean updateProductPrice(String memberUserName, String storeName, String productName, Double price) throws Exception {
         if(realBridge!=null){
             return realBridge.updateProductPrice(memberUserName, storeName, productName, price);
         }
@@ -121,7 +122,7 @@ public class ProxyBridge implements Bridge{
     }
 
     @Override
-    public boolean updateProductDescription(String memberUserName, String storeName, String productName, String newDescription) {
+    public boolean updateProductDescription(String memberUserName, String storeName, String productName, String newDescription) throws Exception {
         if(realBridge!=null){
             return realBridge.updateProductDescription(memberUserName, storeName, productName, newDescription);
         }
@@ -129,7 +130,7 @@ public class ProxyBridge implements Bridge{
     }
 
     @Override
-    public boolean updateProductAmount(String memberUserName, String storeName, String productName, int amount) {
+    public boolean updateProductAmount(String memberUserName, String storeName, String productName, int amount) throws Exception {
         if(realBridge!=null){
             return realBridge.updateProductAmount(memberUserName, storeName, productName, amount);
         }
@@ -137,7 +138,7 @@ public class ProxyBridge implements Bridge{
     }
 
     @Override
-    public int getProductAmount(String storeName, String s) {
+    public int getProductAmount(String storeName, String s) throws Exception {
         if(realBridge!=null){
             return realBridge.getProductAmount(storeName, s);
         }
@@ -145,7 +146,7 @@ public class ProxyBridge implements Bridge{
     }
 
     @Override
-    public boolean appointOtherMemberAsStoreOwner(String memberUserName, String storeName, String newOwnerUserName) {
+    public boolean appointOtherMemberAsStoreOwner(String memberUserName, String storeName, String newOwnerUserName) throws Exception {
         if(realBridge!=null){
             return realBridge.appointOtherMemberAsStoreOwner(memberUserName, storeName, newOwnerUserName);
         }
@@ -153,7 +154,7 @@ public class ProxyBridge implements Bridge{
     }
 
     @Override
-    public String getOwnerAppointer(String OwnerName, String storeName) {
+    public String getOwnerAppointer(String OwnerName, String storeName) throws Exception {
         if(realBridge!=null){
             return realBridge.getOwnerAppointer(OwnerName,storeName);
         }
@@ -161,7 +162,7 @@ public class ProxyBridge implements Bridge{
     }
 
     @Override
-    public boolean appointOtherMemberAsStoreManager(String memberUserName, String storeName, String newOwnerUserName) {
+    public boolean appointOtherMemberAsStoreManager(String memberUserName, String storeName, String newOwnerUserName) throws Exception {
         if(realBridge!=null){
             return realBridge.appointOtherMemberAsStoreManager(memberUserName, storeName, newOwnerUserName);
         }
@@ -169,7 +170,7 @@ public class ProxyBridge implements Bridge{
     }
 
     @Override
-    public String getManagerAppointer(String ManagerName, String storeName) {
+    public String getManagerAppointer(String ManagerName, String storeName) throws Exception {
         if(realBridge!=null){
             return realBridge.getManagerAppointer(ManagerName,storeName);
         }
@@ -177,7 +178,7 @@ public class ProxyBridge implements Bridge{
     }
 
     @Override
-    public String closeStore(String memberUserName, String storeName) {
+    public String closeStore(String memberUserName, String storeName) throws Exception {
         if(realBridge!=null){
             return realBridge.closeStore(memberUserName,storeName);
         }
@@ -185,7 +186,7 @@ public class ProxyBridge implements Bridge{
     }
 
     @Override
-    public boolean canGetStoreInfo(String userName, String storeName) {
+    public boolean canGetStoreInfo(String userName, String storeName)throws Exception {
         if(realBridge!=null){
             return realBridge.canGetStoreInfo(userName,storeName);
         }
@@ -193,7 +194,7 @@ public class ProxyBridge implements Bridge{
     }
 
     @Override
-    public String getStoreNotification(String memberName, String storeName) {
+    public String getStoreNotification(String memberName, String storeName) throws Exception {
         if(realBridge!=null){
             return realBridge.getStoreNotification(memberName,storeName);
         }
@@ -201,7 +202,7 @@ public class ProxyBridge implements Bridge{
     }
 
     @Override
-    public Map<Integer, List<String>> getStoreRulesInfo(String ownerName, String storeName) {
+    public Map<Integer, List<String>> getStoreRulesInfo(String ownerName, String storeName) throws Exception {
         if(realBridge!=null){
             return realBridge.getStoreRulesInfo(ownerName,storeName);
         }
@@ -209,7 +210,7 @@ public class ProxyBridge implements Bridge{
     }
 
     @Override
-    public String getStoreFounderName(String userName, String storeName) {
+    public String getStoreFounderName(String userName, String storeName) throws Exception {
         if(realBridge!=null){
             return realBridge.getStoreFounderName(userName, storeName);
         }
@@ -217,7 +218,7 @@ public class ProxyBridge implements Bridge{
     }
 
     @Override
-    public List<String> getStoreOwnersNames(String userName, String storeName) {
+    public List<String> getStoreOwnersNames(String userName, String storeName) throws Exception {
         if(realBridge!=null){
             return realBridge.getStoreOwnersNames(userName, storeName);
         }
@@ -225,7 +226,7 @@ public class ProxyBridge implements Bridge{
     }
 
     @Override
-    public List<String> getStoreManagersNames(String userName, String storeName) {
+    public List<String> getStoreManagersNames(String userName, String storeName) throws Exception {
         if(realBridge!=null){
             return realBridge.getStoreManagersNames(userName, storeName);
         }
@@ -233,7 +234,7 @@ public class ProxyBridge implements Bridge{
     }
 
     @Override
-    public Double getProductPrice(String userName, String storeName, String productName) {
+    public Double getProductPrice(String userName, String storeName, String productName) throws Exception {
         if(realBridge!=null){
             return realBridge.getProductPrice(userName, storeName, productName);
         }
@@ -241,14 +242,14 @@ public class ProxyBridge implements Bridge{
     }
 
     @Override
-    public String getProductDescription(String userName, String storeName, String productName) {
+    public String getProductDescription(String userName, String storeName, String productName) throws Exception {
         if(realBridge!=null){
             return realBridge.getProductDescription(userName, storeName, productName);
         }
         return "";
     }
 
-    public List<String> getAllGuests() {
+    public List<String> getAllGuests() throws Exception {
         if(realBridge!=null){
             return realBridge.getAllGuests();
         }
@@ -262,35 +263,35 @@ public class ProxyBridge implements Bridge{
         return -1;
     }
 
-    public List<String> getAllOnlineMembers() {
+    public List<String> getAllOnlineMembers() throws Exception {
         if(realBridge!=null){
             return realBridge.getAllOnlineMembers();
         }
         return new LinkedList<>();
     }
 
-    public List<String> getAllMembers() {
+    public List<String> getAllMembers() throws Exception {
         if(realBridge!=null){
             return realBridge.getAllMembers();
         }
         return new LinkedList<>();
     }
 
-    public String getMemberPassword(String memberName) {
+    public String getMemberPassword(String memberName) throws Exception {
         if(realBridge!=null){
             return realBridge.getMemberPassword( memberName);
         }
         return "";
     }
 
-    public List<String> getAllStores() {
+    public List<String> getAllStores() throws Exception {
         if(realBridge!=null){
             return realBridge.getAllStores();
         }
         return new LinkedList<>();
     }
 
-    public List<String> getStoreProducts(String userName, String storeName) {
+    public List<String> getStoreProducts(String userName, String storeName) throws Exception {
         if(realBridge!=null){
             return realBridge.getStoreProducts(userName,storeName);
         }
@@ -298,7 +299,7 @@ public class ProxyBridge implements Bridge{
     }
 
     @Override
-    public Map<String, List<String>> getProductInfoFromMarketByName(String userName, String productName) {
+    public Map<String, List<String>> getProductInfoFromMarketByName(String userName, String productName) throws Exception {
         if(realBridge!=null){
             return realBridge.getProductInfoFromMarketByName(userName, productName);
         }
@@ -306,7 +307,7 @@ public class ProxyBridge implements Bridge{
     }
 
     @Override
-    public Map<String, List<String>> getProductInfoFromMarketByCategory(String userName, String categoryName) {
+    public Map<String, List<String>> getProductInfoFromMarketByCategory(String userName, String categoryName) throws Exception {
         if(realBridge!=null){
             return realBridge.getProductInfoFromMarketByCategory(userName, categoryName);
         }
@@ -314,7 +315,7 @@ public class ProxyBridge implements Bridge{
     }
 
     @Override
-    public Map<String, List<String>> getProductInfoFromMarketByKeyword(String userName, String keyword) {
+    public Map<String, List<String>> getProductInfoFromMarketByKeyword(String userName, String keyword) throws Exception {
         if(realBridge!=null){
             return realBridge.getProductInfoFromMarketByKeyword(userName, keyword);
         }
@@ -322,7 +323,7 @@ public class ProxyBridge implements Bridge{
     }
 
     @Override
-    public Map<String, List<String>> filterByPrice(String userName, Map<String, List<String>> products, int minPrice, int maxPrice) {
+    public Map<String, List<String>> filterByPrice(String userName, Map<String, List<String>> products, int minPrice, int maxPrice) throws Exception {
         if(realBridge!=null){
             return realBridge.filterByPrice(userName, products, minPrice, maxPrice);
         }
@@ -330,7 +331,7 @@ public class ProxyBridge implements Bridge{
     }
 
     @Override
-    public Map<String, List<String>> filterByCategory(String userName, Map<String, List<String>> products, String categoryName) {
+    public Map<String, List<String>> filterByCategory(String userName, Map<String, List<String>> products, String categoryName) throws Exception {
         if(realBridge!=null){
             return realBridge.filterByCategory(userName, products, categoryName);
         }
@@ -338,7 +339,7 @@ public class ProxyBridge implements Bridge{
     }
 
     @Override
-    public boolean addToCart(String userName, String storeName, String productName, Integer amount) {
+    public boolean addToCart(String userName, String storeName, String productName, Integer amount) throws Exception {
         if(realBridge!=null){
             return realBridge.addToCart(userName, storeName, productName, amount);
         }
@@ -346,7 +347,7 @@ public class ProxyBridge implements Bridge{
     }
 
     @Override
-    public List<String> getBag(String userName, String storeName) {
+    public List<String> getBag(String userName, String storeName) throws Exception {
         if(realBridge!=null){
             return realBridge.getBag(userName, storeName);
         }
@@ -354,7 +355,7 @@ public class ProxyBridge implements Bridge{
     }
 
     @Override
-    public int getProductAmountInCart(String userName, String storeName, String productName) {
+    public int getProductAmountInCart(String userName, String storeName, String productName) throws Exception {
         if(realBridge!=null){
             return realBridge.getProductAmountInCart(userName, storeName, productName);
         }
@@ -362,7 +363,7 @@ public class ProxyBridge implements Bridge{
     }
 
     @Override
-    public Map<String, List<String>> getCartContent(String userName) {
+    public Map<String, List<String>> getCartContent(String userName) throws Exception {
         if(realBridge!=null){
             return realBridge.getCartContent(userName);
         }
@@ -370,7 +371,7 @@ public class ProxyBridge implements Bridge{
     }
 
     @Override
-    public boolean removeProductFromCart(String userName, String storeName, String productName) {
+    public boolean removeProductFromCart(String userName, String storeName, String productName) throws Exception {
         if(realBridge!=null){
             return realBridge.removeProductFromCart(userName, storeName, productName);
         }
