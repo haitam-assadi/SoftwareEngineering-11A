@@ -28,7 +28,7 @@ public class RealBridge implements Bridge{
     public String enterMarket() throws Exception { // Done
         ResponseT<String> response = systemService.enterMarket();
         if(response.ErrorOccurred){
-            throw new Exception(response.errorMessage);;
+            throw new Exception(response.errorMessage);
         }
         return response.getValue();
     }
