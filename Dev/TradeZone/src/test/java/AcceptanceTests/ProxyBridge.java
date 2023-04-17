@@ -1,6 +1,6 @@
 package AcceptanceTests;
 
-import java.util.Collection;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -20,10 +20,9 @@ public class ProxyBridge implements Bridge{
     @Override
     public boolean initializeMarket() {
         if(realBridge!=null){
-            realBridge.initializeMarket();
+            return realBridge.initializeMarket();
         }
-        return true;
-        //throw new UnsupportedOperationException();
+        return false;
     }
 
     @Override
@@ -31,7 +30,7 @@ public class ProxyBridge implements Bridge{
         if(realBridge!=null){
             return realBridge.enterMarket();
         }
-        throw new UnsupportedOperationException();
+        return "";
     }
 
     @Override
@@ -39,31 +38,31 @@ public class ProxyBridge implements Bridge{
         if(realBridge!=null){
             return realBridge.exitMarket(userName);
         }
-        throw new UnsupportedOperationException();
+        return false;
     }
 
     @Override
-    public boolean register(String guestUserName, String newMemberUserName, String password) {
+    public boolean register(String guestUserName, String newMemberUserName, String password) throws Exception {
         if(realBridge!=null){
             return realBridge.register(guestUserName, newMemberUserName, password);
         }
-        throw new UnsupportedOperationException();
+        return false;
     }
 
     @Override
-    public String login(String guestUserName, String MemberUserName, String password) {
+    public String login(String guestUserName, String MemberUserName, String password) throws Exception {
         if(realBridge!=null){
             return realBridge.login(guestUserName, MemberUserName, password);
         }
-        throw new UnsupportedOperationException();
+        return "";
     }
 
     @Override
-    public String memberLogOut(String memberUserName) {
+    public String memberLogOut(String memberUserName)  throws Exception {
         if(realBridge!=null){
             return realBridge.memberLogOut(memberUserName);
         }
-        throw new UnsupportedOperationException();
+        return "";
     }
 
     @Override
@@ -71,14 +70,14 @@ public class ProxyBridge implements Bridge{
         if(realBridge!=null){
             return realBridge.createStore(memberUserName,newStoreName);
         }
-        throw new UnsupportedOperationException();
+        return "";
     }
 
     @Override
-    public boolean  addNewProductToStock(String memberUserName, String storeName, String product_name,String category, int price, String description, int amount){        if(realBridge!=null){
+    public boolean  addNewProductToStock(String memberUserName, String storeName, String product_name,String category, Double price, String description, int amount){        if(realBridge!=null){
         return realBridge.addNewProductToStock(memberUserName, storeName, product_name, category,price, description,amount);
     }
-        throw new UnsupportedOperationException();
+        return false;
     }
 
     @Override
@@ -86,7 +85,7 @@ public class ProxyBridge implements Bridge{
         if(realBridge!=null){
             return realBridge.removeProductFromStock(memberUserName, storeName, productName);
         }
-        throw new UnsupportedOperationException();
+        return false;
     }
 
     @Override
@@ -94,7 +93,7 @@ public class ProxyBridge implements Bridge{
         if(realBridge!=null){
             realBridge.addCategory(userName,categoryName, storeName);
         }
-        throw new UnsupportedOperationException();
+        return false;
     }
 
     @Override
@@ -102,7 +101,7 @@ public class ProxyBridge implements Bridge{
         if(realBridge!=null){
             realBridge.getCategory(userName, categoryName, storeName);
         }
-        throw new UnsupportedOperationException();
+        return false;
     }
 
     @Override
@@ -110,15 +109,15 @@ public class ProxyBridge implements Bridge{
         if(realBridge!=null){
             return realBridge.updateProductName(memberUserName, storeName, productName, newName);
         }
-        throw new UnsupportedOperationException();
+        return false;
     }
 
     @Override
-    public boolean updateProductPrice(String memberUserName, String storeName, String productName, int price) {
+    public boolean updateProductPrice(String memberUserName, String storeName, String productName, Double price) {
         if(realBridge!=null){
             return realBridge.updateProductPrice(memberUserName, storeName, productName, price);
         }
-        throw new UnsupportedOperationException();
+        return false;
     }
 
     @Override
@@ -126,7 +125,7 @@ public class ProxyBridge implements Bridge{
         if(realBridge!=null){
             return realBridge.updateProductDescription(memberUserName, storeName, productName, newDescription);
         }
-        throw new UnsupportedOperationException();
+        return false;
     }
 
     @Override
@@ -134,7 +133,7 @@ public class ProxyBridge implements Bridge{
         if(realBridge!=null){
             return realBridge.updateProductAmount(memberUserName, storeName, productName, amount);
         }
-        throw new UnsupportedOperationException();
+        return false;
     }
 
     @Override
@@ -142,15 +141,15 @@ public class ProxyBridge implements Bridge{
         if(realBridge!=null){
             return realBridge.getProductAmount(storeName, s);
         }
-        throw new UnsupportedOperationException();
+        return -1;
     }
 
     @Override
-    public boolean appointMemberAsStoreOwner(String memberUserName, String storeName, String newOwnerUserName) {
+    public boolean appointOtherMemberAsStoreOwner(String memberUserName, String storeName, String newOwnerUserName) {
         if(realBridge!=null){
-            return realBridge.appointMemberAsStoreOwner(memberUserName, storeName, newOwnerUserName);
+            return realBridge.appointOtherMemberAsStoreOwner(memberUserName, storeName, newOwnerUserName);
         }
-        throw new UnsupportedOperationException();
+        return false;
     }
 
     @Override
@@ -158,15 +157,15 @@ public class ProxyBridge implements Bridge{
         if(realBridge!=null){
             return realBridge.getOwnerAppointer(OwnerName,storeName);
         }
-        throw new UnsupportedOperationException();
+        return "";
     }
 
     @Override
-    public boolean appointMemberAsStoreManager(String memberUserName, String storeName, String newOwnerUserName) {
+    public boolean appointOtherMemberAsStoreManager(String memberUserName, String storeName, String newOwnerUserName) {
         if(realBridge!=null){
-            return realBridge.appointMemberAsStoreManager(memberUserName, storeName, newOwnerUserName);
+            return realBridge.appointOtherMemberAsStoreManager(memberUserName, storeName, newOwnerUserName);
         }
-        throw new UnsupportedOperationException();
+        return false;
     }
 
     @Override
@@ -174,7 +173,7 @@ public class ProxyBridge implements Bridge{
         if(realBridge!=null){
             return realBridge.getManagerAppointer(ManagerName,storeName);
         }
-        throw new UnsupportedOperationException();
+        return "";
     }
 
     @Override
@@ -182,7 +181,7 @@ public class ProxyBridge implements Bridge{
         if(realBridge!=null){
             return realBridge.closeStore(memberUserName,storeName);
         }
-        throw new UnsupportedOperationException();
+        return "";
     }
 
     @Override
@@ -190,7 +189,7 @@ public class ProxyBridge implements Bridge{
         if(realBridge!=null){
             return realBridge.canGetStoreInfo(userName,storeName);
         }
-        throw new UnsupportedOperationException();
+        return false;
     }
 
     @Override
@@ -198,7 +197,7 @@ public class ProxyBridge implements Bridge{
         if(realBridge!=null){
             return realBridge.getStoreNotification(memberName,storeName);
         }
-        throw new UnsupportedOperationException();
+        return "";
     }
 
     @Override
@@ -206,7 +205,7 @@ public class ProxyBridge implements Bridge{
         if(realBridge!=null){
             return realBridge.getStoreRulesInfo(ownerName,storeName);
         }
-        throw new UnsupportedOperationException();
+        return new HashMap<>();
     }
 
     @Override
@@ -214,7 +213,7 @@ public class ProxyBridge implements Bridge{
         if(realBridge!=null){
             return realBridge.getStoreFounderName(userName, storeName);
         }
-        return null;
+        return "";
     }
 
     @Override
@@ -222,7 +221,7 @@ public class ProxyBridge implements Bridge{
         if(realBridge!=null){
             return realBridge.getStoreOwnersNames(userName, storeName);
         }
-        throw new UnsupportedOperationException();
+        return new LinkedList<>();
     }
 
     @Override
@@ -230,7 +229,7 @@ public class ProxyBridge implements Bridge{
         if(realBridge!=null){
             return realBridge.getStoreManagersNames(userName, storeName);
         }
-        return null;
+        return new LinkedList<>();
     }
 
     @Override
@@ -246,49 +245,49 @@ public class ProxyBridge implements Bridge{
         if(realBridge!=null){
             return realBridge.getProductDescription(userName, storeName, productName);
         }
-        return null;
+        return "";
     }
 
-    public List<String> getAllgusts() {
+    public List<String> getAllGuests() {
         if(realBridge!=null){
-            return realBridge.getAllguests();
+            return realBridge.getAllGuests();
         }
-        throw new UnsupportedOperationException();
+        return new LinkedList<>();
     }
 
     public int getUserCart(String user) {
         if(realBridge!=null){
             return realBridge.getUserCart(user);
         }
-        throw new UnsupportedOperationException();
+        return -1;
     }
 
     public List<String> getAllOnlineMembers() {
         if(realBridge!=null){
             return realBridge.getAllOnlineMembers();
         }
-        throw new UnsupportedOperationException();
+        return new LinkedList<>();
     }
 
     public List<String> getAllMembers() {
         if(realBridge!=null){
             return realBridge.getAllMembers();
         }
-        throw new UnsupportedOperationException();
+        return new LinkedList<>();
     }
 
     public String getMemberPassword(String memberName) {
         if(realBridge!=null){
             return realBridge.getMemberPassword( memberName);
         }
-        throw new UnsupportedOperationException();
+        return "";
     }
 
     public List<String> getAllStores() {
         if(realBridge!=null){
             return realBridge.getAllStores();
         }
-        throw new UnsupportedOperationException();
+        return new LinkedList<>();
     }
 
     public List<String> getStoreProducts(String userName, String storeName) {
@@ -303,7 +302,7 @@ public class ProxyBridge implements Bridge{
         if(realBridge!=null){
             return realBridge.getProductInfoFromMarketByName(userName, productName);
         }
-        throw new UnsupportedOperationException();
+        return new HashMap<>();
     }
 
     @Override
@@ -311,7 +310,7 @@ public class ProxyBridge implements Bridge{
         if(realBridge!=null){
             return realBridge.getProductInfoFromMarketByCategory(userName, categoryName);
         }
-        throw new UnsupportedOperationException();
+        return new HashMap<>();
     }
 
     @Override
@@ -319,7 +318,7 @@ public class ProxyBridge implements Bridge{
         if(realBridge!=null){
             return realBridge.getProductInfoFromMarketByKeyword(userName, keyword);
         }
-        throw new UnsupportedOperationException();
+        return new HashMap<>();
     }
 
     @Override
@@ -327,7 +326,7 @@ public class ProxyBridge implements Bridge{
         if(realBridge!=null){
             return realBridge.filterByPrice(userName, products, minPrice, maxPrice);
         }
-        throw new UnsupportedOperationException();
+        return new HashMap<>();
     }
 
     @Override
@@ -335,7 +334,7 @@ public class ProxyBridge implements Bridge{
         if(realBridge!=null){
             return realBridge.filterByCategory(userName, products, categoryName);
         }
-        throw new UnsupportedOperationException();
+        return new HashMap<>();
     }
 
     @Override
@@ -343,7 +342,7 @@ public class ProxyBridge implements Bridge{
         if(realBridge!=null){
             return realBridge.addToCart(userName, storeName, productName, amount);
         }
-        throw new UnsupportedOperationException();
+        return false;
     }
 
     @Override
@@ -351,7 +350,7 @@ public class ProxyBridge implements Bridge{
         if(realBridge!=null){
             return realBridge.getBag(userName, storeName);
         }
-        throw new UnsupportedOperationException();
+        return new LinkedList<>();
     }
 
     @Override
@@ -359,7 +358,7 @@ public class ProxyBridge implements Bridge{
         if(realBridge!=null){
             return realBridge.getProductAmountInCart(userName, storeName, productName);
         }
-        throw new UnsupportedOperationException();
+        return -1;
     }
 
     @Override
@@ -367,7 +366,7 @@ public class ProxyBridge implements Bridge{
         if(realBridge!=null){
             return realBridge.getCartContent(userName);
         }
-        throw new UnsupportedOperationException();
+        return new HashMap<>();
     }
 
     @Override
@@ -375,13 +374,14 @@ public class ProxyBridge implements Bridge{
         if(realBridge!=null){
             return realBridge.removeProductFromCart(userName, storeName, productName);
         }
-        throw new UnsupportedOperationException();
+        return false;
     }
 
     @Override
-    public boolean changeProductAmountInCart(String userName, String storeName, String productName, Integer newAmount) {
+    public boolean changeProductAmountInCart(String userName, String storeName, String productName, Integer newAmount) throws Exception{
         if(realBridge!=null){
             return realBridge.changeProductAmountInCart(userName, storeName, productName, newAmount);
         }
-        throw new UnsupportedOperationException();    }
+        return false;
+    }
 }

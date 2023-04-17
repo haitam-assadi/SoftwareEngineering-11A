@@ -15,19 +15,19 @@ public interface Bridge {
     public boolean exitMarket(String userName);
 
     //II.1.3
-    public boolean register(String guestUserName, String newMemberUserName, String password);
+    public boolean register(String guestUserName, String newMemberUserName, String password) throws Exception;
 
     //II.1.4
-    public String login(String guestUserName, String MemberUserName, String password);
+    public String login(String guestUserName, String MemberUserName, String password) throws Exception;
 
     //II.3.1
-    public String memberLogOut(String memberUserName);
+    public String memberLogOut(String memberUserName) throws Exception;
 
     //II.3.2
     public String createStore(String memberUserName, String newStoreName);
 
     //II.4.1.1
-    public boolean addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, int price, String description, int amount);
+    public boolean addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, int amount);
     //II.4.1.2
     public boolean removeProductFromStock(String memberUserName, String storeName, String productName);
 
@@ -37,7 +37,7 @@ public interface Bridge {
 
     //II.4.1.3
     public boolean updateProductName(String memberUserName, String storeName, String productName, String newName);
-    public boolean updateProductPrice(String memberUserName, String storeName, String productName, int price);
+    public boolean updateProductPrice(String memberUserName, String storeName, String productName, Double price);
     public boolean updateProductDescription(String memberUserName, String storeName, String productName, String newDescription);
     public boolean updateProductAmount(String memberUserName, String storeName, String productName, int amount);
 
@@ -50,7 +50,7 @@ public interface Bridge {
     int getProductAmount(String storeName, String s); // in stock
 
     //II.4.4
-    public boolean appointMemberAsStoreOwner(String memberUserName, String storeName, String newOwnerUserName);
+    public boolean appointOtherMemberAsStoreOwner(String memberUserName, String storeName, String newOwnerUserName);
 
 //    List<String> getStoreOwners(String storeName); // delete
 
@@ -58,7 +58,7 @@ public interface Bridge {
 
     public List<String> getStoreProducts(String userName, String storeName);
 
-    public boolean appointMemberAsStoreManager(String memberUserName, String storeName, String newOwnerUserName);
+    public boolean appointOtherMemberAsStoreManager(String memberUserName, String storeName, String newOwnerUserName);
 
 //    List<String> getStoreManagers(String storeName); // delete
 
@@ -109,6 +109,6 @@ public interface Bridge {
 
     public boolean removeProductFromCart(String userName, String storeName, String productName);
 
-    public boolean changeProductAmountInCart (String userName, String storeName, String productName, Integer newAmount);
+    public boolean changeProductAmountInCart (String userName, String storeName, String productName, Integer newAmount) throws Exception;
 
 }

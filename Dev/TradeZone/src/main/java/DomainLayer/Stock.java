@@ -9,10 +9,13 @@ import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class Stock {
+
+    Store store;
     private ConcurrentHashMap<String, ConcurrentHashMap<Product,Integer>> stockProducts;
     private ConcurrentHashMap<String,Category> stockCategories;
 
-    public Stock(){
+    public Stock(Store store){
+        this.store = store;
         stockProducts =new ConcurrentHashMap<>();
         stockCategories = new ConcurrentHashMap<>();
     }
@@ -22,7 +25,6 @@ public class Stock {
             throw new Exception("string is null or empty");
     }
     public void assertContainsProduct(String productName) throws Exception {
-
         if(!containsProduct(productName))
             throw new Exception("stock does not contain this product "+productName);
     }
@@ -89,8 +91,6 @@ public class Stock {
             throw new Exception("the price of the product equals to the new price");
         product.setPrice(newPrice);
         return true;
-
-
     }
 
     public List<ProductDTO> getProductsInfo(){
@@ -185,5 +185,8 @@ public class Stock {
 
     public int getProductAmount(String productName, Product product){
         return this.stockProducts.get(productName).get(product);
+    }
+    public String getStoreName(){
+        return store.getStoreName();
     }
 }

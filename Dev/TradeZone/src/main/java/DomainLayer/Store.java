@@ -25,7 +25,7 @@ public class Store {
 
     public Store(String storeName) {
         this.storeName = storeName;
-        stock = new Stock();
+        stock = new Stock(this);
         isActive = true;
         storeFounder = null;
         storeOwners = new ConcurrentHashMap<>();
