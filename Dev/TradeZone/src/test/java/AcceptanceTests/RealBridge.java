@@ -1,8 +1,8 @@
 package AcceptanceTests;
 
+import DTO.BagDTO;
 import DTO.ProductDTO;
 import DTO.StoreDTO;
-import DomainLayer.DTO.*;
 import ServiceLayer.ResponseT;
 import ServiceLayer.SystemService;
 
@@ -14,16 +14,21 @@ import java.util.*;
 public class RealBridge implements Bridge{
     private SystemService systemService; //TODO: = new or getinstance()
 
+
+    public RealBridge(){
+        systemService = new SystemService();
+    }
+
     @Override
-    public boolean initializeMarket() { // TODO: add to market and service
-        return true;
+    public boolean initializeMarket() {
+        return systemService.initializeMarket();
     }
 
     @Override
     public String enterMarket() { // Done
         ResponseT<String> name = systemService.enterMarket();
         if(name.ErrorOccurred){
-            return null;
+            return "";
         }
         return name.getValue();
     }
@@ -38,124 +43,169 @@ public class RealBridge implements Bridge{
     }
 
     @Override
-    public boolean register(String guestUserName, String newMemberUserName, String password) {
-        return false;
+    public boolean register(String guestUserName, String newMemberUserName, String password) throws Exception {
+        ResponseT<Boolean> response = systemService.register(guestUserName,newMemberUserName,password);
+        if (response.ErrorOccurred){
+            throw new Exception(response.errorMessage);
+        }
+        return response.getValue();
     }
 
     @Override
-    public String login(String guestUserName, String MemberUserName, String password) {
-        return null;
+    public String login(String guestUserName, String MemberUserName, String password)  throws Exception {
+        ResponseT<String> response = systemService.login(guestUserName, MemberUserName, password);
+        if (response.ErrorOccurred){
+            return "";
+        }
+        return response.getValue();
     }
 
     @Override
     public String memberLogOut(String memberUserName) {
-        return null;
+        ResponseT<String> response = systemService.memberLogOut(memberUserName);
+        if (response.ErrorOccurred){
+            return "";
+        }
+        return response.getValue();
     }
 
     @Override
-    public String createStore(String memberUserName, String newStoreName) { // ???
+    public String createStore(String memberUserName, String newStoreName) {
         ResponseT<StoreDTO> store = systemService.createStore(memberUserName, newStoreName);
         if(store.ErrorOccurred){
-            return null;
+            return "";
         }
-        return store.getValue().getStoreName();
+        return store.getValue().storeName;
     }
 
     @Override
-    public boolean addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, int price, String description, int amount){
-        return false;
+    public boolean addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, int amount){
+        ResponseT<Boolean> response = systemService.addNewProductToStock(memberUserName, storeName, nameProduct,
+                category, price, description, amount);
+        if (response.ErrorOccurred){
+            return false;
+        }
+        return response.getValue();
     }
 
     @Override
     public boolean removeProductFromStock(String memberUserName, String storeName, String productName) {
-        return false;
+        ResponseT<Boolean> response = systemService.removeProductFromStock(memberUserName, storeName, productName);
+        if (response.ErrorOccurred){
+            return false;
+        }
+        return response.getValue();
     }
 
     @Override
     public boolean addCategory(String userName, String categoryName, String storeName) { // TODO: add to market and service
-        return true;
+        return false;
     }
 
     @Override
     public boolean getCategory(String userName, String categoryName,String storeName) { // TODO: add to market and service
-        return true;
+        return false;
     }
 
     @Override
     public boolean updateProductName(String memberUserName, String storeName, String productName, String newName) { // TODO: add to market and service
-        return true;
+            return false;
     }
 
     @Override
-    public boolean updateProductPrice(String memberUserName, String storeName, String productName, int price) {
-        return false;
+    public boolean updateProductPrice(String memberUserName, String storeName, String productName, Double price) {
+        ResponseT<Boolean> response = systemService.updateProductPrice(memberUserName, storeName, productName, price);
+        if (response.ErrorOccurred){
+            return false;
+        }
+        return response.getValue();
     }
 
     @Override
     public boolean updateProductDescription(String memberUserName, String storeName, String productName, String newDescription) {
-        return false;
+        ResponseT<Boolean> response = systemService.updateProductDescription(memberUserName,storeName,productName,newDescription);
+        if (response.ErrorOccurred){
+            return false;
+        }
+        return response.getValue();
     }
 
     @Override
     public boolean updateProductAmount(String memberUserName, String storeName, String productName, int amount) {
-        return false;
+        ResponseT<Boolean> response = systemService.updateProductAmount(memberUserName,storeName,productName,amount);
+        if (response.ErrorOccurred){
+            return false;
+        }
+        return response.getValue();
     }
 
     @Override
     public int getProductAmount(String storeName, String productName) { // String userName
         // TODO: add amount field to ProductDTO or add a function get product amount to market and service
-        return 0;
+        return -1;
     }
 
     @Override
-    public boolean appointMemberAsStoreOwner(String memberUserName, String storeName, String newOwnerUserName) {
-        return false;
+    public boolean appointOtherMemberAsStoreOwner(String memberUserName, String storeName, String newOwnerUserName) {
+        ResponseT<Boolean> response = systemService.appointOtherMemberAsStoreOwner(memberUserName, storeName, newOwnerUserName);
+        if (response.ErrorOccurred){
+            return false;
+        }
+        return response.getValue();
     }
 
     @Override
     public String getOwnerAppointer(String OwnerName, String storeName) { // TODO: add to market and service
-        return null;
+            return "";
     }
 
     @Override
-    public boolean appointMemberAsStoreManager(String memberUserName, String storeName, String newOwnerUserName) {
-        return false;
+    public boolean appointOtherMemberAsStoreManager(String memberUserName, String storeName, String newOwnerUserName) {
+        ResponseT<Boolean> response = systemService.appointOtherMemberAsStoreManager(memberUserName, storeName, newOwnerUserName);
+        if (response.ErrorOccurred){
+            return false;
+        }
+        return response.getValue();
     }
 
     @Override
     public String getManagerAppointer(String ManagerName, String storeName) { // TODO: add to market and service
-        return null;
+            return "";
     }
 
     @Override
     public String closeStore(String memberUserName, String storeName) {
         // TODO: closeStore in service returns boolean
-        return "";
+            return "";
     }
 
     @Override
     public boolean canGetStoreInfo(String userName, String storeName) { // TODO: add to market and service
+        ResponseT<StoreDTO> response = systemService.getStoreInfo(userName,storeName);
+        if (response.ErrorOccurred){
+            return false;
+        }
         return true;
     }
 
     @Override
     public String getStoreNotification(String memberName, String storeName) { // TODO: add to market and service
-        return null;
+            return "";
     }
 
     @Override
     public Map<Integer, List<String>> getStoreRulesInfo(String ownerName, String storeName) { // TODO: add to market and service
         // List<memberDTO> getStoreWorkersInfo
-        return null;
+        return new HashMap<>();
     }
 
     @Override
     public String getStoreFounderName(String userName, String storeName) { // Done
         ResponseT<StoreDTO> storeInfo = systemService.getStoreInfo(userName, storeName);
         if(storeInfo.ErrorOccurred){
-            return null;
+            return "";
         }
-        return storeInfo.getValue().getFounderName();
+        return storeInfo.getValue().founderName;
     }
 
     @Override
@@ -164,7 +214,7 @@ public class RealBridge implements Bridge{
         if(storeInfo.ErrorOccurred){
             return new LinkedList<>(); // TODO:
         }
-        return storeInfo.getValue().getOwnersNames();
+        return storeInfo.getValue().ownersNames;
     }
 
     @Override
@@ -173,7 +223,7 @@ public class RealBridge implements Bridge{
         if(storeInfo.ErrorOccurred){
             return new LinkedList<>(); // TODO:
         }
-        return storeInfo.getValue().getManagersNames();
+        return storeInfo.getValue().managersNames;
     }
 
     @Override
@@ -182,20 +232,24 @@ public class RealBridge implements Bridge{
         if(productInfo.ErrorOccurred){
             return -1.0; // TODO:
         }
-        return productInfo.getValue().getPrice();
+        return productInfo.getValue().price;
     }
 
     @Override
     public String getProductDescription(String userName, String storeName, String productName) { // Done
         ResponseT<ProductDTO> productInfo = systemService.getProductInfoFromStore(userName, storeName, productName);
         if(productInfo.ErrorOccurred){
-            return null; // TODO:
+            return ""; // TODO:
         }
-        return productInfo.getValue().getDescription();
+        return productInfo.getValue().description;
     }
 
-    public List<String> getAllguests() {
-        return new LinkedList<>();
+    public List<String> getAllGuests() {
+        ResponseT<List<String>> response = systemService.getAllGuests();
+        if (response.ErrorOccurred){
+            return new LinkedList<>();
+        }
+        return response.getValue();
     }
 
     public int getUserCart(String user) {
@@ -212,7 +266,7 @@ public class RealBridge implements Bridge{
     }
 
     public String getMemberPassword(String memberName) { // TODO: add to market and service
-        return "";
+            return "";
     }
 
     public List<String> getAllStores() { // TODO: add to market and service
@@ -225,9 +279,9 @@ public class RealBridge implements Bridge{
             return new LinkedList<>(); // TODO:
         }
         List<String> ret = new LinkedList<>();
-        List<ProductDTO> storeProducts = store.getValue().getProductsInfo();
+        List<ProductDTO> storeProducts = store.getValue().productsInfo;
         for(ProductDTO p : storeProducts){
-            ret.add(p.getName());
+            ret.add(p.name);
         }
         return ret;
     }
@@ -240,13 +294,13 @@ public class RealBridge implements Bridge{
         }
         Map<String, List<String>> ret = new HashMap<>();
         for(ProductDTO p : products.getValue()){
-            String storeName = p.getStoreName();
+            String storeName = p.storeName;
             if(ret.containsKey(storeName)){
-                ret.get(storeName).add(p.getName());
+                ret.get(storeName).add(p.name);
             }
             else{
                 List<String> storeProducts = new LinkedList<>();
-                storeProducts.add(p.getName());
+                storeProducts.add(p.name);
                 ret.put(storeName, storeProducts);
             }
         }
@@ -261,13 +315,13 @@ public class RealBridge implements Bridge{
         }
         Map<String, List<String>> ret = new HashMap<>();
         for(ProductDTO p : products.getValue()){
-            String storeName = p.getStoreName();
+            String storeName = p.storeName;
             if(ret.containsKey(storeName)){
-                ret.get(storeName).add(p.getName());
+                ret.get(storeName).add(p.name);
             }
             else{
                 List<String> storeProducts = new LinkedList<>();
-                storeProducts.add(p.getName());
+                storeProducts.add(p.name);
                 ret.put(storeName, storeProducts);
             }
         }
@@ -282,13 +336,13 @@ public class RealBridge implements Bridge{
         }
         Map<String, List<String>> ret = new HashMap<>();
         for(ProductDTO p : products.getValue()){
-            String storeName = p.getStoreName();
+            String storeName = p.storeName;
             if(ret.containsKey(storeName)){
-                ret.get(storeName).add(p.getName());
+                ret.get(storeName).add(p.name);
             }
             else{
                 List<String> storeProducts = new LinkedList<>();
-                storeProducts.add(p.getName());
+                storeProducts.add(p.name);
                 ret.put(storeName, storeProducts);
             }
         }
@@ -315,13 +369,13 @@ public class RealBridge implements Bridge{
         }
         Map<String, List<String>> ret = new HashMap<>();
         for(ProductDTO p : filtered.getValue()){
-            String storeName = p.getStoreName();
+            String storeName = p.storeName;
             if(ret.containsKey(storeName)){
-                ret.get(storeName).add(p.getName());
+                ret.get(storeName).add(p.name);
             }
             else{
                 List<String> storeProducts = new LinkedList<>();
-                storeProducts.add(p.getName());
+                storeProducts.add(p.name);
                 ret.put(storeName, storeProducts);
             }
         }
@@ -348,13 +402,13 @@ public class RealBridge implements Bridge{
         }
         Map<String, List<String>> ret = new HashMap<>();
         for(ProductDTO p : filtered.getValue()){
-            String storeName = p.getStoreName();
+            String storeName = p.storeName;
             if(ret.containsKey(storeName)){
-                ret.get(storeName).add(p.getName());
+                ret.get(storeName).add(p.name);
             }
             else{
                 List<String> storeProducts = new LinkedList<>();
-                storeProducts.add(p.getName());
+                storeProducts.add(p.name);
                 ret.put(storeName, storeProducts);
             }
         }
@@ -363,19 +417,23 @@ public class RealBridge implements Bridge{
 
     @Override
     public boolean addToCart(String userName, String storeName, String productName, Integer amount) {
-        return true;
+        ResponseT<Boolean> response = systemService.addToCart(userName,storeName,productName,amount);
+        if (response.ErrorOccurred){
+            return false;
+        }
+        return response.getValue();
     }
 
     @Override
     public List<String> getBag(String userName, String storeName) { // list<produceName>
         // TODO: add to market and service
-        return new LinkedList<>();
+            return new LinkedList<>();
     }
 
     @Override
     public int getProductAmountInCart(String userName, String storeName, String productName) {
         // call to get cart content
-        return 0;
+        return -1;
     }
 
     @Override
@@ -386,11 +444,19 @@ public class RealBridge implements Bridge{
 
     @Override
     public boolean removeProductFromCart(String userName, String storeName, String productName) {
-        return false;
+        ResponseT<Boolean> response = systemService.removeFromCart(userName,storeName,productName);
+        if (response.ErrorOccurred){
+            return false;
+        }
+        return response.getValue();
     }
 
     @Override
-    public boolean changeProductAmountInCart(String userName, String storeName, String productName, Integer newAmount) {
-        return false;
+    public boolean changeProductAmountInCart(String userName, String storeName, String productName, Integer newAmount) throws Exception{
+        ResponseT<Boolean> response = systemService.changeProductAmountInCart(userName,storeName,productName,newAmount);
+        if (response.ErrorOccurred){
+            throw new Exception(response.errorMessage);
+        }
+        return response.getValue();
     }
 }

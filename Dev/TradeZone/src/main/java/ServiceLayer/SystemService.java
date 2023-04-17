@@ -1,7 +1,6 @@
 package ServiceLayer;
 
 import DTO.*;
-import DomainLayer.DTO.*;
 import DomainLayer.Market;
 
 import java.util.List;
@@ -12,6 +11,10 @@ public class SystemService {
 
     public SystemService(){
         market = new Market();
+    }
+
+    public boolean initializeMarket(){
+        return true;
     }
 
     public ResponseT<String> enterMarket(){

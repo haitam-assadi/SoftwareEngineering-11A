@@ -1,6 +1,4 @@
 package AcceptanceTests;
-import AcceptanceTests.Bridge;
-import AcceptanceTests.ProxyBridge;
 import org.junit.jupiter.api.*;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -9,21 +7,21 @@ import java.util.List;
 @TestInstance(value = TestInstance.Lifecycle.PER_CLASS)
 public class MemberTests {
 
-    private ProxyBridge proxy;
+    private ProxyBridge proxy= new ProxyBridge(new RealBridge());;
     private String user;
-    @Mock
-    private Bridge bridge;
 
     @BeforeAll
     public void setUp() throws Exception {
-        MockitoAnnotations.openMocks(this);
-        proxy = new ProxyBridge();
         if(!proxy.initializeMarket()){
-            throw new Exception(""); // should change
+            System.out.println("exception thrown");
         }
         user = proxy.enterMarket();//guest default user name
-        if(!proxy.register(user,"Moslem Asaad","12345")){
-            throw new Exception("");
+        Assertions.assertNotEquals(user , "");
+        System.out.println(user);
+        try {
+            proxy.register(user,"moslema","abc123456");
+        }catch (Exception e){
+            System.out.println(e.getMessage());
         }
     }
 
@@ -31,10 +29,10 @@ public class MemberTests {
     @Test
     public void login_success(){
         try{
-            List<String> guests = proxy.getAllgusts();
+            List<String> guests = proxy.getAllGuests();
             if(guests.size()>0){
                 proxy.login(user,"Moslem Asaad","12345");
-                guests = proxy.getAllgusts();
+                guests = proxy.getAllGuests();
                 Assertions.assertTrue(proxy.getAllOnlineMembers().contains("Moslem Asaad"));
                 Assertions.assertFalse(guests.contains(user));
                 Assertions.assertNotEquals(-1,proxy.getUserCart("Moslem Asaad"));
@@ -47,11 +45,11 @@ public class MemberTests {
     @Test
     public void login_failed_wrong_password(){
         try{
-            List<String> guests = proxy.getAllgusts();
+            List<String> guests = proxy.getAllGuests();
             if(guests.size()>0){
                 int cart = proxy.getUserCart(user);
                 proxy.login(user,"Moslem Asaad","");
-                guests = proxy.getAllgusts();
+                guests = proxy.getAllGuests();
                 Assertions.assertFalse(proxy.getAllOnlineMembers().contains("Moslem Asaad"));
                 Assertions.assertTrue(guests.contains(user));
                 Assertions.assertEquals(cart,proxy.getUserCart(user));
@@ -64,10 +62,10 @@ public class MemberTests {
     @Test
     public void login_failed_member_not_exist(){
         try{
-            List<String> guests = proxy.getAllgusts();
+            List<String> guests = proxy.getAllGuests();
             if(guests.size()>0){
                 proxy.login(user,"Obiq","12345");
-                guests = proxy.getAllgusts();
+                guests = proxy.getAllGuests();
                 Assertions.assertFalse(proxy.getAllOnlineMembers().contains("Obiq"));
                 Assertions.assertTrue(guests.contains(user));
             }

@@ -3,8 +3,6 @@ import org.junit.jupiter.api.*;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -21,8 +19,7 @@ public class StoreTests {
 
     @BeforeAll
     public void setUp() throws Exception {
-        MockitoAnnotations.openMocks(this);
-        proxy = new ProxyBridge();
+        proxy = new ProxyBridge(new RealBridge());
         if(!proxy.initializeMarket()){
             throw new Exception(""); // should change
         }
@@ -51,7 +48,7 @@ public class StoreTests {
         try{
             Assertions.assertTrue(proxy.addCategory(store_founder,"Iphones",storeName));
             Assertions.assertTrue(proxy.getCategory(member_name2,"Iphones",storeName));
-            proxy.addNewProductToStock(store_founder,storeName,"iphone 14","Iphones",3000,"256 Gb",50);
+            proxy.addNewProductToStock(store_founder,storeName,"iphone 14","Iphones",3000.0,"256 Gb",50);
             Assertions.assertTrue(proxy.getStoreProducts(store_founder,storeName).contains("iphone 14"));
         }catch (Exception e){
             Assertions.fail(e.getMessage());
@@ -63,10 +60,10 @@ public class StoreTests {
         try{
             Assertions.assertTrue(proxy.addCategory(store_founder,"Iphones",storeName));
             Assertions.assertTrue(proxy.getCategory(member_name2,"Iphones",storeName));
-            proxy.addNewProductToStock(store_founder,storeName,"iphone 14","Iphones",3000,"256 Gb",50);
+            proxy.addNewProductToStock(store_founder,storeName,"iphone 14","Iphones",3000.0,"256 Gb",50);
             List<String> products = proxy.getStoreProducts(store_founder,storeName);
             int len = products.size();
-            proxy.addNewProductToStock(store_founder,storeName,"iphone 14","Iphones",3000,"256 Gb",50);
+            proxy.addNewProductToStock(store_founder,storeName,"iphone 14","Iphones",3000.0,"256 Gb",50);
             Assertions.assertTrue(products.contains("iphone 14"));
             Assertions.assertEquals(len,proxy.getStoreProducts(storeName,storeName).size());
         }catch (Exception e){
@@ -80,7 +77,7 @@ public class StoreTests {
         try{
             Assertions.assertTrue(proxy.addCategory(store_founder,"Iphones",storeName));
             Assertions.assertTrue(proxy.getCategory(member_name2,"Iphones",storeName));
-            proxy.addNewProductToStock(store_founder,storeName,"iphone 14","Iphones",3000,"256 Gb",50);
+            proxy.addNewProductToStock(store_founder,storeName,"iphone 14","Iphones",3000.0,"256 Gb",50);
             Assertions.assertTrue(proxy.removeProductFromStock(store_founder,storeName,"iphone 14"));
             Assertions.assertFalse(proxy.getStoreProducts(store_founder,storeName).contains("iphone 14"));
         }catch (Exception e){
@@ -93,7 +90,7 @@ public class StoreTests {
         try{
             Assertions.assertTrue(proxy.addCategory(store_founder,"Iphones",storeName));
             Assertions.assertTrue(proxy.getCategory(store_founder,"Iphones",storeName));
-            proxy.addNewProductToStock(store_founder,storeName,"iphone 14","Iphones",3000,"256 Gb",50);
+            proxy.addNewProductToStock(store_founder,storeName,"iphone 14","Iphones",3000.0,"256 Gb",50);
             List<String> products = proxy.getStoreProducts(store_founder,storeName);
             int len = products.size();
             Assertions.assertFalse(proxy.removeProductFromStock(store_founder,storeName,"iphone 11"));
@@ -108,7 +105,7 @@ public class StoreTests {
     public void update_product_name_success(){
         try {
             Assertions.assertTrue(proxy.addCategory(store_founder,"Iphones",storeName));
-            proxy.addNewProductToStock(store_founder, storeName, "iphone 14", "Iphones", 3000, "256 Gb", 50);
+            proxy.addNewProductToStock(store_founder, storeName, "iphone 14", "Iphones", 3000.0, "256 Gb", 50);
             Assertions.assertTrue(proxy.updateProductName(store_founder, storeName, "Iphone 14", "iphone 14.1"));
             Assertions.assertTrue(proxy.getStoreProducts(store_founder,storeName).contains("iphone 14.1"));
             Assertions.assertFalse(proxy.getStoreProducts(store_founder,storeName).contains("Iphone 14"));
@@ -121,7 +118,7 @@ public class StoreTests {
     public void update_product_name_fail1(){
         try {
             Assertions.assertTrue(proxy.addCategory(store_founder,"Iphones",storeName));
-            proxy.addNewProductToStock(store_founder, storeName, "iphone 14", "Iphones", 3000, "256 Gb", 50);
+            proxy.addNewProductToStock(store_founder, storeName, "iphone 14", "Iphones", 3000.0, "256 Gb", 50);
             Assertions.assertFalse(proxy.updateProductName(store_founder, storeName, "Iphone 14", "Iphone 14"));//because the name is unique
             Assertions.assertFalse(proxy.getStoreProducts(store_founder,storeName).contains("Iphone 14"));
         }catch (Exception e){
@@ -133,8 +130,8 @@ public class StoreTests {
     public void update_product_price_success(){
         try {
             Assertions.assertTrue(proxy.addCategory(store_founder,"Iphones",storeName));
-            proxy.addNewProductToStock(store_founder, storeName, "iphone 14", "Iphones", 3000, "256 Gb", 50);
-            Assertions.assertTrue(proxy.updateProductPrice(store_founder,storeName,"Iphone 14",2500));
+            proxy.addNewProductToStock(store_founder, storeName, "iphone 14", "Iphones", 3000.0, "256 Gb", 50);
+            Assertions.assertTrue(proxy.updateProductPrice(store_founder,storeName,"Iphone 14",2500.0));
             Assertions.assertEquals(2500,proxy.getProductPrice(store_founder, storeName, "Iphone 14"));
         }catch (Exception e){
             Assertions.fail(e.getMessage());
@@ -144,7 +141,7 @@ public class StoreTests {
     @Test
     public void update_product_price_not_exist_product_fail(){
         try {
-            Assertions.assertFalse(proxy.updateProductPrice(store_founder,storeName,"Iphone 14",2500));
+            Assertions.assertFalse(proxy.updateProductPrice(store_founder,storeName,"Iphone 14",2500.0));
         }catch (Exception e){
             Assertions.fail(e.getMessage());
         }
@@ -154,7 +151,7 @@ public class StoreTests {
     public void update_product_description_success(){
         try {
             Assertions.assertTrue(proxy.addCategory(store_founder,"Iphones",storeName));
-            proxy.addNewProductToStock(store_founder, storeName, "iphone 14", "Iphones", 3000, "256 Gb", 50);
+            proxy.addNewProductToStock(store_founder, storeName, "iphone 14", "Iphones", 3000.0, "256 Gb", 50);
             Assertions.assertTrue(proxy.updateProductDescription(store_founder,storeName,"Iphone 14","white, 256 Gb"));
             Assertions.assertNotEquals(proxy.getProductDescription(store_founder, storeName, "Iphone 14"),"256 Gb");
         }catch (Exception e){
@@ -175,7 +172,7 @@ public class StoreTests {
     public void update_product_amount_success(){
         try {
             Assertions.assertTrue(proxy.addCategory(store_founder,"Iphones",storeName));
-            proxy.addNewProductToStock(store_founder, storeName, "iphone 14", "Iphones", 3000, "256 Gb", 50);
+            proxy.addNewProductToStock(store_founder, storeName, "iphone 14", "Iphones", 3000.0, "256 Gb", 50);
             Assertions.assertTrue(proxy.updateProductAmount(store_founder,storeName,"Iphone 14",150));
             Assertions.assertNotEquals(proxy.getProductAmount(storeName,"Iphone 14"), 50);
         }catch (Exception e){
@@ -198,7 +195,7 @@ public class StoreTests {
     @Test
     public void appoint_member_as_store_owner_from_founder_success(){
         try{
-            Assertions.assertTrue(proxy.appointMemberAsStoreOwner(store_founder,storeName,member_name1));
+            Assertions.assertTrue(proxy.appointOtherMemberAsStoreOwner(store_founder,storeName,member_name1));
             Assertions.assertTrue(proxy.getStoreOwnersNames(store_founder, storeName).contains(member_name1));
             Assertions.assertEquals(proxy.getOwnerAppointer(member_name1,storeName),store_founder);
             //should check also managing policy to be as the founder/the owner that makes him owner
@@ -210,8 +207,8 @@ public class StoreTests {
     @Test
     public void appoint_member_as_store_owner_from_owner_success(){
         try{
-            Assertions.assertTrue(proxy.appointMemberAsStoreOwner(store_founder,storeName,member_name1));
-            Assertions.assertTrue(proxy.appointMemberAsStoreOwner(member_name1,storeName,member_name2));
+            Assertions.assertTrue(proxy.appointOtherMemberAsStoreOwner(store_founder,storeName,member_name1));
+            Assertions.assertTrue(proxy.appointOtherMemberAsStoreOwner(member_name1,storeName,member_name2));
             Assertions.assertTrue(proxy.getStoreOwnersNames(store_founder, storeName).contains(member_name2));
             Assertions.assertEquals(proxy.getOwnerAppointer(member_name2,storeName),member_name1);
             //should check also managing policy to be as the founder/the owner that makes him owner
@@ -223,7 +220,7 @@ public class StoreTests {
     @Test
     public void appoint_member_as_store_owner_not_member_fail(){
         try{
-            Assertions.assertFalse(proxy.appointMemberAsStoreOwner(store_founder,storeName,"koko"));
+            Assertions.assertFalse(proxy.appointOtherMemberAsStoreOwner(store_founder,storeName,"koko"));
             //should check also managing policy to be as the founder/the owner that makes him owner
         }catch (Exception e){
             Assertions.fail(e.getMessage());
@@ -235,8 +232,8 @@ public class StoreTests {
     @Test
     public void appoint_member_as_store_owner_1circular_fail(){
         try{
-            Assertions.assertTrue(proxy.appointMemberAsStoreOwner(store_founder,storeName,member_name1));
-            Assertions.assertFalse(proxy.appointMemberAsStoreOwner(member_name1,storeName,member_name1));
+            Assertions.assertTrue(proxy.appointOtherMemberAsStoreOwner(store_founder,storeName,member_name1));
+            Assertions.assertFalse(proxy.appointOtherMemberAsStoreOwner(member_name1,storeName,member_name1));
         }catch (Exception e){
             Assertions.fail(e.getMessage());
         }
@@ -244,8 +241,8 @@ public class StoreTests {
     @Test
     public void appoint_member_as_store_owner_2circular_fail(){
         try{
-            Assertions.assertTrue(proxy.appointMemberAsStoreOwner(store_founder,storeName,member_name1));
-            Assertions.assertFalse(proxy.appointMemberAsStoreOwner(member_name1,storeName,store_founder));
+            Assertions.assertTrue(proxy.appointOtherMemberAsStoreOwner(store_founder,storeName,member_name1));
+            Assertions.assertFalse(proxy.appointOtherMemberAsStoreOwner(member_name1,storeName,store_founder));
             Assertions.assertNotEquals(proxy.getOwnerAppointer(store_founder,storeName),member_name1);
         }catch (Exception e){
             Assertions.fail(e.getMessage());
@@ -256,9 +253,9 @@ public class StoreTests {
     @Test
     public void appoint_member_as_store_owner_3circular_fail(){
         try{
-            Assertions.assertTrue(proxy.appointMemberAsStoreOwner(store_founder,storeName,member_name1));
-            Assertions.assertTrue(proxy.appointMemberAsStoreOwner(member_name1,storeName,member_name2));
-            Assertions.assertFalse(proxy.appointMemberAsStoreOwner(member_name2,storeName,store_founder));
+            Assertions.assertTrue(proxy.appointOtherMemberAsStoreOwner(store_founder,storeName,member_name1));
+            Assertions.assertTrue(proxy.appointOtherMemberAsStoreOwner(member_name1,storeName,member_name2));
+            Assertions.assertFalse(proxy.appointOtherMemberAsStoreOwner(member_name2,storeName,store_founder));
             Assertions.assertNotEquals(proxy.getOwnerAppointer(store_founder,storeName),member_name2);
         }catch (Exception e){
             Assertions.fail(e.getMessage());
@@ -270,7 +267,7 @@ public class StoreTests {
     @Test
     public void appoint_member_as_store_manager_from_founder_success(){
         try{
-            Assertions.assertTrue(proxy.appointMemberAsStoreManager(store_founder,storeName,member_name1));
+            Assertions.assertTrue(proxy.appointOtherMemberAsStoreManager(store_founder,storeName,member_name1));
             Assertions.assertTrue(proxy.getStoreManagersNames(store_founder, storeName).contains(member_name1));
             Assertions.assertEquals(proxy.getManagerAppointer(member_name1,storeName),store_founder);
             //todo:should check also managing permissions
@@ -282,8 +279,8 @@ public class StoreTests {
     @Test
     public void appoint_member_as_store_manager_from_OwnerNotFounder_success(){
         try{
-            Assertions.assertTrue(proxy.appointMemberAsStoreOwner(store_founder,storeName,member_name1));
-            Assertions.assertTrue(proxy.appointMemberAsStoreManager(member_name1,storeName,member_name2));
+            Assertions.assertTrue(proxy.appointOtherMemberAsStoreOwner(store_founder,storeName,member_name1));
+            Assertions.assertTrue(proxy.appointOtherMemberAsStoreManager(member_name1,storeName,member_name2));
             Assertions.assertTrue(proxy.getStoreManagersNames(store_founder, storeName).contains(member_name2));
             Assertions.assertEquals(proxy.getManagerAppointer(member_name2,storeName),member_name1);
             //todo:should check also managing permissions
@@ -295,10 +292,10 @@ public class StoreTests {
     @Test
     public void appoint_member_as_store_manager_the_same_owner_twice_fail(){
         try{
-            Assertions.assertTrue(proxy.appointMemberAsStoreOwner(store_founder,storeName,member_name1));
-            Assertions.assertTrue(proxy.appointMemberAsStoreManager(member_name1,storeName,member_name2));
+            Assertions.assertTrue(proxy.appointOtherMemberAsStoreOwner(store_founder,storeName,member_name1));
+            Assertions.assertTrue(proxy.appointOtherMemberAsStoreManager(member_name1,storeName,member_name2));
             int len = proxy.getStoreManagersNames(store_founder, storeName).size();
-            Assertions.assertFalse(proxy.appointMemberAsStoreManager(member_name1,storeName,member_name2));
+            Assertions.assertFalse(proxy.appointOtherMemberAsStoreManager(member_name1,storeName,member_name2));
             Assertions.assertEquals(len,proxy.getStoreManagersNames(store_founder, storeName).size());
             //todo:should check also managing permissions
         }catch (Exception e){
@@ -309,10 +306,10 @@ public class StoreTests {
     @Test
     public void appoint_member_as_store_manager_2Different_owners_fail(){
         try{
-            Assertions.assertTrue(proxy.appointMemberAsStoreOwner(store_founder,storeName,member_name1));
-            Assertions.assertTrue(proxy.appointMemberAsStoreManager(member_name1,storeName,member_name2));
+            Assertions.assertTrue(proxy.appointOtherMemberAsStoreOwner(store_founder,storeName,member_name1));
+            Assertions.assertTrue(proxy.appointOtherMemberAsStoreManager(member_name1,storeName,member_name2));
             int len = proxy.getStoreManagersNames(store_founder, storeName).size();
-            Assertions.assertFalse(proxy.appointMemberAsStoreManager(store_founder,storeName,member_name2));
+            Assertions.assertFalse(proxy.appointOtherMemberAsStoreManager(store_founder,storeName,member_name2));
             Assertions.assertEquals(len,proxy.getStoreManagersNames(store_founder, storeName).size());
             Assertions.assertEquals(member_name1,proxy.getManagerAppointer(member_name2,storeName));
             Assertions.assertNotEquals(store_founder,proxy.getManagerAppointer(member_name2,storeName));
@@ -327,7 +324,7 @@ public class StoreTests {
     @Test
     public void founder_close_store_success(){
         try{
-            Assertions.assertTrue(proxy.appointMemberAsStoreOwner(store_founder,storeName,member_name1));
+            Assertions.assertTrue(proxy.appointOtherMemberAsStoreOwner(store_founder,storeName,member_name1));
             String closeNotification = proxy.closeStore(store_founder,storeName);
             Assertions.assertFalse(proxy.canGetStoreInfo(member_name2,storeName));
             Assertions.assertTrue(proxy.canGetStoreInfo(member_name1,storeName));
@@ -344,8 +341,8 @@ public class StoreTests {
     public void founder_close_store_owner_try_fail(){
         try{
             Assertions.assertTrue(proxy.addCategory(store_founder,"Iphones",storeName));
-            proxy.addNewProductToStock(store_founder, storeName, "iphone 14", "Iphones", 3000, "256 Gb", 50);
-            Assertions.assertTrue(proxy.appointMemberAsStoreOwner(store_founder,storeName,member_name1));
+            proxy.addNewProductToStock(store_founder, storeName, "iphone 14", "Iphones", 3000.0, "256 Gb", 50);
+            Assertions.assertTrue(proxy.appointOtherMemberAsStoreOwner(store_founder,storeName,member_name1));
             String closeNotification = proxy.closeStore(member_name1,storeName);
             Assertions.assertTrue(proxy.canGetStoreInfo(member_name2,storeName));
             Assertions.assertTrue(proxy.canGetStoreInfo(member_name1,storeName));
@@ -360,8 +357,8 @@ public class StoreTests {
     @Test
     public void incumbents_get_success(){
         try{
-            Assertions.assertTrue(proxy.appointMemberAsStoreOwner(store_founder,storeName,member_name1));
-            Assertions.assertTrue(proxy.appointMemberAsStoreManager(store_founder,storeName,member_name2));
+            Assertions.assertTrue(proxy.appointOtherMemberAsStoreOwner(store_founder,storeName,member_name1));
+            Assertions.assertTrue(proxy.appointOtherMemberAsStoreManager(store_founder,storeName,member_name2));
             Map<Integer,List<String>> incumbents = proxy.getStoreRulesInfo(member_name1,storeName);
             List<String> owners = proxy.getStoreOwnersNames(store_founder, storeName);
             List<String> managers = proxy.getStoreManagersNames(store_founder, storeName);

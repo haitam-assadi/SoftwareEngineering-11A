@@ -31,7 +31,7 @@ public class Product {
 
 
     public ProductDTO getProductInfo(){
-        return new ProductDTO(this.name,this.price, this.description);
+        return new ProductDTO(this.name, this.stock.getStoreName(), this.price, this.description);
     }
 
     public Double getPrice() {

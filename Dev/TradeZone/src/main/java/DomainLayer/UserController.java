@@ -5,6 +5,8 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class UserController {
+
+    private final String GUEST_PREFIX = "guest_";
     private long guestsCounter;
 
     private ConcurrentHashMap<String, Member> loggedInMembers;
@@ -21,8 +23,9 @@ public class UserController {
     }
 
     public synchronized String loginAsGuest(){
-        String guestUserName = "Guest_"+ guestsCounter;
+        String guestUserName = this.GUEST_PREFIX + guestsCounter;
         guestsCounter++;
+        guestUserName = guestUserName.strip().toLowerCase();
         guests.put(guestUserName, new Guest(guestUserName));
         return guestUserName;
     }
@@ -75,10 +78,14 @@ public class UserController {
         if(!Character.isAlphabetic(userName.charAt(0)))
             return false;
 
+        if(userName.length() < 4)
+            return false;
+
         if(userName.contains(" "))
             return false;
 
         return true;
+
     }
 
     public void asserIsValidUserName(String userName) throws Exception {

@@ -11,8 +11,6 @@ import java.util.Map;
 public class BuyingTests {
 
     private ProxyBridge proxy;
-    @Mock
-    private Bridge bridge;
 
     private String user;
     private String store_founder;
@@ -25,8 +23,7 @@ public class BuyingTests {
 
     @BeforeAll
     public void setUp() throws Exception {
-        MockitoAnnotations.openMocks(this);
-        proxy = new ProxyBridge();
+        proxy = new ProxyBridge(new RealBridge());
         if(!proxy.initializeMarket()){
             throw new Exception("");
         }
@@ -38,16 +35,16 @@ public class BuyingTests {
 
         storeName1 = proxy.createStore(store_founder, "Moslem Store");
         proxy.addCategory(store_founder, "Iphones", storeName1);
-        proxy.addNewProductToStock(store_founder,storeName1,"iphone 14","Iphones",3000,"256 Gb",50);
-        proxy.addNewProductToStock(store_founder,storeName1,"iphone 13","Iphones",2000,"256 Gb",35);
+        proxy.addNewProductToStock(store_founder,storeName1,"iphone 14","Iphones",3000.0,"256 Gb",50);
+        proxy.addNewProductToStock(store_founder,storeName1,"iphone 13","Iphones",2000.0,"256 Gb",35);
         proxy.addCategory(store_founder, "Gaming chairs", storeName1);
-        proxy.addNewProductToStock(store_founder,storeName1,"gaming chair 1","Gaming chairs",600,"red",50);
+        proxy.addNewProductToStock(store_founder,storeName1,"gaming chair 1","Gaming chairs",600.0,"red",50);
 
         storeName2 = proxy.createStore(store_founder, "Baraa Store");
         proxy.addCategory(store_founder, "Iphones", storeName2);
-        proxy.addNewProductToStock(store_founder,storeName2,"iphone 14","Iphones",3500,"256 Gb",100);
+        proxy.addNewProductToStock(store_founder,storeName2,"iphone 14","Iphones",3500.0,"256 Gb",100);
         proxy.addCategory(store_founder, "Gaming mouses", storeName2);
-        proxy.addNewProductToStock(store_founder,storeName2,"gaming mouse 1","Gaming mouses",200,"black, RGB",70);
+        proxy.addNewProductToStock(store_founder,storeName2,"gaming mouse 1","Gaming mouses",200.0,"black, RGB",70);
 
 
         guest_name = proxy.enterMarket();//guest default user name
@@ -76,8 +73,8 @@ public class BuyingTests {
     @Test
     public void get_store_info_success(){
         try{
-            proxy.appointMemberAsStoreOwner(store_founder, storeName1, owner);
-            proxy.appointMemberAsStoreManager(store_founder, storeName1, manager);
+            proxy.appointOtherMemberAsStoreOwner(store_founder, storeName1, owner);
+            proxy.appointOtherMemberAsStoreManager(store_founder, storeName1, manager);
             List<String> owners = new ArrayList<>();
             owners.add(store_founder); // ????
             owners.add(owner);
