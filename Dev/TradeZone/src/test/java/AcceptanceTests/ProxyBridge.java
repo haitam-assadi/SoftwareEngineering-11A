@@ -256,13 +256,6 @@ public class ProxyBridge implements Bridge{
         return new LinkedList<>();
     }
 
-    public int getUserCart(String user) {
-        if(realBridge!=null){
-            return realBridge.getUserCart(user);
-        }
-        return -1;
-    }
-
     public List<String> getAllOnlineMembers() throws Exception {
         if(realBridge!=null){
             return realBridge.getAllOnlineMembers();

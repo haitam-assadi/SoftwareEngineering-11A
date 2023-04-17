@@ -252,10 +252,7 @@ public class RealBridge implements Bridge{
         return response.getValue();
     }
 
-    public int getUserCart(String user) {
-        // TODO: we should delete it but it has 14 uses
-        return -1;
-    }
+
 
     public List<String> getAllOnlineMembers() { // TODO: add to market and service
         return new LinkedList<>();
