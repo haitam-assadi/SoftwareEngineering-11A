@@ -5,6 +5,7 @@ import DTO.ProductDTO;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class Stock {
@@ -84,7 +85,7 @@ public class Stock {
         if(!stockProducts.containsKey(productName))
             throw new Exception("can't remove product from stock : productName "+ productName+" is not in the stock!");
         Product product = stockProducts.get(productName).keys().nextElement();
-        if(product.getPrice() == newPrice)
+        if(Objects.equals(product.getPrice(), newPrice))
             throw new Exception("the price of the product equals to the new price");
         product.setPrice(newPrice);
         return true;
@@ -165,5 +166,24 @@ public class Stock {
 
         return stockCategories.get(categoryName).getProductsInfo();
 
+    }
+
+    //Currently added for tests:
+    public void addToStockProducts(String productName, Product product, int amount){
+        ConcurrentHashMap<Product,Integer> hash = new ConcurrentHashMap<Product, Integer>();
+        hash.put(product, amount);
+        this.stockProducts.put(productName, hash);
+    }
+
+    public void addToStockCategory(String categoryName, Category category){
+        this.stockCategories.put(categoryName, category);
+    }
+
+    public int getCategoriesSize(){
+        return this.stockCategories.size();
+    }
+
+    public int getProductAmount(String productName, Product product){
+        return this.stockProducts.get(productName).get(product);
     }
 }

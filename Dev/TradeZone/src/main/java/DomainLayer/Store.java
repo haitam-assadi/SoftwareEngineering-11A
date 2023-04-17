@@ -86,7 +86,7 @@ public class Store {
             throw new Exception("the Description of the product cannot be null");
         if(newProductDescription.length()>300)
             throw new Exception("the Description of the product is too long");
-        if(!storeFounder.getUserName().equals(memberUserName) || !storeOwners.containsKey(memberUserName))
+        if(!storeFounder.getUserName().equals(memberUserName) && !storeOwners.containsKey(memberUserName))
             throw new Exception("can't add new product to stock : userName "+ memberUserName +" is not an owner to the store");
         return stock.updateProductDescription(productName,newProductDescription);
     }
@@ -94,15 +94,15 @@ public class Store {
     public boolean updateProductAmount(String memberUserName, String productName, Integer newAmount) throws Exception {
         if(newAmount < 0)
             throw new Exception("the amount of the product cannot be negative");
-        if(!storeFounder.getUserName().equals(memberUserName) || !storeOwners.containsKey(memberUserName))
+        if(!storeFounder.getUserName().equals(memberUserName) && !storeOwners.containsKey(memberUserName))
             throw new Exception("can't add new product to stock : userName "+ memberUserName +" is not an owner to the store");
         return stock.updateProductAmount(productName,newAmount);
     }
 
     public boolean updateProductPrice(String memberUserName, String productName, Double newPrice) throws Exception {
-        if(newPrice < 0)
+        if(newPrice <= 0)
             throw new Exception("the price of the product cannot be negative");
-        if(!storeFounder.getUserName().equals(memberUserName) || !storeOwners.containsKey(memberUserName))
+        if(!storeFounder.getUserName().equals(memberUserName) && !storeOwners.containsKey(memberUserName))
             throw new Exception("can't add new product to stock : userName "+ memberUserName +" is not an owner to the store");
         return stock.updateProductPrice(productName,newPrice);
     }
@@ -261,5 +261,13 @@ public class Store {
 
     public void setStock(Stock stock){
         this.stock = stock;
+    }
+
+    public void setStoreManager(String managerName, StoreManager manager) {
+        this.storeManagers.put(managerName, manager);
+    }
+
+    public void setStoreOwner(String ownerName, StoreOwner owner) {
+        this.storeOwners.put(ownerName, owner);
     }
 }

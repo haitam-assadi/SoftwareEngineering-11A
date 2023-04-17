@@ -121,4 +121,23 @@ public class Member extends User{
         StoreManager storeManagerRole =  (StoreManager) roles.get(RoleEnum.StoreManager);
         return storeManagerRole;
     }
+
+    //Currently added for testing
+    public void addRole(RoleEnum roleEnum, Role role){
+        this.roles.put(roleEnum, role);
+    }
+
+    public RoleEnum getRoleEnum(String role){
+        switch (role){
+            case "StoreOwner":
+                return RoleEnum.StoreOwner;
+            case "StoreFounder":
+                return RoleEnum.StoreFounder;
+            default: return null;
+        }
+    }
+/*
+    public void setAbstractOwner(AbstractStoreOwner owner){
+        this.abstractOwner = owner;
+    }*/
 }
