@@ -6,13 +6,13 @@ import java.util.Map;
 public interface Bridge {
 
     //I.1
-    public boolean initializeMarket();
+    public boolean initializeMarket() throws Exception;
 
     //II.1.1
-    public String enterMarket();
+    public String enterMarket() throws Exception;
 
     //II.1.2 && II.3
-    public boolean exitMarket(String userName);
+    public boolean exitMarket(String userName) throws Exception;
 
     //II.1.3
     public boolean register(String guestUserName, String newMemberUserName, String password) throws Exception;
@@ -24,22 +24,22 @@ public interface Bridge {
     public String memberLogOut(String memberUserName) throws Exception;
 
     //II.3.2
-    public String createStore(String memberUserName, String newStoreName);
+    public String createStore(String memberUserName, String newStoreName) throws Exception;
 
     //II.4.1.1
-    public boolean addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, int amount);
+    public boolean addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, int amount) throws Exception;
     //II.4.1.2
-    public boolean removeProductFromStock(String memberUserName, String storeName, String productName);
+    public boolean removeProductFromStock(String memberUserName, String storeName, String productName) throws Exception;
 
-    public boolean addCategory(String userName, String categoryName, String storeName);
+    public boolean addCategory(String userName, String categoryName, String storeName) throws Exception;
 
-    public boolean getCategory(String userName, String categoryName,String storeName);
+    public boolean getCategory(String userName, String categoryName,String storeName) throws Exception;
 
     //II.4.1.3
-    public boolean updateProductName(String memberUserName, String storeName, String productName, String newName);
-    public boolean updateProductPrice(String memberUserName, String storeName, String productName, Double price);
-    public boolean updateProductDescription(String memberUserName, String storeName, String productName, String newDescription);
-    public boolean updateProductAmount(String memberUserName, String storeName, String productName, int amount);
+    public boolean updateProductName(String memberUserName, String storeName, String productName, String newName) throws Exception;
+    public boolean updateProductPrice(String memberUserName, String storeName, String productName, Double price) throws Exception;
+    public boolean updateProductDescription(String memberUserName, String storeName, String productName, String newDescription) throws Exception;
+    public boolean updateProductAmount(String memberUserName, String storeName, String productName, int amount) throws Exception;
 
 //    int getProductPrice(String s); // delete
 
@@ -47,67 +47,67 @@ public interface Bridge {
 
     // TODO: add the func to market class or add a field to ProductDTO class
     // maybe we need to add userName parameter
-    int getProductAmount(String storeName, String s); // in stock
+    int getProductAmount(String storeName, String s) throws Exception; // in stock
 
     //II.4.4
-    public boolean appointOtherMemberAsStoreOwner(String memberUserName, String storeName, String newOwnerUserName);
+    public boolean appointOtherMemberAsStoreOwner(String memberUserName, String storeName, String newOwnerUserName) throws Exception;
 
 //    List<String> getStoreOwners(String storeName); // delete
 
-    String getOwnerAppointer(String OwnerName, String storeName);
+    String getOwnerAppointer(String OwnerName, String storeName) throws Exception;
 
-    public List<String> getStoreProducts(String userName, String storeName);
+    public List<String> getStoreProducts(String userName, String storeName) throws Exception;
 
-    public boolean appointOtherMemberAsStoreManager(String memberUserName, String storeName, String newOwnerUserName);
+    public boolean appointOtherMemberAsStoreManager(String memberUserName, String storeName, String newOwnerUserName) throws Exception;
 
 //    List<String> getStoreManagers(String storeName); // delete
 
-    String getManagerAppointer(String ManagerName, String storeName);
+    String getManagerAppointer(String ManagerName, String storeName) throws Exception;
 
     //II.4.9
-    public String closeStore(String memberUserName, String storeName);
+    public String closeStore(String memberUserName, String storeName) throws Exception;
 
-    public boolean canGetStoreInfo(String userName, String storeName);
+    public boolean canGetStoreInfo(String userName, String storeName) throws Exception;
 
-    String getStoreNotification(String memberName, String storeName);
+    String getStoreNotification(String memberName, String storeName) throws Exception;
 
     //II.4.11
-    public Map<Integer,List<String>> getStoreRulesInfo(String ownerName,String storeName);
+    public Map<Integer,List<String>> getStoreRulesInfo(String ownerName,String storeName) throws Exception;
 
 
     // II.2.1
     public String getStoreFounderName(String userName, String storeName) throws Exception;
 
-    public List<String> getStoreOwnersNames(String userName, String storeName);
+    public List<String> getStoreOwnersNames(String userName, String storeName) throws Exception;
 
-    public List<String> getStoreManagersNames(String userName, String storeName);
+    public List<String> getStoreManagersNames(String userName, String storeName) throws Exception;
 
-    public Double getProductPrice(String userName, String storeName, String productName);
+    public Double getProductPrice(String userName, String storeName, String productName) throws Exception;
 
-    public String  getProductDescription(String userName, String storeName, String productName);
+    public String  getProductDescription(String userName, String storeName, String productName) throws Exception;
 
     // II.2.2
-    public Map<String, List<String>> getProductInfoFromMarketByName(String userName, String productName); // map <storeName, List<productName>>
+    public Map<String, List<String>> getProductInfoFromMarketByName(String userName, String productName) throws Exception; // map <storeName, List<productName>>
 
-    public Map<String, List<String>> getProductInfoFromMarketByCategory(String userName, String categoryName); // map <storeName, List<productName>>
+    public Map<String, List<String>> getProductInfoFromMarketByCategory(String userName, String categoryName) throws Exception; // map <storeName, List<productName>>
 
-    public Map<String, List<String>> getProductInfoFromMarketByKeyword(String userName, String keyword); // map <storeName, List<productName>>
+    public Map<String, List<String>> getProductInfoFromMarketByKeyword(String userName, String keyword) throws Exception; // map <storeName, List<productName>>
 
-    public Map<String, List<String>> filterByPrice(String userName, Map<String, List<String>> products, int minPrice, int maxPrice); // map <storeName, List<productName>>
+    public Map<String, List<String>> filterByPrice(String userName, Map<String, List<String>> products, int minPrice, int maxPrice) throws Exception; // map <storeName, List<productName>>
 
-    public Map<String, List<String>> filterByCategory(String userName, Map<String, List<String>> products, String categoryName); // map <storeName, List<productName>>
+    public Map<String, List<String>> filterByCategory(String userName, Map<String, List<String>> products, String categoryName) throws Exception; // map <storeName, List<productName>>
 
 
     // II.2.3 + II.2.4
-    public boolean addToCart(String userName, String storeName, String productName, Integer amount);
+    public boolean addToCart(String userName, String storeName, String productName, Integer amount) throws Exception;
 
-    public List<String> getBag(String userName, String storeName); // list<produceName>
+    public List<String> getBag(String userName, String storeName) throws Exception; // list<produceName>
 
-    public int getProductAmountInCart(String userName, String storeName, String productName);
+    public int getProductAmountInCart(String userName, String storeName, String productName) throws Exception;
 
-    public Map<String, List<String>> getCartContent(String userName); // map: <string bag.storeName, list<productName>>
+    public Map<String, List<String>> getCartContent(String userName) throws Exception; // map: <string bag.storeName, list<productName>>
 
-    public boolean removeProductFromCart(String userName, String storeName, String productName);
+    public boolean removeProductFromCart(String userName, String storeName, String productName) throws Exception;
 
     public boolean changeProductAmountInCart (String userName, String storeName, String productName, Integer newAmount) throws Exception;
 
