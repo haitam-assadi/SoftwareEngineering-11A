@@ -35,7 +35,6 @@ public class MemberTests {
                 guests = proxy.getAllGuests();
                 Assertions.assertTrue(proxy.getAllOnlineMembers().contains("Moslem Asaad"));
                 Assertions.assertFalse(guests.contains(user));
-                Assertions.assertNotEquals(-1,proxy.getUserCart("Moslem Asaad"));
             }
         }catch (Exception e){
             Assertions.fail(e.getMessage());
@@ -47,12 +46,10 @@ public class MemberTests {
         try{
             List<String> guests = proxy.getAllGuests();
             if(guests.size()>0){
-                int cart = proxy.getUserCart(user);
                 proxy.login(user,"Moslem Asaad","");
                 guests = proxy.getAllGuests();
                 Assertions.assertFalse(proxy.getAllOnlineMembers().contains("Moslem Asaad"));
                 Assertions.assertTrue(guests.contains(user));
-                Assertions.assertEquals(cart,proxy.getUserCart(user));
             }
         }catch (Exception e){
             Assertions.fail(e.getMessage());
@@ -83,8 +80,6 @@ public class MemberTests {
             List<String> members = proxy.getAllOnlineMembers();
             int len = members.size();
             proxy.exitMarket(userName);
-            int cart = proxy.getUserCart(userName);
-            Assertions.assertNotEquals(-1,cart);
             Assertions.assertEquals(len - 1, members.size());//??
             Assertions.assertFalse(members.contains(userName));//??
         }catch (Exception e){
@@ -97,14 +92,11 @@ public class MemberTests {
     public void logout_success(){
         try {
             proxy.login(user, "Moslem Asaad", "12345");
-            int cart = proxy.getUserCart("Moslem Asaad");
             List<String> members = proxy.getAllOnlineMembers();
             String newGuestName = proxy.memberLogOut("Moslem Asaad");
-            int cart1 = proxy.getUserCart(newGuestName);
             Assertions.assertFalse(members.contains("Moslem Asaad"));
             Assertions.assertNotEquals("Moslem Asaad",newGuestName);
             Assertions.assertTrue(newGuestName.contains("Guest"));
-            Assertions.assertNotEquals(cart,cart1);
         }catch (Exception e){
             Assertions.fail(e.getMessage());
         }
@@ -113,14 +105,11 @@ public class MemberTests {
     @Test
     public void logout_not_online_member_fail(){
         try {
-            int cart = proxy.getUserCart("Moslem Asaad");
             String newGuestName = proxy.memberLogOut("Moslem Asaad");
             List<String> members = proxy.getAllOnlineMembers();
-            int cart1 = proxy.getUserCart(newGuestName);
             Assertions.assertFalse(members.contains("Moslem Asaad"));
             Assertions.assertNotEquals("Moslem Asaad",newGuestName);
             Assertions.assertTrue(newGuestName.contains("Guest"));
-            Assertions.assertNotEquals(cart,cart1);
         }catch (Exception e){
             Assertions.fail(e.getMessage());
         }

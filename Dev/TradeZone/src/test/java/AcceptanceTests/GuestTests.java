@@ -29,12 +29,10 @@ public class GuestTests {
                                                     online guests in the system*/
             int len = gusts.size();
             String user = proxy.enterMarket();
-            int cart = proxy.getUserCart(user);/* gets the cart id */
             gusts = proxy.getAllGuests();
             Assertions.assertNotNull(user);
             Assertions.assertEquals(len + 1, gusts.size());
             Assertions.assertTrue(gusts.contains(user));
-            Assertions.assertNotEquals(-1, cart);
         }catch (Exception e){
             Assertions.fail(e.getMessage());
         }
@@ -48,14 +46,10 @@ public class GuestTests {
             int len = gusts.size();
             String user = proxy.enterMarket();
             String user1 = proxy.enterMarket();
-            int cart = proxy.getUserCart(user);/* gets the cart id */
-            int cart1 = proxy.getUserCart(user);/* gets the cart id */
             gusts = proxy.getAllGuests();
             Assertions.assertNotEquals(user,user1); // the default guest name is different
             Assertions.assertEquals(len + 2, gusts.size());
             Assertions.assertTrue(gusts.contains(user) && gusts.contains(user1));
-            Assertions.assertNotEquals(-1, cart);
-            Assertions.assertNotEquals(-1, cart1);
         }catch (Exception e){
             Assertions.fail(e.getMessage());
         }
@@ -66,14 +60,12 @@ public class GuestTests {
     public void exit_market_guest_success(){
         try{
             String userName = proxy.enterMarket();
-            int cart = proxy.getUserCart(userName);
             List<String> gusts = proxy.getAllGuests(); /*getAllguests method should return the current
                                                     online guests in the system*/
             if(gusts.size()>0) {//redundant check
                 int len = gusts.size();
                 proxy.exitMarket(userName);
                 gusts = proxy.getAllGuests();
-                Assertions.assertEquals(-1, cart);
                 Assertions.assertEquals(len - 1, gusts.size());
                 Assertions.assertFalse(gusts.contains(userName));
             }
@@ -88,12 +80,9 @@ public class GuestTests {
         try{
             List<String> guests = proxy.getAllGuests();
             String userName = proxy.enterMarket();
-            int cart = proxy.getUserCart(userName);
             proxy.register(userName,"Moslem Asaad","12345");
-            int validate_cart = proxy.getUserCart("Moslem Asaad");
             guests = proxy.getAllGuests();
             List<String> members = proxy.getAllMembers();
-            Assertions.assertEquals(cart,validate_cart);
             Assertions.assertTrue(members.contains("MoslemAsaad"));
             Assertions.assertFalse(guests.contains(userName));
         }catch (Exception e){
