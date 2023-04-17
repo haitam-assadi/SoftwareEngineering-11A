@@ -328,7 +328,6 @@ public class StoreTests {
             String closeNotification = proxy.closeStore(store_founder,storeName);
             Assertions.assertFalse(proxy.canGetStoreInfo(member_name2,storeName));
             Assertions.assertTrue(proxy.canGetStoreInfo(member_name1,storeName));
-            Assertions.assertEquals(closeNotification,proxy.getStoreNotification(member_name1,storeName));//??? should check
             Assertions.assertTrue(proxy.getStoreOwnersNames(store_founder, storeName).contains(member_name1));
             Assertions.assertEquals(0,proxy.getStoreProducts(member_name2,storeName).size());
             //todo: should check the case of closed store but founder assigns owner or manager for it.

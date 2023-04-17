@@ -194,14 +194,6 @@ public class ProxyBridge implements Bridge{
     }
 
     @Override
-    public String getStoreNotification(String memberName, String storeName) throws Exception {
-        if(realBridge!=null){
-            return realBridge.getStoreNotification(memberName,storeName);
-        }
-        return "";
-    }
-
-    @Override
     public Map<Integer, List<String>> getStoreRulesInfo(String ownerName, String storeName) throws Exception {
         if(realBridge!=null){
             return realBridge.getStoreRulesInfo(ownerName,storeName);
@@ -270,16 +262,9 @@ public class ProxyBridge implements Bridge{
         return new LinkedList<>();
     }
 
-    public String getMemberPassword(String memberName) throws Exception {
+    public List<String> getAllStoresNames() throws Exception {
         if(realBridge!=null){
-            return realBridge.getMemberPassword( memberName);
-        }
-        return "";
-    }
-
-    public List<String> getAllStores() throws Exception {
-        if(realBridge!=null){
-            return realBridge.getAllStores();
+            return realBridge.getAllStoresNames();
         }
         return new LinkedList<>();
     }

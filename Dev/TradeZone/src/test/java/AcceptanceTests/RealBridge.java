@@ -7,6 +7,7 @@ import ServiceLayer.ResponseT;
 import ServiceLayer.SystemService;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 // error:
 // string  null, int -1, boolean false, LinkedList<?> empty
@@ -20,8 +21,12 @@ public class RealBridge implements Bridge{
     }
 
     @Override
-    public boolean initializeMarket() {
-        return systemService.initializeMarket();
+    public boolean initializeMarket() throws Exception {
+        ResponseT<Boolean> response = systemService.initializeMarket();
+        if(response.ErrorOccurred){
+            throw new Exception(response.errorMessage);
+        }
+        return response.getValue();
     }
 
     @Override
@@ -98,17 +103,17 @@ public class RealBridge implements Bridge{
     }
 
     @Override
-    public boolean addCategory(String userName, String categoryName, String storeName) { // TODO: add to market and service
+    public boolean addCategory(String userName, String categoryName, String storeName) { // TODO: add to market and service 15
         return false;
     }
 
     @Override
-    public boolean getCategory(String userName, String categoryName,String storeName) { // TODO: add to market and service
+    public boolean getCategory(String userName, String categoryName,String storeName) { // TODO: add to market and service 5
         return false;
     }
 
     @Override
-    public boolean updateProductName(String memberUserName, String storeName, String productName, String newName) { // TODO: add to market and service
+    public boolean updateProductName(String memberUserName, String storeName, String productName, String newName) { // TODO: add to market and service 2
             return false;
     }
 
@@ -132,6 +137,8 @@ public class RealBridge implements Bridge{
 
     @Override
     public boolean updateProductAmount(String memberUserName, String storeName, String productName, int amount) throws Exception {
+
+
         ResponseT<Boolean> response = systemService.updateProductAmount(memberUserName,storeName,productName,amount);
         if (response.ErrorOccurred){
             throw new Exception(response.errorMessage);
@@ -140,7 +147,7 @@ public class RealBridge implements Bridge{
     }
 
     @Override
-    public int getProductAmount(String storeName, String productName) { // String userName
+    public int getProductAmount(String storeName, String productName) { // String userName // TODO: add to market and service
         // TODO: add amount field to ProductDTO or add a function get product amount to market and service
         return -1;
     }
@@ -186,11 +193,6 @@ public class RealBridge implements Bridge{
             throw new Exception(response.errorMessage);
         }
         return true;
-    }
-
-    @Override
-    public String getStoreNotification(String memberName, String storeName) { // TODO: add to market and service
-            return "";
     }
 
     @Override
@@ -252,22 +254,31 @@ public class RealBridge implements Bridge{
         return response.getValue();
     }
 
-
-
-    public List<String> getAllOnlineMembers() { // TODO: add to market and service
-        return new LinkedList<>();
+    public List<String> getAllMembers() throws Exception {
+        ResponseT<List<String>> response = systemService.getAllMembers();
+        if (response.ErrorOccurred){
+            throw new Exception(response.errorMessage);
+        }
+        return response.getValue();
     }
 
-    public List<String> getAllMembers() { // TODO: add to market and service
-        return new LinkedList<>();
+
+
+    public List<String> getAllOnlineMembers() throws Exception {
+        ResponseT<List<String>> response = systemService.getAllLoggedInMembers();
+        if (response.ErrorOccurred){
+            throw new Exception(response.errorMessage);
+        }
+        return response.getValue();
     }
 
-    public String getMemberPassword(String memberName) { // TODO: add to market and service
-            return "";
-    }
 
-    public List<String> getAllStores() { // TODO: add to market and service
-        return new LinkedList<>();
+    public List<String> getAllStoresNames()  throws Exception{
+        ResponseT<List<String>> response = systemService.getAllStoresNames();
+        if (response.ErrorOccurred){
+            throw new Exception(response.errorMessage);
+        }
+        return response.getValue();
     }
 
     public List<String> getStoreProducts(String userName, String storeName) throws Exception { // Done
@@ -422,21 +433,62 @@ public class RealBridge implements Bridge{
     }
 
     @Override
-    public List<String> getBag(String userName, String storeName) { // list<produceName>
-        // TODO: add to market and service
-            return new LinkedList<>();
+    public List<String> getBag(String userName, String storeName) throws Exception {
+        ResponseT<List<BagDTO>> response = systemService.getCartContent(userName);
+        if (response.ErrorOccurred){
+            throw new Exception(response.errorMessage);
+        }
+        ConcurrentHashMap<ProductDTO, Integer> bagContent = null;
+        List<String> productNames = new ArrayList<>();
+        for(BagDTO bagDTO: response.getValue())
+            if(bagDTO.storeBag.equals(storeName))
+                bagContent=bagDTO.bagContent;
+
+        if(bagContent !=null ){
+            for(ProductDTO productDTO: bagContent.keySet())
+                productNames.add(productDTO.name);
+        }
+        return productNames;
     }
 
     @Override
-    public int getProductAmountInCart(String userName, String storeName, String productName) {
-        // call to get cart content
-        return -1;
+    public int getProductAmountInCart(String userName, String storeName, String productName) throws Exception {
+        ResponseT<List<BagDTO>> response = systemService.getCartContent(userName);
+        if (response.ErrorOccurred){
+            throw new Exception(response.errorMessage);
+        }
+        ConcurrentHashMap<ProductDTO, Integer> bagContent = null;
+        int productAmount =-1;
+        for(BagDTO bagDTO: response.getValue())
+            if(bagDTO.storeBag.equals(storeName))
+                bagContent=bagDTO.bagContent;
+
+        if(bagContent !=null ){
+            for(ProductDTO productDTO: bagContent.keySet()){
+                if(productDTO.name.equals(productName))
+                    productAmount = bagContent.get(productDTO);
+                break;
+            }
+        }
+        return productAmount;
     }
 
     @Override
-    public Map<String, List<String>> getCartContent(String userName) { // map: <bag.storeName, list<productName>>
-        // TODO: what about product amount?
-        return new HashMap<>();
+    public Map<String, List<String>> getCartContent(String userName) throws Exception { // map: <bag.storeName, list<productName>>
+        ResponseT<List<BagDTO>> response = systemService.getCartContent(userName);
+        if (response.ErrorOccurred){
+            throw new Exception(response.errorMessage);
+        }
+        Map<String, List<String>> cartContent = new HashMap<>();
+        List<String> productNames;
+        for(BagDTO bagDTO: response.getValue()){
+            productNames = new ArrayList<>();
+            cartContent.put(bagDTO.storeBag, productNames);
+            for(ProductDTO productDTO: bagDTO.bagContent.keySet())
+                productNames.add(productDTO.name);
+        }
+
+        return cartContent;
     }
 
     @Override

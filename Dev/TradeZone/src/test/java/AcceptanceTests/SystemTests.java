@@ -6,12 +6,9 @@ import org.mockito.MockitoAnnotations;
 public class SystemTests {
 
     private ProxyBridge proxy;
-    @Mock
-    private Bridge bridge;
 
     @BeforeAll
     public void setUp(){
-        MockitoAnnotations.openMocks(this);
         proxy = new ProxyBridge();
     }
 

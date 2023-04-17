@@ -1,6 +1,7 @@
 package DomainLayer;
 
 import DTO.*;
+import ServiceLayer.ResponseT;
 import jdk.jshell.spi.ExecutionControl;
 
 import java.util.List;
@@ -21,6 +22,17 @@ public class Market {
     public List<String> getAllGuests(){
         return userController.getAllGuests();
     }
+
+    public List<String> getAllMembers(){
+        return userController.getAllMambers();
+    }
+    public List<String> getAllLoggedInMembers(){
+        return userController.getAllLoggedInMembers();
+    }
+    public List<String> getAllStoresNames(){ // TODO: add to market and service
+        return storeController.getAllStoresNames();
+    }
+
 
     public boolean exitMarket(String userName) throws Exception {
         return userController.exitMarket(userName);

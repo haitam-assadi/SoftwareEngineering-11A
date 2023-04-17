@@ -69,12 +69,10 @@ public interface Bridge {
 
     public boolean canGetStoreInfo(String userName, String storeName) throws Exception;
 
-    String getStoreNotification(String memberName, String storeName) throws Exception;
-
     //II.4.11
     public Map<Integer,List<String>> getStoreRulesInfo(String ownerName,String storeName) throws Exception;
 
-
+    public List<String> getAllStoresNames() throws Exception;
     // II.2.1
     public String getStoreFounderName(String userName, String storeName) throws Exception;
 

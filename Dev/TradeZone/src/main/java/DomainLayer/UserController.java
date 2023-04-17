@@ -33,6 +33,7 @@ public class UserController {
 
     public boolean exitMarket(String userName) throws Exception {
         assertIsGuestOrLoggedInMember(userName);
+        userName = userName.strip().toLowerCase();
         if(isGuest(userName))
             guests.remove(userName);
         else
@@ -97,12 +98,15 @@ public class UserController {
     public String login(String guestUserName, String MemberUserName, String password) throws Exception {
         loginValidateParameters(guestUserName, MemberUserName, password);
 
+        guestUserName = guestUserName.strip().toLowerCase();
         MemberUserName = MemberUserName.strip().toLowerCase();
         Member member = getMember(MemberUserName);
         if(!member.getPassword().equals(password))
             throw new Exception("incorrect password!");
 
         loggedInMembers.put(MemberUserName, member);
+        guests.remove(guestUserName);
+
         return MemberUserName;
     }
 
@@ -139,15 +143,20 @@ public class UserController {
     }
 
     public void assertIsGuestOrLoggedInMember(String userName) throws Exception {
-        if(! (isGuest(userName) || isMember(userName)))
-            throw new Exception(""+ userName+" is not a user!");
-
-        if(!isMemberLoggedIn(userName))
-            //TODO synchronization check
-            throw new Exception("Member:"+ userName+" is not logged in!");
+        if(isGuest(userName))
+            return;
+        assertIsMember(userName);
+        assertIsMemberLoggedIn(userName);
     }
     public List<String> getAllGuests(){
         return guests.keySet().stream().toList();
+    }
+
+    public List<String> getAllMambers(){
+        return membersNamesConcurrentSet.stream().toList();
+    }
+    public List<String> getAllLoggedInMembers(){
+        return loggedInMembers.keySet().stream().toList();
     }
 
 

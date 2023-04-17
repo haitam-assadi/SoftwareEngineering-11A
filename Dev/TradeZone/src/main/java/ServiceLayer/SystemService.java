@@ -3,6 +3,7 @@ package ServiceLayer;
 import DTO.*;
 import DomainLayer.Market;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public class SystemService {
@@ -13,8 +14,68 @@ public class SystemService {
         market = new Market();
     }
 
-    public boolean initializeMarket(){
-        return true;
+    public ResponseT<Boolean> initializeMarket(){
+
+        try{
+            createMemberWithTwoStore("user1");
+            return new ResponseT<>(true);
+
+        }catch (Exception e){
+            return new ResponseT<>(e.getMessage());
+        }
+
+    }
+
+    private void createMemberWithTwoStore(String userName) throws Exception {
+        String guestUserName = market.enterMarket();
+        String userPassword = "Aa12345678";
+
+        String userFirstStoreName = userName+"_first_Store";
+        String userSecStoreName = userName+"_Second_Store";
+
+        String userFirstStoreProduct1 = userFirstStoreName+"_product1";
+        String userFirstStoreProduct2 = userFirstStoreName+"_product2";
+        String userFirstStoreProduct3 = userFirstStoreName+"_product3";
+        String userFirstStoreProduct4 = userFirstStoreName+"_product4";
+        String userFirstStoreProduct5 = userFirstStoreName+"_product5";
+        String userFirstStoreProduct6 = userFirstStoreName+"_product6";
+
+        String userFirstStoreCategory1 = userFirstStoreName+"_category1";
+        String userFirstStoreCategory2 = userFirstStoreName+"_category2";
+
+
+
+        String userSecStoreProduct1 = userSecStoreName+"_product1";
+        String userSecStoreProduct2 = userSecStoreName+"_product2";
+        String userSecStoreProduct3 = userSecStoreName+"_product3";
+        String userSecStoreProduct4 = userSecStoreName+"_product4";
+        String userSecStoreProduct5 = userSecStoreName+"_product5";
+        String userSecStoreProduct6 = userSecStoreName+"_product6";
+
+        String userSecStoreCategory1 = userSecStoreName+"_category1";
+        String userSecStoreCategory2 = userSecStoreName+"_category2";
+
+        market.register(guestUserName, userName, userPassword);
+        market.login(guestUserName, userName, userPassword);
+        market.createStore(userName, userFirstStoreName);
+
+        market.addNewProductToStock(userName, userFirstStoreName, userFirstStoreProduct1, userFirstStoreCategory1, 70.54, "new product", 100);
+        market.addNewProductToStock(userName, userFirstStoreName, userFirstStoreProduct2, userFirstStoreCategory1, 70.54, "new product", 100);
+        market.addNewProductToStock(userName, userFirstStoreName, userFirstStoreProduct3, userFirstStoreCategory1, 70.54, "new product", 100);
+        market.addNewProductToStock(userName, userFirstStoreName, userFirstStoreProduct4, userFirstStoreCategory2, 70.54, "new product", 100);
+        market.addNewProductToStock(userName, userFirstStoreName, userFirstStoreProduct5, userFirstStoreCategory2, 70.54, "new product", 100);
+        market.addNewProductToStock(userName, userFirstStoreName, userFirstStoreProduct6, userFirstStoreCategory2, 70.54, "new product", 100);
+
+
+        market.createStore(userName, userSecStoreName);
+        market.addNewProductToStock(userName, userSecStoreName, userSecStoreProduct1, userSecStoreCategory1, 70.54, "new product", 100);
+        market.addNewProductToStock(userName, userSecStoreName, userSecStoreProduct2, userSecStoreCategory1, 70.54, "new product", 100);
+        market.addNewProductToStock(userName, userSecStoreName, userSecStoreProduct3, userSecStoreCategory1, 70.54, "new product", 100);
+        market.addNewProductToStock(userName, userSecStoreName, userSecStoreProduct4, userSecStoreCategory2, 70.54, "new product", 100);
+        market.addNewProductToStock(userName, userSecStoreName, userSecStoreProduct5, userSecStoreCategory2, 70.54, "new product", 100);
+        market.addNewProductToStock(userName, userSecStoreName, userSecStoreProduct6, userSecStoreCategory2, 70.54, "new product", 100);
+        String exitGuest = market.memberLogOut(userName);
+        market.exitMarket(exitGuest);
     }
 
     public ResponseT<String> enterMarket(){
@@ -29,7 +90,33 @@ public class SystemService {
         try{
             return new ResponseT<>(market.getAllGuests());
         }catch(Exception e){
-            return new ResponseT<>("enterMarket: "+e.getMessage());
+            return new ResponseT<>("getAllGuests: "+e.getMessage());
+        }
+    }
+    public ResponseT<List<String>> getAllMembers(){
+        try{
+            return new ResponseT<>(market.getAllMembers());
+        }catch(Exception e){
+            return new ResponseT<>("getAllMembers: "+e.getMessage());
+        }
+    }
+
+
+
+    public ResponseT<List<String>> getAllLoggedInMembers(){
+        try{
+            return new ResponseT<>(market.getAllLoggedInMembers());
+        }catch(Exception e){
+            return new ResponseT<>("getAllLoggedInMembers: "+e.getMessage());
+        }
+    }
+
+
+    public ResponseT<List<String>> getAllStoresNames(){
+        try{
+            return new ResponseT<>(market.getAllStoresNames());
+        }catch(Exception e){
+            return new ResponseT<>("getAllStoresNames: "+e.getMessage());
         }
     }
 
@@ -51,7 +138,7 @@ public class SystemService {
     }
     public ResponseT<String> login(String guestUserName, String MemberUserName, String password){
         try{
-            return new ResponseT<>(market.login(guestUserName, MemberUserName, password));
+            return new ResponseT<>(market.login(guestUserName, MemberUserName, password), true);
         }catch(Exception e){
             return new ResponseT<>("login: "+e.getMessage());
         }
@@ -158,7 +245,7 @@ public class SystemService {
     }
     public ResponseT<String> memberLogOut(String memberUserName){
         try{
-            return new ResponseT<>(market.memberLogOut(memberUserName));
+            return new ResponseT<>(market.memberLogOut(memberUserName), true);
         }catch(Exception e){
             return new ResponseT<>("memberLogOut: "+e.getMessage());
         }

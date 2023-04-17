@@ -21,30 +21,35 @@ public class StoreController {
 
     public boolean addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount) throws Exception {
         assertIsStore(storeName);
+        storeName = storeName.strip().toLowerCase();
         Store store = stores.get(storeName);
         return store.addNewProductToStock(memberUserName,nameProduct,category,price,description,amount);
     }
 
     public boolean removeProductFromStock(String memberUserName, String storeName, String productName) throws Exception {
         assertIsStore(storeName);
+        storeName = storeName.strip().toLowerCase();
         Store store = stores.get(storeName);
         return store.removeProductFromStock(memberUserName, productName);
     }
 
     public boolean updateProductDescription(String memberUserName, String storeName, String productName, String newProductDescription) throws Exception {
         assertIsStore(storeName);
+        storeName = storeName.strip().toLowerCase();
         Store store = stores.get(storeName);
         return store.updateProductDescription(memberUserName, productName, newProductDescription);
     }
 
     public boolean updateProductAmount(String memberUserName, String storeName, String productName, Integer newAmount) throws Exception {
         assertIsStore(storeName);
+        storeName = storeName.strip().toLowerCase();
         Store store = stores.get(storeName);
         return store.updateProductAmount(memberUserName, productName, newAmount);
     }
 
     public boolean updateProductPrice(String memberUserName, String storeName, String productName, Double newPrice) throws Exception {
         assertIsStore(storeName);
+        storeName = storeName.strip().toLowerCase();
         Store store = stores.get(storeName);
         return store.updateProductPrice(memberUserName, productName, newPrice);
     }
@@ -52,11 +57,14 @@ public class StoreController {
 
     public StoreDTO getStoreInfo(String storeName) throws Exception {
         isActiveStore(storeName);
+        storeName=storeName.strip().toLowerCase();
         return stores.get(storeName).getStoreInfo();
     }
 
     public ProductDTO getProductInfoFromStore(String storeName, String productName) throws Exception {
         isActiveStore(storeName);
+
+        storeName = storeName.strip().toLowerCase();
         return stores.get(storeName).getProductInfo(productName);
     }
 
@@ -113,29 +121,27 @@ public class StoreController {
 
     public void isActiveStore(String storeName) throws Exception {
         assertIsStore(storeName);
+        storeName=storeName.strip().toLowerCase();
         if(!stores.get(storeName).isActive())
             throw new Exception(""+ storeName+" is not Active!");
     }
 
     public boolean closeStore(String memberUserName, String storeName) throws Exception {
-        if(this.stores.containsKey(storeName)){
-            return this.stores.get(storeName).closeStore(memberUserName);
-        }
-        throw new Exception("There is no store with the name: " + storeName);
+        assertIsStore(storeName);
+        storeName=storeName.strip().toLowerCase();
+        return this.stores.get(storeName).closeStore(memberUserName);
     }
 
     public List<MemberDTO> getStoreWorkersInfo(String memberUserName, String storeName) throws Exception {
-        if(this.stores.containsKey(storeName)){
-            return this.stores.get(storeName).getStoreWorkersInfo(memberUserName);
-        }
-        throw new Exception("There is no store with the name: " + storeName);
+        assertIsStore(storeName);
+        storeName=storeName.strip().toLowerCase();
+        return this.stores.get(storeName).getStoreWorkersInfo(memberUserName);
     }
 
     public List<DealDTO> getStoreDeals(String memberUserName, String storeName) throws Exception {
-        if(this.stores.containsKey(storeName)){
-            return this.stores.get(storeName).getStoreDeals(memberUserName);
-        }
-        throw new Exception("There is no store with the name: " + storeName);
+        assertIsStore(storeName);
+        storeName=storeName.strip().toLowerCase();
+        return this.stores.get(storeName).getStoreDeals(memberUserName);
     }
 
     public List<DealDTO> getMemberDeals(String otherMemberUserName) {
@@ -153,5 +159,10 @@ public class StoreController {
         Store newStore = new Store(newStoreName);
         stores.put(newStoreName,newStore);
         return newStore;
+    }
+
+
+    public List<String> getAllStoresNames(){
+        return stores.keySet().stream().toList();
     }
 }

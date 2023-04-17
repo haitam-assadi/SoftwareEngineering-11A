@@ -1,122 +1,28 @@
 package AcceptanceTests;
+
 import org.junit.jupiter.api.*;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 
 import java.util.List;
 import java.util.Map;
 
 @TestInstance(value = TestInstance.Lifecycle.PER_CLASS)
-public class GuestTests {
+public class RandomScenarios {
 
 
-    String moslemUserName = "moslem123";
-    String moslemPassword = "Aa123456";
 
     private ProxyBridge proxy;
 
     @BeforeAll
-    public void setUp() throws Exception {
+    public void setUp(){
+        System.out.println("setUp function");
         proxy = new ProxyBridge(new RealBridge());
-        if(!proxy.initializeMarket()){
-            throw new Exception("");
-        }
-    }
-
-    //enter market test
-    @Test
-    public void enter_market_success(){
         try {
-            List<String> gusts = proxy.getAllGuests();
-            int len = gusts.size();
-            String user = proxy.enterMarket();
-            gusts = proxy.getAllGuests();
-            Assertions.assertNotNull(user);
-            Assertions.assertEquals(len + 1, gusts.size());
-            Assertions.assertTrue(gusts.contains(user));
+            proxy.initializeMarket();
+
         }catch (Exception e){
-            Assertions.fail(e.getMessage());
+            System.out.println(e);
         }
     }
-
-    @Test
-    public void enter_market_2users_success(){
-        try {
-            List<String> gusts = proxy.getAllGuests();
-            int len = gusts.size();
-            String user = proxy.enterMarket();
-            String user1 = proxy.enterMarket();
-            gusts = proxy.getAllGuests();
-            Assertions.assertNotEquals(user,user1);
-            Assertions.assertEquals(len + 2, gusts.size());
-            Assertions.assertTrue(gusts.contains(user) && gusts.contains(user1));
-        }catch (Exception e){
-            Assertions.fail(e.getMessage());
-        }
-    }
-
-    //exit market guest test
-    @Test
-    public void exit_market_guest_success(){
-        try{
-            String userName = proxy.enterMarket();
-            List<String> gusts = proxy.getAllGuests();
-            if(gusts.size()>0) {
-                int len = gusts.size();
-                proxy.exitMarket(userName);
-                gusts = proxy.getAllGuests();
-                Assertions.assertEquals(len - 1, gusts.size());
-                Assertions.assertFalse(gusts.contains(userName));
-            }
-        }catch (Exception e){
-            Assertions.fail(e.getMessage());
-        }
-    }
-
-    //register test
-    @Test
-    public void register_success(){
-        try{
-            String userName1 = moslemUserName+"1";
-            String userName = proxy.enterMarket();
-            proxy.register(userName,userName1,moslemPassword);
-            List<String> guests = proxy.getAllGuests();
-            List<String> members = proxy.getAllMembers();
-            Assertions.assertTrue(members.contains(userName1));
-            Assertions.assertTrue(guests.contains(userName));
-        }catch (Exception e){
-            System.out.println(e.getMessage());
-            Assertions.fail(e.getMessage());
-        }
-    }
-
-    @Test
-    public void register_failed(){
-        try{
-            String guestUserName = proxy.enterMarket();
-            String userName1 = moslemUserName+"222";
-            String userName2 = moslemUserName+"2234";
-            proxy.register(guestUserName, userName1, moslemPassword);
-            List<String> members = proxy.getAllMembers();
-            Assertions.assertTrue(members.contains(userName1));
-
-            proxy.register(guestUserName, userName2, moslemPassword);
-            members = proxy.getAllMembers();
-            Assertions.assertTrue(members.contains(userName2));
-
-            proxy.register(guestUserName, userName2, moslemPassword);
-            Assertions.fail("two registers with same user name");
-        }catch (Exception e){
-
-        }
-    }
-
-
-
-
-    // scenarios
-
-
 
 
     @Test
@@ -378,6 +284,7 @@ public class GuestTests {
             Assertions.fail(e.getMessage());
         }
     }
+
 
 
 }
