@@ -1,16 +1,19 @@
 package DomainLayer;
 
+import DTO.BagDTO;
+import DTO.ProductDTO;
+
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class Bag {
 
-    private Cart cart;
     private Store storeBag;
     private ConcurrentHashMap<String, ConcurrentHashMap<Product,Integer>> bagContent;
 
     public Bag(Store storeBag) {
         this.storeBag = storeBag;
+        bagContent = new ConcurrentHashMap<>();
     }
 
     public boolean addProduct(String productName, Integer amount) throws Exception {
@@ -40,10 +43,6 @@ public class Bag {
         return true;
     }
 
-    public Cart getCart() {
-        return cart;
-    }
-
     public Store getStoreBag() {
         return storeBag;
     }
@@ -57,5 +56,12 @@ public class Bag {
             productNameAmount.put(productName,productAmount);
         }
         return productNameAmount;
+    }
+    public BagDTO getBagInfo(){
+        ConcurrentHashMap<ProductDTO, Integer> bagContent = new ConcurrentHashMap<>();
+        for (ConcurrentHashMap<Product,Integer> curr: this.bagContent.values()) {
+            bagContent.put(curr.keys().nextElement().getProductInfo(), curr.values().stream().toList().get(0));
+        }
+        return new BagDTO(storeBag.getStoreName(), bagContent);
     }
 }

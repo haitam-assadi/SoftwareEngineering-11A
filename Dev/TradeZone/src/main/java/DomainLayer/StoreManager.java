@@ -6,5 +6,6 @@ public class StoreManager extends Role{
 
     public StoreManager(Member member) {
         super(member);
+        this.myRole = RoleEnum.StoreManager;
     }
 }

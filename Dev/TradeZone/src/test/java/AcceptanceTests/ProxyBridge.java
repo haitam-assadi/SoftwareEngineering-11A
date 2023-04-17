@@ -1,6 +1,7 @@
 package AcceptanceTests;
 
 import java.util.Collection;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -75,8 +76,8 @@ public class ProxyBridge implements Bridge{
 
     @Override
     public boolean  addNewProductToStock(String memberUserName, String storeName, String product_name,String category, int price, String description, int amount){        if(realBridge!=null){
-            return realBridge.addNewProductToStock(memberUserName, storeName, product_name, category,price, description,amount);
-        }
+        return realBridge.addNewProductToStock(memberUserName, storeName, product_name, category,price, description,amount);
+    }
         throw new UnsupportedOperationException();
     }
 
@@ -137,22 +138,6 @@ public class ProxyBridge implements Bridge{
     }
 
     @Override
-    public int getProductPrice(String s) {
-        if(realBridge!=null){
-            return realBridge.getProductPrice(s);
-        }
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public String getProductDescription(String s) {
-        if(realBridge!=null){
-            return realBridge.getProductDescription(s);
-        }
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
     public int getProductAmount(String storeName, String s) {
         if(realBridge!=null){
             return realBridge.getProductAmount(storeName, s);
@@ -169,14 +154,6 @@ public class ProxyBridge implements Bridge{
     }
 
     @Override
-    public List<String> getStoreOwners(String storeName) {
-        if(realBridge!=null){
-            return realBridge.getStoreOwners(storeName);
-        }
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
     public String getOwnerAppointer(String OwnerName, String storeName) {
         if(realBridge!=null){
             return realBridge.getOwnerAppointer(OwnerName,storeName);
@@ -188,14 +165,6 @@ public class ProxyBridge implements Bridge{
     public boolean appointMemberAsStoreManager(String memberUserName, String storeName, String newOwnerUserName) {
         if(realBridge!=null){
             return realBridge.appointMemberAsStoreManager(memberUserName, storeName, newOwnerUserName);
-        }
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public List<String> getStoreManagers(String storeName) {
-        if(realBridge!=null){
-            return realBridge.getStoreManagers(storeName);
         }
         throw new UnsupportedOperationException();
     }
@@ -240,6 +209,46 @@ public class ProxyBridge implements Bridge{
         throw new UnsupportedOperationException();
     }
 
+    @Override
+    public String getStoreFounderName(String userName, String storeName) {
+        if(realBridge!=null){
+            return realBridge.getStoreFounderName(userName, storeName);
+        }
+        return null;
+    }
+
+    @Override
+    public List<String> getStoreOwnersNames(String userName, String storeName) {
+        if(realBridge!=null){
+            return realBridge.getStoreOwnersNames(userName, storeName);
+        }
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public List<String> getStoreManagersNames(String userName, String storeName) {
+        if(realBridge!=null){
+            return realBridge.getStoreManagersNames(userName, storeName);
+        }
+        return null;
+    }
+
+    @Override
+    public Double getProductPrice(String userName, String storeName, String productName) {
+        if(realBridge!=null){
+            return realBridge.getProductPrice(userName, storeName, productName);
+        }
+        return -1.0;
+    }
+
+    @Override
+    public String getProductDescription(String userName, String storeName, String productName) {
+        if(realBridge!=null){
+            return realBridge.getProductDescription(userName, storeName, productName);
+        }
+        return null;
+    }
+
     public List<String> getAllgusts() {
         if(realBridge!=null){
             return realBridge.getAllguests();
@@ -249,7 +258,7 @@ public class ProxyBridge implements Bridge{
 
     public int getUserCart(String user) {
         if(realBridge!=null){
-            return realBridge.getUserCart();
+            return realBridge.getUserCart(user);
         }
         throw new UnsupportedOperationException();
     }
@@ -282,22 +291,15 @@ public class ProxyBridge implements Bridge{
         throw new UnsupportedOperationException();
     }
 
-    public String getStoreFounder(String storeName) {
-        if(realBridge!=null){
-            return realBridge.getStoreFounder();
-        }
-        throw new UnsupportedOperationException();
-    }
-
     public List<String> getStoreProducts(String userName, String storeName) {
         if(realBridge!=null){
             return realBridge.getStoreProducts(userName,storeName);
         }
-        throw new UnsupportedOperationException();
+        return new LinkedList<>();
     }
 
     @Override
-    public Map<String, String> getProductInfoFromMarketByName(String userName, String productName) {
+    public Map<String, List<String>> getProductInfoFromMarketByName(String userName, String productName) {
         if(realBridge!=null){
             return realBridge.getProductInfoFromMarketByName(userName, productName);
         }
@@ -316,6 +318,22 @@ public class ProxyBridge implements Bridge{
     public Map<String, List<String>> getProductInfoFromMarketByKeyword(String userName, String keyword) {
         if(realBridge!=null){
             return realBridge.getProductInfoFromMarketByKeyword(userName, keyword);
+        }
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public Map<String, List<String>> filterByPrice(String userName, Map<String, List<String>> products, int minPrice, int maxPrice) {
+        if(realBridge!=null){
+            return realBridge.filterByPrice(userName, products, minPrice, maxPrice);
+        }
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public Map<String, List<String>> filterByCategory(String userName, Map<String, List<String>> products, String categoryName) {
+        if(realBridge!=null){
+            return realBridge.filterByCategory(userName, products, categoryName);
         }
         throw new UnsupportedOperationException();
     }

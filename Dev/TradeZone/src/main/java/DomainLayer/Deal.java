@@ -1,6 +1,6 @@
 package DomainLayer;
 
-import DomainLayer.DTO.DealDTO;
+import DTO.DealDTO;
 
 import java.util.HashMap;
 

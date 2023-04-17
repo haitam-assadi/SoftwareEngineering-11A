@@ -1,7 +1,6 @@
 package DomainLayer;
 
-import DomainLayer.DTO.ProductDTO;
-import jdk.jshell.spi.ExecutionControl;
+import DTO.ProductDTO;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -17,12 +16,33 @@ public class Stock {
         stockProducts =new ConcurrentHashMap<>();
         stockCategories = new ConcurrentHashMap<>();
     }
+
+    public void assertStringIsNotNullOrBlank(String st) throws Exception {
+        if(st==null || st.isBlank())
+            throw new Exception("string is null or empty");
+    }
+    public void assertContainsProduct(String productName) throws Exception {
+
+        if(!containsProduct(productName))
+            throw new Exception("stock does not contain this product "+productName);
+    }
+    public void assertDoesNotContainProduct(String productName) throws Exception {
+        if(containsProduct(productName))
+            throw new Exception("stock does already contains this product "+productName);
+    }
+
     public boolean addNewProductToStock(String nameProduct,String category, Double price, String description, Integer amount) throws Exception {
-        if(stockProducts.containsKey(nameProduct))
-            throw new Exception("can't add new product to stock : productName "+ nameProduct+" is in the stock!");
-        if(!stockCategories.containsKey(category))
-            stockCategories.put(category, new Category(category));
-        Product product = new Product(nameProduct,this, category,price,description);
+        assertDoesNotContainProduct(nameProduct);
+        assertStringIsNotNullOrBlank(category);
+        assertStringIsNotNullOrBlank(description);
+
+        nameProduct=nameProduct.strip().toLowerCase();
+        category = category.strip().toLowerCase();
+
+        if(!containsCategory(category))
+            stockCategories.put(category, new Category(category, this));
+
+        Product product = new Product(nameProduct,this,stockCategories.get(category),price,description);
         stockCategories.get(category).putProductInCategory(product);
         ConcurrentHashMap<Product,Integer> productAmount = new ConcurrentHashMap<Product, Integer>();
         productAmount.put(product,amount);
@@ -31,8 +51,10 @@ public class Stock {
     }
 
     public boolean removeProductFromStock(String productName) throws Exception {
-        if(!stockProducts.containsKey(productName))
-           throw new Exception("can't remove product from stock : productName "+ productName+" is not in the stock!");
+        assertContainsProduct(productName);
+        productName=productName.strip().toLowerCase();
+        Product product = stockProducts.get(productName).keys().nextElement();
+        product.removeFromAllCategories();
         stockProducts.remove(productName);
         return true;
     }
@@ -42,7 +64,6 @@ public class Stock {
             throw new Exception("can't remove product from stock : productName "+ productName+" is not in the stock!");
         Product product = stockProducts.get(productName).keys().nextElement();
         product.setDescription(newProductDescription);
-        stockCategories.get(product.getCategory()).updateProductDescriptionInCategory(product);
         return true;
     }
 
@@ -67,7 +88,6 @@ public class Stock {
         if(Objects.equals(product.getPrice(), newPrice))
             throw new Exception("the price of the product equals to the new price");
         product.setPrice(newPrice);
-        stockCategories.get(product.getCategory()).updateProductDescriptionInCategory(product);
         return true;
 
 
@@ -114,7 +134,7 @@ public class Stock {
     }
 
     public boolean containsProduct(String productName) throws Exception {
-        if(productName == null || productName == "")
+        if(productName == null || productName.isBlank())
             throw new Exception("productName is null or empty!");
 
         productName = productName.strip().toLowerCase();
@@ -125,7 +145,7 @@ public class Stock {
     }
 
     public boolean containsCategory(String categoryName) throws Exception {
-        if(categoryName == null || categoryName == "")
+        if(categoryName == null || categoryName.isBlank())
             throw new Exception("categoryName is null or empty!");
 
         categoryName = categoryName.strip().toLowerCase();

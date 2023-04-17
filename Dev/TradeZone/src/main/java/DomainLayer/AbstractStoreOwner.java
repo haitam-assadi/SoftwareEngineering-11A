@@ -11,6 +11,8 @@ public class AbstractStoreOwner extends Role{
 
     public AbstractStoreOwner(Member member) {
         super(member);
+        appointedOwners = new ConcurrentHashMap<>();
+        appointedManagers = new ConcurrentHashMap<>();
     }
 
 

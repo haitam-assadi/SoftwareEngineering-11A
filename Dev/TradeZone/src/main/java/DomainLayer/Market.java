@@ -1,5 +1,6 @@
 package DomainLayer;
 
+import DTO.*;
 import DomainLayer.DTO.*;
 import jdk.jshell.spi.ExecutionControl;
 
@@ -18,6 +19,9 @@ public class Market {
     public String enterMarket(){
         return userController.loginAsGuest();
     }
+    public List<String> getAllGuests(){
+        return userController.getAllGuests();
+    }
 
     public boolean exitMarket(String userName) throws Exception {
         return userController.exitMarket(userName);
@@ -29,6 +33,10 @@ public class Market {
     public String login(String guestUserName, String MemberUserName, String password) throws Exception {
         return userController.login(guestUserName, MemberUserName, password);
     }
+    public String memberLogOut(String memberUserName) throws Exception {
+        return userController.memberLogOut(memberUserName);
+    }
+
     public StoreDTO getStoreInfo(String userName, String storeName) throws Exception {
         userController.assertIsGuestOrLoggedInMember(userName);
         return storeController.getStoreInfo(storeName);
@@ -92,32 +100,35 @@ public class Market {
     public List<BagDTO> getCartContent(String userName) throws Exception {
         userController.assertIsGuestOrLoggedInMember(userName);
         User user = userController.getUser(userName);
-        return user.getCartContent(user);
-    }
-    public String memberLogOut(String memberUserName) throws Exception {
-        // TODO: THE RETURN OF THE THIS FUNCTION IS THE NEW GUEST USER NAME
-        return userController.memberLogOut(memberUserName);
+        return user.getCartContent();
     }
     public StoreDTO createStore(String memberUserName, String newStoreName) throws Exception {
-        userController.isMemberLoggedIn(memberUserName);
+        userController.assertIsMemberLoggedIn(memberUserName);
         Member member = userController.getMember(memberUserName);
-        return storeController.createStore(member,newStoreName);
+        Store store = storeController.createStore(newStoreName);
+        member.appointMemberAsStoreFounder(store);
+        return store.getStoreInfo();
     }
-    public boolean addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String details, Integer amount) throws Exception {
-        return storeController.addNewProductToStock(memberUserName,storeName,nameProduct,category,price,details,amount);
+    public boolean addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount) throws Exception {
+        userController.assertIsMemberLoggedIn(memberUserName);
+        return storeController.addNewProductToStock(memberUserName,storeName,nameProduct,category,price,description,amount);
     }
     public boolean removeProductFromStock(String memberUserName, String storeName, String productName) throws Exception {
+        userController.assertIsMemberLoggedIn(memberUserName);
         return storeController.removeProductFromStock(memberUserName, storeName, productName);
     }
     public boolean updateProductDescription(String memberUserName, String storeName, String productName, String newProductDescription) throws Exception {
+        userController.assertIsMemberLoggedIn(memberUserName);
         return storeController.updateProductDescription(memberUserName, storeName, productName, newProductDescription);
     }
 
     public boolean updateProductAmount(String memberUserName, String storeName, String productName, Integer newAmount) throws Exception {
+        userController.assertIsMemberLoggedIn(memberUserName);
         return storeController.updateProductAmount(memberUserName, storeName, productName, newAmount);
     }
 
     public boolean updateProductPrice(String memberUserName, String storeName, String productName, Double newPrice) throws Exception {
+        userController.assertIsMemberLoggedIn(memberUserName);
         return storeController.updateProductPrice(memberUserName, storeName, productName, newPrice);
     }
 

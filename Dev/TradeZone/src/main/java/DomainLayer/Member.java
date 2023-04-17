@@ -1,8 +1,8 @@
 package DomainLayer;
 
-import DomainLayer.DTO.MemberDTO;
+import DTO.MemberDTO;
 
-import java.security.PrivateKey;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 enum RoleEnum {
@@ -19,14 +19,13 @@ public class Member extends User{
     private SystemManager systemManager;
     private String password;
 
-    private AbstractStoreOwner abstractOwner;
-
     public Member(String userName, String password) {
         super(userName);
+        this.password = password;
+        roles = new ConcurrentHashMap<>();
+        userNotifications = new ArrayList<>();
         this.isSystemManager=false;
         systemManager = null;
-        this.password = password;
-        this.roles = new ConcurrentHashMap<RoleEnum, Role>();
     }
 
     public String getPassword() {
@@ -37,16 +36,16 @@ public class Member extends User{
         return new MemberDTO(this.userName, jobTitle);
     }
     public boolean appointOtherMemberAsStoreOwner(Store store, Member otherMember) throws Exception {
-        //AbstractStoreOwner owner = null;
+        AbstractStoreOwner owner = null;
         String storeName = store.getStoreName();
         if(roles.containsKey(RoleEnum.StoreFounder) && roles.get(RoleEnum.StoreFounder).haveStore(storeName))
-            this.abstractOwner = (StoreFounder)roles.get(RoleEnum.StoreFounder);
+            owner = (StoreFounder)roles.get(RoleEnum.StoreFounder);
         else if (roles.containsKey(RoleEnum.StoreOwner) && roles.get(RoleEnum.StoreOwner).haveStore(storeName))
-            this.abstractOwner = (StoreOwner)roles.get(RoleEnum.StoreOwner);
+            owner = (StoreOwner)roles.get(RoleEnum.StoreOwner);
 
-        if(this.abstractOwner == null) throw new Exception(""+getUserName()+" is not owner for "+storeName);
+        if(owner == null) throw new Exception(""+getUserName()+" is not owner for "+storeName);
         else{
-            this.abstractOwner.appointOtherMemberAsStoreOwner(store,otherMember);
+            owner.appointOtherMemberAsStoreOwner(store,otherMember);
             return true;
         }
     }
@@ -78,16 +77,16 @@ public class Member extends User{
         return false;
     }
     public boolean appointOtherMemberAsStoreManager(Store store, Member otherMember) throws Exception {
-        //AbstractStoreOwner owner = null;
+        AbstractStoreOwner owner = null;
         String storeName = store.getStoreName();
         if(roles.containsKey(RoleEnum.StoreFounder) && roles.get(RoleEnum.StoreFounder).haveStore(storeName))
-            this.abstractOwner = (StoreFounder)roles.get(RoleEnum.StoreFounder);
+            owner = (StoreFounder)roles.get(RoleEnum.StoreFounder);
         else if (roles.containsKey(RoleEnum.StoreOwner) && roles.get(RoleEnum.StoreOwner).haveStore(storeName))
-            this.abstractOwner = (StoreOwner)roles.get(RoleEnum.StoreOwner);
+            owner = (StoreOwner)roles.get(RoleEnum.StoreOwner);
 
-        if(this.abstractOwner == null) throw new Exception(""+getUserName()+" is not owner for "+storeName);
+        if(owner == null) throw new Exception(""+getUserName()+" is not owner for "+storeName);
         else{
-            this.abstractOwner.appointOtherMemberAsStoreManager(store,otherMember);
+            owner.appointOtherMemberAsStoreManager(store,otherMember);
             return true;
         }
     }
@@ -105,6 +104,19 @@ public class Member extends User{
         store.appointMemberAsStoreManager(storeManagerRole);//TODO: CHECK IF OWNER IN THE STORE
         return true;
     }
+
+    public boolean appointMemberAsStoreFounder(Store store) throws Exception {
+        if(store.alreadyHaveFounder())
+            throw new Exception("store "+store.getStoreName()+" already have a founder");
+
+        roles.putIfAbsent(RoleEnum.StoreFounder, new StoreFounder(this));
+        StoreFounder storeFounderRole =  (StoreFounder) roles.get(RoleEnum.StoreFounder);
+
+        storeFounderRole.appointMemberAsStoreFounder(store);
+        store.setStoreFounderAtStoreCreation(storeFounderRole);
+        return true;
+    }
+
     public StoreManager getStoreManager(){
         StoreManager storeManagerRole =  (StoreManager) roles.get(RoleEnum.StoreManager);
         return storeManagerRole;
@@ -124,8 +136,8 @@ public class Member extends User{
             default: return null;
         }
     }
-
+/*
     public void setAbstractOwner(AbstractStoreOwner owner){
         this.abstractOwner = owner;
-    }
+    }*/
 }

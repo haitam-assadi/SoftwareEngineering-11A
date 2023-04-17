@@ -1,15 +1,14 @@
-package DomainLayer.DTO;
+package DTO;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class StoreDTO {
 
-    String storeName;
-    String founderName;
-    List<String> ownersNames;
-    List<String> managersNames;
-    List<ProductDTO> productsInfo; //TODO: maybe productDTO instead of String
+    public String storeName;
+    public String founderName;
+    public List<String> ownersNames;
+    public List<String> managersNames;
+    public List<ProductDTO> productsInfo; //TODO: maybe productDTO instead of String
 
 
     public StoreDTO(String storeName, String founderName, List<String> ownersNames, List<String> managersNames, List<ProductDTO> productsInfo) {

@@ -1,7 +1,8 @@
 package DomainLayer;
 
-import DomainLayer.DTO.BagDTO;
+import DTO.BagDTO;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class User {
@@ -13,6 +14,7 @@ public abstract class User {
     public User(String userName){
         this.userName = userName;
         this.cart = new Cart(this);
+        userDeals = new ArrayList<>();
     }
 
     public String getUserName(){
@@ -43,7 +45,7 @@ public abstract class User {
     }
 
 
-    public List<BagDTO> getCartContent(User user) throws Exception {
-        return cart.getCartContent(user);
+    public List<BagDTO> getCartContent() throws Exception {
+        return cart.getCartContent();
     }
 }

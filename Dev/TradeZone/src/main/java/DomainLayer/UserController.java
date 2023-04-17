@@ -1,9 +1,5 @@
 package DomainLayer;
 
-import DomainLayer.DTO.DealDTO;
-import DomainLayer.DTO.ProductDTO;
-import jdk.jshell.spi.ExecutionControl;
-
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
@@ -24,7 +20,6 @@ public class UserController {
         guestsCounter=0;
     }
 
-    //TODO: CHECK WERE WE DO THE MEMBER logged in
     public synchronized String loginAsGuest(){
         String guestUserName = "Guest_"+ guestsCounter;
         guestsCounter++;
@@ -32,20 +27,15 @@ public class UserController {
         return guestUserName;
     }
 
-    public synchronized boolean guestLogOut(String guestUserName) throws Exception {
-        if (guestUserName == null || guestUserName == "")
-            throw new Exception("Can't log out: guestUserName is null or empty");
-
-        if(!guests.containsKey(guestUserName))
-            throw new Exception("Can't log out "+guestUserName+", because this user name does not Exist");
-
-        // TODO: check if we want to delete all guest pointers( his cart products)
-        guests.remove(guestUserName);
-        return true;
-    }
 
     public boolean exitMarket(String userName) throws Exception {
-        throw new ExecutionControl.NotImplementedException("");
+        assertIsGuestOrLoggedInMember(userName);
+        if(isGuest(userName))
+            guests.remove(userName);
+        else
+            loggedInMemberExitMarket(userName);
+
+        return true;
     }
     public boolean register(String guestUserName, String newMemberUserName, String password) throws Exception {
         registerValidateParameters(guestUserName, newMemberUserName, password);
@@ -57,26 +47,45 @@ public class UserController {
     }
 
     private void registerValidateParameters(String guestUserName, String newMemberUserName, String password) throws Exception {
-        if(guestUserName==null || guestUserName == "")
-            throw new Exception("can't register: guestUserName is null or empty");
-        if(newMemberUserName==null || newMemberUserName == "")
-            throw new Exception("can't register: newMemberUserName is null or empty");
-        if(password==null || password == "")
-            throw new Exception("can't register: password is null or empty");
-
-        guestUserName = guestUserName.strip().toLowerCase();
-        newMemberUserName = newMemberUserName.strip().toLowerCase();
-
-        if(! guests.containsKey(guestUserName))
-            throw new Exception("can't register: "+ guestUserName+" is not a guest!");
-        if(membersNamesConcurrentSet.contains(newMemberUserName))
-            throw new Exception("can't register: userName "+ newMemberUserName+" already exists!");
-        if(!Character.isAlphabetic(newMemberUserName.charAt(0)))
-            throw new Exception("can't register: "+ newMemberUserName+" is not valid userName!");
-        if(password.length() < 8 || !password.matches(".*[0-9]+.*") || !password.toLowerCase().matches(".*[a-z]+.*"))
-            throw new Exception("can't register: password must have at least 8 characters, at least one digit and one char");
-
+        assertIsGuest(guestUserName);
+        assertIsNotMember(newMemberUserName);
+        asserIsValidUserName(newMemberUserName);
+        assertIsValidPassword(password);
     }
+
+    public boolean isValidPassword(String password) throws Exception {
+        assertStringIsNotNullOrBlank(password);
+
+        if(password.length() < 8 || !password.matches(".*[0-9]+.*") || !password.toLowerCase().matches(".*[a-z]+.*"))
+            return false;
+
+        return true;
+    }
+
+    public void assertIsValidPassword(String password) throws Exception {
+        if(!isValidPassword(password))
+            throw new Exception("password must have at least 8 characters, at least one digit and one char");
+    }
+
+    public boolean isValidUserName(String userName) throws Exception {
+        assertStringIsNotNullOrBlank(userName);
+
+        userName = userName.strip().toLowerCase();
+
+        if(!Character.isAlphabetic(userName.charAt(0)))
+            return false;
+
+        if(userName.contains(" "))
+            return false;
+
+        return true;
+    }
+
+    public void asserIsValidUserName(String userName) throws Exception {
+        if(!isValidUserName(userName))
+            throw new Exception(""+ userName+" is not valid userName!");
+    }
+
 
     public String login(String guestUserName, String MemberUserName, String password) throws Exception {
         loginValidateParameters(guestUserName, MemberUserName, password);
@@ -91,26 +100,15 @@ public class UserController {
     }
 
     private void loginValidateParameters(String guestUserName, String MemberUserName, String password) throws Exception {
-        if(guestUserName==null || guestUserName == "")
-            throw new Exception("can't login: guestUserName is null or empty");
-        if(MemberUserName==null || MemberUserName == "")
-            throw new Exception("can't login: newMemberUserName is null or empty");
-        if(password==null || password == "")
-            throw new Exception("can't login: password is null or empty");
+        assertStringIsNotNullOrBlank(password);
+        assertIsGuest(guestUserName);
+        assertIsMember(MemberUserName);
+        assertIsMemberLoggedOut(MemberUserName);
+    }
 
-        guestUserName = guestUserName.strip().toLowerCase();
-        MemberUserName = MemberUserName.strip().toLowerCase();
-
-        if(! guests.containsKey(guestUserName))
-            throw new Exception("can't login: "+ guestUserName+" is not a guest!");
-
-        if(!membersNamesConcurrentSet.contains(MemberUserName))
-            throw new Exception("can't login: userName "+ MemberUserName+" does not exists!");
-
-        if(!loggedInMembers.keySet().contains(MemberUserName))
-            //TODO synchronization check
-            throw new Exception("can't login:"+ MemberUserName+" already logged in!");
-
+    public void assertStringIsNotNullOrBlank(String st) throws Exception {
+        if(st==null || st.isBlank())
+            throw new Exception("string is null or empty");
     }
 
     public Member getMember(String userName) throws Exception {
@@ -141,11 +139,13 @@ public class UserController {
             //TODO synchronization check
             throw new Exception("Member:"+ userName+" is not logged in!");
     }
+    public List<String> getAllGuests(){
+        return guests.keySet().stream().toList();
+    }
 
 
     public boolean isGuest(String userName) throws Exception {
-        if(userName==null || userName == "")
-            throw new Exception("userName is null or empty");
+        assertStringIsNotNullOrBlank(userName);
 
         userName = userName.strip().toLowerCase();
         if(!guests.containsKey(userName) )
@@ -159,8 +159,7 @@ public class UserController {
     }
 
     public boolean isMember(String memberUserName) throws Exception {
-        if(memberUserName==null || memberUserName == "")
-            throw new Exception("memberUserName is null or empty");
+        assertStringIsNotNullOrBlank(memberUserName);
 
         memberUserName = memberUserName.strip().toLowerCase();
         if(!membersNamesConcurrentSet.contains(memberUserName))
@@ -172,6 +171,11 @@ public class UserController {
     public void assertIsMember(String memberUserName) throws Exception {
         if(!isMember(memberUserName))
             throw new Exception("userName "+ memberUserName+" does not exists!");
+    }
+
+    public void assertIsNotMember(String memberUserName) throws Exception {
+        if(isMember(memberUserName))
+            throw new Exception(""+ memberUserName+" is already a member");
     }
 
     public boolean isMemberLoggedIn(String memberUserName) throws Exception {
@@ -187,6 +191,11 @@ public class UserController {
     public void assertIsMemberLoggedIn(String memberUserName) throws Exception {
         if(!isMemberLoggedIn(memberUserName))
             throw new Exception(""+ memberUserName+" is not logged in");
+    }
+
+    public void assertIsMemberLoggedOut(String memberUserName) throws Exception {
+        if(isMemberLoggedIn(memberUserName))
+            throw new Exception(""+ memberUserName+" is already logged in");
     }
 
     public boolean appointOtherMemberAsStoreOwner(String memberUserName, Store store, String newOwnerUserName) throws Exception {
@@ -218,10 +227,15 @@ public class UserController {
     }
 
     public String memberLogOut(String memberUserName) throws Exception {
-        //TODO: CHECK IF THE CART OF THE MEMBER IS NOT DELETED
         assertIsMemberLoggedIn(memberUserName);
         loggedInMembers.remove(memberUserName);
         String newGuest = loginAsGuest();
         return newGuest;
+    }
+
+    public boolean loggedInMemberExitMarket(String memberUserName) throws Exception {
+        assertIsMemberLoggedIn(memberUserName);
+        loggedInMembers.remove(memberUserName);
+        return true;
     }
 }
