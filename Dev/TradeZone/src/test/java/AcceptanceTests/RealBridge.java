@@ -1,6 +1,7 @@
 package AcceptanceTests;
 
 import DTO.BagDTO;
+import DTO.MemberDTO;
 import DTO.ProductDTO;
 import DTO.StoreDTO;
 import ServiceLayer.ResponseT;
@@ -181,9 +182,15 @@ public class RealBridge implements Bridge{
     }
 
     @Override
-    public String closeStore(String memberUserName, String storeName) {
+    public boolean closeStore(String memberUserName, String storeName) throws Exception {
+        // I changed the return type, it was String
         // TODO: closeStore in service returns boolean
-            return "";
+        ResponseT<Boolean> response = systemService.closeStore(memberUserName, storeName);
+        if (response.ErrorOccurred){
+            throw new Exception(response.errorMessage);
+        }
+        return response.getValue();
+//            return "";
     }
 
     @Override
@@ -194,11 +201,32 @@ public class RealBridge implements Bridge{
         }
         return true;
     }
-
     @Override
-    public Map<Integer, List<String>> getStoreRulesInfo(String ownerName, String storeName) { // TODO: add to market and service
+    public Map<Integer, List<String>> getStoreRulesInfo(String ownerName, String storeName) throws Exception { // TODO: add to market and service
         // List<memberDTO> getStoreWorkersInfo
-        return new HashMap<>();
+        ResponseT<List<MemberDTO>> response = systemService.getStoreWorkersInfo(ownerName, storeName);
+        if (response.ErrorOccurred){
+            throw new Exception(response.errorMessage);
+        }
+        Map<Integer, List<String>> rulesInfo = new HashMap<>();
+        for(MemberDTO member : response.getValue()){
+            if(member.jobTitle.equals("StoreFounder")){
+                if(!rulesInfo.containsKey(0))
+                    rulesInfo.put(0, new LinkedList<>());
+                rulesInfo.get(0).add(member.username);
+            }
+            else if (member.jobTitle.equals("StoreOwner")){
+                if(!rulesInfo.containsKey(1))
+                    rulesInfo.put(1, new LinkedList<>());
+                rulesInfo.get(1).add(member.username);
+            }
+            else if (member.jobTitle.equals("StoreManager")){
+                if(!rulesInfo.containsKey(2))
+                    rulesInfo.put(2, new LinkedList<>());
+                rulesInfo.get(2).add(member.username);
+            }
+        }
+        return rulesInfo;
     }
 
     @Override
@@ -465,9 +493,10 @@ public class RealBridge implements Bridge{
 
         if(bagContent !=null ){
             for(ProductDTO productDTO: bagContent.keySet()){
-                if(productDTO.name.equals(productName))
+                if(productDTO.name.equals(productName)){
                     productAmount = bagContent.get(productDTO);
-                break;
+                    break;
+                }
             }
         }
         return productAmount;

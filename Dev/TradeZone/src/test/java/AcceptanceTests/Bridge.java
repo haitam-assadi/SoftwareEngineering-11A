@@ -65,7 +65,7 @@ public interface Bridge {
     String getManagerAppointer(String ManagerName, String storeName) throws Exception;
 
     //II.4.9
-    public String closeStore(String memberUserName, String storeName) throws Exception;
+    public boolean closeStore(String memberUserName, String storeName) throws Exception;
 
     public boolean canGetStoreInfo(String userName, String storeName) throws Exception;
 

@@ -129,6 +129,9 @@ public class Stock {
         if( currentProductAmount < amount)
             throw new Exception(""+productName+" have only "+ currentProductAmount +" amount in stock!");
 
+        if(amount < 0)
+            throw new Exception("The amount must be positive, it can't be " + amount);
+
         productName = productName.strip().toLowerCase();
         return stockProducts.get(productName).keys().nextElement();
     }

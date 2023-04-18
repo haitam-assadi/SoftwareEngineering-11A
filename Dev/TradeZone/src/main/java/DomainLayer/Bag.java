@@ -32,7 +32,7 @@ public class Bag {
         if(! bagContent.containsKey(productName))
             throw new Exception("bag does not contain "+productName+" product");
         Product product =storeBag.getProductWithAmount(productName,newAmount);
-        bagContent.get(product).put(product,newAmount);
+        bagContent.get(productName).put(product,newAmount);
         return true;
     }
 
