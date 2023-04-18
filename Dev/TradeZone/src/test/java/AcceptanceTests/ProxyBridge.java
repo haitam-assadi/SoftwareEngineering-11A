@@ -178,11 +178,12 @@ public class ProxyBridge implements Bridge{
     }
 
     @Override
-    public String closeStore(String memberUserName, String storeName) throws Exception {
+    public boolean closeStore(String memberUserName, String storeName) throws Exception {
         if(realBridge!=null){
             return realBridge.closeStore(memberUserName,storeName);
         }
-        return "";
+        return false;
+//        return "";
     }
 
     @Override

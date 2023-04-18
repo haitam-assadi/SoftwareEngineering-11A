@@ -9,7 +9,7 @@ public class SystemTests {
 
     @BeforeAll
     public void setUp(){
-        proxy = new ProxyBridge();
+        proxy = new ProxyBridge(new RealBridge());
     }
 
     @Test
