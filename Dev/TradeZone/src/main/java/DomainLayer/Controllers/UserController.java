@@ -1,4 +1,9 @@
-package DomainLayer;
+package DomainLayer.Controllers;
+
+import DomainLayer.Guest;
+import DomainLayer.Member;
+import DomainLayer.Store;
+import DomainLayer.User;
 
 import java.util.List;
 import java.util.Set;

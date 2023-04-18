@@ -1,7 +1,8 @@
 package DomainLayer;
 
 import DTO.*;
-import ServiceLayer.ResponseT;
+import DomainLayer.Controllers.StoreController;
+import DomainLayer.Controllers.UserController;
 import jdk.jshell.spi.ExecutionControl;
 
 import java.util.List;

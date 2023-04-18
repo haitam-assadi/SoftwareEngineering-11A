@@ -1,9 +1,10 @@
-package DomainLayer;
+package DomainLayer.Controllers;
 
 import DTO.DealDTO;
 import DTO.MemberDTO;
 import DTO.ProductDTO;
 import DTO.StoreDTO;
+import DomainLayer.Store;
 
 import java.util.ArrayList;
 import java.util.List;
