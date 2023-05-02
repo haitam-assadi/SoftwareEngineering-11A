@@ -15,8 +15,6 @@ public class Cart {
         bags = new ConcurrentHashMap<>();
     }
 
-
-
     public boolean addToCart(Store store, String productName, Integer amount) throws Exception {
         bags.putIfAbsent(store.getStoreName(), new Bag(store));
         return bags.get(store.getStoreName()).addProduct(productName, amount);
@@ -41,5 +39,17 @@ public class Cart {
         for(Bag bag: bags.values())
             bagsDTO.add(bag.getBagInfo());
         return bagsDTO;
+    }
+
+    public void validateStorePolicy(String userName) {
+        for(Bag bag : bags.values()){
+            bag.validateStorePolicy(userName);
+        }
+    }
+
+    public void validateAllProductsAmounts() throws Exception {
+        for(Bag bag : bags.values()){
+            bag.validateAllProductsAmounts();
+        }
     }
 }

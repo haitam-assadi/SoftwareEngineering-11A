@@ -1,9 +1,6 @@
 package DomainLayer.Controllers;
 
-import DomainLayer.Guest;
-import DomainLayer.Member;
-import DomainLayer.Store;
-import DomainLayer.User;
+import DomainLayer.*;
 
 import java.util.List;
 import java.util.Set;
@@ -258,5 +255,27 @@ public class UserController {
         assertIsMemberLoggedIn(memberUserName);
         loggedInMembers.remove(memberUserName);
         return true;
+    }
+
+    public void validateStorePolicy(String userName) throws Exception {
+        User user;
+        assertIsGuestOrLoggedInMember(userName);
+        userName = userName.strip().toLowerCase();
+        if(isGuest(userName))
+            user= guests.get(userName);
+        else
+            user = members.get(userName);
+        user.getCart().validateStorePolicy(userName);
+    }
+
+    public void validateAllProductsAmounts(String userName) throws Exception {
+        User user;
+        assertIsGuestOrLoggedInMember(userName);
+        userName = userName.strip().toLowerCase();
+        if(isGuest(userName))
+            user= guests.get(userName);
+        else
+            user = members.get(userName);
+        user.getCart().validateAllProductsAmounts();
     }
 }
