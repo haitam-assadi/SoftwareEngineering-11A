@@ -259,4 +259,7 @@ public class UserController {
         loggedInMembers.remove(memberUserName);
         return true;
     }
+
+    public void closeStore(String memberUserName, String storeName) {
+    }
 }

@@ -3,8 +3,9 @@
   <component name="GithubSharedProjectSettings">
     <option name="branchProtectionPatterns">
       <list>
-        <option value="master" />
         <option value="version_1_master" />
+        <option value="master" />
+        <option value="version_2_master" />
       </list>
     </option>
   </component>

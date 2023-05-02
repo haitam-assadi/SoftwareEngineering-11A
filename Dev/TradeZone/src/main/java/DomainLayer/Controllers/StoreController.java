@@ -57,32 +57,32 @@ public class StoreController {
 
 
     public StoreDTO getStoreInfo(String storeName) throws Exception {
-        isActiveStore(storeName);
         storeName=storeName.strip().toLowerCase();
+        isActiveStore(storeName);
         return stores.get(storeName).getStoreInfo();
     }
 
     public ProductDTO getProductInfoFromStore(String storeName, String productName) throws Exception {
-        isActiveStore(storeName);
-
         storeName = storeName.strip().toLowerCase();
+        isActiveStore(storeName);
         return stores.get(storeName).getProductInfo(productName);
     }
 
     public List<ProductDTO> getProductInfoFromMarketByName(String productName) throws Exception {
         List<ProductDTO> productDTOList = new ArrayList<>();
         for(Store store: stores.values())
-            //TODO:: does store needs to be active so we can ask for products info ??
+            String storeName =  store.getStoreName();
+            isActiveStore(storeName);
             if(store.containsProduct(productName))
                 productDTOList.add(store.getProductInfo(productName));
-
         return productDTOList;
     }
 
     public List<ProductDTO> getProductInfoFromMarketByCategory(String categoryName) throws Exception {
         List<ProductDTO> productDTOList = new ArrayList<>();
         for(Store store: stores.values())
-            //TODO:: does store needs to be active so we can ask for products info ??
+            String storeName =  store.getStoreName();
+            isActiveStore(storeName);
             if(store.containsCategory(categoryName))
                 productDTOList.addAll(store.getProductsInfoByCategory(categoryName));
 

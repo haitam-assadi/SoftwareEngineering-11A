@@ -160,6 +160,7 @@ public class Market {
     }
 
     public boolean closeStore(String memberUserName, String storeName) throws Exception {
+        userController.assertIsMemberLoggedIn(memberUserName);
         return storeController.closeStore(memberUserName, storeName);
         //TODO: adel, not completed.
     }
