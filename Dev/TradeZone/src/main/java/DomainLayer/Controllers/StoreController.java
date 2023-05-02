@@ -166,4 +166,8 @@ public class StoreController {
     public List<String> getAllStoresNames(){
         return stores.keySet().stream().toList();
     }
+
+    public boolean purchaseCartByCreditCard(String userName, String cardNumber, String month, String year, String holder, String ccv, String id) {
+        return true;
+    }
 }

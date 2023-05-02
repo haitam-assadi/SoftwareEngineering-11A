@@ -179,4 +179,10 @@ public class Market {
         return this.storeController.getMemberDeals(otherMemberUserName);
     }
 
+    public boolean purchaseCartByCreditCard(String userName, String cardNumber, String month, String year, String holder, String ccv, String id) throws Exception {
+        userController.validateStorePolicy(userName);
+        userController.validateAllProductsAmounts(userName);
+        return this.storeController.purchaseCartByCreditCard(userName,cardNumber,month,year,holder,ccv,id);
+    }
+
 }

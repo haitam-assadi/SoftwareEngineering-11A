@@ -270,4 +270,10 @@ public class Store {
     public void setStoreOwner(String ownerName, StoreOwner owner) {
         this.storeOwners.put(ownerName, owner);
     }
+
+    public void validateStorePolicy(String userName, Product product, Integer amount) {
+        for(PaymentPolicy paymentPolicy : storePaymentPolicies){
+            paymentPolicy.AssertValidate(userName,product,amount);
+        }
+    }
 }
