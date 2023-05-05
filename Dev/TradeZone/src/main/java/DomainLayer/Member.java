@@ -136,6 +136,25 @@ public class Member extends User{
             default: return null;
         }
     }
+
+    public boolean removeOwnerByHisAppointer(Store store, Member otherMember) throws Exception {
+        AbstractStoreOwner owner = null;
+        StoreOwner otherOwner = null;
+        String storeName = store.getStoreName();
+        if(roles.containsKey(RoleEnum.StoreFounder) && roles.get(RoleEnum.StoreFounder).haveStore(storeName))
+            owner = (StoreFounder)roles.get(RoleEnum.StoreFounder);
+        else if (roles.containsKey(RoleEnum.StoreOwner) && roles.get(RoleEnum.StoreOwner).haveStore(storeName))
+            owner = (StoreOwner)roles.get(RoleEnum.StoreOwner);
+        if(owner == null) throw new Exception(""+getUserName()+" is not owner for "+storeName);
+        otherOwner = otherMember.getStoreOwner();
+        if(otherOwner == null) throw new Exception(""+otherOwner.getUserName()+" is not owner");
+        else{
+            owner.removeOwnerByHisAppointer(store,otherMember,otherOwner);
+            return true;
+        }
+    }
+
+
 /*
     public void setAbstractOwner(AbstractStoreOwner owner){
         this.abstractOwner = owner;

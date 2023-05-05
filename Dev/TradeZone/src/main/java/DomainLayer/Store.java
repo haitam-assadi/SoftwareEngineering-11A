@@ -276,4 +276,8 @@ public class Store {
             paymentPolicy.AssertValidate(userName,product,amount);
         }
     }
+
+    public void removeOwner(String userName) {
+        storeOwners.remove(userName);
+    }
 }

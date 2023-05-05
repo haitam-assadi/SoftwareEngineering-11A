@@ -185,4 +185,9 @@ public class Market {
         return this.storeController.purchaseCartByCreditCard(userName,cardNumber,month,year,holder,ccv,id);
     }
 
+    public boolean removeOwnerByHisAppointer(String appointerUserName, String storeName, String ownerUserName ) throws Exception {
+        Store store = storeController.getStore(storeName); // TODO: MAYBE WE NEED TO CHECK IF STORE IS ACTIVE
+        return userController.removeOwnerByHisAppointer(appointerUserName,store,ownerUserName);
+    }
+
 }

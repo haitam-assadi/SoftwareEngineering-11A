@@ -278,4 +278,12 @@ public class UserController {
             user = members.get(userName);
         user.getCart().validateAllProductsAmounts();
     }
+
+    public boolean removeOwnerByHisAppointer(String appointerUserName, Store store, String ownerUserName) throws Exception {
+        assertIsMemberLoggedIn(appointerUserName); // assert
+        assertIsMember(ownerUserName); // assert
+        Member member = getMember(appointerUserName);
+        Member otherMember = getMember(ownerUserName);
+        return member.removeOwnerByHisAppointer(store, otherMember);
+    }
 }

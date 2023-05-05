@@ -31,4 +31,16 @@ public class AbstractStoreOwner extends Role{
         appointedManagers.get(storeName).add(otherMember.getStoreManager());
         return true;
     }
+
+    public void removeOwnerByHisAppointer(Store store, Member otherMember, StoreOwner otherOwner) throws Exception {
+        String storeName = store.getStoreName();
+        if(appointedOwners.containsKey(storeName)){
+            if(!appointedOwners.get(storeName).contains(otherOwner)) throw new Exception(""+otherMember.getUserName()+" is not owner for "+storeName + " by "+getUserName());
+        if(!store.isAlreadyStoreOwner(otherMember.getUserName())) throw new Exception(""+otherMember.getUserName()+" is not owner for "+storeName);
+        }else{
+            otherOwner.removeOwnerByHisAppointer(store,this);
+            appointedOwners.get(storeName).remove(otherOwner);
+            store.removeOwner(otherMember.getUserName());
+        }
+    }
 }
