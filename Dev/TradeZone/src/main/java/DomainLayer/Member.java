@@ -114,6 +114,7 @@ public class Member extends User{
 
         storeFounderRole.appointMemberAsStoreFounder(store);
         store.setStoreFounderAtStoreCreation(storeFounderRole);
+        //todo: add the permissions
         return true;
     }
 
