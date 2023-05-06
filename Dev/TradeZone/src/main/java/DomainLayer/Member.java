@@ -154,6 +154,16 @@ public class Member extends User{
         }
     }
 
+    public void assertIsOwnerForTheStore(Store store) throws Exception {
+        AbstractStoreOwner owner = null;
+        String storeName = store.getStoreName();
+        if(roles.containsKey(RoleEnum.StoreFounder) && roles.get(RoleEnum.StoreFounder).haveStore(storeName))
+            owner = (StoreFounder)roles.get(RoleEnum.StoreFounder);
+        else if (roles.containsKey(RoleEnum.StoreOwner) && roles.get(RoleEnum.StoreOwner).haveStore(storeName))
+            owner = (StoreOwner)roles.get(RoleEnum.StoreOwner);
+        if(owner == null) throw new Exception(""+getUserName()+" is not owner for "+storeName);
+    }
+
 
 /*
     public void setAbstractOwner(AbstractStoreOwner owner){

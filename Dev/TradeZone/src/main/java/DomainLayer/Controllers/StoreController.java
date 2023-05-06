@@ -57,8 +57,6 @@ public class StoreController {
 
 
     public StoreDTO getStoreInfo(String storeName) throws Exception {
-        storeName=storeName.strip().toLowerCase();
-        isActiveStore(storeName);
         return stores.get(storeName).getStoreInfo();
     }
 
@@ -169,4 +167,9 @@ public class StoreController {
     }
 
 
+    public boolean assertisActive(String storeName) throws Exception {
+        storeName=storeName.strip().toLowerCase();
+        assertIsStore(storeName);
+        return stores.get(storeName).isActive();
+    }
 }
