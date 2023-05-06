@@ -326,12 +326,10 @@ public class StoreTests {
     public void founder_close_store_success(){
         try{
             Assertions.assertTrue(proxy.appointOtherMemberAsStoreOwner(store_founder, storeName, member_name1));
-//            String closeNotification = proxy.closeStore(store_founder,storeName); // delete?
             Assertions.assertTrue(proxy.closeStore(store_founder, storeName));
             Assertions.assertThrows(Exception.class, () -> proxy.canGetStoreInfo(member_name2, storeName));
-//            Assertions.assertTrue(proxy.canGetStoreInfo(member_name1, storeName)); // TODO: uncomment after fixing canGetStoreInfo function
-//            Assertions.assertTrue(proxy.getStoreOwnersNames(store_founder, storeName).contains(member_name1)); // TODO: uncomment after fixing getStoreInfo function
-//            Assertions.assertEquals(0, proxy.getStoreProducts(member_name2, storeName).size()); // delete?
+            Assertions.assertTrue(proxy.canGetStoreInfo(member_name1, storeName)); // TODO: uncomment after fixing canGetStoreInfo function
+            Assertions.assertTrue(proxy.getStoreOwnersNames(store_founder, storeName).contains(member_name1)); // TODO: uncomment after fixing getStoreInfo function
             Assertions.assertThrows(Exception.class, () -> proxy.getStoreProducts(member_name2, storeName)); // TODO: maybe we should check search function, not get store products
             //todo: should check the case of closed store but founder assigns owner or manager for it.
         }catch (Exception e){
@@ -342,24 +340,12 @@ public class StoreTests {
     @Test
     public void founder_close_store_owner_try_fail(){
         try{
-            // Baraa test
             proxy.addNewProductToStock(store_founder, storeName, "iphone 14", "Iphones", 3000.0, "256 Gb", 50);
             Assertions.assertTrue(proxy.appointOtherMemberAsStoreOwner(store_founder, storeName, member_name1));
-//            String closeNotification = proxy.closeStore(member_name1, storeName); // delete?
             Assertions.assertThrows(Exception.class, () -> proxy.closeStore(member_name1, storeName));
             Assertions.assertTrue(proxy.canGetStoreInfo(member_name2, storeName));
             Assertions.assertTrue(proxy.canGetStoreInfo(member_name1, storeName));
             Assertions.assertEquals(1,proxy.getStoreProducts(member_name2, storeName).size());
-
-
-            // Moslem test
-////            Assertions.assertTrue(proxy.addCategory(store_founder,"Iphones",storeName));
-//            proxy.addNewProductToStock(store_founder, storeName, "iphone 14", "Iphones", 3000.0, "256 Gb", 50);
-//            Assertions.assertTrue(proxy.appointOtherMemberAsStoreOwner(store_founder, storeName, member_name1));
-//            String closeNotification = proxy.closeStore(member_name1, storeName);
-//            Assertions.assertTrue(proxy.canGetStoreInfo(member_name2, storeName));
-//            Assertions.assertTrue(proxy.canGetStoreInfo(member_name1, storeName));
-//            Assertions.assertEquals(1,proxy.getStoreProducts(member_name2, storeName).size());
         }catch (Exception e){
             Assertions.fail(e.getMessage());
         }
@@ -388,7 +374,49 @@ public class StoreTests {
         }
     }
 
-    // II.4.13
+    //II.4.5
+    @Test
+    public void remove_owner_by_founder_success(){
+        try{
+            proxy.appointOtherMemberAsStoreOwner(store_founder, storeName, member_name1);
+            Assertions.assertTrue(proxy.removeOwnerByHisAppointer(store_founder,storeName,member_name1));
+        }catch (Exception e){
+            Assertions.fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void remove_owner_by_owner_success(){
+        try{
+            proxy.appointOtherMemberAsStoreOwner(store_founder, storeName, member_name1);
+            proxy.appointOtherMemberAsStoreOwner(member_name1, storeName, member_name2);
+            Assertions.assertTrue(proxy.removeOwnerByHisAppointer(member_name1,storeName,member_name2));
+        }catch (Exception e){
+            Assertions.fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void remove_owner_by_him_self_fail(){
+        try{
+            proxy.appointOtherMemberAsStoreOwner(store_founder, storeName, member_name1);
+            Assertions.assertThrows(Exception.class,()-> proxy.removeOwnerByHisAppointer(store_founder,storeName,store_founder));
+            Assertions.assertThrows(Exception.class,()-> proxy.removeOwnerByHisAppointer(member_name1,storeName,member_name1));
+        }catch (Exception e){
+            Assertions.fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void remove_owner_by_not_his_appointer_fail(){
+        try{
+            proxy.appointOtherMemberAsStoreOwner(store_founder, storeName, member_name1);
+            proxy.appointOtherMemberAsStoreOwner(store_founder, storeName, member_name2);
+            Assertions.assertThrows(Exception.class,()-> proxy.removeOwnerByHisAppointer(member_name1,storeName,member_name2));
+        }catch (Exception e){
+            Assertions.fail(e.getMessage());
+        }
+    }
 
 
 

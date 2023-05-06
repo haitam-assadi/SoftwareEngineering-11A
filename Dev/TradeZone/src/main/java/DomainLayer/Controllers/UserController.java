@@ -291,4 +291,11 @@ public class UserController {
         Member otherMember = getMember(ownerUserName);
         return member.removeOwnerByHisAppointer(store, otherMember);
     }
+
+    public void assertIsOwner(String userName,Store store) throws Exception {
+        assertIsMember(userName);
+        assertIsMemberLoggedIn(userName);
+        Member member = getMember(userName);
+        member.assertIsOwnerForTheStore(store);
+    }
 }

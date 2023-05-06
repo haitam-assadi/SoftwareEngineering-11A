@@ -350,4 +350,20 @@ public class SystemService {
             return new ResponseT<>("getMemberDeals: "+e.getMessage());
         }
     }
+
+    public ResponseT<Boolean> purchaseCartByCreditCard(String userName, String cardNumber, String month, String year, String holder, String cvv, String id, String receiverName, String shipmentAddress, String shipmentCity, String shipmentCountry, String zipCode) {
+        try{
+            return new ResponseT<>(market.purchaseCartByCreditCard(userName, cardNumber, month, year, holder, cvv, id, receiverName, shipmentAddress, shipmentCity, shipmentCountry, zipCode));
+        }catch(Exception e){
+            return new ResponseT<>("purchaseCartByCreditCard: "+e.getMessage());
+        }
+    }
+
+    public ResponseT<Boolean> removeOwnerByHisAppointer(String appointerUserName, String storeName, String ownerUserName) {
+        try{
+            return new ResponseT<>(market.removeOwnerByHisAppointer(appointerUserName, storeName,ownerUserName));
+        }catch(Exception e){
+            return new ResponseT<>("removeOwnerByHisAppointer: "+e.getMessage());
+        }
+    }
 }

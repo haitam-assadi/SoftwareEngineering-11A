@@ -55,6 +55,10 @@ public class Market {
 
     public StoreDTO getStoreInfo(String userName, String storeName) throws Exception {
         userController.assertIsGuestOrLoggedInMember(userName);
+        boolean active = storeController.assertisActive(storeName);
+        if(active) return storeController.getStoreInfo(storeName);
+        Store store = storeController.getStore(storeName);
+        userController.assertIsOwner(userName,store);
         return storeController.getStoreInfo(storeName);
     }
     public ProductDTO getProductInfoFromStore(String userName, String storeName, String productName) throws Exception {
@@ -171,6 +175,7 @@ public class Market {
 
     public List<MemberDTO> getStoreWorkersInfo(String memberUserName, String storeName) throws Exception {
         // TODO: low priority , DON'T test it, dont forget to change function parameters
+        userController.assertIsMemberLoggedIn(memberUserName);
         return storeController.getStoreWorkersInfo(memberUserName, storeName);
     }
 

@@ -109,4 +109,6 @@ public interface Bridge {
 
     public boolean changeProductAmountInCart (String userName, String storeName, String productName, Integer newAmount) throws Exception;
 
+    public boolean removeOwnerByHisAppointer(String appointerUserName, String storeName, String ownerUserName ) throws Exception;
+    public boolean purchaseCartByCreditCard(String userName, String cardNumber, String month, String year, String holder, String cvv, String id, String receiverName,String shipmentAddress,String shipmentCity,String shipmentCountry,String zipCode) throws Exception;
 }

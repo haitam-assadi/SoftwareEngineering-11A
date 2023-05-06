@@ -1,15 +1,13 @@
 package AcceptanceTests;
 import org.junit.jupiter.api.*;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 
 import java.util.List;
 @TestInstance(value = TestInstance.Lifecycle.PER_CLASS)
 public class MemberTests {
 
 
-    String moslemUserName = "moslem123";
-    String moslemPassword = "Aa123456";
+    String member1Name = "member1";
+    String member1Password = "Aa123456";
     private ProxyBridge proxy= new ProxyBridge(new RealBridge());;
     private String user;
 
@@ -20,7 +18,7 @@ public class MemberTests {
             System.out.println("exception thrown");
         }
         user = proxy.enterMarket();
-        proxy.register(user,moslemUserName,moslemPassword);
+        proxy.register(user, member1Name, member1Password);
     }
 
 
@@ -32,11 +30,11 @@ public class MemberTests {
             user = proxy.enterMarket();
             List<String> guests = proxy.getAllGuests();
             if(guests.size()>0){
-                proxy.login(user,moslemUserName,moslemPassword);
+                proxy.login(user, member1Name, member1Password);
                 guests = proxy.getAllGuests();
-                Assertions.assertTrue(proxy.getAllOnlineMembers().contains(moslemUserName));
+                Assertions.assertTrue(proxy.getAllOnlineMembers().contains(member1Name));
                 Assertions.assertFalse(guests.contains(user));
-                user = proxy.memberLogOut(moslemUserName);
+                user = proxy.memberLogOut(member1Name);
                 proxy.exitMarket(user);
             }
         }catch (Exception e){
@@ -52,9 +50,9 @@ public class MemberTests {
             user = proxy.enterMarket();
             List<String> guests = proxy.getAllGuests();
             if(guests.size()>0){
-                Assertions.assertThrows(Exception.class,()-> proxy.login(user,moslemUserName,""));
+                Assertions.assertThrows(Exception.class,()-> proxy.login(user, member1Name,""));
                 guests = proxy.getAllGuests();
-                Assertions.assertFalse(proxy.getAllOnlineMembers().contains(moslemUserName));
+                Assertions.assertFalse(proxy.getAllOnlineMembers().contains(member1Name));
                 Assertions.assertTrue(guests.contains(user));
                 proxy.exitMarket(user);
             }
@@ -70,7 +68,7 @@ public class MemberTests {
             user = proxy.enterMarket();
             List<String> guests = proxy.getAllGuests();
             if(guests.size()>0){
-                Assertions.assertThrows(Exception.class, ()-> proxy.login(user,"Obiq",moslemPassword));
+                Assertions.assertThrows(Exception.class, ()-> proxy.login(user,"Obiq", member1Password));
                 guests = proxy.getAllGuests();
                 Assertions.assertFalse(proxy.getAllOnlineMembers().contains("Obiq"));
                 Assertions.assertTrue(guests.contains(user));
@@ -87,8 +85,8 @@ public class MemberTests {
         try{
 
             user = proxy.enterMarket();
-            proxy.login(user,moslemUserName,moslemPassword);
-            String userName = moslemUserName;
+            proxy.login(user, member1Name, member1Password);
+            String userName = member1Name;
             List<String> members = proxy.getAllOnlineMembers();
             int len = members.size();
             proxy.exitMarket(userName);
@@ -107,11 +105,11 @@ public class MemberTests {
         try {
 
             user = proxy.enterMarket();
-            proxy.login(user, moslemUserName, moslemPassword);
-            String newGuestName = proxy.memberLogOut(moslemUserName);
+            proxy.login(user, member1Name, member1Password);
+            String newGuestName = proxy.memberLogOut(member1Name);
             List<String> members = proxy.getAllOnlineMembers();
-            Assertions.assertFalse(members.contains(moslemUserName));
-            Assertions.assertNotEquals(moslemUserName,newGuestName);
+            Assertions.assertFalse(members.contains(member1Name));
+            Assertions.assertNotEquals(member1Name,newGuestName);
             proxy.exitMarket(newGuestName);
         }catch (Exception e){
             Assertions.fail(e.getMessage());
@@ -123,9 +121,9 @@ public class MemberTests {
         try {
 
             user = proxy.enterMarket();
-            proxy.login(user, moslemUserName,moslemPassword);
-            proxy.memberLogOut(moslemUserName);
-            proxy.memberLogOut(moslemUserName);
+            proxy.login(user, member1Name, member1Password);
+            proxy.memberLogOut(member1Name);
+            proxy.memberLogOut(member1Name);
             Assertions.fail("logged out user managed to log out");
         }catch (Exception e){
 
@@ -137,15 +135,15 @@ public class MemberTests {
         try {
 
             user=proxy.enterMarket();
-            proxy.login(user, moslemUserName, moslemPassword);
-            String newGuestName = proxy.memberLogOut(moslemUserName);
+            proxy.login(user, member1Name, member1Password);
+            String newGuestName = proxy.memberLogOut(member1Name);
             List<String> members = proxy.getAllOnlineMembers();
             int len = members.size();
-            Assertions.assertThrows(Exception.class,()-> proxy.memberLogOut(moslemUserName));
+            Assertions.assertThrows(Exception.class,()-> proxy.memberLogOut(member1Name));
             members = proxy.getAllOnlineMembers();
             Assertions.assertEquals(len,members.size());
-            Assertions.assertFalse(members.contains(moslemUserName));
-            Assertions.assertNotEquals(moslemUserName,newGuestName);
+            Assertions.assertFalse(members.contains(member1Name));
+            Assertions.assertNotEquals(member1Name,newGuestName);
             proxy.exitMarket(newGuestName);
         }catch (Exception e){
             Assertions.fail(e.getMessage());
@@ -159,15 +157,15 @@ public class MemberTests {
         try {
 
             user = proxy.enterMarket();
-            String userName = moslemUserName;
-            proxy.login(user, userName, moslemPassword);
+            String userName = member1Name;
+            proxy.login(user, userName, member1Password);
             String storeName = proxy.createStore(userName, "verit");
             List<String> stores = proxy.getAllStoresNames();
             Assertions.assertTrue(stores.contains(storeName));
             String storeFounder = proxy.getStoreFounderName(userName, storeName);
             Assertions.assertEquals(userName, storeFounder);
 
-            user = proxy.memberLogOut(moslemUserName);
+            user = proxy.memberLogOut(member1Name);
             proxy.exitMarket(user);
         }catch (Exception e){
             Assertions.fail(e.getMessage());
@@ -179,8 +177,8 @@ public class MemberTests {
         try {
 
             user = proxy.enterMarket();
-            String userName = moslemUserName;
-            proxy.login(user, userName, moslemPassword);
+            String userName = member1Name;
+            proxy.login(user, userName, member1Password);
             String storeName = proxy.createStore(userName, "verit2");
             List<String> stores = proxy.getAllStoresNames();
             Assertions.assertTrue(stores.contains(storeName));
@@ -190,7 +188,7 @@ public class MemberTests {
             String storeName1 = proxy.createStore(userName, "verit21");//should return any thing but not verit
             Assertions.assertEquals(len + 1,proxy.getAllStoresNames().size());
             Assertions.assertNotEquals(storeName1,storeName);
-            user = proxy.memberLogOut(moslemUserName);
+            user = proxy.memberLogOut(member1Name);
             proxy.exitMarket(user);
         }catch (Exception e){
             Assertions.fail(e.getMessage());
@@ -202,8 +200,8 @@ public class MemberTests {
         try {
 
             user = proxy.enterMarket();
-            String userName = moslemUserName;
-            proxy.login(user, userName, moslemPassword);
+            String userName = member1Name;
+            proxy.login(user, userName, member1Password);
             String storeName = proxy.createStore(userName, "verit3");
 
             List<String> stores = proxy.getAllStoresNames();
@@ -215,7 +213,7 @@ public class MemberTests {
             Assertions.assertTrue(stores.contains(storeName));
             storeFounder = proxy.getStoreFounderName(userName, storeName);
             Assertions.assertEquals(userName, storeFounder);
-            user = proxy.memberLogOut(moslemUserName);
+            user = proxy.memberLogOut(member1Name);
             proxy.exitMarket(user);
         }catch (Exception e){
             Assertions.fail(e.getMessage());
