@@ -80,4 +80,22 @@ public class Bag {
             }
         }
     }
+
+    public Double getBagPrice() throws Exception {
+        Double totalBagPrice = 0.0;
+        for (ConcurrentHashMap<Product,Integer> curr: this.bagContent.values()) {
+            Product product = curr.keys().nextElement();
+            totalBagPrice += product.getProductPrice(curr.get(product));
+        }
+        return totalBagPrice;
+    }
+
+
+    public boolean removeBagAmountFromStock() throws Exception {
+        return storeBag.removeBagAmountFromStock(bagContent);
+    }
+
+    public boolean replaceBagAmountToStock() throws Exception {
+        return storeBag.replaceBagAmountToStock(bagContent);
+    }
 }

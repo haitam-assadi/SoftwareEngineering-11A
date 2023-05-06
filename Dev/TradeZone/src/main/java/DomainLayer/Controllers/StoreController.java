@@ -70,22 +70,23 @@ public class StoreController {
 
     public List<ProductDTO> getProductInfoFromMarketByName(String productName) throws Exception {
         List<ProductDTO> productDTOList = new ArrayList<>();
-        for(Store store: stores.values())
-            String storeName =  store.getStoreName();
+        for(Store store: stores.values()) {
+            String storeName = store.getStoreName();
             isActiveStore(storeName);
-            if(store.containsProduct(productName))
+            if (store.containsProduct(productName))
                 productDTOList.add(store.getProductInfo(productName));
+        }
         return productDTOList;
     }
 
     public List<ProductDTO> getProductInfoFromMarketByCategory(String categoryName) throws Exception {
         List<ProductDTO> productDTOList = new ArrayList<>();
-        for(Store store: stores.values())
-            String storeName =  store.getStoreName();
+        for(Store store: stores.values()) {
+            String storeName = store.getStoreName();
             isActiveStore(storeName);
-            if(store.containsCategory(categoryName))
+            if (store.containsCategory(categoryName))
                 productDTOList.addAll(store.getProductsInfoByCategory(categoryName));
-
+        }
         return productDTOList;
     }
 
@@ -167,7 +168,5 @@ public class StoreController {
         return stores.keySet().stream().toList();
     }
 
-    public boolean purchaseCartByCreditCard(String userName, String cardNumber, String month, String year, String holder, String ccv, String id) {
-        return true;
-    }
+
 }

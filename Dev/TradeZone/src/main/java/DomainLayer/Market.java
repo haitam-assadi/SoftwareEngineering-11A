@@ -10,10 +10,14 @@ import java.util.List;
 public class Market {
     UserController userController;
     StoreController storeController;
+    PaymentService paymentService;
+    ShipmentService shipmentService;
 
     public Market(){
         this.userController = new UserController();
         this.storeController = new StoreController();
+        paymentService = new PaymentService("");
+        shipmentService = new ShipmentService("");
     }
     //TODO: Implement this requirements: 2.5, 3.3(maybe), 4.12(for storeManager)
     //TODO: closeStore req is not implemented as it should be , i(Ahmad) didn't pay attention to close stores handling..
@@ -179,10 +183,27 @@ public class Market {
         return this.storeController.getMemberDeals(otherMemberUserName);
     }
 
-    public boolean purchaseCartByCreditCard(String userName, String cardNumber, String month, String year, String holder, String ccv, String id) throws Exception {
-        userController.validateStorePolicy(userName);
-        userController.validateAllProductsAmounts(userName);
-        return this.storeController.purchaseCartByCreditCard(userName,cardNumber,month,year,holder,ccv,id);
+    public boolean purchaseCartByCreditCard(String userName, String cardNumber, String month, String year, String holder, String cvv, String id, String receiverName,String shipmentAddress,String shipmentCity,String shipmentCountry,String zipCode) throws Exception {
+        int transactionId=0;
+        int supplyId = 0;
+        try{
+            userController.assertIsGuestOrLoggedInMember(userName);
+            userController.validateStorePolicy(userName);
+            userController.validateAllProductsAmounts(userName);
+            Double price=userController.getCartPrice(userName);
+            transactionId = paymentService.pay(price, cardNumber, month, year,holder, cvv, id);
+            supplyId = shipmentService.supply(receiverName, shipmentAddress, shipmentCity, shipmentCountry, zipCode);
+            return userController.updateStockAmount(userName);
+        }
+        catch (shipmentException e){
+            paymentService.cancelPay(transactionId);
+            throw e;
+        }
+        catch (updateAmountException e){
+            paymentService.cancelPay(transactionId);
+            shipmentService.cancelSupply(supplyId);
+            throw e;
+        }
     }
 
     public boolean removeOwnerByHisAppointer(String appointerUserName, String storeName, String ownerUserName ) throws Exception {

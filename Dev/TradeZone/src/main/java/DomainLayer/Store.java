@@ -280,4 +280,12 @@ public class Store {
     public void removeOwner(String userName) {
         storeOwners.remove(userName);
     }
+
+    public boolean removeBagAmountFromStock(ConcurrentHashMap<String, ConcurrentHashMap<Product,Integer>> bagContent) throws Exception {
+        return stock.removeBagAmountFromStock(bagContent);
+    }
+
+    public boolean replaceBagAmountToStock(ConcurrentHashMap<String, ConcurrentHashMap<Product,Integer>> bagContent) throws Exception {
+        return stock.replaceBagAmountToStock(bagContent);
+    }
 }

@@ -20,20 +20,20 @@ public class Stock {
         stockCategories = new ConcurrentHashMap<>();
     }
 
-    public void assertStringIsNotNullOrBlank(String st) throws Exception {
+    public synchronized void assertStringIsNotNullOrBlank(String st) throws Exception {
         if(st==null || st.isBlank())
             throw new Exception("string is null or empty");
     }
-    public void assertContainsProduct(String productName) throws Exception {
+    public synchronized void assertContainsProduct(String productName) throws Exception {
         if(!containsProduct(productName))
             throw new Exception("stock does not contain this product "+productName);
     }
-    public void assertDoesNotContainProduct(String productName) throws Exception {
+    public synchronized void assertDoesNotContainProduct(String productName) throws Exception {
         if(containsProduct(productName))
             throw new Exception("stock does already contains this product "+productName);
     }
 
-    public boolean addNewProductToStock(String nameProduct,String category, Double price, String description, Integer amount) throws Exception {
+    public synchronized boolean addNewProductToStock(String nameProduct,String category, Double price, String description, Integer amount) throws Exception {
         assertDoesNotContainProduct(nameProduct);
         assertStringIsNotNullOrBlank(category);
         assertStringIsNotNullOrBlank(description);
@@ -52,7 +52,7 @@ public class Stock {
         return true;
     }
 
-    public boolean removeProductFromStock(String productName) throws Exception {
+    public synchronized boolean removeProductFromStock(String productName) throws Exception {
         assertContainsProduct(productName);
         productName=productName.strip().toLowerCase();
         Product product = stockProducts.get(productName).keys().nextElement();
@@ -61,7 +61,7 @@ public class Stock {
         return true;
     }
 
-    public boolean updateProductDescription(String productName, String newProductDescription) throws Exception {
+    public synchronized boolean updateProductDescription(String productName, String newProductDescription) throws Exception {
         if(!stockProducts.containsKey(productName))
             throw new Exception("can't remove product from stock : productName "+ productName+" is not in the stock!");
         Product product = stockProducts.get(productName).keys().nextElement();
@@ -69,7 +69,7 @@ public class Stock {
         return true;
     }
 
-    public boolean updateProductAmount(String productName, Integer newAmount) throws Exception {
+    public synchronized boolean updateProductAmount(String productName, Integer newAmount) throws Exception {
         if(!stockProducts.containsKey(productName))
             throw new Exception("can't remove product from stock : productName "+ productName+" is not in the stock!");
         Product product = stockProducts.get(productName).keys().nextElement();
@@ -83,7 +83,7 @@ public class Stock {
     }
 
 
-    public boolean updateProductPrice(String productName, Double newPrice) throws Exception {
+    public synchronized boolean updateProductPrice(String productName, Double newPrice) throws Exception {
         if(!stockProducts.containsKey(productName))
             throw new Exception("can't remove product from stock : productName "+ productName+" is not in the stock!");
         Product product = stockProducts.get(productName).keys().nextElement();
@@ -93,7 +93,7 @@ public class Stock {
         return true;
     }
 
-    public List<ProductDTO> getProductsInfo(){
+    public synchronized List<ProductDTO> getProductsInfo(){
         Collection<ConcurrentHashMap<Product,Integer>> currentStockProducts = stockProducts.values();
         List<ProductDTO> productsInfo = new ArrayList<>();
         for(ConcurrentHashMap<Product,Integer> curr_hash_map: currentStockProducts)
@@ -102,7 +102,7 @@ public class Stock {
         return productsInfo;
     }
 
-    public ProductDTO getProductInfo(String productName) throws Exception {
+    public synchronized ProductDTO getProductInfo(String productName) throws Exception {
         //TODO: do we allow return info about products with amount == 0 ?????
         if(!containsProduct(productName))
             throw new Exception(""+productName+"product does not exist in this store!");
@@ -111,7 +111,7 @@ public class Stock {
         return stockProducts.get(productName).keys().nextElement().getProductInfo();
     }
 
-    public Product getProduct(String productName) throws Exception {
+    public synchronized Product getProduct(String productName) throws Exception {
         //TODO: do we allow return info about products with amount == 0 ?????
         if(!containsProduct(productName))
             throw new Exception(""+productName+"product does not exist in this store!");
@@ -120,7 +120,10 @@ public class Stock {
         return stockProducts.get(productName).keys().nextElement();
     }
 
-    public Product getProductWithAmount(String productName, Integer amount) throws Exception {
+    public synchronized Product getProductWithAmount(String productName, Integer amount) throws Exception {
+
+        productName = productName.strip().toLowerCase();
+
         //TODO: do we allow return info about products with amount == 0 ?????
         if(!containsProduct(productName))
             throw new Exception(""+productName+" product does not exist in this store!");
@@ -132,11 +135,11 @@ public class Stock {
         if(amount < 0)
             throw new Exception("The amount must be positive, it can't be " + amount);
 
-        productName = productName.strip().toLowerCase();
+
         return stockProducts.get(productName).keys().nextElement();
     }
 
-    public boolean containsProduct(String productName) throws Exception {
+    public synchronized boolean containsProduct(String productName) throws Exception {
         if(productName == null || productName.isBlank())
             throw new Exception("productName is null or empty!");
 
@@ -147,7 +150,7 @@ public class Stock {
         return true;
     }
 
-    public boolean containsCategory(String categoryName) throws Exception {
+    public synchronized boolean containsCategory(String categoryName) throws Exception {
         if(categoryName == null || categoryName.isBlank())
             throw new Exception("categoryName is null or empty!");
 
@@ -159,7 +162,7 @@ public class Stock {
     }
 
 
-    public List<ProductDTO> getProductsInfoByCategory(String categoryName) throws Exception {
+    public synchronized List<ProductDTO> getProductsInfoByCategory(String categoryName) throws Exception {
 
         //TODO: do we allow return info about products with amount == 0 ?????
         if(!containsCategory(categoryName))
@@ -172,24 +175,60 @@ public class Stock {
     }
 
     //Currently added for tests:
-    public void addToStockProducts(String productName, Product product, int amount){
+    public synchronized void addToStockProducts(String productName, Product product, int amount){
         ConcurrentHashMap<Product,Integer> hash = new ConcurrentHashMap<Product, Integer>();
         hash.put(product, amount);
         this.stockProducts.put(productName, hash);
     }
 
-    public void addToStockCategory(String categoryName, Category category){
+    public synchronized void addToStockCategory(String categoryName, Category category){
         this.stockCategories.put(categoryName, category);
     }
 
-    public int getCategoriesSize(){
+    public synchronized int getCategoriesSize(){
         return this.stockCategories.size();
     }
 
-    public int getProductAmount(String productName, Product product){
+    public synchronized int getProductAmount(String productName, Product product){
         return this.stockProducts.get(productName).get(product);
     }
     public String getStoreName(){
         return store.getStoreName();
     }
+
+
+    public synchronized boolean removeBagAmountFromStock(ConcurrentHashMap<String, ConcurrentHashMap<Product,Integer>> bagContent) throws Exception {
+
+        for(String productName: bagContent.keySet()){
+            if(!stockProducts.containsKey(productName))
+                throw new Exception(productName +" product was removed stock");
+            Product product = bagContent.get(productName).keys().nextElement();
+            int stockAmount = stockProducts.get(productName).get(product);
+            if(bagContent.get(productName).get(product) > stockAmount)
+                throw new Exception("stock only have "+stockAmount+ "for product "+productName);
+        }
+
+        for(String productName: bagContent.keySet()){
+            Product product = bagContent.get(productName).keys().nextElement();
+            int stockAmount = stockProducts.get(productName).get(product);
+            int bagAmount = bagContent.get(productName).get(product);
+            stockProducts.get(productName).put(product, stockAmount-bagAmount);
+        }
+        return true;
+    }
+    public synchronized boolean replaceBagAmountToStock(ConcurrentHashMap<String, ConcurrentHashMap<Product,Integer>> bagContent) throws Exception {
+        for(String productName: bagContent.keySet()){
+            if(stockProducts.containsKey(productName)){
+                Product product = bagContent.get(productName).keys().nextElement();
+                int stockAmount = stockProducts.get(productName).get(product);
+                int bagAmount = bagContent.get(productName).get(product);
+                stockProducts.get(productName).put(product, stockAmount+bagAmount);
+            }
+        }
+        return true;
+    }
+
+
+
+
 }
