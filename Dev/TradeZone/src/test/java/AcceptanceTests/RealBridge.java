@@ -537,4 +537,13 @@ public class RealBridge implements Bridge{
         }
         return response.getValue();
     }
+
+    @Override
+    public boolean purchaseCartByCreditCard(String userName, String cardNumber, String month, String year, String holder, String cvv, String id, String receiverName, String shipmentAddress, String shipmentCity, String shipmentCountry, String zipCode) throws Exception {
+        ResponseT<Boolean> response = systemService.purchaseCartByCreditCard(userName,cardNumber,month,year,holder,cvv,id,receiverName,shipmentAddress,shipmentCity,shipmentCountry,zipCode);
+        if (response.ErrorOccurred){
+            throw new Exception(response.errorMessage);
+        }
+        return response.getValue();
+    }
 }

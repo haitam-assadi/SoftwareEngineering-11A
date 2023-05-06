@@ -364,4 +364,12 @@ public class ProxyBridge implements Bridge{
         }
         return false;
     }
+
+    @Override
+    public boolean purchaseCartByCreditCard(String userName, String cardNumber, String month, String year, String holder, String cvv, String id, String receiverName, String shipmentAddress, String shipmentCity, String shipmentCountry, String zipCode) throws Exception {
+        if(realBridge!=null){
+            return realBridge.purchaseCartByCreditCard(userName, cardNumber, month, year, holder, cvv, id, receiverName, shipmentAddress, shipmentCity, shipmentCountry, zipCode);
+        }
+        return false;
+    }
 }

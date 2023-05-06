@@ -171,6 +171,7 @@ public class Market {
 
     public List<MemberDTO> getStoreWorkersInfo(String memberUserName, String storeName) throws Exception {
         // TODO: low priority , DON'T test it, dont forget to change function parameters
+        userController.assertIsMemberLoggedIn(memberUserName);
         return storeController.getStoreWorkersInfo(memberUserName, storeName);
     }
 
