@@ -2,6 +2,7 @@ package DomainLayer;
 
 import DTO.BagDTO;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
@@ -51,5 +52,31 @@ public class Cart {
         for(Bag bag : bags.values()){
             bag.validateAllProductsAmounts();
         }
+    }
+
+
+    public Double getCartPrice() throws Exception {
+        Double totalPrice = 0.0;
+        for(Bag bag : bags.values())
+            totalPrice += bag.getBagPrice();
+
+        return totalPrice;
+    }
+
+    public boolean updateStockAmount() throws Exception {
+        List<Bag> updatedBagsList = new LinkedList<>();
+        for(Bag bag: bags.values()){
+            try {
+                bag.removeBagAmountFromStock();
+                updatedBagsList.add(bag);
+            }catch (Exception e){
+                for(Bag bagToReplace: updatedBagsList)
+                    bagToReplace.replaceBagAmountToStock();
+                throw e;
+            }
+        }
+        //TODO: create deal for each store before deleting bags
+        bags = new ConcurrentHashMap<>();
+        return true;
     }
 }

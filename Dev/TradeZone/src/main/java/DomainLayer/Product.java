@@ -47,4 +47,13 @@ public class Product {
 
         return true;
     }
+
+
+    public Double getProductPrice(int amount) throws Exception {
+        return price*amount;
+    }
+
+    public boolean haveCategory(Category category){
+        return productCategories.values().contains(category);
+    }
 }

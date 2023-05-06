@@ -273,11 +273,19 @@ public class Store {
 
     public void validateStorePolicy(String userName, Product product, Integer amount) {
         for(PaymentPolicy paymentPolicy : storePaymentPolicies){
-            paymentPolicy.AssertValidate(userName,product,amount);
+
         }
     }
 
     public void removeOwner(String userName) {
         storeOwners.remove(userName);
+    }
+
+    public boolean removeBagAmountFromStock(ConcurrentHashMap<String, ConcurrentHashMap<Product,Integer>> bagContent) throws Exception {
+        return stock.removeBagAmountFromStock(bagContent);
+    }
+
+    public boolean replaceBagAmountToStock(ConcurrentHashMap<String, ConcurrentHashMap<Product,Integer>> bagContent) throws Exception {
+        return stock.replaceBagAmountToStock(bagContent);
     }
 }

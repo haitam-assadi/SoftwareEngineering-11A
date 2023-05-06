@@ -135,6 +135,8 @@ public class UserController {
         return members.get(userName);
     }
     public User getUser(String userName) throws Exception {
+        userName = userName.strip().toLowerCase();
+
         if(isGuest(userName))
             return guests.get(userName);
 
@@ -258,25 +260,28 @@ public class UserController {
     }
 
     public void validateStorePolicy(String userName) throws Exception {
-        User user;
         assertIsGuestOrLoggedInMember(userName);
+        User user = getUser(userName);
         userName = userName.strip().toLowerCase();
-        if(isGuest(userName))
-            user= guests.get(userName);
-        else
-            user = members.get(userName);
         user.getCart().validateStorePolicy(userName);
     }
 
     public void validateAllProductsAmounts(String userName) throws Exception {
-        User user;
         assertIsGuestOrLoggedInMember(userName);
-        userName = userName.strip().toLowerCase();
-        if(isGuest(userName))
-            user= guests.get(userName);
-        else
-            user = members.get(userName);
+        User user = getUser(userName);
         user.getCart().validateAllProductsAmounts();
+    }
+
+
+    public Double getCartPrice(String userName) throws Exception {
+        User user = getUser(userName);
+        return user.getCart().getCartPrice();
+    }
+
+    public boolean updateStockAmount(String userName) throws Exception {
+        assertIsGuestOrLoggedInMember(userName);
+        User user = getUser(userName);
+        return user.getCart().updateStockAmount();
     }
 
     public boolean removeOwnerByHisAppointer(String appointerUserName, Store store, String ownerUserName) throws Exception {
