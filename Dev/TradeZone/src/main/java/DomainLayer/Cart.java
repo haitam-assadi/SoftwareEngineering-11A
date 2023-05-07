@@ -42,7 +42,7 @@ public class Cart {
         return bagsDTO;
     }
 
-    public void validateStorePolicy(String userName) {
+    public void validateStorePolicy(String userName) throws Exception {
         for(Bag bag : bags.values()){
             bag.validateStorePolicy(userName);
         }
