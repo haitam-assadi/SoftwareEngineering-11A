@@ -366,4 +366,76 @@ public class SystemService {
             return new ResponseT<>("removeOwnerByHisAppointer: "+e.getMessage());
         }
     }
+    public ResponseT<Integer> createMaxProductAmountAllContentBagConstraint(String memberUserName, String storeName, String productName, int amountLimit, boolean addAsStorePaymentPolicy) {
+        try{
+            return new ResponseT<>(market.createMaxProductAmountAllContentBagConstraint(memberUserName, storeName,productName, amountLimit, addAsStorePaymentPolicy));
+        }catch(Exception e){
+            return new ResponseT<>("createMaxProductAmountAllContentBagConstraint: "+e.getMessage());
+        }
+    }
+
+
+    public ResponseT<Integer> createMinProductAmountAllContentBagConstraint(String memberUserName, String storeName, String productName, int amountLimit, boolean addAsStorePaymentPolicy) {
+        try{
+            return new ResponseT<>(market.createMinProductAmountAllContentBagConstraint(memberUserName, storeName,productName, amountLimit, addAsStorePaymentPolicy));
+        }catch(Exception e){
+            return new ResponseT<>("createMinProductAmountAllContentBagConstraint: "+e.getMessage());
+        }
+    }
+
+    public ResponseT<Integer> createMaxTimeAtDayProductBagConstraint(String memberUserName, String storeName, String productName, int hour, int minute, boolean addAsStorePaymentPolicy) {
+        try{
+            return new ResponseT<>(market.createMaxTimeAtDayProductBagConstraint(memberUserName, storeName,productName, hour, minute, addAsStorePaymentPolicy));
+        }catch(Exception e){
+            return new ResponseT<>("createMaxTimeAtDayProductBagConstraint: "+e.getMessage());
+        }
+    }
+
+    public ResponseT<Integer> createRangeOfDaysProductBagConstraint(String memberUserName, String storeName, String productName, int fromYear, int fromMonth, int fromDay, int toYear, int toMonth, int toDay, boolean addAsStorePaymentPolicy) {
+        try{
+            return new ResponseT<>(market.createRangeOfDaysProductBagConstraint(memberUserName, storeName,productName, fromYear, fromMonth, fromDay, toYear, toMonth, toDay, addAsStorePaymentPolicy));
+        }catch(Exception e){
+            return new ResponseT<>("createRangeOfDaysProductBagConstraint: "+e.getMessage());
+        }
+    }
+
+    public ResponseT<Integer> createMaxTimeAtDayCategoryBagConstraint(String memberUserName, String storeName, String categoryName, int hour, int minute, boolean addAsStorePaymentPolicy) {
+        try{
+            return new ResponseT<>(market.createMaxTimeAtDayCategoryBagConstraint(memberUserName, storeName,categoryName, hour, minute, addAsStorePaymentPolicy));
+        }catch(Exception e){
+            return new ResponseT<>("createMaxTimeAtDayCategoryBagConstraint: "+e.getMessage());
+        }
+    }
+
+    public ResponseT<Integer> createRangeOfDaysCategoryBagConstraint(String memberUserName, String storeName, String categoryName, int fromYear, int fromMonth, int fromDay, int toYear, int toMonth, int toDay, boolean addAsStorePaymentPolicy) {
+        try{
+            return new ResponseT<>(market.createRangeOfDaysCategoryBagConstraint(memberUserName, storeName,categoryName, fromYear, fromMonth, fromDay, toYear, toMonth, toDay, addAsStorePaymentPolicy));
+        }catch(Exception e){
+            return new ResponseT<>("createRangeOfDaysCategoryBagConstraint: "+e.getMessage());
+        }
+    }
+
+    public ResponseT<Integer> createAndBagConstraint(String memberUserName, String storeName, Integer firstBagConstraintId, Integer secondBagConstraintId, boolean addAsStorePaymentPolicy) {
+        try{
+            return new ResponseT<>(market.createAndBagConstraint(memberUserName, storeName,firstBagConstraintId, secondBagConstraintId,addAsStorePaymentPolicy));
+        }catch(Exception e){
+            return new ResponseT<>("createAndBagConstraint: "+e.getMessage());
+        }
+    }
+
+    public ResponseT<Integer> createOrBagConstraint(String memberUserName, String storeName, Integer firstBagConstraintId, Integer secondBagConstraintId, boolean addAsStorePaymentPolicy) throws Exception {
+        try{
+            return new ResponseT<>(market.createOrBagConstraint(memberUserName, storeName,firstBagConstraintId, secondBagConstraintId,addAsStorePaymentPolicy));
+        }catch(Exception e){
+            return new ResponseT<>("createOrBagConstraint: "+e.getMessage());
+        }
+    }
+
+    public ResponseT<Integer> createOnlyIfBagConstraint(String memberUserName, String storeName, Integer firstBagConstraintId, Integer secondBagConstraintId, boolean addAsStorePaymentPolicy) throws Exception {
+        try{
+            return new ResponseT<>(market.createOnlyIfBagConstraint(memberUserName, storeName,firstBagConstraintId, secondBagConstraintId,addAsStorePaymentPolicy));
+        }catch(Exception e){
+            return new ResponseT<>("createOnlyIfBagConstraint: "+e.getMessage());
+        }
+    }
 }

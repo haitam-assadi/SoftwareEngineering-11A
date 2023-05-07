@@ -380,4 +380,76 @@ public class ProxyBridge implements Bridge{
         }
         return false;
     }
+
+    @Override
+    public Integer createMaxProductAmountAllContentBagConstraint(String memberUserName, String storeName, String productName, int amountLimit, boolean addAsStorePaymentPolicy) throws Exception {
+        if(realBridge!=null){
+            return realBridge.createMaxProductAmountAllContentBagConstraint(memberUserName, storeName, productName, amountLimit, addAsStorePaymentPolicy);
+        }
+        return -1;
+    }
+
+    @Override
+    public Integer createMinProductAmountAllContentBagConstraint(String memberUserName, String storeName, String productName, int amountLimit, boolean addAsStorePaymentPolicy) throws Exception {
+        if(realBridge!=null){
+            return realBridge.createMinProductAmountAllContentBagConstraint(memberUserName, storeName, productName, amountLimit, addAsStorePaymentPolicy);
+        }
+        return -1;
+    }
+
+    @Override
+    public Integer createMaxTimeAtDayProductBagConstraint(String memberUserName, String storeName, String productName, int hour, int minute, boolean addAsStorePaymentPolicy) throws Exception {
+        if(realBridge!=null){
+            return realBridge.createMaxTimeAtDayProductBagConstraint(memberUserName, storeName, productName, hour, minute,  addAsStorePaymentPolicy);
+        }
+        return -1;
+    }
+
+    @Override
+    public Integer createRangeOfDaysProductBagConstraint(String memberUserName, String storeName, String productName, int fromYear, int fromMonth, int fromDay, int toYear, int toMonth, int toDay, boolean addAsStorePaymentPolicy) throws Exception {
+        if(realBridge!=null){
+            return realBridge.createRangeOfDaysProductBagConstraint(memberUserName,storeName,productName,fromYear,fromMonth, fromDay, toYear, toMonth, toDay,addAsStorePaymentPolicy);
+        }
+        return -1;
+    }
+
+    @Override
+    public Integer createMaxTimeAtDayCategoryBagConstraint(String memberUserName, String storeName, String categoryName, int hour, int minute, boolean addAsStorePaymentPolicy) throws Exception {
+        if(realBridge!=null){
+            return realBridge.createMaxTimeAtDayCategoryBagConstraint(memberUserName,storeName,categoryName,hour,minute,addAsStorePaymentPolicy);
+        }
+        return -1;
+    }
+
+    @Override
+    public Integer createRangeOfDaysCategoryBagConstraint(String memberUserName, String storeName, String categoryName, int fromYear, int fromMonth, int fromDay, int toYear, int toMonth, int toDay, boolean addAsStorePaymentPolicy) throws Exception {
+        if(realBridge!=null){
+            return realBridge.createRangeOfDaysCategoryBagConstraint(memberUserName,storeName,categoryName,fromYear,fromMonth, fromDay, toYear, toMonth, toDay,addAsStorePaymentPolicy);
+        }
+        return -1;
+    }
+
+    @Override
+    public Integer createAndBagConstraint(String memberUserName, String storeName, Integer firstBagConstraintId, Integer secondBagConstraintId, boolean addAsStorePaymentPolicy) throws Exception {
+        if(realBridge!=null){
+            return realBridge.createAndBagConstraint(memberUserName,storeName,firstBagConstraintId,secondBagConstraintId,addAsStorePaymentPolicy);
+        }
+        return -1;
+    }
+
+    @Override
+    public Integer createOrBagConstraint(String memberUserName, String storeName, Integer firstBagConstraintId, Integer secondBagConstraintId, boolean addAsStorePaymentPolicy) throws Exception {
+        if(realBridge!=null){
+            return realBridge.createOrBagConstraint(memberUserName,storeName,firstBagConstraintId,secondBagConstraintId,addAsStorePaymentPolicy);
+        }
+        return -1;
+    }
+
+    @Override
+    public Integer createOnlyIfBagConstraint(String memberUserName, String storeName, Integer firstBagConstraintId, Integer secondBagConstraintId, boolean addAsStorePaymentPolicy) throws Exception {
+        if(realBridge!=null){
+            return realBridge.createOnlyIfBagConstraint(memberUserName,storeName,firstBagConstraintId,secondBagConstraintId,addAsStorePaymentPolicy);
+        }
+        return -1;
+    }
 }

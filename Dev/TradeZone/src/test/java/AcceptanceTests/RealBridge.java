@@ -555,4 +555,85 @@ public class RealBridge implements Bridge{
         }
         return response.getValue();
     }
+
+    @Override
+    public Integer createMaxProductAmountAllContentBagConstraint(String memberUserName, String storeName, String productName, int amountLimit, boolean addAsStorePaymentPolicy) throws Exception {
+        ResponseT<Integer> response = systemService.createMaxProductAmountAllContentBagConstraint(memberUserName,storeName,productName,amountLimit,addAsStorePaymentPolicy);
+        if (response.ErrorOccurred){
+            throw new Exception(response.errorMessage);
+        }
+        return response.getValue();
+    }
+
+    @Override
+    public Integer createMinProductAmountAllContentBagConstraint(String memberUserName, String storeName, String productName, int amountLimit, boolean addAsStorePaymentPolicy) throws Exception {
+        ResponseT<Integer> response = systemService.createMinProductAmountAllContentBagConstraint(memberUserName,storeName,productName,amountLimit,addAsStorePaymentPolicy);
+        if (response.ErrorOccurred){
+            throw new Exception(response.errorMessage);
+        }
+        return response.getValue();
+    }
+
+    @Override
+    public Integer createMaxTimeAtDayProductBagConstraint(String memberUserName, String storeName, String productName, int hour, int minute, boolean addAsStorePaymentPolicy) throws Exception {
+        ResponseT<Integer> response = systemService.createMaxTimeAtDayProductBagConstraint(memberUserName,storeName,productName,hour,minute,addAsStorePaymentPolicy);
+        if (response.ErrorOccurred){
+            throw new Exception(response.errorMessage);
+        }
+        return response.getValue();
+    }
+
+    @Override
+    public Integer createRangeOfDaysProductBagConstraint(String memberUserName, String storeName, String productName, int fromYear, int fromMonth, int fromDay, int toYear, int toMonth, int toDay, boolean addAsStorePaymentPolicy) throws Exception {
+        ResponseT<Integer> response = systemService.createRangeOfDaysProductBagConstraint(memberUserName,storeName,productName,fromYear,fromMonth, fromDay, toYear, toMonth, toDay,addAsStorePaymentPolicy);
+        if (response.ErrorOccurred){
+            throw new Exception(response.errorMessage);
+        }
+        return response.getValue();
+    }
+
+    @Override
+    public Integer createMaxTimeAtDayCategoryBagConstraint(String memberUserName, String storeName, String categoryName, int hour, int minute, boolean addAsStorePaymentPolicy) throws Exception {
+        ResponseT<Integer> response = systemService.createMaxTimeAtDayCategoryBagConstraint(memberUserName,storeName,categoryName,hour,minute,addAsStorePaymentPolicy);
+        if (response.ErrorOccurred){
+            throw new Exception(response.errorMessage);
+        }
+        return response.getValue();
+    }
+
+    @Override
+    public Integer createRangeOfDaysCategoryBagConstraint(String memberUserName, String storeName, String categoryName, int fromYear, int fromMonth, int fromDay, int toYear, int toMonth, int toDay, boolean addAsStorePaymentPolicy) throws Exception {
+        ResponseT<Integer> response = systemService.createRangeOfDaysCategoryBagConstraint(memberUserName,storeName,categoryName,fromYear,fromMonth, fromDay, toYear, toMonth, toDay,addAsStorePaymentPolicy);
+        if (response.ErrorOccurred){
+            throw new Exception(response.errorMessage);
+        }
+        return response.getValue();
+    }
+
+    @Override
+    public Integer createAndBagConstraint(String memberUserName, String storeName, Integer firstBagConstraintId, Integer secondBagConstraintId, boolean addAsStorePaymentPolicy) throws Exception {
+        ResponseT<Integer> response = systemService.createAndBagConstraint(memberUserName,storeName,firstBagConstraintId,secondBagConstraintId,addAsStorePaymentPolicy);
+        if (response.ErrorOccurred){
+            throw new Exception(response.errorMessage);
+        }
+        return response.getValue();
+    }
+
+    @Override
+    public Integer createOrBagConstraint(String memberUserName, String storeName, Integer firstBagConstraintId, Integer secondBagConstraintId, boolean addAsStorePaymentPolicy) throws Exception {
+        ResponseT<Integer> response = systemService.createOrBagConstraint(memberUserName,storeName,firstBagConstraintId,secondBagConstraintId,addAsStorePaymentPolicy);
+        if (response.ErrorOccurred){
+            throw new Exception(response.errorMessage);
+        }
+        return response.getValue();
+    }
+
+    @Override
+    public Integer createOnlyIfBagConstraint(String memberUserName, String storeName, Integer firstBagConstraintId, Integer secondBagConstraintId, boolean addAsStorePaymentPolicy) throws Exception {
+        ResponseT<Integer> response = systemService.createOnlyIfBagConstraint(memberUserName,storeName,firstBagConstraintId,secondBagConstraintId,addAsStorePaymentPolicy);
+        if (response.ErrorOccurred){
+            throw new Exception(response.errorMessage);
+        }
+        return response.getValue();
+    }
 }

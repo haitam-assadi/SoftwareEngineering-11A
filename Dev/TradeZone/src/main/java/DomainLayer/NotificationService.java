@@ -22,11 +22,11 @@ public class NotificationService {
     }
 
     public static NotificationService getInstance(){
-        if(instance == null){
-            return new NotificationService();
-        }else{
-            return instance;
+        if(instance == null) {
+            instance = new NotificationService();
         }
+        return instance;
+
     }
     public void subscribe(String storeName,NotificationType notificationType,Member member){
         ConcurrentHashMap<NotificationType, LinkedList<Member>> type_memberList = new ConcurrentHashMap<>();
