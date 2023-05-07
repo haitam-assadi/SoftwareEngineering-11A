@@ -14,18 +14,22 @@ public class Member extends User{
 
     private ConcurrentHashMap<RoleEnum, Role> roles;
 
-    private List<Notification> userNotifications;
     private boolean isSystemManager;
     private SystemManager systemManager;
     private String password;
+
+    private List<String> pendingMessages;
+
+    private boolean isOnline;
 
     public Member(String userName, String password) {
         super(userName);
         this.password = password;
         roles = new ConcurrentHashMap<>();
-        userNotifications = new ArrayList<>();
         this.isSystemManager=false;
         systemManager = null;
+        pendingMessages = new ArrayList<>();
+        isOnline = false;
     }
 
     public String getPassword() {
@@ -53,20 +57,18 @@ public class Member extends User{
     public boolean appointMemberAsStoreOwner(Store store, AbstractStoreOwner myBoss) throws Exception {
         if(store.isAlreadyStoreOwner(getUserName()))
             throw new Exception("member"+getUserName()+" is already store owner");
-        roles.putIfAbsent(RoleEnum.StoreOwner, new StoreOwner(this));
+        StoreOwner storeOwner =  new StoreOwner(this);
+        roles.putIfAbsent(RoleEnum.StoreOwner,storeOwner);
+        subscribeOwnerForNotifications(store.getStoreName());
         StoreOwner storeOwnerRole =  (StoreOwner) roles.get(RoleEnum.StoreOwner);
-
         storeOwnerRole.appointMemberAsStoreOwner(store,myBoss);
         store.appointMemberAsStoreOwner(storeOwnerRole);
         return true;
     }
+
     public StoreOwner getStoreOwner(){
         StoreOwner storeOwnerRole =  (StoreOwner) roles.get(RoleEnum.StoreOwner);
         return storeOwnerRole;
-    }
-
-    public void addNotification(String sender, String date, String description){
-        this.userNotifications.add(new Notification(sender, date, description));
     }
 
     public boolean containsRole(String roleTitle) {
@@ -114,6 +116,7 @@ public class Member extends User{
 
         storeFounderRole.appointMemberAsStoreFounder(store);
         store.setStoreFounderAtStoreCreation(storeFounderRole);
+        NotificationService.getInstance().subscribe(store.getStoreName(),NotificationType.productBought,this);
         //todo: add the permissions
         return true;
     }
@@ -164,6 +167,36 @@ public class Member extends User{
             owner = (StoreOwner)roles.get(RoleEnum.StoreOwner);
         if(owner == null) throw new Exception(""+getUserName()+" is not owner for "+storeName);
     }
+
+    private void subscribeOwnerForNotifications(String storeName) {
+        NotificationService.getInstance().subscribe(storeName,NotificationType.storeClosed,this);
+        NotificationService.getInstance().subscribe(storeName,NotificationType.productBought,this);
+        NotificationService.getInstance().subscribe(storeName,NotificationType.RemovedFromOwningStore,this);
+        NotificationService.getInstance().subscribe(storeName,NotificationType.storeOpenedAfterClose,this);
+    }
+
+
+    public void send(String msg){
+        if(isOnline){
+            NotificationService.getInstance().send(userName,msg);
+        }else{
+            pendingMessages.add(msg);
+        }
+    }
+
+    public void Login() {
+        isOnline = true;
+    }
+
+    public void Logout() {
+        isOnline= false;
+    }
+
+    public void defineNotifications(String newMemberUserName) {
+        NotificationService.getInstance().subscribe(newMemberUserName,NotificationType.requestNotification,this);
+        NotificationService.getInstance().subscribe(newMemberUserName,NotificationType.subscriptionRemoved,this);
+    }
+
 
 
 /*

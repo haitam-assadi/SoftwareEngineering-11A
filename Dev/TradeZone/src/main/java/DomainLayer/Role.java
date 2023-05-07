@@ -78,9 +78,6 @@ public abstract class Role {
         return this.member.getMemberDTO(this.myRole.name());
     }
 
-    public void addNotification(String sender, String date, String description) {
-        this.member.addNotification(sender, date, description);
-    }
 
     //Currenly added for testing:
     public void addStore(String storeName, Store store){

@@ -41,6 +41,9 @@ public class AbstractStoreOwner extends Role{
             otherOwner.removeOwnerByHisAppointer(store,this);
             appointedOwners.get(storeName).remove(otherOwner);
             store.removeOwner(otherMember.getUserName());
+            String msg = "you have been removed from being store owner for " + storeName+ " by " + getUserName();
+            NotificationService.getInstance().notifySingle(storeName,getUserName(),msg,NotificationType.RemovedFromOwningStore);
+            NotificationService.getInstance().removeMember(storeName,otherMember);
         }
     }
 }

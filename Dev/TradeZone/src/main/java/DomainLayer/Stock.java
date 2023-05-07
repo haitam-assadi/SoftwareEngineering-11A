@@ -2,10 +2,7 @@ package DomainLayer;
 
 import DTO.ProductDTO;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class Stock {
@@ -207,13 +204,23 @@ public class Stock {
             if(bagContent.get(productName).get(product) > stockAmount)
                 throw new Exception("stock only have "+stockAmount+ "for product "+productName);
         }
-
+        int counter = 6;
+        String msg = "the products: [" ;
         for(String productName: bagContent.keySet()){
             Product product = bagContent.get(productName).keys().nextElement();
             int stockAmount = stockProducts.get(productName).get(product);
             int bagAmount = bagContent.get(productName).get(product);
             stockProducts.get(productName).put(product, stockAmount-bagAmount);
+            if(counter == 0){
+                counter = 6;
+                msg += "]\n";
+            }
+            msg+="[ " + productName+ ", ";
+            counter--;
         }
+        if(counter!=0) msg+="]";
+        msg+= " from the store: " + store.getStoreName();
+        NotificationService.getInstance().notify(store.getStoreName(),msg,NotificationType.productBought);
         return true;
     }
     public synchronized boolean replaceBagAmountToStock(ConcurrentHashMap<String, ConcurrentHashMap<Product,Integer>> bagContent) throws Exception {
