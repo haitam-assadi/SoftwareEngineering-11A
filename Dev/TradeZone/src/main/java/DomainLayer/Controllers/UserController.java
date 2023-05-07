@@ -46,7 +46,9 @@ public class UserController {
     public boolean register(String guestUserName, String newMemberUserName, String password) throws Exception {
         registerValidateParameters(guestUserName, newMemberUserName, password);
         newMemberUserName = newMemberUserName.strip().toLowerCase();
-        members.put(newMemberUserName, new Member(newMemberUserName, Security.Encode(password)));
+        Member member = new Member(newMemberUserName, Security.Encode(password));
+        members.put(newMemberUserName, member);
+        member.defineNotifications(newMemberUserName);
         membersNamesConcurrentSet.add(newMemberUserName);
         //TODO: add user to database
         return true;
@@ -105,7 +107,7 @@ public class UserController {
         Member member = getMember(MemberUserName);
         if(!member.getPassword().equals(Security.Encode(password)))
             throw new Exception("incorrect password!");
-
+        member.Login();
         loggedInMembers.put(MemberUserName, member);
         guests.remove(guestUserName);
 
@@ -248,6 +250,7 @@ public class UserController {
 
     public String memberLogOut(String memberUserName) throws Exception {
         assertIsMemberLoggedIn(memberUserName);
+        loggedInMembers.get(memberUserName).Logout();
         loggedInMembers.remove(memberUserName);
         String newGuest = loginAsGuest();
         return newGuest;

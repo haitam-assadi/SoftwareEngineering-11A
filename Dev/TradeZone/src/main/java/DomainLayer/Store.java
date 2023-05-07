@@ -204,16 +204,8 @@ public class Store {
     public boolean closeStore(String memberUserName) throws Exception {
         if(memberUserName.equals(this.storeFounder.getUserName())){
             this.isActive = false;
-            String sender = this.storeFounder.getUserName();
-            LocalDate local = java.time.LocalDate.now();
-            String date = local.toString();
-            String description = "The store has been closed.";
-            for(StoreOwner owner : this.storeOwners.values()){
-                owner.addNotification(sender, date, description);
-            }
-            for(StoreManager manager : this.storeManagers.values()){
-                manager.addNotification(sender, date, description);
-            }
+            String msg = "store: " + storeName + " has been closed by " + memberUserName + " at " + java.time.LocalTime.now();
+            NotificationService.getInstance().notify(storeName,msg,NotificationType.storeClosed);
             return true;
         }
         throw new Exception(memberUserName + "is not the founder of the store");
