@@ -7,6 +7,8 @@ import DTO.StoreDTO;
 import DomainLayer.BagConstraints.BagConstraint;
 import DomainLayer.Store;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
@@ -308,5 +310,12 @@ public class StoreController {
         storeName=storeName.strip().toLowerCase();
         return this.stores.get(storeName).closeStore(memberUserName);
      */
+
+    private String nowTime(){
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        return now.format(formatter);
+    }
+
 
 }
