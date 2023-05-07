@@ -28,6 +28,11 @@ public class Stock {
         if(!containsProduct(productName))
             throw new Exception("stock does not contain this product "+productName);
     }
+
+    public synchronized void assertContainsCategory(String categoryName) throws Exception {
+        if(!containsCategory(categoryName))
+            throw new Exception("stock does not contain this category "+categoryName);
+    }
     public synchronized void assertDoesNotContainProduct(String productName) throws Exception {
         if(containsProduct(productName))
             throw new Exception("stock does already contains this product "+productName);
@@ -118,6 +123,13 @@ public class Stock {
 
         productName = productName.strip().toLowerCase();
         return stockProducts.get(productName).keys().nextElement();
+    }
+
+
+    public synchronized Category getCategory(String categoryName) throws Exception {
+        assertContainsCategory(categoryName);
+        categoryName = categoryName.strip().toLowerCase();
+        return stockCategories.get(categoryName);
     }
 
     public synchronized Product getProductWithAmount(String productName, Integer amount) throws Exception {

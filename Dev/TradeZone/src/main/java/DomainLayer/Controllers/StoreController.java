@@ -4,6 +4,7 @@ import DTO.DealDTO;
 import DTO.MemberDTO;
 import DTO.ProductDTO;
 import DTO.StoreDTO;
+import DomainLayer.BagConstraints.BagConstraint;
 import DomainLayer.Store;
 
 import java.util.ArrayList;
@@ -172,4 +173,140 @@ public class StoreController {
         assertIsStore(storeName);
         return stores.get(storeName).isActive();
     }
+
+
+
+
+
+
+
+    ///////////
+
+
+
+
+
+
+
+
+    //ProductBagConstraint
+    public Integer createMaxTimeAtDayProductBagConstraint(String memberUserName, String storeName, String productName, int hour, int minute, boolean addAsStorePaymentPolicy) throws Exception {
+        assertIsStore(storeName);
+        storeName = storeName.strip().toLowerCase();
+        Store store = stores.get(storeName);
+        return store.createMaxTimeAtDayProductBagConstraint(memberUserName, productName, hour,minute, addAsStorePaymentPolicy);
+    }
+
+    public Integer createRangeOfDaysProductBagConstraint(String memberUserName, String storeName, String productName, int fromYear, int fromMonth, int fromDay, int toYear, int toMonth, int toDay, boolean addAsStorePaymentPolicy) throws Exception {
+        assertIsStore(storeName);
+        storeName = storeName.strip().toLowerCase();
+        Store store = stores.get(storeName);
+        return store.createRangeOfDaysProductBagConstraint(memberUserName, productName, fromYear,fromMonth,fromDay,toYear,toMonth,toDay, addAsStorePaymentPolicy);
+    }
+
+
+
+    //CategoryBagConstraint
+    public Integer createMaxTimeAtDayCategoryBagConstraint(String memberUserName, String storeName, String categoryName, int hour, int minute, boolean addAsStorePaymentPolicy) throws Exception {
+        assertIsStore(storeName);
+        storeName = storeName.strip().toLowerCase();
+        Store store = stores.get(storeName);
+        return store.createMaxTimeAtDayCategoryBagConstraint(memberUserName, categoryName, hour,minute, addAsStorePaymentPolicy);
+    }
+
+    public Integer createRangeOfDaysCategoryBagConstraint(String memberUserName, String storeName, String categoryName, int fromYear, int fromMonth, int fromDay, int toYear, int toMonth, int toDay, boolean addAsStorePaymentPolicy) throws Exception {
+        assertIsStore(storeName);
+        storeName = storeName.strip().toLowerCase();
+        Store store = stores.get(storeName);
+        return store.createRangeOfDaysCategoryBagConstraint(memberUserName, categoryName, fromYear,fromMonth,fromDay,toYear,toMonth,toDay, addAsStorePaymentPolicy);
+    }
+
+
+    //AllContentBagConstraint
+    public Integer createMaxProductAmountAllContentBagConstraint(String memberUserName, String storeName, String productName, int amountLimit, boolean addAsStorePaymentPolicy) throws Exception {
+        assertIsStore(storeName);
+        storeName = storeName.strip().toLowerCase();
+        Store store = stores.get(storeName);
+        return store.createMaxProductAmountAllContentBagConstraint(memberUserName, productName, amountLimit, addAsStorePaymentPolicy);
+    }
+
+    public Integer createMinProductAmountAllContentBagConstraint(String memberUserName, String storeName, String productName, int amountLimit, boolean addAsStorePaymentPolicy) throws Exception {
+        assertIsStore(storeName);
+        storeName = storeName.strip().toLowerCase();
+        Store store = stores.get(storeName);
+        return store.createMinProductAmountAllContentBagConstraint(memberUserName, productName, amountLimit, addAsStorePaymentPolicy);
+    }
+
+
+    // and, or, only if bag constraints
+    public Integer createAndBagConstraint(String memberUserName, String storeName, Integer firstBagConstraintId, Integer secondBagConstraintId, boolean addAsStorePaymentPolicy) throws Exception {
+        assertIsStore(storeName);
+        storeName = storeName.strip().toLowerCase();
+        Store store = stores.get(storeName);
+        return store.createAndBagConstraint(memberUserName, firstBagConstraintId, secondBagConstraintId, addAsStorePaymentPolicy);
+    }
+    public Integer createOrBagConstraint(String memberUserName, String storeName, Integer firstBagConstraintId, Integer secondBagConstraintId, boolean addAsStorePaymentPolicy) throws Exception {
+        assertIsStore(storeName);
+        storeName = storeName.strip().toLowerCase();
+        Store store = stores.get(storeName);
+        return store.createOrBagConstraint(memberUserName, firstBagConstraintId, secondBagConstraintId, addAsStorePaymentPolicy);
+    }
+
+    public Integer createOnlyIfBagConstraint(String memberUserName, String storeName, Integer firstBagConstraintId, Integer secondBagConstraintId, boolean addAsStorePaymentPolicy) throws Exception {
+        assertIsStore(storeName);
+        storeName = storeName.strip().toLowerCase();
+        Store store = stores.get(storeName);
+        return store.createOnlyIfBagConstraint(memberUserName, firstBagConstraintId, secondBagConstraintId, addAsStorePaymentPolicy);
+    }
+
+
+
+    public boolean addConstraintAsPaymentPolicy(String memberUserName, String storeName, Integer bagConstraintId) throws Exception {
+        assertIsStore(storeName);
+        storeName = storeName.strip().toLowerCase();
+        Store store = stores.get(storeName);
+        return store.addConstraintAsPaymentPolicy(memberUserName, bagConstraintId);
+    }
+
+    public boolean removeConstraintFromPaymentPolicies(String memberUserName, String storeName, Integer bagConstraintId) throws Exception {
+        assertIsStore(storeName);
+        storeName = storeName.strip().toLowerCase();
+        Store store = stores.get(storeName);
+
+        return store.removeConstraintFromPaymentPolicies(memberUserName, bagConstraintId);
+    }
+
+    public String getAllPaymentPolicies(String memberUserName, String storeName) throws Exception {
+        assertIsStore(storeName);
+        storeName = storeName.strip().toLowerCase();
+        Store store = stores.get(storeName);
+
+        return store.getAllPaymentPolicies(memberUserName);
+    }
+
+    public String getAllBagConstraints(String memberUserName, String storeName) throws Exception {
+        assertIsStore(storeName);
+        storeName = storeName.strip().toLowerCase();
+        Store store = stores.get(storeName);
+
+        return store.getAllBagConstraints(memberUserName);
+    }
+
+
+
+    /*
+
+        assertIsStore(storeName);
+        storeName = storeName.strip().toLowerCase();
+        Store store = stores.get(storeName);
+        return store.addNewProductToStock(memberUserName,nameProduct,category,price,description,amount);
+
+
+
+
+            assertIsStore(storeName);
+        storeName=storeName.strip().toLowerCase();
+        return this.stores.get(storeName).closeStore(memberUserName);
+     */
+
 }

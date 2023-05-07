@@ -4,10 +4,13 @@ import DTO.DealDTO;
 import DTO.MemberDTO;
 import DTO.ProductDTO;
 import DTO.StoreDTO;
+import DomainLayer.BagConstraints.*;
+import DomainLayer.DiscountPolicies.*;
 
 import java.time.LocalDate;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
+
 
 public class Store {
 
@@ -20,8 +23,13 @@ public class Store {
 
     //TODO:: maybe need to make it Concurrent
     private List<Deal> storeDeals;
-    private List<DiscountPolicy> storeDiscountPolicies;
-    private List<PaymentPolicy> storePaymentPolicies;
+    private ConcurrentHashMap<Integer,BagConstraint> createdBagConstraints;
+    Integer bagConstraintsIdCounter;
+
+    private ConcurrentHashMap<Integer,DiscountPolicy> createdDiscountPolicies;
+    Integer discountPoliciesIdCounter;
+    private ConcurrentHashMap<Integer,DiscountPolicy> storeDiscountPolicies;
+    private ConcurrentHashMap<Integer,BagConstraint> storePaymentPolicies;
 
     public Store(String storeName) {
         this.storeName = storeName;
@@ -31,8 +39,14 @@ public class Store {
         storeOwners = new ConcurrentHashMap<>();
         storeManagers = new ConcurrentHashMap<>();
         storeDeals = new ArrayList<>();
-        storeDiscountPolicies = new ArrayList<>();
-        storePaymentPolicies = new ArrayList<>();
+
+        storeDiscountPolicies = new ConcurrentHashMap<>();
+        createdDiscountPolicies = new ConcurrentHashMap<>();
+        discountPoliciesIdCounter=1;
+
+        storePaymentPolicies = new ConcurrentHashMap<>();
+        createdBagConstraints = new ConcurrentHashMap<>();
+        bagConstraintsIdCounter =1;
     }
     public void setStoreFounderAtStoreCreation(StoreFounder storeFounder) throws Exception {
         if(this.alreadyHaveFounder()){
@@ -192,13 +206,6 @@ public class Store {
         return storeDeals;
     }
 
-    public List<DiscountPolicy> getStoreDiscountPolicies() {
-        return storeDiscountPolicies;
-    }
-
-    public List<PaymentPolicy> getStorePaymentPolicies() {
-        return storePaymentPolicies;
-    }
 
 
     public boolean closeStore(String memberUserName) throws Exception {
@@ -272,9 +279,7 @@ public class Store {
     }
 
     public void validateStorePolicy(String userName, Product product, Integer amount) {
-        for(PaymentPolicy paymentPolicy : storePaymentPolicies){
 
-        }
     }
 
     public void removeOwner(String userName) {
@@ -288,4 +293,431 @@ public class Store {
     public boolean replaceBagAmountToStock(ConcurrentHashMap<String, ConcurrentHashMap<Product,Integer>> bagContent) throws Exception {
         return stock.replaceBagAmountToStock(bagContent);
     }
+
+
+
+
+    public Integer createProductDiscountPolicy(String memberUserName, String productName,  int discountPercentage, boolean addAsStoreDiscountPolicy) throws Exception {
+        assertIsOwnerOrFounder(memberUserName);
+        stock.assertContainsProduct(productName);
+
+        if(discountPercentage<0 || discountPercentage>100)
+            throw new Exception("discount percentage can't be less than 0 or more than 100");
+
+        Product product = stock.getProduct(productName);
+        ProductDiscountPolicy productDiscountPolicy = new ProductDiscountPolicy(product,discountPercentage);
+        int currentDisPolIdCounter =this.discountPoliciesIdCounter;
+        createdDiscountPolicies.put(currentDisPolIdCounter, productDiscountPolicy);
+        this.discountPoliciesIdCounter++;
+
+        if(addAsStoreDiscountPolicy)
+            storeDiscountPolicies.put(currentDisPolIdCounter, productDiscountPolicy);
+
+        return currentDisPolIdCounter;
+    }
+
+    public Integer createProductDiscountPolicyWithConstraint(String memberUserName, String productName,  int discountPercentage, Integer bagConstraintId, boolean addAsStoreDiscountPolicy) throws Exception {
+        assertIsOwnerOrFounder(memberUserName);
+        stock.assertContainsProduct(productName);
+
+        if(discountPercentage<0 || discountPercentage>100)
+            throw new Exception("discount percentage can't be less than 0 or more than 100");
+
+        if(bagConstraintId == null)
+            throw new Exception("Bag constraint id cant be null");
+
+        if(!createdBagConstraints.containsKey(bagConstraintId))
+            throw new Exception(bagConstraintId+ " is not bag constraint id");
+
+        Product product = stock.getProduct(productName);
+        BagConstraint bagConstraint = createdBagConstraints.get(bagConstraintId);
+        ProductDiscountPolicy productDiscountPolicy = new ProductDiscountPolicy(product,discountPercentage, bagConstraint);
+        int currentDisPolIdCounter =this.discountPoliciesIdCounter;
+        createdDiscountPolicies.put(currentDisPolIdCounter, productDiscountPolicy);
+        this.discountPoliciesIdCounter++;
+
+        if(addAsStoreDiscountPolicy)
+            storeDiscountPolicies.put(currentDisPolIdCounter, productDiscountPolicy);
+
+        return currentDisPolIdCounter;
+    }
+
+    public Integer createCategoryDiscountPolicy(String memberUserName, String categoryName,  int discountPercentage, boolean addAsStoreDiscountPolicy) throws Exception {
+        assertIsOwnerOrFounder(memberUserName);
+        stock.assertContainsCategory(categoryName);
+
+        if(discountPercentage<0 || discountPercentage>100)
+            throw new Exception("discount percentage can't be less than 0 or more than 100");
+
+        Category category = stock.getCategory(categoryName);
+        CategoryDiscountPolicy categoryDiscountPolicy = new CategoryDiscountPolicy(category,discountPercentage);
+        int currentDisPolIdCounter =this.discountPoliciesIdCounter;
+        createdDiscountPolicies.put(currentDisPolIdCounter, categoryDiscountPolicy);
+        this.discountPoliciesIdCounter++;
+
+        if(addAsStoreDiscountPolicy)
+            storeDiscountPolicies.put(currentDisPolIdCounter, categoryDiscountPolicy);
+
+        return currentDisPolIdCounter;
+    }
+
+    public Integer createCategoryDiscountPolicyWithConstraint(String memberUserName, String categoryName,  int discountPercentage, Integer bagConstraintId, boolean addAsStoreDiscountPolicy) throws Exception {
+        assertIsOwnerOrFounder(memberUserName);
+        stock.assertContainsCategory(categoryName);
+
+        if(discountPercentage<0 || discountPercentage>100)
+            throw new Exception("discount percentage can't be less than 0 or more than 100");
+
+        if(bagConstraintId == null)
+            throw new Exception("Bag constraint id cant be null");
+
+        if(!createdBagConstraints.containsKey(bagConstraintId))
+            throw new Exception(bagConstraintId+ " is not bag constraint id");
+
+        Category category = stock.getCategory(categoryName);
+        BagConstraint bagConstraint = createdBagConstraints.get(bagConstraintId);
+        CategoryDiscountPolicy categoryDiscountPolicy = new CategoryDiscountPolicy(category,discountPercentage, bagConstraint);
+        int currentDisPolIdCounter =this.discountPoliciesIdCounter;
+        createdDiscountPolicies.put(currentDisPolIdCounter, categoryDiscountPolicy);
+        this.discountPoliciesIdCounter++;
+
+        if(addAsStoreDiscountPolicy)
+            storeDiscountPolicies.put(currentDisPolIdCounter, categoryDiscountPolicy);
+
+        return currentDisPolIdCounter;
+    }
+
+
+    public Integer createAllStoreDiscountPolicy(String memberUserName,int discountPercentage, boolean addAsStoreDiscountPolicy) throws Exception {
+        assertIsOwnerOrFounder(memberUserName);
+
+        if(discountPercentage<0 || discountPercentage>100)
+            throw new Exception("discount percentage can't be less than 0 or more than 100");
+
+        AllStoreDiscountPolicy allStoreDiscountPolicy = new AllStoreDiscountPolicy(discountPercentage);
+        int currentDisPolIdCounter =this.discountPoliciesIdCounter;
+        createdDiscountPolicies.put(currentDisPolIdCounter, allStoreDiscountPolicy);
+        this.discountPoliciesIdCounter++;
+
+        if(addAsStoreDiscountPolicy)
+            storeDiscountPolicies.put(currentDisPolIdCounter, allStoreDiscountPolicy);
+
+        return currentDisPolIdCounter;
+    }
+
+    public Integer createAllStoreDiscountPolicyWithConstraint(String memberUserName,int discountPercentage, Integer bagConstraintId, boolean addAsStoreDiscountPolicy) throws Exception {
+        assertIsOwnerOrFounder(memberUserName);
+
+        if(discountPercentage<0 || discountPercentage>100)
+            throw new Exception("discount percentage can't be less than 0 or more than 100");
+
+        if(bagConstraintId == null)
+            throw new Exception("Bag constraint id cant be null");
+
+        if(!createdBagConstraints.containsKey(bagConstraintId))
+            throw new Exception(bagConstraintId+ " is not bag constraint id");
+
+        BagConstraint bagConstraint = createdBagConstraints.get(bagConstraintId);
+        AllStoreDiscountPolicy allStoreDiscountPolicy = new AllStoreDiscountPolicy(discountPercentage, bagConstraint);
+        int currentDisPolIdCounter =this.discountPoliciesIdCounter;
+        createdDiscountPolicies.put(currentDisPolIdCounter, allStoreDiscountPolicy);
+        this.discountPoliciesIdCounter++;
+
+        if(addAsStoreDiscountPolicy)
+            storeDiscountPolicies.put(currentDisPolIdCounter, allStoreDiscountPolicy);
+
+        return currentDisPolIdCounter;
+    }
+
+    
+    public Integer createAdditionDiscountPolicy(String memberUserName, Integer firstDiscountPolicyId, Integer secondDiscountPolicyId, boolean addAsStoreDiscountPolicy) throws Exception {
+        assertIsOwnerOrFounder(memberUserName);
+
+        if(firstDiscountPolicyId == null || secondDiscountPolicyId==null)
+            throw new Exception("Discount Policy id cant be null");
+
+        if(!createdDiscountPolicies.containsKey(firstDiscountPolicyId))
+            throw new Exception(firstDiscountPolicyId+ " is not Discount Policy id");
+
+        if(!createdDiscountPolicies.containsKey(secondDiscountPolicyId))
+            throw new Exception(secondDiscountPolicyId+ " is not Discount Policy id");
+
+        DiscountPolicy firstDiscountPolicy = createdDiscountPolicies.get(firstDiscountPolicyId);
+        DiscountPolicy secondDiscountPolicy = createdDiscountPolicies.get(secondDiscountPolicyId);
+        AdditionDiscountPolicy additionDiscountPolicy = new AdditionDiscountPolicy(firstDiscountPolicy, secondDiscountPolicy);
+        int currentDisPolIdCounter =this.discountPoliciesIdCounter;
+        createdDiscountPolicies.put(currentDisPolIdCounter, additionDiscountPolicy);
+        this.discountPoliciesIdCounter++;
+        if(addAsStoreDiscountPolicy)
+            storeDiscountPolicies.put(currentDisPolIdCounter, additionDiscountPolicy);
+
+        return currentDisPolIdCounter;
+    }
+
+
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+    //ProductBagConstraint
+    public Integer createMaxTimeAtDayProductBagConstraint(String memberUserName, String productName, int hour, int minute, boolean addAsStorePaymentPolicy) throws Exception {
+        assertIsOwnerOrFounder(memberUserName);
+
+        stock.assertContainsProduct(productName);
+        if(hour<0 || hour>23)
+            throw new Exception("hour can't be less than 0 or more than 23");
+
+        if(minute<0 || minute>59)
+            throw new Exception("minute can't be less than 0 or more than 59");
+
+        Product product = stock.getProduct(productName);
+        ProductBagConstraint productBagConstraint = new ProductBagConstraint(product, hour,minute);
+        int currentBagConstraintsIdCounter =this.bagConstraintsIdCounter;
+        createdBagConstraints.put(currentBagConstraintsIdCounter, productBagConstraint);
+        this.bagConstraintsIdCounter++;
+        if(addAsStorePaymentPolicy)
+            storePaymentPolicies.put(currentBagConstraintsIdCounter, productBagConstraint);
+
+        return currentBagConstraintsIdCounter;
+    }
+
+    public Integer createRangeOfDaysProductBagConstraint(String memberUserName, String productName, int fromYear, int fromMonth, int fromDay, int toYear, int toMonth, int toDay, boolean addAsStorePaymentPolicy) throws Exception {
+        assertIsOwnerOrFounder(memberUserName);
+
+        stock.assertContainsProduct(productName);
+
+        if(fromYear <0 ||toYear<0)
+            throw new Exception("year can't be less than 0");
+
+        if(fromMonth<1 || fromMonth>12 ||  toMonth<1 || toMonth>12)
+            throw new Exception("month can't be less than 1 or more than 12");
+
+        if(fromDay<1 || fromDay>31 ||  toDay<1 || toDay>31)
+            throw new Exception("day can't be less than 1 or more than 31");
+
+        Product product = stock.getProduct(productName);
+        ProductBagConstraint productBagConstraint = new ProductBagConstraint(product, fromYear,fromMonth,fromDay, toYear,toMonth,toDay);
+        int currentBagConstraintsIdCounter =this.bagConstraintsIdCounter;
+        createdBagConstraints.put(currentBagConstraintsIdCounter, productBagConstraint);
+        this.bagConstraintsIdCounter++;
+        if(addAsStorePaymentPolicy)
+            storePaymentPolicies.put(currentBagConstraintsIdCounter, productBagConstraint);
+
+        return currentBagConstraintsIdCounter;
+    }
+
+
+
+    //CategoryBagConstraint
+    public Integer createMaxTimeAtDayCategoryBagConstraint(String memberUserName, String categoryName, int hour, int minute, boolean addAsStorePaymentPolicy) throws Exception {
+        assertIsOwnerOrFounder(memberUserName);
+
+        stock.assertContainsCategory(categoryName);
+
+        if(hour<0 || hour>23)
+            throw new Exception("hour can't be less than 0 or more than 23");
+
+        if(minute<0 || minute>59)
+            throw new Exception("minute can't be less than 0 or more than 59");
+
+        Category category = stock.getCategory(categoryName);
+        CategoryBagConstraint categoryBagConstraint = new CategoryBagConstraint(category, hour,minute);
+        int currentBagConstraintsIdCounter =this.bagConstraintsIdCounter;
+        createdBagConstraints.put(currentBagConstraintsIdCounter, categoryBagConstraint);
+        this.bagConstraintsIdCounter++;
+        if(addAsStorePaymentPolicy)
+            storePaymentPolicies.put(currentBagConstraintsIdCounter, categoryBagConstraint);
+        return currentBagConstraintsIdCounter;
+    }
+
+    public Integer createRangeOfDaysCategoryBagConstraint(String memberUserName, String categoryName, int fromYear, int fromMonth, int fromDay, int toYear, int toMonth, int toDay, boolean addAsStorePaymentPolicy) throws Exception {
+        assertIsOwnerOrFounder(memberUserName);
+
+        stock.assertContainsCategory(categoryName);
+
+        if(fromYear <0 ||toYear<0)
+            throw new Exception("year can't be less than 0");
+
+        if(fromMonth<1 || fromMonth>12 ||  toMonth<1 || toMonth>12)
+            throw new Exception("month can't be less than 1 or more than 12");
+
+        if(fromDay<1 || fromDay>31 ||  toDay<1 || toDay>31)
+            throw new Exception("day can't be less than 1 or more than 31");
+
+
+
+        Category category = stock.getCategory(categoryName);
+        CategoryBagConstraint categoryBagConstraint = new CategoryBagConstraint(category, fromYear,fromMonth,fromDay, toYear,toMonth,toDay);
+        int currentBagConstraintsIdCounter =this.bagConstraintsIdCounter;
+        createdBagConstraints.put(currentBagConstraintsIdCounter, categoryBagConstraint);
+        this.bagConstraintsIdCounter++;
+        if(addAsStorePaymentPolicy)
+            storePaymentPolicies.put(currentBagConstraintsIdCounter, categoryBagConstraint);
+
+        return currentBagConstraintsIdCounter;
+    }
+
+
+
+
+    //AllContentBagConstraint
+    public Integer createMaxProductAmountAllContentBagConstraint(String memberUserName, String productName, int amountLimit, boolean addAsStorePaymentPolicy) throws Exception {
+        assertIsOwnerOrFounder(memberUserName);
+
+        stock.assertContainsProduct(productName);
+
+        if(amountLimit<0)
+            throw new Exception("amount limit cant be less than 0");
+
+
+        Product product = stock.getProduct(productName);
+        AllContentBagConstraint allContentBagConstraint = new AllContentBagConstraint(product, amountLimit, "MaxProductAmount");
+        int currentBagConstraintsIdCounter =this.bagConstraintsIdCounter;
+        createdBagConstraints.put(currentBagConstraintsIdCounter, allContentBagConstraint);
+        this.bagConstraintsIdCounter++;
+        if(addAsStorePaymentPolicy)
+            storePaymentPolicies.put(currentBagConstraintsIdCounter, allContentBagConstraint);
+
+        return currentBagConstraintsIdCounter;
+    }
+
+    public Integer createMinProductAmountAllContentBagConstraint(String memberUserName, String productName, int amountLimit, boolean addAsStorePaymentPolicy) throws Exception {
+        assertIsOwnerOrFounder(memberUserName);
+
+        stock.assertContainsProduct(productName);
+        if(amountLimit<0)
+            throw new Exception("amount limit cant be less than 0");
+
+        Product product = stock.getProduct(productName);
+        AllContentBagConstraint allContentBagConstraint = new AllContentBagConstraint(product, amountLimit, "MinProductAmount");
+        int currentBagConstraintsIdCounter =this.bagConstraintsIdCounter;
+        createdBagConstraints.put(currentBagConstraintsIdCounter, allContentBagConstraint);
+        this.bagConstraintsIdCounter++;
+        if(addAsStorePaymentPolicy)
+            storePaymentPolicies.put(currentBagConstraintsIdCounter, allContentBagConstraint);
+
+        return currentBagConstraintsIdCounter;
+    }
+
+    public Integer createAndBagConstraint(String memberUserName, Integer firstBagConstraintId, Integer secondBagConstraintId, boolean addAsStorePaymentPolicy) throws Exception {
+        assertIsOwnerOrFounder(memberUserName);
+
+        if(firstBagConstraintId == null || secondBagConstraintId==null)
+            throw new Exception("Bag constraints cant be null");
+
+        if(!createdBagConstraints.containsKey(firstBagConstraintId))
+            throw new Exception(firstBagConstraintId+ " is not bag constraint id");
+
+        if(!createdBagConstraints.containsKey(secondBagConstraintId))
+            throw new Exception(secondBagConstraintId+ " is not bag constraint id");
+
+        BagConstraint firstBagConstraint = createdBagConstraints.get(firstBagConstraintId);
+        BagConstraint secondBagConstraint = createdBagConstraints.get(secondBagConstraintId);
+        BagConstraintAnd bagConstraintAnd = new BagConstraintAnd(firstBagConstraint, secondBagConstraint);
+        int currentBagConstraintsIdCounter =this.bagConstraintsIdCounter;
+        createdBagConstraints.put(currentBagConstraintsIdCounter, bagConstraintAnd);
+        this.bagConstraintsIdCounter++;
+        if(addAsStorePaymentPolicy)
+            storePaymentPolicies.put(currentBagConstraintsIdCounter, bagConstraintAnd);
+
+        return currentBagConstraintsIdCounter;
+    }
+    public Integer createOrBagConstraint(String memberUserName, Integer firstBagConstraintId, Integer secondBagConstraintId, boolean addAsStorePaymentPolicy) throws Exception {
+        assertIsOwnerOrFounder(memberUserName);
+
+        if(firstBagConstraintId == null || secondBagConstraintId==null)
+            throw new Exception("Bag constraints cant be null");
+
+        if(!createdBagConstraints.containsKey(firstBagConstraintId))
+            throw new Exception(firstBagConstraintId+ " is not bag constraint id");
+
+        if(!createdBagConstraints.containsKey(secondBagConstraintId))
+            throw new Exception(secondBagConstraintId+ " is not bag constraint id");
+
+        BagConstraint firstBagConstraint = createdBagConstraints.get(firstBagConstraintId);
+        BagConstraint secondBagConstraint = createdBagConstraints.get(secondBagConstraintId);
+        BagConstraintOr bagConstraintOr = new BagConstraintOr(firstBagConstraint, secondBagConstraint);
+        int currentBagConstraintsIdCounter =this.bagConstraintsIdCounter;
+        createdBagConstraints.put(currentBagConstraintsIdCounter, bagConstraintOr);
+        this.bagConstraintsIdCounter++;
+        if(addAsStorePaymentPolicy)
+            storePaymentPolicies.put(currentBagConstraintsIdCounter, bagConstraintOr);
+
+        return currentBagConstraintsIdCounter;
+    }
+
+    public Integer createOnlyIfBagConstraint(String memberUserName, Integer firstBagConstraintId, Integer secondBagConstraintId, boolean addAsStorePaymentPolicy) throws Exception {
+        assertIsOwnerOrFounder(memberUserName);
+
+        if(firstBagConstraintId == null || secondBagConstraintId==null)
+            throw new Exception("Bag constraints cant be null");
+
+        if(!createdBagConstraints.containsKey(firstBagConstraintId))
+            throw new Exception(firstBagConstraintId+ " is not bag constraint id");
+
+        if(!createdBagConstraints.containsKey(secondBagConstraintId))
+            throw new Exception(secondBagConstraintId+ " is not bag constraint id");
+
+        BagConstraint firstBagConstraint = createdBagConstraints.get(firstBagConstraintId);
+        BagConstraint secondBagConstraint = createdBagConstraints.get(secondBagConstraintId);
+        BagConstraintOnlyIf bagConstraintOnlyIf = new BagConstraintOnlyIf(firstBagConstraint, secondBagConstraint);
+        int currentBagConstraintsIdCounter =this.bagConstraintsIdCounter;
+        createdBagConstraints.put(currentBagConstraintsIdCounter, bagConstraintOnlyIf);
+        this.bagConstraintsIdCounter++;
+        if(addAsStorePaymentPolicy)
+            storePaymentPolicies.put(currentBagConstraintsIdCounter, bagConstraintOnlyIf);
+
+        return currentBagConstraintsIdCounter;
+    }
+
+    public boolean addConstraintAsPaymentPolicy(String memberUserName, Integer bagConstraintId) throws Exception {
+        assertIsOwnerOrFounder(memberUserName);
+        if(bagConstraintId == null)
+            throw new Exception("Bag constraints cant be null");
+
+        if(!createdBagConstraints.containsKey(bagConstraintId))
+            throw new Exception(bagConstraintId+ " is not bag constraint id");
+
+        BagConstraint bagConstraint = createdBagConstraints.get(bagConstraintId);
+        storePaymentPolicies.put(bagConstraintId, bagConstraint);
+
+        return true;
+    }
+
+    public boolean removeConstraintFromPaymentPolicies(String memberUserName, Integer bagConstraintId) throws Exception {
+        assertIsOwnerOrFounder(memberUserName);
+        if(bagConstraintId == null)
+            throw new Exception("Bag constraints cant be null");
+
+        if(!createdBagConstraints.containsKey(bagConstraintId))
+            throw new Exception(bagConstraintId+ " is not bag constraint id");
+
+        if(!storePaymentPolicies.containsKey(bagConstraintId))
+            throw new Exception(bagConstraintId+ " is not payment policy id");
+
+        storePaymentPolicies.remove(bagConstraintId);
+
+        return true;
+    }
+
+    public String getAllPaymentPolicies(String memberUserName) throws Exception {
+        assertIsOwnerOrFounder(memberUserName);
+        StringBuilder st = new StringBuilder();
+        for(Integer policyId : storePaymentPolicies.keySet().stream().toList().stream().sorted().toList())
+            st.append(policyId+". "+ storePaymentPolicies.get(policyId).toString()+"\n");
+
+        return st.toString();
+    }
+
+    public String getAllBagConstraints(String memberUserName) throws Exception {
+        assertIsOwnerOrFounder(memberUserName);
+        StringBuilder st = new StringBuilder();
+        for(Integer bagConstraintId : createdBagConstraints.keySet().stream().toList().stream().sorted().toList())
+            st.append(bagConstraintId+". "+ createdBagConstraints.get(bagConstraintId).toString()+"\n");
+
+        return st.toString();
+    }
+
+
 }

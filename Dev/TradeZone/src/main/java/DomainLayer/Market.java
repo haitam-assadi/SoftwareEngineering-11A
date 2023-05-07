@@ -1,6 +1,7 @@
 package DomainLayer;
 
 import DTO.*;
+import DomainLayer.BagConstraints.*;
 import DomainLayer.Controllers.StoreController;
 import DomainLayer.Controllers.UserController;
 import jdk.jshell.spi.ExecutionControl;
@@ -215,5 +216,95 @@ public class Market {
         Store store = storeController.getStore(storeName); // TODO: MAYBE WE NEED TO CHECK IF STORE IS ACTIVE
         return userController.removeOwnerByHisAppointer(appointerUserName,store,ownerUserName);
     }
+
+
+
+
+
+
+
+
+
+    ///////////
+
+    /////////////
+
+
+    //ProductBagConstraint
+    public Integer createMaxTimeAtDayProductBagConstraint(String memberUserName, String storeName, String productName, int hour, int minute, boolean addAsStorePaymentPolicy) throws Exception {
+        userController.assertIsMemberLoggedIn(memberUserName);
+        return storeController.createMaxTimeAtDayProductBagConstraint(memberUserName,storeName,productName,hour,minute ,addAsStorePaymentPolicy);
+    }
+
+    public Integer createRangeOfDaysProductBagConstraint(String memberUserName, String storeName, String productName, int fromYear, int fromMonth, int fromDay, int toYear, int toMonth, int toDay, boolean addAsStorePaymentPolicy) throws Exception {
+        userController.assertIsMemberLoggedIn(memberUserName);
+        return storeController.createRangeOfDaysProductBagConstraint(memberUserName,storeName,productName, fromYear,fromMonth,fromDay,toYear,toMonth,toDay, addAsStorePaymentPolicy);
+    }
+
+
+
+    //CategoryBagConstraint
+    public Integer createMaxTimeAtDayCategoryBagConstraint(String memberUserName, String storeName, String categoryName, int hour, int minute, boolean addAsStorePaymentPolicy) throws Exception {
+        userController.assertIsMemberLoggedIn(memberUserName);
+        return storeController.createMaxTimeAtDayCategoryBagConstraint(memberUserName,storeName,categoryName,hour,minute ,addAsStorePaymentPolicy);
+    }
+
+    public Integer createRangeOfDaysCategoryBagConstraint(String memberUserName, String storeName, String categoryName, int fromYear, int fromMonth, int fromDay, int toYear, int toMonth, int toDay, boolean addAsStorePaymentPolicy) throws Exception {
+        userController.assertIsMemberLoggedIn(memberUserName);
+        return storeController.createRangeOfDaysCategoryBagConstraint(memberUserName,storeName,categoryName, fromYear,fromMonth,fromDay,toYear,toMonth,toDay, addAsStorePaymentPolicy);
+    }
+
+
+
+
+    //AllContentBagConstraint
+    public Integer createMaxProductAmountAllContentBagConstraint(String memberUserName, String storeName, String productName, int amountLimit, boolean addAsStorePaymentPolicy) throws Exception {
+        userController.assertIsMemberLoggedIn(memberUserName);
+        return storeController.createMaxProductAmountAllContentBagConstraint(memberUserName,storeName,productName,amountLimit,addAsStorePaymentPolicy);
+    }
+
+    public Integer createMinProductAmountAllContentBagConstraint(String memberUserName, String storeName, String productName, int amountLimit, boolean addAsStorePaymentPolicy) throws Exception {
+        userController.assertIsMemberLoggedIn(memberUserName);
+        return storeController.createMinProductAmountAllContentBagConstraint(memberUserName,storeName,productName,amountLimit,addAsStorePaymentPolicy);
+    }
+
+
+    // and, or, only if bag constraints
+    public Integer createAndBagConstraint(String memberUserName, String storeName, Integer firstBagConstraintId, Integer secondBagConstraintId, boolean addAsStorePaymentPolicy) throws Exception {
+        userController.assertIsMemberLoggedIn(memberUserName);
+        return storeController.createAndBagConstraint(memberUserName,storeName,firstBagConstraintId,secondBagConstraintId,addAsStorePaymentPolicy);
+    }
+    public Integer createOrBagConstraint(String memberUserName, String storeName, Integer firstBagConstraintId, Integer secondBagConstraintId, boolean addAsStorePaymentPolicy) throws Exception {
+        userController.assertIsMemberLoggedIn(memberUserName);
+        return storeController.createOrBagConstraint(memberUserName,storeName,firstBagConstraintId,secondBagConstraintId,addAsStorePaymentPolicy);
+    }
+
+    public Integer createOnlyIfBagConstraint(String memberUserName, String storeName, Integer firstBagConstraintId, Integer secondBagConstraintId, boolean addAsStorePaymentPolicy) throws Exception {
+        userController.assertIsMemberLoggedIn(memberUserName);
+        return storeController.createOnlyIfBagConstraint(memberUserName,storeName,firstBagConstraintId,secondBagConstraintId,addAsStorePaymentPolicy);
+    }
+    public boolean addConstraintAsPaymentPolicy(String memberUserName, String storeName, Integer bagConstraintId) throws Exception {
+        userController.assertIsMemberLoggedIn(memberUserName);
+        return storeController.addConstraintAsPaymentPolicy(memberUserName,storeName,bagConstraintId);
+    }
+
+    public boolean removeConstraintFromPaymentPolicies(String memberUserName, String storeName, Integer bagConstraintId) throws Exception {
+        userController.assertIsMemberLoggedIn(memberUserName);
+        return storeController.removeConstraintFromPaymentPolicies(memberUserName,storeName,bagConstraintId);
+    }
+
+    public String getAllPaymentPolicies(String memberUserName, String storeName) throws Exception {
+        userController.assertIsMemberLoggedIn(memberUserName);
+        return storeController.getAllPaymentPolicies(memberUserName,storeName);
+    }
+
+    public String getAllBagConstraints(String memberUserName, String storeName) throws Exception {
+        userController.assertIsMemberLoggedIn(memberUserName);
+        return storeController.getAllBagConstraints(memberUserName,storeName);
+    }
+
+
+
+
 
 }

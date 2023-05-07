@@ -15,8 +15,11 @@ import java.time.LocalTime;
 public class Main {
     public static void main(String[] args) throws Exception {
 
-        LocalDate date = LocalDate.of(2022,10,23);
+        LocalDate date = LocalDate.of(-1,12,21);
+        int bb =70;
+        Double aa = bb/100.0;
 
+        System.out.println(aa);
 
 
         // display formatted date
