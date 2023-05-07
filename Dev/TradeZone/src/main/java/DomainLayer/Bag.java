@@ -65,12 +65,8 @@ public class Bag {
         return new BagDTO(storeBag.getStoreName(), bagContent);
     }
 
-    public void validateStorePolicy(String userName) {
-        for(ConcurrentHashMap<Product,Integer> prodct_amount : bagContent.values()){
-            for (Product p : prodct_amount.keySet()){
-                storeBag.validateStorePolicy(userName,p,prodct_amount.get(p));
-            }
-        }
+    public void validateStorePolicy(String userName) throws Exception {
+        storeBag.validateStorePolicy(bagContent);
     }
 
     public void validateAllProductsAmounts() throws Exception {

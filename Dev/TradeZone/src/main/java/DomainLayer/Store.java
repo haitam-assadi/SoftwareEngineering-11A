@@ -270,8 +270,10 @@ public class Store {
         this.storeOwners.put(ownerName, owner);
     }
 
-    public void validateStorePolicy(String userName, Product product, Integer amount) {
-
+    public void validateStorePolicy(ConcurrentHashMap<String, ConcurrentHashMap<Product,Integer>> bagContent) throws Exception {
+        for(BagConstraint bagConstraint : storePaymentPolicies.values())
+            if(!bagConstraint.checkConstraint(bagContent))
+                throw new Exception("Bag does not follow store: "+storeName+" payment policy: "+bagConstraint.toString());
     }
 
     public void removeOwner(String userName) {
@@ -421,7 +423,6 @@ public class Store {
         return currentDisPolIdCounter;
     }
 
-    
     public Integer createAdditionDiscountPolicy(String memberUserName, Integer firstDiscountPolicyId, Integer secondDiscountPolicyId, boolean addAsStoreDiscountPolicy) throws Exception {
         assertIsOwnerOrFounder(memberUserName);
 
@@ -446,8 +447,93 @@ public class Store {
         return currentDisPolIdCounter;
     }
 
+    public Integer createAdditionDiscountPolicyWithConstraint(String memberUserName, Integer firstDiscountPolicyId, Integer secondDiscountPolicyId, Integer bagConstraintId, boolean addAsStoreDiscountPolicy) throws Exception {
+        assertIsOwnerOrFounder(memberUserName);
+
+        if(firstDiscountPolicyId == null || secondDiscountPolicyId==null)
+            throw new Exception("Discount Policy id cant be null");
+
+        if(!createdDiscountPolicies.containsKey(firstDiscountPolicyId))
+            throw new Exception(firstDiscountPolicyId+ " is not Discount Policy id");
+
+        if(!createdDiscountPolicies.containsKey(secondDiscountPolicyId))
+            throw new Exception(secondDiscountPolicyId+ " is not Discount Policy id");
+
+        if(bagConstraintId == null)
+            throw new Exception("Bag constraint id cant be null");
+
+        if(!createdBagConstraints.containsKey(bagConstraintId))
+            throw new Exception(bagConstraintId+ " is not bag constraint id");
 
 
+        BagConstraint bagConstraint = createdBagConstraints.get(bagConstraintId);
+        DiscountPolicy firstDiscountPolicy = createdDiscountPolicies.get(firstDiscountPolicyId);
+        DiscountPolicy secondDiscountPolicy = createdDiscountPolicies.get(secondDiscountPolicyId);
+        AdditionDiscountPolicy additionDiscountPolicy = new AdditionDiscountPolicy(firstDiscountPolicy, secondDiscountPolicy, bagConstraint);
+        int currentDisPolIdCounter =this.discountPoliciesIdCounter;
+        createdDiscountPolicies.put(currentDisPolIdCounter, additionDiscountPolicy);
+        this.discountPoliciesIdCounter++;
+        if(addAsStoreDiscountPolicy)
+            storeDiscountPolicies.put(currentDisPolIdCounter, additionDiscountPolicy);
+
+        return currentDisPolIdCounter;
+    }
+
+    public Integer createMaxValDiscountPolicy(String memberUserName, Integer firstDiscountPolicyId, Integer secondDiscountPolicyId, boolean addAsStoreDiscountPolicy) throws Exception {
+        assertIsOwnerOrFounder(memberUserName);
+
+        if(firstDiscountPolicyId == null || secondDiscountPolicyId==null)
+            throw new Exception("Discount Policy id cant be null");
+
+        if(!createdDiscountPolicies.containsKey(firstDiscountPolicyId))
+            throw new Exception(firstDiscountPolicyId+ " is not Discount Policy id");
+
+        if(!createdDiscountPolicies.containsKey(secondDiscountPolicyId))
+            throw new Exception(secondDiscountPolicyId+ " is not Discount Policy id");
+
+        DiscountPolicy firstDiscountPolicy = createdDiscountPolicies.get(firstDiscountPolicyId);
+        DiscountPolicy secondDiscountPolicy = createdDiscountPolicies.get(secondDiscountPolicyId);
+        MaxValDiscountPolicy maxValDiscountPolicy = new MaxValDiscountPolicy(firstDiscountPolicy, secondDiscountPolicy);
+        int currentDisPolIdCounter =this.discountPoliciesIdCounter;
+        createdDiscountPolicies.put(currentDisPolIdCounter, maxValDiscountPolicy);
+        this.discountPoliciesIdCounter++;
+        if(addAsStoreDiscountPolicy)
+            storeDiscountPolicies.put(currentDisPolIdCounter, maxValDiscountPolicy);
+
+        return currentDisPolIdCounter;
+    }
+
+    public Integer createMaxValDiscountPolicyWithConstraint(String memberUserName, Integer firstDiscountPolicyId, Integer secondDiscountPolicyId, Integer bagConstraintId, boolean addAsStoreDiscountPolicy) throws Exception {
+        assertIsOwnerOrFounder(memberUserName);
+
+        if(firstDiscountPolicyId == null || secondDiscountPolicyId==null)
+            throw new Exception("Discount Policy id cant be null");
+
+        if(!createdDiscountPolicies.containsKey(firstDiscountPolicyId))
+            throw new Exception(firstDiscountPolicyId+ " is not Discount Policy id");
+
+        if(!createdDiscountPolicies.containsKey(secondDiscountPolicyId))
+            throw new Exception(secondDiscountPolicyId+ " is not Discount Policy id");
+
+        if(bagConstraintId == null)
+            throw new Exception("Bag constraint id cant be null");
+
+        if(!createdBagConstraints.containsKey(bagConstraintId))
+            throw new Exception(bagConstraintId+ " is not bag constraint id");
+
+
+        BagConstraint bagConstraint = createdBagConstraints.get(bagConstraintId);
+        DiscountPolicy firstDiscountPolicy = createdDiscountPolicies.get(firstDiscountPolicyId);
+        DiscountPolicy secondDiscountPolicy = createdDiscountPolicies.get(secondDiscountPolicyId);
+        MaxValDiscountPolicy maxValDiscountPolicy = new MaxValDiscountPolicy(firstDiscountPolicy, secondDiscountPolicy, bagConstraint);
+        int currentDisPolIdCounter =this.discountPoliciesIdCounter;
+        createdDiscountPolicies.put(currentDisPolIdCounter, maxValDiscountPolicy);
+        this.discountPoliciesIdCounter++;
+        if(addAsStoreDiscountPolicy)
+            storeDiscountPolicies.put(currentDisPolIdCounter, maxValDiscountPolicy);
+
+        return currentDisPolIdCounter;
+    }
 
 
 
