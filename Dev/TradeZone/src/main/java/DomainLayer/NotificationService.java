@@ -23,10 +23,9 @@ public class NotificationService {
 
     public static NotificationService getInstance(){
         if(instance == null){
-            return new NotificationService();
-        }else{
-            return instance;
+            instance = new NotificationService();
         }
+        return instance;
     }
     public void subscribe(String storeName,NotificationType notificationType,Member member){
         ConcurrentHashMap<NotificationType, LinkedList<Member>> type_memberList = new ConcurrentHashMap<>();

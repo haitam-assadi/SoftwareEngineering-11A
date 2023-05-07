@@ -2,6 +2,8 @@ package DomainLayer.Controllers;
 
 import DomainLayer.*;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
@@ -101,16 +103,14 @@ public class UserController {
 
     public String login(String guestUserName, String MemberUserName, String password) throws Exception {
         loginValidateParameters(guestUserName, MemberUserName, password);
-
         guestUserName = guestUserName.strip().toLowerCase();
         MemberUserName = MemberUserName.strip().toLowerCase();
         Member member = getMember(MemberUserName);
         if(!member.getPassword().equals(Security.Encode(password)))
             throw new Exception("incorrect password!");
-        member.Login();
         loggedInMembers.put(MemberUserName, member);
         guests.remove(guestUserName);
-
+        member.Login();
         return MemberUserName;
     }
 
@@ -301,4 +301,12 @@ public class UserController {
         Member member = getMember(userName);
         member.assertIsOwnerForTheStore(store);
     }
+
+    private String nowTime(){
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        return now.format(formatter);
+    }
+
+
 }
