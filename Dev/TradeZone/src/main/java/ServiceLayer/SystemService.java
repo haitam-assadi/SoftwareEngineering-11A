@@ -530,4 +530,12 @@ public class SystemService {
         return now.format(formatter);
     }
 
+    public ResponseT<Boolean> hasRole(String memberUserName) throws Exception {
+        try{
+            return new ResponseT<>(market.hasRole(memberUserName));
+        }catch(Exception e){
+            return new ResponseT<>("hasRole: "+e.getMessage());
+        }
+    }
+
 }

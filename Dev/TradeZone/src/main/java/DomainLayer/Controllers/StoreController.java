@@ -10,6 +10,7 @@ import DomainLayer.Store;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -315,6 +316,13 @@ public class StoreController {
         LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         return now.format(formatter);
+    }
+
+    public boolean hasRole(String memberUserName){
+        for(Store store : stores.values()){
+            return store.hasRole(memberUserName);
+        }
+        return false;
     }
 
 

@@ -797,5 +797,8 @@ public class Store {
         return st.toString();
     }
 
+    public boolean hasRole(String memberUserName){
+        return storeFounder.getUserName().equals(memberUserName) || storeOwners.containsKey(memberUserName) || storeManagers.containsKey(memberUserName);
+    }
 
 }

@@ -305,7 +305,10 @@ public class Market {
         return storeController.getAllBagConstraints(memberUserName,storeName);
     }
 
-
+    public boolean hasRole(String memberUserName) throws Exception {
+        userController.assertIsMemberLoggedIn(memberUserName);
+        return storeController.hasRole(memberUserName);
+    }
 
 
 
