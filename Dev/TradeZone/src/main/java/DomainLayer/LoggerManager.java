@@ -20,21 +20,28 @@ public class LoggerManager {
     private static LoggerManager instance = null;
 
 
-    private LoggerManager() throws IOException {
-        eventLogger = Logger.getLogger("event_log");
-        errorLogger = Logger.getLogger("error_log");
+    private LoggerManager(){
+        try {
 
-        eventHandler = new FileHandler(evenLoggerFile,true);
-        eventHandler.setFormatter(new SimpleFormatter());
+            eventLogger = Logger.getLogger("event_log");
+            errorLogger = Logger.getLogger("error_log");
 
-        errorHandler = new FileHandler(errorLoggerFile,true);
-        errorHandler.setFormatter(new SimpleFormatter());
+            eventHandler = new FileHandler(evenLoggerFile,true);
+            eventHandler.setFormatter(new SimpleFormatter());
 
-        eventLogger.addHandler(eventHandler);
-        errorLogger.addHandler(errorHandler);
+            errorHandler = new FileHandler(errorLoggerFile,true);
+            errorHandler.setFormatter(new SimpleFormatter());
+
+            eventLogger.addHandler(eventHandler);
+            errorLogger.addHandler(errorHandler);
+
+        }
+        catch (IOException e){
+
+        }
     }
 
-    public static LoggerManager getInstance() throws IOException {
+    public static LoggerManager getInstance(){
         if(instance == null){
             instance =  new LoggerManager();
         }

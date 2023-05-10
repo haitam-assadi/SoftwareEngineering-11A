@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Search For Stores</title>
+</head>
+<body>
+        <h2>Search for stores</h2>
+        <form action="searchStore" method="post">
+            <div>
+                <label for="storeName">Search for stores:</label>
+                <input type="text" id="storeName" name="storeName" placeholder="Enter store name">
+            </div>
+            <button type="submit">Search</button>
+        </form>
+        <div>
+            <tr th:if="${isError}">
+                <br><br>
+                <td th:text="${message}"> message </td>
+            </tr>
+            <tr th:if="!${isError}">
+                <h1>Search results:</h1>
+                <td><span th:text="${storeName}"> storeName </span></td>
+                <br>
+                <td><span th:text="${founderName}"> founderName </span></td>
+                <tr th:each="owner : ${ownersNames}">
+                     <td><span th:text="${owner}"> ownerName </span></td>
+                </tr>
+                <tr th:each="manager : ${managersNames}">
+                    <td><span th:text="${manager}"> managerName </span></td>
+                </tr>
+                <tr th:each="product : ${products}">
+                    <td><span th:text="${product.name}"> managerName </span></td>
+                    <td><span th:text="${product.price}"> managerName </span></td>
+                    <td><span th:text="${product.description}"> managerName </span></td>
+                </tr>
+            </tr>
+        </div>
+</body>
+</html>

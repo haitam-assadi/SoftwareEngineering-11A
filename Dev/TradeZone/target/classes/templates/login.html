@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Login Page</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            background-color: #1E90FF;
+            color: white;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav li {
+            margin: 0 10px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: #3CB371;
+        }
+
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: calc(100vh - 80px);
+        }
+
+        .signup-box {
+            width: 400px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .signup-box h2 {
+            margin-top: 0;
+        }
+
+        .signup-box label {
+            display: block;
+            margin-bottom: 10px;
+            text-align: left;
+        }
+
+        .signup-box input[type="text"],
+        .signup-box input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+        }
+
+        .signup-box button {
+            background-color: #1E90FF;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .signup-box button:hover {
+            background-color: #3CB371;
+        }
+        #error{
+          color: red;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div>
+        <sapn th:text="${name}"> name </sapn>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="/">Home Page</a></li>
+        </ul>
+    </nav>
+</header>
+<main>
+    <div class="signup-box">
+        <h2>Login</h2>
+        <form action="login" method="post">
+            <label for="username">User Name:</label>
+            <input required type="text" id="username" name="username">
+
+            <label for="password">Password:</label>
+            <input required type="password" id="password" name="password">
+
+            <button type="submit">Login</button>
+        </form>
+        <br/><br/>
+        <div th:if="${isError}">
+            <sapn id="error" th:text="${error_message}"> message </sapn>
+        </div>
+    </div>
+</main>
+</body>
+</html>

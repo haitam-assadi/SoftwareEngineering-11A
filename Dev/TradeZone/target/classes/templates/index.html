@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Trade Zone</title>
+	<style>
+		body {
+			margin: 0;
+			padding: 0;
+			font-family: Arial, sans-serif;
+			font-size: 16px;
+			background-color: #f8f8f8;
+		}
+
+		h1 {
+			text-align: center;
+			margin: 0;
+			padding: 1rem 0;
+			background-color: #fff;
+			color: #444;
+			box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+		}
+
+		.container {
+			max-width: 800px;
+			margin: 0 auto;
+			padding: 1rem;
+			background-color: #fff;
+			box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+		}
+
+		.container a {
+			display: inline-block;
+			margin-right: 1rem;
+			font-weight: bold;
+			color: #444;
+			text-decoration: none;
+		}
+
+		.container a:hover {
+			color: #000;
+		}
+
+		.container span {
+			margin-left: auto;
+		}
+
+		form {
+			margin-top: 1rem;
+		}
+
+		form label {
+			display: block;
+			margin-bottom: 0.5rem;
+			color: #444;
+			font-weight: bold;
+		}
+
+		form input[type="number"],
+		form input[type="range"] {
+			display: inline-block;
+			width: 4rem;
+			margin-right: 1rem;
+		}
+
+		form input[type="range"] {
+			vertical-align: middle;
+		}
+
+		form div {
+			display: flex;
+			align-items: center;
+			margin-bottom: 1rem;
+		}
+
+		form button[type="submit"] {
+			background-color: #4CAF50;
+			color: #fff;
+			padding: 0.5rem 1rem;
+			border-radius: 4px;
+			border: none;
+			cursor: pointer;
+			transition: background-color 0.3s ease;
+		}
+
+		form button[type="submit"]:hover {
+			background-color: #3e8e41;
+		}
+
+		#logout_id{
+			background-color: white;
+			border: none;
+			color: black;
+			font-weight: bold;
+		}
+		.name_id{
+			font-weight: bold;
+		}
+	</style>
+</head>
+<body>
+
+<header>
+	<h1>Welcome to Trade Zone</h1>
+</header>
+
+<div class="container">
+	<div>
+		<span  th:if="!${logged}">
+			<a href="register">&#128587;Register</a>
+			<a href="login">&#x1F64B;Login</a>
+		</span>
+		<span th:if="${logged}">
+			<a href="logout">&#128682;Logout</a>
+		</span>
+		<a href="searchStore"> &#127978;Search for stores</a>
+		<a href="cart">&#128722;My Cart</a>
+		<span th:if="${hasRole}">
+			<a href="role_page"> My stores </a>
+		</span>
+		<span class="name_id">Welcome</span>
+		<span class="name_id" th:text="${name}"> name </span>
+	</div>
+	<form action="search" method="post">
+		<div>
+			<label for="search_product">Search for products:</label>
+			<input type="text" id="search_product" name="search_product" placeholder="Enter product name">
+		</div>
+
+		<div>
+			<label for="search_by">Search with:</label>
+			<select id="search_by" name="search_by">
+				<option value="product" selected>Product</option>
+				<option value="category">Category</option>
+				<option value="key">Keyword</option>
+			</select>
+		</div>
+
+		<div>
+			<label>Filter by:</label>
+			<div>
+				<label for="max_price">Max Price:</label>
+				<input type="number" id="max_price" name="max_price" min="1" max="100" value="100">
+				<label for="product_rate">Product Rate:</label>
+				<input type="range" id="product_rate" name="product_rate" min="0" max="5" value="0" step="1">
+			</div>
+			<label for="store_rate">Store Rate:</label>
+			<input type="range" id="store_rate" name="store_rate" min="0" max="5" value="0" step="1">
+		</div>
+		<button type="submit">Search</button>
+	</form>
+</div>
+<div>
+	<tr th:if="${products.empty}">
+		<td th:text="${message}"> message </td>
+	</tr>
+	<tr th:if="!${products.empty}">
+		<h1>Search results:</h1>
+	</tr>
+	<tr th:each="product : ${products}">
+		<div>
+			<label>Product name: </label>
+			<td><span th:text="${product.name}"> name </span></td>
+		</div>
+		<div>
+			<label>Store name: </label>
+			<td><span th:text="${product.storeName}"> storeName </span></td>
+		</div>
+		<div>
+			<label>Product Price: </label>
+			<td><span th:text="${product.price}"> price </span></td>
+		</div>
+		<div>
+			<label>Product description: </label>
+			<td><span th:text="${product.description}"> description </span></td>
+		</div>
+		<div>
+			<form action="add_to_cart" method="post">
+				<label for="amount">Amount:</label>
+				<input type="number" id="amount" name="amount" min="1"  value="1">
+				<button type="submit">Add to cart</button>
+			</form>
+		</div>
+		<br><br>
+	</tr>
+</div>
+</body>
+</html>

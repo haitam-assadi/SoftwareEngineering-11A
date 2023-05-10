@@ -61,6 +61,8 @@ public class StoreController {
 
 
     public StoreDTO getStoreInfo(String storeName) throws Exception {
+        assertIsStore(storeName);
+        storeName = storeName.strip().toLowerCase();
         return stores.get(storeName).getStoreInfo();
     }
 

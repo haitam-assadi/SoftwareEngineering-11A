@@ -78,6 +78,11 @@ public class SystemService {
         market.addNewProductToStock(userName, userSecStoreName, userSecStoreProduct4, userSecStoreCategory2, 70.54, "new product", 100);
         market.addNewProductToStock(userName, userSecStoreName, userSecStoreProduct5, userSecStoreCategory2, 70.54, "new product", 100);
         market.addNewProductToStock(userName, userSecStoreName, userSecStoreProduct6, userSecStoreCategory2, 70.54, "new product", 100);
+
+
+        market.addToCart(userName, userFirstStoreName, userFirstStoreProduct2, 34);
+
+
         String exitGuest = market.memberLogOut(userName);
         market.exitMarket(exitGuest);
     }
@@ -132,7 +137,7 @@ public class SystemService {
         }
     }
 
-    public ResponseT<Boolean> register(String guestUserName, String newMemberUserName, String password) throws IOException {
+    public ResponseT<Boolean> register(String guestUserName, String newMemberUserName, String password){
         try{
             String loggerMsg ="\nregister(String guestUserName, String newMemberUserName, String password)\n"+ "in " + this.nowTime() + " the user " + guestUserName + " wants to make registeration "+ "register("+guestUserName+", " + newMemberUserName + "," + password + ")" ;
             LoggerManager.getInstance().sendEventLog(loggerMsg);
@@ -145,7 +150,7 @@ public class SystemService {
             return new ResponseT<>("register: "+e.getMessage());
         }
     }
-    public ResponseT<String> login(String guestUserName, String MemberUserName, String password) throws IOException {
+    public ResponseT<String> login(String guestUserName, String MemberUserName, String password){
         try{
             String loggerMsg = "\nlogin(String guestUserName, String MemberUserName, String password)\n" +"in " + this.nowTime() + " the user " + guestUserName + " wants to make login "+ "login("+guestUserName+", " + MemberUserName + "," + password + ")" ;
             LoggerManager.getInstance().sendEventLog(loggerMsg);
@@ -158,7 +163,7 @@ public class SystemService {
             return new ResponseT<>("login: "+e.getMessage());
         }
     }
-    public ResponseT<StoreDTO> getStoreInfo(String userName, String storeName) throws IOException {
+    public ResponseT<StoreDTO> getStoreInfo(String userName, String storeName){
         try{
             String loggerMsg = "\ngetStoreInfo(String userName, String storeName)\n"+
                     "in " + this.nowTime() + " the user " + userName + " wants to get information about the store "+storeName+ "- getStoreInfo("+userName+", " + storeName +")" ;
@@ -174,7 +179,7 @@ public class SystemService {
         }
     }
 
-    public ResponseT<ProductDTO> getProductInfoFromStore(String userName, String storeName, String productName) throws IOException {
+    public ResponseT<ProductDTO> getProductInfoFromStore(String userName, String storeName, String productName){
         try{
             String loggerMsg = "\ngetProductInfoFromStore(String userName, String storeName, String productName)\n"+"in " + this.nowTime() + " the user " + userName + " wants to get information about product "+productName + " in the store "+storeName+ "- getProductInfoFromStore("+userName+", " + storeName +")" ;
             LoggerManager.getInstance().sendEventLog(loggerMsg);
@@ -185,7 +190,7 @@ public class SystemService {
         }
     }
 
-    public ResponseT<List<ProductDTO>> getProductInfoFromMarketByName(String userName, String productName) throws IOException {
+    public ResponseT<List<ProductDTO>> getProductInfoFromMarketByName(String userName, String productName){
         try{
             String loggerMsg = "\ngetProductInfoFromStore(String userName, String storeName, String productName)\n"+"in " + this.nowTime() + " the user " + userName + " wants to get information about product in market my name"+productName +"- getProductInfoFromMarketByName("+userName+", " + productName +")" ;
             LoggerManager.getInstance().sendEventLog(loggerMsg);
@@ -196,7 +201,7 @@ public class SystemService {
         }
     }
 
-    public ResponseT<List<ProductDTO>> getProductInfoFromMarketByCategory(String userName, String categoryName) throws IOException {
+    public ResponseT<List<ProductDTO>> getProductInfoFromMarketByCategory(String userName, String categoryName){
         try{
             String loggerMsg = "\ngetProductInfoFromMarketByCategory(String userName, String categoryName)\n"+"in " + this.nowTime() + " the user " + userName + " wants to get information about products in market by category {"+categoryName +"} - getProductInfoFromMarketByCategory("+userName+", " + categoryName +")" ;
             LoggerManager.getInstance().sendEventLog(loggerMsg);
@@ -207,7 +212,7 @@ public class SystemService {
         }
     }
 
-    public ResponseT<List<ProductDTO>> getProductInfoFromMarketByKeyword(String userName, String keyword) throws IOException {
+    public ResponseT<List<ProductDTO>> getProductInfoFromMarketByKeyword(String userName, String keyword){
         try{
             String loggerMsg ="\ngetProductInfoFromMarketByKeyword(String userName, String keyword)\n"+ "in " + this.nowTime() + " the user " + userName + " wants to get information about products in market by keyword "+keyword +"} - getProductInfoFromMarketByCategory("+userName+", " + keyword +")" ;
             LoggerManager.getInstance().sendEventLog(loggerMsg);
@@ -250,7 +255,7 @@ public class SystemService {
         }
     }
 
-    public ResponseT<Boolean> addToCart(String userName, String storeName, String productName, Integer amount) throws IOException {
+    public ResponseT<Boolean> addToCart(String userName, String storeName, String productName, Integer amount){
         try{
             String loggerMsg ="\naddToCart(String userName, String storeName, String productName, Integer amount)\n"+ "in " + this.nowTime() + " the user " + userName + " tries to add product to his cart  - addToCart("+userName+", " + storeName+", "+productName+", " +amount+")" ;
             LoggerManager.getInstance().sendEventLog(loggerMsg);
@@ -260,7 +265,7 @@ public class SystemService {
             return new ResponseT<>("addToCart: "+e.getMessage());
         }
     }
-    public ResponseT<Boolean> removeFromCart(String userName, String storeName, String productName) throws IOException {
+    public ResponseT<Boolean> removeFromCart(String userName, String storeName, String productName){
         try{
             String loggerMsg ="\nremoveFromCart(String userName, String storeName, String productName)\n"+ "in " + this.nowTime() + " the user " + userName + " tries to remove product from his cart  - removeFromCart("+userName+", " + storeName+", "+productName+")" ;
             LoggerManager.getInstance().sendEventLog(loggerMsg);
@@ -270,7 +275,7 @@ public class SystemService {
             return new ResponseT<>("removeFromCart: "+e.getMessage());
         }
     }
-    public ResponseT<Boolean> changeProductAmountInCart(String userName, String storeName, String productName, Integer newAmount) throws IOException {
+    public ResponseT<Boolean> changeProductAmountInCart(String userName, String storeName, String productName, Integer newAmount){
         try{
             String loggerMsg = "\n changeProductAmountInCart(String userName, String storeName, String productName, Integer newAmount)\n"+"in " + this.nowTime() + " the user " + userName + " tries to change a product amount in his cart  - changeProductAmountInCart("+userName+", " + storeName+", "+productName+", " + newAmount+")" ;
             LoggerManager.getInstance().sendEventLog(loggerMsg);
@@ -280,7 +285,7 @@ public class SystemService {
             return new ResponseT<>("changeProductAmountInCart: "+e.getMessage());
         }
     }
-    public ResponseT<List<BagDTO>> getCartContent(String userName) throws IOException {
+    public ResponseT<List<BagDTO>> getCartContent(String userName){
         try{
             String loggerMsg ="\ngetCartContent(String userName)\n"+ "in " + this.nowTime() + " the user " + userName + " tries to get his cart content  - getCartContent("+userName+")" ;
             LoggerManager.getInstance().sendEventLog(loggerMsg);
@@ -290,7 +295,7 @@ public class SystemService {
             return new ResponseT<>("getCartContent: "+e.getMessage());
         }
     }
-    public ResponseT<String> memberLogOut(String memberUserName) throws IOException {
+    public ResponseT<String> memberLogOut(String memberUserName){
         try{
             String loggerMsg ="\nmemberLogOut(String memberUserName)\n"+ "in " + this.nowTime() + " the member " + memberUserName + " wants to make logout- "+ "logout("+memberUserName + ")" ;
             LoggerManager.getInstance().sendEventLog(loggerMsg);
@@ -300,7 +305,7 @@ public class SystemService {
             return new ResponseT<>("memberLogOut: "+e.getMessage());
         }
     }
-    public ResponseT<StoreDTO> createStore(String memberUserName, String newStoreName) throws IOException {
+    public ResponseT<StoreDTO> createStore(String memberUserName, String newStoreName){
         try{
             String loggerMsg = "\ncreateStore(String memberUserName, String newStoreName)\n"+"in " + this.nowTime() + " the member " + memberUserName + " tries to create store  - createStore("+memberUserName+", " + newStoreName+")" ;
             LoggerManager.getInstance().sendEventLog(loggerMsg);
@@ -310,7 +315,7 @@ public class SystemService {
             return new ResponseT<>("createStore: "+e.getMessage());
         }
     }
-    public ResponseT<Boolean> addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount) throws IOException {
+    public ResponseT<Boolean> addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount){
         try{
             String loggerMsg ="\n addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)\n"+
                     "in " + this.nowTime() + " the member " + memberUserName + " tries to add product to store  - addNewProductToStock("+memberUserName+", "+storeName+", "+nameProduct+", "+category+", "+price +", "+description +", " + amount+")" ;
@@ -321,7 +326,7 @@ public class SystemService {
             return new ResponseT<>("addNewProductToStock: "+e.getMessage());
         }
     }
-    public ResponseT<Boolean> removeProductFromStock(String memberUserName, String storeName, String productName) throws IOException {
+    public ResponseT<Boolean> removeProductFromStock(String memberUserName, String storeName, String productName){
         try{
             String loggerMsg ="\nremoveProductFromStock(String memberUserName, String storeName, String productName)\n"+
                     "in " + this.nowTime() + " the member " + memberUserName + " tries to remove product from store  - removeProductFromStock("+memberUserName+", "+storeName+", "+productName+")" ;
@@ -356,7 +361,7 @@ public class SystemService {
         }
     }
 
-    public ResponseT<Boolean> appointOtherMemberAsStoreOwner(String memberUserName, String storeName, String newOwnerUserName) throws IOException {
+    public ResponseT<Boolean> appointOtherMemberAsStoreOwner(String memberUserName, String storeName, String newOwnerUserName){
         try{
             String loggerMsg ="\nappointOtherMemberAsStoreOwner(String memberUserName, String storeName, String newOwnerUserName)\n"
                     + "in " + this.nowTime() + " the member " + memberUserName + " tries to assign other user as store owner  - appointOtherMemberAsStoreOwner("+memberUserName+", "+storeName+", "+newOwnerUserName+")" ;
@@ -368,7 +373,7 @@ public class SystemService {
         }
     }
 
-    public ResponseT<Boolean> appointOtherMemberAsStoreManager(String memberUserName, String storeName, String newManagerUserName) throws IOException {
+    public ResponseT<Boolean> appointOtherMemberAsStoreManager(String memberUserName, String storeName, String newManagerUserName){
         try{
             String loggerMsg ="\nappointOtherMemberAsStoreManager(String memberUserName, String storeName, String newManagerUserName)\n"+
                     "in " + this.nowTime() + " the member " + memberUserName + " tries to assign other user as store manager  - appointOtherMemberAsStoreManager("+memberUserName+", "+storeName+", "+newManagerUserName+")" ;
@@ -388,7 +393,7 @@ public class SystemService {
         }
     }
 
-    public ResponseT<Boolean> closeStore(String memberUserName, String storeName) throws IOException {
+    public ResponseT<Boolean> closeStore(String memberUserName, String storeName){
         try{
             String loggerMsg ="\ncloseStore(String memberUserName, String storeName)\n"+
                     "in " + this.nowTime() + " the member " + memberUserName + " tries close store  - closeStore("+memberUserName+", "+storeName+")" ;
@@ -400,7 +405,7 @@ public class SystemService {
         }
     }
 
-    public ResponseT<List<MemberDTO>> getStoreWorkersInfo(String memberUserName, String storeName) throws IOException {
+    public ResponseT<List<MemberDTO>> getStoreWorkersInfo(String memberUserName, String storeName){
         try{
             String loggerMsg ="\ngetStoreWorkersInfo(String memberUserName, String storeName)\n"+
                     "in " + this.nowTime() + " the member " + memberUserName + " tries to get information about the workers in a store  - getStoreWorkersInfo("+memberUserName+", "+storeName+")" ;
@@ -428,7 +433,7 @@ public class SystemService {
         }
     }
 
-    public ResponseT<Boolean> purchaseCartByCreditCard(String userName, String cardNumber, String month, String year, String holder, String cvv, String id, String receiverName, String shipmentAddress, String shipmentCity, String shipmentCountry, String zipCode) throws IOException {
+    public ResponseT<Boolean> purchaseCartByCreditCard(String userName, String cardNumber, String month, String year, String holder, String cvv, String id, String receiverName, String shipmentAddress, String shipmentCity, String shipmentCountry, String zipCode){
         try{
             String loggerMsg ="\npurchaseCartByCreditCard(String userName, String cardNumber, String month, String year, String holder, String cvv, String id, String receiverName, String shipmentAddress, String shipmentCity, String shipmentCountry, String zipCode)\n"+
                     "in " + this.nowTime() + " the user " + userName + " tries make purchase  - purchaseCartByCreditCard("+userName+", " + cardNumber+", " + month+", "+ year+", " +  holder+", " +  cvv+", " +  id + ", " + receiverName + ", " +  shipmentAddress +", " +shipmentCity + ", "+  shipmentCountry+", " + zipCode +")" ;
@@ -440,7 +445,7 @@ public class SystemService {
         }
     }
 
-    public ResponseT<Boolean> removeOwnerByHisAppointer(String appointerUserName, String storeName, String ownerUserName) throws IOException {
+    public ResponseT<Boolean> removeOwnerByHisAppointer(String appointerUserName, String storeName, String ownerUserName){
         try{
             String loggerMsg ="\nremoveOwnerByHisAppointer(String appointerUserName, String storeName, String ownerUserName)\n"+
                     "in " + this.nowTime() + " the member " + appointerUserName + " tries to remove other owner from being owner in a store  - removeOwnerByHisAppointer("+storeName+", "+ownerUserName+")" ;
@@ -508,7 +513,7 @@ public class SystemService {
         }
     }
 
-    public ResponseT<Integer> createOrBagConstraint(String memberUserName, String storeName, Integer firstBagConstraintId, Integer secondBagConstraintId, boolean addAsStorePaymentPolicy) throws Exception {
+    public ResponseT<Integer> createOrBagConstraint(String memberUserName, String storeName, Integer firstBagConstraintId, Integer secondBagConstraintId, boolean addAsStorePaymentPolicy){
         try{
             return new ResponseT<>(market.createOrBagConstraint(memberUserName, storeName,firstBagConstraintId, secondBagConstraintId,addAsStorePaymentPolicy));
         }catch(Exception e){
@@ -516,7 +521,7 @@ public class SystemService {
         }
     }
 
-    public ResponseT<Integer> createOnlyIfBagConstraint(String memberUserName, String storeName, Integer firstBagConstraintId, Integer secondBagConstraintId, boolean addAsStorePaymentPolicy) throws Exception {
+    public ResponseT<Integer> createOnlyIfBagConstraint(String memberUserName, String storeName, Integer firstBagConstraintId, Integer secondBagConstraintId, boolean addAsStorePaymentPolicy){
         try{
             return new ResponseT<>(market.createOnlyIfBagConstraint(memberUserName, storeName,firstBagConstraintId, secondBagConstraintId,addAsStorePaymentPolicy));
         }catch(Exception e){
@@ -530,7 +535,7 @@ public class SystemService {
         return now.format(formatter);
     }
 
-    public ResponseT<Boolean> hasRole(String memberUserName) throws Exception {
+    public ResponseT<Boolean> hasRole(String memberUserName){
         try{
             return new ResponseT<>(market.hasRole(memberUserName));
         }catch(Exception e){

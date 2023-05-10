@@ -1,0 +1,51 @@
+May 09, 2023 10:16:37 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: Cannot invoke "DomainLayer.Store.getStoreInfo()" because the return value of "java.util.concurrent.ConcurrentHashMap.get(Object)" is null
+May 09, 2023 10:25:57 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: string is null or empty
+May 09, 2023 10:26:14 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: string is null or empty
+May 09, 2023 10:26:56 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: string is null or empty
+May 09, 2023 10:27:10 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: string is null or empty
+May 09, 2023 10:33:27 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: string is null or empty
+May 09, 2023 10:33:45 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: user1 is already a member
+May 09, 2023 10:34:42 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: user1 is already a member
+May 09, 2023 10:35:10 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: user1 is already a member
+May 09, 2023 10:35:16 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: password must have at least 8 characters, at least one digit and one char
+May 09, 2023 10:35:40 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: user1 is already a member
+May 09, 2023 10:35:52 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: string is null or empty
+May 09, 2023 10:36:10 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: string is null or empty
+May 09, 2023 10:40:20 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: password must have at least 8 characters, at least one digit and one char
+May 09, 2023 10:43:27 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: user1 is already a member
+May 09, 2023 10:43:40 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: incorrect password!
+May 09, 2023 10:51:30 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: user1_first_store___ does not exists!

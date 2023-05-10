@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Cart Page</title>
+</head>
+<body>
+        <h2>my Cart</h2>
+        <tr th:if="${isEmpty}">
+            <td colspan="2"> No Bags Available </td>
+        </tr>
+        <tr th:each="bag : ${bags}">
+            <div>
+                <div>
+                    <label>Store: </label>
+                    <td><span th:text="${bag.storeName}"> storeName </span></td>
+                </div>
+                <br>
+                <div>
+                    <span class="products" th:text="${bag.details}"> products </span>
+                </div>
+                <br><br>
+            </div>
+        </tr>
+
+</body>
+</html>

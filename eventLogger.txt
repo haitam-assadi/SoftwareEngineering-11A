@@ -1,0 +1,278 @@
+May 09, 2023 10:15:58 AM DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-05-09 10:15:58 the user guest_2 tries to add product to his cart  - addToCart(guest_2, user1_first_Store, user1_first_Store_product1, 5)
+May 09, 2023 10:15:58 AM DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-05-09 10:15:58 the user guest_2 tries to add product to his cart  - addToCart(guest_2, user1_first_Store, user1_first_Store_product2, 3)
+May 09, 2023 10:15:58 AM DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-05-09 10:15:58 the user guest_2 tries to add product to his cart  - addToCart(guest_2, user1_Second_Store, user1_Second_Store_product1, 4)
+May 09, 2023 10:16:37 AM DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-09 10:16:37 the user guest_2 wants to get information about the store user1_first_Store- getStoreInfo(guest_2, user1_first_Store)
+May 09, 2023 10:16:45 AM DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-09 10:16:45 the user guest_2 wants to get information about the store user1_first_store- getStoreInfo(guest_2, user1_first_store)
+May 09, 2023 10:16:45 AM DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-09 10:16:45 the user guest_2 got information about the store user1_first_store
+May 09, 2023 10:21:09 AM DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-05-09 10:21:09 the user guest_2 tries to add product to his cart  - addToCart(guest_2, user1_first_Store, user1_first_Store_product1, 5)
+May 09, 2023 10:21:09 AM DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-05-09 10:21:09 the user guest_2 tries to add product to his cart  - addToCart(guest_2, user1_first_Store, user1_first_Store_product2, 3)
+May 09, 2023 10:21:09 AM DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-05-09 10:21:09 the user guest_2 tries to add product to his cart  - addToCart(guest_2, user1_Second_Store, user1_Second_Store_product1, 4)
+May 09, 2023 10:21:14 AM DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-09 10:21:14 the user guest_2 wants to get information about the store user1_first_Store- getStoreInfo(guest_2, user1_first_Store)
+May 09, 2023 10:21:14 AM DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-09 10:21:14 the user guest_2 got information about the store user1_first_Store
+May 09, 2023 10:21:37 AM DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-09 10:21:37 the user guest_2 wants to get information about the store user1_first_Store- getStoreInfo(guest_2, user1_first_Store)
+May 09, 2023 10:21:37 AM DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-09 10:21:37 the user guest_2 got information about the store user1_first_Store
+May 09, 2023 10:24:20 AM DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-05-09 10:24:20 the user guest_2 tries to add product to his cart  - addToCart(guest_2, user1_first_Store, user1_first_Store_product1, 5)
+May 09, 2023 10:24:20 AM DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-05-09 10:24:20 the user guest_2 tries to add product to his cart  - addToCart(guest_2, user1_first_Store, user1_first_Store_product2, 3)
+May 09, 2023 10:24:20 AM DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-05-09 10:24:20 the user guest_2 tries to add product to his cart  - addToCart(guest_2, user1_Second_Store, user1_Second_Store_product1, 4)
+May 09, 2023 10:25:57 AM DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-05-09 10:25:57 the user  wants to make registeration register(, user1,asdasddsf)
+May 09, 2023 10:26:14 AM DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-05-09 10:26:14 the user  wants to make registeration register(, user1,sdffdg)
+May 09, 2023 10:26:56 AM DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-05-09 10:26:56 the user  wants to make registeration register(, ahmad,123456)
+May 09, 2023 10:27:10 AM DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-05-09 10:27:10 the user  wants to make registeration register(, ahmad,Aa123456789)
+May 09, 2023 10:33:19 AM DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-05-09 10:33:19 the user guest_2 tries to add product to his cart  - addToCart(guest_2, user1_first_Store, user1_first_Store_product1, 5)
+May 09, 2023 10:33:19 AM DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-05-09 10:33:19 the user guest_2 tries to add product to his cart  - addToCart(guest_2, user1_first_Store, user1_first_Store_product2, 3)
+May 09, 2023 10:33:19 AM DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-05-09 10:33:19 the user guest_2 tries to add product to his cart  - addToCart(guest_2, user1_Second_Store, user1_Second_Store_product1, 4)
+May 09, 2023 10:33:27 AM DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-05-09 10:33:27 the user guest_2 wants to make registeration register(guest_2, user,)
+May 09, 2023 10:33:45 AM DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-05-09 10:33:45 the user guest_2 wants to make registeration register(guest_2, user1,Aa123456789)
+May 09, 2023 10:34:13 AM DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-05-09 10:34:13 the user guest_2 tries to add product to his cart  - addToCart(guest_2, user1_first_Store, user1_first_Store_product1, 5)
+May 09, 2023 10:34:13 AM DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-05-09 10:34:13 the user guest_2 tries to add product to his cart  - addToCart(guest_2, user1_first_Store, user1_first_Store_product2, 3)
+May 09, 2023 10:34:13 AM DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-05-09 10:34:13 the user guest_2 tries to add product to his cart  - addToCart(guest_2, user1_Second_Store, user1_Second_Store_product1, 4)
+May 09, 2023 10:34:42 AM DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-05-09 10:34:42 the user guest_2 wants to make registeration register(guest_2, user1,gfngfhn)
+May 09, 2023 10:34:56 AM DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-05-09 10:34:56 the user guest_2 tries to add product to his cart  - addToCart(guest_2, user1_first_Store, user1_first_Store_product1, 5)
+May 09, 2023 10:34:56 AM DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-05-09 10:34:56 the user guest_2 tries to add product to his cart  - addToCart(guest_2, user1_first_Store, user1_first_Store_product2, 3)
+May 09, 2023 10:34:56 AM DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-05-09 10:34:56 the user guest_2 tries to add product to his cart  - addToCart(guest_2, user1_Second_Store, user1_Second_Store_product1, 4)
+May 09, 2023 10:35:10 AM DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-05-09 10:35:10 the user guest_2 wants to make registeration register(guest_2, user1,sdfdsfv)
+May 09, 2023 10:35:16 AM DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-05-09 10:35:16 the user guest_2 wants to make registeration register(guest_2, user342345,sdfgsdg)
+May 09, 2023 10:35:40 AM DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-05-09 10:35:40 the user guest_2 wants to make registeration register(guest_2, user1,)
+May 09, 2023 10:35:52 AM DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-05-09 10:35:52 the user guest_2 wants to make registeration register(guest_2, user,)
+May 09, 2023 10:36:10 AM DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-05-09 10:36:10 the user guest_2 wants to make registeration register(guest_2, user123,)
+May 09, 2023 10:39:41 AM DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-05-09 10:39:41 the user guest_2 tries to add product to his cart  - addToCart(guest_2, user1_first_Store, user1_first_Store_product1, 5)
+May 09, 2023 10:39:41 AM DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-05-09 10:39:41 the user guest_2 tries to add product to his cart  - addToCart(guest_2, user1_first_Store, user1_first_Store_product2, 3)
+May 09, 2023 10:39:41 AM DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-05-09 10:39:41 the user guest_2 tries to add product to his cart  - addToCart(guest_2, user1_Second_Store, user1_Second_Store_product1, 4)
+May 09, 2023 10:40:11 AM DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-05-09 10:40:11 the user guest_2 tries to add product to his cart  - addToCart(guest_2, user1_first_Store, user1_first_Store_product1, 5)
+May 09, 2023 10:40:11 AM DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-05-09 10:40:11 the user guest_2 tries to add product to his cart  - addToCart(guest_2, user1_first_Store, user1_first_Store_product2, 3)
+May 09, 2023 10:40:11 AM DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-05-09 10:40:11 the user guest_2 tries to add product to his cart  - addToCart(guest_2, user1_Second_Store, user1_Second_Store_product1, 4)
+May 09, 2023 10:40:20 AM DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-05-09 10:40:20 the user guest_2 wants to make registeration register(guest_2, dsfsdf,sdfsdf)
+May 09, 2023 10:41:27 AM DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-05-09 10:41:27 the user guest_2 tries to add product to his cart  - addToCart(guest_2, user1_first_Store, user1_first_Store_product1, 5)
+May 09, 2023 10:41:27 AM DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-05-09 10:41:27 the user guest_2 tries to add product to his cart  - addToCart(guest_2, user1_first_Store, user1_first_Store_product2, 3)
+May 09, 2023 10:41:27 AM DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-05-09 10:41:27 the user guest_2 tries to add product to his cart  - addToCart(guest_2, user1_Second_Store, user1_Second_Store_product1, 4)
+May 09, 2023 10:43:27 AM DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-05-09 10:43:27 the user guest_2 wants to make registeration register(guest_2, user1,Aa123456789)
+May 09, 2023 10:43:40 AM DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-05-09 10:43:40 the user guest_2 wants to make login login(guest_2, user1,Aa123456789)
+May 09, 2023 10:44:08 AM DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-05-09 10:44:08 the user guest_2 wants to make login login(guest_2, user1,Aa12345678)
+May 09, 2023 10:44:08 AM DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-09 10:44:08 a new member Logged in .
+- Memer name: user1
+
+May 09, 2023 10:45:36 AM DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromStore(String userName, String storeName, String productName)
+in 2023-05-09 10:45:36 the user user1 wants to get information about product in market my nameuser1_first_store_product- getProductInfoFromMarketByName(user1, user1_first_store_product)
+May 09, 2023 10:45:43 AM DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromStore(String userName, String storeName, String productName)
+in 2023-05-09 10:45:43 the user user1 wants to get information about product in market my nameuser1_first_store_product1- getProductInfoFromMarketByName(user1, user1_first_store_product1)
+May 09, 2023 10:45:58 AM DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-05-09 10:45:58 the user user1 tries to get his cart content  - getCartContent(user1)
+May 09, 2023 10:46:04 AM DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-05-09 10:46:04 the user user1 tries to get his cart content  - getCartContent(user1)
+May 09, 2023 10:47:20 AM DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-05-09 10:47:20 the user guest_2 tries to add product to his cart  - addToCart(guest_2, user1_first_Store, user1_first_Store_product1, 5)
+May 09, 2023 10:47:20 AM DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-05-09 10:47:20 the user guest_2 tries to add product to his cart  - addToCart(guest_2, user1_first_Store, user1_first_Store_product2, 3)
+May 09, 2023 10:47:20 AM DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-05-09 10:47:20 the user guest_2 tries to add product to his cart  - addToCart(guest_2, user1_Second_Store, user1_Second_Store_product1, 4)
+May 09, 2023 10:47:24 AM DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-05-09 10:47:24 the user guest_2 tries to get his cart content  - getCartContent(guest_2)
+May 09, 2023 10:49:32 AM DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-05-09 10:49:32 the user guest_2 wants to make login login(guest_2, user1,Aa12345678)
+May 09, 2023 10:49:32 AM DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-09 10:49:32 a new member Logged in .
+- Memer name: user1
+
+May 09, 2023 10:49:34 AM DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-05-09 10:49:34 the user user1 tries to get his cart content  - getCartContent(user1)
+May 09, 2023 10:49:58 AM DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-05-09 10:49:58 the user user1 tries to get his cart content  - getCartContent(user1)
+May 09, 2023 10:50:54 AM DomainLayer.LoggerManager sendEventLog
+INFO: 
+memberLogOut(String memberUserName)
+in 2023-05-09 10:50:54 the member user1 wants to make logout- logout(user1)
+May 09, 2023 10:51:10 AM DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-05-09 10:51:10 the user guest_3 wants to make login login(guest_3, user1,Aa12345678)
+May 09, 2023 10:51:10 AM DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-09 10:51:10 a new member Logged in .
+- Memer name: user1
+
+May 09, 2023 10:51:15 AM DomainLayer.LoggerManager sendEventLog
+INFO: 
+memberLogOut(String memberUserName)
+in 2023-05-09 10:51:15 the member user1 wants to make logout- logout(user1)
+May 09, 2023 10:51:22 AM DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-09 10:51:22 the user guest_4 wants to get information about the store user1_first_Store- getStoreInfo(guest_4, user1_first_Store)
+May 09, 2023 10:51:22 AM DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-09 10:51:22 the user guest_4 got information about the store user1_first_Store
+May 09, 2023 10:51:24 AM DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-09 10:51:24 the user guest_4 wants to get information about the store user1_first_store- getStoreInfo(guest_4, user1_first_store)
+May 09, 2023 10:51:24 AM DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-09 10:51:24 the user guest_4 got information about the store user1_first_store
+May 09, 2023 10:51:30 AM DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-09 10:51:30 the user guest_4 wants to get information about the store user1_first_Store___- getStoreInfo(guest_4, user1_first_Store___)
