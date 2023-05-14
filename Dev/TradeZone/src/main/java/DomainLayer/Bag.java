@@ -83,6 +83,7 @@ public class Bag {
             Product product = curr.keys().nextElement();
             totalBagPrice += product.getProductPrice(curr.get(product));
         }
+        totalBagPrice -= storeBag.getDiscountForBag(bagContent);
         return totalBagPrice;
     }
 

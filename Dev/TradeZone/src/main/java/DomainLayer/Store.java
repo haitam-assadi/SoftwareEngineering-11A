@@ -7,7 +7,6 @@ import DTO.StoreDTO;
 import DomainLayer.BagConstraints.*;
 import DomainLayer.DiscountPolicies.*;
 
-import java.time.LocalDate;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -276,6 +275,17 @@ public class Store {
                 throw new Exception("Bag does not follow store: "+storeName+" payment policy: "+bagConstraint.toString());
     }
 
+
+
+
+    public Double getDiscountForBag(ConcurrentHashMap<String, ConcurrentHashMap<Product,Integer>> bagContent) throws Exception {
+        Double totalBagDiscount = 0.0;
+        for(DiscountPolicy discountPolicy : storeDiscountPolicies.values()){
+            totalBagDiscount+= discountPolicy.calculateDiscount(bagContent);
+        }
+        return totalBagDiscount;
+    }
+
     public void removeOwner(String userName) {
         storeOwners.remove(userName);
     }
@@ -534,6 +544,73 @@ public class Store {
 
         return currentDisPolIdCounter;
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public boolean addAsStoreDiscountPolicy(String memberUserName, Integer discountPolicyId) throws Exception {
+        assertIsOwnerOrFounder(memberUserName);
+        if(discountPolicyId == null)
+            throw new Exception("Discount Policy Id cant be null");
+
+        if(!createdDiscountPolicies.containsKey(discountPolicyId))
+            throw new Exception(discountPolicyId+ " is not Discount Policy Id");
+
+        DiscountPolicy discountPolicy = createdDiscountPolicies.get(discountPolicyId);
+        storeDiscountPolicies.put(discountPolicyId, discountPolicy);
+
+        return true;
+    }
+
+    public boolean removeFromStoreDiscountPolicies(String memberUserName, Integer discountPolicyId) throws Exception {
+        assertIsOwnerOrFounder(memberUserName);
+        if(discountPolicyId == null)
+            throw new Exception("Discount Policy Id cant be null");
+
+        if(!createdDiscountPolicies.containsKey(discountPolicyId))
+            throw new Exception(discountPolicyId+ " is not Discount Policy Id");
+
+        if(!storeDiscountPolicies.containsKey(discountPolicyId))
+            throw new Exception(discountPolicyId+ " is not Store Discount Policy");
+
+        storeDiscountPolicies.remove(discountPolicyId);
+
+        return true;
+    }
+
+
+    public String getAllCreatedDiscountPolicies(String memberUserName) throws Exception {
+        assertIsOwnerOrFounder(memberUserName);
+        StringBuilder st = new StringBuilder();
+        for(Integer discountPolicyId : createdDiscountPolicies.keySet().stream().toList().stream().sorted().toList())
+            st.append(discountPolicyId+". "+ createdDiscountPolicies.get(discountPolicyId).toString()+"\n");
+
+        return st.toString();
+    }
+
+    public String getAllStoreDiscountPolicies(String memberUserName) throws Exception {
+        assertIsOwnerOrFounder(memberUserName);
+        StringBuilder st = new StringBuilder();
+        for(Integer discountPolicyId : storeDiscountPolicies.keySet().stream().toList().stream().sorted().toList())
+            st.append(discountPolicyId+". "+ storeDiscountPolicies.get(discountPolicyId).toString()+"\n");
+
+        return st.toString();
+    }
+
 
 
 
