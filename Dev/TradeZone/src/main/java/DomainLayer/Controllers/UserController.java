@@ -1,10 +1,12 @@
 package DomainLayer.Controllers;
 
+import DTO.StoreDTO;
 import DomainLayer.*;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -49,6 +51,7 @@ public class UserController {
         registerValidateParameters(guestUserName, newMemberUserName, password);
         newMemberUserName = newMemberUserName.strip().toLowerCase();
         Member member = new Member(newMemberUserName, Security.Encode(password));
+        member.addCart(guests.get(guestUserName).getCart());
         members.put(newMemberUserName, member);
         member.defineNotifications(newMemberUserName);
         membersNamesConcurrentSet.add(newMemberUserName);
@@ -236,6 +239,11 @@ public class UserController {
         return member.appointOtherMemberAsStoreManager(store, otherMember);
     }
 
+    public Map<String, List<StoreDTO>> myStores(String memberUserName) throws Exception {
+        assertIsMemberLoggedIn(memberUserName);
+        return getMember(memberUserName).myStores();
+    }
+
     public void checkMemberRole(String systemManagerUserName, String otherMemberUserName) throws Exception {
         if(!this.members.containsKey(systemManagerUserName)){
             throw new Exception(systemManagerUserName + "has to be a member to get member's deals.");
@@ -307,6 +315,7 @@ public class UserController {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         return now.format(formatter);
     }
+
 
 
 }

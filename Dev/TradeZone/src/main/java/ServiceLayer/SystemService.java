@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 public class SystemService {
 
@@ -540,6 +541,14 @@ public class SystemService {
             return new ResponseT<>(market.hasRole(memberUserName));
         }catch(Exception e){
             return new ResponseT<>("hasRole: "+e.getMessage());
+        }
+    }
+
+    public ResponseT<Map<String,List<StoreDTO>>> myStores(String memberUserName) throws Exception{
+        try {
+            return new ResponseT<>(market.myStores(memberUserName));
+        }catch (Exception e){
+            return new ResponseT<>("meStores: "+e.getMessage());
         }
     }
 

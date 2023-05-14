@@ -12,6 +12,10 @@ public abstract class Role {
     private ConcurrentHashMap<String, Store> responsibleForStores;
     protected Member member;
 
+    public ConcurrentHashMap<String, Store> getResponsibleForStores() {
+        return responsibleForStores;
+    }
+
     public Role(Member member){
         this.member = member;
         myBossesForStores = new ConcurrentHashMap<>();

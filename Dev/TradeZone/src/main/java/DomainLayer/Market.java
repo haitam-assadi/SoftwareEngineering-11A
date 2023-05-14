@@ -9,6 +9,7 @@ import jdk.jshell.spi.ExecutionControl;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Map;
 
 public class Market {
     UserController userController;
@@ -308,6 +309,11 @@ public class Market {
     public boolean hasRole(String memberUserName) throws Exception {
         userController.assertIsMemberLoggedIn(memberUserName);
         return storeController.hasRole(memberUserName);
+    }
+
+    public Map<String,List<StoreDTO>> myStores(String memberUserName) throws Exception{
+        userController.assertIsMemberLoggedIn(memberUserName);
+        return userController.myStores(memberUserName);
     }
 
 
