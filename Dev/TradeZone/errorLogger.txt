@@ -310,3 +310,24 @@ fail in purchasing: Bag does not follow store: moslem store payment policy: Doma
 May 14, 2023 7:53:18 PM DomainLayer.LoggerManager sendErrorLog
 WARNING: 
 fail in purchasing: Bag does not follow store: moslem store payment policy: DomainLayer.BagConstraints.ProductBagConstraint@3c9754d8
+מאי 15, 2023 1:10:53 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting products info: productName is null or empty!
+מאי 15, 2023 1:12:03 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: bag does not contain user1_first_store_product2 product
+מאי 15, 2023 1:12:38 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: bag does not contain user1_first_store_product2 product
+מאי 15, 2023 1:12:42 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: user1_first_Store_product2 product was removed stock
+מאי 15, 2023 1:13:00 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: bag does not contain user1_first_store_product2 product
+מאי 15, 2023 1:13:50 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: user does not exists!
+מאי 15, 2023 1:21:01 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: user does not exists!

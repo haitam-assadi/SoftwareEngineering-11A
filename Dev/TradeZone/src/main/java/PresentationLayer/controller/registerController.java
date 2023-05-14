@@ -2,8 +2,9 @@ package PresentationLayer.controller;
 
 import CommunicationLayer.Server;
 import DTO.ProductDTO;
-import PresentationLayer.model.User;
 import ServiceLayer.ResponseT;
+import PresentationLayer.model.Search;
+import PresentationLayer.model.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,9 +30,7 @@ public class registerController {
     @PostMapping("/register")
     public String registerDemand(@ModelAttribute User user, Model model) {
         List<ProductDTO> products = new ArrayList<>();
-
         ResponseT<Boolean> response = server.register(controller.getName(), user.getUsername(), user.getPassword());
-
         if(response.ErrorOccurred){
             model.addAttribute("isError", true);
             model.addAttribute("error_message", response.errorMessage);
@@ -42,6 +41,7 @@ public class registerController {
         model.addAttribute("name", controller.getName());
         model.addAttribute("products", products);
         model.addAttribute("message", "");
-        return "index";
+        return "redirect:/";
+//        return "index";
     }
 }

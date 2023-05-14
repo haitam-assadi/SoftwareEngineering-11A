@@ -64,6 +64,7 @@ public class Stock {
     }
 
     public synchronized boolean updateProductDescription(String productName, String newProductDescription) throws Exception {
+        productName = productName.strip().toLowerCase();
         if(!stockProducts.containsKey(productName))
             throw new Exception("can't remove product from stock : productName "+ productName+" is not in the stock!");
         Product product = stockProducts.get(productName).keys().nextElement();
@@ -72,6 +73,7 @@ public class Stock {
     }
 
     public synchronized boolean updateProductAmount(String productName, Integer newAmount) throws Exception {
+        productName = productName.strip().toLowerCase();
         if(!stockProducts.containsKey(productName))
             throw new Exception("can't remove product from stock : productName "+ productName+" is not in the stock!");
         Product product = stockProducts.get(productName).keys().nextElement();
@@ -86,6 +88,7 @@ public class Stock {
 
 
     public synchronized boolean updateProductPrice(String productName, Double newPrice) throws Exception {
+        productName = productName.strip().toLowerCase();
         if(!stockProducts.containsKey(productName))
             throw new Exception("can't remove product from stock : productName "+ productName+" is not in the stock!");
         Product product = stockProducts.get(productName).keys().nextElement();

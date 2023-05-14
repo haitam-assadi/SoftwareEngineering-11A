@@ -17,6 +17,7 @@ public class Bag {
     }
 
     public boolean addProduct(String productName, Integer amount) throws Exception {
+        productName = productName.strip().toLowerCase();
         if(bagContent.containsKey(productName))
             throw new Exception("bag already contains "+productName+" product");
 
@@ -29,6 +30,7 @@ public class Bag {
     }
 
     public boolean changeProductAmount(String productName, Integer newAmount) throws Exception {
+        productName = productName.strip().toLowerCase();
         if(! bagContent.containsKey(productName))
             throw new Exception("bag does not contain "+productName+" product");
         Product product =storeBag.getProductWithAmount(productName,newAmount);
@@ -37,6 +39,7 @@ public class Bag {
     }
 
     public boolean removeProduct(String productName) throws Exception {
+        productName = productName.strip().toLowerCase();
         if(! bagContent.containsKey(productName))
             throw new Exception("bag does not contain "+productName+" product");
         bagContent.remove(productName);

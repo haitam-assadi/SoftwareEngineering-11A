@@ -1,12 +1,14 @@
 package PresentationLayer.model;
 
 public class Search {
-	
+
 	private String search_product;
 	private String search_by;
 	private String max_price;
 	private String product_rate;	//default - 0
 	private String store_rate;	   //default - 0
+
+	private String search_store_name;
 
 	public String getSearchProducts() {
 		return search_product;
@@ -46,6 +48,14 @@ public class Search {
 
 	public String getStoreRate() {
 		return store_rate;
+	}
+
+	public String getSearchStoreName(){
+		return this.search_store_name;
+	}
+
+	public void setSearch_store_name(String search_store_name){
+		this.search_store_name = search_store_name;
 	}
 
 	public String printAll(){
