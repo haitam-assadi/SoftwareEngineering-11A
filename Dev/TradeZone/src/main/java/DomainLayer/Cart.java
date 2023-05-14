@@ -17,8 +17,12 @@ public class Cart {
     }
 
     public boolean addToCart(Store store, String productName, Integer amount) throws Exception {
-        bags.putIfAbsent(store.getStoreName(), new Bag(store));
-        return bags.get(store.getStoreName()).addProduct(productName, amount);
+//        bags.putIfAbsent(store.getStoreName(), new Bag(store));
+//        return bags.get(store.getStoreName()).addProduct(productName, amount);
+        Bag bag = new Bag(store);
+        bag.addProduct(productName,amount);
+        bags.putIfAbsent(store.getStoreName(), bag);
+        return true;
     }
 
     public boolean changeProductAmountInCart(Store store, String productName, Integer newAmount) throws Exception {
@@ -31,8 +35,10 @@ public class Cart {
     public boolean removeFromCart(Store store, String productName) throws Exception {
         if(!bags.containsKey(store.getStoreName()))
             throw new Exception("bag does not contain "+productName+" product");
-
-        return bags.get(store.getStoreName()).removeProduct(productName);
+        if(!bags.get(store.getStoreName()).removeProduct(productName)){
+            bags.remove(store.getStoreName());
+        }
+        return true;
     }
 
     public List<BagDTO> getCartContent(){

@@ -1,9 +1,9 @@
 package DomainLayer;
 
 import DTO.MemberDTO;
+import DTO.StoreDTO;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 enum RoleEnum {
     StoreOwner,
@@ -121,6 +121,36 @@ public class Member extends User{
         return true;
     }
 
+    public Map<String, List<StoreDTO>> myStores() {
+        Map<String,List<StoreDTO>> memberStores = new ConcurrentHashMap<>();
+
+        if(roles.containsKey(RoleEnum.StoreFounder)){
+            Role role = roles.get(RoleEnum.StoreFounder);
+            List<StoreDTO> stores = new LinkedList<>();
+            for (Store store: role.getResponsibleForStores().values()) {
+                stores.add(store.getStoreInfo());
+            }
+            memberStores.put("StoreFounder",stores);
+        }
+        if(roles.containsKey(RoleEnum.StoreOwner)){
+            Role role = roles.get(RoleEnum.StoreOwner);
+            List<StoreDTO> stores = new LinkedList<>();
+            for (Store store: role.getResponsibleForStores().values()) {
+                stores.add(store.getStoreInfo());
+            }
+            memberStores.put("StoreOwner",stores);
+        }
+        if(roles.containsKey(RoleEnum.StoreManager)){
+            Role role = roles.get(RoleEnum.StoreManager);
+            List<StoreDTO> stores = new LinkedList<>();
+            for (Store store: role.getResponsibleForStores().values()) {
+                stores.add(store.getStoreInfo());
+            }
+            memberStores.put("StoreManager",stores);
+        }
+        return memberStores;
+    }
+
     public StoreManager getStoreManager(){
         StoreManager storeManagerRole =  (StoreManager) roles.get(RoleEnum.StoreManager);
         return storeManagerRole;
@@ -168,6 +198,8 @@ public class Member extends User{
         if(owner == null) throw new Exception(""+getUserName()+" is not owner for "+storeName);
     }
 
+
+
     private void subscribeOwnerForNotifications(String storeName) {
         NotificationService.getInstance().subscribe(storeName,NotificationType.storeClosed,this);
         NotificationService.getInstance().subscribe(storeName,NotificationType.productBought,this);
@@ -204,6 +236,12 @@ public class Member extends User{
         NotificationService.getInstance().subscribe(newMemberUserName,NotificationType.requestNotification,this);
         NotificationService.getInstance().subscribe(newMemberUserName,NotificationType.subscriptionRemoved,this);
     }
+
+    public void addCart(Cart cart) {
+        this.cart = cart;
+    }
+
+
 
 
 

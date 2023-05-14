@@ -40,7 +40,7 @@ public class Bag {
         if(! bagContent.containsKey(productName))
             throw new Exception("bag does not contain "+productName+" product");
         bagContent.remove(productName);
-        return true;
+        return bagContent.isEmpty()? false:true;
     }
 
     public Store getStoreBag() {
