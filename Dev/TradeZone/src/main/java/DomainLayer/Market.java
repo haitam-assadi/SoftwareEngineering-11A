@@ -306,6 +306,89 @@ public class Market {
         return storeController.getAllBagConstraints(memberUserName,storeName);
     }
 
+
+
+
+
+    //////////////////////////////aa
+    public Integer createProductDiscountPolicy(String memberUserName, String storeName, String productName,  int discountPercentage, boolean addAsStoreDiscountPolicy) throws Exception {
+        userController.assertIsMemberLoggedIn(memberUserName);
+        return storeController.createProductDiscountPolicy(memberUserName, storeName, productName, discountPercentage, addAsStoreDiscountPolicy);
+    }
+
+    public Integer createProductDiscountPolicyWithConstraint(String memberUserName, String storeName, String productName,  int discountPercentage, Integer bagConstraintId, boolean addAsStoreDiscountPolicy) throws Exception {
+        userController.assertIsMemberLoggedIn(memberUserName);
+        return storeController.createProductDiscountPolicyWithConstraint(memberUserName, storeName, productName, discountPercentage, bagConstraintId, addAsStoreDiscountPolicy);
+    }
+
+    public Integer createCategoryDiscountPolicy(String memberUserName, String storeName, String categoryName,  int discountPercentage, boolean addAsStoreDiscountPolicy) throws Exception {
+        userController.assertIsMemberLoggedIn(memberUserName);
+        return storeController.createCategoryDiscountPolicy(memberUserName, storeName, categoryName, discountPercentage, addAsStoreDiscountPolicy);
+    }
+
+    public Integer createCategoryDiscountPolicyWithConstraint(String memberUserName, String storeName, String categoryName,  int discountPercentage, Integer bagConstraintId, boolean addAsStoreDiscountPolicy) throws Exception {
+        userController.assertIsMemberLoggedIn(memberUserName);
+        return storeController.createCategoryDiscountPolicyWithConstraint(memberUserName, storeName, categoryName, discountPercentage, bagConstraintId, addAsStoreDiscountPolicy);
+    }
+
+
+    public Integer createAllStoreDiscountPolicy(String memberUserName, String storeName, int discountPercentage, boolean addAsStoreDiscountPolicy) throws Exception {
+        userController.assertIsMemberLoggedIn(memberUserName);
+        return storeController.createAllStoreDiscountPolicy(memberUserName, storeName, discountPercentage, addAsStoreDiscountPolicy);
+    }
+
+    public Integer createAllStoreDiscountPolicyWithConstraint(String memberUserName, String storeName, int discountPercentage, Integer bagConstraintId, boolean addAsStoreDiscountPolicy) throws Exception {
+        userController.assertIsMemberLoggedIn(memberUserName);
+        return storeController.createAllStoreDiscountPolicyWithConstraint(memberUserName, storeName, discountPercentage, bagConstraintId, addAsStoreDiscountPolicy);
+    }
+
+    public Integer createAdditionDiscountPolicy(String memberUserName, String storeName, Integer firstDiscountPolicyId, Integer secondDiscountPolicyId, boolean addAsStoreDiscountPolicy) throws Exception {
+        userController.assertIsMemberLoggedIn(memberUserName);
+        return storeController.createAdditionDiscountPolicy(memberUserName, storeName, firstDiscountPolicyId, secondDiscountPolicyId, addAsStoreDiscountPolicy);
+    }
+
+    public Integer createAdditionDiscountPolicyWithConstraint(String memberUserName, String storeName, Integer firstDiscountPolicyId, Integer secondDiscountPolicyId, Integer bagConstraintId, boolean addAsStoreDiscountPolicy) throws Exception {
+        userController.assertIsMemberLoggedIn(memberUserName);
+        return storeController.createAdditionDiscountPolicyWithConstraint(memberUserName, storeName, firstDiscountPolicyId, secondDiscountPolicyId, bagConstraintId, addAsStoreDiscountPolicy);
+    }
+
+    public Integer createMaxValDiscountPolicy(String memberUserName, String storeName, Integer firstDiscountPolicyId, Integer secondDiscountPolicyId, boolean addAsStoreDiscountPolicy) throws Exception {
+        userController.assertIsMemberLoggedIn(memberUserName);
+        return storeController.createMaxValDiscountPolicy(memberUserName, storeName, firstDiscountPolicyId, secondDiscountPolicyId, addAsStoreDiscountPolicy);
+    }
+
+    public Integer createMaxValDiscountPolicyWithConstraint(String memberUserName, String storeName, Integer firstDiscountPolicyId, Integer secondDiscountPolicyId, Integer bagConstraintId, boolean addAsStoreDiscountPolicy) throws Exception {
+        userController.assertIsMemberLoggedIn(memberUserName);
+        return storeController.createMaxValDiscountPolicyWithConstraint(memberUserName, storeName, firstDiscountPolicyId, secondDiscountPolicyId, bagConstraintId, addAsStoreDiscountPolicy);
+    }
+
+
+
+    public boolean addAsStoreDiscountPolicy(String memberUserName, String storeName, Integer discountPolicyId) throws Exception {
+        userController.assertIsMemberLoggedIn(memberUserName);
+        return storeController.addAsStoreDiscountPolicy(memberUserName,storeName, discountPolicyId);
+    }
+
+    public boolean removeFromStoreDiscountPolicies(String memberUserName, String storeName, Integer discountPolicyId) throws Exception {
+        userController.assertIsMemberLoggedIn(memberUserName);
+        return storeController.removeFromStoreDiscountPolicies(memberUserName,storeName, discountPolicyId);
+    }
+
+
+    public String getAllCreatedDiscountPolicies(String memberUserName, String storeName) throws Exception {
+        userController.assertIsMemberLoggedIn(memberUserName);
+        return storeController.getAllCreatedDiscountPolicies(memberUserName,storeName);
+    }
+
+    public String getAllStoreDiscountPolicies(String memberUserName, String storeName) throws Exception {
+        userController.assertIsMemberLoggedIn(memberUserName);
+        return storeController.getAllStoreDiscountPolicies(memberUserName,storeName);
+    }
+
+    //////////////////////////////aa
+
+
+
     public boolean hasRole(String memberUserName) throws Exception {
         userController.assertIsMemberLoggedIn(memberUserName);
         return storeController.hasRole(memberUserName);

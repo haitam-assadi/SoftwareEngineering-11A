@@ -5,6 +5,9 @@ import DTO.MemberDTO;
 import DTO.ProductDTO;
 import DTO.StoreDTO;
 import DomainLayer.BagConstraints.BagConstraint;
+import DomainLayer.Category;
+import DomainLayer.DiscountPolicies.*;
+import DomainLayer.Product;
 import DomainLayer.Store;
 
 import java.time.LocalDateTime;
@@ -296,23 +299,112 @@ public class StoreController {
 
         return store.getAllBagConstraints(memberUserName);
     }
-
-
-
-    /*
-
+    //////////////////////////////aa
+    public Integer createProductDiscountPolicy(String memberUserName, String storeName, String productName,  int discountPercentage, boolean addAsStoreDiscountPolicy) throws Exception {
         assertIsStore(storeName);
         storeName = storeName.strip().toLowerCase();
         Store store = stores.get(storeName);
-        return store.addNewProductToStock(memberUserName,nameProduct,category,price,description,amount);
+        return store.createProductDiscountPolicy(memberUserName, productName, discountPercentage, addAsStoreDiscountPolicy);
+    }
+
+    public Integer createProductDiscountPolicyWithConstraint(String memberUserName, String storeName, String productName,  int discountPercentage, Integer bagConstraintId, boolean addAsStoreDiscountPolicy) throws Exception {
+        assertIsStore(storeName);
+        storeName = storeName.strip().toLowerCase();
+        Store store = stores.get(storeName);
+        return store.createProductDiscountPolicyWithConstraint(memberUserName, productName, discountPercentage, bagConstraintId, addAsStoreDiscountPolicy);
+    }
+
+    public Integer createCategoryDiscountPolicy(String memberUserName, String storeName, String categoryName,  int discountPercentage, boolean addAsStoreDiscountPolicy) throws Exception {
+        assertIsStore(storeName);
+        storeName = storeName.strip().toLowerCase();
+        Store store = stores.get(storeName);
+        return store.createCategoryDiscountPolicy(memberUserName, categoryName, discountPercentage, addAsStoreDiscountPolicy);
+    }
+
+    public Integer createCategoryDiscountPolicyWithConstraint(String memberUserName, String storeName, String categoryName,  int discountPercentage, Integer bagConstraintId, boolean addAsStoreDiscountPolicy) throws Exception {
+        assertIsStore(storeName);
+        storeName = storeName.strip().toLowerCase();
+        Store store = stores.get(storeName);
+        return store.createCategoryDiscountPolicyWithConstraint(memberUserName, categoryName, discountPercentage, bagConstraintId, addAsStoreDiscountPolicy);
+    }
+
+
+    public Integer createAllStoreDiscountPolicy(String memberUserName, String storeName, int discountPercentage, boolean addAsStoreDiscountPolicy) throws Exception {
+        assertIsStore(storeName);
+        storeName = storeName.strip().toLowerCase();
+        Store store = stores.get(storeName);
+        return store.createAllStoreDiscountPolicy(memberUserName, discountPercentage, addAsStoreDiscountPolicy);
+    }
+
+    public Integer createAllStoreDiscountPolicyWithConstraint(String memberUserName, String storeName, int discountPercentage, Integer bagConstraintId, boolean addAsStoreDiscountPolicy) throws Exception {
+        assertIsStore(storeName);
+        storeName = storeName.strip().toLowerCase();
+        Store store = stores.get(storeName);
+        return store.createAllStoreDiscountPolicyWithConstraint(memberUserName, discountPercentage, bagConstraintId, addAsStoreDiscountPolicy);
+    }
+
+    public Integer createAdditionDiscountPolicy(String memberUserName, String storeName, Integer firstDiscountPolicyId, Integer secondDiscountPolicyId, boolean addAsStoreDiscountPolicy) throws Exception {
+        assertIsStore(storeName);
+        storeName = storeName.strip().toLowerCase();
+        Store store = stores.get(storeName);
+        return store.createAdditionDiscountPolicy(memberUserName, firstDiscountPolicyId, secondDiscountPolicyId, addAsStoreDiscountPolicy);
+    }
+
+    public Integer createAdditionDiscountPolicyWithConstraint(String memberUserName, String storeName, Integer firstDiscountPolicyId, Integer secondDiscountPolicyId, Integer bagConstraintId, boolean addAsStoreDiscountPolicy) throws Exception {
+        assertIsStore(storeName);
+        storeName = storeName.strip().toLowerCase();
+        Store store = stores.get(storeName);
+        return store.createAdditionDiscountPolicyWithConstraint(memberUserName, firstDiscountPolicyId, secondDiscountPolicyId, bagConstraintId, addAsStoreDiscountPolicy);
+    }
+
+    public Integer createMaxValDiscountPolicy(String memberUserName, String storeName, Integer firstDiscountPolicyId, Integer secondDiscountPolicyId, boolean addAsStoreDiscountPolicy) throws Exception {
+        assertIsStore(storeName);
+        storeName = storeName.strip().toLowerCase();
+        Store store = stores.get(storeName);
+        return store.createMaxValDiscountPolicy(memberUserName, firstDiscountPolicyId, secondDiscountPolicyId, addAsStoreDiscountPolicy);
+    }
+
+    public Integer createMaxValDiscountPolicyWithConstraint(String memberUserName, String storeName, Integer firstDiscountPolicyId, Integer secondDiscountPolicyId, Integer bagConstraintId, boolean addAsStoreDiscountPolicy) throws Exception {
+        assertIsStore(storeName);
+        storeName = storeName.strip().toLowerCase();
+        Store store = stores.get(storeName);
+        return store.createMaxValDiscountPolicyWithConstraint(memberUserName, firstDiscountPolicyId, secondDiscountPolicyId, bagConstraintId, addAsStoreDiscountPolicy);
+    }
 
 
 
+    public boolean addAsStoreDiscountPolicy(String memberUserName, String storeName, Integer discountPolicyId) throws Exception {
+        assertIsStore(storeName);
+        storeName = storeName.strip().toLowerCase();
+        Store store = stores.get(storeName);
+        return store.addAsStoreDiscountPolicy(memberUserName, discountPolicyId);
+    }
 
-            assertIsStore(storeName);
-        storeName=storeName.strip().toLowerCase();
-        return this.stores.get(storeName).closeStore(memberUserName);
-     */
+    public boolean removeFromStoreDiscountPolicies(String memberUserName, String storeName, Integer discountPolicyId) throws Exception {
+        assertIsStore(storeName);
+        storeName = storeName.strip().toLowerCase();
+        Store store = stores.get(storeName);
+        return store.removeFromStoreDiscountPolicies(memberUserName, discountPolicyId);
+    }
+
+
+    public String getAllCreatedDiscountPolicies(String memberUserName, String storeName) throws Exception {
+        assertIsStore(storeName);
+        storeName = storeName.strip().toLowerCase();
+        Store store = stores.get(storeName);
+        return store.getAllCreatedDiscountPolicies(memberUserName);
+    }
+
+    public String getAllStoreDiscountPolicies(String memberUserName, String storeName) throws Exception {
+        assertIsStore(storeName);
+        storeName = storeName.strip().toLowerCase();
+        Store store = stores.get(storeName);
+        return store.getAllStoreDiscountPolicies(memberUserName);
+    }
+
+    //////////////////////////////aa
+
+
 
     private String nowTime(){
         LocalDateTime now = LocalDateTime.now();
