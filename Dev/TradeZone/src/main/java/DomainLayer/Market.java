@@ -23,6 +23,12 @@ public class Market {
         paymentService = new PaymentService("");
         shipmentService = new ShipmentService("");
     }
+    public void setPaymentService(PaymentService paymentService){
+        this.paymentService=paymentService;
+    }
+    public void setShipmentService(ShipmentService shipmentService){
+        this.shipmentService=shipmentService;
+    }
     //TODO: Implement this requirements: 2.5, 3.3(maybe), 4.12(for storeManager)
     //TODO: closeStore req is not implemented as it should be , i(Ahmad) didn't pay attention to close stores handling..
     public String enterMarket(){
@@ -220,20 +226,6 @@ public class Market {
         return userController.removeOwnerByHisAppointer(appointerUserName,store,ownerUserName);
     }
 
-
-
-
-
-
-
-
-
-    ///////////
-
-    /////////////
-
-
-    //ProductBagConstraint
     public Integer createMaxTimeAtDayProductBagConstraint(String memberUserName, String storeName, String productName, int hour, int minute, boolean addAsStorePaymentPolicy) throws Exception {
         userController.assertIsMemberLoggedIn(memberUserName);
         return storeController.createMaxTimeAtDayProductBagConstraint(memberUserName,storeName,productName,hour,minute ,addAsStorePaymentPolicy);
@@ -245,8 +237,6 @@ public class Market {
     }
 
 
-
-    //CategoryBagConstraint
     public Integer createMaxTimeAtDayCategoryBagConstraint(String memberUserName, String storeName, String categoryName, int hour, int minute, boolean addAsStorePaymentPolicy) throws Exception {
         userController.assertIsMemberLoggedIn(memberUserName);
         return storeController.createMaxTimeAtDayCategoryBagConstraint(memberUserName,storeName,categoryName,hour,minute ,addAsStorePaymentPolicy);
@@ -258,9 +248,6 @@ public class Market {
     }
 
 
-
-
-    //AllContentBagConstraint
     public Integer createMaxProductAmountAllContentBagConstraint(String memberUserName, String storeName, String productName, int amountLimit, boolean addAsStorePaymentPolicy) throws Exception {
         userController.assertIsMemberLoggedIn(memberUserName);
         return storeController.createMaxProductAmountAllContentBagConstraint(memberUserName,storeName,productName,amountLimit,addAsStorePaymentPolicy);
@@ -271,8 +258,6 @@ public class Market {
         return storeController.createMinProductAmountAllContentBagConstraint(memberUserName,storeName,productName,amountLimit,addAsStorePaymentPolicy);
     }
 
-
-    // and, or, only if bag constraints
     public Integer createAndBagConstraint(String memberUserName, String storeName, Integer firstBagConstraintId, Integer secondBagConstraintId, boolean addAsStorePaymentPolicy) throws Exception {
         userController.assertIsMemberLoggedIn(memberUserName);
         return storeController.createAndBagConstraint(memberUserName,storeName,firstBagConstraintId,secondBagConstraintId,addAsStorePaymentPolicy);
@@ -306,11 +291,6 @@ public class Market {
         return storeController.getAllBagConstraints(memberUserName,storeName);
     }
 
-
-
-
-
-    //////////////////////////////aa
     public Integer createProductDiscountPolicy(String memberUserName, String storeName, String productName,  int discountPercentage, boolean addAsStoreDiscountPolicy) throws Exception {
         userController.assertIsMemberLoggedIn(memberUserName);
         return storeController.createProductDiscountPolicy(memberUserName, storeName, productName, discountPercentage, addAsStoreDiscountPolicy);
@@ -384,9 +364,6 @@ public class Market {
         userController.assertIsMemberLoggedIn(memberUserName);
         return storeController.getAllStoreDiscountPolicies(memberUserName,storeName);
     }
-
-    //////////////////////////////aa
-
 
 
     public boolean hasRole(String memberUserName) throws Exception {
