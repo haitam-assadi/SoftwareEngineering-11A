@@ -42,6 +42,35 @@ public class MemberTests {
         }
     }
 
+    //login Test
+    @Test
+    public void login1_success(){
+        try{
+
+            user = proxy.enterMarket();
+            String user2 = proxy.enterMarket();
+            List<String>  members = proxy.getAllOnlineMembers();
+            proxy.register(user,"haitamassadih","pASS123456");
+            proxy.register(user2,"adelwattad","pASS123456");
+
+            proxy.login(user,"haitamassadih","pASS123456");
+            proxy.login(user2,"adelwattad","pASS123456");
+
+            Assertions.assertEquals(2,proxy.getAllOnlineMembers().size());
+           // List<String> guests = proxy.getAllGuests();
+//            if(guests.size()>0){
+//                proxy.login(user, member1Name, member1Password);
+//                guests = proxy.getAllGuests();
+//                Assertions.assertTrue(proxy.getAllOnlineMembers().contains(member1Name));
+//                Assertions.assertFalse(guests.contains(user));
+//                user = proxy.memberLogOut(member1Name);
+//                proxy.exitMarket(user);
+//            }
+        }catch (Exception e){
+            Assertions.fail(e.getMessage());
+        }
+    }
+
 
     @Test
     public void login_failed_wrong_password(){

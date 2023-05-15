@@ -112,6 +112,30 @@ public class GuestTests {
     }
 
 
+    @Test
+    public void register_bar_failed(){
+        try{
+            String guestUserName = proxy.enterMarket();
+            String userName1 = moslemUserName+"222";
+            String userName2 = moslemUserName+"2234";
+            String userName3 = "BAR";
+            String userName4 = "bar";
+            proxy.register(guestUserName, userName1, moslemPassword);
+            List<String> members = proxy.getAllMembers();
+            Assertions.assertTrue(members.contains(userName1));
+
+            proxy.register(guestUserName, userName3, moslemPassword);
+            members = proxy.getAllMembers();
+            Assertions.assertTrue(members.contains(userName3));
+
+            proxy.register(guestUserName, userName4, moslemPassword);
+            Assertions.fail("two registers with same user name");
+        }catch (Exception e){
+
+        }
+    }
+
+
 
 
     // scenarios
