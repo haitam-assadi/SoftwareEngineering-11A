@@ -3,7 +3,6 @@ package PresentationLayer.controller;
 public class GeneralController {
     private String name;
     private boolean hasRole;
-
     private boolean logged;
 
     private static GeneralController controller = null;

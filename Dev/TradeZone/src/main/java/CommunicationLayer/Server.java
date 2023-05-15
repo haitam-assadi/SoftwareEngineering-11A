@@ -6,6 +6,7 @@ import ServiceLayer.SystemService;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 public class Server {
 
@@ -168,6 +169,10 @@ public class Server {
 
     public ResponseT<Boolean> hasRole(String userName){
         return service.hasRole(userName);
+    }
+
+    public ResponseT<Map<String,List<StoreDTO>>> myStores(String memberUserName){
+        return service.myStores(memberUserName);
     }
 
 }

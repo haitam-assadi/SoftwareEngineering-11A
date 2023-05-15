@@ -2,8 +2,8 @@ package PresentationLayer.controller;
 
 import CommunicationLayer.Server;
 import DTO.ProductDTO;
-import PresentationLayer.model.User;
 import ServiceLayer.ResponseT;
+import PresentationLayer.model.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,18 +37,21 @@ public class loginController {
             return "login";
         }
         controller.setName(response.value);
-        ResponseT hasRole = server.hasRole(controller.getName());
-        if(hasRole.ErrorOccurred){
-            model.addAttribute("message", response.errorMessage);
-            return "error";
+        ResponseT<Boolean> hasRole = server.hasRole(controller.getName());
+        if(response.ErrorOccurred){
+            model.addAttribute("isError", true);
+            model.addAttribute("error_message", response.errorMessage);
+            model.addAttribute("name", controller.getName());
+            return "login";
         }
-        controller.setHasRole((Boolean)hasRole.getValue());
+        controller.setHasRole(hasRole.getValue());
         controller.setLogged(true);
         model.addAttribute("logged", controller.getLogged());
         model.addAttribute("hasRole", controller.getHasRole());
         model.addAttribute("name", controller.getName());
         model.addAttribute("products", products);
         model.addAttribute("message", "");
-        return "index";
+        return "redirect:/";
+//        return "index";
     }
 }

@@ -3,6 +3,7 @@ package PresentationLayer.model;
 public class Product {
     private String name;
     private Double price;
+    private Double totalPrice;
     private String description;
     private int amount;
 
@@ -11,6 +12,7 @@ public class Product {
         this.price = price;
         this.description = description;
         this.amount = amount;
+        totalPrice = price * amount;
     }
 
     public String getName(){
@@ -27,6 +29,14 @@ public class Product {
 
     public int getAmount(){
         return this.amount;
+    }
+    public Double getTotalPrice() {
+        totalPrice = price * amount;
+        return totalPrice;
+    }
+
+    public void setTotalPrice(Double totalPrice) {
+        this.totalPrice = totalPrice;
     }
 
     public String printDetails(){

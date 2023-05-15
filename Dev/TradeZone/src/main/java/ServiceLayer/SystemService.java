@@ -553,7 +553,7 @@ public class SystemService {
         }
     }
 
-    public ResponseT<Map<String,List<StoreDTO>>> myStores(String memberUserName) throws Exception{
+    public ResponseT<Map<String,List<StoreDTO>>> myStores(String memberUserName){
         try {
             return new ResponseT<>(market.myStores(memberUserName));
         }catch (Exception e){
