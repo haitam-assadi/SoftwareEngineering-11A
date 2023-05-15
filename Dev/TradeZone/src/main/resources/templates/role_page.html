@@ -20,22 +20,19 @@
                 <span class="fs-4" th:text="${name}"></span>
             </a>
 
-            <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto nav-tabs">
-                <a class="nav-link me-3 py-2 link-body-emphasis text-decoration-none" href="/">Home Page</a>
-                <a class="nav-link me-3 py-2 link-body-emphasis text-decoration-none" href="searchStore">Search for stores</a>
-                <a th:if="${logged}" class="nav-link active me-3 py-2 link-body-emphasis text-decoration-none" href="role_page">My stores</a>
-                <a class="nav-link me-3 py-2 link-body-emphasis text-decoration-none" href="cart">My Cart</a>
-                <a th:if="!${logged}" class="nav-link me-3 py-2 link-body-emphasis text-decoration-none" href="register">Register</a>
-                <a th:if="!${logged}" class="nav-link me-3 py-2 link-body-emphasis text-decoration-none" href="login">Login</a>
-                <a th:if="${logged}" class="nav-link me-3 py-2 link-body-emphasis text-decoration-none" href="logout">Logout</a>
+            <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto nav nav-tabs">
+                <a class="nav-link py-2 link-body-emphasis text-decoration-none" href="/">Home Page</a>
+                <a class="nav-link py-2 link-body-emphasis text-decoration-none" href="searchStore">Search for stores</a>
+                <a th:if="${logged}" class="nav-link active py-2 link-body-emphasis text-decoration-none" style="color:#1cc8b8" href="role_page">My stores</a>
+                <a class="nav-link py-2 link-body-emphasis text-decoration-none" href="cart">My Cart</a>
+                <a th:if="!${logged}" class="nav-link py-2 link-body-emphasis text-decoration-none" href="register">Register</a>
+                <a th:if="!${logged}" class="nav-link py-2 link-body-emphasis text-decoration-none" href="login">Login</a>
+                <a th:if="${logged}" class="nav-link py-2 link-body-emphasis text-decoration-none" href="logout">Logout</a>
             </nav>
         </div>
     </header>
 
     <main>
-        <div th:if="${isEmpty}" class="alert alert-warning text-center" role="alert">
-            <h2>You don't have stores</h2>
-        </div>
         <div th:if="${success}" class="alert alert-success text-center alert-dismissible fade show" role="alert">
             <h4 th:text="${message}"></h4>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -43,6 +40,9 @@
         <div th:if="${fail}" class="alert alert-danger text-center alert-dismissible fade show" role="alert">
             <h4 th:text="${message}"></h4>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        <div th:if="${isEmpty}" class="alert alert-warning text-center" role="alert">
+            <h2>You don't have stores</h2>
         </div>
         <!--                ////////////////////////////////////////////-->
         <div class="container px-4 py-3 col-md-9 width">

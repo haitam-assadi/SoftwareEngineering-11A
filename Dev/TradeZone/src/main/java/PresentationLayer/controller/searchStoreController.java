@@ -29,6 +29,7 @@ public class searchStoreController {
         model.addAttribute("fail", alert.isFail());
         model.addAttribute("message", alert.getMessage());
         model.addAttribute("store", store);
+        model.addAttribute("controller", controller);
         alert = new Alert();
         return "searchStore";
     }
@@ -59,6 +60,30 @@ public class searchStoreController {
         }
         alert.setSuccess(true);
         alert.setMessage("Added successfully");
+        controller.updateCart();
+        return "redirect:/searchStore";
+    }
+
+    @PostMapping("/searchStoreUpdateProductAmount")
+    public String updateProductAmount(@ModelAttribute ItemDetails itemDetails, Model model) {
+        int amount = itemDetails.getAmount();
+        String productName = itemDetails.getName();
+        String storeName = itemDetails.getStoreName();
+        ResponseT<Boolean> response = server.changeProductAmountInCart(controller.getName(), storeName, productName, amount);
+        if(response.ErrorOccurred){
+            alert.setFail(true);
+            alert.setMessage(response.errorMessage);
+            return "redirect:/searchStore";
+        }
+        if(response.getValue()){ // updated
+            alert.setSuccess(true);
+            alert.setMessage("product amount has updated successfully");
+            controller.updateCart();
+        }
+        else{ // not updated
+            alert.setFail(true);
+            alert.setMessage("Failed to update the product amount");
+        }
         return "redirect:/searchStore";
     }
 

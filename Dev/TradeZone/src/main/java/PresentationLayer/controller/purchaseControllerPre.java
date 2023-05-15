@@ -26,6 +26,7 @@ public class purchaseControllerPre {
         model.addAttribute("fail", alert.isFail());
         model.addAttribute("message", alert.getMessage());
         model.addAttribute("done", done);
+        model.addAttribute("cartTotalPrice", controller.getCartTotalPrice());
         alert = new Alert();
         done = false;
         return "purchase";

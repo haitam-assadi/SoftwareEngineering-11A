@@ -14,14 +14,14 @@
             <a class="d-flex align-items-center link-body-emphasis text-decoration-none">
                 <span class="fs-4" th:text="${name}"></span>
             </a>
-            <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto nav-tabs">
-                <a class="nav-link me-3 py-2 link-body-emphasis text-decoration-none" href="/">Home Page</a>
-                <a class="nav-link active me-3 py-2 link-body-emphasis text-decoration-none" href="searchStore">Search for stores</a>
-                <a th:if="${logged}" class="nav-link me-3 py-2 link-body-emphasis text-decoration-none" href="role_page">My stores</a>
-                <a class="nav-link me-3 py-2 link-body-emphasis text-decoration-none" href="cart">My Cart</a>
-                <a th:if="!${logged}" class="nav-link me-3 py-2 link-body-emphasis text-decoration-none" href="register">Register</a>
-                <a th:if="!${logged}" class="nav-link me-3 py-2 link-body-emphasis text-decoration-none" href="login">Login</a>
-                <a th:if="${logged}" class="nav-link me-3 py-2 link-body-emphasis text-decoration-none" href="logout">Logout</a>
+            <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto nav nav-tabs">
+                <a class="nav-link py-2 link-body-emphasis text-decoration-none" href="/">Home Page</a>
+                <a class="nav-link active py-2 link-body-emphasis text-decoration-none" style="color:#1cc8b8" href="searchStore">Search for stores</a>
+                <a th:if="${logged}" class="nav-link py-2 link-body-emphasis text-decoration-none" href="role_page">My stores</a>
+                <a class="nav-link py-2 link-body-emphasis text-decoration-none" href="cart">My Cart</a>
+                <a th:if="!${logged}" class="nav-link py-2 link-body-emphasis text-decoration-none" href="register">Register</a>
+                <a th:if="!${logged}" class="nav-link py-2 link-body-emphasis text-decoration-none" href="login">Login</a>
+                <a th:if="${logged}" class="nav-link py-2 link-body-emphasis text-decoration-none" href="logout">Logout</a>
             </nav>
         </div>
 
@@ -63,9 +63,11 @@
                         <h4 class="my-0 fw-normal" th:text="${product.name}">Name</h4>
                     </div>
                     <div class="card-body">
-<!--                        <h5 th:text="${'Store Name: ' + product.storeName}"></h5>-->
+                        <h3 class="card-title pricing-card-title" th:text="${'Price: ' + product.price} + ' $'"></h3>
+                        <p th:text="${'Store Name: ' + product.storeName}"></p>
                         <p th:text="${'Description: ' + product.description}"></p>
-                        <form action="searchStoreAddToCart" method="post">
+
+                        <form th:if="${!controller.cartContainsProduct(product.storeName, product.name)}" action="searchStoreAddToCart" method="post">
                             <input type="hidden" name="name" th:value="${product.name}">
                             <input type="hidden" name="storeName" th:value="${product.storeName}">
                             <div class="row mb-3">
@@ -73,15 +75,50 @@
                                 <div class="col-auto">
                                     <input type="number" class="form-control" id="amount" style="width:100px" name="amount" value="1" min="1" data-siid="si_input_1">
                                 </div>
-                            </div>
-                            <div class="row">
-                                <h3 class="col-auto card-title pricing-card-title" th:text="${'Price: ' + product.price} + ' $'"></h3>
                                 <div class="col-auto">
-                                    <button type="submit" class="w-100 btn btn-outline-primary">Add to cart</button>
+                                    <button type="submit" class="w-100 btn btn-primary">Add to cart</button>
+                                </div>
+                            </div>
+                        </form>
+                        <form th:if="${controller.cartContainsProduct(product.storeName, product.name)}" action="searchStoreUpdateProductAmount" method="post">
+                            <input type="hidden" name="name" th:value="${product.name}">
+                            <input type="hidden" name="storeName" th:value="${product.storeName}">
+                            <div class="row mb-3">
+                                <label for="amountInCart" class="col-auto col-form-label">Amount:</label>
+                                <div class="col-auto">
+                                    <input type="number" class="form-control" id="amountInCart" style="width:100px" name="amount" th:value="${controller.getProductAmountInCart(product.storeName, product.name)}" min="1">
+                                </div>
+                                <div class="col-auto">
+                                    <button type="submit" class="w-100 btn btn-success">Update</button>
                                 </div>
                             </div>
                         </form>
                     </div>
+
+
+
+
+<!--                    <div class="card-body">-->
+<!--&lt;!&ndash;                        <h5 th:text="${'Store Name: ' + product.storeName}"></h5>&ndash;&gt;-->
+<!--                        <p th:text="${'Description: ' + product.description}"></p>-->
+<!--                        <form action="searchStoreAddToCart" method="post">-->
+<!--                            <input type="hidden" name="name" th:value="${product.name}">-->
+<!--                            <input type="hidden" name="storeName" th:value="${product.storeName}">-->
+<!--                            <div class="row mb-3">-->
+<!--                                <label for="amount" class="col-auto col-form-label">Amount:</label>-->
+<!--                                <div class="col-auto">-->
+<!--                                    <input type="number" class="form-control" id="amount" style="width:100px" name="amount" value="1" min="1" data-siid="si_input_1">-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="row">-->
+<!--                                <h3 class="col-auto card-title pricing-card-title" th:text="${'Price: ' + product.price} + ' $'"></h3>-->
+<!--                                <div class="col-auto">-->
+<!--                                    <button type="submit" class="w-100 btn btn-outline-primary">Add to cart</button>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </form>-->
+<!--                    </div>-->
+
                 </div>
             </div>
         </div>

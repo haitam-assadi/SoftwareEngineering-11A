@@ -625,3 +625,90 @@ fail in appointing member as store owner: userName guest does not exists!
 מאי 15, 2023 2:50:19 אחה״צ DomainLayer.LoggerManager sendErrorLog
 WARNING: 
 fail in adding product to stock: stock does already contains this product user1_second_store_product5
+מאי 15, 2023 4:03:20 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting products info: productName is null or empty!
+מאי 15, 2023 4:20:13 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: bag already contains user1_first_store_product1 product
+מאי 15, 2023 4:20:58 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Card Number cant be null
+מאי 15, 2023 4:48:25 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting products info: productName is null or empty!
+מאי 15, 2023 5:11:25 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting products info: productName is null or empty!
+מאי 15, 2023 5:17:24 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting products info: productName is null or empty!
+מאי 15, 2023 5:17:31 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting products info: productName is null or empty!
+מאי 15, 2023 5:17:33 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting products info: productName is null or empty!
+מאי 15, 2023 5:20:51 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting products info: productName is null or empty!
+מאי 15, 2023 5:33:43 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting products info: productName is null or empty!
+מאי 15, 2023 5:34:00 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: bag already contains user1_first_store_product1 product
+מאי 15, 2023 5:34:11 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: bag already contains user1_first_store_product1 product
+מאי 15, 2023 5:34:18 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: store: user1_first_store11 does not exists!
+מאי 15, 2023 5:34:31 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: user1product does not exist in this store!
+מאי 15, 2023 5:35:00 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: bag already contains user1_first_store_product5 product
+מאי 15, 2023 5:35:08 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: user does not exists!
+מאי 15, 2023 5:37:13 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Card Number cant be null
+מאי 15, 2023 6:08:06 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in creating store: store: baraa store is already store
+מאי 15, 2023 6:11:02 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Card Number cant be null
+מאי 15, 2023 6:12:16 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Card Number cant be null
+מאי 15, 2023 6:12:51 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: incorrect password!
+מאי 15, 2023 6:13:45 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: user1 does not have permission to addNewProduct for store baraa store2
+מאי 15, 2023 6:14:24 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Card Number cant be null
+מאי 15, 2023 6:15:11 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting products info: productName is null or empty!
+מאי 15, 2023 7:12:16 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting products info: productName is null or empty!
+מאי 15, 2023 8:37:38 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: bag already contains user1_first_store_product5 product
+מאי 15, 2023 8:45:40 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Card Number cant be null
+מאי 15, 2023 8:49:14 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Card Number cant be null
+מאי 15, 2023 8:52:13 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Card Number cant be null

@@ -43,7 +43,6 @@ public class myStoresController {
             return "role_page";
         }
         myStores = response.getValue();
-//        delete();
         model.addAttribute("name", controller.getName());
         model.addAttribute("hasRole", controller.getHasRole());
         model.addAttribute("logged", controller.getLogged());
@@ -52,7 +51,6 @@ public class myStoresController {
         model.addAttribute("message", alert.getMessage());
         model.addAttribute("isEmpty", myStores.isEmpty());
         model.addAttribute("myStores", myStores);
-//        model.addAttribute("totalPrice", getTotalPrice(bags));
         alert = new Alert();
         return "role_page";
     }
@@ -64,46 +62,16 @@ public class myStoresController {
         return "redirect:/role_page";
     }
 
-    private void delete(){
-        myStores = new HashMap<>();
-        List<StoreDTO> list = new ArrayList<>();
-        list.add(server.getStoreInfo(controller.getName(), "user1_first_store").getValue());
-        myStores.put("founder", list);
-        list = new ArrayList<>();
-        list.add(server.getStoreInfo(controller.getName(), "user1_first_store").getValue());
-        list.add(server.getStoreInfo(controller.getName(), "user1_second_store").getValue());
-        myStores.put("owner", list);
-    }
-
     @PostMapping("/createStore")
     public String createStore(@ModelAttribute Store store, Model model){
-        //public ResponseT<StoreDTO> createStore(String memberUserName, String newStoreName){
         ResponseT<StoreDTO> response = server.createStore(controller.getName(), store.getStoreName());
         if(response.ErrorOccurred){
-            model.addAttribute("name", controller.getName());
-            model.addAttribute("hasRole", controller.getHasRole());
-            model.addAttribute("logged", controller.getLogged());
-            model.addAttribute("success", alert.isSuccess());
-            model.addAttribute("fail", alert.isFail());
-            model.addAttribute("message", alert.getMessage());
-            model.addAttribute("isEmpty", myStores.isEmpty());
-            model.addAttribute("myStores", myStores);
-//        model.addAttribute("totalPrice", getTotalPrice(bags));
-            alert = new Alert();
-            return "role_page";
+            alert.setFail(true);
+            alert.setMessage(response.errorMessage);
+            return "redirect:/role_page";
         }
-        ResponseT<Map<String,List<StoreDTO>>> response1  = server.myStores(controller.getName());
-        myStores = response1.getValue();
-        model.addAttribute("name", controller.getName());
-        model.addAttribute("hasRole", controller.getHasRole());
-        model.addAttribute("logged", controller.getLogged());
-        model.addAttribute("success", alert.isSuccess());
-        model.addAttribute("fail", alert.isFail());
-        model.addAttribute("message", alert.getMessage());
-        model.addAttribute("isEmpty", myStores.isEmpty());
-        model.addAttribute("myStores", myStores);
-//        model.addAttribute("totalPrice", getTotalPrice(bags));
-        alert = new Alert();
-        return "role_page";
+        alert.setSuccess(true);
+        alert.setMessage("Store " + store.getStoreName() + " created");
+        return "redirect:/role_page";
     }
 }

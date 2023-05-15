@@ -15,14 +15,15 @@
                 <span class="fs-4" th:text="${name}"></span>
             </a>
 
-            <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto nav-tabs">
-                <a class="nav-link me-3 py-2 link-body-emphasis text-decoration-none" href="/">Home Page</a>
-                <a class="nav-link me-3 py-2 link-body-emphasis text-decoration-none" href="searchStore">Search for stores</a>
-                <a th:if="${logged}" class="nav-link me-3 py-2 link-body-emphasis text-decoration-none" href="role_page">My stores</a>
-                <a class="nav-link me-3 py-2 link-body-emphasis text-decoration-none" href="cart">My Cart</a>
-                <a th:if="!${logged}" class="nav-link me-3 py-2 link-body-emphasis text-decoration-none" href="register">Register</a>
-                <a th:if="!${logged}" class="nav-link me-3 py-2 link-body-emphasis text-decoration-none" href="login">Login</a>
-                <a th:if="${logged}" class="nav-link me-3 py-2 link-body-emphasis text-decoration-none" href="logout">Logout</a>
+            <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto nav nav-tabs">
+                <a class="nav-link active py-2 link-body-emphasis text-decoration-none" style="color:#1cc8b8" href="purchase">Purchase</a>
+                <a class="nav-link py-2 link-body-emphasis text-decoration-none" href="/">Home Page</a>
+                <a class="nav-link py-2 link-body-emphasis text-decoration-none" href="searchStore">Search for stores</a>
+                <a th:if="${logged}" class="nav-link py-2 link-body-emphasis text-decoration-none" href="role_page">My stores</a>
+                <a class="nav-link py-2 link-body-emphasis text-decoration-none" href="cart">My Cart</a>
+                <a th:if="!${logged}" class="nav-link py-2 link-body-emphasis text-decoration-none" href="register">Register</a>
+                <a th:if="!${logged}" class="nav-link py-2 link-body-emphasis text-decoration-none" href="login">Login</a>
+                <a th:if="${logged}" class="nav-link py-2 link-body-emphasis text-decoration-none" href="logout">Logout</a>
             </nav>
         </div>
     </header>
@@ -156,8 +157,8 @@
 
         <form th:if="${!done}" action="purchase" method="post">
             <div class="row container justify-content-center text-center align-items-center mt-5">
-                <h4 class="col-auto card-title pricing-card-title" th:text="${'Total Price: ' + totalPrice + ' $'}"></h4>
-                <button type="submit" class="btn bt-lg btn-outline-success col-auto">Continue to checkout</button>
+                <h4 class="col-3 card-title pricing-card-title" th:text="${'Total Price: ' + cartTotalPrice + ' $'}"></h4>
+                <button type="submit" class="col-2 btn bt-lg btn-info">Continue to checkout</button>
             </div>
         </form >
 
@@ -165,7 +166,7 @@
         <div th:if="${done}">
              <div class="row container justify-content-center text-center align-items-center mt-5">
         <!-- <h4 class="col-auto card-title pricing-card-title">Your order has been successfully received!</h4>-->
-                <a class="col-auto" href="/"><button type="submit" class="w-100 btn bt-lg btn-outline-success">Continue Shopping</button></a>
+                <a class="col-auto" href="/"><button type="submit" class="w-100 btn bt-lg btn-info">Continue Shopping</button></a>
              </div>
         </div>
 

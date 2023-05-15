@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,6 +40,7 @@ public class CartController {
             return "cart";
         }
         bags = buildCart(response.value);
+        controller.setCart(bags);
         model.addAttribute("name", controller.getName());
         model.addAttribute("hasRole", controller.getHasRole());
         model.addAttribute("logged", controller.getLogged());
@@ -50,7 +49,7 @@ public class CartController {
         model.addAttribute("message", alert.getMessage());
         model.addAttribute("isEmpty", bags.isEmpty());
         model.addAttribute("bags", bags);
-        model.addAttribute("totalPrice", getTotalPrice(bags));
+        model.addAttribute("cartTotalPrice", controller.getCartTotalPrice());
         alert = new Alert();
         return "cart";
     }
@@ -96,10 +95,9 @@ public class CartController {
             alert.setMessage("Failed to remove the product");
         }
         return "redirect:/cart";
-
     }
 
-    private List<Bag> buildCart(List<BagDTO> cartDTO){
+    public static List<Bag> buildCart(List<BagDTO> cartDTO){
         List<Bag> bags = new ArrayList<>();
         for(BagDTO bagDTO : cartDTO){
             List<Product> products = new ArrayList<>();
@@ -112,22 +110,5 @@ public class CartController {
             bags.add(bag);
         }
         return bags;
-    }
-
-    private double getTotalPrice(List<Bag> bags){
-        double total = 0;
-        for(Bag b : bags){
-            total += b.getTotalPrice();
-        }
-        total = round(total, 2);
-        return total;
-    }
-
-    private static double round(double value, int places) {
-        if (places < 0) throw new IllegalArgumentException();
-
-        BigDecimal bd = BigDecimal.valueOf(value);
-        bd = bd.setScale(places, RoundingMode.HALF_UP);
-        return bd.doubleValue();
     }
 }

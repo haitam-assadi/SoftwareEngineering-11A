@@ -1,9 +1,25 @@
 package PresentationLayer.controller;
 
+import CommunicationLayer.Server;
+import DTO.BagDTO;
+import PresentationLayer.model.Bag;
+import PresentationLayer.model.Product;
+import ServiceLayer.ResponseT;
+
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.util.ArrayList;
+import java.util.List;
+
+import static PresentationLayer.controller.CartController.buildCart;
+
 public class GeneralController {
+    private Server server = Server.getInstance();
     private String name;
     private boolean hasRole;
     private boolean logged;
+    private double cartTotalPrice;
+    private List<Bag> cart;
 
     private static GeneralController controller = null;
     public static GeneralController getInstance(){
@@ -17,6 +33,8 @@ public class GeneralController {
         this.name = "";
         this.hasRole = false;
         this.logged = false;
+        this.cartTotalPrice = 0;
+        cart = new ArrayList<>();
     }
 
     public String getName(){
@@ -41,5 +59,71 @@ public class GeneralController {
 
     public void setLogged(boolean logged){
         this.logged = logged;
+    }
+
+    public double getCartTotalPrice() {
+        cartTotalPrice = getCartTotalPrice(cart);
+        return cartTotalPrice;
+    }
+
+    public void setCartTotalPrice(double cartTotalPrice) {
+        this.cartTotalPrice = cartTotalPrice;
+    }
+
+    public List<Bag> getCart() {
+        return cart;
+    }
+
+    public void setCart(List<Bag> cart) {
+        this.cart = cart;
+    }
+
+    public void updateCart(){
+        ResponseT<List<BagDTO>> response  = server.getCartContent(name);
+        if(!response.ErrorOccurred){
+            cart = buildCart(response.getValue());
+        }
+    }
+
+    public boolean cartContainsProduct(String storeName, String productName){
+        for(Bag bag : cart){
+            if(bag.getStoreName().equals(storeName)){
+                for(Product product : bag.getProducts()){
+                    if(product.getName().equals(productName))
+                        return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public int getProductAmountInCart(String storeName, String productName){
+        int amount = 0;
+        for(Bag bag : cart){
+            if(bag.getStoreName().equals(storeName)){
+                for(Product product : bag.getProducts()){
+                    if(product.getName().equals(productName))
+                        return product.getAmount();
+                }
+            }
+        }
+        return amount;
+    }
+
+    private double getCartTotalPrice(List<Bag> bags){
+        double total = 0;
+        for(Bag b : bags){
+            total += b.getTotalPrice();
+        }
+        total = round(total, 2);
+        return total;
+    }
+
+    public static double round(double value, int places) {
+        if (places < 0) throw new IllegalArgumentException();
+
+        BigDecimal bd = BigDecimal.valueOf(value);
+        bd = bd.setScale(places, RoundingMode.HALF_UP);
+        return bd.doubleValue();
     }
 }

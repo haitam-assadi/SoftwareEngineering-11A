@@ -162,7 +162,7 @@ public class storeController {
         }
         else {
             alert.setFail(true);
-            alert.setMessage("Product does not added to stock");
+            alert.setMessage("Product does not removed from stock");
         }
         return "redirect:/store";
     }
