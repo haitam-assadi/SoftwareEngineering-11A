@@ -211,7 +211,7 @@ public class Store {
         if(memberUserName.equals(this.storeFounder.getUserName())){
             this.isActive = false;
             String msg = "store: " + storeName + " has been closed by " + memberUserName + " at " + java.time.LocalTime.now();
-            NotificationService.getInstance().notify(storeName,msg,NotificationType.storeClosed);
+//            NotificationService.getInstance().notify(storeName,msg,NotificationType.storeClosed);
             return true;
         }
         throw new Exception(memberUserName + "is not the founder of the store");

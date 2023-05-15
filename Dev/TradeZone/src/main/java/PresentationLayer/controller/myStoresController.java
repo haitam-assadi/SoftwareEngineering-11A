@@ -36,7 +36,7 @@ public class myStoresController {
             model.addAttribute("success", alert.isSuccess());
             model.addAttribute("fail", alert.isFail());
             model.addAttribute("message", alert.getMessage());
-            return "cart";
+            return "role_page";
         }
         myStores = response.getValue();
 //        delete();
@@ -51,6 +51,13 @@ public class myStoresController {
 //        model.addAttribute("totalPrice", getTotalPrice(bags));
         alert = new Alert();
         return "role_page";
+    }
+
+    @GetMapping("/role_page_closeStore")
+    public String closeStoreAlert(){
+        alert.setSuccess(true);
+        alert.setMessage("The store was successfully closed");
+        return "redirect:/role_page";
     }
 
     private void delete(){

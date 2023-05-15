@@ -15,6 +15,7 @@
                 <span class="fs-4" th:text="${name}"></span>
             </a>
             <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto nav-tabs">
+                <a class="nav-link active me-3 py-2 link-body-emphasis text-decoration-none" href="store">Store</a>
                 <a class="nav-link me-3 py-2 link-body-emphasis text-decoration-none" href="/">Home Page</a>
                 <a class="nav-link me-3 py-2 link-body-emphasis text-decoration-none" href="searchStore">Search for stores</a>
                 <a th:if="${hasRole}" class="nav-link me-3 py-2 link-body-emphasis text-decoration-none" href="role_page">My stores</a>
@@ -56,11 +57,11 @@
 
                     <div class="my-3">
                         <div class="form-check mb-2">
-                            <input id="appointAsOwner" name="appointAs" type="radio" class="form-check-input" checked>
+                            <input id="appointAsOwner" value="appointAsOwner" name="appointAs" type="radio" class="form-check-input" checked>
                             <label class="form-check-label" for="appointAsOwner">Appoint As Owner</label>
                         </div>
                         <div class="form-check mb-3">
-                            <input id="appointAsManager" name="appointAs" type="radio" class="form-check-input">
+                            <input id="appointAsManager" value="appointAsManager" name="appointAs" type="radio" class="form-check-input">
                             <label class="form-check-label" for="appointAsManager">Appoint As Manager</label>
                         </div>
                     </div>
@@ -93,19 +94,38 @@
                             <div class="card-body">
                                 <!--                        <h5 th:text="${'Store Name: ' + product.storeName}"></h5>-->
                                 <p th:text="${'Description: ' + product.description}"></p>
-                                <form action="searchStoreAddToCart" method="post">
+                                <form action="updateProductPrice" method="post">
                                     <input type="hidden" name="name" th:value="${product.name}">
                                     <input type="hidden" name="storeName" th:value="${product.storeName}">
-                                    <div class="row mb-3">
-                                        <label for="amount" class="col-auto col-form-label">Amount:</label>
+<!--                                    // TODO: change amount to product.amount in stock-->
+                                    <input type="hidden" name="amount" value="1">
+                                    <div class="row mb-3 align-items-center">
                                         <div class="col-auto">
-                                            <input type="number" class="form-control" id="amount" style="width:100px" name="amount" value="1" min="1" data-siid="si_input_1">
+                                            <h4><label for="price" class="col-form-label">Price:</label></h4>
+                                        </div>
+                                        <div class="col-auto">
+                                            <input type="number" class="form-control" id="price" style="width:100px" name="price" th:value="${product.price}" min="1" data-siid="si_input_1">
+                                        </div>
+                                        <div class="col-auto form-check mb-3">
+                                            <input class="form-check-input" type="checkbox" value="" id="invalidCheckPrice" required>
+                                            <label class="form-check-label" for="invalidCheckPrice">
+                                                <button type="submit" class="w-100 btn btn-outline-success">Update Price</button>
+                                            </label>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <h3 class="col-auto card-title pricing-card-title" th:text="${'Price: ' + product.price} + ' $'"></h3>
-                                        <div class="col-auto">
-                                            <button type="submit" class="w-100 btn btn-outline-primary">Add to cart</button>
+                                </form>
+                                <form action="removeProduct" method="post">
+                                    <input type="hidden" name="name" th:value="${product.name}">
+                                    <input type="hidden" name="storeName" th:value="${product.storeName}">
+                                    <input type="hidden" name="price" th:value="${product.price}">
+<!--                                    // TODO: change amount to product.amount in stock-->
+                                    <input type="hidden" name="amount" value="1">
+                                    <div class="row mb-3 align-items-center">
+                                        <div class="col-auto form-check mb-3">
+                                            <input class="form-check-input" type="checkbox" value="" id="invalidCheckRemove" required>
+                                            <label class="form-check-label" for="invalidCheckRemove">
+                                                <button type="submit" class="w-100 btn btn-outline-danger">Remove Product</button>
+                                            </label>
                                         </div>
                                     </div>
                                 </form>
