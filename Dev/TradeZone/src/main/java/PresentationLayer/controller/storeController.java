@@ -146,5 +146,26 @@ public class storeController {
         return "redirect:/store";
     }
 
+    @PostMapping("/addProductToStore")
+    public String addProductToStore(@ModelAttribute Product product){
+        ResponseT<Boolean> response = server.addNewProductToStock(controller.getName(), store.storeName,
+                                        product.getName(), product.getCategory(), product.getPrice(),
+                                        product.getDescription(), product.getAmount());
+        if(response.ErrorOccurred){
+            alert.setFail(true);
+            alert.setMessage(response.errorMessage);
+            return "redirect:/store";
+        }
+        if(response.getValue()){
+            alert.setSuccess(true);
+            alert.setMessage("Product has been successfully added to stock");
+        }
+        else {
+            alert.setFail(true);
+            alert.setMessage("Product does not added to stock");
+        }
+        return "redirect:/store";
+    }
+
 
 }

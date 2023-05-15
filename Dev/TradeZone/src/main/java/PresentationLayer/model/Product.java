@@ -6,6 +6,7 @@ public class Product {
     private Double totalPrice;
     private String description;
     private int amount;
+    private String category;
 
     public Product(String name, Double price, String description, int amount){
         this.name = name;
@@ -37,6 +38,14 @@ public class Product {
 
     public void setTotalPrice(Double totalPrice) {
         this.totalPrice = totalPrice;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public String printDetails(){

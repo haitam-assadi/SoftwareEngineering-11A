@@ -18,7 +18,7 @@
         <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto nav-tabs">
             <a class="nav-link me-3 py-2 link-body-emphasis text-decoration-none" href="/">Home Page</a>
             <a class="nav-link me-3 py-2 link-body-emphasis text-decoration-none" href="searchStore">Search for stores</a>
-            <a th:if="${hasRole}" class="nav-link me-3 py-2 link-body-emphasis text-decoration-none" href="role_page">My stores</a>
+            <a th:if="${logged}" class="nav-link me-3 py-2 link-body-emphasis text-decoration-none" href="role_page">My stores</a>
             <a class="nav-link active me-3 py-2 link-body-emphasis text-decoration-none" href="cart">My Cart</a>
             <a th:if="!${logged}" class="nav-link me-3 py-2 link-body-emphasis text-decoration-none" href="register">Register</a>
             <a th:if="!${logged}" class="nav-link me-3 py-2 link-body-emphasis text-decoration-none" href="login">Login</a>

@@ -601,3 +601,27 @@ fail in registeration: BAR is not valid userName!
 מאי 15, 2023 11:05:30 לפנה״צ DomainLayer.LoggerManager sendErrorLog
 WARNING: 
 fail in registeration: baraa is already a member
+מאי 15, 2023 1:19:20 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: incorrect password!
+מאי 15, 2023 1:19:48 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: user1 is not owner for baraa store
+מאי 15, 2023 1:19:58 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store manager: user1 is not owner for baraa store
+מאי 15, 2023 1:20:15 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in closing the store: user1is not the founder of the store
+מאי 15, 2023 1:20:40 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store manager: memberuser1 is already store manager
+מאי 15, 2023 1:49:02 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: Cannot invoke "String.length()" because "description" is null
+מאי 15, 2023 1:57:46 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: userName guest does not exists!
+מאי 15, 2023 2:50:19 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: stock does already contains this product user1_second_store_product5
