@@ -3,6 +3,8 @@ package ServiceLayer;
 import DTO.*;
 import DomainLayer.LoggerManager;
 import DomainLayer.Market;
+import DomainLayer.PaymentService;
+import DomainLayer.ShipmentService;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -29,6 +31,13 @@ public class SystemService {
             return new ResponseT<>(e.getMessage());
         }
 
+    }
+
+    public void setPaymentService(PaymentService paymentService){
+       market.setPaymentService(paymentService);
+    }
+    public void setShipmentService(ShipmentService shipmentService){
+        market.setShipmentService(shipmentService);
     }
 
     private void createMemberWithTwoStore(String userName) throws Exception {

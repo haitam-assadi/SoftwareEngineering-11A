@@ -4,6 +4,8 @@ import DTO.BagDTO;
 import DTO.MemberDTO;
 import DTO.ProductDTO;
 import DTO.StoreDTO;
+import DomainLayer.PaymentService;
+import DomainLayer.ShipmentService;
 import ServiceLayer.ResponseT;
 import ServiceLayer.SystemService;
 
@@ -37,6 +39,13 @@ public class RealBridge implements Bridge{
             throw new Exception(response.errorMessage);
         }
         return response.getValue();
+    }
+
+    public void setPaymentService(PaymentService paymentService){
+        systemService.setPaymentService(paymentService);
+    }
+    public void setShipmentService(ShipmentService shipmentService){
+        systemService.setShipmentService(shipmentService);
     }
 
     @Override

@@ -14,16 +14,10 @@ import java.time.LocalTime;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-
-        LocalDate date = LocalDate.of(-1,12,21);
-        int bb =70;
-        Double aa = bb/100.0;
-
-        System.out.println(aa);
-
-
-        // display formatted date
-        System.out.printf(date.toString());
+        String str = "";
+        boolean result = str.matches("[0-9]+");
+        System.out.println("Original String : " + str);
+        System.out.println(result);
 
 
 

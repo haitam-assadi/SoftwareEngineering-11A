@@ -38,6 +38,23 @@ public abstract class Role {
         return true;
     }
 
+    public boolean isMyBossForStore(String storeName, String memberName) throws Exception {
+        if(storeName==null)
+            throw new Exception("store name cant be null");
+        if(memberName==null)
+            throw new Exception("member name cant be null");
+
+        storeName=storeName.strip().toLowerCase();
+        memberName=memberName.strip().toLowerCase();
+        if(!responsibleForStores.containsKey(storeName))
+            throw new Exception(getUserName()+" is not a owner/manager for store "+ storeName);
+
+        if(!myBossesForStores.get(storeName).getUserName().equals(memberName))
+            return false;
+
+        return true;
+    }
+
 
     public boolean appointMemberAsStoreOwner(Store store, AbstractStoreOwner myBoss) throws Exception {
         String storeName = store.getStoreName();
@@ -59,8 +76,6 @@ public abstract class Role {
         responsibleForStores.put(storeName, store);
         return true;
     }
-
-
 
 
     public boolean haveStore(String storeName){

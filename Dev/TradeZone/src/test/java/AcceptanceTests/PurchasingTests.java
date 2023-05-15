@@ -1,8 +1,14 @@
 package AcceptanceTests;
+import DomainLayer.PaymentService;
+import DomainLayer.ShipmentService;
 import org.junit.jupiter.api.*;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -47,8 +53,15 @@ public class PurchasingTests {
     private String member1_shipmentCountry= "member1_shipmentCountry";
     private String member1_zipCode = "0022";
 
+    @Mock
+    private PaymentService paymentService;
+
+    @Mock
+    private ShipmentService shipmentService;
+
     @BeforeEach
     public void setUp() throws Exception {
+        MockitoAnnotations.openMocks(this);
         proxy = new ProxyBridge(new RealBridge());
         if (!proxy.initializeMarket()) {
             throw new Exception("");
@@ -99,15 +112,64 @@ public class PurchasingTests {
         try{
             proxy.addToCart(guest_name, storeName2, "gaming mouse 1", 3);
             proxy.addToCart(member_name, storeName2, "iphone 14",1);
-            int gaming_mouse_amount_in_stock = 70;
-            int iphone_14_amount_in_stock = 100;
+            proxy.setPaymentService(this.paymentService);
+            proxy.setShipmentService(this.shipmentService);
+            Mockito.when(paymentService.pay(Mockito.anyDouble(),Mockito.eq(user1_cardNumber),Mockito.eq(user1_month),Mockito.eq(user1_year),Mockito.eq(user1_holder),Mockito.eq(user1_cvv),Mockito.eq(user1_id))).thenReturn(1);
+            Mockito.when(paymentService.pay(Mockito.anyDouble(),Mockito.eq(member1_cardNumber),Mockito.eq(member1_month),Mockito.eq(member1_year),Mockito.eq(member1_holder),Mockito.eq(member1_cvv),Mockito.eq(member1_id))).thenReturn(2);
+            Mockito.when(shipmentService.supply(user1_receiverName,user1_shipmentAddress,user1_shipmentCity,user1_shipmentCountry,user1_zipCode)).thenReturn(1);
+            Mockito.when(shipmentService.supply(member1_receiverName,member1_shipmentAddress,member1_shipmentCity,member1_shipmentCountry,member1_zipCode)).thenReturn(2);
             Assertions.assertTrue(proxy.purchaseCartByCreditCard(guest_name,user1_cardNumber,user1_month,user1_year,user1_holder,user1_cvv,user1_id,user1_receiverName,user1_shipmentAddress,user1_shipmentCity,user1_shipmentCountry,user1_zipCode));
             Assertions.assertTrue(proxy.purchaseCartByCreditCard(member_name,member1_cardNumber,member1_month,member1_year,member1_holder,member1_cvv,member1_id,member1_receiverName,member1_shipmentAddress,member1_shipmentCity,member1_shipmentCountry,member1_zipCode));
             Assertions.assertTrue(proxy.getCartContent(guest_name).isEmpty());
             Assertions.assertTrue(proxy.getCartContent(member_name).isEmpty());
-            //todo: we have to check that the amount in the stock decreased
-            //Assertions.assertEquals(gaming_mouse_amount_in_stock-3,proxy.getProductAmount(storeName2,"gaming mouse 1"));
-            //Assertions.assertEquals(iphone_14_amount_in_stock-1,proxy.getProductAmount(storeName2,"iphone 14"));
+        } catch (Exception e) {
+            Assertions.fail(e.getMessage());
+        }
+    }
+
+
+    @Test
+    public void purchase_cart_fail_payment_service_failed(){
+        try{
+            proxy.addToCart(member_name, storeName2, "iphone 14",1);
+            proxy.setPaymentService(this.paymentService);
+            proxy.setShipmentService(this.shipmentService);
+            Mockito.when(shipmentService.supply(Mockito.anyString(),Mockito.anyString(),Mockito.anyString(),Mockito.anyString(),Mockito.anyString())).thenReturn(1);
+            Mockito.when(paymentService.pay(Mockito.anyDouble(),Mockito.anyString(),Mockito.anyString(),Mockito.anyString(),Mockito.anyString(),Mockito.anyString(),Mockito.anyString())).thenThrow(new Exception("Payment service error"));
+            Exception exception = Assertions.assertThrows(Exception.class ,() -> proxy.purchaseCartByCreditCard(member_name,member1_cardNumber,member1_month,member1_year,member1_holder,member1_cvv,member1_id,member1_receiverName,member1_shipmentAddress,member1_shipmentCity,member1_shipmentCountry,member1_zipCode));
+            Assertions.assertTrue(exception.getMessage().contains("Payment service error"));
+            Assertions.assertTrue(!proxy.getCartContent(member_name).isEmpty());
+        } catch (Exception e) {
+            Assertions.fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void purchase_cart_fail_shipment_service_failed(){
+        try{
+            proxy.addToCart(member_name, storeName2, "iphone 14",1);
+            proxy.setPaymentService(this.paymentService);
+            proxy.setShipmentService(this.shipmentService);
+            Mockito.when(shipmentService.supply(Mockito.anyString(),Mockito.anyString(),Mockito.anyString(),Mockito.anyString(),Mockito.anyString())).thenThrow(new Exception("Shipment service error"));
+            Mockito.when(paymentService.pay(Mockito.anyDouble(),Mockito.anyString(),Mockito.anyString(),Mockito.anyString(),Mockito.anyString(),Mockito.anyString(),Mockito.anyString())).thenReturn(1);
+            Exception exception = Assertions.assertThrows(Exception.class ,() -> proxy.purchaseCartByCreditCard(member_name,member1_cardNumber,member1_month,member1_year,member1_holder,member1_cvv,member1_id,member1_receiverName,member1_shipmentAddress,member1_shipmentCity,member1_shipmentCountry,member1_zipCode));
+            Assertions.assertTrue(exception.getMessage().contains("Shipment service error"));
+            Assertions.assertTrue(!proxy.getCartContent(member_name).isEmpty());
+        } catch (Exception e) {
+            Assertions.fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void purchase_cart_fail_payment_and_shipment_services_failed(){
+        try{
+            proxy.addToCart(member_name, storeName2, "iphone 14",1);
+            proxy.setPaymentService(this.paymentService);
+            proxy.setShipmentService(this.shipmentService);
+            Mockito.when(shipmentService.supply(Mockito.anyString(),Mockito.anyString(),Mockito.anyString(),Mockito.anyString(),Mockito.anyString())).thenThrow(new Exception("Shipment service error"));
+            Mockito.when(paymentService.pay(Mockito.anyDouble(),Mockito.anyString(),Mockito.anyString(),Mockito.anyString(),Mockito.anyString(),Mockito.anyString(),Mockito.anyString())).thenThrow(new Exception("Payment service error"));
+            Exception exception = Assertions.assertThrows(Exception.class ,() -> proxy.purchaseCartByCreditCard(member_name,member1_cardNumber,member1_month,member1_year,member1_holder,member1_cvv,member1_id,member1_receiverName,member1_shipmentAddress,member1_shipmentCity,member1_shipmentCountry,member1_zipCode));
+            Assertions.assertTrue(!proxy.getCartContent(member_name).isEmpty());
         } catch (Exception e) {
             Assertions.fail(e.getMessage());
         }
@@ -373,8 +435,8 @@ public class PurchasingTests {
     @Test
     public void purchase_AND_payment_policy_success(){
         try{
-            Integer paymentPolicy1 = proxy.createRangeOfDaysCategoryBagConstraint(store_founder,storeName1,"Iphones",java.time.LocalDate.now().getYear()+1,java.time.LocalDate.now().getMonthValue(),java.time.LocalDate.now().getDayOfMonth(),java.time.LocalDate.now().getYear()+2,java.time.LocalDate.now().getMonthValue(),java.time.LocalDate.now().getDayOfMonth(),true);
-            Integer paymentPolicy2 = proxy.createMaxTimeAtDayCategoryBagConstraint(store_founder,storeName1,"Iphones",java.time.LocalTime.now().getHour()+1,java.time.LocalTime.now().getMinute(),true);
+            Integer paymentPolicy1 = proxy.createRangeOfDaysCategoryBagConstraint(store_founder,storeName1,"Iphones",java.time.LocalDate.now().getYear()+1,java.time.LocalDate.now().getMonthValue(),java.time.LocalDate.now().getDayOfMonth(),java.time.LocalDate.now().getYear()+2,java.time.LocalDate.now().getMonthValue(),java.time.LocalDate.now().getDayOfMonth(),false);
+            Integer paymentPolicy2 = proxy.createMaxTimeAtDayCategoryBagConstraint(store_founder,storeName1,"Iphones",java.time.LocalTime.now().getHour()+1,java.time.LocalTime.now().getMinute(),false);
             proxy.createAndBagConstraint(store_founder,storeName1,paymentPolicy1,paymentPolicy2,true);
             proxy.addToCart(member_name, storeName1, "iphone 14",6);
             Assertions.assertTrue(proxy.purchaseCartByCreditCard(member_name,member1_cardNumber,member1_month,member1_year,member1_holder,member1_cvv,member1_id,member1_receiverName,member1_shipmentAddress,member1_shipmentCity,member1_shipmentCountry,member1_zipCode));
@@ -390,8 +452,8 @@ public class PurchasingTests {
     @Test
     public void purchase_AND_payment_policy_fail(){
         try{
-            Integer paymentPolicy1 = proxy.createRangeOfDaysCategoryBagConstraint(store_founder,storeName1,"Iphones",java.time.LocalDate.now().getYear()-1,java.time.LocalDate.now().getMonthValue(),java.time.LocalDate.now().getDayOfMonth(),java.time.LocalDate.now().getYear()+1,java.time.LocalDate.now().getMonthValue(),java.time.LocalDate.now().getDayOfMonth(),true);
-            Integer paymentPolicy2 = proxy.createMaxTimeAtDayCategoryBagConstraint(store_founder,storeName1,"Iphones",java.time.LocalTime.now().getHour()-1,java.time.LocalTime.now().getMinute(),true);
+            Integer paymentPolicy1 = proxy.createRangeOfDaysCategoryBagConstraint(store_founder,storeName1,"Iphones",java.time.LocalDate.now().getYear()-1,java.time.LocalDate.now().getMonthValue(),java.time.LocalDate.now().getDayOfMonth(),java.time.LocalDate.now().getYear()+1,java.time.LocalDate.now().getMonthValue(),java.time.LocalDate.now().getDayOfMonth(),false);
+            Integer paymentPolicy2 = proxy.createMaxTimeAtDayCategoryBagConstraint(store_founder,storeName1,"Iphones",java.time.LocalTime.now().getHour()-1,java.time.LocalTime.now().getMinute(),false);
             proxy.createAndBagConstraint(store_founder,storeName1,paymentPolicy1,paymentPolicy2,true);
             proxy.addToCart(member_name, storeName1, "iphone 14",6);
             Assertions.assertThrows(Exception.class,()-> proxy.purchaseCartByCreditCard(member_name,member1_cardNumber,member1_month,member1_year,member1_holder,member1_cvv,member1_id,member1_receiverName,member1_shipmentAddress,member1_shipmentCity,member1_shipmentCountry,member1_zipCode));
@@ -441,8 +503,8 @@ public class PurchasingTests {
     @Test
     public void purchase_OnlyIf_payment_policy_success(){
         try{
-            Integer paymentPolicy1 = proxy.createRangeOfDaysCategoryBagConstraint(store_founder,storeName1,"Iphones",java.time.LocalDate.now().getYear()+1,java.time.LocalDate.now().getMonthValue(),java.time.LocalDate.now().getDayOfMonth(),java.time.LocalDate.now().getYear()+2,java.time.LocalDate.now().getMonthValue(),java.time.LocalDate.now().getDayOfMonth(),true);
-            Integer paymentPolicy2 = proxy.createMaxTimeAtDayCategoryBagConstraint(store_founder,storeName1,"Iphones",java.time.LocalTime.now().getHour()+1,java.time.LocalTime.now().getMinute(),true);
+            Integer paymentPolicy1 = proxy.createRangeOfDaysCategoryBagConstraint(store_founder,storeName1,"Iphones",java.time.LocalDate.now().getYear()+1,java.time.LocalDate.now().getMonthValue(),java.time.LocalDate.now().getDayOfMonth(),java.time.LocalDate.now().getYear()+2,java.time.LocalDate.now().getMonthValue(),java.time.LocalDate.now().getDayOfMonth(),false);
+            Integer paymentPolicy2 = proxy.createMaxTimeAtDayCategoryBagConstraint(store_founder,storeName1,"Iphones",java.time.LocalTime.now().getHour()+1,java.time.LocalTime.now().getMinute(),false);
             proxy.createOnlyIfBagConstraint(store_founder,storeName1,paymentPolicy1,paymentPolicy2,true);
             proxy.addToCart(member_name, storeName1, "iphone 14",6);
             Assertions.assertTrue(proxy.purchaseCartByCreditCard(member_name,member1_cardNumber,member1_month,member1_year,member1_holder,member1_cvv,member1_id,member1_receiverName,member1_shipmentAddress,member1_shipmentCity,member1_shipmentCountry,member1_zipCode));
@@ -458,9 +520,9 @@ public class PurchasingTests {
     @Test
     public void purchase_OnlyIf_payment_policy_fail(){
         try{
-            Integer paymentPolicy1 = proxy.createRangeOfDaysCategoryBagConstraint(store_founder,storeName1,"Iphones",java.time.LocalDate.now().getYear()+1,java.time.LocalDate.now().getMonthValue(),java.time.LocalDate.now().getDayOfMonth(),java.time.LocalDate.now().getYear()+2,java.time.LocalDate.now().getMonthValue(),java.time.LocalDate.now().getDayOfMonth(),true);
-            Integer paymentPolicy2 = proxy.createMaxTimeAtDayCategoryBagConstraint(store_founder,storeName1,"Iphones",java.time.LocalTime.now().getHour()-1,java.time.LocalTime.now().getMinute(),true);
-            proxy.createOrBagConstraint(store_founder,storeName1,paymentPolicy1,paymentPolicy2,true);
+            Integer paymentPolicy1 = proxy.createRangeOfDaysCategoryBagConstraint(store_founder,storeName1,"Iphones",java.time.LocalDate.now().getYear()+1,java.time.LocalDate.now().getMonthValue(),java.time.LocalDate.now().getDayOfMonth(),java.time.LocalDate.now().getYear()+2,java.time.LocalDate.now().getMonthValue(),java.time.LocalDate.now().getDayOfMonth(),false);
+            Integer paymentPolicy2 = proxy.createMaxTimeAtDayCategoryBagConstraint(store_founder,storeName1,"Iphones",java.time.LocalTime.now().getHour()-1,java.time.LocalTime.now().getMinute(),false);
+            proxy.createOnlyIfBagConstraint(store_founder,storeName1,paymentPolicy1,paymentPolicy2,true);
             proxy.addToCart(member_name, storeName1, "iphone 14",6);
             Assertions.assertThrows(Exception.class,()-> proxy.purchaseCartByCreditCard(member_name,member1_cardNumber,member1_month,member1_year,member1_holder,member1_cvv,member1_id,member1_receiverName,member1_shipmentAddress,member1_shipmentCity,member1_shipmentCountry,member1_zipCode));
             Assertions.assertFalse(proxy.getCartContent(member_name).isEmpty());
