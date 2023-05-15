@@ -60,14 +60,46 @@ public class Store {
 
     public boolean isOwnerOrFounder(String memberUserName) throws Exception {
         assertStringIsNotNullOrBlank(memberUserName);
+        memberUserName = memberUserName.strip().toLowerCase();
         if(!storeFounder.getUserName().equals(memberUserName) && !storeOwners.containsKey(memberUserName))
+            return false;
+
+        return true;
+    }
+
+    public boolean isManager(String memberUserName) throws Exception {
+        assertStringIsNotNullOrBlank(memberUserName);
+        memberUserName = memberUserName.strip().toLowerCase();
+        if(!storeManagers.containsKey(memberUserName))
             return false;
 
         return true;
     }
     public void assertIsOwnerOrFounder(String memberUserName) throws Exception {
         if(!isOwnerOrFounder(memberUserName))
-            throw new Exception("can't add new product to stock : userName "+ memberUserName +" is not an owner to the store");
+            throw new Exception("userName "+ memberUserName +" is not an owner to the store");
+    }
+
+
+    public void assertIsOwnerOrFounderOrAuthorizedManager(String memberUserName, ManagerPermissions permission) throws Exception {
+        if (memberUserName==null)
+            throw new Exception("memberUserName cant be null");
+        memberUserName = memberUserName.strip().toLowerCase();
+
+        if(isOwnerOrFounder(memberUserName))
+            return;
+
+        if(isManager(memberUserName)){
+            storeManagers.get(memberUserName).assertHasPermissionForStore(storeName,permission);
+        }
+        else{
+            throw new Exception(memberUserName +" is not a founder/owner or an authorized manager");
+        }
+    }
+
+    public void assertIsManager(String memberUserName) throws Exception {
+        if(!isManager(memberUserName))
+            throw new Exception("userName "+ memberUserName +" is not a manager to the store");
     }
 
 
@@ -77,7 +109,7 @@ public class Store {
     }
 
     public boolean addNewProductToStock(String memberUserName,String nameProduct,String category, Double price, String description, Integer amount) throws Exception {
-        assertIsOwnerOrFounder(memberUserName);
+        assertIsOwnerOrFounderOrAuthorizedManager(memberUserName, ManagerPermissions.addNewProduct);
         if(amount == null || amount < 0)
             throw new Exception("the amount of the product cannot be negative or null");
         if(price==null ||  price < 0)
@@ -90,11 +122,12 @@ public class Store {
     }
 
     public boolean removeProductFromStock(String memberUserName, String productName) throws Exception {
-        assertIsOwnerOrFounder(memberUserName);
+        assertIsOwnerOrFounderOrAuthorizedManager(memberUserName, ManagerPermissions.removeProduct);
         return stock.removeProductFromStock(productName);
     }
 
     public boolean updateProductDescription(String memberUserName, String productName, String newProductDescription) throws Exception {
+        assertIsOwnerOrFounderOrAuthorizedManager(memberUserName, ManagerPermissions.updateProductInfo);
         if(newProductDescription == null || newProductDescription.isBlank())
             throw new Exception("the Description of the product cannot be null");
         if(newProductDescription.length()>300)
@@ -105,6 +138,7 @@ public class Store {
     }
 
     public boolean updateProductAmount(String memberUserName, String productName, Integer newAmount) throws Exception {
+        assertIsOwnerOrFounderOrAuthorizedManager(memberUserName, ManagerPermissions.updateProductInfo);
         if(newAmount < 0)
             throw new Exception("the amount of the product cannot be negative");
         if(!storeFounder.getUserName().equals(memberUserName) && !storeOwners.containsKey(memberUserName))
@@ -113,6 +147,7 @@ public class Store {
     }
 
     public boolean updateProductPrice(String memberUserName, String productName, Double newPrice) throws Exception {
+        assertIsOwnerOrFounderOrAuthorizedManager(memberUserName, ManagerPermissions.updateProductInfo);
         if(newPrice <= 0)
             throw new Exception("the price of the product cannot be negative");
         if(!storeFounder.getUserName().equals(memberUserName) && !storeOwners.containsKey(memberUserName))
@@ -177,6 +212,18 @@ public class Store {
         return true;
     }
 
+
+    public boolean addPermissionForStoreManager(String ownerUserName, String managerUserName, Integer permissionId) throws Exception {
+        assertIsOwnerOrFounder(ownerUserName);
+        assertIsManager(managerUserName);
+        managerUserName = managerUserName.strip().toLowerCase();
+        StoreManager storeManager = storeManagers.get(managerUserName);
+        if(!storeManager.isMyBossForStore(getStoreName(), ownerUserName))
+            throw new Exception(ownerUserName+ " is not a boss for "+managerUserName+" in store "+getStoreName());
+
+        return storeManager.addPermissionForStore(getStoreName(),permissionId);
+    }
+
     public boolean isActive() {
         return isActive;
     }
@@ -201,9 +248,6 @@ public class Store {
         return storeManagers;
     }
 
-    public List<Deal> getStoreDeals() {
-        return storeDeals;
-    }
 
 
 
@@ -218,29 +262,26 @@ public class Store {
     }
 
     public List<MemberDTO> getStoreWorkersInfo(String memberUserName) throws Exception {
-        if(this.storeOwners.containsKey(memberUserName)){
-            List<MemberDTO> members = new ArrayList<MemberDTO>();
-            members.add(this.storeFounder.getMemberDTO());
-            for(StoreOwner owner : this.storeOwners.values()){
-                members.add(owner.getMemberDTO());
-            }
-            for(StoreManager manager : this.storeManagers.values()){
-                members.add(manager.getMemberDTO());
-            }
-            return members;
+        assertIsOwnerOrFounderOrAuthorizedManager(memberUserName, ManagerPermissions.getWorkersInfo);
+        List<MemberDTO> members = new ArrayList<MemberDTO>();
+        members.add(this.storeFounder.getMemberDTO());
+        for(StoreOwner owner : this.storeOwners.values()){
+            members.add(owner.getMemberDTO());
         }
-        throw new Exception(memberUserName + "is not an owner of the store");
+        for(StoreManager manager : this.storeManagers.values()){
+            members.add(manager.getMemberDTO());
+        }
+        return members;
     }
 
     public List<DealDTO> getStoreDeals(String memberUserName) throws Exception {
-        if(this.storeOwners.containsKey(memberUserName)){
-            List<DealDTO> deals = new ArrayList<DealDTO>();
-            for(Deal deal : this.storeDeals){
-                deals.add(deal.getDealDTO());
-            }
-            return deals;
+        assertIsOwnerOrFounderOrAuthorizedManager(memberUserName, ManagerPermissions.getStoreDeals);
+        List<DealDTO> deals = new ArrayList<DealDTO>();
+        for(Deal deal : this.storeDeals){
+            deals.add(deal.getDealDTO());
         }
-        throw new Exception(memberUserName + "has to be an owner to get store deals.");
+        return deals;
+
     }
 
     public List<DealDTO> getMemberDeals(String otherMemberUserName, List<DealDTO> deals) {
@@ -302,7 +343,7 @@ public class Store {
 
 
     public Integer createProductDiscountPolicy(String memberUserName, String productName,  int discountPercentage, boolean addAsStoreDiscountPolicy) throws Exception {
-        assertIsOwnerOrFounder(memberUserName);
+        assertIsOwnerOrFounderOrAuthorizedManager(memberUserName, ManagerPermissions.manageStoreDiscountPolicies);
         stock.assertContainsProduct(productName);
 
         if(discountPercentage<0 || discountPercentage>100)
@@ -321,7 +362,7 @@ public class Store {
     }
 
     public Integer createProductDiscountPolicyWithConstraint(String memberUserName, String productName,  int discountPercentage, Integer bagConstraintId, boolean addAsStoreDiscountPolicy) throws Exception {
-        assertIsOwnerOrFounder(memberUserName);
+        assertIsOwnerOrFounderOrAuthorizedManager(memberUserName, ManagerPermissions.manageStoreDiscountPolicies);
         stock.assertContainsProduct(productName);
 
         if(discountPercentage<0 || discountPercentage>100)
@@ -347,7 +388,7 @@ public class Store {
     }
 
     public Integer createCategoryDiscountPolicy(String memberUserName, String categoryName,  int discountPercentage, boolean addAsStoreDiscountPolicy) throws Exception {
-        assertIsOwnerOrFounder(memberUserName);
+        assertIsOwnerOrFounderOrAuthorizedManager(memberUserName, ManagerPermissions.manageStoreDiscountPolicies);
         stock.assertContainsCategory(categoryName);
 
         if(discountPercentage<0 || discountPercentage>100)
@@ -366,7 +407,7 @@ public class Store {
     }
 
     public Integer createCategoryDiscountPolicyWithConstraint(String memberUserName, String categoryName,  int discountPercentage, Integer bagConstraintId, boolean addAsStoreDiscountPolicy) throws Exception {
-        assertIsOwnerOrFounder(memberUserName);
+        assertIsOwnerOrFounderOrAuthorizedManager(memberUserName, ManagerPermissions.manageStoreDiscountPolicies);
         stock.assertContainsCategory(categoryName);
 
         if(discountPercentage<0 || discountPercentage>100)
@@ -393,7 +434,7 @@ public class Store {
 
 
     public Integer createAllStoreDiscountPolicy(String memberUserName,int discountPercentage, boolean addAsStoreDiscountPolicy) throws Exception {
-        assertIsOwnerOrFounder(memberUserName);
+        assertIsOwnerOrFounderOrAuthorizedManager(memberUserName, ManagerPermissions.manageStoreDiscountPolicies);
 
         if(discountPercentage<0 || discountPercentage>100)
             throw new Exception("discount percentage can't be less than 0 or more than 100");
@@ -410,7 +451,7 @@ public class Store {
     }
 
     public Integer createAllStoreDiscountPolicyWithConstraint(String memberUserName,int discountPercentage, Integer bagConstraintId, boolean addAsStoreDiscountPolicy) throws Exception {
-        assertIsOwnerOrFounder(memberUserName);
+        assertIsOwnerOrFounderOrAuthorizedManager(memberUserName, ManagerPermissions.manageStoreDiscountPolicies);
 
         if(discountPercentage<0 || discountPercentage>100)
             throw new Exception("discount percentage can't be less than 0 or more than 100");
@@ -434,7 +475,7 @@ public class Store {
     }
 
     public Integer createAdditionDiscountPolicy(String memberUserName, Integer firstDiscountPolicyId, Integer secondDiscountPolicyId, boolean addAsStoreDiscountPolicy) throws Exception {
-        assertIsOwnerOrFounder(memberUserName);
+        assertIsOwnerOrFounderOrAuthorizedManager(memberUserName, ManagerPermissions.manageStoreDiscountPolicies);
 
         if(firstDiscountPolicyId == null || secondDiscountPolicyId==null)
             throw new Exception("Discount Policy id cant be null");
@@ -458,7 +499,7 @@ public class Store {
     }
 
     public Integer createAdditionDiscountPolicyWithConstraint(String memberUserName, Integer firstDiscountPolicyId, Integer secondDiscountPolicyId, Integer bagConstraintId, boolean addAsStoreDiscountPolicy) throws Exception {
-        assertIsOwnerOrFounder(memberUserName);
+        assertIsOwnerOrFounderOrAuthorizedManager(memberUserName, ManagerPermissions.manageStoreDiscountPolicies);
 
         if(firstDiscountPolicyId == null || secondDiscountPolicyId==null)
             throw new Exception("Discount Policy id cant be null");
@@ -490,7 +531,7 @@ public class Store {
     }
 
     public Integer createMaxValDiscountPolicy(String memberUserName, Integer firstDiscountPolicyId, Integer secondDiscountPolicyId, boolean addAsStoreDiscountPolicy) throws Exception {
-        assertIsOwnerOrFounder(memberUserName);
+        assertIsOwnerOrFounderOrAuthorizedManager(memberUserName, ManagerPermissions.manageStoreDiscountPolicies);
 
         if(firstDiscountPolicyId == null || secondDiscountPolicyId==null)
             throw new Exception("Discount Policy id cant be null");
@@ -514,7 +555,7 @@ public class Store {
     }
 
     public Integer createMaxValDiscountPolicyWithConstraint(String memberUserName, Integer firstDiscountPolicyId, Integer secondDiscountPolicyId, Integer bagConstraintId, boolean addAsStoreDiscountPolicy) throws Exception {
-        assertIsOwnerOrFounder(memberUserName);
+        assertIsOwnerOrFounderOrAuthorizedManager(memberUserName, ManagerPermissions.manageStoreDiscountPolicies);
 
         if(firstDiscountPolicyId == null || secondDiscountPolicyId==null)
             throw new Exception("Discount Policy id cant be null");
@@ -554,16 +595,8 @@ public class Store {
 
 
 
-
-
-
-
-
-
-
-
     public boolean addAsStoreDiscountPolicy(String memberUserName, Integer discountPolicyId) throws Exception {
-        assertIsOwnerOrFounder(memberUserName);
+        assertIsOwnerOrFounderOrAuthorizedManager(memberUserName, ManagerPermissions.manageStoreDiscountPolicies);
         if(discountPolicyId == null)
             throw new Exception("Discount Policy Id cant be null");
 
@@ -577,7 +610,7 @@ public class Store {
     }
 
     public boolean removeFromStoreDiscountPolicies(String memberUserName, Integer discountPolicyId) throws Exception {
-        assertIsOwnerOrFounder(memberUserName);
+        assertIsOwnerOrFounderOrAuthorizedManager(memberUserName, ManagerPermissions.manageStoreDiscountPolicies);
         if(discountPolicyId == null)
             throw new Exception("Discount Policy Id cant be null");
 
@@ -594,7 +627,7 @@ public class Store {
 
 
     public String getAllCreatedDiscountPolicies(String memberUserName) throws Exception {
-        assertIsOwnerOrFounder(memberUserName);
+        assertIsOwnerOrFounderOrAuthorizedManager(memberUserName, ManagerPermissions.manageStoreDiscountPolicies);
         StringBuilder st = new StringBuilder();
         for(Integer discountPolicyId : createdDiscountPolicies.keySet().stream().toList().stream().sorted().toList())
             st.append(discountPolicyId+". "+ createdDiscountPolicies.get(discountPolicyId).toString()+"\n");
@@ -603,7 +636,7 @@ public class Store {
     }
 
     public String getAllStoreDiscountPolicies(String memberUserName) throws Exception {
-        assertIsOwnerOrFounder(memberUserName);
+        assertIsOwnerOrFounderOrAuthorizedManager(memberUserName, ManagerPermissions.manageStoreDiscountPolicies);
         StringBuilder st = new StringBuilder();
         for(Integer discountPolicyId : storeDiscountPolicies.keySet().stream().toList().stream().sorted().toList())
             st.append(discountPolicyId+". "+ storeDiscountPolicies.get(discountPolicyId).toString()+"\n");
@@ -617,7 +650,7 @@ public class Store {
 ///////////////////////////////////////////////////////////////////////////////////////////////////
     //ProductBagConstraint
     public Integer createMaxTimeAtDayProductBagConstraint(String memberUserName, String productName, int hour, int minute, boolean addAsStorePaymentPolicy) throws Exception {
-        assertIsOwnerOrFounder(memberUserName);
+        assertIsOwnerOrFounderOrAuthorizedManager(memberUserName, ManagerPermissions.manageStorePaymentPolicies);
 
         stock.assertContainsProduct(productName);
         if(hour<0 || hour>23)
@@ -638,7 +671,7 @@ public class Store {
     }
 
     public Integer createRangeOfDaysProductBagConstraint(String memberUserName, String productName, int fromYear, int fromMonth, int fromDay, int toYear, int toMonth, int toDay, boolean addAsStorePaymentPolicy) throws Exception {
-        assertIsOwnerOrFounder(memberUserName);
+        assertIsOwnerOrFounderOrAuthorizedManager(memberUserName, ManagerPermissions.manageStorePaymentPolicies);
 
         stock.assertContainsProduct(productName);
 
@@ -666,7 +699,7 @@ public class Store {
 
     //CategoryBagConstraint
     public Integer createMaxTimeAtDayCategoryBagConstraint(String memberUserName, String categoryName, int hour, int minute, boolean addAsStorePaymentPolicy) throws Exception {
-        assertIsOwnerOrFounder(memberUserName);
+        assertIsOwnerOrFounderOrAuthorizedManager(memberUserName, ManagerPermissions.manageStorePaymentPolicies);
 
         stock.assertContainsCategory(categoryName);
 
@@ -687,7 +720,7 @@ public class Store {
     }
 
     public Integer createRangeOfDaysCategoryBagConstraint(String memberUserName, String categoryName, int fromYear, int fromMonth, int fromDay, int toYear, int toMonth, int toDay, boolean addAsStorePaymentPolicy) throws Exception {
-        assertIsOwnerOrFounder(memberUserName);
+        assertIsOwnerOrFounderOrAuthorizedManager(memberUserName, ManagerPermissions.manageStorePaymentPolicies);
 
         stock.assertContainsCategory(categoryName);
 
@@ -718,7 +751,7 @@ public class Store {
 
     //AllContentBagConstraint
     public Integer createMaxProductAmountAllContentBagConstraint(String memberUserName, String productName, int amountLimit, boolean addAsStorePaymentPolicy) throws Exception {
-        assertIsOwnerOrFounder(memberUserName);
+        assertIsOwnerOrFounderOrAuthorizedManager(memberUserName, ManagerPermissions.manageStorePaymentPolicies);
 
         stock.assertContainsProduct(productName);
 
@@ -738,7 +771,7 @@ public class Store {
     }
 
     public Integer createMinProductAmountAllContentBagConstraint(String memberUserName, String productName, int amountLimit, boolean addAsStorePaymentPolicy) throws Exception {
-        assertIsOwnerOrFounder(memberUserName);
+        assertIsOwnerOrFounderOrAuthorizedManager(memberUserName, ManagerPermissions.manageStorePaymentPolicies);
 
         stock.assertContainsProduct(productName);
         if(amountLimit<0)
@@ -756,7 +789,7 @@ public class Store {
     }
 
     public Integer createAndBagConstraint(String memberUserName, Integer firstBagConstraintId, Integer secondBagConstraintId, boolean addAsStorePaymentPolicy) throws Exception {
-        assertIsOwnerOrFounder(memberUserName);
+        assertIsOwnerOrFounderOrAuthorizedManager(memberUserName, ManagerPermissions.manageStorePaymentPolicies);
 
         if(firstBagConstraintId == null || secondBagConstraintId==null)
             throw new Exception("Bag constraints cant be null");
@@ -779,7 +812,7 @@ public class Store {
         return currentBagConstraintsIdCounter;
     }
     public Integer createOrBagConstraint(String memberUserName, Integer firstBagConstraintId, Integer secondBagConstraintId, boolean addAsStorePaymentPolicy) throws Exception {
-        assertIsOwnerOrFounder(memberUserName);
+        assertIsOwnerOrFounderOrAuthorizedManager(memberUserName, ManagerPermissions.manageStorePaymentPolicies);
 
         if(firstBagConstraintId == null || secondBagConstraintId==null)
             throw new Exception("Bag constraints cant be null");
@@ -803,7 +836,7 @@ public class Store {
     }
 
     public Integer createOnlyIfBagConstraint(String memberUserName, Integer firstBagConstraintId, Integer secondBagConstraintId, boolean addAsStorePaymentPolicy) throws Exception {
-        assertIsOwnerOrFounder(memberUserName);
+        assertIsOwnerOrFounderOrAuthorizedManager(memberUserName, ManagerPermissions.manageStorePaymentPolicies);
 
         if(firstBagConstraintId == null || secondBagConstraintId==null)
             throw new Exception("Bag constraints cant be null");
@@ -827,7 +860,7 @@ public class Store {
     }
 
     public boolean addConstraintAsPaymentPolicy(String memberUserName, Integer bagConstraintId) throws Exception {
-        assertIsOwnerOrFounder(memberUserName);
+        assertIsOwnerOrFounderOrAuthorizedManager(memberUserName, ManagerPermissions.manageStorePaymentPolicies);
         if(bagConstraintId == null)
             throw new Exception("Bag constraints cant be null");
 
@@ -841,7 +874,7 @@ public class Store {
     }
 
     public boolean removeConstraintFromPaymentPolicies(String memberUserName, Integer bagConstraintId) throws Exception {
-        assertIsOwnerOrFounder(memberUserName);
+        assertIsOwnerOrFounderOrAuthorizedManager(memberUserName, ManagerPermissions.manageStorePaymentPolicies);
         if(bagConstraintId == null)
             throw new Exception("Bag constraints cant be null");
 
@@ -857,7 +890,7 @@ public class Store {
     }
 
     public String getAllPaymentPolicies(String memberUserName) throws Exception {
-        assertIsOwnerOrFounder(memberUserName);
+        assertIsOwnerOrFounderOrAuthorizedManager(memberUserName, ManagerPermissions.manageStorePaymentPolicies);
         StringBuilder st = new StringBuilder();
         for(Integer policyId : storePaymentPolicies.keySet().stream().toList().stream().sorted().toList())
             st.append(policyId+". "+ storePaymentPolicies.get(policyId).toString()+"\n");
@@ -866,7 +899,7 @@ public class Store {
     }
 
     public String getAllBagConstraints(String memberUserName) throws Exception {
-        assertIsOwnerOrFounder(memberUserName);
+        assertIsOwnerOrFounderOrAuthorizedManager(memberUserName, ManagerPermissions.manageStorePaymentPolicies);
         StringBuilder st = new StringBuilder();
         for(Integer bagConstraintId : createdBagConstraints.keySet().stream().toList().stream().sorted().toList())
             st.append(bagConstraintId+". "+ createdBagConstraints.get(bagConstraintId).toString()+"\n");

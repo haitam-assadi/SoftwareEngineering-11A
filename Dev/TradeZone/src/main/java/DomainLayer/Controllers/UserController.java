@@ -239,6 +239,8 @@ public class UserController {
         return member.appointOtherMemberAsStoreManager(store, otherMember);
     }
 
+
+
     public Map<String, List<StoreDTO>> myStores(String memberUserName) throws Exception {
         assertIsMemberLoggedIn(memberUserName);
         return getMember(memberUserName).myStores();

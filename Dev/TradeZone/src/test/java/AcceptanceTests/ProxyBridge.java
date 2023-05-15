@@ -1,5 +1,8 @@
 package AcceptanceTests;
 
+import DomainLayer.PaymentService;
+import DomainLayer.ShipmentService;
+
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -31,6 +34,13 @@ public class ProxyBridge implements Bridge{
             return realBridge.enterMarket();
         }
         return "";
+    }
+
+    public void setPaymentService(PaymentService paymentService){
+        realBridge.setPaymentService(paymentService);
+    }
+    public void setShipmentService(ShipmentService shipmentService){
+        realBridge.setShipmentService(shipmentService);
     }
 
     @Override

@@ -172,6 +172,13 @@ public class Market {
         return userController.appointOtherMemberAsStoreManager(memberUserName,store,newManagerUserName);
     }
 
+    public boolean addPermissionForStoreManager(String ownerUserName, String storeName, String managerUserName, Integer permissionId) throws Exception {
+        userController.assertIsMemberLoggedIn(ownerUserName);
+        userController.assertIsMember(managerUserName);
+        Store store = storeController.getStore(storeName);
+        return store.addPermissionForStoreManager(ownerUserName, managerUserName, permissionId);
+    }
+
     public boolean changeManagerPermissions(String memberUserName, String storeName, String managerUserName) throws ExecutionControl.NotImplementedException {
         // TODO: low priority , DON'T test it, dont forget to change function parameters
         throw new ExecutionControl.NotImplementedException("");
@@ -190,6 +197,7 @@ public class Market {
     }
 
     public List<DealDTO> getStoreDeals(String memberUserName, String storeName) throws Exception {
+        userController.assertIsMemberLoggedIn(memberUserName);
         return this.storeController.getStoreDeals(memberUserName, storeName);
     }
 
