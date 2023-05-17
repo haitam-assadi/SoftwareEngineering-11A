@@ -17,12 +17,12 @@ public class Cart {
     }
 
     public boolean addToCart(Store store, String productName, Integer amount) throws Exception {
-//        bags.putIfAbsent(store.getStoreName(), new Bag(store));
-//        return bags.get(store.getStoreName()).addProduct(productName, amount);
-        Bag bag = new Bag(store);
-        bag.addProduct(productName,amount);
-        bags.putIfAbsent(store.getStoreName(), bag);
-        return true;
+        bags.putIfAbsent(store.getStoreName(), new Bag(store));
+        return bags.get(store.getStoreName()).addProduct(productName, amount);
+//        Bag bag = new Bag(store);
+//        bag.addProduct(productName,amount);
+//        bags.putIfAbsent(store.getStoreName(), bag);
+//        return true;
     }
 
     public boolean changeProductAmountInCart(Store store, String productName, Integer newAmount) throws Exception {

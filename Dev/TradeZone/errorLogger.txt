@@ -601,3 +601,1470 @@ fail in registeration: BAR is not valid userName!
 מאי 15, 2023 11:05:30 לפנה״צ DomainLayer.LoggerManager sendErrorLog
 WARNING: 
 fail in registeration: baraa is already a member
+أيار ١٧, ٢٠٢٣ ٢:٣٣:٥٩ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: BAR is not valid userName!
+أيار ١٧, ٢٠٢٣ ٢:٣٣:٥٩ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: moslem123222 is already a member
+أيار ١٧, ٢٠٢٣ ٢:٣٣:٥٩ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: userName Obiq does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٣:٥٩ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in logging out: member1 is not logged in
+أيار ١٧, ٢٠٢٣ ٢:٣٣:٥٩ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: string is null or empty
+أيار ١٧, ٢٠٢٣ ٢:٣٣:٥٩ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in logging out: member1 is not logged in
+أيار ١٧, ٢٠٢٣ ٢:٣٣:٥٩ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: harry123 is not owner for moslem store
+أيار ١٧, ٢٠٢٣ ٢:٣٣:٥٩ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: harry123 is not owner for moslem store
+أيار ١٧, ٢٠٢٣ ٢:٣٣:٥٩ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: brain123 is not the my appointer for this store
+أيار ١٧, ٢٠٢٣ ٢:٣٣:٥٩ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store manager: memberharry123 is already store manager
+أيار ١٧, ٢٠٢٣ ٢:٣٣:٥٩ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store manager: memberharry123 is already store manager
+أيار ١٧, ٢٠٢٣ ٢:٣٣:٥٩ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in closing the store: brain123is not the founder of the store
+أيار ١٧, ٢٠٢٣ ٢:٣٣:٥٩ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in removing product from store: stock does not contain this product iphone 11
+أيار ١٧, ٢٠٢٣ ٢:٣٣:٥٩ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: membermoslem123 is already store owner
+أيار ١٧, ٢٠٢٣ ٢:٣٣:٥٩ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: membermoslem123 is already store owner
+أيار ١٧, ٢٠٢٣ ٢:٣٣:٥٩ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: userName koko does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٣:٥٩ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: Cannot invoke "DomainLayer.StoreOwner.getUserName()" because "otherOwner" is null
+أيار ١٧, ٢٠٢٣ ٢:٣٣:٥٩ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: brain123 is not the my appointer for this store
+أيار ١٧, ٢٠٢٣ ٢:٣٣:٥٩ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: stock does already contains this product iphone 14
+أيار ١٧, ٢٠٢٣ ٢:٣٣:٥٩ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: memberbrain123 is already store owner
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٠٠ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: DomainLayer.BagConstraints.AllContentBagConstraint@5ef8df1e
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٠٠ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Shipment service error
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٠٠ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: DomainLayer.BagConstraints.BagConstraintOnlyIf@26b894bd
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٠٠ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: DomainLayer.BagConstraints.ProductBagConstraint@4fbdc0f0
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٠٠ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: DomainLayer.BagConstraints.CategoryBagConstraint@62da83ed
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٠٠ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: DomainLayer.BagConstraints.AllContentBagConstraint@5bd1ceca
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٠٠ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: DomainLayer.BagConstraints.CategoryBagConstraint@3e587920
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٠٠ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: gaming mouse 1 have only 10 amount in stock!
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٠٠ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Payment service error
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٠٠ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: DomainLayer.BagConstraints.BagConstraintAnd@1804f60d
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٠٠ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: DomainLayer.BagConstraints.BagConstraintAnd@1dfd5f51
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٠٠ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: gaming mouse 1 have only 10 amount in stock!
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٠٠ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: DomainLayer.BagConstraints.BagConstraintOr@622ef26a
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٠٠ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: DomainLayer.BagConstraints.ProductBagConstraint@61e3a1fd
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٠٠ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Payment service error
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٠٠ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٠٠ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٠٠ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: bag does not contain iphone 15 product
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٠٠ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: bag does not contain iphone 15 product
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٠٠ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: aaaproduct does not exist in this store!
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٠٠ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: aaaproduct does not exist in this store!
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٠٠ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: aaaproduct does not exist in this store!
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٠٠ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: aaaproduct does not exist in this store!
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٠٠ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٠٠ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٠٠ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: gaming mouse 1 have only 70 amount in stock!
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٠٠ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: gaming mouse 1 have only 70 amount in stock!
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٠٠ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: iphone 14 have only 50 amount in stock!
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٠٠ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: The amount must be positive, it can't be -10
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٠٠ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: iphone 14 have only 50 amount in stock!
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٠٠ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: The amount must be positive, it can't be -10
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٠٠ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove product from cart: bag does not contain iphone product
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٠٠ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove product from cart: bag does not contain iphone product
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٠٠ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٠٠ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٠٠ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٠٠ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٠٠ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove product from cart: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٠٠ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove product from cart: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٠٠ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: iphone 14 product does not exist in this store!
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٠٠ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: iphone 14 product does not exist in this store!
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٠٠ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: mouse product does not exist in this store!
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٠٠ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: mouse product does not exist in this store!
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٠٠ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٠٠ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٠٠ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٠٠ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٠٠ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٠٠ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٤٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: BAR is not valid userName!
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٤٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: moslem123222 is already a member
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٤٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: userName Obiq does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٤٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in logging out: member1 is not logged in
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٤٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: string is null or empty
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٤٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in logging out: member1 is not logged in
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٤٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: harry123 is not owner for moslem store
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٤٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: harry123 is not owner for moslem store
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٤٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: brain123 is not the my appointer for this store
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٤٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store manager: memberharry123 is already store manager
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٤٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store manager: memberharry123 is already store manager
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٤٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in closing the store: brain123is not the founder of the store
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٤٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in removing product from store: stock does not contain this product iphone 11
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٤٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: membermoslem123 is already store owner
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٤٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: membermoslem123 is already store owner
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٤٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: userName koko does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٤٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: Cannot invoke "DomainLayer.StoreOwner.getUserName()" because "otherOwner" is null
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٤٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: brain123 is not the my appointer for this store
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٤٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: stock does already contains this product iphone 14
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٤٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: memberbrain123 is already store owner
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: DomainLayer.BagConstraints.AllContentBagConstraint@bc57b40
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Shipment service error
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: DomainLayer.BagConstraints.BagConstraintOnlyIf@158d255c
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: DomainLayer.BagConstraints.ProductBagConstraint@120f38e6
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: DomainLayer.BagConstraints.CategoryBagConstraint@5af9926a
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: DomainLayer.BagConstraints.AllContentBagConstraint@285f09de
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: DomainLayer.BagConstraints.CategoryBagConstraint@4fdfa676
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: gaming mouse 1 have only 10 amount in stock!
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Payment service error
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: DomainLayer.BagConstraints.BagConstraintAnd@88d6f9b
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: gaming mouse 1 have only 10 amount in stock!
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: DomainLayer.BagConstraints.BagConstraintOr@7dd712e8
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: DomainLayer.BagConstraints.ProductBagConstraint@28fa700e
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Payment service error
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: bag does not contain iphone 15 product
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: bag does not contain iphone 15 product
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: aaaproduct does not exist in this store!
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: aaaproduct does not exist in this store!
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: aaaproduct does not exist in this store!
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: aaaproduct does not exist in this store!
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: gaming mouse 1 have only 70 amount in stock!
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: gaming mouse 1 have only 70 amount in stock!
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: iphone 14 have only 50 amount in stock!
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: The amount must be positive, it can't be -10
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: iphone 14 have only 50 amount in stock!
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: The amount must be positive, it can't be -10
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove product from cart: bag does not contain iphone product
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove product from cart: bag does not contain iphone product
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove product from cart: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove product from cart: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: iphone 14 product does not exist in this store!
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: iphone 14 product does not exist in this store!
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: mouse product does not exist in this store!
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: mouse product does not exist in this store!
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: bag already contains gaming mouse 1 product
+أيار ١٧, ٢٠٢٣ ٢:٣٤:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: bag already contains gaming mouse 1 product
+أيار ١٧, ٢٠٢٣ ٢:٣٥:٥٦ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: BAR is not valid userName!
+أيار ١٧, ٢٠٢٣ ٢:٣٥:٥٦ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: moslem123222 is already a member
+أيار ١٧, ٢٠٢٣ ٢:٣٥:٥٦ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: userName Obiq does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٥:٥٦ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in logging out: member1 is not logged in
+أيار ١٧, ٢٠٢٣ ٢:٣٥:٥٦ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: string is null or empty
+أيار ١٧, ٢٠٢٣ ٢:٣٥:٥٦ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in logging out: member1 is not logged in
+أيار ١٧, ٢٠٢٣ ٢:٣٥:٥٦ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: harry123 is not owner for moslem store
+أيار ١٧, ٢٠٢٣ ٢:٣٥:٥٦ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: harry123 is not owner for moslem store
+أيار ١٧, ٢٠٢٣ ٢:٣٥:٥٦ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: brain123 is not the my appointer for this store
+أيار ١٧, ٢٠٢٣ ٢:٣٥:٥٦ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store manager: memberharry123 is already store manager
+أيار ١٧, ٢٠٢٣ ٢:٣٥:٥٦ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store manager: memberharry123 is already store manager
+أيار ١٧, ٢٠٢٣ ٢:٣٥:٥٦ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in closing the store: brain123is not the founder of the store
+أيار ١٧, ٢٠٢٣ ٢:٣٥:٥٦ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in removing product from store: stock does not contain this product iphone 11
+أيار ١٧, ٢٠٢٣ ٢:٣٥:٥٦ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: membermoslem123 is already store owner
+أيار ١٧, ٢٠٢٣ ٢:٣٥:٥٦ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: membermoslem123 is already store owner
+أيار ١٧, ٢٠٢٣ ٢:٣٥:٥٦ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: userName koko does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٥:٥٦ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: Cannot invoke "DomainLayer.StoreOwner.getUserName()" because "otherOwner" is null
+أيار ١٧, ٢٠٢٣ ٢:٣٥:٥٦ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: brain123 is not the my appointer for this store
+أيار ١٧, ٢٠٢٣ ٢:٣٥:٥٦ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: stock does already contains this product iphone 14
+أيار ١٧, ٢٠٢٣ ٢:٣٥:٥٦ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: memberbrain123 is already store owner
+أيار ١٧, ٢٠٢٣ ٢:٣٥:٥٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: DomainLayer.BagConstraints.AllContentBagConstraint@7e0aadd0
+أيار ١٧, ٢٠٢٣ ٢:٣٥:٥٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Shipment service error
+أيار ١٧, ٢٠٢٣ ٢:٣٥:٥٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: DomainLayer.BagConstraints.BagConstraintOnlyIf@48f5bde6
+أيار ١٧, ٢٠٢٣ ٢:٣٥:٥٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: DomainLayer.BagConstraints.ProductBagConstraint@5bd73d1a
+أيار ١٧, ٢٠٢٣ ٢:٣٥:٥٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: DomainLayer.BagConstraints.CategoryBagConstraint@6b9267b
+أيار ١٧, ٢٠٢٣ ٢:٣٥:٥٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: DomainLayer.BagConstraints.AllContentBagConstraint@344344fa
+أيار ١٧, ٢٠٢٣ ٢:٣٥:٥٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: DomainLayer.BagConstraints.CategoryBagConstraint@70e0accd
+أيار ١٧, ٢٠٢٣ ٢:٣٥:٥٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: gaming mouse 1 have only 10 amount in stock!
+أيار ١٧, ٢٠٢٣ ٢:٣٥:٥٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Payment service error
+أيار ١٧, ٢٠٢٣ ٢:٣٥:٥٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: DomainLayer.BagConstraints.BagConstraintAnd@512d92b
+أيار ١٧, ٢٠٢٣ ٢:٣٥:٥٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: gaming mouse 1 have only 10 amount in stock!
+أيار ١٧, ٢٠٢٣ ٢:٣٥:٥٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: DomainLayer.BagConstraints.BagConstraintOr@106faf11
+أيار ١٧, ٢٠٢٣ ٢:٣٥:٥٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: DomainLayer.BagConstraints.ProductBagConstraint@6b739528
+أيار ١٧, ٢٠٢٣ ٢:٣٥:٥٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Payment service error
+أيار ١٧, ٢٠٢٣ ٢:٣٥:٥٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٥:٥٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٥:٥٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: bag does not contain iphone 15 product
+أيار ١٧, ٢٠٢٣ ٢:٣٥:٥٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: bag does not contain iphone 15 product
+أيار ١٧, ٢٠٢٣ ٢:٣٥:٥٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: aaaproduct does not exist in this store!
+أيار ١٧, ٢٠٢٣ ٢:٣٥:٥٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: aaaproduct does not exist in this store!
+أيار ١٧, ٢٠٢٣ ٢:٣٥:٥٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: aaaproduct does not exist in this store!
+أيار ١٧, ٢٠٢٣ ٢:٣٥:٥٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: aaaproduct does not exist in this store!
+أيار ١٧, ٢٠٢٣ ٢:٣٥:٥٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٥:٥٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٥:٥٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: gaming mouse 1 have only 70 amount in stock!
+أيار ١٧, ٢٠٢٣ ٢:٣٥:٥٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: gaming mouse 1 have only 70 amount in stock!
+أيار ١٧, ٢٠٢٣ ٢:٣٥:٥٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: iphone 14 have only 50 amount in stock!
+أيار ١٧, ٢٠٢٣ ٢:٣٥:٥٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: The amount must be positive, it can't be -10
+أيار ١٧, ٢٠٢٣ ٢:٣٥:٥٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: iphone 14 have only 50 amount in stock!
+أيار ١٧, ٢٠٢٣ ٢:٣٥:٥٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: The amount must be positive, it can't be -10
+أيار ١٧, ٢٠٢٣ ٢:٣٥:٥٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove product from cart: bag does not contain iphone product
+أيار ١٧, ٢٠٢٣ ٢:٣٥:٥٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove product from cart: bag does not contain iphone product
+أيار ١٧, ٢٠٢٣ ٢:٣٥:٥٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٥:٥٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٥:٥٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٥:٥٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٥:٥٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove product from cart: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٥:٥٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove product from cart: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٥:٥٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: iphone 14 product does not exist in this store!
+أيار ١٧, ٢٠٢٣ ٢:٣٥:٥٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: iphone 14 product does not exist in this store!
+أيار ١٧, ٢٠٢٣ ٢:٣٥:٥٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: mouse product does not exist in this store!
+أيار ١٧, ٢٠٢٣ ٢:٣٥:٥٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: mouse product does not exist in this store!
+أيار ١٧, ٢٠٢٣ ٢:٣٥:٥٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٥:٥٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٥:٥٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٥:٥٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٥:٥٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٥:٥٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٥:٥٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: bag already contains gaming mouse 1 product
+أيار ١٧, ٢٠٢٣ ٢:٣٥:٥٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: bag already contains gaming mouse 1 product
+أيار ١٧, ٢٠٢٣ ٢:٣٦:٤٢ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: BAR is not valid userName!
+أيار ١٧, ٢٠٢٣ ٢:٣٦:٤٢ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: moslem123222 is already a member
+أيار ١٧, ٢٠٢٣ ٢:٣٦:٤٢ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: userName Obiq does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٦:٤٢ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in logging out: member1 is not logged in
+أيار ١٧, ٢٠٢٣ ٢:٣٦:٤٢ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: string is null or empty
+أيار ١٧, ٢٠٢٣ ٢:٣٦:٤٢ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in logging out: member1 is not logged in
+أيار ١٧, ٢٠٢٣ ٢:٣٦:٤٢ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: harry123 is not owner for moslem store
+أيار ١٧, ٢٠٢٣ ٢:٣٦:٤٢ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: harry123 is not owner for moslem store
+أيار ١٧, ٢٠٢٣ ٢:٣٦:٤٢ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: brain123 is not the my appointer for this store
+أيار ١٧, ٢٠٢٣ ٢:٣٦:٤٢ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store manager: memberharry123 is already store manager
+أيار ١٧, ٢٠٢٣ ٢:٣٦:٤٢ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store manager: memberharry123 is already store manager
+أيار ١٧, ٢٠٢٣ ٢:٣٦:٤٢ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in closing the store: brain123is not the founder of the store
+أيار ١٧, ٢٠٢٣ ٢:٣٦:٤٢ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in removing product from store: stock does not contain this product iphone 11
+أيار ١٧, ٢٠٢٣ ٢:٣٦:٤٢ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: membermoslem123 is already store owner
+أيار ١٧, ٢٠٢٣ ٢:٣٦:٤٢ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: membermoslem123 is already store owner
+أيار ١٧, ٢٠٢٣ ٢:٣٦:٤٢ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: userName koko does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٦:٤٢ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: Cannot invoke "DomainLayer.StoreOwner.getUserName()" because "otherOwner" is null
+أيار ١٧, ٢٠٢٣ ٢:٣٦:٤٢ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: brain123 is not the my appointer for this store
+أيار ١٧, ٢٠٢٣ ٢:٣٦:٤٢ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: stock does already contains this product iphone 14
+أيار ١٧, ٢٠٢٣ ٢:٣٦:٤٢ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: memberbrain123 is already store owner
+أيار ١٧, ٢٠٢٣ ٢:٣٦:٤٣ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: DomainLayer.BagConstraints.AllContentBagConstraint@3aee3976
+أيار ١٧, ٢٠٢٣ ٢:٣٦:٤٣ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Shipment service error
+أيار ١٧, ٢٠٢٣ ٢:٣٦:٤٣ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: DomainLayer.BagConstraints.BagConstraintOnlyIf@5c77053b
+أيار ١٧, ٢٠٢٣ ٢:٣٦:٤٣ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: DomainLayer.BagConstraints.ProductBagConstraint@40f33492
+أيار ١٧, ٢٠٢٣ ٢:٣٦:٤٣ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: DomainLayer.BagConstraints.CategoryBagConstraint@42a9a63e
+أيار ١٧, ٢٠٢٣ ٢:٣٦:٤٣ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: DomainLayer.BagConstraints.AllContentBagConstraint@6c4f9535
+أيار ١٧, ٢٠٢٣ ٢:٣٦:٤٣ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: DomainLayer.BagConstraints.CategoryBagConstraint@f8908f6
+أيار ١٧, ٢٠٢٣ ٢:٣٦:٤٣ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: gaming mouse 1 have only 10 amount in stock!
+أيار ١٧, ٢٠٢٣ ٢:٣٦:٤٣ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Payment service error
+أيار ١٧, ٢٠٢٣ ٢:٣٦:٤٣ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: DomainLayer.BagConstraints.BagConstraintAnd@255990cc
+أيار ١٧, ٢٠٢٣ ٢:٣٦:٤٣ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: gaming mouse 1 have only 10 amount in stock!
+أيار ١٧, ٢٠٢٣ ٢:٣٦:٤٣ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: DomainLayer.BagConstraints.BagConstraintOr@36dce7ed
+أيار ١٧, ٢٠٢٣ ٢:٣٦:٤٣ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: DomainLayer.BagConstraints.ProductBagConstraint@1968a49c
+أيار ١٧, ٢٠٢٣ ٢:٣٦:٤٣ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Payment service error
+أيار ١٧, ٢٠٢٣ ٢:٣٦:٤٣ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٦:٤٣ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٦:٤٣ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: bag does not contain iphone 15 product
+أيار ١٧, ٢٠٢٣ ٢:٣٦:٤٣ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: bag does not contain iphone 15 product
+أيار ١٧, ٢٠٢٣ ٢:٣٦:٤٣ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: aaaproduct does not exist in this store!
+أيار ١٧, ٢٠٢٣ ٢:٣٦:٤٣ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: aaaproduct does not exist in this store!
+أيار ١٧, ٢٠٢٣ ٢:٣٦:٤٣ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: aaaproduct does not exist in this store!
+أيار ١٧, ٢٠٢٣ ٢:٣٦:٤٣ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: aaaproduct does not exist in this store!
+أيار ١٧, ٢٠٢٣ ٢:٣٦:٤٣ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٦:٤٣ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٦:٤٣ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: gaming mouse 1 have only 70 amount in stock!
+أيار ١٧, ٢٠٢٣ ٢:٣٦:٤٣ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: gaming mouse 1 have only 70 amount in stock!
+أيار ١٧, ٢٠٢٣ ٢:٣٦:٤٣ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: iphone 14 have only 50 amount in stock!
+أيار ١٧, ٢٠٢٣ ٢:٣٦:٤٣ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: The amount must be positive, it can't be -10
+أيار ١٧, ٢٠٢٣ ٢:٣٦:٤٣ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: iphone 14 have only 50 amount in stock!
+أيار ١٧, ٢٠٢٣ ٢:٣٦:٤٣ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: The amount must be positive, it can't be -10
+أيار ١٧, ٢٠٢٣ ٢:٣٦:٤٣ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove product from cart: bag does not contain iphone product
+أيار ١٧, ٢٠٢٣ ٢:٣٦:٤٣ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove product from cart: bag does not contain iphone product
+أيار ١٧, ٢٠٢٣ ٢:٣٦:٤٣ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٦:٤٣ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٦:٤٣ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٦:٤٣ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٦:٤٣ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove product from cart: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٦:٤٣ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove product from cart: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٦:٤٣ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: iphone 14 product does not exist in this store!
+أيار ١٧, ٢٠٢٣ ٢:٣٦:٤٣ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: iphone 14 product does not exist in this store!
+أيار ١٧, ٢٠٢٣ ٢:٣٦:٤٣ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: mouse product does not exist in this store!
+أيار ١٧, ٢٠٢٣ ٢:٣٦:٤٣ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: mouse product does not exist in this store!
+أيار ١٧, ٢٠٢٣ ٢:٣٦:٤٣ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٦:٤٣ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٦:٤٣ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٦:٤٣ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٦:٤٣ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٦:٤٣ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٦:٤٣ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: bag already contains gaming mouse 1 product
+أيار ١٧, ٢٠٢٣ ٢:٣٦:٤٣ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: bag already contains gaming mouse 1 product
+أيار ١٧, ٢٠٢٣ ٢:٣٧:٤٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: BAR is not valid userName!
+أيار ١٧, ٢٠٢٣ ٢:٣٧:٤٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: moslem123222 is already a member
+أيار ١٧, ٢٠٢٣ ٢:٣٧:٤٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: userName Obiq does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٧:٤٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in logging out: member1 is not logged in
+أيار ١٧, ٢٠٢٣ ٢:٣٧:٤٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: string is null or empty
+أيار ١٧, ٢٠٢٣ ٢:٣٧:٤٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in logging out: member1 is not logged in
+أيار ١٧, ٢٠٢٣ ٢:٣٧:٤٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: harry123 is not owner for moslem store
+أيار ١٧, ٢٠٢٣ ٢:٣٧:٤٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: harry123 is not owner for moslem store
+أيار ١٧, ٢٠٢٣ ٢:٣٧:٤٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: brain123 is not the my appointer for this store
+أيار ١٧, ٢٠٢٣ ٢:٣٧:٤٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store manager: memberharry123 is already store manager
+أيار ١٧, ٢٠٢٣ ٢:٣٧:٤٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store manager: memberharry123 is already store manager
+أيار ١٧, ٢٠٢٣ ٢:٣٧:٤٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in closing the store: brain123is not the founder of the store
+أيار ١٧, ٢٠٢٣ ٢:٣٧:٤٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in removing product from store: stock does not contain this product iphone 11
+أيار ١٧, ٢٠٢٣ ٢:٣٧:٤٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: membermoslem123 is already store owner
+أيار ١٧, ٢٠٢٣ ٢:٣٧:٤٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: membermoslem123 is already store owner
+أيار ١٧, ٢٠٢٣ ٢:٣٧:٤٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: userName koko does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٧:٤٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: Cannot invoke "DomainLayer.StoreOwner.getUserName()" because "otherOwner" is null
+أيار ١٧, ٢٠٢٣ ٢:٣٧:٤٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: brain123 is not the my appointer for this store
+أيار ١٧, ٢٠٢٣ ٢:٣٧:٤٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: stock does already contains this product iphone 14
+أيار ١٧, ٢٠٢٣ ٢:٣٧:٤٧ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: memberbrain123 is already store owner
+أيار ١٧, ٢٠٢٣ ٢:٣٧:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: DomainLayer.BagConstraints.AllContentBagConstraint@127e70c5
+أيار ١٧, ٢٠٢٣ ٢:٣٧:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Shipment service error
+أيار ١٧, ٢٠٢٣ ٢:٣٧:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: DomainLayer.BagConstraints.BagConstraintOnlyIf@30b34287
+أيار ١٧, ٢٠٢٣ ٢:٣٧:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: DomainLayer.BagConstraints.ProductBagConstraint@6bc28a83
+أيار ١٧, ٢٠٢٣ ٢:٣٧:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: DomainLayer.BagConstraints.CategoryBagConstraint@37d80fe7
+أيار ١٧, ٢٠٢٣ ٢:٣٧:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: DomainLayer.BagConstraints.AllContentBagConstraint@499b2a5c
+أيار ١٧, ٢٠٢٣ ٢:٣٧:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: DomainLayer.BagConstraints.CategoryBagConstraint@24f43aa3
+أيار ١٧, ٢٠٢٣ ٢:٣٧:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: gaming mouse 1 have only 10 amount in stock!
+أيار ١٧, ٢٠٢٣ ٢:٣٧:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Payment service error
+أيار ١٧, ٢٠٢٣ ٢:٣٧:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: DomainLayer.BagConstraints.BagConstraintAnd@29d2d081
+أيار ١٧, ٢٠٢٣ ٢:٣٧:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: gaming mouse 1 have only 10 amount in stock!
+أيار ١٧, ٢٠٢٣ ٢:٣٧:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: DomainLayer.BagConstraints.BagConstraintOr@27a0a5a2
+أيار ١٧, ٢٠٢٣ ٢:٣٧:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: DomainLayer.BagConstraints.ProductBagConstraint@50b0bc4c
+أيار ١٧, ٢٠٢٣ ٢:٣٧:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Payment service error
+أيار ١٧, ٢٠٢٣ ٢:٣٧:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٧:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٧:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: bag does not contain iphone 15 product
+أيار ١٧, ٢٠٢٣ ٢:٣٧:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: bag does not contain iphone 15 product
+أيار ١٧, ٢٠٢٣ ٢:٣٧:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: aaaproduct does not exist in this store!
+أيار ١٧, ٢٠٢٣ ٢:٣٧:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: aaaproduct does not exist in this store!
+أيار ١٧, ٢٠٢٣ ٢:٣٧:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: aaaproduct does not exist in this store!
+أيار ١٧, ٢٠٢٣ ٢:٣٧:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: aaaproduct does not exist in this store!
+أيار ١٧, ٢٠٢٣ ٢:٣٧:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٧:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٧:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: gaming mouse 1 have only 70 amount in stock!
+أيار ١٧, ٢٠٢٣ ٢:٣٧:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: gaming mouse 1 have only 70 amount in stock!
+أيار ١٧, ٢٠٢٣ ٢:٣٧:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: iphone 14 have only 50 amount in stock!
+أيار ١٧, ٢٠٢٣ ٢:٣٧:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: The amount must be positive, it can't be -10
+أيار ١٧, ٢٠٢٣ ٢:٣٧:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: iphone 14 have only 50 amount in stock!
+أيار ١٧, ٢٠٢٣ ٢:٣٧:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: The amount must be positive, it can't be -10
+أيار ١٧, ٢٠٢٣ ٢:٣٧:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove product from cart: bag does not contain iphone product
+أيار ١٧, ٢٠٢٣ ٢:٣٧:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove product from cart: bag does not contain iphone product
+أيار ١٧, ٢٠٢٣ ٢:٣٧:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٧:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٧:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٧:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٧:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove product from cart: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٧:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove product from cart: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٧:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: iphone 14 product does not exist in this store!
+أيار ١٧, ٢٠٢٣ ٢:٣٧:٤٨ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: iphone 14 product does not exist in this store!
+أيار ١٧, ٢٠٢٣ ٢:٣٧:٤٩ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: mouse product does not exist in this store!
+أيار ١٧, ٢٠٢٣ ٢:٣٧:٤٩ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: mouse product does not exist in this store!
+أيار ١٧, ٢٠٢٣ ٢:٣٧:٤٩ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٧:٤٩ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٧:٤٩ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٧:٤٩ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٧:٤٩ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٧:٤٩ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٧:٤٩ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: bag already contains gaming mouse 1 product
+أيار ١٧, ٢٠٢٣ ٢:٣٧:٤٩ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: bag already contains gaming mouse 1 product
+أيار ١٧, ٢٠٢٣ ٢:٣٨:٥٥ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: BAR is not valid userName!
+أيار ١٧, ٢٠٢٣ ٢:٣٨:٥٥ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: moslem123222 is already a member
+أيار ١٧, ٢٠٢٣ ٢:٣٨:٥٥ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: userName Obiq does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٨:٥٥ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in logging out: member1 is not logged in
+أيار ١٧, ٢٠٢٣ ٢:٣٨:٥٥ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: string is null or empty
+أيار ١٧, ٢٠٢٣ ٢:٣٨:٥٥ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in logging out: member1 is not logged in
+أيار ١٧, ٢٠٢٣ ٢:٣٨:٥٥ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: harry123 is not owner for moslem store
+أيار ١٧, ٢٠٢٣ ٢:٣٨:٥٥ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: harry123 is not owner for moslem store
+أيار ١٧, ٢٠٢٣ ٢:٣٨:٥٥ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: brain123 is not the my appointer for this store
+أيار ١٧, ٢٠٢٣ ٢:٣٨:٥٥ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store manager: memberharry123 is already store manager
+أيار ١٧, ٢٠٢٣ ٢:٣٨:٥٥ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store manager: memberharry123 is already store manager
+أيار ١٧, ٢٠٢٣ ٢:٣٨:٥٥ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in closing the store: brain123is not the founder of the store
+أيار ١٧, ٢٠٢٣ ٢:٣٨:٥٥ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in removing product from store: stock does not contain this product iphone 11
+أيار ١٧, ٢٠٢٣ ٢:٣٨:٥٥ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: membermoslem123 is already store owner
+أيار ١٧, ٢٠٢٣ ٢:٣٨:٥٥ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: membermoslem123 is already store owner
+أيار ١٧, ٢٠٢٣ ٢:٣٨:٥٥ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: userName koko does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٨:٥٥ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: Cannot invoke "DomainLayer.StoreOwner.getUserName()" because "otherOwner" is null
+أيار ١٧, ٢٠٢٣ ٢:٣٨:٥٥ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: brain123 is not the my appointer for this store
+أيار ١٧, ٢٠٢٣ ٢:٣٨:٥٥ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: stock does already contains this product iphone 14
+أيار ١٧, ٢٠٢٣ ٢:٣٨:٥٥ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: memberbrain123 is already store owner
+أيار ١٧, ٢٠٢٣ ٢:٣٨:٥٦ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: DomainLayer.BagConstraints.AllContentBagConstraint@bc57b40
+أيار ١٧, ٢٠٢٣ ٢:٣٨:٥٦ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Shipment service error
+أيار ١٧, ٢٠٢٣ ٢:٣٨:٥٦ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: DomainLayer.BagConstraints.BagConstraintOnlyIf@158d255c
+أيار ١٧, ٢٠٢٣ ٢:٣٨:٥٦ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: DomainLayer.BagConstraints.ProductBagConstraint@120f38e6
+أيار ١٧, ٢٠٢٣ ٢:٣٨:٥٦ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: DomainLayer.BagConstraints.CategoryBagConstraint@5af9926a
+أيار ١٧, ٢٠٢٣ ٢:٣٨:٥٦ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: DomainLayer.BagConstraints.AllContentBagConstraint@285f09de
+أيار ١٧, ٢٠٢٣ ٢:٣٨:٥٦ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: DomainLayer.BagConstraints.CategoryBagConstraint@4fdfa676
+أيار ١٧, ٢٠٢٣ ٢:٣٨:٥٦ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: gaming mouse 1 have only 10 amount in stock!
+أيار ١٧, ٢٠٢٣ ٢:٣٨:٥٦ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Payment service error
+أيار ١٧, ٢٠٢٣ ٢:٣٨:٥٦ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: DomainLayer.BagConstraints.BagConstraintAnd@88d6f9b
+أيار ١٧, ٢٠٢٣ ٢:٣٨:٥٦ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: gaming mouse 1 have only 10 amount in stock!
+أيار ١٧, ٢٠٢٣ ٢:٣٨:٥٦ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: DomainLayer.BagConstraints.BagConstraintOr@7dd712e8
+أيار ١٧, ٢٠٢٣ ٢:٣٨:٥٦ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: DomainLayer.BagConstraints.ProductBagConstraint@28fa700e
+أيار ١٧, ٢٠٢٣ ٢:٣٨:٥٦ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Payment service error
+أيار ١٧, ٢٠٢٣ ٢:٣٨:٥٦ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٨:٥٦ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٨:٥٦ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: bag does not contain iphone 15 product
+أيار ١٧, ٢٠٢٣ ٢:٣٨:٥٦ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: bag does not contain iphone 15 product
+أيار ١٧, ٢٠٢٣ ٢:٣٨:٥٦ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: aaaproduct does not exist in this store!
+أيار ١٧, ٢٠٢٣ ٢:٣٨:٥٦ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: aaaproduct does not exist in this store!
+أيار ١٧, ٢٠٢٣ ٢:٣٨:٥٦ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: aaaproduct does not exist in this store!
+أيار ١٧, ٢٠٢٣ ٢:٣٨:٥٦ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: aaaproduct does not exist in this store!
+أيار ١٧, ٢٠٢٣ ٢:٣٨:٥٦ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٨:٥٦ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٨:٥٦ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: gaming mouse 1 have only 70 amount in stock!
+أيار ١٧, ٢٠٢٣ ٢:٣٨:٥٦ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: gaming mouse 1 have only 70 amount in stock!
+أيار ١٧, ٢٠٢٣ ٢:٣٨:٥٦ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: iphone 14 have only 50 amount in stock!
+أيار ١٧, ٢٠٢٣ ٢:٣٨:٥٦ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: The amount must be positive, it can't be -10
+أيار ١٧, ٢٠٢٣ ٢:٣٨:٥٦ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: iphone 14 have only 50 amount in stock!
+أيار ١٧, ٢٠٢٣ ٢:٣٨:٥٦ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: The amount must be positive, it can't be -10
+أيار ١٧, ٢٠٢٣ ٢:٣٨:٥٦ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove product from cart: bag does not contain iphone product
+أيار ١٧, ٢٠٢٣ ٢:٣٨:٥٦ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove product from cart: bag does not contain iphone product
+أيار ١٧, ٢٠٢٣ ٢:٣٨:٥٦ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٨:٥٦ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٨:٥٦ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٨:٥٦ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٨:٥٦ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove product from cart: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٨:٥٦ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove product from cart: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٨:٥٦ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: iphone 14 product does not exist in this store!
+أيار ١٧, ٢٠٢٣ ٢:٣٨:٥٦ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: iphone 14 product does not exist in this store!
+أيار ١٧, ٢٠٢٣ ٢:٣٨:٥٦ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: mouse product does not exist in this store!
+أيار ١٧, ٢٠٢٣ ٢:٣٨:٥٦ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: mouse product does not exist in this store!
+أيار ١٧, ٢٠٢٣ ٢:٣٨:٥٦ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٨:٥٦ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٨:٥٦ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٨:٥٦ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٨:٥٦ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٨:٥٦ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٣٨:٥٦ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: bag already contains gaming mouse 1 product
+أيار ١٧, ٢٠٢٣ ٢:٣٨:٥٦ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: bag already contains gaming mouse 1 product
+أيار ١٧, ٢٠٢٣ ٢:٤٠:٠٤ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: BAR is not valid userName!
+أيار ١٧, ٢٠٢٣ ٢:٤٠:٠٤ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: moslem123222 is already a member
+أيار ١٧, ٢٠٢٣ ٢:٤٠:٠٤ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: userName Obiq does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٤٠:٠٤ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in logging out: member1 is not logged in
+أيار ١٧, ٢٠٢٣ ٢:٤٠:٠٤ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: string is null or empty
+أيار ١٧, ٢٠٢٣ ٢:٤٠:٠٤ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in logging out: member1 is not logged in
+أيار ١٧, ٢٠٢٣ ٢:٤٠:٠٤ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: harry123 is not owner for moslem store
+أيار ١٧, ٢٠٢٣ ٢:٤٠:٠٤ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: harry123 is not owner for moslem store
+أيار ١٧, ٢٠٢٣ ٢:٤٠:٠٤ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: brain123 is not the my appointer for this store
+أيار ١٧, ٢٠٢٣ ٢:٤٠:٠٤ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store manager: memberharry123 is already store manager
+أيار ١٧, ٢٠٢٣ ٢:٤٠:٠٤ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store manager: memberharry123 is already store manager
+أيار ١٧, ٢٠٢٣ ٢:٤٠:٠٤ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in closing the store: brain123is not the founder of the store
+أيار ١٧, ٢٠٢٣ ٢:٤٠:٠٤ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in removing product from store: stock does not contain this product iphone 11
+أيار ١٧, ٢٠٢٣ ٢:٤٠:٠٤ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: membermoslem123 is already store owner
+أيار ١٧, ٢٠٢٣ ٢:٤٠:٠٤ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: membermoslem123 is already store owner
+أيار ١٧, ٢٠٢٣ ٢:٤٠:٠٤ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: userName koko does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٤٠:٠٤ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: Cannot invoke "DomainLayer.StoreOwner.getUserName()" because "otherOwner" is null
+أيار ١٧, ٢٠٢٣ ٢:٤٠:٠٤ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: brain123 is not the my appointer for this store
+أيار ١٧, ٢٠٢٣ ٢:٤٠:٠٤ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: stock does already contains this product iphone 14
+أيار ١٧, ٢٠٢٣ ٢:٤٠:٠٤ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: memberbrain123 is already store owner
+أيار ١٧, ٢٠٢٣ ٢:٤٠:٠٥ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: DomainLayer.BagConstraints.AllContentBagConstraint@200a26bc
+أيار ١٧, ٢٠٢٣ ٢:٤٠:٠٥ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Shipment service error
+أيار ١٧, ٢٠٢٣ ٢:٤٠:٠٥ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: DomainLayer.BagConstraints.BagConstraintOnlyIf@7072bc39
+أيار ١٧, ٢٠٢٣ ٢:٤٠:٠٥ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: DomainLayer.BagConstraints.ProductBagConstraint@70d2e40b
+أيار ١٧, ٢٠٢٣ ٢:٤٠:٠٥ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: DomainLayer.BagConstraints.CategoryBagConstraint@15bcf458
+أيار ١٧, ٢٠٢٣ ٢:٤٠:٠٥ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: DomainLayer.BagConstraints.AllContentBagConstraint@615f972
+أيار ١٧, ٢٠٢٣ ٢:٤٠:٠٥ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: DomainLayer.BagConstraints.CategoryBagConstraint@3aacf32a
+أيار ١٧, ٢٠٢٣ ٢:٤٠:٠٥ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: gaming mouse 1 have only 10 amount in stock!
+أيار ١٧, ٢٠٢٣ ٢:٤٠:٠٥ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Payment service error
+أيار ١٧, ٢٠٢٣ ٢:٤٠:٠٥ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: DomainLayer.BagConstraints.BagConstraintAnd@1bc53649
+أيار ١٧, ٢٠٢٣ ٢:٤٠:٠٥ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: gaming mouse 1 have only 10 amount in stock!
+أيار ١٧, ٢٠٢٣ ٢:٤٠:٠٥ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: DomainLayer.BagConstraints.BagConstraintOr@10ad20cb
+أيار ١٧, ٢٠٢٣ ٢:٤٠:٠٥ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: DomainLayer.BagConstraints.ProductBagConstraint@5f577419
+أيار ١٧, ٢٠٢٣ ٢:٤٠:٠٥ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Payment service error
+أيار ١٧, ٢٠٢٣ ٢:٤٠:٠٥ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٤٠:٠٥ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٤٠:٠٥ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: bag does not contain iphone 15 product
+أيار ١٧, ٢٠٢٣ ٢:٤٠:٠٥ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: bag does not contain iphone 15 product
+أيار ١٧, ٢٠٢٣ ٢:٤٠:٠٥ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: aaaproduct does not exist in this store!
+أيار ١٧, ٢٠٢٣ ٢:٤٠:٠٥ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: aaaproduct does not exist in this store!
+أيار ١٧, ٢٠٢٣ ٢:٤٠:٠٥ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: aaaproduct does not exist in this store!
+أيار ١٧, ٢٠٢٣ ٢:٤٠:٠٥ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: aaaproduct does not exist in this store!
+أيار ١٧, ٢٠٢٣ ٢:٤٠:٠٥ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٤٠:٠٥ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٤٠:٠٥ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: gaming mouse 1 have only 70 amount in stock!
+أيار ١٧, ٢٠٢٣ ٢:٤٠:٠٥ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: gaming mouse 1 have only 70 amount in stock!
+أيار ١٧, ٢٠٢٣ ٢:٤٠:٠٥ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: iphone 14 have only 50 amount in stock!
+أيار ١٧, ٢٠٢٣ ٢:٤٠:٠٥ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: The amount must be positive, it can't be -10
+أيار ١٧, ٢٠٢٣ ٢:٤٠:٠٥ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: iphone 14 have only 50 amount in stock!
+أيار ١٧, ٢٠٢٣ ٢:٤٠:٠٥ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: The amount must be positive, it can't be -10
+أيار ١٧, ٢٠٢٣ ٢:٤٠:٠٥ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove product from cart: bag does not contain iphone product
+أيار ١٧, ٢٠٢٣ ٢:٤٠:٠٥ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove product from cart: bag does not contain iphone product
+أيار ١٧, ٢٠٢٣ ٢:٤٠:٠٥ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٤٠:٠٥ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٤٠:٠٥ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٤٠:٠٥ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٤٠:٠٥ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove product from cart: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٤٠:٠٥ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove product from cart: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٤٠:٠٥ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: iphone 14 product does not exist in this store!
+أيار ١٧, ٢٠٢٣ ٢:٤٠:٠٥ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: iphone 14 product does not exist in this store!
+أيار ١٧, ٢٠٢٣ ٢:٤٠:٠٥ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: mouse product does not exist in this store!
+أيار ١٧, ٢٠٢٣ ٢:٤٠:٠٥ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: mouse product does not exist in this store!
+أيار ١٧, ٢٠٢٣ ٢:٤٠:٠٥ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٤٠:٠٥ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٤٠:٠٥ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٤٠:٠٥ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٤٠:٠٥ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٤٠:٠٥ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: bad store name does not exists!
+أيار ١٧, ٢٠٢٣ ٢:٤٠:٠٥ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: bag already contains gaming mouse 1 product
+أيار ١٧, ٢٠٢٣ ٢:٤٠:٠٥ م DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: bag already contains gaming mouse 1 product
