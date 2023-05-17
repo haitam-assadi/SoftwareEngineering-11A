@@ -20,6 +20,9 @@ public class UserController {
     private ConcurrentHashMap<String, Member> members;
     private Set<String> membersNamesConcurrentSet;
 
+    private ConcurrentHashMap<String, SystemManager> systemManagers;
+
+
     public UserController(){
         loggedInMembers = new ConcurrentHashMap<>();
         guests = new ConcurrentHashMap<>();
@@ -27,6 +30,19 @@ public class UserController {
         membersNamesConcurrentSet = ConcurrentHashMap.newKeySet();
         guestsCounter=0;
     }
+
+    public String firstManagerInitializer() {
+        String user = "user1";
+        Member member = new Member(user,Security.Encode("user1Pass"));
+        membersNamesConcurrentSet.add(user);
+        members.put(user,member);
+        SystemManager systemManager = new SystemManager(member);
+        member.setSystemManager(systemManager);
+        systemManagers.put(user,systemManager);
+        return user;
+    }
+
+
 
     public synchronized String loginAsGuest(){
         String guestUserName = this.GUEST_PREFIX + guestsCounter;
@@ -193,6 +209,25 @@ public class UserController {
         return true;
     }
 
+    public void assertIsSystemManager(String managerName) throws Exception {
+        if(!isSystemManager(managerName)){
+            throw new Exception("userName "+ managerName +" is not a system manager!");
+        }
+    }
+
+    private void assertNotSystemManager(String otherMemberName) throws Exception {
+        if(isSystemManager(otherMemberName)){
+            throw new Exception("userName "+ otherMemberName +" is already a system manager!");
+        }
+    }
+
+    private boolean isSystemManager(String managerName) throws Exception {
+        assertStringIsNotNullOrBlank(managerName);
+
+        managerName = managerName.strip().toLowerCase();
+        return systemManagers.containsKey(managerName);
+    }
+
     public void assertIsMember(String memberUserName) throws Exception {
         if(!isMember(memberUserName))
             throw new Exception("userName "+ memberUserName+" does not exists!");
@@ -221,6 +256,19 @@ public class UserController {
     public void assertIsMemberLoggedOut(String memberUserName) throws Exception {
         if(isMemberLoggedIn(memberUserName))
             throw new Exception(""+ memberUserName+" is already logged in");
+    }
+
+    public Boolean AppointMemberAsSystemManager(String managerName, String otherMemberName) throws Exception {
+        assertIsSystemManager(managerName);
+        assertIsMemberLoggedIn(managerName);
+        assertIsMember(otherMemberName);
+        assertNotSystemManager(otherMemberName);
+        SystemManager manager = systemManagers.get(managerName);
+        Member otherMember = getMember(otherMemberName);
+        SystemManager newManager = manager.AppointMemberAsSystemManager(otherMember);
+        otherMember.setSystemManager(newManager);
+        systemManagers.put(otherMemberName,newManager);
+        return true;
     }
 
     public boolean appointOtherMemberAsStoreOwner(String memberUserName, Store store, String newOwnerUserName) throws Exception {

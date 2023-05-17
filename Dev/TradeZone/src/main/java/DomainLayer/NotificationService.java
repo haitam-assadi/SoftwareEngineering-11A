@@ -44,15 +44,22 @@ public class NotificationService {
 
     public void notify(String storeName,String msg,NotificationType notificationType){
         ConcurrentHashMap<NotificationType, LinkedList<Member>> type_memberList = membersNotificator.get(storeName);
-        type_memberList.get(notificationType).forEach(member -> member.send(msg));
+        if(type_memberList.containsKey(notificationType)) {
+            LinkedList<Member> members = type_memberList.get(notificationType);
+            members.forEach(member -> member.send(msg));
+        }
     }
 
     public void notifySingle(String storeName,String user,String msg,NotificationType notificationType){
         ConcurrentHashMap<NotificationType, LinkedList<Member>> type_memberList = membersNotificator.get(storeName);
-        LinkedList<Member> members = type_memberList.get(notificationType);
-        for(Member member : members){
-            if(member.getUserName().equals(user)){
-                member.send(msg);
+        if(type_memberList.containsKey(notificationType)) {
+            LinkedList<Member> members = type_memberList.get(notificationType);
+            if (members != null && !members.isEmpty()) {
+                for (Member member : members) {
+                    if (member.getUserName().equals(user)) {
+                        member.send(msg);
+                    }
+                }
             }
         }
     }

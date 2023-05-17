@@ -540,13 +540,13 @@ public class BuyingTests {
             Map<String, List<String>> cart = proxy.getCartContent(guest_name);
             Assertions.assertTrue(proxy.removeProductFromCart(guest_name, storeName2, "iphone 14"));
             cart = proxy.getCartContent(guest_name);
-//            Assertions.assertEquals(1, cart.size()); // 1 bag
-            Assertions.assertEquals(2, cart.size()); // change
+            Assertions.assertEquals(1, cart.size()); // 1 bag
+//            Assertions.assertEquals(2, cart.size()); // change
             Assertions.assertTrue(cart.containsKey(storeName1));
-//            Assertions.assertFalse(cart.containsKey(storeName2)); // delete storeName2 bag because it becomes empty after deletion
-            Assertions.assertTrue(cart.containsKey(storeName2)); // change
+            Assertions.assertFalse(cart.containsKey(storeName2)); // delete storeName2 bag because it becomes empty after deletion
+//            Assertions.assertTrue(cart.containsKey(storeName2)); // change
             Assertions.assertEquals(2, cart.get(storeName1).size());
-            Assertions.assertEquals(0, cart.get(storeName2).size()); // change
+            Assertions.assertNull(cart.get(storeName2)); // change
             Assertions.assertTrue(cart.get(storeName1).contains("iphone 14"));
             Assertions.assertTrue(cart.get(storeName1).contains("gaming chair 1"));
             Assertions.assertEquals(1, proxy.getProductAmountInCart(guest_name, storeName1, "iphone 14"));
@@ -565,13 +565,13 @@ public class BuyingTests {
             Map<String, List<String>> cart = proxy.getCartContent(member_name);
             Assertions.assertTrue(proxy.removeProductFromCart(member_name, storeName2, "iphone 14"));
             cart = proxy.getCartContent(member_name);
-//            Assertions.assertEquals(1, cart.size()); // 1 bag
-            Assertions.assertEquals(2, cart.size()); // change
+            Assertions.assertEquals(1, cart.size()); // 1 bag
+ //           Assertions.assertEquals(2, cart.size()); // change
             Assertions.assertTrue(cart.containsKey(storeName1));
-//            Assertions.assertFalse(cart.containsKey(storeName2)); // delete storeName2 bag because it becomes empty after deletion
-            Assertions.assertTrue(cart.containsKey(storeName2)); // change
+            Assertions.assertFalse(cart.containsKey(storeName2)); // delete storeName2 bag because it becomes empty after deletion
+//            Assertions.assertTrue(cart.containsKey(storeName2)); // change
             Assertions.assertEquals(2, cart.get(storeName1).size());
-            Assertions.assertEquals(0, cart.get(storeName2).size()); // change
+            Assertions.assertNull(cart.get(storeName2)); // change
             Assertions.assertTrue(cart.get(storeName1).contains("iphone 14"));
             Assertions.assertTrue(cart.get(storeName1).contains("gaming chair 1"));
             Assertions.assertEquals(1, proxy.getProductAmountInCart(member_name, storeName1, "iphone 14"));

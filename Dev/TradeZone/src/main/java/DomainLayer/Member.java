@@ -22,6 +22,12 @@ public class Member extends User{
 
     private boolean isOnline;
 
+
+    public void setSystemManager(SystemManager systemManager) {
+        this.systemManager = systemManager;
+        isSystemManager = true;
+    }
+
     public Member(String userName, String password) {
         super(userName);
         this.password = password;
