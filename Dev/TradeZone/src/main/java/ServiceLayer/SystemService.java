@@ -24,7 +24,8 @@ public class SystemService {
     public ResponseT<Boolean> initializeMarket(){
 
         try{
-            createMemberWithTwoStore("user1");
+            String manager = market.firstManagerInitializer();
+            createMemberWithTwoStore(manager);
             return new ResponseT<>(true);
 
         }catch (Exception e){
@@ -392,6 +393,18 @@ public class SystemService {
         }catch(Exception e){
             LoggerManager.getInstance().sendErrorLog("\nfail in appointing member as store manager: " + e.getMessage());
             return new ResponseT<>("appointOtherMemberAsStoreManager: "+e.getMessage());
+        }
+    }
+
+    public ResponseT<Boolean> AppointMemberAsSystemManager(String managerName,String otherMemberName) throws Exception {
+        try{
+            String loggerMsg ="\nAppointMemberAsSystemManager(String managerName, String otherMemberName)\n"+
+                    "in " + this.nowTime() + " the system manager " + managerName + " tries to assign other user as system manager  - AppointMemberAsSystemManager("+managerName+", "+otherMemberName+")" ;
+            LoggerManager.getInstance().sendEventLog(loggerMsg);
+            return new ResponseT<>(market.AppointMemberAsSystemManager(managerName,otherMemberName));
+        }catch(Exception e){
+            LoggerManager.getInstance().sendErrorLog("\nfail in appointing member as system manager: " + e.getMessage());
+            return new ResponseT<>("AppointMemberAsSystemManager: "+e.getMessage());
         }
     }
 

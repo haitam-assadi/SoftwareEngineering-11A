@@ -31,6 +31,12 @@ public class Market {
     }
     //TODO: Implement this requirements: 2.5, 3.3(maybe), 4.12(for storeManager)
     //TODO: closeStore req is not implemented as it should be , i(Ahmad) didn't pay attention to close stores handling..
+
+
+    public String firstManagerInitializer() {
+        return userController.firstManagerInitializer();
+    }
+
     public String enterMarket(){
         return userController.loginAsGuest();
     }
@@ -160,6 +166,10 @@ public class Market {
     public boolean updateProductPrice(String memberUserName, String storeName, String productName, Double newPrice) throws Exception {
         userController.assertIsMemberLoggedIn(memberUserName);
         return storeController.updateProductPrice(memberUserName, storeName, productName, newPrice);
+    }
+
+    public Boolean AppointMemberAsSystemManager(String managerName,String otherMemberName) throws Exception {
+        return userController.AppointMemberAsSystemManager(managerName,otherMemberName);
     }
 
     public boolean appointOtherMemberAsStoreOwner(String memberUserName, String storeName, String newOwnerUserName) throws Exception {
@@ -383,9 +393,6 @@ public class Market {
         userController.assertIsMemberLoggedIn(memberUserName);
         return userController.myStores(memberUserName);
     }
-
-
-
 
 
 
