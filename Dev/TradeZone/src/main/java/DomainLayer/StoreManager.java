@@ -80,4 +80,9 @@ public class StoreManager extends Role{
         managedStoresPermissions.get(storeName).add(ManagerPermissions.getStoreDeals);
         return true;
     }
+
+    public void removeStore(String storeName){
+        removeOneStore(storeName);
+        managedStoresPermissions.remove(storeName);
+    }
 }

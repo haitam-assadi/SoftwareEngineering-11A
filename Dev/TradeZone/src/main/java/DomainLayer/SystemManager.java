@@ -23,4 +23,5 @@ public class SystemManager{
         appointedSystemManagers.add(otherMember.getUserName());
         return systemManager;
     }
+
 }

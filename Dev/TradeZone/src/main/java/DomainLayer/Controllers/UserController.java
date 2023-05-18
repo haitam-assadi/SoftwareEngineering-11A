@@ -215,6 +215,12 @@ public class UserController {
         }
     }
 
+    public void assertIsNotSystemManager(String memberUserName) throws Exception {
+        if(isSystemManager(memberUserName)){
+            throw new Exception("userName "+ memberUserName +" is a system manager!");
+        }
+    }
+
     private void assertNotSystemManager(String otherMemberName) throws Exception {
         if(isSystemManager(otherMemberName)){
             throw new Exception("userName "+ otherMemberName +" is already a system manager!");
@@ -265,6 +271,7 @@ public class UserController {
         assertNotSystemManager(otherMemberName);
         SystemManager manager = systemManagers.get(managerName);
         Member otherMember = getMember(otherMemberName);
+        //otherMember.assertHaveNoRule();
         SystemManager newManager = manager.AppointMemberAsSystemManager(otherMember);
         otherMember.setSystemManager(newManager);
         systemManagers.put(otherMemberName,newManager);
@@ -367,5 +374,14 @@ public class UserController {
     }
 
 
-
+//    public boolean systemManagerCloseStore(String managerName, String storeName) throws Exception {
+//        assertIsMemberLoggedIn(managerName);
+//        SystemManager manager = getSystemManager(managerName);
+//        return manager.closeStore(storeName);
+//    }
+//
+//    private SystemManager getSystemManager(String managerName) throws Exception {
+//        assertIsSystemManager(managerName);
+//        return systemManagers.get(managerName);
+//    }
 }

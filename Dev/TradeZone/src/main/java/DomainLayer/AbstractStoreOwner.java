@@ -43,7 +43,13 @@ public class AbstractStoreOwner extends Role{
             store.removeOwner(otherMember.getUserName());
             String msg = "you have been removed from being store owner for " + storeName+ " by " + getUserName();
             NotificationService.getInstance().notifySingle(storeName,getUserName(),msg,NotificationType.RemovedFromOwningStore);
-            NotificationService.getInstance().removeMember(storeName,otherMember);
+            NotificationService.getInstance().removeRule(storeName,otherMember);
         }
+    }
+
+    public void removeStore(String storeName) {
+        removeOneStore(storeName);
+        appointedOwners = new ConcurrentHashMap<>();
+        appointedManagers = new ConcurrentHashMap<>();
     }
 }
