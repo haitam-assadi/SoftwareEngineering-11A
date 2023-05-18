@@ -38,6 +38,8 @@ public class Member extends User{
         isOnline = false;
     }
 
+
+
     public String getPassword() {
         return password;
     }
@@ -123,6 +125,8 @@ public class Member extends User{
         storeFounderRole.appointMemberAsStoreFounder(store);
         store.setStoreFounderAtStoreCreation(storeFounderRole);
         NotificationService.getInstance().subscribe(store.getStoreName(),NotificationType.productBought,this);
+        NotificationService.getInstance().subscribe(store.getStoreName(),NotificationType.storeClosedBySystemManager,this);
+
         //todo: add the permissions
         return true;
     }
@@ -211,6 +215,7 @@ public class Member extends User{
         NotificationService.getInstance().subscribe(storeName,NotificationType.productBought,this);
         NotificationService.getInstance().subscribe(storeName,NotificationType.RemovedFromOwningStore,this);
         NotificationService.getInstance().subscribe(storeName,NotificationType.storeOpenedAfterClose,this);
+        NotificationService.getInstance().subscribe(storeName,NotificationType.storeClosedBySystemManager,this);
     }
 
 
@@ -239,12 +244,18 @@ public class Member extends User{
     }
 
     public void defineNotifications(String newMemberUserName) {
-        NotificationService.getInstance().subscribe(newMemberUserName,NotificationType.requestNotification,this);
-        NotificationService.getInstance().subscribe(newMemberUserName,NotificationType.subscriptionRemoved,this);
+        NotificationService.getInstance().subscribeMember(newMemberUserName,NotificationType.requestNotification,this);
+        NotificationService.getInstance().subscribeMember(newMemberUserName,NotificationType.subscriptionRemoved,this);
     }
 
     public void addCart(Cart cart) {
         this.cart = cart;
+    }
+
+    public void assertHaveNoRule() throws Exception {
+        if(!roles.isEmpty()){
+            throw new Exception(getUserName() + " have a role in a store");
+        }
     }
 
 

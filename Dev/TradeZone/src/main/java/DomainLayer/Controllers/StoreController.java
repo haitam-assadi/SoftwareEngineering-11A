@@ -420,4 +420,9 @@ public class StoreController {
     }
 
 
+    public boolean systemManagerCloseStore(String storeName) throws Exception {
+        assertIsStore(storeName);
+        storeName=storeName.strip().toLowerCase();
+        return this.stores.get(storeName).systemManagerCloseStore(storeName);
+    }
 }

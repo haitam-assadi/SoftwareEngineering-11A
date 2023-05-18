@@ -911,4 +911,22 @@ public class Store {
         return storeFounder.getUserName().equals(memberUserName) || storeOwners.containsKey(memberUserName) || storeManagers.containsKey(memberUserName);
     }
 
+    public boolean systemManagerCloseStore(String managerName) {
+        storeFounder.removeStore(storeName);
+        for (StoreOwner storeOwner: storeOwners.values()){
+            storeOwner.removeStore(storeName);
+        }
+        for(StoreManager storeManager: storeManagers.values()){
+            storeManager.removeStore(storeName);
+        }
+        isActive = false;
+        storeFounder = null;
+        storeOwners = new ConcurrentHashMap<>();
+        storeManagers = new ConcurrentHashMap<>();
+
+        String msg = "store: " + storeName + " has been closed for ever by the system manager" + managerName + " at " + java.time.LocalTime.now();
+        NotificationService.getInstance().notify(storeName,msg,NotificationType.storeClosedBySystemManager);
+        NotificationService.getInstance().removeAllRulers(storeName);
+        return true;
+    }
 }

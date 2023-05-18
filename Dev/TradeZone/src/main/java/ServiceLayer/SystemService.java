@@ -570,8 +570,17 @@ public class SystemService {
         try {
             return new ResponseT<>(market.myStores(memberUserName));
         }catch (Exception e){
-            return new ResponseT<>("meStores: "+e.getMessage());
+            return new ResponseT<>("myStores: "+e.getMessage());
         }
+    }
+
+    public  ResponseT<Boolean> systemManagerCloseStore(String managerName, String storeName) throws Exception{
+        try{
+            return new ResponseT<>(market.systemManagerCloseStore(managerName,storeName));
+        }catch (Exception e){
+            return new ResponseT<>("systemManagerCloseStore: "+e.getMessage());
+        }
+
     }
 
 }

@@ -139,6 +139,7 @@ public class Market {
         return user.getCartContent();
     }
     public StoreDTO createStore(String memberUserName, String newStoreName) throws Exception {
+        //userController.assertIsNotSystemManager(memberUserName);
         userController.assertIsMemberLoggedIn(memberUserName);
         Member member = userController.getMember(memberUserName);
         Store store = storeController.createStore(newStoreName);
@@ -173,11 +174,13 @@ public class Market {
     }
 
     public boolean appointOtherMemberAsStoreOwner(String memberUserName, String storeName, String newOwnerUserName) throws Exception {
+        //userController.assertIsNotSystemManager(newOwnerUserName);
         Store store = storeController.getStore(storeName); // TODO: MAYBE WE NEED TO CHECK IF STORE IS ACTIVE
         return userController.appointOtherMemberAsStoreOwner(memberUserName,store,newOwnerUserName);
     }
 
     public boolean appointOtherMemberAsStoreManager(String memberUserName, String storeName, String newManagerUserName) throws Exception {
+        //userController.assertIsNotSystemManager(newManagerUserName);
         Store store = storeController.getStore(storeName); // TODO: MAYBE WE NEED TO CHECK IF STORE IS ACTIVE
         return userController.appointOtherMemberAsStoreManager(memberUserName,store,newManagerUserName);
     }
@@ -392,6 +395,12 @@ public class Market {
     public Map<String,List<StoreDTO>> myStores(String memberUserName) throws Exception{
         userController.assertIsMemberLoggedIn(memberUserName);
         return userController.myStores(memberUserName);
+    }
+
+    public boolean systemManagerCloseStore(String managerName, String storeName) throws Exception{
+        userController.assertIsMemberLoggedIn(managerName);
+        userController.assertIsSystemManager(managerName);
+        return storeController.systemManagerCloseStore(storeName);
     }
 
 

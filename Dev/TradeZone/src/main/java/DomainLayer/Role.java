@@ -102,4 +102,9 @@ public abstract class Role {
     public void addStore(String storeName, Store store){
         responsibleForStores.put(storeName, store);
     }
+
+    public void removeOneStore(String storeName){
+        myBossesForStores = new ConcurrentHashMap<>();
+        responsibleForStores.remove(storeName);
+    }
 }
