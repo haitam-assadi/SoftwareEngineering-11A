@@ -251,6 +251,13 @@ public class Stock {
     }
 
 
+    public Integer getProductAmount(String productName) throws Exception {
+        productName = productName.strip().toLowerCase();
 
+        //TODO: do we allow return info about products with amount == 0 ?????
+        if(!containsProduct(productName))
+            throw new Exception(""+productName+" product does not exist in this store!");
 
+        return  ((Integer)stockProducts.get(productName).values().toArray()[0]);
+    }
 }

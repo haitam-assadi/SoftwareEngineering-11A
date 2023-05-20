@@ -583,4 +583,20 @@ public class SystemService {
 
     }
 
+    public ResponseT<Boolean> isSystemManager(String userName) throws Exception{
+        try{
+            return new ResponseT<>(market.isSystemManager(userName));
+        }catch (Exception e){
+            return new ResponseT<>("isSystemManager: "+e.getMessage());
+        }
+    }
+
+    public ResponseT<Integer> getProductAmountInStore(String userName, String storeName, String productName) throws Exception {
+        try{
+            return new ResponseT<>(market.getProductAmountInStore(userName,storeName,productName));
+        }catch (Exception e){
+            return new ResponseT<>("getProductAmountInStore: "+e.getMessage());
+        }
+    }
+
 }

@@ -40,7 +40,7 @@ public class Market {
     public String enterMarket(){
         return userController.loginAsGuest();
     }
-    public List<String> getAllGuests(){
+    public List<String> getAllGuests(/*String managerName*/){
         return userController.getAllGuests();
     }
 
@@ -73,14 +73,22 @@ public class Market {
         userController.assertIsGuestOrLoggedInMember(userName);
         boolean active = storeController.assertisActive(storeName);
         if(active) return storeController.getStoreInfo(storeName);
-        Store store = storeController.getStore(storeName);
-        userController.assertIsOwner(userName,store);
-        return storeController.getStoreInfo(storeName);
+        else {
+            Store store = storeController.getStore(storeName);
+            userController.assertIsOwner(userName, store);
+            return storeController.getStoreInfo(storeName);
+        }
     }
     public ProductDTO getProductInfoFromStore(String userName, String storeName, String productName) throws Exception {
         userController.assertIsGuestOrLoggedInMember(userName);
         return storeController.getProductInfoFromStore(storeName, productName);
     }
+
+    public Integer getProductAmountInStore(String userName, String storeName, String productName) throws Exception {
+        userController.assertIsGuestOrLoggedInMember(userName);
+        return storeController.getProductAmountInStore(storeName, productName);
+    }
+
 
     public List<ProductDTO> getProductInfoFromMarketByName(String userName, String productName) throws Exception {
         userController.assertIsGuestOrLoggedInMember(userName);
@@ -139,7 +147,7 @@ public class Market {
         return user.getCartContent();
     }
     public StoreDTO createStore(String memberUserName, String newStoreName) throws Exception {
-        //userController.assertIsNotSystemManager(memberUserName);
+        userController.assertIsNotSystemManager(memberUserName);
         userController.assertIsMemberLoggedIn(memberUserName);
         Member member = userController.getMember(memberUserName);
         Store store = storeController.createStore(newStoreName);
@@ -174,13 +182,13 @@ public class Market {
     }
 
     public boolean appointOtherMemberAsStoreOwner(String memberUserName, String storeName, String newOwnerUserName) throws Exception {
-        //userController.assertIsNotSystemManager(newOwnerUserName);
+        userController.assertIsNotSystemManager(newOwnerUserName);
         Store store = storeController.getStore(storeName); // TODO: MAYBE WE NEED TO CHECK IF STORE IS ACTIVE
         return userController.appointOtherMemberAsStoreOwner(memberUserName,store,newOwnerUserName);
     }
 
-    public boolean appointOtherMemberAsStoreManager(String memberUserName, String storeName, String newManagerUserName) throws Exception {
-        //userController.assertIsNotSystemManager(newManagerUserName);
+    public boolean appointOtherMemberAsStoreManager(String memberUserName, String storeName, String newManagerUserName/*,list<Integer> permissions*/) throws Exception {
+        userController.assertIsNotSystemManager(newManagerUserName);
         Store store = storeController.getStore(storeName); // TODO: MAYBE WE NEED TO CHECK IF STORE IS ACTIVE
         return userController.appointOtherMemberAsStoreManager(memberUserName,store,newManagerUserName);
     }
@@ -191,6 +199,13 @@ public class Market {
         Store store = storeController.getStore(storeName);
         return store.addPermissionForStoreManager(ownerUserName, managerUserName, permissionId);
     }
+//    public boolean updatePermissionsForStoreManager(String ownerUserName, String storeName, String managerUserName, List<Integer> permissionId) throws Exception {
+//        userController.assertIsMemberLoggedIn(ownerUserName);
+//        userController.assertIsMember(managerUserName);
+//        Store store = storeController.getStore(storeName);
+//        return store.addPermissionForStoreManager(ownerUserName, managerUserName, permissionId);
+//    }
+    /*remove permittions*/
 
     public boolean changeManagerPermissions(String memberUserName, String storeName, String managerUserName) throws ExecutionControl.NotImplementedException {
         // TODO: low priority , DON'T test it, dont forget to change function parameters
@@ -401,6 +416,10 @@ public class Market {
         userController.assertIsMemberLoggedIn(managerName);
         userController.assertIsSystemManager(managerName);
         return storeController.systemManagerCloseStore(storeName);
+    }
+
+    public boolean isSystemManager(String userName) throws Exception{
+        return userController.assertIsSystemManager(userName);
     }
 
 

@@ -75,6 +75,12 @@ public class StoreController {
         return stores.get(storeName).getProductInfo(productName);
     }
 
+    public Integer getProductAmountInStore(String storeName, String productName) throws Exception {
+        storeName = storeName.strip().toLowerCase();
+        isActiveStore(storeName);
+        return stores.get(storeName).getProductAmount(productName);
+    }
+
     public List<ProductDTO> getProductInfoFromMarketByName(String productName) throws Exception {
         List<ProductDTO> productDTOList = new ArrayList<>();
         for(Store store: stores.values()) {
@@ -425,4 +431,6 @@ public class StoreController {
         storeName=storeName.strip().toLowerCase();
         return this.stores.get(storeName).systemManagerCloseStore(storeName);
     }
+
+
 }

@@ -28,6 +28,10 @@ public class Member extends User{
         isSystemManager = true;
     }
 
+    public boolean checkIsSystemManager(){
+        return isSystemManager;
+    }
+
     public Member(String userName, String password) {
         super(userName);
         this.password = password;
