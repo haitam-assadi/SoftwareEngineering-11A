@@ -2,7 +2,10 @@ package DomainLayer;
 
 import DTO.ProductDTO;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Stream;
 
 public class Product {
 
@@ -31,7 +34,9 @@ public class Product {
 
 
     public ProductDTO getProductInfo(){
-        return new ProductDTO(this.name, this.stock.getStoreName(), this.price, this.description);
+        List<String> categories = new LinkedList<>();
+        categories.addAll(productCategories.keySet());
+        return new ProductDTO(this.name, this.stock.getStoreName(), this.price, this.description,  categories);
     }
 
     public Double getPrice() {

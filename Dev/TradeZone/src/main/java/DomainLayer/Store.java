@@ -158,10 +158,14 @@ public class Store {
     public StoreDTO getStoreInfo(){
         List<String> ownersNames = this.storeOwners.values().stream().map(Role::getUserName).toList();
         List<String> managersNames = this.storeManagers.values().stream().map(Role::getUserName).toList();
-        return new StoreDTO(storeName, storeFounder.getUserName(), ownersNames, managersNames, stock.getProductsInfo());
+        return new StoreDTO(storeName, storeFounder.getUserName(), ownersNames, managersNames, stock.getProductsInfo(),isActive);
     }
     public ProductDTO getProductInfo(String productName) throws Exception {
         return stock.getProductInfo(productName);
+    }
+
+    public Integer getProductAmount(String productName) throws Exception {
+        return stock.getProductAmount(productName);
     }
 
     public Product getProduct(String productName) throws Exception {
@@ -929,4 +933,6 @@ public class Store {
         NotificationService.getInstance().removeAllRulers(storeName);
         return true;
     }
+
+
 }

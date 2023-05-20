@@ -39,9 +39,10 @@ public class StoreManager extends Role{
         storeName = storeName.strip().toLowerCase();
         if(! managedStoresPermissions.containsKey(storeName))
             throw new Exception(this.getUserName()+ " is not Manager for store "+ storeName);
-
+        //for
         ManagerPermissions permission = getPermissionById(permissionId);
 
+        //remove if
         if(managedStoresPermissions.get(storeName).contains(permission))
             throw new Exception(this.getUserName()+ " already have permission to "+permission.toString() +" for store "+ storeName);
 

@@ -209,9 +209,11 @@ public class UserController {
         return true;
     }
 
-    public void assertIsSystemManager(String managerName) throws Exception {
+    public boolean assertIsSystemManager(String managerName) throws Exception {
         if(!isSystemManager(managerName)){
             throw new Exception("userName "+ managerName +" is not a system manager!");
+        }else{
+            return true;
         }
     }
 
