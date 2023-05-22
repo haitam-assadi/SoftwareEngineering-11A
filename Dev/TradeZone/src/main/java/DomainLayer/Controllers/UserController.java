@@ -29,11 +29,12 @@ public class UserController {
         members = new ConcurrentHashMap<>();
         membersNamesConcurrentSet = ConcurrentHashMap.newKeySet();
         guestsCounter=0;
+        systemManagers = new ConcurrentHashMap<>();
     }
 
     public String firstManagerInitializer() {
-        String user = "user1";
-        Member member = new Member(user,Security.Encode("user1Pass"));
+        String user = "systemmanager1";
+        Member member = new Member(user,Security.Encode("systemmanager1Pass"));
         membersNamesConcurrentSet.add(user);
         members.put(user,member);
         SystemManager systemManager = new SystemManager(member);
@@ -155,6 +156,17 @@ public class UserController {
 
         return members.get(userName);
     }
+
+    private SystemManager getSystemManager(String managerName) throws Exception {
+        managerName = managerName.toLowerCase();
+        assertIsSystemManager(managerName);
+        if(!systemManagers.containsKey(managerName))
+            // TODO: read from database AND add to members hashmap
+            throw new Exception("user needs to be read from database");
+
+        return systemManagers.get(managerName);
+    }
+
     public User getUser(String userName) throws Exception {
         userName = userName.strip().toLowerCase();
 
@@ -266,14 +278,16 @@ public class UserController {
             throw new Exception(""+ memberUserName+" is already logged in");
     }
 
+
+
     public Boolean AppointMemberAsSystemManager(String managerName, String otherMemberName) throws Exception {
         assertIsSystemManager(managerName);
         assertIsMemberLoggedIn(managerName);
         assertIsMember(otherMemberName);
         assertNotSystemManager(otherMemberName);
-        SystemManager manager = systemManagers.get(managerName);
+        SystemManager manager = getSystemManager(managerName);
         Member otherMember = getMember(otherMemberName);
-        //otherMember.assertHaveNoRule();
+        otherMember.assertHaveNoRule();
         SystemManager newManager = manager.AppointMemberAsSystemManager(otherMember);
         otherMember.setSystemManager(newManager);
         systemManagers.put(otherMemberName,newManager);
@@ -374,6 +388,7 @@ public class UserController {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         return now.format(formatter);
     }
+
 
 
 //    public boolean systemManagerCloseStore(String managerName, String storeName) throws Exception {

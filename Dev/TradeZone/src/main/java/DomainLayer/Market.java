@@ -422,6 +422,8 @@ public class Market {
         return userController.assertIsSystemManager(userName);
     }
 
-
+//    public boolean removeMemberBySystemManager(String managerName,String memberName) throws Exception{
+//        return userController.removeMemberBySystemManager(managerName,memberName);
+//    }
 
 }
