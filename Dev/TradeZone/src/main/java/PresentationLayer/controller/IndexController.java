@@ -23,44 +23,27 @@ public class IndexController {
 	private Server server = Server.getInstance();
 	private GeneralController controller = GeneralController.getInstance();
 	List<ProductDTO> products; // = new ArrayList<>()
-	Alert alert = new Alert();
+	Alert alert = Alert.getInstance();
 
 	@GetMapping("/")
 	public String index(Model model) {
-//		controller.setHasRole(true); // TODO: delete
-		if(alert == null){
-			alert = new Alert();
-		}
 		if(controller.getName().equals("")){
 			ResponseT<Boolean> response = server.initializeMarket();
 			if(response.ErrorOccurred){
 				alert.setFail(true);
 				alert.setMessage(response.errorMessage);
-				model.addAttribute("name", controller.getName());
-				model.addAttribute("hasRole", controller.getHasRole());
-				model.addAttribute("logged", controller.getLogged());
-				model.addAttribute("success", alert.isSuccess());
-				model.addAttribute("fail", alert.isFail());
-				model.addAttribute("message", alert.getMessage());
+				model.addAttribute("controller", controller);
+				model.addAttribute("alert", alert.copy());
 				model.addAttribute("products", products);
 				return "index"; // "/" ???
-//				model.addAttribute("message", response.errorMessage);
-//				return "error";
 			}
 			String name = server.enterMarket().value;
-//			server.addToCart(name, "user1_first_Store", "user1_first_Store_product1", 5);
-//			server.addToCart(name, "user1_first_Store", "user1_first_Store_product2", 3);
-//			server.addToCart(name, "user1_Second_Store", "user1_Second_Store_product1", 4);
 			controller.setName(name);
 		}
-		model.addAttribute("name", controller.getName());
-		model.addAttribute("hasRole", controller.getHasRole());
-		model.addAttribute("logged", controller.getLogged());
-		model.addAttribute("success", alert.isSuccess());
-		model.addAttribute("fail", alert.isFail());
-		model.addAttribute("message", alert.getMessage());
+		model.addAttribute("controller", controller);
+		model.addAttribute("alert", alert.copy());
 		model.addAttribute("products", products);
-		alert = new Alert();
+		alert.reset();
 //		products = null; // TODO: ???
 		return "index";
 	}
@@ -125,37 +108,52 @@ public class IndexController {
 		return "redirect:/"; // TODO: redirect + request
 	}
 
-	@PostMapping("/index")
-	public String returntoIndex(@ModelAttribute Search search, Model model) {
-		List<ProductDTO> products = new ArrayList<>();
-		model.addAttribute("logged", controller.getLogged());
-		model.addAttribute("hasRole", controller.getHasRole());
-		model.addAttribute("name", controller.getName());
-		model.addAttribute("products", products);
-		model.addAttribute("message", "");
-		return "index";
-	}
-
 	@GetMapping("/error")
 	public String error(@ModelAttribute User user, Model model) {
 		model.addAttribute("message", "Page not found");
 		return "error";
 	}
 
-	@PostMapping("/add_to_cart")
-	public String addToCart(@ModelAttribute ItemDetails itemDetails, Model model, HttpServletRequest request) {
-		int amount = itemDetails.getAmount();
-		String productName = itemDetails.getName();
-		String storeName = itemDetails.getStoreName();
-		ResponseT<Boolean> response = server.addToCart(controller.getName(), storeName, productName, amount);
-		if(response.ErrorOccurred){
-			alert.setFail(true);
-			alert.setMessage(response.errorMessage);
-			return "redirect:/"; // TODO: redirect:/ + request.getHeader(...)
-		}
-		alert.setSuccess(true);
-		alert.setMessage("Added successfully");
-//		return "redirect:" + request.getHeader("Referer");
-		return "redirect:/";
-	}
+//	@PostMapping("/add_to_cart")
+//	public String addToCart(@ModelAttribute ItemDetails itemDetails, Model model, HttpServletRequest request) {
+//		String referer = request.getHeader("referer");
+//		int amount = itemDetails.getAmount();
+//		String productName = itemDetails.getName();
+//		String storeName = itemDetails.getStoreName();
+//		ResponseT<Boolean> response = server.addToCart(controller.getName(), storeName, productName, amount);
+//		if(response.ErrorOccurred){
+//			alert.setFail(true);
+//			alert.setMessage(response.errorMessage);
+//			return "redirect:/"; // TODO: redirect:/ + request.getHeader(...)
+//		}
+//		alert.setSuccess(true);
+//		alert.setMessage("Added successfully");
+//		controller.updateCart();
+//		return "redirect:" + referer;
+////		return "redirect:" + request.getHeader("Referer");
+////		return "redirect:/";
+//	}
+
+//	@PostMapping("/indexUpdateProductAmount")
+//	public String updateProductAmount(@ModelAttribute ItemDetails itemDetails, Model model) {
+//		int amount = itemDetails.getAmount();
+//		String productName = itemDetails.getName();
+//		String storeName = itemDetails.getStoreName();
+//		ResponseT<Boolean> response = server.changeProductAmountInCart(controller.getName(), storeName, productName, amount);
+//		if(response.ErrorOccurred){
+//			alert.setFail(true);
+//			alert.setMessage(response.errorMessage);
+//			return "redirect:/";
+//		}
+//		if(response.getValue()){ // updated
+//			alert.setSuccess(true);
+//			alert.setMessage("product amount has updated successfully");
+//			controller.updateCart();
+//		}
+//		else{ // not updated
+//			alert.setFail(true);
+//			alert.setMessage("Failed to update the product amount");
+//		}
+//		return "redirect:/";
+//	}
 }

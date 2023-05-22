@@ -1,11 +1,14 @@
 package PresentationLayer.model;
 
+import static PresentationLayer.controller.GeneralController.round;
+
 public class Product {
     private String name;
     private Double price;
     private Double totalPrice;
     private String description;
     private int amount;
+    private String category;
 
     public Product(String name, Double price, String description, int amount){
         this.name = name;
@@ -31,12 +34,21 @@ public class Product {
         return this.amount;
     }
     public Double getTotalPrice() {
-        totalPrice = price * amount;
+        totalPrice = round(price * amount, 2);
         return totalPrice;
     }
 
     public void setTotalPrice(Double totalPrice) {
+
         this.totalPrice = totalPrice;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public String printDetails(){

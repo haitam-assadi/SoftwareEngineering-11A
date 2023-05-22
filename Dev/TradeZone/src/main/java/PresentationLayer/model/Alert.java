@@ -1,9 +1,38 @@
 package PresentationLayer.model;
 
 public class Alert {
-    private boolean success = false;
-    private boolean fail = false;
-    private String message = "";
+    private boolean success;
+    private boolean fail;
+    private String message;
+
+    private static Alert alert = null;
+    public static Alert getInstance(){
+        if(alert == null){
+            alert = new Alert();
+        }
+        return alert;
+    }
+    private Alert(){
+        success = false;
+        fail = false;
+        message = "";
+    }
+
+    private Alert(boolean success, boolean fail, String message){
+        this.success = success;
+        this.fail = fail;
+        this.message = message;
+    }
+
+    public void reset(){
+        success = false;
+        fail = false;
+        message = "";
+    }
+
+    public Alert copy(){
+        return new Alert(this.success, this.fail, this.message);
+    }
 
     public boolean isSuccess() {
         return success;

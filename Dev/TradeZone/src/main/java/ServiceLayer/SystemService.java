@@ -93,6 +93,11 @@ public class SystemService {
 
         market.addToCart(userName, userFirstStoreName, userFirstStoreProduct2, 34);
 
+        String guest2 = market.enterMarket();
+        market.register(guest2, "baraa", "Bb12345678");
+        String guest3 = market.enterMarket();
+        market.register(guest3, "alaa", "Bb12345678");
+//        market.login(guest2, "baraa", "Bb12345678");
 
         String exitGuest = market.memberLogOut(userName);
         market.exitMarket(exitGuest);

@@ -14,21 +14,7 @@
 
 <div class="container py-3">
 	<header>
-		<div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
-			<a class="d-flex align-items-center link-body-emphasis text-decoration-none">
-				<span class="fs-4" th:text="${'Welcome to Trade Zone ' + name}"></span>
-			</a>
-			<nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto nav-tabs">
-				<a class="nav-link active me-3 py-2 link-body-emphasis text-decoration-none" href="/">Home Page</a>
-				<a class="nav-link me-3 py-2 link-body-emphasis text-decoration-none" href="searchStore">Search for stores</a>
-				<a th:if="${hasRole}" class="nav-link me-3 py-2 link-body-emphasis text-decoration-none" href="role_page">My stores</a>
-				<a class="nav-link me-3 py-2 link-body-emphasis text-decoration-none" href="cart">My Cart</a>
-				<a th:if="!${logged}" class="nav-link me-3 py-2 link-body-emphasis text-decoration-none" href="register">Register</a>
-				<a th:if="!${logged}" class="nav-link me-3 py-2 link-body-emphasis text-decoration-none" href="login">Login</a>
-				<a th:if="${logged}" class="nav-link me-3 py-2 link-body-emphasis text-decoration-none" href="logout">Logout</a>
-			</nav>
-			<!--		<span class="name_id" th:text="${'Welcome ' + name}">  </span>-->
-		</div>
+		<div th:replace="fragments/header :: header(controller=${controller}, currentPage='index')"></div>
 
 		<div class="pricing-header p-3 pb-md-4 mx-auto col-md-7">
 			<form action="search" method="post">
@@ -70,49 +56,13 @@
 
 	<main>
 		<div th:if="${products != null && products.empty}" class="alert alert-warning text-center" role="alert">
-			<!--		th:text="${message}"   && message != ''  -->
 			<h2>No Products Available</h2>
 		</div>
-		<div th:if="${success}" class="alert alert-success text-center alert-dismissible fade show" role="alert">
-			<h4 th:text="${message}"></h4>
-			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-		</div>
-		<div th:if="${fail}" class="alert alert-danger text-center alert-dismissible fade show" role="alert">
-			<h4 th:text="${message}"></h4>
-			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-		</div>
+		<div th:replace="fragments/alert :: alert(${alert})"></div>
 
 		<h3 th:if="${products != null && !products.empty}">Search results:</h3>
-
-		<div th:if="${products != null && !products.empty}" class="row row-cols-1 row-cols-md-3 mb-3">
-			<div class="col" th:each="product : ${products}">
-				<div class="card mb-4 rounded-3 shadow-sm">
-					<div class="card-header py-3 text-center">
-						<h4 class="my-0 fw-normal" th:text="${product.name}">Name</h4>
-					</div>
-					<div class="card-body">
-						<h5 th:text="${'Store Name: ' + product.storeName}"></h5>
-						<p th:text="${'Description: ' + product.description}"></p>
-						<form action="add_to_cart" method="post">
-							<input type="hidden" name="name" th:value="${product.name}">
-							<input type="hidden" name="storeName" th:value="${product.storeName}">
-							<div class="row mb-3">
-								<label for="amount" class="col-auto col-form-label">Amount:</label>
-								<div class="col-auto">
-									<input type="number" class="form-control" id="amount" style="width:100px" name="amount" value="1" min="1" data-siid="si_input_1">
-								</div>
-							</div>
-							<div class="row">
-								<h3 class="col-auto card-title pricing-card-title" th:text="${'Price: ' + product.price} + ' $'"></h3>
-								<div class="col-auto">
-									<button type="submit" class="w-100 btn btn-outline-primary">Add to cart</button>
-								</div>
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
+<!--		th:replace="fragments/product :: product(${controller}, ${products}, 'true')" TODO:-->
+		<div th:if="${products != null && !products.empty}" th:replace="fragments/product :: product(${controller}, ${products})"></div>
 	</main>
 </div>
 </body>
