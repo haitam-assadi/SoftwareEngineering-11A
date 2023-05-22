@@ -2,10 +2,12 @@ package PresentationLayer.controller;
 
 import CommunicationLayer.Server;
 import DTO.BagDTO;
+import PresentationLayer.model.Alert;
 import PresentationLayer.model.Bag;
 import PresentationLayer.model.Product;
 import ServiceLayer.ResponseT;
 
+import javax.servlet.http.HttpServletRequest;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
@@ -18,6 +20,7 @@ public class GeneralController {
     private String name;
     private boolean hasRole;
     private boolean logged;
+    private String currentPage;
     private double cartTotalPrice;
     private List<Bag> cart;
 
@@ -33,6 +36,7 @@ public class GeneralController {
         this.name = "";
         this.hasRole = false;
         this.logged = false;
+        currentPage = "/";
         this.cartTotalPrice = 0;
         cart = new ArrayList<>();
     }
@@ -59,6 +63,14 @@ public class GeneralController {
 
     public void setLogged(boolean logged){
         this.logged = logged;
+    }
+
+    public String getCurrentPage() {
+        return currentPage;
+    }
+
+    public void setCurrentPage(String currentPage) {
+        this.currentPage = currentPage;
     }
 
     public double getCartTotalPrice() {
@@ -125,5 +137,19 @@ public class GeneralController {
         BigDecimal bd = BigDecimal.valueOf(value);
         bd = bd.setScale(places, RoundingMode.HALF_UP);
         return bd.doubleValue();
+    }
+
+    public static String determineCurrentPage(HttpServletRequest request) {
+        String requestURI = request.getRequestURI();
+        String contextPath = request.getContextPath();
+        String currentPage = requestURI.substring(contextPath.length());
+
+        // Remove any query parameters from the current page
+        int queryParamIndex = currentPage.indexOf('?');
+        if (queryParamIndex != -1) {
+            currentPage = currentPage.substring(0, queryParamIndex);
+        }
+
+        return currentPage;
     }
 }

@@ -10,20 +10,7 @@
 
 <div class="container py-3">
     <header>
-        <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
-            <a class="d-flex align-items-center link-body-emphasis text-decoration-none">
-                <span class="fs-4" th:text="${name}"></span>
-            </a>
-            <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto nav nav-tabs">
-                <a class="nav-link py-2 link-body-emphasis text-decoration-none" href="/">Home Page</a>
-                <a class="nav-link active py-2 link-body-emphasis text-decoration-none" style="color:#1cc8b8" href="searchStore">Search for stores</a>
-                <a th:if="${logged}" class="nav-link py-2 link-body-emphasis text-decoration-none" href="role_page">My stores</a>
-                <a class="nav-link py-2 link-body-emphasis text-decoration-none" href="cart">My Cart</a>
-                <a th:if="!${logged}" class="nav-link py-2 link-body-emphasis text-decoration-none" href="register">Register</a>
-                <a th:if="!${logged}" class="nav-link py-2 link-body-emphasis text-decoration-none" href="login">Login</a>
-                <a th:if="${logged}" class="nav-link py-2 link-body-emphasis text-decoration-none" href="logout">Logout</a>
-            </nav>
-        </div>
+        <div th:replace="fragments/header :: header(controller=${controller}, currentPage='searchStore')"></div>
 
         <div class="pricing-header p-3 pb-md-4 mx-auto col-md-7">
 
@@ -40,14 +27,7 @@
     </header>
 
     <main>
-        <div th:if="${success}" class="alert alert-success text-center alert-dismissible fade show" role="alert">
-            <h4 th:text="${message}"></h4>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-        <div th:if="${fail}" class="alert alert-danger text-center alert-dismissible fade show" role="alert">
-            <h4 th:text="${message}"></h4>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
+        <div th:replace="fragments/alert :: alert(${alert})"></div>
 
         <h4 th:if="${store != null}" class="card-title pricing-card-title mb-3" th:text="${'Store Name: ' + store.storeName}"></h4>
         <h4 th:if="${store != null}" class="card-title pricing-card-title mb-3" th:text="${'Founder Name: ' + store.founderName}"></h4>
@@ -56,52 +36,23 @@
             <h2>No Products In This Store</h2>
         </div>
 
-        <div th:if="${store != null && store.productsInfo != null && !store.productsInfo.empty}" class="row row-cols-1 row-cols-md-3 mb-3">
-            <div class="col" th:each="product : ${store.productsInfo}">
-                <div class="card mb-4 rounded-3 shadow-sm">
-                    <div class="card-header py-3 text-center">
-                        <h4 class="my-0 fw-normal" th:text="${product.name}">Name</h4>
-                    </div>
-                    <div class="card-body">
-                        <h3 class="card-title pricing-card-title" th:text="${'Price: ' + product.price} + ' $'"></h3>
-                        <p th:text="${'Store Name: ' + product.storeName}"></p>
-                        <p th:text="${'Description: ' + product.description}"></p>
-
-                        <form th:if="${!controller.cartContainsProduct(product.storeName, product.name)}" action="searchStoreAddToCart" method="post">
-                            <input type="hidden" name="name" th:value="${product.name}">
-                            <input type="hidden" name="storeName" th:value="${product.storeName}">
-                            <div class="row mb-3">
-                                <label for="amount" class="col-auto col-form-label">Amount:</label>
-                                <div class="col-auto">
-                                    <input type="number" class="form-control" id="amount" style="width:100px" name="amount" value="1" min="1" data-siid="si_input_1">
-                                </div>
-                                <div class="col-auto">
-                                    <button type="submit" class="w-100 btn btn-primary">Add to cart</button>
-                                </div>
-                            </div>
-                        </form>
-                        <form th:if="${controller.cartContainsProduct(product.storeName, product.name)}" action="searchStoreUpdateProductAmount" method="post">
-                            <input type="hidden" name="name" th:value="${product.name}">
-                            <input type="hidden" name="storeName" th:value="${product.storeName}">
-                            <div class="row mb-3">
-                                <label for="amountInCart" class="col-auto col-form-label">Amount:</label>
-                                <div class="col-auto">
-                                    <input type="number" class="form-control" id="amountInCart" style="width:100px" name="amount" th:value="${controller.getProductAmountInCart(product.storeName, product.name)}" min="1">
-                                </div>
-                                <div class="col-auto">
-                                    <button type="submit" class="w-100 btn btn-success">Update</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
+        <div th:if="${store != null && store.productsInfo != null && !store.productsInfo.empty}" >
+<!--            product(${controller}, ${store.productsInfo}, ${store.isActive}) TODO:-->
+            <div th:replace="fragments/product :: product(${controller}, ${store.productsInfo})"></div>
+        </div>
 
 
-
-
+<!--            <div class="col" th:each="product : ${store.productsInfo}">-->
+<!--                <div class="card mb-4 rounded-3 shadow-sm">-->
+<!--                    <div class="card-header py-3 text-center">-->
+<!--                        <h4 class="my-0 fw-normal" th:text="${product.name}">Name</h4>-->
+<!--                    </div>-->
 <!--                    <div class="card-body">-->
-<!--&lt;!&ndash;                        <h5 th:text="${'Store Name: ' + product.storeName}"></h5>&ndash;&gt;-->
+<!--                        <h3 class="card-title pricing-card-title" th:text="${'Price: ' + product.price} + ' $'"></h3>-->
+<!--                        <p th:text="${'Store Name: ' + product.storeName}"></p>-->
 <!--                        <p th:text="${'Description: ' + product.description}"></p>-->
-<!--                        <form action="searchStoreAddToCart" method="post">-->
+
+<!--                        <form th:if="${!controller.cartContainsProduct(product.storeName, product.name)}" action="searchStoreAddToCart" method="post">-->
 <!--                            <input type="hidden" name="name" th:value="${product.name}">-->
 <!--                            <input type="hidden" name="storeName" th:value="${product.storeName}">-->
 <!--                            <div class="row mb-3">-->
@@ -109,48 +60,29 @@
 <!--                                <div class="col-auto">-->
 <!--                                    <input type="number" class="form-control" id="amount" style="width:100px" name="amount" value="1" min="1" data-siid="si_input_1">-->
 <!--                                </div>-->
-<!--                            </div>-->
-<!--                            <div class="row">-->
-<!--                                <h3 class="col-auto card-title pricing-card-title" th:text="${'Price: ' + product.price} + ' $'"></h3>-->
 <!--                                <div class="col-auto">-->
-<!--                                    <button type="submit" class="w-100 btn btn-outline-primary">Add to cart</button>-->
+<!--                                    <button type="submit" class="w-100 btn btn-primary">Add to cart</button>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </form>-->
+<!--                        <form th:if="${controller.cartContainsProduct(product.storeName, product.name)}" action="searchStoreUpdateProductAmount" method="post">-->
+<!--                            <input type="hidden" name="name" th:value="${product.name}">-->
+<!--                            <input type="hidden" name="storeName" th:value="${product.storeName}">-->
+<!--                            <div class="row mb-3">-->
+<!--                                <label for="amountInCart" class="col-auto col-form-label">Amount:</label>-->
+<!--                                <div class="col-auto">-->
+<!--                                    <input type="number" class="form-control" id="amountInCart" style="width:100px" name="amount" th:value="${controller.getProductAmountInCart(product.storeName, product.name)}" min="1">-->
+<!--                                </div>-->
+<!--                                <div class="col-auto">-->
+<!--                                    <button type="submit" class="w-100 btn btn-success">Update</button>-->
 <!--                                </div>-->
 <!--                            </div>-->
 <!--                        </form>-->
 <!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
 
-                </div>
-            </div>
-        </div>
     </main>
 </div>
-
-
-
-
-
-
-<!--<h2>Search for stores</h2>-->
-
-<!--        <div>-->
-
-<!--            <tr th:if="!${isError}">-->
-<!--                <h1>Search results:</h1>-->
-<!--                <td><span th:text="${storeName}"> storeName </span></td>-->
-<!--                <br>-->
-<!--                <td><span th:text="${founderName}"> founderName </span></td>-->
-<!--                <tr th:each="owner : ${ownersNames}">-->
-<!--                     <td><span th:text="${owner}"> ownerName </span></td>-->
-<!--                </tr>-->
-<!--                <tr th:each="manager : ${managersNames}">-->
-<!--                    <td><span th:text="${manager}"> managerName </span></td>-->
-<!--                </tr>-->
-<!--                <tr th:each="product : ${products}">-->
-<!--                    <td><span th:text="${product.name}"> managerName </span></td>-->
-<!--                    <td><span th:text="${product.price}"> managerName </span></td>-->
-<!--                    <td><span th:text="${product.description}"> managerName </span></td>-->
-<!--                </tr>-->
-<!--            </tr>-->
-<!--        </div>-->
 </body>
 </html>

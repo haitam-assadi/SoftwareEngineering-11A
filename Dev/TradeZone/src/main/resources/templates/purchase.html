@@ -10,35 +10,23 @@
 
 <div class="container py-3">
     <header>
-        <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
-            <a class="d-flex align-items-center link-body-emphasis text-decoration-none">
-                <span class="fs-4" th:text="${name}"></span>
-            </a>
+        <div th:replace="fragments/header :: header(controller=${controller}, currentPage='purchase')"></div>
 
-            <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto nav nav-tabs">
-                <a class="nav-link active py-2 link-body-emphasis text-decoration-none" style="color:#1cc8b8" href="purchase">Purchase</a>
-                <a class="nav-link py-2 link-body-emphasis text-decoration-none" href="/">Home Page</a>
-                <a class="nav-link py-2 link-body-emphasis text-decoration-none" href="searchStore">Search for stores</a>
-                <a th:if="${logged}" class="nav-link py-2 link-body-emphasis text-decoration-none" href="role_page">My stores</a>
-                <a class="nav-link py-2 link-body-emphasis text-decoration-none" href="cart">My Cart</a>
-                <a th:if="!${logged}" class="nav-link py-2 link-body-emphasis text-decoration-none" href="register">Register</a>
-                <a th:if="!${logged}" class="nav-link py-2 link-body-emphasis text-decoration-none" href="login">Login</a>
-                <a th:if="${logged}" class="nav-link py-2 link-body-emphasis text-decoration-none" href="logout">Logout</a>
-            </nav>
-        </div>
     </header>
 
     <main>
         <form class="container needs-validation" novalidate="" action="purchase" method="post">
             <div class="row justify-content-center">
-                <div th:if="${success}" class="alert alert-success text-center alert-dismissible fade show" role="alert">
-                    <h4 th:text="${message}"></h4>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-                <div th:if="${fail}" class="alert alert-danger text-center alert-dismissible fade show" role="alert">
-                    <h4 th:text="${message}"></h4>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
+<!--                <div th:if="${success}" class="alert alert-success text-center alert-dismissible fade show" role="alert">-->
+<!--                    <h4 th:text="${message}"></h4>-->
+<!--                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>-->
+<!--                </div>-->
+<!--                <div th:if="${fail}" class="alert alert-danger text-center alert-dismissible fade show" role="alert">-->
+<!--                    <h4 th:text="${message}"></h4>-->
+<!--                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>-->
+<!--                </div>-->
+                <div th:replace="fragments/alert :: alert(${alert})"></div>
+
 
                 <div th:if="${!done}" class="col-md-7 col-lg-8">
                     <div class="row g-3">
@@ -88,7 +76,7 @@
                     <div class="row gy-3">
                         <div class="col-md-6">
                             <label for="cardNumber" class="form-label">Credit Card Number</label>
-                            <input type="text" class="form-control" id="cardNumber" >
+                            <input type="text" class="form-control" id="cardNumber" name="cardNumber">
 <!--                            <div class="invalid-feedback">-->
 <!--                                Credit card number is required-->
 <!--                            </div>-->
@@ -96,7 +84,7 @@
 
                         <div class="col-md-6">
                             <label for="holder" class="form-label">Credit Card Holder</label>
-                            <input type="text" class="form-control" id="holder">
+                            <input type="text" class="form-control" id="holder" name="holder">
                             <!--                    <small class="text-body-secondary">Full name as displayed on card</small>-->
 <!--                            <div class="invalid-feedback">-->
 <!--                                Card holder name is required-->
@@ -105,7 +93,7 @@
 
                         <div class="col-md-2">
                             <label for="month" class="form-label">Month</label>
-                            <input type="text" class="form-control" id="month">
+                            <input type="text" class="form-control" id="month" name="month">
 <!--                            <div class="invalid-feedback">-->
 <!--                                Expiration date required-->
 <!--                            </div>-->
@@ -113,7 +101,7 @@
 
                         <div class="col-md-2">
                             <label for="year" class="form-label">Year</label>
-                            <input type="text" class="form-control" id="year" >
+                            <input type="text" class="form-control" id="year" name="year">
 <!--                            <div class="invalid-feedback">-->
 <!--                                Expiration date required-->
 <!--                            </div>-->
@@ -121,7 +109,7 @@
 
                         <div class="col-md-2">
                             <label for="cvv" class="form-label">CVV</label>
-                            <input type="text" class="form-control" id="cvv">
+                            <input type="text" class="form-control" id="cvv" name="cvv">
 <!--                            <div class="invalid-feedback">-->
 <!--                                CVV required-->
 <!--                            </div>-->
@@ -129,7 +117,7 @@
 
                         <div class="col-md-6">
                             <label for="id" class="form-label">ID</label>
-                            <input type="text" class="form-control" id="id">
+                            <input type="text" class="form-control" id="id" name="id">
 <!--                            <div class="invalid-feedback">-->
 <!--                                ID is required-->
 <!--                            </div>-->
@@ -157,7 +145,7 @@
 
         <form th:if="${!done}" action="purchase" method="post">
             <div class="row container justify-content-center text-center align-items-center mt-5">
-                <h4 class="col-3 card-title pricing-card-title" th:text="${'Total Price: ' + cartTotalPrice + ' $'}"></h4>
+                <h4 class="col-3 card-title pricing-card-title" th:text="${'Total Price: ' + controller.cartTotalPrice + ' $'}"></h4>
                 <button type="submit" class="col-2 btn bt-lg btn-info">Continue to checkout</button>
             </div>
         </form >
@@ -165,7 +153,6 @@
 
         <div th:if="${done}">
              <div class="row container justify-content-center text-center align-items-center mt-5">
-        <!-- <h4 class="col-auto card-title pricing-card-title">Your order has been successfully received!</h4>-->
                 <a class="col-auto" href="/"><button type="submit" class="w-100 btn bt-lg btn-info">Continue Shopping</button></a>
              </div>
         </div>

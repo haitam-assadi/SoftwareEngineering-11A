@@ -712,3 +712,159 @@ fail in purchasing: Card Number cant be null
 מאי 15, 2023 8:52:13 אחה״צ DomainLayer.LoggerManager sendErrorLog
 WARNING: 
 fail in purchasing: Card Number cant be null
+מאי 16, 2023 12:36:51 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Card Number cant be null
+מאי 16, 2023 12:50:29 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: user1 does not have permission to addNewProduct for store baraa store
+מאי 16, 2023 12:54:33 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: user1_first_store_product2 product does not exist in this store!
+מאי 19, 2023 4:48:14 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: incorrect password!
+מאי 19, 2023 6:28:06 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: stock does already contains this product milk
+מאי 19, 2023 6:28:19 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: stock does already contains this product milk
+מאי 19, 2023 6:30:34 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: userName guest_3 does not exists!
+מאי 19, 2023 6:31:03 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: userName guest_3 does not exists!
+מאי 19, 2023 6:34:55 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting products info: user1_first_store is not Active!
+מאי 19, 2023 7:02:01 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting products info: user1_first_store is not Active!
+מאי 19, 2023 7:02:05 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting products info: user1_first_store is not Active!
+מאי 19, 2023 9:34:00 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: userName guest does not exists!
+מאי 19, 2023 9:34:08 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: memberuser1 is already store owner
+מאי 19, 2023 11:20:56 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: string is null or empty
+מאי 20, 2023 12:38:27 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: user does not exists!
+מאי 20, 2023 12:48:02 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: user does not exists!
+מאי 20, 2023 1:02:02 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: user1_first_store_product1 have only 100 amount in stock!
+מאי 20, 2023 1:16:34 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Card Number cant be null
+מאי 20, 2023 1:30:41 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting products info: productName is null or empty!
+מאי 20, 2023 2:07:22 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in creating store: store: user1_first_Store is already store
+מאי 20, 2023 2:45:27 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: userName guest does not exists!
+מאי 20, 2023 3:07:23 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in logging out: string is null or empty
+מאי 20, 2023 3:13:52 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: incorrect password!
+מאי 20, 2023 3:32:09 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: incorrect password!
+מאי 20, 2023 8:24:09 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: user does not exists!
+מאי 20, 2023 11:02:37 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: user1_first_store_product1 have only 100 amount in stock!
+מאי 20, 2023 11:19:26 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store name is null or empty
+מאי 20, 2023 11:28:15 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: bag already contains user1_first_store_product2 product
+מאי 21, 2023 1:42:29 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting products info: user1_second_store is not Active!
+מאי 21, 2023 1:50:14 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: memberuser1 is already store owner
+מאי 21, 2023 1:50:19 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: userName guest does not exists!
+מאי 21, 2023 1:50:33 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: userName guest does not exists!
+מאי 21, 2023 1:54:02 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: Cannot invoke "String.strip()" because "storeName" is null
+מאי 21, 2023 1:54:26 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: Cannot invoke "String.strip()" because "storeName" is null
+מאי 21, 2023 1:55:15 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: Cannot invoke "String.strip()" because "storeName" is null
+מאי 21, 2023 1:55:18 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: Cannot invoke "String.strip()" because "storeName" is null
+מאי 21, 2023 2:24:16 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: string is null or empty
+מאי 21, 2023 2:36:07 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: string is null or empty
+מאי 21, 2023 2:36:39 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: Cannot invoke "String.strip()" because "storeName" is null
+מאי 21, 2023 2:40:22 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: userName guest does not exists!
+מאי 22, 2023 12:32:24 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: Cannot invoke "String.strip()" because "storeName" is null
+מאי 22, 2023 12:35:14 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: userName guest does not exists!
+מאי 22, 2023 1:41:59 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: memberbaraa is already store owner
+מאי 22, 2023 1:43:19 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: memberbaraa is already store owner
+מאי 22, 2023 2:02:00 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store manager: memberalaa is already store manager
+מאי 22, 2023 2:24:38 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store manager: memberbaraa is already store owner
+מאי 22, 2023 2:24:59 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store manager: memberalaa is already store owner
+מאי 22, 2023 2:26:55 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: baraa is not owner for user1_first_store
+מאי 22, 2023 2:27:08 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in closing the store: baraais not the founder of the store
+מאי 22, 2023 2:27:15 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in removing product from store: baraa does not have permission to removeProduct for store user1_first_store
+מאי 22, 2023 2:30:09 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in closing the store: alaais not the founder of the store
+מאי 22, 2023 10:24:51 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store manager: memberbaraa is already store owner

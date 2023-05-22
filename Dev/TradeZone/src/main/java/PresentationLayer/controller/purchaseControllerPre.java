@@ -15,19 +15,14 @@ public class purchaseControllerPre {
     private Server server = Server.getInstance();
     private GeneralController controller = GeneralController.getInstance();
     boolean done = false;
-    Alert alert = new Alert();
+    Alert alert = Alert.getInstance();
 
     @GetMapping("/purchase")
     public String purchase(Model model){
-        model.addAttribute("name", controller.getName());
-        model.addAttribute("hasRole", controller.getHasRole());
-        model.addAttribute("logged", controller.getLogged());
-        model.addAttribute("success", alert.isSuccess());
-        model.addAttribute("fail", alert.isFail());
-        model.addAttribute("message", alert.getMessage());
+        model.addAttribute("controller", controller);
+        model.addAttribute("alert", alert.copy());
         model.addAttribute("done", done);
-        model.addAttribute("cartTotalPrice", controller.getCartTotalPrice());
-        alert = new Alert();
+        alert.reset();
         done = false;
         return "purchase";
     }
@@ -57,5 +52,4 @@ public class purchaseControllerPre {
         }
         return "redirect:/purchase";
     }
-
 }
