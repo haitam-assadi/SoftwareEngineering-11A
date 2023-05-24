@@ -61,8 +61,7 @@
 		<div th:replace="fragments/alert :: alert(${alert})"></div>
 
 		<h3 th:if="${products != null && !products.empty}">Search results:</h3>
-<!--		th:replace="fragments/product :: product(${controller}, ${products}, 'true')" TODO:-->
-		<div th:if="${products != null && !products.empty}" th:replace="fragments/product :: product(${controller}, ${products})"></div>
+		<div th:if="${products != null && !products.empty}" th:replace="fragments/product :: product(${controller}, ${products}, 'true')"></div>
 	</main>
 </div>
 </body>

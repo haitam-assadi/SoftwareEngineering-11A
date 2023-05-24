@@ -2956,3 +2956,72 @@ fail in adding product to cart: bag already contains gaming mouse 1 product
 מאי 22, 2023 2:51:55 אחה״צ DomainLayer.LoggerManager sendErrorLog
 WARNING: 
 fail in adding product to cart: bag already contains gaming mouse 1 product
+מאי 24, 2023 3:27:31 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: string is null or empty
+מאי 24, 2023 3:27:39 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: string is null or empty
+מאי 24, 2023 5:53:41 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: incorrect password!
+מאי 24, 2023 8:02:35 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: Cannot invoke "String.strip()" because "storeName" is null
+מאי 24, 2023 8:02:52 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: Cannot invoke "String.strip()" because "storeName" is null
+מאי 24, 2023 8:05:43 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: Cannot invoke "String.strip()" because "storeName" is null
+מאי 24, 2023 8:27:07 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: Cannot invoke "String.strip()" because "storeName" is null
+מאי 24, 2023 8:30:10 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting products info: user1_second_store is not Active!
+מאי 24, 2023 8:38:06 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting products info: user1_first_store is not Active!
+מאי 24, 2023 8:39:03 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting products info: user1_first_store is not Active!
+מאי 24, 2023 8:39:06 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: userName guest_5 does not exists!
+מאי 24, 2023 8:39:15 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: userName guest_5 does not exists!
+מאי 24, 2023 8:39:20 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting products info: user1_first_store is not Active!
+מאי 24, 2023 8:39:28 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: userName guest_5 does not exists!
+מאי 24, 2023 8:42:54 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting products info: user1_first_store is not Active!
+מאי 24, 2023 8:43:26 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: userName guest_5 does not exists!
+מאי 24, 2023 8:46:38 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting products info: user1_first_store is not Active!
+מאי 24, 2023 8:46:41 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting products info: user1_first_store is not Active!
+מאי 24, 2023 8:46:46 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting products info: user1_first_store is not Active!
+מאי 24, 2023 8:48:10 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting products info: user1_first_store is not Active!
+מאי 24, 2023 8:48:13 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting products info: user1_first_store is not Active!
+מאי 24, 2023 8:52:10 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting products info: user1_first_store is not Active!
+מאי 24, 2023 8:58:43 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting products info: user1_first_store is not Active!

@@ -175,4 +175,15 @@ public class Server {
         return service.myStores(memberUserName);
     }
 
+    public  ResponseT<Boolean> systemManagerCloseStore(String managerName, String storeName){
+        return service.systemManagerCloseStore(managerName,storeName);
+    }
+
+    public ResponseT<Boolean> isSystemManager(String userName){
+        return service.isSystemManager(userName);
+    }
+
+    public ResponseT<Integer> getProductAmountInStore(String userName, String storeName, String productName){
+        return service.getProductAmountInStore(userName, storeName, productName);
+    }
 }

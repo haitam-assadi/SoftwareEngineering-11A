@@ -54,6 +54,7 @@
                             <div class="row container align-items-center mb-3">
                                 <!--                                  card-title pricing-card-title-->
                                 <h4 class="col fw-normal" th:text="${'Store Name: ' + store.storeName}"></h4>
+                                <h4 th:if="${store != null && !store.isActive}" class="col-auto fw-normal" style="color:red">Closed</h4>
                                 <input type="hidden" name="storeName" th:value="${store.storeName}">
                                 <button type="submit" class="col-2 btn btn-outline-success">Show Store</button>
                             </div>

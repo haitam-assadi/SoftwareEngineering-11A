@@ -33,6 +33,7 @@ public class Product {
     public int getAmount(){
         return this.amount;
     }
+
     public Double getTotalPrice() {
         totalPrice = round(price * amount, 2);
         return totalPrice;

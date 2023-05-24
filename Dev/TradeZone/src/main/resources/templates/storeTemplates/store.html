@@ -19,13 +19,10 @@
             <a th:classappend="${currentPage == 'stock' ? 'active' : ''}" class="nav-link" href="stock">Stock</a>
             <a th:classappend="${currentPage == 'workers' ? 'active' : ''}" class="nav-link" href="workers">Workers</a>
             <a th:classappend="${currentPage == 'deals' ? 'active' : ''}" class="nav-link" href="deals">Deals</a>
-            <!--            button close store-->
         </nav>
-    <div class="row">
-        <div class="col"></div>
-        <h3 th:if="${store != null}" class="col card-title pricing-card-title mb-3 text-center" th:text="${store.storeName}"></h3>
-<!--        th:if="${store.isActive}" TODO:-->
-        <form  class="col" action="closeStore" method="post">
+    <div class="row justify-content-end">
+        <h3 th:if="${store != null}" class="col-9 card-title pricing-card-title mb-3 text-center" th:text="${store.storeName}"></h3>
+        <form th:if="${store.isActive}" class="col-auto" action="closeStore" method="post">
             <div class="form-check mb-3">
                 <input class="form-check-input" type="checkbox" value="" id="invalidCheckClose" required>
                 <label class="form-check-label w-100" for="invalidCheckClose">
@@ -34,25 +31,22 @@
             </div>
         </form>
 
-<!--        <form class="col" action="#" method="post">-->
-        <!--        th:if="${!store.isActive}" TODO: add this condition and uncomment div-->
-<!--            <div class="col form-check mb-3">-->
-<!--                <input class="form-check-input" type="checkbox" value="" id="invalidCheckOpen" required>-->
-<!--                <label class="form-check-label w-100" for="invalidCheckOpen">-->
-<!--                    <button type="submit" class="btn btn-outline-success">Open Store</button>-->
-<!--                </label>-->
-<!--            </div>-->
-<!--        </form>-->
+        <form th:if="${!store.isActive}" class="col-auto" action="store" method="post">
+            <div class="form-check mb-3">
+                <input class="form-check-input" type="checkbox" value="" id="invalidCheckOpen" required>
+                <label class="form-check-label w-100" for="invalidCheckOpen">
+                    <button type="submit" class="btn btn-outline-success">Open Store</button>
+                </label>
+            </div>
+        </form>
     </div>
-    <!--        TODO: uncomment two lines-->
-    <!--        <h4 th:if="${store != null && store.isActive}" class="fw-normal mb-3 text-center" style="color:#13ca13">Open</h4>-->
-    <!--        <h4 th:if="${store != null && !store.isActive}" class="fw-normal mb-3 text-center" style="color:red">Closed</h4>-->
+    <h4 th:if="${store != null && store.isActive}" class="fw-normal mb-3 text-center" style="color:#13ca13">Open</h4>
+    <h4 th:if="${store != null && !store.isActive}" class="fw-normal mb-3 text-center" style="color:red">Closed</h4>
 
 
     <div th:replace="fragments/alert :: alert(${alert})"></div>
 
 <!--    <main>-->
-<!--        th:if="${currentPage == 'stock'}"-->
         <div th:if="${currentPage == 'stock'}">
             <div th:replace="storeTemplates/stock :: stock(store=${store})"></div>
         </div>
@@ -60,156 +54,9 @@
             <div th:replace="storeTemplates/workers :: workers(store=${store}, workers=${workers})"></div>
         </div>
         <div th:if="${currentPage == 'deals'}">
-            <div th:replace="storeTemplates/deals :: deals(store=${store})"></div>
+            <div th:replace="storeTemplates/deals :: deals(deals=${deals})"></div>
         </div>
-<!--        <div th:replace="storeTemplates/deals :: ???)"></div>-->
-
-
-<!--        Two columns-->
-<!--        <div class="row g-5 mt-3">-->
-<!--&lt;!&ndash;            appoint member&ndash;&gt;-->
-<!--            <div class="col-md-5 col-lg-4 order-md-last">-->
-<!--                <div class="mb-4">-->
-<!--                    <p class="card mb-4">-->
-<!--                        <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">-->
-<!--                            Add Product-->
-<!--                        </a>-->
-<!--                    </p>-->
-<!--                    <form action="addProductToStore" method="post">-->
-<!--                        <div class="collapse" id="collapseExample">-->
-<!--                            <div class="card card-body">-->
-<!--                                <label for="name" class="form-label">Product name: </label>-->
-<!--                                <input required type="text" class="form-control mb-2" name="name" id="name" placeholder="Enter product name">-->
-
-<!--                                <label for="category" class="form-label">Category: </label>-->
-<!--                                <input required type="text" class="form-control mb-2" name="category" id="category" placeholder="Enter category">-->
-
-<!--                                <label for="productPrice" class="form-label">Price: </label>-->
-<!--                                <input required type="number" step="any" class="form-control mb-2" min="0" name="price" id="productPrice" placeholder="Enter price">-->
-
-<!--                                <label for="description" class="form-label">Description: </label>-->
-<!--                                <input type="text" class="form-control mb-2" name="description" id="description" placeholder="Enter description">-->
-
-<!--                                <label for="amount" class="form-label">Amount: </label>-->
-<!--                                <input required type="number" class="form-control mb-2" min="0" name="amount" id="amount" placeholder="Enter amount">-->
-
-<!--                                <button class="container btn btn-outline-success mt-3 mb-3" style="width:150px" type="submit">Add To Store</button>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </form>-->
-<!--                </div>-->
-
-<!--                <form action="appointMember" method="post">-->
-<!--                    <div>-->
-<!--                        &lt;!&ndash;                    <label for="storeName" class="form-label">Search for stores:</label>&ndash;&gt;-->
-<!--                        <input type="text" class="form-control" id="memberName" name="memberName" placeholder="enter member name">-->
-<!--                    </div>-->
-
-<!--                    <div class="my-3">-->
-<!--                        <div class="form-check mb-2">-->
-<!--                            <input id="appointAsOwner" value="appointAsOwner" name="appointAs" type="radio" class="form-check-input" checked>-->
-<!--                            <label class="form-check-label" for="appointAsOwner">Appoint As Owner</label>-->
-<!--                        </div>-->
-<!--                        <div class="form-check mb-3">-->
-<!--                            <input id="appointAsManager" value="appointAsManager" name="appointAs" type="radio" class="form-check-input">-->
-<!--                            <label class="form-check-label" for="appointAsManager">Appoint As Manager</label>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--&lt;!&ndash;                    TODO: add permissions&ndash;&gt;-->
-<!--                    <div class="form-check mb-4">-->
-<!--                        <input class="form-check-input" type="checkbox" value="" id="invalidCheckAppoint" required>-->
-<!--                        <label class="form-check-label" for="invalidCheckAppoint">-->
-<!--                            <button type="submit" class="w-100 btn btn-outline-primary">Appoint</button>-->
-<!--                        </label>-->
-<!--                    </div>-->
-<!--                </form>-->
-<!--                <form action="closeStore" method="post">-->
-<!--                    <div class="form-check mb-3">-->
-<!--                        <input class="form-check-input" type="checkbox" value="" id="invalidCheckClose" required>-->
-<!--                        <label class="form-check-label" for="invalidCheckClose">-->
-<!--                            <button type="submit" class="w-100 btn btn-outline-danger">Close Store</button>-->
-<!--                        </label>-->
-<!--                    </div>-->
-<!--                </form>-->
-<!--            </div>-->
-
-<!--&lt;!&ndash;            Products&ndash;&gt;-->
-<!--            <div class="col-md-7 col-lg-8">-->
-<!--                <div th:if="${store != null && store.productsInfo != null && store.productsInfo.empty}" class="alert alert-warning text-center" role="alert">-->
-<!--                    <h2>No Products In This Store</h2>-->
-<!--                </div>-->
-
-<!--                <div th:if="${store != null && store.productsInfo != null && !store.productsInfo.empty}" class="row row-cols-1 mb-3">-->
-<!--                    <div class="col" th:each="product : ${store.productsInfo}">-->
-<!--                        <div class="card mb-4 rounded-3 shadow-sm">-->
-<!--                            <div class="card-header py-3 text-center">-->
-<!--                                <div class="row align-items-center">-->
-<!--                                    <h4 class="col my-0 fw-normal" th:text="${product.name}">Name</h4>-->
-<!--                                    <form class="col-auto" action="removeProduct" method="post">-->
-<!--                                        <input type="hidden" name="name" th:value="${product.name}">-->
-<!--                                        <input type="hidden" name="storeName" th:value="${product.storeName}">-->
-<!--                                        <input type="hidden" name="price" th:value="${product.price}">-->
-<!--                                        &lt;!&ndash;                                    // TODO: change amount to product.amount in stock&ndash;&gt;-->
-<!--                                        <input type="hidden" name="amount" value="1">-->
-<!--                                        <div class="row align-items-center">-->
-<!--                                            <div class="col-auto form-check">-->
-<!--                                                <input class="form-check-input" type="checkbox" value="" id="invalidCheckRemove" required>-->
-<!--                                                <label class="form-check-label" for="invalidCheckRemove">-->
-<!--                                                    <button type="submit" class="w-100 btn btn-outline-danger">Remove Product</button>-->
-<!--                                                </label>-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-<!--                                    </form>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                            <div class="card-body">-->
-<!--                                &lt;!&ndash;                        <h5 th:text="${'Store Name: ' + product.storeName}"></h5>&ndash;&gt;-->
-<!--                                <p th:text="${'Description: ' + product.description}"></p>-->
-<!--                                <form action="updateProductPrice" method="post">-->
-<!--                                    <input type="hidden" name="name" th:value="${product.name}">-->
-<!--                                    <input type="hidden" name="storeName" th:value="${product.storeName}">-->
-<!--&lt;!&ndash;                                    // TODO: change amount to product.amount in stock&ndash;&gt;-->
-<!--                                    <input type="hidden" name="amount" value="1">-->
-<!--                                    <div class="row mb-3 align-items-center">-->
-<!--                                        <div class="col-auto">-->
-<!--                                            <h4><label for="price" class="col-form-label">Price:</label></h4>-->
-<!--                                        </div>-->
-<!--                                        <div class="col-auto">-->
-<!--                                            <input type="number" step="any" class="form-control" id="price" style="width:100px" name="price" th:value="${product.price}" min="1" data-siid="si_input_1">-->
-<!--                                        </div>-->
-<!--                                        <div class="col-auto form-check">-->
-<!--                                            <input class="form-check-input" type="checkbox" value="" id="invalidCheckPrice" required>-->
-<!--                                            <label class="form-check-label" for="invalidCheckPrice">-->
-<!--                                                <button type="submit" class="w-100 btn btn-outline-success">Update Price</button>-->
-<!--                                            </label>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </form>-->
-<!--&lt;!&ndash;                                <form action="removeProduct" method="post">&ndash;&gt;-->
-<!--&lt;!&ndash;                                    <input type="hidden" name="name" th:value="${product.name}">&ndash;&gt;-->
-<!--&lt;!&ndash;                                    <input type="hidden" name="storeName" th:value="${product.storeName}">&ndash;&gt;-->
-<!--&lt;!&ndash;                                    <input type="hidden" name="price" th:value="${product.price}">&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;                                    // TODO: change amount to product.amount in stock&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;                                    <input type="hidden" name="amount" value="1">&ndash;&gt;-->
-<!--&lt;!&ndash;                                    <div class="row mb-3 align-items-center">&ndash;&gt;-->
-<!--&lt;!&ndash;                                        <div class="col-auto form-check mb-3">&ndash;&gt;-->
-<!--&lt;!&ndash;                                            <input class="form-check-input" type="checkbox" value="" id="invalidCheckRemove" required>&ndash;&gt;-->
-<!--&lt;!&ndash;                                            <label class="form-check-label" for="invalidCheckRemove">&ndash;&gt;-->
-<!--&lt;!&ndash;                                                <button type="submit" class="w-100 btn btn-outline-danger">Remove Product</button>&ndash;&gt;-->
-<!--&lt;!&ndash;                                            </label>&ndash;&gt;-->
-<!--&lt;!&ndash;                                        </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                                    </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                                </form>&ndash;&gt;-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
 <!--    </main>-->
 </div>
-
-
-
 </body>
 </html>
