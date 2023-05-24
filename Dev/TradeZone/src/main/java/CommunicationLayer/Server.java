@@ -1,6 +1,7 @@
 package CommunicationLayer;
 
 import DTO.*;
+import DomainLayer.LoggerManager;
 import ServiceLayer.ResponseT;
 import ServiceLayer.SystemService;
 
@@ -137,6 +138,10 @@ public class Server {
 
     public ResponseT<Boolean> appointOtherMemberAsStoreManager(String memberUserName, String storeName, String newManagerUserName){
         return service.appointOtherMemberAsStoreManager(memberUserName, storeName, newManagerUserName);
+    }
+
+    public ResponseT<Boolean> AppointMemberAsSystemManager(String managerName,String otherMemberName){
+        return service.AppointMemberAsSystemManager(managerName, otherMemberName);
     }
 
     public ResponseT<Boolean> changeManagerPermissions(String memberUserName, String storeName, String managerUserName){

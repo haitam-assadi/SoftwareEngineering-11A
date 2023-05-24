@@ -33,8 +33,10 @@ public class UserController {
     }
 
     public String firstManagerInitializer() {
-        String user = "systemmanager1";
-        Member member = new Member(user,Security.Encode("systemmanager1Pass"));
+//        String user = "systemmanager1";
+//        Member member = new Member(user,Security.Encode("systemmanager1Pass"));
+        String user = "manager1";
+        Member member = new Member(user,Security.Encode("Ss12345678"));
         membersNamesConcurrentSet.add(user);
         members.put(user,member);
         SystemManager systemManager = new SystemManager(member);

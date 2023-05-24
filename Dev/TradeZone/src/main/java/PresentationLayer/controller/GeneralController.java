@@ -20,6 +20,7 @@ public class GeneralController {
     private String name;
     private boolean hasRole;
     private boolean logged;
+    private boolean systemManager;
     private String currentPage;
     private double cartTotalPrice;
     private List<Bag> cart;
@@ -36,6 +37,7 @@ public class GeneralController {
         this.name = "";
         this.hasRole = false;
         this.logged = false;
+        this.systemManager = false;
         currentPage = "/";
         this.cartTotalPrice = 0;
         cart = new ArrayList<>();
@@ -63,6 +65,14 @@ public class GeneralController {
 
     public void setLogged(boolean logged){
         this.logged = logged;
+    }
+
+    public boolean isSystemManager() {
+        return systemManager;
+    }
+
+    public void setSystemManager(boolean systemManager) {
+        this.systemManager = systemManager;
     }
 
     public String getCurrentPage() {

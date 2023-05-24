@@ -26,7 +26,8 @@
         <a th:if="${currentPage == 'purchase'}" th:classappend="${currentPage == 'purchase' ? 'active color:#d106f0' : ''}" class="nav-link py-2 link-body-emphasis text-decoration-none" href="purchase">Purchase</a>
         <a th:classappend="${currentPage == 'index' ? 'active color:#d106f0' : ''}" class="nav-link py-2 link-body-emphasis text-decoration-none" href="/">Home Page</a>
         <a th:classappend="${currentPage == 'searchStore' ? 'active color:#d106f0' : ''}" class="nav-link py-2 link-body-emphasis text-decoration-none" href="searchStore">Search for stores</a>
-        <a th:if="${controller.logged}" th:classappend="${currentPage == 'myStores' ? 'active color:#d106f0' : ''}" class="nav-link py-2 link-body-emphasis text-decoration-none" href="myStores">My stores</a>
+        <a th:if="${controller.logged && !controller.systemManager}" th:classappend="${currentPage == 'myStores' ? 'active color:#d106f0' : ''}" class="nav-link py-2 link-body-emphasis text-decoration-none" href="myStores">My stores</a>
+        <a th:if="${controller.systemManager}" th:classappend="${currentPage == 'system' ? 'active color:#d106f0' : ''}" class="nav-link py-2 link-body-emphasis text-decoration-none" href="system">System Manager</a>
         <a th:classappend="${currentPage == 'cart'} ? 'active color-important' : ''" class="nav-link py-2 link-body-emphasis text-decoration-none" href="cart">My Cart</a>
         <a th:if="!${controller.logged}" th:classappend="${currentPage == 'register' ? 'active color:#d106f0' : ''}" class="nav-link py-2 link-body-emphasis text-decoration-none" href="register">Register</a>
         <a th:if="!${controller.logged}" th:classappend="${currentPage == 'login' ? 'active color:#d106f0' : ''}" class="nav-link py-2 link-body-emphasis text-decoration-none" href="login">Login</a>

@@ -38,12 +38,17 @@ public class loginController {
         }
         controller.setName(response.value);
         ResponseT<Boolean> hasRole = server.hasRole(controller.getName());
-        if(response.ErrorOccurred){
+        if(hasRole.ErrorOccurred){
             model.addAttribute("isError", true);
             model.addAttribute("error_message", response.errorMessage);
             model.addAttribute("name", controller.getName());
             return "login";
         }
+        ResponseT<Boolean> isSystemManager = server.isSystemManager(controller.getName());
+        if(isSystemManager.ErrorOccurred){
+            controller.setSystemManager(false);
+        }
+        else controller.setSystemManager(true);
         controller.setHasRole(hasRole.getValue());
         controller.setLogged(true);
         model.addAttribute("logged", controller.getLogged());

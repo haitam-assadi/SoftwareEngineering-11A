@@ -401,7 +401,7 @@ public class SystemService {
         }
     }
 
-    public ResponseT<Boolean> AppointMemberAsSystemManager(String managerName,String otherMemberName) throws Exception {
+    public ResponseT<Boolean> AppointMemberAsSystemManager(String managerName,String otherMemberName){
         try{
             String loggerMsg ="\nAppointMemberAsSystemManager(String managerName, String otherMemberName)\n"+
                     "in " + this.nowTime() + " the system manager " + managerName + " tries to assign other user as system manager  - AppointMemberAsSystemManager("+managerName+", "+otherMemberName+")" ;

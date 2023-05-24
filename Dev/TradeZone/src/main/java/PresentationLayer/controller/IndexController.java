@@ -103,6 +103,7 @@ public class IndexController {
 		}
 		controller.setName(response.value);
 		controller.setLogged(false);
+		controller.setSystemManager(false);
 		controller.setHasRole(false);
 //		products = null; // TODO: ???
 		return "redirect:/"; // TODO: redirect + request
