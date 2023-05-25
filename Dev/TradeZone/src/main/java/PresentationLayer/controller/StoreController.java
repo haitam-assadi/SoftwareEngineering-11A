@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
 @Controller
@@ -56,8 +57,9 @@ public class StoreController {
 
 
     @PostMapping("/store")
-    public String showStore(@ModelAttribute Store store1, Model model){
-        ResponseT<StoreDTO> response = server.getStoreInfo(controller.getName(), store1.getStoreName());
+//    @ModelAttribute Store store1
+    public String showStore(@RequestParam String storeName, Model model){
+        ResponseT<StoreDTO> response = server.getStoreInfo(controller.getName(), storeName);
         if(response.ErrorOccurred){
             alert.setFail(true);
             alert.setMessage(response.errorMessage);
@@ -67,7 +69,7 @@ public class StoreController {
             return "redirect:/store";
         }
         store = response.getValue();
-        storeName = store.storeName;
+        this.storeName = store.storeName;
         currentPage = "stock";
         return "redirect:/store";
     }
@@ -110,6 +112,8 @@ public class StoreController {
     public String updateProductInfo(@ModelAttribute Product product){
         ProductDTO p = getProductFromStore(product.getName());
         ResponseT<Boolean> response;
+        if(p == null)
+            return "redirect:/stock";
         if(!product.getDescription().equals(p.description)){
             response = server.updateProductDescription(controller.getName(), store.storeName, product.getName(), product.getDescription());
             if(response.ErrorOccurred){
@@ -273,7 +277,8 @@ public class StoreController {
 
 //    ------------------------- DEALS -------------------------
     @GetMapping("/deals")
-    public String getSeals(){
+    public String getSeals(HttpServletRequest request){
+        String referer = request.getHeader("referer");
 //        TODO: uncomment
 //        ResponseT<List<DealDTO>> response = server.getStoreDeals(controller.getName(), store.storeName);
 //        if(response.ErrorOccurred){
@@ -284,7 +289,8 @@ public class StoreController {
 //        deals = buildDeals(response.getValue());
         deals = delete(); // TODO: delete this line + delete() func
         currentPage = "deals";
-        return "redirect:/store";
+        return "redirect:" + referer;
+//        return "redirect:/store";
     }
 
     private List<Deal> delete(){
@@ -323,21 +329,21 @@ public class StoreController {
         return workers;
     }
 
-    private List<Deal> buildDeals(List<DealDTO> dealDTOS){
-        List<Deal> deals = new LinkedList<>();
-        for(DealDTO dealDTO : dealDTOS){
-            Map<String, List<Double>> products = new HashMap<>();
-            for(String productName : dealDTO.products_amount.keySet()){
-                List<Double> amount_price = new LinkedList<>();
-                amount_price.add(0, dealDTO.products_amount.get(productName)*1.0);
-                amount_price.add(1, dealDTO.products_prices.get(productName));
-                products.put(productName, amount_price);
-            }
-            Deal deal = new Deal(dealDTO.storeName, dealDTO.date, dealDTO.username, products, dealDTO.totalPrice);
-            deals.add(deal);
-        }
-        return deals;
-    }
+//    public static List<Deal> buildDeals(List<DealDTO> dealDTOS){
+//        List<Deal> deals = new LinkedList<>();
+//        for(DealDTO dealDTO : dealDTOS){
+//            Map<String, List<Double>> products = new HashMap<>();
+//            for(String productName : dealDTO.products_amount.keySet()){
+//                List<Double> amount_price = new LinkedList<>();
+//                amount_price.add(0, dealDTO.products_amount.get(productName)*1.0);
+//                amount_price.add(1, dealDTO.products_prices.get(productName));
+//                products.put(productName, amount_price);
+//            }
+//            Deal deal = new Deal(dealDTO.storeName, dealDTO.date, dealDTO.username, products, dealDTO.totalPrice);
+//            deals.add(deal);
+//        }
+//        return deals;
+//    }
 
     private ProductDTO getProductFromStore(String productName){
         for(ProductDTO p : store.productsInfo){

@@ -8,12 +8,14 @@ public class System {
     private List<String> allMembers;
     private List<String> allOnlineMembers;
     private List<String> allStores;
+    private List<String> allSystemManagers;
 
     public System(){
         allGuests = new LinkedList<>();
         allMembers = new LinkedList<>();
         allOnlineMembers = new LinkedList<>();
         allStores = new LinkedList<>();
+        allSystemManagers = new LinkedList<>();
     }
 
     public List<String> getAllGuests() {
@@ -46,5 +48,13 @@ public class System {
 
     public void setAllStores(List<String> allStores) {
         this.allStores = allStores;
+    }
+
+    public List<String> getAllSystemManagers() {
+        return allSystemManagers;
+    }
+
+    public void setAllSystemManagers(List<String> allSystemManagers) {
+        this.allSystemManagers = allSystemManagers;
     }
 }

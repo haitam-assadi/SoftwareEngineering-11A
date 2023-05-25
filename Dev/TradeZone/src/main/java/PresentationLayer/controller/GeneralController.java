@@ -2,16 +2,17 @@ package PresentationLayer.controller;
 
 import CommunicationLayer.Server;
 import DTO.BagDTO;
+import DTO.DealDTO;
 import PresentationLayer.model.Alert;
 import PresentationLayer.model.Bag;
+import PresentationLayer.model.Deal;
 import PresentationLayer.model.Product;
 import ServiceLayer.ResponseT;
 
 import javax.servlet.http.HttpServletRequest;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import static PresentationLayer.controller.CartController.buildCart;
 
@@ -147,6 +148,22 @@ public class GeneralController {
         BigDecimal bd = BigDecimal.valueOf(value);
         bd = bd.setScale(places, RoundingMode.HALF_UP);
         return bd.doubleValue();
+    }
+
+    public static List<Deal> buildDeals(List<DealDTO> dealDTOS){
+        List<Deal> deals = new LinkedList<>();
+        for(DealDTO dealDTO : dealDTOS){
+            Map<String, List<Double>> products = new HashMap<>();
+            for(String productName : dealDTO.products_amount.keySet()){
+                List<Double> amount_price = new LinkedList<>();
+                amount_price.add(0, dealDTO.products_amount.get(productName)*1.0);
+                amount_price.add(1, dealDTO.products_prices.get(productName));
+                products.put(productName, amount_price);
+            }
+            Deal deal = new Deal(dealDTO.storeName, dealDTO.date, dealDTO.username, products, dealDTO.totalPrice);
+            deals.add(deal);
+        }
+        return deals;
     }
 
     public static String determineCurrentPage(HttpServletRequest request) {

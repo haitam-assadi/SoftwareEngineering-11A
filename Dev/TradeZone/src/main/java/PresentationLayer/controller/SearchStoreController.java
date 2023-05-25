@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -30,8 +31,9 @@ public class SearchStoreController {
     }
 
     @PostMapping("/searchStore")
-    public String searchStore(@ModelAttribute Store store1, Model model) {
-        ResponseT<StoreDTO> response = server.getStoreInfo(controller.getName(), store1.getStoreName());
+//    @ModelAttribute Store store1
+    public String searchStore(@RequestParam String storeName, Model model) {
+        ResponseT<StoreDTO> response = server.getStoreInfo(controller.getName(), storeName);
         if(response.ErrorOccurred){
             store = null;
             alert.setFail(true);

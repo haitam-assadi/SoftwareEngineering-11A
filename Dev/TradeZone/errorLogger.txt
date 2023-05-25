@@ -3025,3 +3025,24 @@ fail in getting products info: user1_first_store is not Active!
 מאי 24, 2023 8:58:43 אחה״צ DomainLayer.LoggerManager sendErrorLog
 WARNING: 
 fail in getting products info: user1_first_store is not Active!
+מאי 25, 2023 5:31:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: store: user1_first_store11 does not exists!
+מאי 25, 2023 5:43:20 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: user does not exists!
+מאי 25, 2023 5:43:23 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: baraa store does not exists!
+מאי 25, 2023 5:48:22 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: manager1 is not owner for user1_second_store
+מאי 25, 2023 5:57:40 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: manager1 is not owner for user1_second_store
+מאי 25, 2023 7:00:49 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as system manager: user1 have a role in a store
+מאי 25, 2023 8:03:19 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in logging out: userName guest_6 does not exists!

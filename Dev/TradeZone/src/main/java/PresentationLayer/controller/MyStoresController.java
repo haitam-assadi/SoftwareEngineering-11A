@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.HashMap;
 import java.util.List;
@@ -49,15 +50,16 @@ public class MyStoresController {
     }
 
     @PostMapping("/createStore")
-    public String createStore(@ModelAttribute Store store, Model model){
-        ResponseT<StoreDTO> response = server.createStore(controller.getName(), store.getStoreName());
+//    @ModelAttribute Store store
+    public String createStore(@RequestParam String storeName, Model model){
+        ResponseT<StoreDTO> response = server.createStore(controller.getName(), storeName);
         if(response.ErrorOccurred){
             alert.setFail(true);
             alert.setMessage(response.errorMessage);
             return "redirect:/myStores";
         }
         alert.setSuccess(true);
-        alert.setMessage("Store " + store.getStoreName() + " created");
+        alert.setMessage("Store " + storeName + " created");
         return "redirect:/myStores";
     }
 }

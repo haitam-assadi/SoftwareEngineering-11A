@@ -13,22 +13,36 @@
         <div th:replace="fragments/header :: header(controller=${controller}, currentPage='system')"></div>
     </header>
 
-    <nav class="nav nav-pills nav-fill d-flex justify-content-end mt-2 mb-3">
-        <a th:classappend="${currentPage == 'allStores' ? 'active' : ''}" class="nav-link" href="allStores">All Stores</a>
-        <a th:classappend="${currentPage == 'allUsers' ? 'active' : ''}" class="nav-link" href="allUsers">Users</a>
-        <a th:classappend="${currentPage == 'systemManagers' ? 'active' : ''}" class="nav-link" href="systemManagers">System Managers</a>
-    </nav>
+    <ul class="nav nav-pills nav-fill mt-2 mb-3">
+        <li class="nav-item">
+            <a th:classappend="${currentPage == 'allStores' ? 'active' : ''}" class="nav-link" href="allStores">All Stores</a>
+        </li>
+        <li class="nav-item">
+            <a th:classappend="${currentPage == 'allUsers' ? 'active' : ''}" class="nav-link" href="allUsers">Users</a>
+        </li>
+        <li class="nav-item">
+            <a th:classappend="${currentPage == 'systemManagers' ? 'active' : ''}" class="nav-link" href="systemManagers">System Managers</a>
+        </li>
+
+    </ul>
+
+<!--    <nav class="nav nav-pills nav-fill d-flex justify-content-end mt-2 mb-3">-->
+<!--        <a th:classappend="${currentPage == 'allStores' ? 'active' : ''}" class="nav-link" href="allStores">All Stores</a>-->
+<!--        <a th:classappend="${currentPage == 'allUsers' ? 'active' : ''}" class="nav-link" href="allUsers">Users</a>-->
+<!--        <a th:classappend="${currentPage == 'systemManagers' ? 'active' : ''}" class="nav-link" href="systemManagers">System Managers</a>-->
+<!--    </nav>-->
 
     <div th:replace="fragments/alert :: alert(${alert})"></div>
 
     <div th:if="${currentPage == 'allStores'}">
-        <div th:replace="SystemTemplates/allStores :: allStores(allStores=${system.allStores})"></div>
+<!--        (allStores=${system.allStores}, name=${name}, storeDeals=${deals})-->
+        <div th:replace="SystemTemplates/allStores :: allStores(allStores=${system.allStores}, store=${store})"></div>
     </div>
     <div th:if="${currentPage == 'allUsers'}">
-<!--        <div th:replace="storeTemplates/workers :: workers(store=${store}, workers=${workers})"></div>-->
+        <div th:replace="SystemTemplates/allUsers :: allUsers(name=${controller.name}, system=${system})"></div>
     </div>
     <div th:if="${currentPage == 'systemManagers'}">
-<!--        <div th:replace="storeTemplates/deals :: deals(deals=${deals})"></div>-->
+        <div th:replace="SystemTemplates/systemManagers :: systemManagers(systemManagers=${system.allSystemManagers})"></div>
     </div>
 
 </div>
