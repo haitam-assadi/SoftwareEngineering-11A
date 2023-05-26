@@ -102,17 +102,19 @@ public class SystemManagerTests {
         }
     }
 
-//    @Test
-//    public void remove_member_fail(){
-//        try{
-//            user = proxy.enterMarket();
-//            Assertions.assertEquals(managerName,proxy.login(user,managerName,managerPass));
-//            Assertions.assertTrue(proxy.removeMemberBySystemManager(managerName,memberName));
-//            Assertions.assertFalse(proxy.getAllMembers().contains(memberName));
-//        }catch (Exception e){
-//            Assertions.fail(e.getMessage());
-//        }
-//    }
+    @Test
+    public void remove_member_with_rule_fail(){
+        try{
+            user = proxy.enterMarket();
+            Assertions.assertEquals(managerName,proxy.login(user,managerName,managerPass));
+            user = proxy.enterMarket();
+            Assertions.assertEquals(memberName,proxy.login(user,memberName,memberPass));
+            Assertions.assertEquals("member1store",proxy.createStore(memberName,"member1store"));
+            Assertions.assertThrows(Exception.class,()->proxy.removeMemberBySystemManager(managerName,memberName));
+        }catch (Exception e){
+            Assertions.fail(e.getMessage());
+        }
+    }
 
 
 
