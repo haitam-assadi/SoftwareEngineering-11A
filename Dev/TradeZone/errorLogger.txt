@@ -3046,3 +3046,108 @@ fail in appointing member as system manager: user1 have a role in a store
 מאי 25, 2023 8:03:19 אחה״צ DomainLayer.LoggerManager sendErrorLog
 WARNING: 
 fail in logging out: userName guest_6 does not exists!
+מאי 25, 2023 10:23:08 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: store: user1_first_store11 does not exists!
+מאי 25, 2023 10:23:40 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: user1_first_Store_category1product does not exist in this store!
+מאי 25, 2023 10:25:05 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Card Number cant be null
+מאי 25, 2023 10:29:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: alaa is not owner for user1_second_store
+מאי 25, 2023 10:29:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: alaa is not owner for user1_second_store
+מאי 25, 2023 10:30:15 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: alaa is not owner for user1_second_store
+מאי 25, 2023 10:30:18 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: alaa is not owner for user1_second_store
+מאי 25, 2023 10:30:18 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: alaa is not owner for user1_second_store
+מאי 25, 2023 10:30:20 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: alaa is not owner for user1_second_store
+מאי 25, 2023 10:30:22 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: alaa is not owner for user1_second_store
+מאי 25, 2023 10:30:24 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: alaa is not owner for user1_second_store
+מאי 25, 2023 10:50:35 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: incorrect password!
+מאי 26, 2023 12:51:57 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as system manager: userName baraa is already a system manager!
+מאי 26, 2023 3:43:53 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: string is null or empty
+מאי 26, 2023 3:44:06 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: string is null or empty
+מאי 26, 2023 3:56:56 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting cart content: string is null or empty
+מאי 26, 2023 5:34:31 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: string is null or empty
+מאי 26, 2023 5:41:01 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store name is null or empty
+מאי 26, 2023 5:41:42 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: baraa is already a member
+מאי 26, 2023 5:42:54 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store name is null or empty
+מאי 26, 2023 6:10:12 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting cart content: string is null or empty
+מאי 26, 2023 7:20:48 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Card Number cant be null
+מאי 26, 2023 7:21:42 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Card Number cant be null
+מאי 26, 2023 10:55:39 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as system manager: user1 have a role in a store
+מאי 26, 2023 11:18:36 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as system manager: user1 have a role in a store
+מאי 26, 2023 11:19:41 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as system manager: user1 have a role in a store
+מאי 26, 2023 11:22:13 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as system manager: user1 have a role in a store
+מאי 27, 2023 12:04:51 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as system manager: user1 have a role in a store
+מאי 27, 2023 1:54:19 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store manager: memberalaa is already store manager
+מאי 27, 2023 1:57:43 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: alaa is not owner for user1_first_store
+מאי 27, 2023 1:59:12 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: alaa is not owner for user1_first_store
+מאי 27, 2023 2:02:14 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: alaa is not owner for baraa store
+מאי 27, 2023 2:03:23 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: alaa is not owner for user1_second_store
+מאי 27, 2023 2:05:16 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: alaa is not owner for user1_second_store
+מאי 27, 2023 2:23:42 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: user does not exists!

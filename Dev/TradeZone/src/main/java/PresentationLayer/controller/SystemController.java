@@ -3,9 +3,7 @@ package PresentationLayer.controller;
 import CommunicationLayer.Server;
 import DTO.DealDTO;
 import DTO.StoreDTO;
-import PresentationLayer.model.Alert;
-import PresentationLayer.model.Deal;
-import PresentationLayer.model.Store;
+import PresentationLayer.model.*;
 import PresentationLayer.model.System;
 import ServiceLayer.ResponseT;
 import org.springframework.stereotype.Controller;
@@ -14,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -22,14 +21,30 @@ import java.util.Map;
 @Controller
 public class SystemController {
     private Server server = Server.getInstance();
-    private GeneralController controller = GeneralController.getInstance();
-    System system = new System();
+    private GeneralModel controller;
+    System system; // = new System()
     String currentPage = "allStores"; // currentPage = {allStores, allUsers, systemManagers}
     Store store;
-    Alert alert = Alert.getInstance();
+//    Alert alert = Alert.getInstance();
+    Alert alert;
 
     @GetMapping("/system")
-    public String systemManager(Model model){
+    public String systemManager(HttpServletRequest request, Model model){
+//        system = null;
+        store = null;
+        currentPage = "allStores";
+        if(request.getSession().getAttribute("controller") != null){
+            controller = (GeneralModel) request.getSession().getAttribute("controller");
+            alert = controller.getAlert();
+            if(request.getSession().getAttribute("currentSystemPage") != null)
+                currentPage = (String) request.getSession().getAttribute("currentSystemPage");
+            if(request.getSession().getAttribute("storeModel") != null)
+                store = (Store) request.getSession().getAttribute("storeModel");
+            if(request.getSession().getAttribute("system") != null)
+                system = (System) request.getSession().getAttribute("system");
+            else
+                system = new System();
+        }
         if(currentPage.equals("allStores")){
             ResponseT<List<String>> response = server.getAllStoresNames();
             if(response.ErrorOccurred){
@@ -81,35 +96,44 @@ public class SystemController {
         model.addAttribute("currentPage", currentPage);
         model.addAttribute("system", system);
         model.addAttribute("store", store);
-        store = null;
         alert.reset();
+        request.getSession().setAttribute("controller", controller);
+        request.getSession().setAttribute("system", system);
+        request.getSession().setAttribute("storeModel", null); // ???
+//        alert.reset();
         return "SystemTemplates/system";
     }
 
     @GetMapping("/allStores")
-    public String getAllStores(){
+    public String getAllStores(HttpServletRequest request){
         currentPage = "allStores";
+        request.getSession().setAttribute("currentSystemPage", currentPage);
         return "redirect:/system";
     }
 
     @PostMapping("/storeDeals")
-    public String getStoreDeals(@RequestParam String storeName, Model model){
+    public String getStoreDeals(HttpServletRequest request, @RequestParam String storeName){
         // TODO: uncomment all lines
+//        if(request.getSession().getAttribute("controller") != null){
+//            controller = (GeneralModel) request.getSession().getAttribute("controller");
+//        }
 //        ResponseT<List<DealDTO>> response = server.getStoreDeals(controller.getName(), storeName);
 //        if(response.ErrorOccurred){
 //            alert.setFail(true);
 //            alert.setMessage(response.errorMessage);
 //            return "redirect:/system";
 //        }
-//        List<Deal> deals = GeneralController.buildDeals(response.getValue());
+//        List<Deal> deals = GeneralModel.buildDeals(response.getValue());
 //        ResponseT<StoreDTO> response1 = server.getStoreInfo(controller.getName(), storeName);
 //        if(response1.ErrorOccurred){
 //            alert.setFail(true);
 //            alert.setMessage(response1.errorMessage);
 //            return "redirect:/system";
 //        }
+
         List<Deal> deals = delete(); // TODO: delete this line and delete() func
         store = new Store(storeName, true, deals); // TODO: response1.getValue().isActive ???
+        request.getSession().setAttribute("storeModel", store);
         return "redirect:/system";
     }
 
@@ -132,14 +156,18 @@ public class SystemController {
     }
 
     @GetMapping("/allUsers")
-    public String getAllUsers(){
+    public String getAllUsers(HttpServletRequest request){
         currentPage = "allUsers";
+        request.getSession().setAttribute("currentSystemPage", currentPage);
         return "redirect:/system";
     }
 
     @PostMapping("/removeMember")
-    public String removeMember(@RequestParam String memberName){
+    public String removeMember(HttpServletRequest request, @RequestParam String memberName){
         // TODO: uncomment after implementation of this func
+//        if(request.getSession().getAttribute("controller") != null){
+//            controller = (GeneralModel) request.getSession().getAttribute("controller");
+//        }
 //        ResponseT<Boolean> response = server.removeMember(controller.getName(), memberName);
 //        if(response.ErrorOccurred){
 //            alert.setFail(true);
@@ -152,21 +180,29 @@ public class SystemController {
     }
 
     @GetMapping("/systemManagers")
-    public String getSystemManagers(){
+    public String getSystemManagers(HttpServletRequest request){
         currentPage = "systemManagers";
+        request.getSession().setAttribute("currentSystemPage", currentPage);
         return "redirect:/system";
     }
 
     @PostMapping("/appointSystemManager")
-    public String appointSManager(@RequestParam String memberName){
+    public String appointSManager(HttpServletRequest request, @RequestParam String memberName){
+        if(request.getSession().getAttribute("controller") != null){
+            controller = (GeneralModel) request.getSession().getAttribute("controller");
+            alert = controller.getAlert();
+        }
         ResponseT<Boolean> response = server.AppointMemberAsSystemManager(controller.getName(), memberName);
         if(response.ErrorOccurred){
             alert.setFail(true);
             alert.setMessage(response.errorMessage);
-            return "redirect:/systemManagers";
+//            return "redirect:/systemManagers";
         }
-        alert.setSuccess(true);
-        alert.setMessage(memberName + " is appointed as System Manager");
+        else{
+            alert.setSuccess(true);
+            alert.setMessage(memberName + " is appointed as System Manager");
+        }
+        request.getSession().setAttribute("controller", controller);
         return "redirect:/systemManagers";
     }
 }

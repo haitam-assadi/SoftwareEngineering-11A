@@ -1,6 +1,6 @@
 package PresentationLayer.model;
 
-import static PresentationLayer.controller.GeneralController.round;
+import static PresentationLayer.model.GeneralModel.round;
 
 public class Product {
     private String name;

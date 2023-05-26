@@ -19,7 +19,7 @@
   <header>
     <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
       <a class="d-flex align-items-center link-body-emphasis text-decoration-none">
-        <span class="fs-4" th:text="${'Welcome to Trade Zone ' + controller.name}"></span>
+        <span class="fs-4" th:text="${'Welcome To Trade Zone ' + controller.name}"></span>
       </a>
       <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto nav nav-tabs">
         <a th:if="${currentPage == 'store'}" th:classappend="${currentPage == 'store' ? 'active color:#d106f0' : ''}" class="nav-link py-2 link-body-emphasis text-decoration-none" href="store">Store</a>
@@ -28,7 +28,7 @@
         <a th:classappend="${currentPage == 'searchStore' ? 'active color:#d106f0' : ''}" class="nav-link py-2 link-body-emphasis text-decoration-none" href="searchStore">Search for stores</a>
         <a th:if="${controller.logged && !controller.systemManager}" th:classappend="${currentPage == 'myStores' ? 'active color:#d106f0' : ''}" class="nav-link py-2 link-body-emphasis text-decoration-none" href="myStores">My stores</a>
         <a th:if="${controller.systemManager}" th:classappend="${currentPage == 'system' ? 'active color:#d106f0' : ''}" class="nav-link py-2 link-body-emphasis text-decoration-none" href="system">System Manager</a>
-        <a th:classappend="${currentPage == 'cart'} ? 'active color-important' : ''" class="nav-link py-2 link-body-emphasis text-decoration-none" href="cart">My Cart</a>
+        <a th:classappend="${currentPage == 'cart'} ? 'active color-important' : ''" class="nav-link py-2 link-body-emphasis text-decoration-none" href="cart">Cart</a>
         <a th:if="!${controller.logged}" th:classappend="${currentPage == 'register' ? 'active color:#d106f0' : ''}" class="nav-link py-2 link-body-emphasis text-decoration-none" href="register">Register</a>
         <a th:if="!${controller.logged}" th:classappend="${currentPage == 'login' ? 'active color:#d106f0' : ''}" class="nav-link py-2 link-body-emphasis text-decoration-none" href="login">Login</a>
         <a th:if="${controller.logged}" th:classappend="${currentPage == 'logout' ? 'active color:#d106f0' : ''}" class="nav-link py-2 link-body-emphasis text-decoration-none" href="logout">Logout</a>

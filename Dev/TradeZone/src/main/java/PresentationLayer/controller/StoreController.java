@@ -1,7 +1,6 @@
 package PresentationLayer.controller;
 
 import CommunicationLayer.Server;
-import DTO.DealDTO;
 import DTO.ProductDTO;
 import DTO.StoreDTO;
 import PresentationLayer.model.*;
@@ -19,7 +18,7 @@ import java.util.*;
 @Controller
 public class StoreController {
     private Server server = Server.getInstance();
-    private GeneralController controller = GeneralController.getInstance();
+    private GeneralModel controller;
     StoreDTO store;
     String storeName;
     Map<String, List<Worker>> workers;
@@ -28,22 +27,37 @@ public class StoreController {
     Alert alert = Alert.getInstance();
 
     @GetMapping("/store")
-    public String showStore(Model model){
+    public String showStore(HttpServletRequest request, Model model){
+        if(request.getSession().getAttribute("controller") != null){
+            controller = (GeneralModel) request.getSession().getAttribute("controller");
+            if(request.getSession().getAttribute("currentPage") != null)
+                currentPage = (String) request.getSession().getAttribute("currentPage");
+            if(request.getSession().getAttribute("store") != null) {
+                store = (StoreDTO) request.getSession().getAttribute("store");
+                storeName = store.storeName;
+            }
+            if(request.getSession().getAttribute("workers") != null)
+                workers = (Map<String, List<Worker>>) request.getSession().getAttribute("workers");
+            if(request.getSession().getAttribute("deals") != null)
+                deals = (List<Deal>) request.getSession().getAttribute("deals");
+        }
         ResponseT<StoreDTO> response = server.getStoreInfo(controller.getName(), storeName);
         if(response.ErrorOccurred){
             alert.setFail(true);
             alert.setMessage(response.errorMessage);
-            model.addAttribute("controller", controller);
-            model.addAttribute("alert", alert.copy());
-            model.addAttribute("store", store);
-            model.addAttribute("workers", workers);
-            model.addAttribute("currentPage", currentPage);
-            model.addAttribute("deals", deals);
-            return "storeTemplates/store";
+//            model.addAttribute("controller", controller);
+//            model.addAttribute("alert", alert.copy());
+//            model.addAttribute("store", store);
+//            model.addAttribute("workers", workers);
+//            model.addAttribute("currentPage", currentPage);
+//            model.addAttribute("deals", deals);
+            return "redirect:/myStores";
         }
-        store = response.getValue();
-        storeName = store.storeName;
-        workers = buildWorkers(store);
+        else {
+            store = response.getValue();
+            storeName = store.storeName;
+            workers = buildWorkers(store);
+        }
         model.addAttribute("controller", controller);
         model.addAttribute("alert", alert.copy());
         model.addAttribute("store", store);
@@ -58,7 +72,10 @@ public class StoreController {
 
     @PostMapping("/store")
 //    @ModelAttribute Store store1
-    public String showStore(@RequestParam String storeName, Model model){
+    public String showStore(HttpServletRequest request, @RequestParam String storeName){
+        if(request.getSession().getAttribute("controller") != null){
+            controller = (GeneralModel) request.getSession().getAttribute("controller");
+        }
         ResponseT<StoreDTO> response = server.getStoreInfo(controller.getName(), storeName);
         if(response.ErrorOccurred){
             alert.setFail(true);
@@ -66,16 +83,23 @@ public class StoreController {
 //            model.addAttribute("controller", controller);
 //            model.addAttribute("alert", alert);
 //            model.addAttribute("store", store);
-            return "redirect:/store";
+//            return "redirect:/store";
         }
-        store = response.getValue();
-        this.storeName = store.storeName;
-        currentPage = "stock";
+        else{
+            store = response.getValue();
+            this.storeName = store.storeName;
+            currentPage = "stock";
+            request.getSession().setAttribute("store", store);
+            request.getSession().setAttribute("currentPage", currentPage);
+        }
         return "redirect:/store";
     }
 
     @PostMapping("/closeStore")
-    public String closeStore(){
+    public String closeStore(HttpServletRequest request){
+        if(request.getSession().getAttribute("controller") != null){
+            controller = (GeneralModel) request.getSession().getAttribute("controller");
+        }
         ResponseT<Boolean> response = server.closeStore(controller.getName(), store.storeName);
         if(response.ErrorOccurred){
             alert.setFail(true);
@@ -89,28 +113,21 @@ public class StoreController {
 
 //    ------------------------- STOCK -------------------------
     @GetMapping("/stock")
-    public String getStock(Model model){
-
-
-//        ResponseT<StoreDTO> response = server.getStoreInfo(controller.getName(), store1.getStoreName());
-//        if(response.ErrorOccurred){
-//            alert.setFail(true);
-//            alert.setMessage(response.errorMessage);
-////            model.addAttribute("controller", controller);
-////            model.addAttribute("alert", alert);
-////            model.addAttribute("store", store);
-//            return "redirect:/store";
-//        }
-//        store = response.getValue();
-//        storeName = store.storeName;
+    public String getStock(HttpServletRequest request){
         currentPage = "stock";
+        request.getSession().setAttribute("currentPage", currentPage);
         return "redirect:/store";
     }
 
     // updateProductInfo
     @PostMapping("/updateProductInfo")
-    public String updateProductInfo(@ModelAttribute Product product){
-        ProductDTO p = getProductFromStore(product.getName());
+    public String updateProductInfo(HttpServletRequest request, @ModelAttribute Product product){
+        if(request.getSession().getAttribute("controller") != null){
+            controller = (GeneralModel) request.getSession().getAttribute("controller");
+            if(request.getSession().getAttribute("store") != null)
+                store = (StoreDTO) request.getSession().getAttribute("store");
+        }
+        ProductDTO p = getProductFromStore(store, product.getName());
         ResponseT<Boolean> response;
         if(p == null)
             return "redirect:/stock";
@@ -146,7 +163,12 @@ public class StoreController {
 
     // addProductToStock
     @PostMapping("/addProductToStock")
-    public String addProductToStock(@ModelAttribute Product product){
+    public String addProductToStock(HttpServletRequest request, @ModelAttribute Product product){
+        if(request.getSession().getAttribute("controller") != null){
+            controller = (GeneralModel) request.getSession().getAttribute("controller");
+            if(request.getSession().getAttribute("store") != null)
+                store = (StoreDTO) request.getSession().getAttribute("store");
+        }
         ResponseT<Boolean> response = server.addNewProductToStock(controller.getName(), store.storeName,
                 product.getName(), product.getCategory(), product.getPrice(),
                 product.getDescription(), product.getAmount());
@@ -168,7 +190,12 @@ public class StoreController {
 
     // removeProductFromStock
     @PostMapping("/removeProductFromStock")
-    public String removeProductFromStock(@ModelAttribute Product product){
+    public String removeProductFromStock(HttpServletRequest request, @ModelAttribute Product product){
+        if(request.getSession().getAttribute("controller") != null){
+            controller = (GeneralModel) request.getSession().getAttribute("controller");
+            if(request.getSession().getAttribute("store") != null)
+                store = (StoreDTO) request.getSession().getAttribute("store");
+        }
         ResponseT<Boolean> response = server.removeProductFromStock(controller.getName(), store.storeName, product.getName());
         if(response.ErrorOccurred){
             alert.setFail(true);
@@ -228,14 +255,20 @@ public class StoreController {
 
 //    ------------------------- WORKERS -------------------------
     @GetMapping("/workers")
-    public String getWorkers(){
+    public String getWorkers(HttpServletRequest request){
 //        workers = buildWorkers(store);
         currentPage = "workers";
+        request.getSession().setAttribute("currentPage", currentPage);
         return "redirect:/store";
     }
 
     @PostMapping("/appointMember")
-    public String appointMember(@ModelAttribute Appoint appoint){
+    public String appointMember(HttpServletRequest request, @ModelAttribute Appoint appoint){
+        if(request.getSession().getAttribute("controller") != null){
+            controller = (GeneralModel) request.getSession().getAttribute("controller");
+            if(request.getSession().getAttribute("store") != null)
+                store = (StoreDTO) request.getSession().getAttribute("store");
+        }
         String appointedAs;
         ResponseT<Boolean> response;
         if(appoint.getAppointAs().equals("appointAsOwner")){
@@ -249,26 +282,31 @@ public class StoreController {
         if(response.ErrorOccurred){
             alert.setFail(true);
             alert.setMessage(response.errorMessage);
-            return "redirect:/store";
+            return "redirect:/workers";
         }
 //        workers = buildWorkers(store);
         alert.setSuccess(true);
         alert.setMessage(appoint.getMemberName() + " is appointed as " + appointedAs);
-        return "redirect:/store";
+        return "redirect:/workers";
     }
 
     @PostMapping("/removeOwner")
-    public String removeOwner(@RequestParam String memberName){
+    public String removeOwner(HttpServletRequest request, @RequestParam String memberName){
+        if(request.getSession().getAttribute("controller") != null){
+            controller = (GeneralModel) request.getSession().getAttribute("controller");
+            if(request.getSession().getAttribute("store") != null)
+                store = (StoreDTO) request.getSession().getAttribute("store");
+        }
         ResponseT<Boolean> response = server.removeOwnerByHisAppointer(controller.getName(), store.storeName, memberName);
         if(response.ErrorOccurred){
             alert.setFail(true);
             alert.setMessage(response.errorMessage);
-            return "redirect:/store";
+            return "redirect:/workers";
         }
 //        workers = buildWorkers(store);
         alert.setSuccess(true);
         alert.setMessage(memberName + " has been removed");
-        return "redirect:/store";
+        return "redirect:/workers";
     }
 
     // changePermissions
@@ -278,6 +316,11 @@ public class StoreController {
 //    ------------------------- DEALS -------------------------
     @GetMapping("/deals")
     public String getSeals(HttpServletRequest request){
+        if(request.getSession().getAttribute("controller") != null){
+            controller = (GeneralModel) request.getSession().getAttribute("controller");
+            if(request.getSession().getAttribute("store") != null)
+                store = (StoreDTO) request.getSession().getAttribute("store");
+        }
         String referer = request.getHeader("referer");
 //        TODO: uncomment
 //        ResponseT<List<DealDTO>> response = server.getStoreDeals(controller.getName(), store.storeName);
@@ -289,6 +332,8 @@ public class StoreController {
 //        deals = buildDeals(response.getValue());
         deals = delete(); // TODO: delete this line + delete() func
         currentPage = "deals";
+        request.getSession().setAttribute("deals", deals);
+        request.getSession().setAttribute("currentPage", currentPage);
         return "redirect:" + referer;
 //        return "redirect:/store";
     }
@@ -345,7 +390,7 @@ public class StoreController {
 //        return deals;
 //    }
 
-    private ProductDTO getProductFromStore(String productName){
+    private ProductDTO getProductFromStore(StoreDTO store, String productName){
         for(ProductDTO p : store.productsInfo){
             if(p.name.equals(productName)){
                 return p;

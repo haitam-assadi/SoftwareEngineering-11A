@@ -2,11 +2,10 @@ package PresentationLayer.controller;
 
 import CommunicationLayer.Server;
 import PresentationLayer.model.Alert;
+import PresentationLayer.model.GeneralModel;
 import PresentationLayer.model.ItemDetails;
-import PresentationLayer.model.Product;
 import ServiceLayer.ResponseT;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -15,12 +14,15 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class productController {
     private Server server = Server.getInstance();
-    private GeneralController controller = GeneralController.getInstance();
+    private GeneralModel controller;
     private Alert alert = Alert.getInstance();
 
     // addProductToCart
     @PostMapping("/add_to_cart")
     public String addToCart(@ModelAttribute ItemDetails itemDetails, HttpServletRequest request) {
+        if(request.getSession().getAttribute("controller") != null){
+            controller = (GeneralModel) request.getSession().getAttribute("controller");
+        }
         String referer = request.getHeader("referer");
         int amount = itemDetails.getAmount();
         String productName = itemDetails.getName();
@@ -34,6 +36,7 @@ public class productController {
         alert.setSuccess(true);
         alert.setMessage("Added successfully");
         controller.updateCart();
+        request.getSession().setAttribute("controller", controller);
         return "redirect:" + referer;
     }
 
@@ -41,6 +44,9 @@ public class productController {
     // removeProductFromCart
     @PostMapping("/removeFromCart")
     public String removeFromCart(@ModelAttribute ItemDetails itemDetails, HttpServletRequest request) {
+        if(request.getSession().getAttribute("controller") != null){
+            controller = (GeneralModel) request.getSession().getAttribute("controller");
+        }
         String referer = request.getHeader("referer");
         String productName = itemDetails.getName();
         String storeName = itemDetails.getStoreName();
@@ -59,12 +65,16 @@ public class productController {
             alert.setFail(true);
             alert.setMessage("Failed to remove the product");
         }
+        request.getSession().setAttribute("controller", controller);
         return "redirect:" + referer;
     }
 
     // updateProductAmountInCart
     @PostMapping("/updateProductAmount")
     public String updateProductAmount(@ModelAttribute ItemDetails itemDetails, HttpServletRequest request) {
+        if(request.getSession().getAttribute("controller") != null){
+            controller = (GeneralModel) request.getSession().getAttribute("controller");
+        }
         String referer = request.getHeader("referer");
         int amount = itemDetails.getAmount();
         String productName = itemDetails.getName();
@@ -84,6 +94,7 @@ public class productController {
             alert.setFail(true);
             alert.setMessage("Failed to update the product amount");
         }
+        request.getSession().setAttribute("controller", controller);
         return "redirect:" + referer;
     }
 

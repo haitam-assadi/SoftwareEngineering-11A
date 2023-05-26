@@ -31,14 +31,14 @@
             </div>
         </form>
 
-        <form th:if="${!store.isActive}" class="col-auto" action="store" method="post">
-            <div class="form-check mb-3">
+<!--        <form th:if="${!store.isActive}" class="col-auto" action="store" method="post">-->
+            <div th:if="${!store.isActive}" class="col-auto form-check mb-3">
                 <input class="form-check-input" type="checkbox" value="" id="invalidCheckOpen" required>
                 <label class="form-check-label w-100" for="invalidCheckOpen">
                     <button type="submit" class="btn btn-outline-success">Open Store</button>
                 </label>
             </div>
-        </form>
+<!--        </form>-->
     </div>
     <h4 th:if="${store != null && store.isActive}" class="fw-normal mb-3 text-center" style="color:#13ca13">Open</h4>
     <h4 th:if="${store != null && !store.isActive}" class="fw-normal mb-3 text-center" style="color:red">Closed</h4>
