@@ -8,13 +8,14 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class Category {
 
-    private Stock stock;
+    private String storeName;
     private String categoryName;
     private ConcurrentHashMap<String,Product> categoryProducts;
 
-    public Category (String categoryName, Stock stock){
+    public Category (String categoryName, String storeName){
         this.categoryName = categoryName;
-        this.stock = stock;
+        this.storeName = storeName;
+
         categoryProducts = new ConcurrentHashMap<>();
     }
 

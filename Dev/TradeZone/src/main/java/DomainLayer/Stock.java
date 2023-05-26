@@ -7,12 +7,12 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class Stock {
 
-    Store store;
+    private String stockName;
     private ConcurrentHashMap<String, ConcurrentHashMap<Product,Integer>> stockProducts;
     private ConcurrentHashMap<String,Category> stockCategories;
 
-    public Stock(Store store){
-        this.store = store;
+    public Stock(String stockName){
+        this.stockName = stockName;
         stockProducts =new ConcurrentHashMap<>();
         stockCategories = new ConcurrentHashMap<>();
     }
@@ -44,9 +44,9 @@ public class Stock {
         category = category.strip().toLowerCase();
 
         if(!containsCategory(category))
-            stockCategories.put(category, new Category(category, this));
+            stockCategories.put(category, new Category(category, this.getStoreName()));
 
-        Product product = new Product(nameProduct,this,stockCategories.get(category),price,description);
+        Product product = new Product(nameProduct,this.getStoreName(),stockCategories.get(category),price,description);
         stockCategories.get(category).putProductInCategory(product);
         ConcurrentHashMap<Product,Integer> productAmount = new ConcurrentHashMap<Product, Integer>();
         productAmount.put(product,amount);
@@ -205,7 +205,7 @@ public class Stock {
         return this.stockProducts.get(productName).get(product);
     }
     public String getStoreName(){
-        return store.getStoreName();
+        return this.stockName;
     }
 
 
@@ -234,8 +234,8 @@ public class Stock {
             counter--;
         }
         if(counter!=0) msg+="]";
-        msg+= " from the store: " + store.getStoreName();
-        NotificationService.getInstance().notify(store.getStoreName(),msg,NotificationType.productBought);
+        msg+= " from the store: " + this.stockName;
+        NotificationService.getInstance().notify(this.stockName,msg,NotificationType.productBought);
         return true;
     }
     public synchronized boolean replaceBagAmountToStock(ConcurrentHashMap<String, ConcurrentHashMap<Product,Integer>> bagContent) throws Exception {

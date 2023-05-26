@@ -32,7 +32,7 @@ public class Store {
 
     public Store(String storeName) {
         this.storeName = storeName;
-        stock = new Stock(this);
+        stock = new Stock(storeName);
         isActive = true;
         storeFounder = null;
         storeOwners = new ConcurrentHashMap<>();

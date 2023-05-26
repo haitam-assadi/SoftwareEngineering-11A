@@ -9,15 +9,15 @@ import java.util.stream.Stream;
 
 public class Product {
 
-    private Stock stock;
     private String name;
     private Double price;
     private String description ;
+    private String storeName;
     private ConcurrentHashMap<String,Category> productCategories;
 
-    public Product(String name,Stock stock,Category category, Double price,String description){
+    public Product(String name,String storeName,Category category, Double price,String description){
         this.name = name;
-        this.stock=stock;
+        this.storeName=storeName;
         this.price = price;
         this.description=description;
         productCategories=new ConcurrentHashMap<>();
@@ -36,7 +36,7 @@ public class Product {
     public ProductDTO getProductInfo(){
         List<String> categories = new LinkedList<>();
         categories.addAll(productCategories.keySet());
-        return new ProductDTO(this.name, this.stock.getStoreName(), this.price, this.description,  categories);
+        return new ProductDTO(this.name, this.storeName, this.price, this.description,  categories);
     }
 
     public Double getPrice() {

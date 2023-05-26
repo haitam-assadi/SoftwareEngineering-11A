@@ -33,13 +33,13 @@ class StockTest {
     public void setUp(){
         MockitoAnnotations.openMocks(this);
         Store store = null; //TODO mock store
-        stock = new Stock(store);
+        stock = new Stock(store.getStoreName());
     }
 
     @BeforeEach
     public void beforeEachTest(){
         Store store = null; //TODO mock store
-        stock = new Stock(store);
+        stock = new Stock(store.getStoreName());
     }
 
     /*
