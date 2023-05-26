@@ -14,7 +14,7 @@ public class MemberTests {
     @BeforeAll
     public void setUp() throws Exception {
         System.out.println("setup");
-        if(!proxy.initializeMarket()){
+        if(proxy.initializeMarket().isEmpty()){
             System.out.println("exception thrown");
         }
         user = proxy.enterMarket();

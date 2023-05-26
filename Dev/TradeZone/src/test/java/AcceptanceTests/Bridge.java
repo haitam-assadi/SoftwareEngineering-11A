@@ -1,12 +1,14 @@
 package AcceptanceTests;
 
+import ServiceLayer.ResponseT;
+
 import java.util.List;
 import java.util.Map;
 
 public interface Bridge {
 
     //I.1
-    public boolean initializeMarket() throws Exception;
+    public String initializeMarket() throws Exception;
 
     //II.1.1
     public String enterMarket() throws Exception;
@@ -130,5 +132,9 @@ public interface Bridge {
     public Integer createOrBagConstraint(String memberUserName, String storeName, Integer firstBagConstraintId, Integer secondBagConstraintId, boolean addAsStorePaymentPolicy) throws Exception;
 
     public Integer createOnlyIfBagConstraint(String memberUserName, String storeName, Integer firstBagConstraintId, Integer secondBagConstraintId, boolean addAsStorePaymentPolicy) throws Exception;
+
+    public Boolean AppointMemberAsSystemManager(String managerName,String otherMemberName) throws Exception;
+
+    public Boolean removeMemberBySystemManager(String managerName, String memberName) throws Exception;
 
 }

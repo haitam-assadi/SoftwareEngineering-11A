@@ -405,6 +405,7 @@ public class UserController {
         member.assertHaveNoRule();
         member.removeCart();
         members.remove(memberName);
+        membersNamesConcurrentSet.remove(memberName);
         if(loggedInMembers.containsKey(memberName)){
             loggedInMembers.remove(memberName);
         }

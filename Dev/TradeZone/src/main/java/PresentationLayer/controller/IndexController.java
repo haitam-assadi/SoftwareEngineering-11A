@@ -28,7 +28,7 @@ public class IndexController {
 	@GetMapping("/")
 	public String index(Model model) {
 		if(controller.getName().equals("")){
-			ResponseT<Boolean> response = server.initializeMarket();
+			ResponseT<String> response = server.initializeMarket();
 			if(response.ErrorOccurred){
 				alert.setFail(true);
 				alert.setMessage(response.errorMessage);

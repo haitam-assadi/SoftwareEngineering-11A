@@ -20,7 +20,7 @@ public class StoreTests {
     @BeforeEach
     public void setUp() throws Exception {
         proxy = new ProxyBridge(new RealBridge());
-        if(!proxy.initializeMarket()){
+        if(proxy.initializeMarket().isEmpty()){
             throw new Exception(""); // should change
         }
 

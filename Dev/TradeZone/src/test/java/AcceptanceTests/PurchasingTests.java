@@ -63,7 +63,7 @@ public class PurchasingTests {
     public void setUp() throws Exception {
         MockitoAnnotations.openMocks(this);
         proxy = new ProxyBridge(new RealBridge());
-        if (!proxy.initializeMarket()) {
+        if (proxy.initializeMarket().isEmpty()) {
             throw new Exception("");
         }
 

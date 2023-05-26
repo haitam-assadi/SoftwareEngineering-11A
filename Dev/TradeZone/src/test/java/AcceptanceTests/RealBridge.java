@@ -24,8 +24,8 @@ public class RealBridge implements Bridge{
     }
 
     @Override
-    public boolean initializeMarket() throws Exception {
-        ResponseT<Boolean> response = systemService.initializeMarket();
+    public String initializeMarket() throws Exception {
+        ResponseT<String> response = systemService.initializeMarket();
         if(response.ErrorOccurred){
             throw new Exception(response.errorMessage);
         }
@@ -640,6 +640,24 @@ public class RealBridge implements Bridge{
     @Override
     public Integer createOnlyIfBagConstraint(String memberUserName, String storeName, Integer firstBagConstraintId, Integer secondBagConstraintId, boolean addAsStorePaymentPolicy) throws Exception {
         ResponseT<Integer> response = systemService.createOnlyIfBagConstraint(memberUserName,storeName,firstBagConstraintId,secondBagConstraintId,addAsStorePaymentPolicy);
+        if (response.ErrorOccurred){
+            throw new Exception(response.errorMessage);
+        }
+        return response.getValue();
+    }
+
+    @Override
+    public Boolean AppointMemberAsSystemManager(String managerName, String otherMemberName) throws Exception {
+        ResponseT<Boolean> response = systemService.AppointMemberAsSystemManager(managerName,otherMemberName);
+        if (response.ErrorOccurred){
+            throw new Exception(response.errorMessage);
+        }
+        return response.getValue();
+    }
+
+    @Override
+    public Boolean removeMemberBySystemManager(String managerName, String memberName) throws Exception {
+        ResponseT<Boolean> response = systemService.removeMemberBySystemManager(managerName,memberName);
         if (response.ErrorOccurred){
             throw new Exception(response.errorMessage);
         }

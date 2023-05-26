@@ -21,11 +21,11 @@ public class ProxyBridge implements Bridge{
 
 
     @Override
-    public boolean initializeMarket() throws Exception{
+    public String initializeMarket() throws Exception{
         if(realBridge!=null){
             return realBridge.initializeMarket();
         }
-        return false;
+        return "";
     }
 
     @Override
@@ -461,5 +461,21 @@ public class ProxyBridge implements Bridge{
             return realBridge.createOnlyIfBagConstraint(memberUserName,storeName,firstBagConstraintId,secondBagConstraintId,addAsStorePaymentPolicy);
         }
         return -1;
+    }
+
+    @Override
+    public Boolean AppointMemberAsSystemManager(String managerName, String otherMemberName) throws Exception {
+        if(realBridge!=null){
+            return realBridge.AppointMemberAsSystemManager(managerName,otherMemberName);
+        }
+        return false;
+    }
+
+    @Override
+    public Boolean removeMemberBySystemManager(String managerName, String memberName) throws Exception {
+        if(realBridge!=null){
+            return realBridge.removeMemberBySystemManager(managerName,memberName);
+        }
+        return false;
     }
 }

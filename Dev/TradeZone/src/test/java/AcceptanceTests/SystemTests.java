@@ -15,7 +15,7 @@ public class SystemTests {
     @Test
     public void initialize_market_success(){
         try{
-            Assertions.assertTrue(proxy.initializeMarket());
+            Assertions.assertTrue(!proxy.initializeMarket().isEmpty());
         }catch (Exception e){
             Assertions.fail(e.getMessage());
         }

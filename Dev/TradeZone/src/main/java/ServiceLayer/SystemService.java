@@ -22,12 +22,12 @@ public class SystemService {
         market = new Market();
     }
 
-    public ResponseT<Boolean> initializeMarket(){
+    public ResponseT<String> initializeMarket(){
 
         try{
             String manager = market.firstManagerInitializer();
             createMemberWithTwoStore("user1");
-            return new ResponseT<>(true);
+            return new ResponseT<>(manager,true);
 
         }catch (Exception e){
             return new ResponseT<>(e.getMessage());

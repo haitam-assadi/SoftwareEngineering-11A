@@ -24,7 +24,7 @@ public class Server {
     }
 
 
-    public ResponseT<Boolean> initializeMarket(){
+    public ResponseT<String> initializeMarket(){
         return service.initializeMarket();
     }
 
