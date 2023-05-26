@@ -109,7 +109,7 @@ public class NotificationService {
         storeRulesNotificator.remove(storeName);
     }
 
-    public void removeMember(String memberUserName){
+    public void unsubscribeMember(String memberUserName){
         memberNotificator.remove(memberUserName);
     }
 

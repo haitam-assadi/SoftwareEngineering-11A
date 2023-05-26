@@ -85,9 +85,11 @@ public class StoreController {
         List<ProductDTO> productDTOList = new ArrayList<>();
         for(Store store: stores.values()) {
             String storeName = store.getStoreName();
-            isActiveStore(storeName);
-            if (store.containsProduct(productName))
-                productDTOList.add(store.getProductInfo(productName));
+            //isActiveStore(storeName);
+            if(IsActiveStore(storeName)) {
+                if (store.containsProduct(productName))
+                    productDTOList.add(store.getProductInfo(productName));
+            }
         }
         return productDTOList;
     }
@@ -96,9 +98,11 @@ public class StoreController {
         List<ProductDTO> productDTOList = new ArrayList<>();
         for(Store store: stores.values()) {
             String storeName = store.getStoreName();
-            isActiveStore(storeName);
-            if (store.containsCategory(categoryName))
-                productDTOList.addAll(store.getProductsInfoByCategory(categoryName));
+            //isActiveStore(storeName);
+            if(IsActiveStore(storeName)) {
+                if (store.containsCategory(categoryName))
+                    productDTOList.addAll(store.getProductsInfoByCategory(categoryName));
+            }
         }
         return productDTOList;
     }
@@ -135,10 +139,16 @@ public class StoreController {
     }
 
     public void isActiveStore(String storeName) throws Exception {
-        assertIsStore(storeName);
         storeName=storeName.strip().toLowerCase();
+        assertIsStore(storeName);
         if(!stores.get(storeName).isActive())
             throw new Exception(""+ storeName+" is not Active!");
+    }
+
+    private boolean IsActiveStore(String storeName) throws Exception {
+        storeName=storeName.strip().toLowerCase();
+        assertIsStore(storeName);
+        return stores.get(storeName).isActive();
     }
 
     public boolean closeStore(String memberUserName, String storeName) throws Exception {

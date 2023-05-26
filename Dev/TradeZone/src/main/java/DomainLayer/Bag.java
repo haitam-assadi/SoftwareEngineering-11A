@@ -98,4 +98,8 @@ public class Bag {
     public boolean replaceBagAmountToStock() throws Exception {
         return storeBag.replaceBagAmountToStock(bagContent);
     }
+
+    public void removeAllProducts() {
+        bagContent = new ConcurrentHashMap<>();
+    }
 }

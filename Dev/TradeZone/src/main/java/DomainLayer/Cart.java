@@ -85,4 +85,11 @@ public class Cart {
         bags = new ConcurrentHashMap<>();
         return true;
     }
+
+    public void removeAllCart() {
+        for (Bag b: bags.values()){
+            b.removeAllProducts();
+        }
+        bags = new ConcurrentHashMap<>();
+    }
 }

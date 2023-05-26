@@ -389,6 +389,28 @@ public class UserController {
         return now.format(formatter);
     }
 
+    public Set<String> getAllSystemManagers(String managerName) throws Exception {
+        assertIsSystemManager(managerName);
+        assertIsMemberLoggedIn(managerName);
+        return systemManagers.keySet();
+    }
+
+    public boolean removeMemberBySystemManager(String managerName, String memberName) throws Exception {
+        memberName = memberName.toLowerCase();
+        SystemManager systemManager = getSystemManager(managerName);
+        assertIsMemberLoggedIn(managerName);
+        assertIsNotSystemManager(memberName);
+        assertIsMember(memberName);
+        Member member = getMember(memberName);
+        member.assertHaveNoRule();
+        member.removeCart();
+        members.remove(memberName);
+        if(loggedInMembers.containsKey(memberName)){
+            loggedInMembers.remove(memberName);
+        }
+        NotificationService.getInstance().unsubscribeMember(memberName);
+        return true;
+    }
 
 
 //    public boolean systemManagerCloseStore(String managerName, String storeName) throws Exception {

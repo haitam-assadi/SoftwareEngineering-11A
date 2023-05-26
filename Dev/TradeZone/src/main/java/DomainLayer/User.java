@@ -31,6 +31,11 @@ public abstract class User {
         return this.cart;
     }
 
+    public void removeCart(){
+        cart.removeAllCart();
+        cart = null;
+    }
+
 
     public boolean addToCart(Store store, String productName, Integer amount) throws Exception {
         return cart.addToCart(store,productName,amount);

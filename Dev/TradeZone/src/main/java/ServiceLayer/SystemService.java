@@ -12,6 +12,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class SystemService {
 
@@ -603,5 +604,22 @@ public class SystemService {
             return new ResponseT<>("getProductAmountInStore: "+e.getMessage());
         }
     }
+
+    public ResponseT<Set<String>> getAllSystemManagers(String managerName) throws Exception {
+        try{
+            return new ResponseT<>(market.getAllSystemManagers(managerName));
+        }catch (Exception e){
+            return new ResponseT<>("getAllSystemManagers: "+e.getMessage());
+        }
+    }
+
+    public ResponseT<Boolean> removeMemberBySystemManager(String managerName,String memberName) throws Exception{
+        try{
+            return new ResponseT<>(market.removeMemberBySystemManager(managerName,memberName));
+        }catch (Exception e){
+            return new ResponseT<>("removeMemberBySystemManager: "+e.getMessage());
+        }
+    }
+
 
 }

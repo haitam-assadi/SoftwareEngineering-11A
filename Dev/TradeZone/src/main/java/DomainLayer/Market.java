@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class Market {
     UserController userController;
@@ -422,8 +423,12 @@ public class Market {
         return userController.assertIsSystemManager(userName);
     }
 
-//    public boolean removeMemberBySystemManager(String managerName,String memberName) throws Exception{
-//        return userController.removeMemberBySystemManager(managerName,memberName);
-//    }
+    public Set<String> getAllSystemManagers(String managerName) throws Exception{
+        return userController.getAllSystemManagers(managerName);
+    }
+
+    public boolean removeMemberBySystemManager(String managerName,String memberName) throws Exception{
+        return userController.removeMemberBySystemManager(managerName,memberName);
+    }
 
 }
