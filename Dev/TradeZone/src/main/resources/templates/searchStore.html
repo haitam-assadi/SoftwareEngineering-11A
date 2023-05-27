@@ -29,16 +29,16 @@
     <main>
         <div th:replace="fragments/alert :: alert(${alert})"></div>
 
-        <h4 th:if="${store != null}" class="card-title pricing-card-title mb-3" th:text="${'Store Name: ' + store.storeName}"></h4>
-        <h4 th:if="${store != null}" class="card-title pricing-card-title mb-3" th:text="${'Founder Name: ' + store.founderName}"></h4>
+        <h4 th:if="${store != null}" class="card-title pricing-card-title mb-4" th:text="${'Store Name: ' + store.storeName}"></h4>
+        <h4 th:if="${store != null}" class="card-title pricing-card-title mb-4" th:text="${'Founder Name: ' + store.founderName}"></h4>
+        <h4 th:if="${store != null && !store.isActive}" class="col-auto fw-normal mb-4" style="color:red">Closed</h4>
 
         <div th:if="${store != null && store.productsInfo != null && store.productsInfo.empty}" class="alert alert-warning text-center" role="alert">
             <h2>No Products In This Store</h2>
         </div>
 
         <div th:if="${store != null && store.productsInfo != null && !store.productsInfo.empty}" >
-<!--            product(${controller}, ${store.productsInfo}, ${store.isActive}) TODO:-->
-            <div th:replace="fragments/product :: product(${controller}, ${store.productsInfo})"></div>
+            <div th:replace="fragments/product :: product(${controller}, ${store.productsInfo}, ${store.isActive})"></div>
         </div>
 
 

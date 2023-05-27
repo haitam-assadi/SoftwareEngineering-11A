@@ -52,10 +52,10 @@
                     <div th:each="store : ${myStores.get(role)}" class="feature col border-bottom mt-3">
                         <form action="store" method="post">
                             <div class="row container align-items-center mb-3">
-                                <!--                                  card-title pricing-card-title-->
                                 <h4 class="col fw-normal" th:text="${'Store Name: ' + store.storeName}"></h4>
+                                <h4 th:if="${store != null && !store.isActive}" class="col-auto fw-normal" style="color:red">Closed</h4>
                                 <input type="hidden" name="storeName" th:value="${store.storeName}">
-                                <button type="submit" class="col-2 btn btn-outline-success">Show Store</button>
+                                <button type="submit" class="col-2 btn btn-outline-success" th:disabled="${!store.isActive && role == 'StoreManager'}">Show Store</button>
                             </div>
                         </form>
                     </div>

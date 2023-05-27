@@ -402,7 +402,7 @@ public class SystemService {
         }
     }
 
-    public ResponseT<Boolean> AppointMemberAsSystemManager(String managerName,String otherMemberName) throws Exception {
+    public ResponseT<Boolean> AppointMemberAsSystemManager(String managerName,String otherMemberName){
         try{
             String loggerMsg ="\nAppointMemberAsSystemManager(String managerName, String otherMemberName)\n"+
                     "in " + this.nowTime() + " the system manager " + managerName + " tries to assign other user as system manager  - AppointMemberAsSystemManager("+managerName+", "+otherMemberName+")" ;
@@ -580,7 +580,7 @@ public class SystemService {
         }
     }
 
-    public  ResponseT<Boolean> systemManagerCloseStore(String managerName, String storeName) throws Exception{
+    public  ResponseT<Boolean> systemManagerCloseStore(String managerName, String storeName){
         try{
             return new ResponseT<>(market.systemManagerCloseStore(managerName,storeName));
         }catch (Exception e){
@@ -589,7 +589,7 @@ public class SystemService {
 
     }
 
-    public ResponseT<Boolean> isSystemManager(String userName) throws Exception{
+    public ResponseT<Boolean> isSystemManager(String userName){
         try{
             return new ResponseT<>(market.isSystemManager(userName));
         }catch (Exception e){
@@ -597,7 +597,7 @@ public class SystemService {
         }
     }
 
-    public ResponseT<Integer> getProductAmountInStore(String userName, String storeName, String productName) throws Exception {
+    public ResponseT<Integer> getProductAmountInStore(String userName, String storeName, String productName){
         try{
             return new ResponseT<>(market.getProductAmountInStore(userName,storeName,productName));
         }catch (Exception e){
