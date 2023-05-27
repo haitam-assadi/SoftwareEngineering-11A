@@ -1,7 +1,7 @@
 package DataAccessLayer.DTO;
 
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "Member")

@@ -73,7 +73,7 @@ public class UserController {
         members.put(newMemberUserName, member);
         member.defineNotifications(newMemberUserName);
         membersNamesConcurrentSet.add(newMemberUserName);
-        DALService.memberRepository.save(member.getDTOMember());
+        //DALService.memberRepository.save(member.getDTOMember());
         //TODO: add user to database
         return true;
     }

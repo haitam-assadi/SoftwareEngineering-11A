@@ -1168,3 +1168,483 @@ fail in adding product to cart: bag already contains gaming mouse 1 product
 May 26, 2023 9:56:19 PM DomainLayer.LoggerManager sendErrorLog
 WARNING: 
 fail in adding product to cart: bag already contains gaming mouse 1 product
+May 27, 2023 9:28:16 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: user1_first_store does not exists!
+May 27, 2023 9:28:16 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: Cannot invoke "DataAccessLayer.Repositories.MemberRepository.save(Object)" because "DataAccessLayer.DALService.memberRepository" is null
+May 27, 2023 9:28:16 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: Cannot invoke "DataAccessLayer.Repositories.MemberRepository.save(Object)" because "DataAccessLayer.DALService.memberRepository" is null
+May 27, 2023 9:28:16 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: Cannot invoke "DataAccessLayer.Repositories.MemberRepository.save(Object)" because "DataAccessLayer.DALService.memberRepository" is null
+May 27, 2023 9:28:57 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: BAR is not valid userName!
+May 27, 2023 9:28:57 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: moslem123222 is already a member
+May 27, 2023 9:28:57 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: userName Obiq does not exists!
+May 27, 2023 9:28:57 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in logging out: member1 is not logged in
+May 27, 2023 9:28:57 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: string is null or empty
+May 27, 2023 9:28:57 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in logging out: member1 is not logged in
+May 27, 2023 9:28:57 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: harry123 is not owner for moslem store
+May 27, 2023 9:28:57 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: harry123 is not owner for moslem store
+May 27, 2023 9:28:57 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: brain123 is not the my appointer for this store
+May 27, 2023 9:28:57 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store manager: memberharry123 is already store manager
+May 27, 2023 9:28:57 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store manager: memberharry123 is already store manager
+May 27, 2023 9:28:57 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in closing the store: brain123is not the founder of the store
+May 27, 2023 9:28:57 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in removing product from store: stock does not contain this product iphone 11
+May 27, 2023 9:28:57 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: membermoslem123 is already store owner
+May 27, 2023 9:28:57 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: membermoslem123 is already store owner
+May 27, 2023 9:28:57 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: userName koko does not exists!
+May 27, 2023 9:28:57 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: Cannot invoke "DomainLayer.StoreOwner.getUserName()" because "otherOwner" is null
+May 27, 2023 9:28:57 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: brain123 is not the my appointer for this store
+May 27, 2023 9:28:57 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: stock does already contains this product iphone 14
+May 27, 2023 9:28:57 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: memberbrain123 is already store owner
+May 27, 2023 9:28:57 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as system manager: userName not_member does not exists!
+May 27, 2023 9:28:57 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: systemmanager1 is already logged in
+May 27, 2023 9:28:57 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: systemmanager1 is already logged in
+May 27, 2023 9:28:57 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: userName not_manager does not exists!
+May 27, 2023 9:28:57 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: systemmanager1 is already logged in
+May 27, 2023 9:28:57 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: systemmanager1 is already logged in
+May 27, 2023 9:28:57 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: userName systemmanager1Pass does not exists!
+May 27, 2023 9:28:57 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: systemmanager1 is already logged in
+May 27, 2023 9:28:58 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: DomainLayer.BagConstraints.AllContentBagConstraint@ca27722
+May 27, 2023 9:28:58 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Shipment service error
+May 27, 2023 9:28:58 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: DomainLayer.BagConstraints.BagConstraintOnlyIf@1a6f2363
+May 27, 2023 9:28:58 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: DomainLayer.BagConstraints.ProductBagConstraint@486be205
+May 27, 2023 9:28:58 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: DomainLayer.BagConstraints.CategoryBagConstraint@54afd745
+May 27, 2023 9:28:58 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: DomainLayer.BagConstraints.AllContentBagConstraint@30b34287
+May 27, 2023 9:28:58 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: DomainLayer.BagConstraints.CategoryBagConstraint@4fbdc0f0
+May 27, 2023 9:28:58 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: gaming mouse 1 have only 10 amount in stock!
+May 27, 2023 9:28:58 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Payment service error
+May 27, 2023 9:28:58 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: DomainLayer.BagConstraints.BagConstraintAnd@22680f52
+May 27, 2023 9:28:58 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: gaming mouse 1 have only 10 amount in stock!
+May 27, 2023 9:28:58 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: DomainLayer.BagConstraints.BagConstraintOr@182b435b
+May 27, 2023 9:28:58 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: DomainLayer.BagConstraints.ProductBagConstraint@1e392345
+May 27, 2023 9:28:58 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Payment service error
+May 27, 2023 9:28:58 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: store: bad store name does not exists!
+May 27, 2023 9:28:58 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: store: bad store name does not exists!
+May 27, 2023 9:28:58 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: bag does not contain iphone 15 product
+May 27, 2023 9:28:58 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: bag does not contain iphone 15 product
+May 27, 2023 9:28:58 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: aaaproduct does not exist in this store!
+May 27, 2023 9:28:58 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: aaaproduct does not exist in this store!
+May 27, 2023 9:28:58 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: aaaproduct does not exist in this store!
+May 27, 2023 9:28:58 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: aaaproduct does not exist in this store!
+May 27, 2023 9:28:58 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: store: bad store name does not exists!
+May 27, 2023 9:28:58 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: store: bad store name does not exists!
+May 27, 2023 9:28:58 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: gaming mouse 1 have only 70 amount in stock!
+May 27, 2023 9:28:58 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: gaming mouse 1 have only 70 amount in stock!
+May 27, 2023 9:28:58 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: iphone 14 have only 50 amount in stock!
+May 27, 2023 9:28:58 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: The amount must be positive, it can't be -10
+May 27, 2023 9:28:58 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: iphone 14 have only 50 amount in stock!
+May 27, 2023 9:28:58 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: The amount must be positive, it can't be -10
+May 27, 2023 9:28:58 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove product from cart: bag does not contain iphone product
+May 27, 2023 9:28:58 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove product from cart: bag does not contain iphone product
+May 27, 2023 9:28:58 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: store: bad store name does not exists!
+May 27, 2023 9:28:58 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: store: bad store name does not exists!
+May 27, 2023 9:28:58 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: store: bad store name does not exists!
+May 27, 2023 9:28:58 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: store: bad store name does not exists!
+May 27, 2023 9:28:58 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove product from cart: store: bad store name does not exists!
+May 27, 2023 9:28:58 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove product from cart: store: bad store name does not exists!
+May 27, 2023 9:28:58 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: iphone 14 product does not exist in this store!
+May 27, 2023 9:28:58 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: iphone 14 product does not exist in this store!
+May 27, 2023 9:28:58 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: mouse product does not exist in this store!
+May 27, 2023 9:28:58 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: mouse product does not exist in this store!
+May 27, 2023 9:28:58 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: bad store name does not exists!
+May 27, 2023 9:28:58 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: bad store name does not exists!
+May 27, 2023 9:28:58 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: bad store name does not exists!
+May 27, 2023 9:28:58 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: bad store name does not exists!
+May 27, 2023 9:28:58 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: bad store name does not exists!
+May 27, 2023 9:28:58 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: bad store name does not exists!
+May 27, 2023 9:28:58 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: bag already contains gaming mouse 1 product
+May 27, 2023 9:28:58 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: bag already contains gaming mouse 1 product
+May 27, 2023 9:30:34 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: BAR is not valid userName!
+May 27, 2023 9:30:34 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: moslem123222 is already a member
+May 27, 2023 9:30:34 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: userName Obiq does not exists!
+May 27, 2023 9:30:34 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in logging out: member1 is not logged in
+May 27, 2023 9:30:34 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: string is null or empty
+May 27, 2023 9:30:34 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in logging out: member1 is not logged in
+May 27, 2023 9:30:34 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: harry123 is not owner for moslem store
+May 27, 2023 9:30:34 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: harry123 is not owner for moslem store
+May 27, 2023 9:30:34 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: brain123 is not the my appointer for this store
+May 27, 2023 9:30:34 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store manager: memberharry123 is already store manager
+May 27, 2023 9:30:34 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store manager: memberharry123 is already store manager
+May 27, 2023 9:30:34 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in closing the store: brain123is not the founder of the store
+May 27, 2023 9:30:34 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in removing product from store: stock does not contain this product iphone 11
+May 27, 2023 9:30:34 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: membermoslem123 is already store owner
+May 27, 2023 9:30:34 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: membermoslem123 is already store owner
+May 27, 2023 9:30:34 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: userName koko does not exists!
+May 27, 2023 9:30:34 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: Cannot invoke "DomainLayer.StoreOwner.getUserName()" because "otherOwner" is null
+May 27, 2023 9:30:34 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: brain123 is not the my appointer for this store
+May 27, 2023 9:30:34 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: stock does already contains this product iphone 14
+May 27, 2023 9:30:34 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: memberbrain123 is already store owner
+May 27, 2023 9:30:34 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as system manager: userName not_member does not exists!
+May 27, 2023 9:30:34 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: systemmanager1 is already logged in
+May 27, 2023 9:30:34 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: systemmanager1 is already logged in
+May 27, 2023 9:30:34 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: userName not_manager does not exists!
+May 27, 2023 9:30:34 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: systemmanager1 is already logged in
+May 27, 2023 9:30:34 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: systemmanager1 is already logged in
+May 27, 2023 9:30:34 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: userName systemmanager1Pass does not exists!
+May 27, 2023 9:30:34 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: systemmanager1 is already logged in
+May 27, 2023 9:30:34 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: DomainLayer.BagConstraints.AllContentBagConstraint@67427b69
+May 27, 2023 9:30:34 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Shipment service error
+May 27, 2023 9:30:34 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: DomainLayer.BagConstraints.BagConstraintOnlyIf@63f34b70
+May 27, 2023 9:30:34 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: DomainLayer.BagConstraints.ProductBagConstraint@4b4dd216
+May 27, 2023 9:30:34 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: DomainLayer.BagConstraints.CategoryBagConstraint@c00fff0
+May 27, 2023 9:30:34 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: DomainLayer.BagConstraints.AllContentBagConstraint@62f87c44
+May 27, 2023 9:30:34 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: DomainLayer.BagConstraints.CategoryBagConstraint@324c64cd
+May 27, 2023 9:30:34 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: gaming mouse 1 have only 10 amount in stock!
+May 27, 2023 9:30:34 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Payment service error
+May 27, 2023 9:30:35 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: DomainLayer.BagConstraints.BagConstraintAnd@324dcd31
+May 27, 2023 9:30:35 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: gaming mouse 1 have only 10 amount in stock!
+May 27, 2023 9:30:35 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: DomainLayer.BagConstraints.BagConstraintOr@7577b641
+May 27, 2023 9:30:35 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: DomainLayer.BagConstraints.ProductBagConstraint@2c22a348
+May 27, 2023 9:30:35 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Payment service error
+May 27, 2023 9:30:35 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: store: bad store name does not exists!
+May 27, 2023 9:30:35 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: store: bad store name does not exists!
+May 27, 2023 9:30:35 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: bag does not contain iphone 15 product
+May 27, 2023 9:30:35 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: bag does not contain iphone 15 product
+May 27, 2023 9:30:35 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: aaaproduct does not exist in this store!
+May 27, 2023 9:30:35 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: aaaproduct does not exist in this store!
+May 27, 2023 9:30:35 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: aaaproduct does not exist in this store!
+May 27, 2023 9:30:35 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: aaaproduct does not exist in this store!
+May 27, 2023 9:30:35 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: store: bad store name does not exists!
+May 27, 2023 9:30:35 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: store: bad store name does not exists!
+May 27, 2023 9:30:35 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: gaming mouse 1 have only 70 amount in stock!
+May 27, 2023 9:30:35 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: gaming mouse 1 have only 70 amount in stock!
+May 27, 2023 9:30:35 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: iphone 14 have only 50 amount in stock!
+May 27, 2023 9:30:35 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: The amount must be positive, it can't be -10
+May 27, 2023 9:30:35 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: iphone 14 have only 50 amount in stock!
+May 27, 2023 9:30:35 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: The amount must be positive, it can't be -10
+May 27, 2023 9:30:35 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove product from cart: bag does not contain iphone product
+May 27, 2023 9:30:35 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove product from cart: bag does not contain iphone product
+May 27, 2023 9:30:35 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: store: bad store name does not exists!
+May 27, 2023 9:30:35 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: store: bad store name does not exists!
+May 27, 2023 9:30:35 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: store: bad store name does not exists!
+May 27, 2023 9:30:35 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: store: bad store name does not exists!
+May 27, 2023 9:30:35 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove product from cart: store: bad store name does not exists!
+May 27, 2023 9:30:35 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove product from cart: store: bad store name does not exists!
+May 27, 2023 9:30:35 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: iphone 14 product does not exist in this store!
+May 27, 2023 9:30:35 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: iphone 14 product does not exist in this store!
+May 27, 2023 9:30:35 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: mouse product does not exist in this store!
+May 27, 2023 9:30:35 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: mouse product does not exist in this store!
+May 27, 2023 9:30:35 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: bad store name does not exists!
+May 27, 2023 9:30:35 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: bad store name does not exists!
+May 27, 2023 9:30:35 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: bad store name does not exists!
+May 27, 2023 9:30:35 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: bad store name does not exists!
+May 27, 2023 9:30:35 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: bad store name does not exists!
+May 27, 2023 9:30:35 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: bad store name does not exists!
+May 27, 2023 9:30:35 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: bag already contains gaming mouse 1 product
+May 27, 2023 9:30:35 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: bag already contains gaming mouse 1 product
