@@ -663,4 +663,13 @@ public class RealBridge implements Bridge{
         }
         return response.getValue();
     }
+
+    @Override
+    public Set<String> getAllSystemManagers(String managerName) throws Exception {
+        ResponseT<Set<String>> response = systemService.getAllSystemManagers(managerName);
+        if (response.ErrorOccurred){
+            throw new Exception(response.errorMessage);
+        }
+        return response.getValue();
+    }
 }

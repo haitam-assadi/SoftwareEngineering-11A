@@ -3,10 +3,7 @@ package AcceptanceTests;
 import DomainLayer.PaymentService;
 import DomainLayer.ShipmentService;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class ProxyBridge implements Bridge{
     public RealBridge realBridge;
@@ -477,5 +474,13 @@ public class ProxyBridge implements Bridge{
             return realBridge.removeMemberBySystemManager(managerName,memberName);
         }
         return false;
+    }
+
+    @Override
+    public Set<String> getAllSystemManagers(String managerName) throws Exception {
+        if(realBridge!=null){
+            return realBridge.getAllSystemManagers(managerName);
+        }
+        return null;
     }
 }

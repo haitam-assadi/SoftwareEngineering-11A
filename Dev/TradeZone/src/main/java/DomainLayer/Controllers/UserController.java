@@ -383,6 +383,16 @@ public class UserController {
         member.assertIsOwnerForTheStore(store);
     }
 
+    public boolean assertIsOwnerOrSystemManager(String userName,Store store) throws Exception{
+        if(isSystemManager(userName)){
+            return true;
+        }
+        else{
+            assertIsOwner(userName,store);
+        }
+        return false;
+    }
+
     private String nowTime(){
         LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
