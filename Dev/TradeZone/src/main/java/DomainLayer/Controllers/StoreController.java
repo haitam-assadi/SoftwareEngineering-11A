@@ -164,8 +164,8 @@ public class StoreController {
     }
 
     public List<DealDTO> getStoreDeals(String memberUserName, String storeName) throws Exception {
-        assertIsStore(storeName);
         storeName=storeName.strip().toLowerCase();
+        assertIsStore(storeName);
         return this.stores.get(storeName).getStoreDeals(memberUserName);
     }
 

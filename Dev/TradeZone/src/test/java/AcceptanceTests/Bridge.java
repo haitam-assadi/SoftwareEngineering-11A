@@ -4,6 +4,7 @@ import ServiceLayer.ResponseT;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public interface Bridge {
 
@@ -137,4 +138,5 @@ public interface Bridge {
 
     public Boolean removeMemberBySystemManager(String managerName, String memberName) throws Exception;
 
+    public Set<String> getAllSystemManagers(String managerName) throws Exception;
 }

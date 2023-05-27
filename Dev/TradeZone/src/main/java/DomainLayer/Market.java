@@ -76,7 +76,7 @@ public class Market {
         if(active) return storeController.getStoreInfo(storeName);
         else {
             Store store = storeController.getStore(storeName);
-            userController.assertIsOwner(userName, store);
+            userController.assertIsOwnerOrSystemManager(userName, store);
             return storeController.getStoreInfo(storeName);
         }
     }
