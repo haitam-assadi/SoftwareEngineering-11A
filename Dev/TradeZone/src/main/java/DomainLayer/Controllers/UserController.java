@@ -1,6 +1,7 @@
 package DomainLayer.Controllers;
 
 import DTO.StoreDTO;
+import DataAccessLayer.DALService;
 import DomainLayer.*;
 
 import java.time.LocalDateTime;
@@ -72,6 +73,7 @@ public class UserController {
         members.put(newMemberUserName, member);
         member.defineNotifications(newMemberUserName);
         membersNamesConcurrentSet.add(newMemberUserName);
+        DALService.memberRepository.save(member.getDTOMember());
         //TODO: add user to database
         return true;
     }

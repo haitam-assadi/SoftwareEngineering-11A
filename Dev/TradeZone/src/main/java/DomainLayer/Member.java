@@ -2,6 +2,8 @@ package DomainLayer;
 
 import DTO.MemberDTO;
 import DTO.StoreDTO;
+import DataAccessLayer.DTO.*;
+
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
@@ -261,6 +263,11 @@ public class Member extends User{
             throw new Exception(getUserName() + " have a role in a store");
         }
     }
+
+    public DTOMember getDTOMember(){
+        return new DTOMember(this.userName, this.password, this.isOnline, 1, this.isSystemManager);
+    }
+
 
 
 
