@@ -1,6 +1,10 @@
 package DomainLayer;
 
 import DTO.ProductDTO;
+import DataAccessLayer.DTO.DTOCategory;
+import DataAccessLayer.DTO.DTOProduct;
+import DataAccessLayer.DTO.DTOStock;
+import DataAccessLayer.DTO.DTOStore;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -22,6 +26,10 @@ public class Product {
         this.description=description;
         productCategories=new ConcurrentHashMap<>();
         productCategories.put(category.getCategoryName(), category);
+    }
+
+    public DTOProduct getDTOproduct(DTOStock dtoStock, DTOCategory dtoCategory,int amount){
+        return new DTOProduct(name,storeName,price,description,dtoStock,amount,dtoCategory);
     }
 
     public String getName() {

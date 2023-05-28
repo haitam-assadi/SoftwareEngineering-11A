@@ -4,6 +4,10 @@ import DTO.DealDTO;
 import DTO.MemberDTO;
 import DTO.ProductDTO;
 import DTO.StoreDTO;
+import DataAccessLayer.DALService;
+import DataAccessLayer.DTO.DTOCategory;
+import DataAccessLayer.DTO.DTOMember;
+import DataAccessLayer.DTO.DTOStore;
 import DomainLayer.BagConstraints.*;
 import DomainLayer.DiscountPolicies.*;
 
@@ -47,6 +51,13 @@ public class Store {
         createdBagConstraints = new ConcurrentHashMap<>();
         bagConstraintsIdCounter =1;
     }
+
+    public DTOStore getStoreDTO(Member member){
+        //todo: load the stock
+        return new DTOStore(storeName,stock.getStockDTO(),isActive,member.getDTOMember());
+    }
+
+
     public void setStoreFounderAtStoreCreation(StoreFounder storeFounder) throws Exception {
         if(this.alreadyHaveFounder()){
             throw new Exception("store already have a founder");
@@ -258,6 +269,7 @@ public class Store {
     public boolean closeStore(String memberUserName) throws Exception {
         if(memberUserName.equals(this.storeFounder.getUserName())){
             this.isActive = false;
+
             String msg = "store: " + storeName + " has been closed by " + memberUserName + " at " + java.time.LocalTime.now();
             NotificationService.getInstance().notify(storeName,msg,NotificationType.storeClosed);
             return true;

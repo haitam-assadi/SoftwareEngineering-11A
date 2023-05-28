@@ -4,6 +4,7 @@ import DTO.DealDTO;
 import DTO.MemberDTO;
 import DTO.ProductDTO;
 import DTO.StoreDTO;
+import DataAccessLayer.DALService;
 import DomainLayer.BagConstraints.BagConstraint;
 import DomainLayer.Category;
 import DomainLayer.DiscountPolicies.*;
@@ -183,6 +184,7 @@ public class StoreController {
         newStoreName = newStoreName.strip().toLowerCase();
         Store newStore = new Store(newStoreName);
         stores.put(newStoreName,newStore);
+        //DALService.storeRepository.save(newStore.getStoreDTO());
         return newStore;
     }
 

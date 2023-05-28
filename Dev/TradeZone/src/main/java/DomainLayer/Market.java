@@ -1,6 +1,7 @@
 package DomainLayer;
 
 import DTO.*;
+import DataAccessLayer.DALService;
 import DomainLayer.BagConstraints.*;
 import DomainLayer.Controllers.StoreController;
 import DomainLayer.Controllers.UserController;
@@ -153,6 +154,7 @@ public class Market {
         Member member = userController.getMember(memberUserName);
         Store store = storeController.createStore(newStoreName);
         member.appointMemberAsStoreFounder(store);
+        DALService.saveStore(store,member);
         return store.getStoreInfo();
     }
     public boolean addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount) throws Exception {
@@ -161,21 +163,29 @@ public class Market {
     }
     public boolean removeProductFromStock(String memberUserName, String storeName, String productName) throws Exception {
         userController.assertIsMemberLoggedIn(memberUserName);
-        return storeController.removeProductFromStock(memberUserName, storeName, productName);
+        boolean res = storeController.removeProductFromStock(memberUserName, storeName, productName);
+        DALService.removeProduct(storeName,productName);
+        return res;
     }
     public boolean updateProductDescription(String memberUserName, String storeName, String productName, String newProductDescription) throws Exception {
         userController.assertIsMemberLoggedIn(memberUserName);
-        return storeController.updateProductDescription(memberUserName, storeName, productName, newProductDescription);
+        boolean res = storeController.updateProductDescription(memberUserName, storeName, productName, newProductDescription);
+        DALService.updateProductDescription(storeName,productName,newProductDescription);
+        return res;
     }
 
     public boolean updateProductAmount(String memberUserName, String storeName, String productName, Integer newAmount) throws Exception {
         userController.assertIsMemberLoggedIn(memberUserName);
-        return storeController.updateProductAmount(memberUserName, storeName, productName, newAmount);
+        boolean res = storeController.updateProductAmount(memberUserName, storeName, productName, newAmount);
+        DALService.updateProductAmount(storeName,productName,newAmount);
+        return res;
     }
 
     public boolean updateProductPrice(String memberUserName, String storeName, String productName, Double newPrice) throws Exception {
         userController.assertIsMemberLoggedIn(memberUserName);
-        return storeController.updateProductPrice(memberUserName, storeName, productName, newPrice);
+        boolean res = storeController.updateProductPrice(memberUserName, storeName, productName, newPrice);
+        DALService.updateProductPrice(storeName,productName,newPrice);
+        return res;
     }
 
     public Boolean AppointMemberAsSystemManager(String managerName,String otherMemberName) throws Exception {
@@ -215,7 +225,9 @@ public class Market {
 
     public boolean closeStore(String memberUserName, String storeName) throws Exception {
         userController.assertIsMemberLoggedIn(memberUserName);
-        return storeController.closeStore(memberUserName, storeName);
+        boolean res = storeController.closeStore(memberUserName, storeName);
+        DALService.updateActive(storeName);
+        return res;
         //TODO: adel, not completed.
     }
 

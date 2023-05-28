@@ -24,6 +24,8 @@ public class Member extends User{
     private List<String> pendingMessages;
     private boolean isOnline;
 
+    private boolean init;
+
     public void setSystemManager(SystemManager systemManager) {
         this.systemManager = systemManager;
         isSystemManager = true;
@@ -32,6 +34,10 @@ public class Member extends User{
 
     public boolean checkIsSystemManager(){
         return isSystemManager;
+    }
+
+    public Member(String userName){
+        super(userName);
     }
 
     public Member(String userName, String password) {
@@ -276,7 +282,11 @@ public class Member extends User{
     }
 
     public DTOMember getDTOMember(){
-        return new DTOMember(this.userName, this.password, this.isOnline, 1, this.isSystemManager);
+        boolean owner = false,founder = false,manager = false;
+        if (roles.containsKey(RoleEnum.StoreOwner)) owner = true;
+        if (roles.containsKey(RoleEnum.StoreManager)) manager = true;
+        if(roles.containsKey(RoleEnum.StoreFounder)) founder = true;
+        return new DTOMember(this.userName, this.password, this.isOnline, 1, this.isSystemManager,founder,owner,manager);
     }
 
 

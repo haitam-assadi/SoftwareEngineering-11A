@@ -11,8 +11,7 @@ import java.util.Optional;
 @Repository
 public interface MemberRepository extends JpaRepository<DTOMember, String> {
 
-    public static final String FIND_Names = "SELECT \"user_name\" FROM member;";
-    @Query(value = FIND_Names)
+    public static final String FIND_Names = "SELECT user_name FROM member";
+    @Query(value = FIND_Names, nativeQuery = true)
     public List<String> findNames();
-
 }

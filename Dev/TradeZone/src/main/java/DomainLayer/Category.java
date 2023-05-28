@@ -1,6 +1,9 @@
 package DomainLayer;
 
 import DTO.ProductDTO;
+import DataAccessLayer.DTO.DTOCategory;
+import DataAccessLayer.DTO.DTOStock;
+import DataAccessLayer.DTO.DTOStore;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +20,9 @@ public class Category {
         this.storeName = storeName;
 
         categoryProducts = new ConcurrentHashMap<>();
+    }
+    public DTOCategory getCategoryDTO(DTOStore dtoStore, DTOStock dtoStock){
+        return new DTOCategory(categoryName,storeName,dtoStock);
     }
 
     public boolean putProductInCategory(Product product) throws Exception {

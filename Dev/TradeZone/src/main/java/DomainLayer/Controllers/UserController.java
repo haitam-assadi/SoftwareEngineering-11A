@@ -30,18 +30,30 @@ public class UserController {
         members = new ConcurrentHashMap<>();
         guestsCounter=0;
         systemManagers = new ConcurrentHashMap<>();
-        loadAllMembers();
+        //loadAllMembers();
     }
 
     public boolean loadAllMembers(){
         List<String> membersNames = DALService.memberRepository.findNames();
-        System.out.println(membersNames);
+        for (String member : membersNames){
+            members.put(member,new Member("init"+guestsCounter));
+        }
         return true;
     }
 
 
     public String firstManagerInitializer() {
+        loadAllMembers();
         String user = "systemmanager1";
+        if(members.containsKey(user)){
+            DTOMember dtomember = DALService.memberRepository.getById(user);
+            Member member = dtomember.loadMember();
+            System.out.println(members.get(user).getUserName());
+            members.put(user,member);
+            System.out.println(members.get(user).getUserName());
+            systemManagers.put(user,new SystemManager(member));
+            //todo: get the system manager from data base
+        }
         Member member = new Member(user,Security.Encode("systemmanager1Pass"));
         //membersNamesConcurrentSet.add(user);
         members.put(user,member);
@@ -305,6 +317,7 @@ public class UserController {
         otherMember.assertHaveNoRule();
         SystemManager newManager = manager.AppointMemberAsSystemManager(otherMember);
         otherMember.setSystemManager(newManager);
+        DALService.memberRepository.save(otherMember.getDTOMember());
         systemManagers.put(otherMemberName,newManager);
         return true;
     }
@@ -355,6 +368,8 @@ public class UserController {
 
     public boolean loggedInMemberExitMarket(String memberUserName) throws Exception {
         assertIsMemberLoggedIn(memberUserName);
+        Member member = getMember(memberUserName);
+        member.Logout();
         loggedInMembers.remove(memberUserName);
         return true;
     }
@@ -425,6 +440,7 @@ public class UserController {
         if(loggedInMembers.containsKey(memberName)){
             loggedInMembers.remove(memberName);
         }
+        member.Logout();
         DALService.memberRepository.delete(member.getDTOMember());
         NotificationService.getInstance().unsubscribeMember(memberName);
         return true;

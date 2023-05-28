@@ -1,6 +1,8 @@
 package DomainLayer;
 
 import DTO.ProductDTO;
+import DataAccessLayer.DALService;
+import DataAccessLayer.DTO.DTOStock;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
@@ -15,6 +17,10 @@ public class Stock {
         this.stockName = stockName;
         stockProducts =new ConcurrentHashMap<>();
         stockCategories = new ConcurrentHashMap<>();
+    }
+
+    public DTOStock getStockDTO(){
+        return new DTOStock(stockName);
     }
 
     public synchronized void assertStringIsNotNullOrBlank(String st) throws Exception {
@@ -51,8 +57,12 @@ public class Stock {
         ConcurrentHashMap<Product,Integer> productAmount = new ConcurrentHashMap<Product, Integer>();
         productAmount.put(product,amount);
         stockProducts.put(nameProduct,productAmount);
+        DALService.addProduct(stockCategories.get(category),stockName,getStoreName(),product,amount);
+        //DALService.addCategory(stockCategories.get(category),this.stockName,this.getStoreName());
         return true;
     }
+
+
 
     public synchronized boolean removeProductFromStock(String productName) throws Exception {
         assertContainsProduct(productName);
