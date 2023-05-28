@@ -1,0 +1,8 @@
+May 28, 2023 3:49:05 AM DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-05-28 03:49:05 the user guest_4 wants to make login login(guest_4, systemmanager1,systemmanager1Pass)
+May 28, 2023 3:49:05 AM DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-28 03:49:05 a new member Logged in .
+- Memer name: systemmanager1
+

@@ -2,12 +2,14 @@ package DomainLayer.Controllers;
 
 import DTO.StoreDTO;
 import DataAccessLayer.DALService;
+import DataAccessLayer.DTO.DTOMember;
 import DomainLayer.*;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -19,8 +21,6 @@ public class UserController {
     private ConcurrentHashMap<String, Member> loggedInMembers;
     private ConcurrentHashMap<String, Guest> guests;
     private ConcurrentHashMap<String, Member> members;
-    private Set<String> membersNamesConcurrentSet;
-
     private ConcurrentHashMap<String, SystemManager> systemManagers;
 
 
@@ -28,19 +28,27 @@ public class UserController {
         loggedInMembers = new ConcurrentHashMap<>();
         guests = new ConcurrentHashMap<>();
         members = new ConcurrentHashMap<>();
-        membersNamesConcurrentSet = ConcurrentHashMap.newKeySet();
         guestsCounter=0;
         systemManagers = new ConcurrentHashMap<>();
+        loadAllMembers();
     }
+
+    public boolean loadAllMembers(){
+        List<String> membersNames = DALService.memberRepository.findNames();
+        System.out.println(membersNames);
+        return true;
+    }
+
 
     public String firstManagerInitializer() {
         String user = "systemmanager1";
         Member member = new Member(user,Security.Encode("systemmanager1Pass"));
-        membersNamesConcurrentSet.add(user);
+        //membersNamesConcurrentSet.add(user);
         members.put(user,member);
         SystemManager systemManager = new SystemManager(member);
         member.setSystemManager(systemManager);
         systemManagers.put(user,systemManager);
+        DALService.memberRepository.save(member.getDTOMember());
         return user;
     }
 
@@ -72,8 +80,8 @@ public class UserController {
         member.addCart(guests.get(guestUserName).getCart());
         members.put(newMemberUserName, member);
         member.defineNotifications(newMemberUserName);
-        membersNamesConcurrentSet.add(newMemberUserName);
-        //DALService.memberRepository.save(member.getDTOMember());
+        //membersNamesConcurrentSet.add(newMemberUserName);
+        DALService.memberRepository.save(member.getDTOMember());
         //TODO: add user to database
         return true;
     }
@@ -147,14 +155,19 @@ public class UserController {
         if(st==null || st.isBlank())
             throw new Exception("string is null or empty");
     }
+    private Member loadMember(DTOMember dtoMember){
+        return dtoMember.loadMember();
+    }
 
     public Member getMember(String userName) throws Exception {
         assertIsMember(userName);
-
         userName = userName.strip().toLowerCase();
-        if(!members.containsKey(userName))
-            // TODO: read from database AND add to members hashmap
-            throw new Exception("user needs to be read from database");
+
+        if(members.get(userName) == null){
+            DTOMember dtoMember = DALService.memberRepository.getById(userName);
+            Member member = this.loadMember(dtoMember);
+            members.put(userName, member);
+        }
 
         return members.get(userName);
     }
@@ -192,7 +205,7 @@ public class UserController {
     }
 
     public List<String> getAllMambers(){
-        return membersNamesConcurrentSet.stream().toList();
+        return members.keySet().stream().toList();
     }
     public List<String> getAllLoggedInMembers(){
         return loggedInMembers.keySet().stream().toList();
@@ -217,7 +230,7 @@ public class UserController {
         assertStringIsNotNullOrBlank(memberUserName);
 
         memberUserName = memberUserName.strip().toLowerCase();
-        if(!membersNamesConcurrentSet.contains(memberUserName))
+        if(!members.containsKey(memberUserName))
             return false;
 
         return true;
@@ -320,6 +333,7 @@ public class UserController {
     }
 
     public void checkMemberRole(String systemManagerUserName, String otherMemberUserName) throws Exception {
+        //TODO: check argumnets
         if(!this.members.containsKey(systemManagerUserName)){
             throw new Exception(systemManagerUserName + "has to be a member to get member's deals.");
         }
@@ -407,10 +421,11 @@ public class UserController {
         member.assertHaveNoRule();
         member.removeCart();
         members.remove(memberName);
-        membersNamesConcurrentSet.remove(memberName);
+        //membersNamesConcurrentSet.remove(memberName);
         if(loggedInMembers.containsKey(memberName)){
             loggedInMembers.remove(memberName);
         }
+        DALService.memberRepository.delete(member.getDTOMember());
         NotificationService.getInstance().unsubscribeMember(memberName);
         return true;
     }

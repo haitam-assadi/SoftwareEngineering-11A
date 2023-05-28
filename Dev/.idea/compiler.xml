@@ -9,10 +9,12 @@
         <module name="springboot-html" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="springboot-html" target="16" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="TradeZone" options="-parameters" />
       <module name="springboot-html" options="-parameters" />
     </option>
   </component>

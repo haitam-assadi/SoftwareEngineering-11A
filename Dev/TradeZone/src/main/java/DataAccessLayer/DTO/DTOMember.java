@@ -1,7 +1,11 @@
 package DataAccessLayer.DTO;
 
 
-import javax.persistence.*;
+import DomainLayer.Member;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "Member")
@@ -22,7 +26,14 @@ public class DTOMember {
         this.isSystemManager = isSystemManager;
     }
 
-    public DTOMember() {
+    protected DTOMember() {
+
+    }
+
+
+    public Member loadMember(){
+        //TODO: database
+        return new Member(this.userName, this.password);
     }
 }
 

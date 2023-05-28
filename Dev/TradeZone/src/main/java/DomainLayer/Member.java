@@ -2,6 +2,7 @@ package DomainLayer;
 
 import DTO.MemberDTO;
 import DTO.StoreDTO;
+import DataAccessLayer.DALService;
 import DataAccessLayer.DTO.*;
 
 
@@ -21,13 +22,12 @@ public class Member extends User{
     private String password;
 
     private List<String> pendingMessages;
-
     private boolean isOnline;
-
 
     public void setSystemManager(SystemManager systemManager) {
         this.systemManager = systemManager;
         isSystemManager = true;
+        DALService.memberRepository.save(getDTOMember());
     }
 
     public boolean checkIsSystemManager(){
@@ -42,6 +42,13 @@ public class Member extends User{
         systemManager = null;
         pendingMessages = new ArrayList<>();
         isOnline = false;
+    }
+
+    public Member(String userName, String password, boolean isSystemManager, boolean isOnline) {
+        super(userName);
+        this.password = password;
+        this.isSystemManager=isSystemManager;
+        this.isOnline=isOnline;
     }
 
 
@@ -230,6 +237,7 @@ public class Member extends User{
             NotificationService.getInstance().send(userName,msg);
         }else{
             pendingMessages.add(msg);
+            DALService.memberRepository.save(getDTOMember());
         }
     }
 
@@ -243,10 +251,13 @@ public class Member extends User{
             pendingMessages.clear();
             NotificationService.getInstance().send(userName, msg.toString());
         }
+
+        DALService.memberRepository.save(getDTOMember());
     }
 
     public void Logout() {
         isOnline= false;
+        DALService.memberRepository.save(getDTOMember());
     }
 
     public void defineNotifications(String newMemberUserName) {
@@ -267,6 +278,8 @@ public class Member extends User{
     public DTOMember getDTOMember(){
         return new DTOMember(this.userName, this.password, this.isOnline, 1, this.isSystemManager);
     }
+
+
 
 
 
