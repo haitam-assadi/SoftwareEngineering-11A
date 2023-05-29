@@ -70,6 +70,10 @@ public class DTOMember {
         //TODO: database
         return new Member(this.userName, this.password);
     }
+
+    public String getUserName() {
+        return userName;
+    }
 }
 
 

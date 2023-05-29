@@ -44,7 +44,7 @@ public class loginController {
             model.addAttribute("name", controller.getName());
             return "login";
         }
-        controller.setHasRole(hasRole.getValue());
+        //controller.setHasRole(hasRole.getValue());
         controller.setLogged(true);
         model.addAttribute("logged", controller.getLogged());
         model.addAttribute("hasRole", controller.getHasRole());

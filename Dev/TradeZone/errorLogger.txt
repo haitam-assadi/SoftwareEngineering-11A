@@ -1,0 +1,24 @@
+מאי 30, 2023 12:47:09 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: userName moslem does not exists!
+מאי 30, 2023 12:47:19 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: aaa is not valid userName!
+מאי 30, 2023 12:47:45 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: userName moslem does not exists!
+מאי 30, 2023 12:48:00 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: string is null or empty
+מאי 30, 2023 12:56:41 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: string is null or empty
+מאי 30, 2023 12:56:46 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: string is null or empty
+מאי 30, 2023 12:58:00 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: string is null or empty
+מאי 30, 2023 1:21:20 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: incorrect password!

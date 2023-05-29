@@ -5,6 +5,7 @@ import DTO.MemberDTO;
 import DTO.ProductDTO;
 import DTO.StoreDTO;
 import DataAccessLayer.DALService;
+import DataAccessLayer.DTO.DTOStore;
 import DomainLayer.BagConstraints.BagConstraint;
 import DomainLayer.Category;
 import DomainLayer.DiscountPolicies.*;
@@ -17,17 +18,28 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Collectors;
 
 public class StoreController {
     private ConcurrentHashMap<String, Store> stores;
+    private long counter;
+
 
     public StoreController() {
         stores = new ConcurrentHashMap<>();
+        counter = 0;
     }
 
     //TODO: isStore() method currentlu checking if storeName exists in hashmap, this does not work with lazyLoad
     //TODO: ahmed when you want to open a new store, check if the name of the store unique
 
+    public void loadAllStoresNames() {
+       List<DTOStore> dtoStores = DALService.storeRepository.findAll();
+       for (DTOStore dtoStore: dtoStores){
+           stores.put(dtoStore.getStoreName(),new Store("init"+counter));
+           counter++;
+       }
+    }
     public boolean addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount) throws Exception {
         assertIsStore(storeName);
         storeName = storeName.strip().toLowerCase();
@@ -184,7 +196,6 @@ public class StoreController {
         newStoreName = newStoreName.strip().toLowerCase();
         Store newStore = new Store(newStoreName);
         stores.put(newStoreName,newStore);
-        //DALService.storeRepository.save(newStore.getStoreDTO());
         return newStore;
     }
 

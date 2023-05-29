@@ -25,8 +25,9 @@ public class SystemService {
     public ResponseT<String> initializeMarket(){
 
         try{
+            market.loadData();
             String manager = market.firstManagerInitializer();
-            createMemberWithTwoStore("user1");
+            //createMemberWithTwoStore("user1");
             return new ResponseT<>(manager,true);
 
         }catch (Exception e){

@@ -27,6 +27,17 @@ public class Product {
         productCategories=new ConcurrentHashMap<>();
         productCategories.put(category.getCategoryName(), category);
     }
+    public Product(String name,String storeName, Double price,String description){
+        this.name = name;
+        this.storeName=storeName;
+        this.price = price;
+        this.description=description;
+        productCategories=new ConcurrentHashMap<>();
+    }
+
+    public void addCategory(Category category){
+        productCategories.put(category.getCategoryName(),category);
+    }
 
     public DTOProduct getDTOproduct(DTOStock dtoStock, DTOCategory dtoCategory,int amount){
         return new DTOProduct(name,storeName,price,description,dtoStock,amount,dtoCategory);

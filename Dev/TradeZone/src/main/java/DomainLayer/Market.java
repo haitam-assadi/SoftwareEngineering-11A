@@ -443,4 +443,9 @@ public class Market {
         return userController.removeMemberBySystemManager(managerName,memberName);
     }
 
+    public void loadData() {
+        userController.loadAllMembersNames();
+        storeController.loadAllStoresNames();
+    }
+
 }

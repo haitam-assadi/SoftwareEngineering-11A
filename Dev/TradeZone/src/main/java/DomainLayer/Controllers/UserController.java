@@ -12,11 +12,13 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Collectors;
 
 public class UserController {
 
     private final String GUEST_PREFIX = "guest_";
     private long guestsCounter;
+    private long counter;
 
     private ConcurrentHashMap<String, Member> loggedInMembers;
     private ConcurrentHashMap<String, Guest> guests;
@@ -30,32 +32,32 @@ public class UserController {
         members = new ConcurrentHashMap<>();
         guestsCounter=0;
         systemManagers = new ConcurrentHashMap<>();
+        counter = 0;
         //loadAllMembers();
     }
 
-    public boolean loadAllMembers(){
-        List<String> membersNames = DALService.memberRepository.findNames();
+    public boolean loadAllMembersNames(){
+        List<String> membersNames = DALService.memberRepository.
+                findAll().stream().map(DTOMember::getUserName).collect(Collectors.toList());;
+
         for (String member : membersNames){
-            members.put(member,new Member("init"+guestsCounter));
+            members.put(member,new Member("init"+counter));
+            counter++;
         }
         return true;
     }
 
 
     public String firstManagerInitializer() {
-        loadAllMembers();
         String user = "systemmanager1";
         if(members.containsKey(user)){
             DTOMember dtomember = DALService.memberRepository.getById(user);
             Member member = dtomember.loadMember();
-            System.out.println(members.get(user).getUserName());
             members.put(user,member);
-            System.out.println(members.get(user).getUserName());
             systemManagers.put(user,new SystemManager(member));
             //todo: get the system manager from data base
         }
         Member member = new Member(user,Security.Encode("systemmanager1Pass"));
-        //membersNamesConcurrentSet.add(user);
         members.put(user,member);
         SystemManager systemManager = new SystemManager(member);
         member.setSystemManager(systemManager);
@@ -175,10 +177,13 @@ public class UserController {
         assertIsMember(userName);
         userName = userName.strip().toLowerCase();
 
-        if(members.get(userName) == null){
-            DTOMember dtoMember = DALService.memberRepository.getById(userName);
-            Member member = this.loadMember(dtoMember);
-            members.put(userName, member);
+        if(members.containsKey(userName)){
+            Member member = members.get(userName);
+            if (member.getUserName().contains("init")) {
+                DTOMember dtoMember = DALService.memberRepository.getById(userName);
+                member = this.loadMember(dtoMember);
+                members.put(userName, member);
+            }
         }
 
         return members.get(userName);

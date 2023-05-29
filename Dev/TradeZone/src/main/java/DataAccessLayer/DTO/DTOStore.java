@@ -1,6 +1,8 @@
 package DataAccessLayer.DTO;
 
 
+import DomainLayer.Store;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -89,5 +91,9 @@ public class DTOStore {
 
     public DTOMember getDtoMember() {
         return dtoMember;
+    }
+
+    public Store DTOStore2Store(){
+        return new Store(storeName);
     }
 }
