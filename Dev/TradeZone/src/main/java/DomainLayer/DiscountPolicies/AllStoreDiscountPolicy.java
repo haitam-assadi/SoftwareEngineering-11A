@@ -35,4 +35,8 @@ public class AllStoreDiscountPolicy implements DiscountPolicy{
         }
         return 0.0;
     }
+
+    public String toString(){
+        return discountPercentage+"% discount on all store products.";
+    }
 }

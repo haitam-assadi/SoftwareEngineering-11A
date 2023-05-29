@@ -82,4 +82,14 @@ public class ProductBagConstraint implements BagConstraint {
 
         return true;
     }
+
+    public String toString(){
+        String st = "";
+        if(productPPType == BagConstraintType.MaxTimeAtDay){
+            st = "product "+ product.getName()+" is not allowed after " +this.localTime.toString()+" .";
+        }else{
+            st = "product "+ product.getName()+" is not allowed between " +this.fromDate.toString()+" and "+this.toDate.toString()+" .";
+        }
+        return st;
+    }
 }

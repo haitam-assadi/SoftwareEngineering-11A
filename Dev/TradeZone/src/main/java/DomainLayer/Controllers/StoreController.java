@@ -300,7 +300,7 @@ public class StoreController {
         return store.removeConstraintFromPaymentPolicies(memberUserName, bagConstraintId);
     }
 
-    public String getAllPaymentPolicies(String memberUserName, String storeName) throws Exception {
+    public List<String> getAllPaymentPolicies(String memberUserName, String storeName) throws Exception {
         assertIsStore(storeName);
         storeName = storeName.strip().toLowerCase();
         Store store = stores.get(storeName);
@@ -308,7 +308,7 @@ public class StoreController {
         return store.getAllPaymentPolicies(memberUserName);
     }
 
-    public String getAllBagConstraints(String memberUserName, String storeName) throws Exception {
+    public List<String> getAllBagConstraints(String memberUserName, String storeName) throws Exception {
         assertIsStore(storeName);
         storeName = storeName.strip().toLowerCase();
         Store store = stores.get(storeName);
@@ -404,14 +404,14 @@ public class StoreController {
     }
 
 
-    public String getAllCreatedDiscountPolicies(String memberUserName, String storeName) throws Exception {
+    public List<String> getAllCreatedDiscountPolicies(String memberUserName, String storeName) throws Exception {
         assertIsStore(storeName);
         storeName = storeName.strip().toLowerCase();
         Store store = stores.get(storeName);
         return store.getAllCreatedDiscountPolicies(memberUserName);
     }
 
-    public String getAllStoreDiscountPolicies(String memberUserName, String storeName) throws Exception {
+    public List<String> getAllStoreDiscountPolicies(String memberUserName, String storeName) throws Exception {
         assertIsStore(storeName);
         storeName = storeName.strip().toLowerCase();
         Store store = stores.get(storeName);
