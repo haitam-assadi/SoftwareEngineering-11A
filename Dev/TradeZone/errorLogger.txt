@@ -1,0 +1,18 @@
+מאי 27, 2023 5:49:55 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as system manager: user1 have a role in a store
+מאי 27, 2023 5:50:23 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as system manager: userName alaa is already a system manager!
+מאי 27, 2023 5:51:28 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as system manager: userName baraa is already a system manager!
+מאי 27, 2023 5:57:29 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: userName alaa does not exists!
+מאי 27, 2023 6:03:31 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as system manager: userName baraa does not exists!
+מאי 27, 2023 6:24:40 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in creating store: userName baraa2 is a system manager!

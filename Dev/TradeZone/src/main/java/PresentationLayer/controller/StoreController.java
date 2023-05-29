@@ -4,6 +4,8 @@ import CommunicationLayer.Server;
 import DTO.ProductDTO;
 import DTO.StoreDTO;
 import PresentationLayer.model.*;
+import PresentationLayer.model.Policies.AllConstraints;
+import PresentationLayer.model.Policies.BagConstraint;
 import ServiceLayer.ResponseT;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,11 +25,16 @@ public class StoreController {
     String storeName;
     Map<String, List<Worker>> workers;
     List<Deal> deals;
+    AllConstraints constraints;
     String currentPage = "stock";
     Alert alert = Alert.getInstance();
 
     @GetMapping("/store")
     public String showStore(HttpServletRequest request, Model model){
+        store = null;
+        workers = null;
+        deals = null;
+        constraints = null;
         if(request.getSession().getAttribute("controller") != null){
             controller = (GeneralModel) request.getSession().getAttribute("controller");
             if(request.getSession().getAttribute("currentPage") != null)
@@ -40,6 +47,8 @@ public class StoreController {
                 workers = (Map<String, List<Worker>>) request.getSession().getAttribute("workers");
             if(request.getSession().getAttribute("deals") != null)
                 deals = (List<Deal>) request.getSession().getAttribute("deals");
+            if(request.getSession().getAttribute("constraints") != null)
+                constraints = (AllConstraints) request.getSession().getAttribute("constraints");
         }
         ResponseT<StoreDTO> response = server.getStoreInfo(controller.getName(), storeName);
         if(response.ErrorOccurred){
@@ -64,6 +73,7 @@ public class StoreController {
         model.addAttribute("workers", workers);
         model.addAttribute("currentPage", currentPage);
         model.addAttribute("deals", deals);
+        model.addAttribute("constraints", constraints);
         alert.reset();
 //        currentPage = "stock"; // ???
         return "storeTemplates/store";
@@ -213,46 +223,6 @@ public class StoreController {
         return "redirect:/stock";
     }
 
-//    // updateProductPrice
-//    @PostMapping("/updateProductPrice")
-//    public String updateProductPrice(@ModelAttribute Product product){
-//        ResponseT<Boolean> response = server.updateProductPrice(controller.getName(), store.storeName, product.getName(), product.getPrice());
-//        if(response.ErrorOccurred){
-//            alert.setFail(true);
-//            alert.setMessage(response.errorMessage);
-//            return "redirect:/stock";
-//        }
-//        if(response.getValue()){
-//            alert.setSuccess(true);
-//            alert.setMessage("Product price has been successfully updated");
-//        }
-//        else {
-//            alert.setFail(true);
-//            alert.setMessage("Product price does not updated");
-//        }
-//        return "redirect:/stock";
-//    }
-//
-//    // updateProductAmountInStock
-//    @PostMapping("/updateProductAmountInStock")
-//    public String updateProductAmountInStock(@ModelAttribute Product product){
-//        ResponseT<Boolean> response = server.updateProductAmount(controller.getName(), store.storeName, product.getName(), product.getAmount());
-//        if(response.ErrorOccurred){
-//            alert.setFail(true);
-//            alert.setMessage(response.errorMessage);
-//            return "redirect:/stock";
-//        }
-//        if(response.getValue()){
-//            alert.setSuccess(true);
-//            alert.setMessage("Product amount has been successfully updated");
-//        }
-//        else {
-//            alert.setFail(true);
-//            alert.setMessage("Product amount does not updated");
-//        }
-//        return "redirect:/stock";
-//    }
-
 //    ------------------------- WORKERS -------------------------
     @GetMapping("/workers")
     public String getWorkers(HttpServletRequest request){
@@ -315,7 +285,7 @@ public class StoreController {
 
 //    ------------------------- DEALS -------------------------
     @GetMapping("/deals")
-    public String getSeals(HttpServletRequest request){
+    public String getDeals(HttpServletRequest request){
         if(request.getSession().getAttribute("controller") != null){
             controller = (GeneralModel) request.getSession().getAttribute("controller");
             if(request.getSession().getAttribute("store") != null)
@@ -353,6 +323,127 @@ public class StoreController {
 
         return deals1;
     }
+
+    //    ------------------------- BAG CONSTRAINTS -------------------------
+    @GetMapping("/bagConstraints")
+    public String getBagConstraints(HttpServletRequest request){
+        if(request.getSession().getAttribute("controller") != null){
+            controller = (GeneralModel) request.getSession().getAttribute("controller");
+            if(request.getSession().getAttribute("store") != null)
+                store = (StoreDTO) request.getSession().getAttribute("store");
+//            if(request.getSession().getAttribute("constraints") != null)
+//                constraints = (Constraints) request.getSession().getAttribute("constraints");
+        }
+        constraints = new AllConstraints(store.storeName);
+        ResponseT<List<String>> response = server.getAllBagConstraints(controller.getName(), store.storeName);
+        if(response.ErrorOccurred){
+            alert.setFail(true);
+            alert.setMessage(response.errorMessage);
+            return "redirect:/store";
+        }
+        constraints.setAllBagConstraints(response.getValue());
+        response = server.getAllPaymentPolicies(controller.getName(), store.storeName);
+        if(response.ErrorOccurred){
+            alert.setFail(true);
+            alert.setMessage(response.errorMessage);
+            return "redirect:/store";
+        }
+        constraints.setActiveBagConstraints(response.getValue());
+        currentPage = "bagConstraints";
+        request.getSession().setAttribute("constraints", constraints);
+        request.getSession().setAttribute("currentPage", currentPage);
+        return "redirect:/store";
+    }
+
+    @PostMapping("/addBagConstraint")
+    public String addBagConstraint(HttpServletRequest request, @ModelAttribute BagConstraint constraint){
+        if(request.getSession().getAttribute("controller") != null){
+            controller = (GeneralModel) request.getSession().getAttribute("controller");
+            if(request.getSession().getAttribute("store") != null)
+                store = (StoreDTO) request.getSession().getAttribute("store");
+        }
+        ResponseT<Integer> response;
+        boolean activate = constraint.getActivate().equals("on");
+        if(constraint.getConstType() == null || constraint.getConstType().equals("")){
+            alert.setFail(true);
+            alert.setMessage("You have to choose one of the constraints to add");
+            return "redirect:/bagConstraints";
+        }
+        if(constraint.getConstType().equals("type1")){
+            response = server.createMaxTimeAtDayProductBagConstraint(controller.getName(), constraint.getStoreName(),
+                    constraint.getProductName(), constraint.getHour(), constraint.getMinutes(), activate);
+        }
+        else if(constraint.getConstType().equals("type2")){
+            response = server.createRangeOfDaysProductBagConstraint(controller.getName(), constraint.getStoreName(),
+                    constraint.getProductName(), constraint.getFromYear(), constraint.getFromMonth(), constraint.getFromDay(),
+                    constraint.getToYear(), constraint.getToMonth(), constraint.getToDay(), activate);
+        }
+        else if(constraint.getConstType().equals("type3")){
+            response = server.createMaxTimeAtDayCategoryBagConstraint(controller.getName(), constraint.getStoreName(),
+                    constraint.getCategoryName(), constraint.getHour(), constraint.getMinutes(), activate);
+        }
+        else if(constraint.getConstType().equals("type4")){
+            response = server.createRangeOfDaysCategoryBagConstraint(controller.getName(), constraint.getStoreName(),
+                    constraint.getCategoryName(), constraint.getFromYear(), constraint.getFromMonth(), constraint.getFromDay(),
+                    constraint.getToYear(), constraint.getToMonth(), constraint.getToDay(), activate);
+        }
+        else if(constraint.getConstType().equals("type5")){
+            response = server.createMinProductAmountAllContentBagConstraint(controller.getName(), constraint.getStoreName(),
+                    constraint.getProductName(), constraint.getMin(), activate);
+        }
+        else if(constraint.getConstType().equals("type6")){
+            response = server.createMaxProductAmountAllContentBagConstraint(controller.getName(), constraint.getStoreName(),
+                    constraint.getProductName(), constraint.getMax(), activate);
+        }
+        else if(constraint.getConstType().equals("type7")){
+            response = server.createAndBagConstraint(controller.getName(), constraint.getStoreName(),
+                    constraint.getFirstID(),constraint.getSecondID(), activate);
+        }
+        else if(constraint.getConstType().equals("type8")){
+            response = server.createOrBagConstraint(controller.getName(), constraint.getStoreName(),
+                    constraint.getFirstID(),constraint.getSecondID(), activate);
+        }
+        else { //if(constraint.getConstType().equals("type9")){
+            response = server.createOnlyIfBagConstraint(controller.getName(), constraint.getStoreName(),
+                    constraint.getFirstID(),constraint.getSecondID(), activate);
+        }
+        if(response.ErrorOccurred){
+            alert.setFail(true);
+            alert.setMessage(response.errorMessage);
+            return "redirect:/bagConstraints";
+        }
+        alert.setSuccess(true);
+        alert.setMessage("Constraint has been added successfully");
+        return "redirect:/bagConstraints";
+    }
+
+    @PostMapping("/activate")
+    public String activate(HttpServletRequest request, @RequestParam String choice, @RequestParam int id){
+        if(request.getSession().getAttribute("controller") != null){
+            controller = (GeneralModel) request.getSession().getAttribute("controller");
+            if(request.getSession().getAttribute("store") != null)
+                store = (StoreDTO) request.getSession().getAttribute("store");
+        }
+        ResponseT<Boolean> response;
+        String msg;
+        if(choice.equals("activate")){
+            msg = "activated";
+            response = server.addConstraintAsPaymentPolicy(controller.getName(), store.storeName, id);
+        }
+        else{ // (choice.equals("deactivate"))
+            msg = "deactivated";
+            response = server.removeConstraintFromPaymentPolicies(controller.getName(), store.storeName, id);
+        }
+        if(response.ErrorOccurred){
+            alert.setFail(true);
+            alert.setMessage(response.errorMessage);
+            return "redirect:/bagConstraints";
+        }
+        alert.setSuccess(true);
+        alert.setMessage("Constraint has " + msg + " successfully");
+        return "redirect:/bagConstraints";
+    }
+
 
 
     private Map<String, List<Worker>> buildWorkers(StoreDTO store){

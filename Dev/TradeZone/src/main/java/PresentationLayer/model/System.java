@@ -1,21 +1,23 @@
 package PresentationLayer.model;
 
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 public class System {
     private List<String> allGuests;
     private List<String> allMembers;
     private List<String> allOnlineMembers;
     private List<String> allStores;
-    private List<String> allSystemManagers;
+    private Set<String> allSystemManagers;
 
     public System(){
         allGuests = new LinkedList<>();
         allMembers = new LinkedList<>();
         allOnlineMembers = new LinkedList<>();
         allStores = new LinkedList<>();
-        allSystemManagers = new LinkedList<>();
+        allSystemManagers = new HashSet<>();
     }
 
     public List<String> getAllGuests() {
@@ -50,11 +52,11 @@ public class System {
         this.allStores = allStores;
     }
 
-    public List<String> getAllSystemManagers() {
+    public Set<String> getAllSystemManagers() {
         return allSystemManagers;
     }
 
-    public void setAllSystemManagers(List<String> allSystemManagers) {
+    public void setAllSystemManagers(Set<String> allSystemManagers) {
         this.allSystemManagers = allSystemManagers;
     }
 }

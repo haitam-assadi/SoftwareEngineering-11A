@@ -605,7 +605,7 @@ public class SystemService {
         }
     }
 
-    public ResponseT<Set<String>> getAllSystemManagers(String managerName) throws Exception {
+    public ResponseT<Set<String>> getAllSystemManagers(String managerName){
         try{
             return new ResponseT<>(market.getAllSystemManagers(managerName));
         }catch (Exception e){
@@ -613,7 +613,7 @@ public class SystemService {
         }
     }
 
-    public ResponseT<Boolean> removeMemberBySystemManager(String managerName,String memberName) throws Exception{
+    public ResponseT<Boolean> removeMemberBySystemManager(String managerName,String memberName){
         try{
             return new ResponseT<>(market.removeMemberBySystemManager(managerName,memberName));
         }catch (Exception e){

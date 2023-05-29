@@ -34,11 +34,10 @@
     <div th:replace="fragments/alert :: alert(${alert})"></div>
 
     <div th:if="${currentPage == 'allStores'}">
-<!--        (allStores=${system.allStores}, name=${name}, storeDeals=${deals})-->
         <div th:replace="SystemTemplates/allStores :: allStores(allStores=${system.allStores}, store=${store})"></div>
     </div>
     <div th:if="${currentPage == 'allUsers'}">
-        <div th:replace="SystemTemplates/allUsers :: allUsers(name=${controller.name}, system=${system})"></div>
+        <div th:replace="SystemTemplates/allUsers :: allUsers(name=${controller.name}, system=${system}, member=${member})"></div>
     </div>
     <div th:if="${currentPage == 'systemManagers'}">
         <div th:replace="SystemTemplates/systemManagers :: systemManagers(systemManagers=${system.allSystemManagers})"></div>

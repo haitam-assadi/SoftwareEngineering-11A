@@ -1,0 +1,1350 @@
+מאי 27, 2023 4:52:37 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromStore(String userName, String storeName, String productName)
+in 2023-05-27 16:52:37 the user guest_4 wants to get information about product in market my nameuser1_first_Store_product1- getProductInfoFromMarketByName(guest_4, user1_first_Store_product1)
+מאי 27, 2023 4:52:48 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromStore(String userName, String storeName, String productName)
+in 2023-05-27 16:52:48 the user guest_4 wants to get information about product in market my nameuser1_first_Store_product1- getProductInfoFromMarketByName(guest_4, user1_first_Store_product1)
+מאי 27, 2023 4:52:52 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromStore(String userName, String storeName, String productName)
+in 2023-05-27 16:52:52 the user guest_4 wants to get information about product in market my nameuser1_first_Store_product2- getProductInfoFromMarketByName(guest_4, user1_first_Store_product2)
+מאי 27, 2023 4:53:15 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-27 16:53:15 the user guest_4 wants to get information about the store user1_first_Store- getStoreInfo(guest_4, user1_first_Store)
+מאי 27, 2023 4:53:15 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-27 16:53:15 the user guest_4 got information about the store user1_first_Store
+מאי 27, 2023 5:07:44 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-05-27 17:07:44 the user guest_4 wants to make login login(guest_4, systemmanager1,systemmanager1Pass)
+מאי 27, 2023 5:07:44 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-27 17:07:44 a new member Logged in .
+- Memer name: systemmanager1
+
+מאי 27, 2023 5:24:15 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-05-27 17:24:15 the user guest_5 wants to make login login(guest_5, user1,Aa12345678)
+מאי 27, 2023 5:24:15 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-27 17:24:15 a new member Logged in .
+- Memer name: user1
+
+מאי 27, 2023 5:24:24 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-27 17:24:24 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 27, 2023 5:24:24 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-27 17:24:24 the user user1 got information about the store user1_second_store
+מאי 27, 2023 5:24:24 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-27 17:24:24 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 27, 2023 5:24:24 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-27 17:24:24 the user user1 got information about the store user1_second_store
+מאי 27, 2023 5:24:26 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+closeStore(String memberUserName, String storeName)
+in 2023-05-27 17:24:26 the member user1 tries close store  - closeStore(user1, user1_second_store)
+מאי 27, 2023 5:24:26 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-27 17:24:26 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 27, 2023 5:24:26 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-27 17:24:26 the user user1 got information about the store user1_second_store
+מאי 27, 2023 5:29:36 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-27 17:29:36 the user systemmanager1 wants to get information about the store user1_second_Store- getStoreInfo(systemmanager1, user1_second_Store)
+מאי 27, 2023 5:29:36 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-27 17:29:36 the user systemmanager1 got information about the store user1_second_Store
+מאי 27, 2023 5:30:49 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-27 17:30:49 the user systemmanager1 wants to get information about the store user1_first_Store- getStoreInfo(systemmanager1, user1_first_Store)
+מאי 27, 2023 5:30:49 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-27 17:30:49 the user systemmanager1 got information about the store user1_first_Store
+מאי 27, 2023 5:49:44 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-05-27 17:49:44 the user guest_4 wants to make login login(guest_4, systemmanager1,systemmanager1Pass)
+מאי 27, 2023 5:49:44 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-27 17:49:44 a new member Logged in .
+- Memer name: systemmanager1
+
+מאי 27, 2023 5:49:52 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+AppointMemberAsSystemManager(String managerName, String otherMemberName)
+in 2023-05-27 17:49:52 the system manager systemmanager1 tries to assign other user as system manager  - AppointMemberAsSystemManager(systemmanager1, baraa)
+מאי 27, 2023 5:49:55 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+AppointMemberAsSystemManager(String managerName, String otherMemberName)
+in 2023-05-27 17:49:55 the system manager systemmanager1 tries to assign other user as system manager  - AppointMemberAsSystemManager(systemmanager1, user1)
+מאי 27, 2023 5:50:01 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+AppointMemberAsSystemManager(String managerName, String otherMemberName)
+in 2023-05-27 17:50:01 the system manager systemmanager1 tries to assign other user as system manager  - AppointMemberAsSystemManager(systemmanager1, alaa)
+מאי 27, 2023 5:50:10 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-05-27 17:50:10 the user guest_5 wants to make login login(guest_5, alaa,Bb12345678)
+מאי 27, 2023 5:50:10 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-27 17:50:10 a new member Logged in .
+- Memer name: alaa
+
+מאי 27, 2023 5:50:23 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+AppointMemberAsSystemManager(String managerName, String otherMemberName)
+in 2023-05-27 17:50:23 the system manager alaa tries to assign other user as system manager  - AppointMemberAsSystemManager(alaa, alaa)
+מאי 27, 2023 5:50:31 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-05-27 17:50:31 the user alaa tries to get his cart content  - getCartContent(alaa)
+מאי 27, 2023 5:50:42 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+memberLogOut(String memberUserName)
+in 2023-05-27 17:50:42 the member alaa wants to make logout- logout(alaa)
+מאי 27, 2023 5:50:52 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-05-27 17:50:52 the user guest_6 wants to make login login(guest_6, alaa,Bb12345678)
+מאי 27, 2023 5:50:52 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-27 17:50:52 a new member Logged in .
+- Memer name: alaa
+
+מאי 27, 2023 5:50:54 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+memberLogOut(String memberUserName)
+in 2023-05-27 17:50:54 the member alaa wants to make logout- logout(alaa)
+מאי 27, 2023 5:51:28 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+AppointMemberAsSystemManager(String managerName, String otherMemberName)
+in 2023-05-27 17:51:28 the system manager systemmanager1 tries to assign other user as system manager  - AppointMemberAsSystemManager(systemmanager1, baraa)
+מאי 27, 2023 5:51:46 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-05-27 17:51:46 the user guest_7 wants to make login login(guest_7, alaa,Bb12345678)
+מאי 27, 2023 5:51:46 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-27 17:51:46 a new member Logged in .
+- Memer name: alaa
+
+מאי 27, 2023 5:51:47 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+memberLogOut(String memberUserName)
+in 2023-05-27 17:51:47 the member alaa wants to make logout- logout(alaa)
+מאי 27, 2023 5:56:46 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-05-27 17:56:46 the user guest_5 wants to make login login(guest_5, systemmanager1,systemmanager1Pass)
+מאי 27, 2023 5:56:46 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-27 17:56:46 a new member Logged in .
+- Memer name: systemmanager1
+
+מאי 27, 2023 5:57:06 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-05-27 17:57:06 the user guest_4 wants to make login login(guest_4, user1,Aa12345678)
+מאי 27, 2023 5:57:06 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-27 17:57:06 a new member Logged in .
+- Memer name: user1
+
+מאי 27, 2023 5:57:24 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+memberLogOut(String memberUserName)
+in 2023-05-27 17:57:24 the member user1 wants to make logout- logout(user1)
+מאי 27, 2023 5:57:29 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-05-27 17:57:29 the user guest_6 wants to make login login(guest_6, alaa,Bb12345678)
+מאי 27, 2023 5:58:15 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-05-27 17:58:15 the user guest_6 wants to make login login(guest_6, user1,Aa12345678)
+מאי 27, 2023 5:58:15 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-27 17:58:15 a new member Logged in .
+- Memer name: user1
+
+מאי 27, 2023 5:58:19 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+memberLogOut(String memberUserName)
+in 2023-05-27 17:58:19 the member user1 wants to make logout- logout(user1)
+מאי 27, 2023 6:01:17 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-05-27 18:01:17 the user guest_7 wants to make registeration register(guest_7, baraa,Bb12345678)
+מאי 27, 2023 6:01:17 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-27 18:01:17 a new member joined .
+- Memer name: baraa
+
+מאי 27, 2023 6:01:21 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-05-27 18:01:21 the user guest_7 wants to make login login(guest_7, baraa,Bb12345678)
+מאי 27, 2023 6:01:21 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-27 18:01:21 a new member Logged in .
+- Memer name: baraa
+
+מאי 27, 2023 6:03:31 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+AppointMemberAsSystemManager(String managerName, String otherMemberName)
+in 2023-05-27 18:03:31 the system manager systemmanager1 tries to assign other user as system manager  - AppointMemberAsSystemManager(systemmanager1, baraa)
+מאי 27, 2023 6:04:31 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-05-27 18:04:31 the user guest_4 wants to make login login(guest_4, systemmanager1,systemmanager1Pass)
+מאי 27, 2023 6:04:31 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-27 18:04:31 a new member Logged in .
+- Memer name: systemmanager1
+
+מאי 27, 2023 6:04:43 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-05-27 18:04:43 the user guest_5 wants to make registeration register(guest_5, baraa2,Bb12345678)
+מאי 27, 2023 6:04:43 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-27 18:04:43 a new member joined .
+- Memer name: baraa2
+
+מאי 27, 2023 6:04:56 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-05-27 18:04:56 the user guest_5 wants to make login login(guest_5, baraa2,Bb12345678)
+מאי 27, 2023 6:04:56 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-27 18:04:56 a new member Logged in .
+- Memer name: baraa2
+
+מאי 27, 2023 6:05:06 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+AppointMemberAsSystemManager(String managerName, String otherMemberName)
+in 2023-05-27 18:05:06 the system manager systemmanager1 tries to assign other user as system manager  - AppointMemberAsSystemManager(systemmanager1, baraa2)
+מאי 27, 2023 6:24:40 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+createStore(String memberUserName, String newStoreName)
+in 2023-05-27 18:24:40 the member baraa2 tries to create store  - createStore(baraa2, baraa store)
+מאי 27, 2023 6:24:46 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+memberLogOut(String memberUserName)
+in 2023-05-27 18:24:46 the member baraa2 wants to make logout- logout(baraa2)
+מאי 27, 2023 6:24:49 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-05-27 18:24:49 the user guest_6 wants to make login login(guest_6, baraa2,Bb12345678)
+מאי 27, 2023 6:24:49 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-27 18:24:49 a new member Logged in .
+- Memer name: baraa2
+
+מאי 27, 2023 6:25:35 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+memberLogOut(String memberUserName)
+in 2023-05-27 18:25:35 the member baraa2 wants to make logout- logout(baraa2)
+מאי 27, 2023 6:25:42 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-05-27 18:25:42 the user guest_7 wants to make login login(guest_7, user1,Aa12345678)
+מאי 27, 2023 6:25:42 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-27 18:25:42 a new member Logged in .
+- Memer name: user1
+
+מאי 27, 2023 6:26:35 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+AppointMemberAsSystemManager(String managerName, String otherMemberName)
+in 2023-05-27 18:26:35 the system manager systemmanager1 tries to assign other user as system manager  - AppointMemberAsSystemManager(systemmanager1, alaa)
+מאי 27, 2023 6:47:04 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-05-27 18:47:04 the user guest_4 wants to make login login(guest_4, systemmanager1,systemmanager1Pass)
+מאי 27, 2023 6:47:04 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-27 18:47:04 a new member Logged in .
+- Memer name: systemmanager1
+
+מאי 27, 2023 6:57:19 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-05-27 18:57:19 the user guest_4 wants to make login login(guest_4, systemmanager1,systemmanager1Pass)
+מאי 27, 2023 6:57:19 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-27 18:57:19 a new member Logged in .
+- Memer name: systemmanager1
+
+מאי 27, 2023 6:58:36 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+AppointMemberAsSystemManager(String managerName, String otherMemberName)
+in 2023-05-27 18:58:36 the system manager systemmanager1 tries to assign other user as system manager  - AppointMemberAsSystemManager(systemmanager1, baraa)
+מאי 27, 2023 6:58:40 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-05-27 18:58:40 the user guest_5 wants to make login login(guest_5, baraa,Bb12345678)
+מאי 27, 2023 6:58:40 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-27 18:58:40 a new member Logged in .
+- Memer name: baraa
+
+מאי 27, 2023 7:02:26 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-05-27 19:02:26 the user guest_4 wants to make login login(guest_4, systemmanager1,systemmanager1Pass)
+מאי 27, 2023 7:02:26 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-27 19:02:26 a new member Logged in .
+- Memer name: systemmanager1
+
+מאי 27, 2023 7:02:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+AppointMemberAsSystemManager(String managerName, String otherMemberName)
+in 2023-05-27 19:02:34 the system manager systemmanager1 tries to assign other user as system manager  - AppointMemberAsSystemManager(systemmanager1, baraa)
+מאי 27, 2023 8:04:25 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromStore(String userName, String storeName, String productName)
+in 2023-05-27 20:04:25 the user guest_4 wants to get information about product in market my nameuser1_first_Store_product1- getProductInfoFromMarketByName(guest_4, user1_first_Store_product1)
+מאי 27, 2023 8:04:28 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-05-27 20:04:28 the user guest_4 tries to add product to his cart  - addToCart(guest_4, user1_first_store, user1_first_store_product1, 3)
+מאי 27, 2023 8:04:28 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-05-27 20:04:28 the user guest_4 tries to get his cart content  - getCartContent(guest_4)
+מאי 27, 2023 8:04:30 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ changeProductAmountInCart(String userName, String storeName, String productName, Integer newAmount)
+in 2023-05-27 20:04:30 the user guest_4 tries to change a product amount in his cart  - changeProductAmountInCart(guest_4, user1_first_store, user1_first_store_product1, 2)
+מאי 27, 2023 8:04:30 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-05-27 20:04:30 the user guest_4 tries to get his cart content  - getCartContent(guest_4)
+מאי 27, 2023 8:04:36 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-27 20:04:36 the user guest_4 wants to get information about the store user1_first_Store- getStoreInfo(guest_4, user1_first_Store)
+מאי 27, 2023 8:04:36 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-27 20:04:36 the user guest_4 got information about the store user1_first_Store
+מאי 27, 2023 8:04:46 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-05-27 20:04:46 the user guest_4 tries to get his cart content  - getCartContent(guest_4)
+מאי 27, 2023 8:04:50 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ changeProductAmountInCart(String userName, String storeName, String productName, Integer newAmount)
+in 2023-05-27 20:04:50 the user guest_4 tries to change a product amount in his cart  - changeProductAmountInCart(guest_4, user1_first_store, user1_first_store_product1, 5)
+מאי 27, 2023 8:04:50 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-05-27 20:04:50 the user guest_4 tries to get his cart content  - getCartContent(guest_4)
+מאי 27, 2023 8:04:50 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-05-27 20:04:50 the user guest_4 tries to get his cart content  - getCartContent(guest_4)
+מאי 27, 2023 8:04:51 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+removeFromCart(String userName, String storeName, String productName)
+in 2023-05-27 20:04:51 the user guest_4 tries to remove product from his cart  - removeFromCart(guest_4, user1_first_store, user1_first_store_product1)
+מאי 27, 2023 8:04:51 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-05-27 20:04:51 the user guest_4 tries to get his cart content  - getCartContent(guest_4)
+מאי 27, 2023 8:04:51 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-05-27 20:04:51 the user guest_4 tries to get his cart content  - getCartContent(guest_4)
+מאי 27, 2023 8:04:57 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-05-27 20:04:57 the user guest_4 wants to make login login(guest_4, user1,Aa12345678)
+מאי 27, 2023 8:04:57 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-27 20:04:57 a new member Logged in .
+- Memer name: user1
+
+מאי 27, 2023 8:05:35 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-27 20:05:35 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 27, 2023 8:05:35 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-27 20:05:35 the user user1 got information about the store user1_second_store
+מאי 27, 2023 8:05:35 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-27 20:05:35 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 27, 2023 8:05:35 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-27 20:05:35 the user user1 got information about the store user1_second_store
+מאי 27, 2023 8:05:52 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-27 20:05:52 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 27, 2023 8:05:52 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-27 20:05:52 the user user1 got information about the store user1_second_store
+מאי 27, 2023 8:05:58 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-27 20:05:58 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 27, 2023 8:05:58 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-27 20:05:58 the user user1 got information about the store user1_second_store
+מאי 27, 2023 8:06:09 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-27 20:06:09 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 27, 2023 8:06:09 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-27 20:06:09 the user user1 got information about the store user1_second_store
+מאי 27, 2023 8:06:14 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+appointOtherMemberAsStoreManager(String memberUserName, String storeName, String newManagerUserName)
+in 2023-05-27 20:06:14 the member user1 tries to assign other user as store manager  - appointOtherMemberAsStoreManager(user1, user1_second_store, alaa)
+מאי 27, 2023 8:06:14 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-27 20:06:14 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 27, 2023 8:06:14 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-27 20:06:14 the user user1 got information about the store user1_second_store
+מאי 27, 2023 8:06:28 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-27 20:06:28 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 27, 2023 8:06:28 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-27 20:06:28 the user user1 got information about the store user1_second_store
+מאי 27, 2023 8:06:39 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-27 20:06:39 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 27, 2023 8:06:39 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-27 20:06:39 the user user1 got information about the store user1_second_store
+מאי 27, 2023 8:06:47 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-27 20:06:47 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 27, 2023 8:06:47 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-27 20:06:47 the user user1 got information about the store user1_second_store
+מאי 27, 2023 8:06:51 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-27 20:06:51 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 27, 2023 8:06:51 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-27 20:06:51 the user user1 got information about the store user1_second_store
+מאי 27, 2023 8:07:10 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-05-27 20:07:10 the user user1 tries to get his cart content  - getCartContent(user1)
+מאי 27, 2023 8:07:27 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-27 20:07:27 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 27, 2023 8:07:27 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-27 20:07:27 the user user1 got information about the store user1_second_store
+מאי 27, 2023 8:07:27 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-27 20:07:27 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 27, 2023 8:07:27 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-27 20:07:27 the user user1 got information about the store user1_second_store
+מאי 27, 2023 8:08:30 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-27 20:08:30 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 27, 2023 8:08:30 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-27 20:08:30 the user user1 got information about the store user1_second_store
+מאי 27, 2023 8:09:05 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-27 20:09:05 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 27, 2023 8:09:05 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-27 20:09:05 the user user1 got information about the store user1_second_store
+מאי 27, 2023 8:09:14 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-27 20:09:14 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 27, 2023 8:09:14 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-27 20:09:14 the user user1 got information about the store user1_second_store
+מאי 28, 2023 9:16:15 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-05-28 21:16:15 the user guest_4 wants to make login login(guest_4, user1,Aa12345678)
+מאי 28, 2023 9:16:15 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-28 21:16:15 a new member Logged in .
+- Memer name: user1
+
+מאי 28, 2023 9:16:31 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-28 21:16:31 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 28, 2023 9:16:31 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-28 21:16:31 the user user1 got information about the store user1_second_store
+מאי 28, 2023 9:16:31 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-28 21:16:31 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 28, 2023 9:16:31 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-28 21:16:31 the user user1 got information about the store user1_second_store
+מאי 28, 2023 9:17:14 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-28 21:17:14 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 28, 2023 9:17:14 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-28 21:17:14 the user user1 got information about the store user1_second_store
+מאי 28, 2023 9:18:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-28 21:18:07 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 28, 2023 9:18:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-28 21:18:07 the user user1 got information about the store user1_second_store
+מאי 28, 2023 9:18:29 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-28 21:18:29 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 28, 2023 9:18:29 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-28 21:18:29 the user user1 got information about the store user1_second_store
+מאי 28, 2023 9:20:10 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-28 21:20:10 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 28, 2023 9:20:10 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-28 21:20:10 the user user1 got information about the store user1_second_store
+מאי 28, 2023 9:20:19 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-28 21:20:19 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 28, 2023 9:20:19 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-28 21:20:19 the user user1 got information about the store user1_second_store
+מאי 28, 2023 9:22:12 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-28 21:22:12 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 28, 2023 9:22:12 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-28 21:22:12 the user user1 got information about the store user1_second_store
+מאי 28, 2023 9:22:12 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-28 21:22:12 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 28, 2023 9:22:12 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-28 21:22:12 the user user1 got information about the store user1_second_store
+מאי 28, 2023 9:22:13 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-28 21:22:13 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 28, 2023 9:22:13 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-28 21:22:13 the user user1 got information about the store user1_second_store
+מאי 28, 2023 9:22:13 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-28 21:22:13 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 28, 2023 9:22:13 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-28 21:22:13 the user user1 got information about the store user1_second_store
+מאי 29, 2023 3:27:48 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-05-29 15:27:48 the user guest_4 wants to make login login(guest_4, user1,Aa12345678)
+מאי 29, 2023 3:27:48 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 15:27:48 a new member Logged in .
+- Memer name: user1
+
+מאי 29, 2023 3:27:51 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 15:27:51 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 3:27:51 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 15:27:51 the user user1 got information about the store user1_second_store
+מאי 29, 2023 3:27:51 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 15:27:51 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 3:27:51 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 15:27:51 the user user1 got information about the store user1_second_store
+מאי 29, 2023 3:27:52 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 15:27:52 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 3:27:52 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 15:27:52 the user user1 got information about the store user1_second_store
+מאי 29, 2023 3:29:04 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-05-29 15:29:04 the user guest_4 wants to make login login(guest_4, user1,Aa12345678)
+מאי 29, 2023 3:29:04 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 15:29:04 a new member Logged in .
+- Memer name: user1
+
+מאי 29, 2023 3:29:06 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 15:29:06 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 3:29:06 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 15:29:06 the user user1 got information about the store user1_second_store
+מאי 29, 2023 3:29:06 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 15:29:06 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 3:29:06 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 15:29:06 the user user1 got information about the store user1_second_store
+מאי 29, 2023 3:29:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 15:29:07 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 3:29:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 15:29:07 the user user1 got information about the store user1_second_store
+מאי 29, 2023 3:30:16 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-05-29 15:30:16 the user guest_4 wants to make login login(guest_4, user1,Aa12345678)
+מאי 29, 2023 3:30:17 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 15:30:17 a new member Logged in .
+- Memer name: user1
+
+מאי 29, 2023 3:30:18 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 15:30:18 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 3:30:18 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 15:30:18 the user user1 got information about the store user1_second_store
+מאי 29, 2023 3:30:18 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 15:30:18 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 3:30:18 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 15:30:18 the user user1 got information about the store user1_second_store
+מאי 29, 2023 3:30:19 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 15:30:19 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 3:30:19 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 15:30:19 the user user1 got information about the store user1_second_store
+מאי 29, 2023 3:30:24 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 15:30:24 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 3:30:24 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 15:30:24 the user user1 got information about the store user1_second_store
+מאי 29, 2023 3:30:28 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 15:30:28 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 3:30:28 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 15:30:28 the user user1 got information about the store user1_second_store
+מאי 29, 2023 3:46:38 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 15:46:38 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 3:46:38 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 15:46:38 the user user1 got information about the store user1_second_store
+מאי 29, 2023 3:46:39 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 15:46:39 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 3:46:39 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 15:46:39 the user user1 got information about the store user1_second_store
+מאי 29, 2023 3:53:26 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 15:53:26 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 3:53:26 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 15:53:26 the user user1 got information about the store user1_second_store
+מאי 29, 2023 3:53:31 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+appointOtherMemberAsStoreOwner(String memberUserName, String storeName, String newOwnerUserName)
+in 2023-05-29 15:53:31 the member user1 tries to assign other user as store owner  - appointOtherMemberAsStoreOwner(user1, user1_second_store, baraa)
+מאי 29, 2023 3:53:31 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 15:53:31 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 3:53:31 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 15:53:31 the user user1 got information about the store user1_second_store
+מאי 29, 2023 3:53:35 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+appointOtherMemberAsStoreOwner(String memberUserName, String storeName, String newOwnerUserName)
+in 2023-05-29 15:53:35 the member user1 tries to assign other user as store owner  - appointOtherMemberAsStoreOwner(user1, user1_second_store, alaa)
+מאי 29, 2023 3:53:35 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 15:53:35 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 3:53:35 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 15:53:35 the user user1 got information about the store user1_second_store
+מאי 29, 2023 3:55:14 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 15:55:14 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 3:55:14 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 15:55:14 the user user1 got information about the store user1_second_store
+מאי 29, 2023 4:09:02 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-05-29 16:09:02 the user guest_4 wants to make login login(guest_4, user1,Aa12345678)
+מאי 29, 2023 4:09:02 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 16:09:02 a new member Logged in .
+- Memer name: user1
+
+מאי 29, 2023 4:09:03 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 16:09:03 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 4:09:03 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 16:09:03 the user user1 got information about the store user1_second_store
+מאי 29, 2023 4:09:03 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 16:09:03 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 4:09:03 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 16:09:03 the user user1 got information about the store user1_second_store
+מאי 29, 2023 4:09:58 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 16:09:58 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 4:09:58 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 16:09:58 the user user1 got information about the store user1_second_store
+מאי 29, 2023 4:21:12 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 16:21:12 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 4:21:12 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 16:21:12 the user user1 got information about the store user1_second_store
+מאי 29, 2023 4:21:22 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 16:21:22 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 4:21:22 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 16:21:22 the user user1 got information about the store user1_second_store
+מאי 29, 2023 4:24:35 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-05-29 16:24:35 the user guest_4 wants to make login login(guest_4, user1,Aa12345678)
+מאי 29, 2023 4:24:35 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 16:24:35 a new member Logged in .
+- Memer name: user1
+
+מאי 29, 2023 4:24:37 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 16:24:37 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 4:24:37 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 16:24:37 the user user1 got information about the store user1_second_store
+מאי 29, 2023 4:24:37 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 16:24:37 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 4:24:37 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 16:24:37 the user user1 got information about the store user1_second_store
+מאי 29, 2023 4:24:40 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 16:24:40 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 4:24:40 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 16:24:40 the user user1 got information about the store user1_second_store
+מאי 29, 2023 4:29:00 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-05-29 16:29:00 the user guest_4 wants to make login login(guest_4, user1,Aa12345678)
+מאי 29, 2023 4:29:00 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 16:29:00 a new member Logged in .
+- Memer name: user1
+
+מאי 29, 2023 4:29:02 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 16:29:02 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 4:29:02 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 16:29:02 the user user1 got information about the store user1_second_store
+מאי 29, 2023 4:29:02 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 16:29:02 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 4:29:02 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 16:29:02 the user user1 got information about the store user1_second_store
+מאי 29, 2023 4:29:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 16:29:07 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 4:29:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 16:29:07 the user user1 got information about the store user1_second_store
+מאי 29, 2023 4:56:23 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-05-29 16:56:23 the user guest_4 wants to make login login(guest_4, user1,Aa12345678)
+מאי 29, 2023 4:56:23 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 16:56:23 a new member Logged in .
+- Memer name: user1
+
+מאי 29, 2023 4:56:26 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 16:56:26 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 4:56:26 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 16:56:26 the user user1 got information about the store user1_second_store
+מאי 29, 2023 4:56:26 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 16:56:26 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 4:56:26 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 16:56:26 the user user1 got information about the store user1_second_store
+מאי 29, 2023 4:56:28 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 16:56:28 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 4:56:28 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 16:56:28 the user user1 got information about the store user1_second_store
+מאי 29, 2023 5:03:06 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-05-29 17:03:06 the user guest_4 wants to make login login(guest_4, user1,Aa12345678)
+מאי 29, 2023 5:03:06 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 17:03:06 a new member Logged in .
+- Memer name: user1
+
+מאי 29, 2023 5:03:08 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 17:03:08 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 5:03:08 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 17:03:08 the user user1 got information about the store user1_second_store
+מאי 29, 2023 5:03:08 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 17:03:08 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 5:03:08 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 17:03:08 the user user1 got information about the store user1_second_store
+מאי 29, 2023 5:03:09 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 17:03:09 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 5:03:09 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 17:03:09 the user user1 got information about the store user1_second_store
+מאי 29, 2023 5:03:14 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 17:03:14 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 5:03:14 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 17:03:14 the user user1 got information about the store user1_second_store
+מאי 29, 2023 5:03:17 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 17:03:17 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 5:03:17 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 17:03:17 the user user1 got information about the store user1_second_store
+מאי 29, 2023 5:03:55 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 17:03:55 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 5:03:55 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 17:03:55 the user user1 got information about the store user1_second_store
+מאי 29, 2023 5:04:22 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 17:04:22 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 5:04:22 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 17:04:22 the user user1 got information about the store user1_second_store
+מאי 29, 2023 5:35:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 17:35:07 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 5:35:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 17:35:07 the user user1 got information about the store user1_second_store
+מאי 29, 2023 5:49:02 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-05-29 17:49:02 the user guest_4 wants to make login login(guest_4, user1,Aa12345678)
+מאי 29, 2023 5:49:02 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 17:49:02 a new member Logged in .
+- Memer name: user1
+
+מאי 29, 2023 5:49:04 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 17:49:04 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 5:49:04 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 17:49:04 the user user1 got information about the store user1_second_store
+מאי 29, 2023 5:49:04 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 17:49:04 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 5:49:04 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 17:49:04 the user user1 got information about the store user1_second_store
+מאי 29, 2023 5:49:05 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 17:49:05 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 5:49:05 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 17:49:05 the user user1 got information about the store user1_second_store
+מאי 29, 2023 6:00:19 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-05-29 18:00:19 the user guest_4 wants to make login login(guest_4, user1,Aa12345678)
+מאי 29, 2023 6:00:19 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 18:00:19 a new member Logged in .
+- Memer name: user1
+
+מאי 29, 2023 6:00:21 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 18:00:21 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 6:00:21 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 18:00:21 the user user1 got information about the store user1_second_store
+מאי 29, 2023 6:00:21 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 18:00:21 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 6:00:21 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 18:00:21 the user user1 got information about the store user1_second_store
+מאי 29, 2023 6:00:23 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 18:00:23 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 6:00:23 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 18:00:23 the user user1 got information about the store user1_second_store
+מאי 29, 2023 6:27:45 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-05-29 18:27:45 the user guest_4 wants to make login login(guest_4, user1,Aa12345678)
+מאי 29, 2023 6:27:45 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 18:27:45 a new member Logged in .
+- Memer name: user1
+
+מאי 29, 2023 6:27:47 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 18:27:47 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 6:27:47 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 18:27:47 the user user1 got information about the store user1_second_store
+מאי 29, 2023 6:27:47 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 18:27:47 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 6:27:47 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 18:27:47 the user user1 got information about the store user1_second_store
+מאי 29, 2023 6:27:49 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 18:27:49 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 6:27:49 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 18:27:49 the user user1 got information about the store user1_second_store
+מאי 29, 2023 6:36:36 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-05-29 18:36:36 the user guest_4 wants to make login login(guest_4, user1,Aa12345678)
+מאי 29, 2023 6:36:36 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 18:36:36 a new member Logged in .
+- Memer name: user1
+
+מאי 29, 2023 6:36:38 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 18:36:38 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 6:36:38 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 18:36:38 the user user1 got information about the store user1_second_store
+מאי 29, 2023 6:36:38 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 18:36:38 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 6:36:38 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 18:36:38 the user user1 got information about the store user1_second_store
+מאי 29, 2023 6:36:39 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 18:36:39 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 6:36:39 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 18:36:39 the user user1 got information about the store user1_second_store
+מאי 29, 2023 6:46:37 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-05-29 18:46:37 the user guest_4 wants to make login login(guest_4, user1,Aa12345678)
+מאי 29, 2023 6:46:37 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 18:46:37 a new member Logged in .
+- Memer name: user1
+
+מאי 29, 2023 6:46:39 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 18:46:39 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 6:46:39 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 18:46:39 the user user1 got information about the store user1_second_store
+מאי 29, 2023 6:46:39 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 18:46:39 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 6:46:39 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 18:46:39 the user user1 got information about the store user1_second_store
+מאי 29, 2023 6:46:40 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 18:46:40 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 6:46:40 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 18:46:40 the user user1 got information about the store user1_second_store
+מאי 29, 2023 7:00:20 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-05-29 19:00:20 the user guest_4 wants to make login login(guest_4, user1,Aa12345678)
+מאי 29, 2023 7:00:20 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 19:00:20 a new member Logged in .
+- Memer name: user1
+
+מאי 29, 2023 7:00:22 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 19:00:22 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 7:00:22 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 19:00:22 the user user1 got information about the store user1_second_store
+מאי 29, 2023 7:00:22 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 19:00:22 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 7:00:22 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 19:00:22 the user user1 got information about the store user1_second_store
+מאי 29, 2023 7:00:23 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 19:00:23 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 7:00:23 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 19:00:23 the user user1 got information about the store user1_second_store
+מאי 29, 2023 7:12:20 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-05-29 19:12:20 the user guest_4 wants to make login login(guest_4, user1,Aa12345678)
+מאי 29, 2023 7:12:20 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 19:12:20 a new member Logged in .
+- Memer name: user1
+
+מאי 29, 2023 7:12:22 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 19:12:22 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 7:12:22 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 19:12:22 the user user1 got information about the store user1_second_store
+מאי 29, 2023 7:12:22 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 19:12:22 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 7:12:22 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 19:12:22 the user user1 got information about the store user1_second_store
+מאי 29, 2023 7:12:22 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 19:12:22 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 7:12:22 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 19:12:22 the user user1 got information about the store user1_second_store
+מאי 29, 2023 7:21:26 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-05-29 19:21:26 the user guest_4 wants to make login login(guest_4, user1,Aa12345678)
+מאי 29, 2023 7:21:26 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 19:21:26 a new member Logged in .
+- Memer name: user1
+
+מאי 29, 2023 7:21:31 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 19:21:31 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 7:21:31 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 19:21:31 the user user1 got information about the store user1_second_store
+מאי 29, 2023 7:21:31 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 19:21:31 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 7:21:31 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 19:21:31 the user user1 got information about the store user1_second_store
+מאי 29, 2023 7:21:32 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 19:21:32 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 7:21:32 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 19:21:32 the user user1 got information about the store user1_second_store
+מאי 29, 2023 7:43:38 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-05-29 19:43:38 the user guest_4 wants to make login login(guest_4, user1,Aa12345678)
+מאי 29, 2023 7:43:38 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 19:43:38 a new member Logged in .
+- Memer name: user1
+
+מאי 29, 2023 7:43:39 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 19:43:39 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 7:43:39 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 19:43:39 the user user1 got information about the store user1_second_store
+מאי 29, 2023 7:43:39 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 19:43:39 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 7:43:39 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 19:43:39 the user user1 got information about the store user1_second_store
+מאי 29, 2023 7:43:39 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 19:43:39 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 7:43:39 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 19:43:39 the user user1 got information about the store user1_second_store
+מאי 29, 2023 7:47:06 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-05-29 19:47:06 the user guest_4 wants to make login login(guest_4, user1,Aa12345678)
+מאי 29, 2023 7:47:06 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 19:47:06 a new member Logged in .
+- Memer name: user1
+
+מאי 29, 2023 7:47:08 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 19:47:08 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 7:47:08 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 19:47:08 the user user1 got information about the store user1_second_store
+מאי 29, 2023 7:47:08 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 19:47:08 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 7:47:08 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 19:47:08 the user user1 got information about the store user1_second_store
+מאי 29, 2023 7:47:11 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 19:47:11 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 7:47:11 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 19:47:11 the user user1 got information about the store user1_second_store
+מאי 29, 2023 8:00:52 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-05-29 20:00:52 the user guest_4 wants to make login login(guest_4, user1,Aa12345678)
+מאי 29, 2023 8:00:52 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 20:00:52 a new member Logged in .
+- Memer name: user1
+
+מאי 29, 2023 8:00:54 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 20:00:54 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 8:00:54 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 20:00:54 the user user1 got information about the store user1_second_store
+מאי 29, 2023 8:00:54 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 20:00:54 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 8:00:54 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 20:00:54 the user user1 got information about the store user1_second_store
+מאי 29, 2023 8:00:56 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 20:00:56 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 8:00:56 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 20:00:56 the user user1 got information about the store user1_second_store
+מאי 29, 2023 8:07:37 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 20:07:37 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 8:07:37 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 20:07:37 the user user1 got information about the store user1_second_store
+מאי 29, 2023 8:07:48 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-05-29 20:07:48 the user guest_4 wants to make login login(guest_4, user1,Aa12345678)
+מאי 29, 2023 8:07:48 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 20:07:48 a new member Logged in .
+- Memer name: user1
+
+מאי 29, 2023 8:07:50 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 20:07:50 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 8:07:50 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 20:07:50 the user user1 got information about the store user1_second_store
+מאי 29, 2023 8:07:50 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 20:07:50 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 8:07:50 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 20:07:50 the user user1 got information about the store user1_second_store
+מאי 29, 2023 8:07:51 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 20:07:51 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 8:07:51 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 20:07:51 the user user1 got information about the store user1_second_store
+מאי 29, 2023 8:12:55 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 20:12:55 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 8:12:55 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 20:12:55 the user user1 got information about the store user1_second_store
+מאי 29, 2023 8:13:06 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-05-29 20:13:06 the user guest_4 wants to make login login(guest_4, user1,Aa12345678)
+מאי 29, 2023 8:13:06 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 20:13:06 a new member Logged in .
+- Memer name: user1
+
+מאי 29, 2023 8:13:08 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 20:13:08 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 8:13:08 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 20:13:08 the user user1 got information about the store user1_second_store
+מאי 29, 2023 8:13:08 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 20:13:08 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 8:13:08 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 20:13:08 the user user1 got information about the store user1_second_store
+מאי 29, 2023 8:13:09 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 20:13:09 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 8:13:09 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 20:13:09 the user user1 got information about the store user1_second_store
+מאי 29, 2023 8:21:18 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 20:21:18 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 8:21:18 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 20:21:18 the user user1 got information about the store user1_second_store
+מאי 29, 2023 8:21:33 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-05-29 20:21:33 the user guest_4 wants to make login login(guest_4, user1,Aa12345678)
+מאי 29, 2023 8:21:33 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 20:21:33 a new member Logged in .
+- Memer name: user1
+
+מאי 29, 2023 8:21:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 20:21:34 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 8:21:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 20:21:34 the user user1 got information about the store user1_second_store
+מאי 29, 2023 8:21:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 20:21:34 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 8:21:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 20:21:34 the user user1 got information about the store user1_second_store
+מאי 29, 2023 8:21:36 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 20:21:36 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 8:21:36 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 20:21:36 the user user1 got information about the store user1_second_store
+מאי 29, 2023 8:27:27 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 20:27:27 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 8:27:27 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 20:27:27 the user user1 got information about the store user1_second_store
+מאי 29, 2023 8:27:43 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-05-29 20:27:43 the user guest_4 wants to make login login(guest_4, user1,Aa12345678)
+מאי 29, 2023 8:27:43 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 20:27:43 a new member Logged in .
+- Memer name: user1
+
+מאי 29, 2023 8:27:45 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 20:27:45 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 8:27:45 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 20:27:45 the user user1 got information about the store user1_second_store
+מאי 29, 2023 8:27:45 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 20:27:45 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 8:27:45 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 20:27:45 the user user1 got information about the store user1_second_store
+מאי 29, 2023 8:27:46 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 20:27:46 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 8:27:46 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 20:27:46 the user user1 got information about the store user1_second_store
+מאי 29, 2023 8:29:03 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 20:29:03 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 8:29:03 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 20:29:03 the user user1 got information about the store user1_second_store
+מאי 29, 2023 8:30:17 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 20:30:17 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 8:30:17 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 20:30:17 the user user1 got information about the store user1_second_store
+מאי 29, 2023 8:30:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 20:30:34 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 8:30:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 20:30:34 the user user1 got information about the store user1_second_store
+מאי 29, 2023 8:30:44 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 20:30:44 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 8:30:44 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 20:30:44 the user user1 got information about the store user1_second_store
+מאי 29, 2023 9:56:51 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-05-29 21:56:51 the user guest_4 wants to make login login(guest_4, user1,Aa12345678)
+מאי 29, 2023 9:56:51 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 21:56:51 a new member Logged in .
+- Memer name: user1
+
+מאי 29, 2023 9:56:57 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 21:56:57 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 9:56:57 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 21:56:57 the user user1 got information about the store user1_second_store
+מאי 29, 2023 9:56:57 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 21:56:57 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 9:56:57 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 21:56:57 the user user1 got information about the store user1_second_store
+מאי 29, 2023 9:57:01 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 21:57:01 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 9:57:01 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 21:57:01 the user user1 got information about the store user1_second_store
+מאי 29, 2023 10:07:42 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromStore(String userName, String storeName, String productName)
+in 2023-05-29 22:07:42 the user user1 wants to get information about product in market my nameuser1_first_Store_product1- getProductInfoFromMarketByName(user1, user1_first_Store_product1)
+מאי 29, 2023 10:07:43 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-05-29 22:07:43 the user user1 tries to add product to his cart  - addToCart(user1, user1_first_store, user1_first_store_product1, 1)
+מאי 29, 2023 10:07:43 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-05-29 22:07:43 the user user1 tries to get his cart content  - getCartContent(user1)
+מאי 29, 2023 10:07:44 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-05-29 22:07:44 the user user1 tries to get his cart content  - getCartContent(user1)
+מאי 29, 2023 10:08:55 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 22:08:55 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 10:08:55 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 22:08:55 the user user1 got information about the store user1_second_store
+מאי 29, 2023 10:08:55 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 22:08:55 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 10:08:55 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 22:08:55 the user user1 got information about the store user1_second_store
+מאי 29, 2023 10:08:59 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 22:08:59 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 10:08:59 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 22:08:59 the user user1 got information about the store user1_second_store
+מאי 29, 2023 10:09:05 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+appointOtherMemberAsStoreOwner(String memberUserName, String storeName, String newOwnerUserName)
+in 2023-05-29 22:09:05 the member user1 tries to assign other user as store owner  - appointOtherMemberAsStoreOwner(user1, user1_second_store, baraa)
+מאי 29, 2023 10:09:05 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 22:09:05 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 10:09:05 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 22:09:05 the user user1 got information about the store user1_second_store
+מאי 29, 2023 10:09:06 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+removeOwnerByHisAppointer(String appointerUserName, String storeName, String ownerUserName)
+in 2023-05-29 22:09:06 the member user1 tries to remove other owner from being owner in a store  - removeOwnerByHisAppointer(user1_second_store, baraa)
+מאי 29, 2023 10:09:06 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-29 22:09:06 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 29, 2023 10:09:06 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-29 22:09:06 the user user1 got information about the store user1_second_store
