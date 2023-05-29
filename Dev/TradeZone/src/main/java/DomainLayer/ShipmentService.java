@@ -1,11 +1,11 @@
 package DomainLayer;
 
-public class ShipmentService {
+import java.util.HashMap;
 
-    String url;
-    boolean demo;
-    int demoTransactionIds=1;
+public class ShipmentService extends ExternalService{
+
     public ShipmentService(String url){
+        serviceType="Shipment";
         this.url = url;
         demo = (url=="");
     }
@@ -16,7 +16,25 @@ public class ShipmentService {
         if(demo)
             return demoTransactionIds++;
 
-        throw new Exception("not connected to any service");
+        HashMap<String, String> action_params = new HashMap<>();
+        action_params.put("action_type","pay");
+        action_params.put("name",receiverName);
+        action_params.put("address",shipmentAddress);
+        action_params.put("city",shipmentCity);
+        action_params.put("country",shipmentCountry);
+        action_params.put("zip",zipCode);
+
+        String serviceAnswer = sendPostRequest(action_params, serviceResTimeInMin).strip();
+
+        if(!isNumeric(serviceAnswer))
+            throw new Exception("transaction has failed");
+
+        Integer transactionId = Integer.parseInt(serviceAnswer);
+
+        if(transactionId<10000 || transactionId> 100000)
+            throw new Exception("transaction has failed");
+
+        return transactionId;
     }
     public void validateSupplyArgs(String receiverName,String shipmentAddress,String shipmentCity,String shipmentCountry,String zipCode) throws Exception {
         if(receiverName==null)
@@ -36,6 +54,20 @@ public class ShipmentService {
     public boolean cancelSupply(int supplyId) throws Exception {
         if(demo)
             return true;
-        throw new Exception("not connected to any service");
+        HashMap<String, String> action_params = new HashMap<>();
+        action_params.put("action_type","cancel_supply");
+        action_params.put("transaction_id",Integer.toString(supplyId));
+
+        String serviceAnswer = sendPostRequest(action_params, serviceResTimeInMin).strip();
+
+        if(!isNumeric(serviceAnswer))
+            throw new Exception("canceling supply transaction has failed");
+
+        Integer numericServiceAnswer = Integer.parseInt(serviceAnswer);
+
+        if(numericServiceAnswer != 1)
+            throw new Exception("canceling supply transaction has failed");
+
+        return true;
     }
 }

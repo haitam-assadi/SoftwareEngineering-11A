@@ -1,13 +1,10 @@
 package DomainLayer;
 
 import DTO.*;
-import DomainLayer.BagConstraints.*;
 import DomainLayer.Controllers.StoreController;
 import DomainLayer.Controllers.UserController;
 import jdk.jshell.spi.ExecutionControl;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -21,8 +18,8 @@ public class Market {
     public Market(){
         this.userController = new UserController();
         this.storeController = new StoreController();
-        paymentService = new PaymentService("");
-        shipmentService = new ShipmentService("");
+        paymentService = new PaymentService("https://php-server-try.000webhostapp.com/");
+        shipmentService = new ShipmentService("https://php-server-try.000webhostapp.com/");
     }
     public void setPaymentService(PaymentService paymentService){
         this.paymentService=paymentService;
