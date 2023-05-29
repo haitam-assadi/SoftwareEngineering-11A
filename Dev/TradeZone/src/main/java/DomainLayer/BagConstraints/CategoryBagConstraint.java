@@ -87,4 +87,14 @@ public class CategoryBagConstraint implements BagConstraint {
         }
         return true;
     }
+
+    public String toString(){
+        String st = "";
+        if(categoryPPType == BagConstraintType.MaxTimeAtDay){
+            st = "category "+ category.getName()+" is not allowed after " +this.localTime.toString()+" .";
+        }else{
+            st = "category "+ category.getName()+" is not allowed between " +this.fromDate.toString()+" and "+this.toDate.toString()+" .";
+        }
+        return st;
+    }
 }

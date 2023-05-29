@@ -630,22 +630,22 @@ public class Store {
     }
 
 
-    public String getAllCreatedDiscountPolicies(String memberUserName) throws Exception {
+    public List<String> getAllCreatedDiscountPolicies(String memberUserName) throws Exception {
         assertIsOwnerOrFounderOrAuthorizedManager(memberUserName, ManagerPermissions.manageStoreDiscountPolicies);
-        StringBuilder st = new StringBuilder();
+        List<String> allCreatedDiscountPolicies = new LinkedList<>();
         for(Integer discountPolicyId : createdDiscountPolicies.keySet().stream().toList().stream().sorted().toList())
-            st.append(discountPolicyId+". "+ createdDiscountPolicies.get(discountPolicyId).toString()+"\n");
+            allCreatedDiscountPolicies.add(discountPolicyId+". "+ createdDiscountPolicies.get(discountPolicyId).toString());
 
-        return st.toString();
+        return allCreatedDiscountPolicies;
     }
 
-    public String getAllStoreDiscountPolicies(String memberUserName) throws Exception {
+    public List<String> getAllStoreDiscountPolicies(String memberUserName) throws Exception {
         assertIsOwnerOrFounderOrAuthorizedManager(memberUserName, ManagerPermissions.manageStoreDiscountPolicies);
-        StringBuilder st = new StringBuilder();
+        List<String> allStoreDiscountPolicies = new LinkedList<>();
         for(Integer discountPolicyId : storeDiscountPolicies.keySet().stream().toList().stream().sorted().toList())
-            st.append(discountPolicyId+". "+ storeDiscountPolicies.get(discountPolicyId).toString()+"\n");
+            allStoreDiscountPolicies.add(discountPolicyId+". "+ storeDiscountPolicies.get(discountPolicyId).toString());
 
-        return st.toString();
+        return allStoreDiscountPolicies;
     }
 
 
@@ -893,22 +893,22 @@ public class Store {
         return true;
     }
 
-    public String getAllPaymentPolicies(String memberUserName) throws Exception {
+    public List<String> getAllPaymentPolicies(String memberUserName) throws Exception {
         assertIsOwnerOrFounderOrAuthorizedManager(memberUserName, ManagerPermissions.manageStorePaymentPolicies);
-        StringBuilder st = new StringBuilder();
+        List<String> allPaymentPolicies = new LinkedList<>();
         for(Integer policyId : storePaymentPolicies.keySet().stream().toList().stream().sorted().toList())
-            st.append(policyId+". "+ storePaymentPolicies.get(policyId).toString()+"\n");
+            allPaymentPolicies.add(policyId+". "+ storePaymentPolicies.get(policyId).toString());
 
-        return st.toString();
+        return allPaymentPolicies;
     }
 
-    public String getAllBagConstraints(String memberUserName) throws Exception {
+    public List<String> getAllBagConstraints(String memberUserName) throws Exception {
         assertIsOwnerOrFounderOrAuthorizedManager(memberUserName, ManagerPermissions.manageStorePaymentPolicies);
-        StringBuilder st = new StringBuilder();
+        List<String> allBagConstraints = new LinkedList<>();
         for(Integer bagConstraintId : createdBagConstraints.keySet().stream().toList().stream().sorted().toList())
-            st.append(bagConstraintId+". "+ createdBagConstraints.get(bagConstraintId).toString()+"\n");
+            allBagConstraints.add(bagConstraintId+". "+ createdBagConstraints.get(bagConstraintId).toString());
 
-        return st.toString();
+        return allBagConstraints;
     }
 
     public boolean hasRole(String memberUserName){

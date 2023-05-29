@@ -18,4 +18,7 @@ public class BagConstraintAnd implements BagConstraint {
     public boolean checkConstraint(ConcurrentHashMap<String, ConcurrentHashMap<Product, Integer>> bagContent){
         return firstBagConstraint.checkConstraint(bagContent) && secBagConstraint.checkConstraint(bagContent);
     }
+    public String toString(){
+        return "("+firstBagConstraint.toString()+" AND "+ secBagConstraint.toString()+")";
+    }
 }

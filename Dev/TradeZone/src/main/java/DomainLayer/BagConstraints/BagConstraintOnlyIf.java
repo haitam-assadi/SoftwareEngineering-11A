@@ -20,4 +20,8 @@ public class BagConstraintOnlyIf implements BagConstraint {
             return secBagConstraint.checkConstraint(bagContent);
         return true;
     }
+
+    public String toString(){
+        return "("+firstBagConstraint.toString()+" ONLY IF "+ secBagConstraint.toString()+")";
+    }
 }
