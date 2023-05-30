@@ -51,4 +51,14 @@ public class AllContentBagConstraint implements BagConstraint {
 
         return true;
     }
+
+    public String toString(){
+        String st = "";
+        if(cartPPType == BagConstraintType.MinProductAmount){
+            st= "bag must contain minimum "+amountLimit+" "+product.getName()+" product";
+        }else{
+            st= "bag must contain maximum "+amountLimit+" "+product.getName()+" product";
+        }
+        return st;
+    }
 }

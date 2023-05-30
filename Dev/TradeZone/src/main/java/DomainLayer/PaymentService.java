@@ -1,13 +1,13 @@
 package DomainLayer;
 
+import java.util.HashMap;
 import java.util.TreeMap;
 
-public class PaymentService {
-    String url;
-    boolean demo;
-    int demoTransactionIds=1;
+public class PaymentService extends ExternalService{
+
 
     public PaymentService(String url){
+        serviceType="Payment";
         this.url = url;
         demo = (url=="");
     }
@@ -17,7 +17,26 @@ public class PaymentService {
         if(demo)
             return demoTransactionIds++;
 
-        throw new Exception("not connected to any service");
+        HashMap<String, String> action_params = new HashMap<>();
+        action_params.put("action_type","pay");
+        action_params.put("card_number",cardNumber);
+        action_params.put("month",month);
+        action_params.put("year",year);
+        action_params.put("holder",holder);
+        action_params.put("ccv",ccv);
+        action_params.put("id",id);
+
+        String serviceAnswer = sendPostRequest(action_params, serviceResTimeInMin).strip();
+
+        if(!isNumeric(serviceAnswer))
+            throw new Exception("transaction has failed");
+
+        Integer transactionId = Integer.parseInt(serviceAnswer);
+
+        if(transactionId<10000 || transactionId> 100000)
+            throw new Exception("transaction has failed");
+
+        return transactionId;
     }
 
     public void validatePayArgs(Double price, String cardNumber, String month, String year, String holder, String ccv, String id) throws Exception {
@@ -54,6 +73,21 @@ public class PaymentService {
     public boolean cancelPay(int transactionId) throws Exception {
         if(demo)
             return true;
-        throw new Exception("not connected to any service");
+
+        HashMap<String, String> action_params = new HashMap<>();
+        action_params.put("action_type","cancel_pay");
+        action_params.put("transaction_id",Integer.toString(transactionId));
+
+        String serviceAnswer = sendPostRequest(action_params, serviceResTimeInMin).strip();
+
+        if(!isNumeric(serviceAnswer))
+            throw new Exception("canceling transaction has failed");
+
+        Integer numericServiceAnswer = Integer.parseInt(serviceAnswer);
+
+        if(numericServiceAnswer != 1)
+            throw new Exception("canceling transaction has failed");
+
+        return true;
     }
 }

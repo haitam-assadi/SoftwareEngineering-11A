@@ -1,44 +1,47 @@
-package PresentationLayer.controller;
+package PresentationLayer.model;
 
 import CommunicationLayer.Server;
 import DTO.BagDTO;
-import PresentationLayer.model.Alert;
-import PresentationLayer.model.Bag;
-import PresentationLayer.model.Product;
+import DTO.DealDTO;
 import ServiceLayer.ResponseT;
+import org.springframework.web.context.annotation.SessionScope;
 
 import javax.servlet.http.HttpServletRequest;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import static PresentationLayer.controller.CartController.buildCart;
 
-public class GeneralController {
+@SessionScope
+public class GeneralModel {
     private Server server = Server.getInstance();
     private String name;
     private boolean hasRole;
     private boolean logged;
+    private boolean systemManager;
     private String currentPage;
     private double cartTotalPrice;
     private List<Bag> cart;
+    private Alert alert;
 
-    private static GeneralController controller = null;
-    public static GeneralController getInstance(){
+    private static GeneralModel controller = null;
+    public static GeneralModel getInstance(){
         if(controller == null){
-            controller = new GeneralController();
+            controller = new GeneralModel();
         }
         return controller;
     }
 
-    private GeneralController(){
+    public GeneralModel(){
         this.name = "";
         this.hasRole = false;
         this.logged = false;
+        this.systemManager = false;
         currentPage = "/";
         this.cartTotalPrice = 0;
         cart = new ArrayList<>();
+        alert = Alert.getInstance();
     }
 
     public String getName(){
@@ -65,6 +68,14 @@ public class GeneralController {
         this.logged = logged;
     }
 
+    public boolean isSystemManager() {
+        return systemManager;
+    }
+
+    public void setSystemManager(boolean systemManager) {
+        this.systemManager = systemManager;
+    }
+
     public String getCurrentPage() {
         return currentPage;
     }
@@ -88,6 +99,14 @@ public class GeneralController {
 
     public void setCart(List<Bag> cart) {
         this.cart = cart;
+    }
+
+    public Alert getAlert() {
+        return alert;
+    }
+
+    public void setAlert(Alert alert) {
+        this.alert = alert;
     }
 
     public void updateCart(){
@@ -137,6 +156,22 @@ public class GeneralController {
         BigDecimal bd = BigDecimal.valueOf(value);
         bd = bd.setScale(places, RoundingMode.HALF_UP);
         return bd.doubleValue();
+    }
+
+    public static List<Deal> buildDeals(List<DealDTO> dealDTOS){
+        List<Deal> deals = new LinkedList<>();
+        for(DealDTO dealDTO : dealDTOS){
+            Map<String, List<Double>> products = new HashMap<>();
+            for(String productName : dealDTO.products_amount.keySet()){
+                List<Double> amount_price = new LinkedList<>();
+                amount_price.add(0, dealDTO.products_amount.get(productName)*1.0);
+                amount_price.add(1, dealDTO.products_prices.get(productName));
+                products.put(productName, amount_price);
+            }
+            Deal deal = new Deal(dealDTO.storeName, dealDTO.date, dealDTO.username, products, dealDTO.totalPrice);
+            deals.add(deal);
+        }
+        return deals;
     }
 
     public static String determineCurrentPage(HttpServletRequest request) {

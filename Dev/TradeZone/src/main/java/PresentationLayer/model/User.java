@@ -1,5 +1,8 @@
 package PresentationLayer.model;
 
+import org.springframework.web.context.annotation.SessionScope;
+
+@SessionScope
 public class User {
     private String username;
     private String password;

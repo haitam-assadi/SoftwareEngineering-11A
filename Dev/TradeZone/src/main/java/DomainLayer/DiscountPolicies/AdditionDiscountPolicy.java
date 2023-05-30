@@ -31,4 +31,9 @@ public class AdditionDiscountPolicy implements DiscountPolicy{
 
         return discountValue;
     }
+
+
+    public String toString(){
+        return "("+ firstDiscountPolicy.toString()+") in addition ("+secondDiscountPolicy.toString() +").";
+    }
 }

@@ -36,4 +36,8 @@ public class ProductDiscountPolicy implements DiscountPolicy{
         }
         return discountValue;
     }
+
+    public String toString(){
+        return discountPercentage+"% discount on "+product.getName()+" product.";
+    }
 }

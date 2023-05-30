@@ -22,8 +22,8 @@ public class Market {
     public Market(){
         this.userController = new UserController();
         this.storeController = new StoreController();
-        paymentService = new PaymentService("");
-        shipmentService = new ShipmentService("");
+        paymentService = new PaymentService("https://php-server-try.000webhostapp.com/");
+        shipmentService = new ShipmentService("https://php-server-try.000webhostapp.com/");
     }
     public void setPaymentService(PaymentService paymentService){
         this.paymentService=paymentService;
@@ -77,7 +77,7 @@ public class Market {
         if(active) return storeController.getStoreInfo(storeName);
         else {
             Store store = storeController.getStore(storeName);
-            userController.assertIsOwner(userName, store);
+            userController.assertIsOwnerOrSystemManager(userName, store);
             return storeController.getStoreInfo(storeName);
         }
     }
@@ -330,12 +330,12 @@ public class Market {
         return storeController.removeConstraintFromPaymentPolicies(memberUserName,storeName,bagConstraintId);
     }
 
-    public String getAllPaymentPolicies(String memberUserName, String storeName) throws Exception {
+    public List<String> getAllPaymentPolicies(String memberUserName, String storeName) throws Exception {
         userController.assertIsMemberLoggedIn(memberUserName);
         return storeController.getAllPaymentPolicies(memberUserName,storeName);
     }
 
-    public String getAllBagConstraints(String memberUserName, String storeName) throws Exception {
+    public List<String> getAllBagConstraints(String memberUserName, String storeName) throws Exception {
         userController.assertIsMemberLoggedIn(memberUserName);
         return storeController.getAllBagConstraints(memberUserName,storeName);
     }
@@ -392,7 +392,6 @@ public class Market {
     }
 
 
-
     public boolean addAsStoreDiscountPolicy(String memberUserName, String storeName, Integer discountPolicyId) throws Exception {
         userController.assertIsMemberLoggedIn(memberUserName);
         return storeController.addAsStoreDiscountPolicy(memberUserName,storeName, discountPolicyId);
@@ -404,12 +403,12 @@ public class Market {
     }
 
 
-    public String getAllCreatedDiscountPolicies(String memberUserName, String storeName) throws Exception {
+    public List<String> getAllCreatedDiscountPolicies(String memberUserName, String storeName) throws Exception {
         userController.assertIsMemberLoggedIn(memberUserName);
         return storeController.getAllCreatedDiscountPolicies(memberUserName,storeName);
     }
 
-    public String getAllStoreDiscountPolicies(String memberUserName, String storeName) throws Exception {
+    public List<String> getAllStoreDiscountPolicies(String memberUserName, String storeName) throws Exception {
         userController.assertIsMemberLoggedIn(memberUserName);
         return storeController.getAllStoreDiscountPolicies(memberUserName,storeName);
     }

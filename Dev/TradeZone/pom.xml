@@ -39,6 +39,26 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>ca.mestevens.unity</groupId>
+            <artifactId>unity-maven-plugin</artifactId>
+            <version>0.2.3</version>
+        </dependency>
+        <dependency>
+            <groupId>net.admixer.sdk.unity</groupId>
+            <artifactId>unity-applovin</artifactId>
+            <version>1.4.6.0</version>
+        </dependency>
+        <dependency>
+            <groupId>ca.mestevens.unity</groupId>
+            <artifactId>unity-maven-plugin</artifactId>
+            <version>0.2.3</version>
+        </dependency>
+        <dependency>
+            <groupId>ca.mestevens.unity</groupId>
+            <artifactId>unity-maven-plugin</artifactId>
+            <version>0.2.3</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>

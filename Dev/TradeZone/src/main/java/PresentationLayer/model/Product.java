@@ -1,6 +1,6 @@
 package PresentationLayer.model;
 
-import static PresentationLayer.controller.GeneralController.round;
+import static PresentationLayer.model.GeneralModel.round;
 
 public class Product {
     private String name;
@@ -33,6 +33,7 @@ public class Product {
     public int getAmount(){
         return this.amount;
     }
+
     public Double getTotalPrice() {
         totalPrice = round(price * amount, 2);
         return totalPrice;

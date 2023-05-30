@@ -71,4 +71,8 @@ public class Category {
         categoryProducts.remove(productName);
         return true;
     }
+
+    public String getName(){
+        return categoryName;
+    }
 }

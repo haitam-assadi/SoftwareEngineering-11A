@@ -1,12 +1,13 @@
 package CommunicationLayer;
 
 import DTO.*;
+import DomainLayer.LoggerManager;
 import ServiceLayer.ResponseT;
 import ServiceLayer.SystemService;
+import jdk.jshell.spi.ExecutionControl;
 
 import java.io.IOException;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Server {
 
@@ -139,6 +140,11 @@ public class Server {
         return service.appointOtherMemberAsStoreManager(memberUserName, storeName, newManagerUserName);
     }
 
+    public ResponseT<Boolean> AppointMemberAsSystemManager(String managerName,String otherMemberName){
+        return service.AppointMemberAsSystemManager(managerName, otherMemberName);
+    }
+
+    // TODO: change params
     public ResponseT<Boolean> changeManagerPermissions(String memberUserName, String storeName, String managerUserName){
         return service.changeManagerPermissions(memberUserName, storeName, managerUserName);
     }
@@ -167,6 +173,140 @@ public class Server {
         return service.removeOwnerByHisAppointer(appointerUserName, storeName, ownerUserName);
     }
 
+    // ---------------------------------    BAG CONSTRAINTS ---------------------------------
+
+    public ResponseT<Integer> createMaxProductAmountAllContentBagConstraint(String memberUserName, String storeName, String productName, int amountLimit, boolean addAsStorePaymentPolicy) {
+        return service.createMaxProductAmountAllContentBagConstraint(memberUserName, storeName, productName, amountLimit, addAsStorePaymentPolicy);
+    }
+
+
+    public ResponseT<Integer> createMinProductAmountAllContentBagConstraint(String memberUserName, String storeName, String productName, int amountLimit, boolean addAsStorePaymentPolicy) {
+        return service.createMinProductAmountAllContentBagConstraint(memberUserName, storeName, productName, amountLimit, addAsStorePaymentPolicy);
+    }
+
+    public ResponseT<Integer> createMaxTimeAtDayProductBagConstraint(String memberUserName, String storeName, String productName, int hour, int minute, boolean addAsStorePaymentPolicy) {
+        return service.createMaxTimeAtDayProductBagConstraint(memberUserName, storeName, productName, hour, minute, addAsStorePaymentPolicy);
+    }
+
+    public ResponseT<Integer> createRangeOfDaysProductBagConstraint(String memberUserName, String storeName, String productName, int fromYear, int fromMonth, int fromDay, int toYear, int toMonth, int toDay, boolean addAsStorePaymentPolicy) {
+        return service.createRangeOfDaysProductBagConstraint(memberUserName, storeName, productName, fromYear, fromMonth, fromDay, toYear, toMonth, toDay, addAsStorePaymentPolicy);
+    }
+
+    public ResponseT<Integer> createMaxTimeAtDayCategoryBagConstraint(String memberUserName, String storeName, String categoryName, int hour, int minute, boolean addAsStorePaymentPolicy) {
+        return service.createMaxTimeAtDayCategoryBagConstraint(memberUserName, storeName, categoryName, hour, minute, addAsStorePaymentPolicy);
+    }
+
+    public ResponseT<Integer> createRangeOfDaysCategoryBagConstraint(String memberUserName, String storeName, String categoryName, int fromYear, int fromMonth, int fromDay, int toYear, int toMonth, int toDay, boolean addAsStorePaymentPolicy) {
+        return service.createRangeOfDaysCategoryBagConstraint(memberUserName, storeName, categoryName, fromYear, fromMonth, fromDay, toYear, toMonth, toDay, addAsStorePaymentPolicy);
+    }
+
+    public ResponseT<Integer> createAndBagConstraint(String memberUserName, String storeName, Integer firstBagConstraintId, Integer secondBagConstraintId, boolean addAsStorePaymentPolicy) {
+        return service.createAndBagConstraint(memberUserName, storeName, firstBagConstraintId, secondBagConstraintId, addAsStorePaymentPolicy);
+    }
+
+    public ResponseT<Integer> createOrBagConstraint(String memberUserName, String storeName, Integer firstBagConstraintId, Integer secondBagConstraintId, boolean addAsStorePaymentPolicy){
+       return service.createOrBagConstraint(memberUserName, storeName, firstBagConstraintId, secondBagConstraintId, addAsStorePaymentPolicy);
+    }
+
+    public ResponseT<Integer> createOnlyIfBagConstraint(String memberUserName, String storeName, Integer firstBagConstraintId, Integer secondBagConstraintId, boolean addAsStorePaymentPolicy){
+        return service.createOnlyIfBagConstraint(memberUserName, storeName, firstBagConstraintId, secondBagConstraintId, addAsStorePaymentPolicy);
+    }
+
+    public ResponseT<Boolean> addConstraintAsPaymentPolicy(String memberUserName, String storeName, Integer bagConstraintId){ // activate
+        return service.addConstraintAsPaymentPolicy(memberUserName, storeName, bagConstraintId);
+    }
+
+    public ResponseT<Boolean> removeConstraintFromPaymentPolicies(String memberUserName, String storeName, Integer bagConstraintId){ // deactivate
+        return service.removeConstraintFromPaymentPolicies(memberUserName, storeName, bagConstraintId);
+    }
+
+    public ResponseT<List<String>> getAllBagConstraints(String memberUserName, String storeName){ // suggested bag constraints
+        // TODO:
+        return service.getAllBagConstraints(memberUserName, storeName);
+//        List<String> list = new ArrayList<>();
+//        list.add("1. min 3 iphones in bag");
+//        list.add("2. max 10 milk in bag ");
+//        list.add("3. after 23:00 milk not allowed");
+//        list.add("4. after 23:00 alcohol not allowed");
+//        return new ResponseT<>(list);
+    }
+
+    public ResponseT<List<String>> getAllPaymentPolicies(String memberUserName, String storeName){ // active bag constraints
+        // TODO:
+        return service.getAllPaymentPolicies(memberUserName, storeName);
+//        List<String> list = new ArrayList<>();
+//        list.add("2. max 10 milk in bag ");
+//        list.add("3. after 23:00 milk not allowed");
+//        return new ResponseT<>(list);
+    }
+
+    // ---------------------------------    DISCOUNT POLICIES ---------------------------------
+
+    public ResponseT<Integer> createProductDiscountPolicyWithConstraint(String memberUserName, String storeName, String productName,  int discountPercentage, Integer bagConstraintId, boolean addAsStoreDiscountPolicy) {
+        if(bagConstraintId == -1)
+            return service.createProductDiscountPolicy(memberUserName, storeName, productName, discountPercentage, addAsStoreDiscountPolicy);
+        else
+            return service.createProductDiscountPolicyWithConstraint(memberUserName, storeName, productName, discountPercentage, bagConstraintId, addAsStoreDiscountPolicy);
+    }
+
+    public ResponseT<Integer> createCategoryDiscountPolicyWithConstraint(String memberUserName, String storeName, String categoryName,  int discountPercentage, Integer bagConstraintId, boolean addAsStoreDiscountPolicy)  {
+        if(bagConstraintId == -1)
+            return service.createCategoryDiscountPolicy(memberUserName, storeName, categoryName, discountPercentage, addAsStoreDiscountPolicy);
+        else
+            return service.createCategoryDiscountPolicyWithConstraint(memberUserName, storeName, categoryName, discountPercentage, bagConstraintId, addAsStoreDiscountPolicy);
+    }
+
+    public ResponseT<Integer> createAllStoreDiscountPolicyWithConstraint(String memberUserName, String storeName, int discountPercentage, Integer bagConstraintId, boolean addAsStoreDiscountPolicy)  {
+        if(bagConstraintId == -1)
+            return service.createAllStoreDiscountPolicy(memberUserName, storeName, discountPercentage, addAsStoreDiscountPolicy);
+        else
+            return service.createAllStoreDiscountPolicyWithConstraint(memberUserName, storeName, discountPercentage, bagConstraintId, addAsStoreDiscountPolicy);
+
+    }
+
+    public ResponseT<Integer> createAdditionDiscountPolicyWithConstraint(String memberUserName, String storeName, Integer firstDiscountPolicyId, Integer secondDiscountPolicyId, Integer bagConstraintId, boolean addAsStoreDiscountPolicy) {
+        if(bagConstraintId == -1)
+            return service.createAdditionDiscountPolicy(memberUserName, storeName, firstDiscountPolicyId, secondDiscountPolicyId, addAsStoreDiscountPolicy);
+        else
+            return service.createAdditionDiscountPolicyWithConstraint(memberUserName, storeName, firstDiscountPolicyId, secondDiscountPolicyId, bagConstraintId, addAsStoreDiscountPolicy);
+    }
+
+    public ResponseT<Integer> createMaxValDiscountPolicyWithConstraint(String memberUserName, String storeName, Integer firstDiscountPolicyId, Integer secondDiscountPolicyId, Integer bagConstraintId, boolean addAsStoreDiscountPolicy) {
+        if(bagConstraintId == -1)
+            return service.createMaxValDiscountPolicy(memberUserName, storeName, firstDiscountPolicyId, secondDiscountPolicyId, addAsStoreDiscountPolicy);
+        else
+            return service.createMaxValDiscountPolicyWithConstraint(memberUserName, storeName, firstDiscountPolicyId, secondDiscountPolicyId, bagConstraintId, addAsStoreDiscountPolicy);
+    }
+
+
+    public ResponseT<Boolean> addAsStoreDiscountPolicy(String memberUserName, String storeName, Integer discountPolicyId) { // activate
+        return service.addAsStoreDiscountPolicy(memberUserName, storeName, discountPolicyId);
+    }
+
+    public ResponseT<Boolean> removeFromStoreDiscountPolicies(String memberUserName, String storeName, Integer discountPolicyId) { // deactivate
+        return service.removeFromStoreDiscountPolicies(memberUserName, storeName, discountPolicyId);
+    }
+
+    public ResponseT<List<String>> getAllCreatedDiscountPolicies(String memberUserName, String storeName) { // suggested
+//        TODO:
+        return service.getAllCreatedDiscountPolicies(memberUserName, storeName);
+//        List<String> list = new ArrayList<>();
+//        list.add("1. min 3 iphones in bag");
+//        list.add("2. max 10 milk in bag ");
+//        list.add("3. after 23:00 milk not allowed");
+//        list.add("4. after 23:00 alcohol not allowed");
+//        return new ResponseT<>(list);
+    }
+
+    public ResponseT<List<String>> getAllStoreDiscountPolicies(String memberUserName, String storeName) { // active
+        //        TODO:
+        return service.getAllStoreDiscountPolicies(memberUserName, storeName);
+//        List<String> list = new ArrayList<>();
+//        list.add("2. max 10 milk in bag ");
+//        list.add("3. after 23:00 milk not allowed");
+//        return new ResponseT<>(list);
+    }
+
     public ResponseT<Boolean> hasRole(String userName){
         return service.hasRole(userName);
     }
@@ -175,4 +315,23 @@ public class Server {
         return service.myStores(memberUserName);
     }
 
+    public  ResponseT<Boolean> systemManagerCloseStore(String managerName, String storeName){
+        return service.systemManagerCloseStore(managerName,storeName);
+    }
+
+    public ResponseT<Boolean> isSystemManager(String userName){
+        return service.isSystemManager(userName);
+    }
+
+    public ResponseT<Integer> getProductAmountInStore(String userName, String storeName, String productName){
+        return service.getProductAmountInStore(userName, storeName, productName);
+    }
+
+    public ResponseT<Set<String>> getAllSystemManagers(String managerName){
+        return service.getAllSystemManagers(managerName);
+    }
+
+    public ResponseT<Boolean> removeMemberBySystemManager(String managerName,String memberName){
+        return service.removeMemberBySystemManager(managerName, memberName);
+    }
 }

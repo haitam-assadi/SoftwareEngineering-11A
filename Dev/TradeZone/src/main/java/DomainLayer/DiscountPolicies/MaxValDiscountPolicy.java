@@ -31,4 +31,8 @@ public class MaxValDiscountPolicy implements DiscountPolicy{
 
         return discountValue;
     }
+
+    public String toString(){
+        return "Max value discount between ("+ firstDiscountPolicy.toString()+") AND ("+secondDiscountPolicy.toString() +").";
+    }
 }
