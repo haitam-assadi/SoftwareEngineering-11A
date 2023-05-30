@@ -7,7 +7,7 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Enity
+@Entity
 @Table(name = "Category")
 @IdClass(CategoryId.class)
 public class DTOCategory {

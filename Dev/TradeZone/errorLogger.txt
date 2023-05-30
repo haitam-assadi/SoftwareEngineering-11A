@@ -1,0 +1,21 @@
+מאי 30, 2023 4:32:39 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: string is null or empty
+מאי 30, 2023 4:38:44 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: incorrect password!
+מאי 30, 2023 4:42:54 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: userName sss does not exists!
+מאי 30, 2023 4:43:10 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: incorrect password!
+מאי 30, 2023 4:55:58 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting products info: store: init3 does not exists!
+מאי 30, 2023 4:56:00 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting products info: store: init3 does not exists!
+מאי 30, 2023 4:56:09 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting products info: store: init3 does not exists!

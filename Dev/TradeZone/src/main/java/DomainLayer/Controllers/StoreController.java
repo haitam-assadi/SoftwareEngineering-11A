@@ -96,12 +96,13 @@ public class StoreController {
 
     public List<ProductDTO> getProductInfoFromMarketByName(String productName) throws Exception {
         List<ProductDTO> productDTOList = new ArrayList<>();
-        for(Store store: stores.values()) {
-            String storeName = store.getStoreName();
+        for(String storeName: stores.keySet()) {
+            //String storeName = store.getStoreName();
             //isActiveStore(storeName);
             if(IsActiveStore(storeName)) {
-                if (store.containsProduct(productName))
-                    productDTOList.add(store.getProductInfo(productName));
+                //System.out.println("kiasjdlsa");
+                if (stores.get(storeName).containsProduct(productName))
+                    productDTOList.add(stores.get(storeName).getProductInfo(productName));
             }
         }
         return productDTOList;

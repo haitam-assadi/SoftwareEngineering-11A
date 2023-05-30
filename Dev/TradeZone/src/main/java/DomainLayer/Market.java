@@ -184,6 +184,7 @@ public class Market {
     public boolean updateProductPrice(String memberUserName, String storeName, String productName, Double newPrice) throws Exception {
         userController.assertIsMemberLoggedIn(memberUserName);
         boolean res = storeController.updateProductPrice(memberUserName, storeName, productName, newPrice);
+        System.out.println("asijdasl");
         DALService.updateProductPrice(storeName,productName,newPrice);
         return res;
     }
