@@ -54,16 +54,18 @@ public class Stock {
 
         nameProduct=nameProduct.strip().toLowerCase();
         category = category.strip().toLowerCase();
-
-        if(!containsCategory(category))
+        boolean categoryflag = false;
+        if(!containsCategory(category)) {
             stockCategories.put(category, new Category(category, this.getStoreName()));
+            categoryflag = true;
+        }
 
         Product product = new Product(nameProduct,this.getStoreName(),stockCategories.get(category),price,description);
         stockCategories.get(category).putProductInCategory(product);
         ConcurrentHashMap<Product,Integer> productAmount = new ConcurrentHashMap<Product, Integer>();
         productAmount.put(product,amount);
         stockProducts.put(nameProduct,productAmount);
-        DALService.addProduct(stockCategories.get(category),stockName,getStoreName(),product,amount);
+        DALService.addProduct(stockCategories.get(category),stockName,getStoreName(),product,amount,categoryflag);
         //DALService.addCategory(stockCategories.get(category),this.stockName,this.getStoreName());
         return true;
     }

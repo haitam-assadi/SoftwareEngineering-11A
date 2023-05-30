@@ -64,3 +64,15 @@ fail in getting products info: productName is null or empty!
 מאי 30, 2023 11:51:16 לפנה״צ DomainLayer.LoggerManager sendErrorLog
 WARNING: 
 fail in adding product to cart: No default constructor for entity:  : DataAccessLayer.DTO.compositeKeys.ProductbagId; nested exception is org.hibernate.InstantiationException: No default constructor for entity:  : DataAccessLayer.DTO.compositeKeys.ProductbagId
+מאי 30, 2023 11:52:59 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: incorrect password!
+מאי 30, 2023 11:54:28 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: could not execute statement; SQL [n/a]; constraint [fklanax7eg8i7syhimn05vlrwlf]; nested exception is org.hibernate.exception.ConstraintViolationException: could not execute statement
+מאי 30, 2023 12:01:26 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: could not execute statement; SQL [n/a]; constraint [fklanax7eg8i7syhimn05vlrwlf]; nested exception is org.hibernate.exception.ConstraintViolationException: could not execute statement
+מאי 30, 2023 12:02:41 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: could not execute statement; SQL [n/a]; constraint [fklanax7eg8i7syhimn05vlrwlf]; nested exception is org.hibernate.exception.ConstraintViolationException: could not execute statement

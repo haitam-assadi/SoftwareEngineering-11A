@@ -68,11 +68,15 @@ public class DALService {
                                         String stockName,
                                         String storeName,
                                         Product product,
-                                        int amount){
+                                        int amount,
+                                        boolean categoryflag){
         DTOStore dtoStore = DALService.storeRepository.getById(storeName);
         DTOStock dtoStock = DALService.stockRepository.getById(stockName);
-        DTOCategory dtoCategory = DALService.categoryRepository.save(category.getCategoryDTO(dtoStore,dtoStock));
-        return DALService.productRepository.save(product.getDTOproduct(dtoStock,dtoCategory,amount));
+        if(categoryflag) {
+            DTOCategory dtoCategory = DALService.categoryRepository.save(category.getCategoryDTO(dtoStore, dtoStock));
+            return DALService.productRepository.save(product.getDTOproduct(dtoStock, dtoCategory, amount));
+        }
+        else return DALService.productRepository.save(product.getDTOproduct(dtoStock, category.getCategoryDTO(dtoStore,dtoStock), amount));
     }
 
     @Transactional
