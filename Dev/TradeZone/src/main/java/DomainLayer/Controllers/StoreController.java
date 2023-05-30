@@ -9,6 +9,7 @@ import DataAccessLayer.DTO.DTOStore;
 import DomainLayer.BagConstraints.BagConstraint;
 import DomainLayer.Category;
 import DomainLayer.DiscountPolicies.*;
+import DomainLayer.Market;
 import DomainLayer.Product;
 import DomainLayer.Store;
 
@@ -151,9 +152,11 @@ public class StoreController {
         else{
             Store store = stores.get(storeName);
             if(store.getStoreName().contains("init")){
-                store = DALService.DTOStore2Store(storeName);
-                stores.put(storeName,store);
-                System.out.println("asldnaskldkasl");
+                if (Market.dataBaseFlag) {
+                    store = DALService.DTOStore2Store(storeName);
+                    stores.put(storeName, store);
+                    System.out.println("asldnaskldkasl");
+                }
             }
         }
         return true;

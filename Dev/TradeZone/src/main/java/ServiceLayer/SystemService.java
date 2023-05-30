@@ -18,8 +18,8 @@ public class SystemService {
 
     private Market market;
 
-    public SystemService(){
-        market = new Market();
+    public SystemService(boolean dataBaseFlage){
+        market = new Market(dataBaseFlage);
     }
 
     public ResponseT<String> initializeMarket(){

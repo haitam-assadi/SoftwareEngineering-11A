@@ -15,12 +15,15 @@ import java.util.Map;
 import java.util.Set;
 
 public class Market {
+
+    public static boolean dataBaseFlag;
     UserController userController;
     StoreController storeController;
     PaymentService paymentService;
     ShipmentService shipmentService;
 
-    public Market(){
+    public Market(boolean dataBaseFlag){
+        Market.dataBaseFlag = dataBaseFlag;
         this.userController = new UserController();
         this.storeController = new StoreController();
         paymentService = new PaymentService("https://php-server-try.000webhostapp.com/");
@@ -133,6 +136,7 @@ public class Market {
         boolean res =  user.addToCart(storeController.getStore(storeName), productName, amount);
         if (userController.isMember(userName)){
             Member member = userController.getMember(userName);
+            if (Market.dataBaseFlag)
             DALService.saveCart(member,storeName,productName,amount);
         }
         return res;
@@ -160,7 +164,8 @@ public class Market {
         Member member = userController.getMember(memberUserName);
         Store store = storeController.createStore(newStoreName);
         member.appointMemberAsStoreFounder(store);
-        DALService.saveStore(store,member);
+        if (Market.dataBaseFlag)
+            DALService.saveStore(store,member);
         return store.getStoreInfo();
     }
     public boolean addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount) throws Exception {
@@ -170,20 +175,23 @@ public class Market {
     public boolean removeProductFromStock(String memberUserName, String storeName, String productName) throws Exception {
         userController.assertIsMemberLoggedIn(memberUserName);
         boolean res = storeController.removeProductFromStock(memberUserName, storeName, productName);
-        DALService.removeProduct(storeName,productName);
+        if (Market.dataBaseFlag)
+            DALService.removeProduct(storeName,productName);
         return res;
     }
     public boolean updateProductDescription(String memberUserName, String storeName, String productName, String newProductDescription) throws Exception {
         userController.assertIsMemberLoggedIn(memberUserName);
         boolean res = storeController.updateProductDescription(memberUserName, storeName, productName, newProductDescription);
-        DALService.updateProductDescription(storeName,productName,newProductDescription);
+        if (Market.dataBaseFlag)
+            DALService.updateProductDescription(storeName,productName,newProductDescription);
         return res;
     }
 
     public boolean updateProductAmount(String memberUserName, String storeName, String productName, Integer newAmount) throws Exception {
         userController.assertIsMemberLoggedIn(memberUserName);
         boolean res = storeController.updateProductAmount(memberUserName, storeName, productName, newAmount);
-        DALService.updateProductAmount(storeName,productName,newAmount);
+        if (Market.dataBaseFlag)
+            DALService.updateProductAmount(storeName,productName,newAmount);
         return res;
     }
 
@@ -191,7 +199,8 @@ public class Market {
         userController.assertIsMemberLoggedIn(memberUserName);
         boolean res = storeController.updateProductPrice(memberUserName, storeName, productName, newPrice);
         System.out.println("asijdasl");
-        DALService.updateProductPrice(storeName,productName,newPrice);
+        if (Market.dataBaseFlag)
+            DALService.updateProductPrice(storeName,productName,newPrice);
         return res;
     }
 
@@ -233,7 +242,8 @@ public class Market {
     public boolean closeStore(String memberUserName, String storeName) throws Exception {
         userController.assertIsMemberLoggedIn(memberUserName);
         boolean res = storeController.closeStore(memberUserName, storeName);
-        DALService.updateActive(storeName);
+        if (Market.dataBaseFlag)
+            DALService.updateActive(storeName);
         return res;
         //TODO: adel, not completed.
     }
@@ -450,8 +460,10 @@ public class Market {
     }
 
     public void loadData() {
-        userController.loadAllMembersNames();
-        storeController.loadAllStoresNames();
+        if (Market.dataBaseFlag) {
+            userController.loadAllMembersNames();
+            storeController.loadAllStoresNames();
+        }
     }
 
 }

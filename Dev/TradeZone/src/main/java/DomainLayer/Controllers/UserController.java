@@ -51,10 +51,12 @@ public class UserController {
     public String firstManagerInitializer() throws Exception {
         String user = "systemmanager1";
         if(members.containsKey(user)){
-            DTOMember dtomember = DALService.memberRepository.getById(user);
-            Member member = dtomember.loadMember();
-            members.put(user,member);
-            systemManagers.put(user,new SystemManager(member));
+            if (Market.dataBaseFlag) {
+                DTOMember dtomember = DALService.memberRepository.getById(user);
+                Member member = dtomember.loadMember();
+                members.put(user, member);
+                systemManagers.put(user, new SystemManager(member));
+            }
             //todo: get the system manager from data base
         }
         Member member = new Member(user,Security.Encode("systemmanager1Pass"));
@@ -62,7 +64,8 @@ public class UserController {
         SystemManager systemManager = new SystemManager(member);
         member.setSystemManager(systemManager);
         systemManagers.put(user,systemManager);
-        DALService.memberRepository.save(member.getDTOMember());
+        if (Market.dataBaseFlag)
+            DALService.memberRepository.save(member.getDTOMember());
         return user;
     }
 
@@ -95,7 +98,8 @@ public class UserController {
         members.put(newMemberUserName, member);
         member.defineNotifications(newMemberUserName);
         //membersNamesConcurrentSet.add(newMemberUserName);
-        DALService.memberRepository.save(member.getDTOMember());
+        if (Market.dataBaseFlag)
+            DALService.memberRepository.save(member.getDTOMember());
         //TODO: add user to database
         return true;
     }
@@ -180,9 +184,11 @@ public class UserController {
         if(members.containsKey(userName)){
             Member member = members.get(userName);
             if (member.getUserName().contains("init")) {
-                DTOMember dtoMember = DALService.memberRepository.getById(userName);
-                member = this.loadMember(dtoMember);
-                members.put(userName, member);
+                if (Market.dataBaseFlag) {
+                    DTOMember dtoMember = DALService.memberRepository.getById(userName);
+                    member = this.loadMember(dtoMember);
+                    members.put(userName, member);
+                }
             }
         }
 
@@ -322,7 +328,8 @@ public class UserController {
         otherMember.assertHaveNoRule();
         SystemManager newManager = manager.AppointMemberAsSystemManager(otherMember);
         otherMember.setSystemManager(newManager);
-        DALService.memberRepository.save(otherMember.getDTOMember());
+        if (Market.dataBaseFlag)
+            DALService.memberRepository.save(otherMember.getDTOMember());
         systemManagers.put(otherMemberName,newManager);
         return true;
     }
@@ -456,7 +463,8 @@ public class UserController {
             loggedInMembers.remove(memberName);
         }
         member.Logout();
-        DALService.memberRepository.delete(member.getDTOMember());
+        if (Market.dataBaseFlag)
+            DALService.memberRepository.delete(member.getDTOMember());
         NotificationService.getInstance().unsubscribeMember(memberName);
         return true;
     }

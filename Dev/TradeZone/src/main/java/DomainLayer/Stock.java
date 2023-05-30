@@ -65,7 +65,8 @@ public class Stock {
         ConcurrentHashMap<Product,Integer> productAmount = new ConcurrentHashMap<Product, Integer>();
         productAmount.put(product,amount);
         stockProducts.put(nameProduct,productAmount);
-        DALService.addProduct(stockCategories.get(category),stockName,getStoreName(),product,amount,categoryflag);
+        if (Market.dataBaseFlag)
+            DALService.addProduct(stockCategories.get(category),stockName,getStoreName(),product,amount,categoryflag);
         //DALService.addCategory(stockCategories.get(category),this.stockName,this.getStoreName());
         return true;
     }

@@ -1,11 +1,14 @@
 package AcceptanceTests;
 
+import PresentationLayer.SpringbootHtmlApplication;
 import org.junit.jupiter.api.*;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
 import java.util.Map;
 
 @TestInstance(value = TestInstance.Lifecycle.PER_CLASS)
+@SpringBootTest(classes = SpringbootHtmlApplication.class)
 public class RandomScenarios {
 
 

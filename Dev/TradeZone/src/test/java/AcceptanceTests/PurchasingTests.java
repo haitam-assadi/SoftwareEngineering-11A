@@ -1,12 +1,14 @@
 package AcceptanceTests;
 import DomainLayer.PaymentService;
 import DomainLayer.ShipmentService;
+import PresentationLayer.SpringbootHtmlApplication;
 import org.junit.jupiter.api.*;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.sql.SQLOutput;
 import java.util.ArrayList;
@@ -15,6 +17,7 @@ import java.util.Map;
 
 
 @TestInstance(value = TestInstance.Lifecycle.PER_CLASS)
+@SpringBootTest(classes = SpringbootHtmlApplication.class)
 public class PurchasingTests {
 
     private ProxyBridge proxy;

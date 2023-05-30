@@ -256,7 +256,8 @@ public class Member extends User{
             NotificationService.getInstance().send(userName,msg);
         }else{
             pendingMessages.add(msg);
-            DALService.memberRepository.save(getDTOMember());
+            if (Market.dataBaseFlag)
+                DALService.memberRepository.save(getDTOMember());
         }
     }
 
@@ -270,13 +271,14 @@ public class Member extends User{
             pendingMessages.clear();
             NotificationService.getInstance().send(userName, msg.toString());
         }
-
-        DALService.memberRepository.save(getDTOMember());
+        if (Market.dataBaseFlag)
+            DALService.memberRepository.save(getDTOMember());
     }
 
     public void Logout() {
         isOnline= false;
-        DALService.memberRepository.save(getDTOMember());
+        if (Market.dataBaseFlag)
+            DALService.memberRepository.save(getDTOMember());
     }
 
     public void defineNotifications(String newMemberUserName) {
