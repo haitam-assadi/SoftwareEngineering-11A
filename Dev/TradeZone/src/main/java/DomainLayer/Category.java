@@ -21,6 +21,13 @@ public class Category {
 
         categoryProducts = new ConcurrentHashMap<>();
     }
+
+    public Category(String storeName, String categoryName, ConcurrentHashMap<String, Product> categoryProducts) {
+        this.storeName = storeName;
+        this.categoryName = categoryName;
+        this.categoryProducts = categoryProducts;
+    }
+
     public DTOCategory getCategoryDTO(DTOStore dtoStore, DTOStock dtoStock){
         return new DTOCategory(categoryName,storeName,dtoStock);
     }

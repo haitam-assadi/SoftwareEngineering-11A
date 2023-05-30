@@ -65,4 +65,28 @@ public class DTOProduct {
     public DTOProduct(){
 
     }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public String getStoreName() {
+        return storeName;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public Integer getAmount() {
+        return amount;
+    }
+
+    public DTOCategory getCategory() {
+        return category;
+    }
 }

@@ -147,7 +147,14 @@ public class StoreController {
 
         if(!stores.containsKey(storeName)) // TODO for Lazy load , maybe we need to change to set of names
             return false;
-
+        else{
+            Store store = stores.get(storeName);
+            if(store.getStoreName().contains("init")){
+                store = DALService.DTOStore2Store(storeName);
+                stores.put(storeName,store);
+                System.out.println("asldnaskldkasl");
+            }
+        }
         return true;
     }
 

@@ -52,6 +52,12 @@ public class Store {
         bagConstraintsIdCounter =1;
     }
 
+    public Store(String storeName, Stock stock, boolean isActive) {
+        this.storeName = storeName;
+        this.stock = stock;
+        this.isActive = isActive;
+    }
+
     public DTOStore getStoreDTO(Member member){
         //todo: load the stock
         return new DTOStore(storeName,stock.getStockDTO(),isActive,member.getDTOMember());

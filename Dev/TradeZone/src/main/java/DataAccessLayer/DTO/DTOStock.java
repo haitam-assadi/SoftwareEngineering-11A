@@ -16,4 +16,8 @@ public class DTOStock {
     protected DTOStock(){
 
     }
+
+    public String getStockName() {
+        return stockName;
+    }
 }

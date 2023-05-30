@@ -19,6 +19,12 @@ public class Stock {
         stockCategories = new ConcurrentHashMap<>();
     }
 
+    public Stock(String stockName, ConcurrentHashMap<String, ConcurrentHashMap<Product, Integer>> stockProducts, ConcurrentHashMap<String, Category> stockCategories) {
+        this.stockName = stockName;
+        this.stockProducts = stockProducts;
+        this.stockCategories = stockCategories;
+    }
+
     public DTOStock getStockDTO(){
         return new DTOStock(stockName);
     }

@@ -46,4 +46,11 @@ public class DTOCategory {
     public DTOCategory() {
     }
 
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public String getStoreName() {
+        return storeName;
+    }
 }

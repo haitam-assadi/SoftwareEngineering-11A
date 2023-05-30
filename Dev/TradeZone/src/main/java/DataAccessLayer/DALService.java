@@ -11,6 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 @Service
 public class DALService {
@@ -106,6 +110,30 @@ public class DALService {
         DTOProduct dtoProduct = productRepository.getById(productId);
         dtoProduct.setDescription(desc);
         productRepository.save(dtoProduct);
+    }
+
+    @Transactional
+    public static Store DTOStore2Store(String storeName) throws Exception {
+        DTOStore dtoStore = DALService.storeRepository.getById(storeName);
+        List<DTOCategory> categories = categoryRepository.findByStoreName(storeName);
+        ConcurrentHashMap<String,Category> stockCategories = new ConcurrentHashMap<>();
+        ConcurrentHashMap<String, ConcurrentHashMap<Product,Integer>> products = new ConcurrentHashMap<>();
+        for (DTOCategory dtoCategory: categories){
+            List<DTOProduct> category_products = productRepository.findByCategory(dtoCategory);
+            for (DTOProduct dtoProduct: category_products){
+                Category category = new Category(storeName,dtoCategory.getCategoryName());
+                Product product = new Product(dtoProduct.getProductName(),storeName,category,dtoProduct.getPrice(), dtoProduct.getDescription());
+                category.putProductInCategory(product);
+                stockCategories.put(category.getCategoryName(),category);
+                ConcurrentHashMap<Product,Integer> productAmount = new ConcurrentHashMap<>();
+                productAmount.put(product,dtoProduct.getAmount());
+                products.put(dtoProduct.getProductName(),productAmount);
+            }
+        }
+        Stock stock = new Stock(dtoStore.getDtoStock().getStockName(),products,stockCategories);
+        Store store = new Store(storeName,stock, dtoStore.isActive());
+        System.out.println("as;ldska;d");
+        return store;
     }
 }
 /*
