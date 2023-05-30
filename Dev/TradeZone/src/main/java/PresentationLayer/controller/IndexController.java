@@ -42,7 +42,7 @@ public class IndexController {
 //		GeneralModel controller = new GeneralModel();
 		if(request.getSession().getAttribute("controller") != null){
 			controller = (GeneralModel) request.getSession().getAttribute("controller");
-			if(referer.contentEquals(request.getRequestURL()))
+			if(referer != null && referer.contentEquals(request.getRequestURL()))
 				products = (List<ProductDTO>) request.getSession().getAttribute("products");
 		}
 

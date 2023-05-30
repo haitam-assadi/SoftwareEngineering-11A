@@ -13,10 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 public class SystemController {
@@ -25,6 +22,7 @@ public class SystemController {
     System system; // = new System()
     String currentPage = "allStores"; // currentPage = {allStores, allUsers, systemManagers}
     Store store;
+    Member member;
 //    Alert alert = Alert.getInstance();
     Alert alert;
 
@@ -32,6 +30,7 @@ public class SystemController {
     public String systemManager(HttpServletRequest request, Model model){
 //        system = null;
         store = null;
+        member = null;
         currentPage = "allStores";
         if(request.getSession().getAttribute("controller") != null){
             controller = (GeneralModel) request.getSession().getAttribute("controller");
@@ -40,6 +39,8 @@ public class SystemController {
                 currentPage = (String) request.getSession().getAttribute("currentSystemPage");
             if(request.getSession().getAttribute("storeModel") != null)
                 store = (Store) request.getSession().getAttribute("storeModel");
+            if(request.getSession().getAttribute("member") != null)
+                member = (Member) request.getSession().getAttribute("member");
             if(request.getSession().getAttribute("system") != null)
                 system = (System) request.getSession().getAttribute("system");
             else
@@ -55,9 +56,7 @@ public class SystemController {
                 system.setAllStores(response.getValue());
         }
         else if(currentPage.equals("systemManagers")){
-            //TODO: uncomment after implementation of this fun in domain
-//            ResponseT<List<String>> response = server.getSystemManagers();
-            ResponseT<List<String>> response = server.getAllMembers(); // TODO: delete
+            ResponseT<Set<String>> response = server.getAllSystemManagers(controller.getName());
             if(response.ErrorOccurred){
                 alert.setFail(true);
                 alert.setMessage(response.errorMessage);
@@ -96,10 +95,12 @@ public class SystemController {
         model.addAttribute("currentPage", currentPage);
         model.addAttribute("system", system);
         model.addAttribute("store", store);
+        model.addAttribute("member", member);
         alert.reset();
         request.getSession().setAttribute("controller", controller);
         request.getSession().setAttribute("system", system);
         request.getSession().setAttribute("storeModel", null); // ???
+        request.getSession().setAttribute("member", null); // ???
 //        alert.reset();
         return "SystemTemplates/system";
     }
@@ -162,18 +163,37 @@ public class SystemController {
         return "redirect:/system";
     }
 
-    @PostMapping("/removeMember")
-    public String removeMember(HttpServletRequest request, @RequestParam String memberName){
-        // TODO: uncomment after implementation of this func
+    @PostMapping("/memberDeals")
+    public String getMemberDeals(HttpServletRequest request, @RequestParam String memberName){
+        // TODO: uncomment all lines
 //        if(request.getSession().getAttribute("controller") != null){
 //            controller = (GeneralModel) request.getSession().getAttribute("controller");
 //        }
-//        ResponseT<Boolean> response = server.removeMember(controller.getName(), memberName);
+//        ResponseT<List<DealDTO>> response = server.getMemberDeals(controller.getName(), memberName);
 //        if(response.ErrorOccurred){
 //            alert.setFail(true);
 //            alert.setMessage(response.errorMessage);
 //            return "redirect:/allUsers";
 //        }
+//        List<Deal> deals = GeneralModel.buildDeals(response.getValue());
+
+        List<Deal> deals = delete(); // TODO: delete this line and delete() func
+        member = new Member(memberName, deals);
+        request.getSession().setAttribute("member", member);
+        return "redirect:/allUsers";
+    }
+
+    @PostMapping("/removeMember")
+    public String removeMember(HttpServletRequest request, @RequestParam String memberName){
+        if(request.getSession().getAttribute("controller") != null){
+            controller = (GeneralModel) request.getSession().getAttribute("controller");
+        }
+        ResponseT<Boolean> response = server.removeMemberBySystemManager(controller.getName(), memberName);
+        if(response.ErrorOccurred){
+            alert.setFail(true);
+            alert.setMessage(response.errorMessage);
+            return "redirect:/allUsers";
+        }
         alert.setSuccess(true);
         alert.setMessage(memberName + " removed");
         return "redirect:/allUsers";
