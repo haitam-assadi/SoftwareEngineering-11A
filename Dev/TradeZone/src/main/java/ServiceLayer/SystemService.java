@@ -622,7 +622,7 @@ public class SystemService {
     }
     ///////////////////////////////////
 
-    public ResponseT<Boolean> addConstraintAsPaymentPolicy(String memberUserName, String storeName, Integer bagConstraintId) throws Exception {
+    public ResponseT<Boolean> addConstraintAsPaymentPolicy(String memberUserName, String storeName, Integer bagConstraintId){
         try{
             return new ResponseT<>(market.addConstraintAsPaymentPolicy(memberUserName,storeName,bagConstraintId));
         }catch (Exception e){
@@ -630,7 +630,7 @@ public class SystemService {
         }
     }
 
-    public ResponseT<Boolean> removeConstraintFromPaymentPolicies(String memberUserName, String storeName, Integer bagConstraintId) throws Exception {
+    public ResponseT<Boolean> removeConstraintFromPaymentPolicies(String memberUserName, String storeName, Integer bagConstraintId){
         try{
             return new ResponseT<>(market.removeConstraintFromPaymentPolicies(memberUserName,storeName,bagConstraintId));
         }catch (Exception e){
@@ -638,7 +638,7 @@ public class SystemService {
         }
     }
 
-    public ResponseT<List<String>> getAllPaymentPolicies(String memberUserName, String storeName) throws Exception {
+    public ResponseT<List<String>> getAllPaymentPolicies(String memberUserName, String storeName){
         try{
             return new ResponseT<>(market.getAllPaymentPolicies(memberUserName,storeName));
         }catch (Exception e){
@@ -647,7 +647,7 @@ public class SystemService {
 
     }
 
-    public ResponseT<List<String>> getAllBagConstraints(String memberUserName, String storeName) throws Exception {
+    public ResponseT<List<String>> getAllBagConstraints(String memberUserName, String storeName) {
         try{
             return new ResponseT<>(market.getAllBagConstraints(memberUserName,storeName));
         }catch (Exception e){
@@ -655,63 +655,119 @@ public class SystemService {
         }
     }
 
-    public ResponseT<Integer> createProductDiscountPolicy(String memberUserName, String storeName, String productName,  int discountPercentage, boolean addAsStoreDiscountPolicy) throws Exception {
-        return new ResponseT<>("");
+    public ResponseT<Integer> createProductDiscountPolicy(String memberUserName, String storeName, String productName,  int discountPercentage, boolean addAsStoreDiscountPolicy) {
+        try{
+            return new ResponseT<>(market.createProductDiscountPolicy(memberUserName, storeName, productName, discountPercentage, addAsStoreDiscountPolicy));
+        }catch (Exception e){
+            return new ResponseT<>("createProductDiscountPolicy: "+e.getMessage());
+        }
     }
 
-    public ResponseT<Integer> createProductDiscountPolicyWithConstraint(String memberUserName, String storeName, String productName,  int discountPercentage, Integer bagConstraintId, boolean addAsStoreDiscountPolicy) throws Exception {
-        return new ResponseT<>("");
+    public ResponseT<Integer> createProductDiscountPolicyWithConstraint(String memberUserName, String storeName, String productName,  int discountPercentage, Integer bagConstraintId, boolean addAsStoreDiscountPolicy) {
+        try{
+            return new ResponseT<>(market.createProductDiscountPolicyWithConstraint(memberUserName, storeName, productName, discountPercentage, bagConstraintId, addAsStoreDiscountPolicy));
+        }catch (Exception e){
+            return new ResponseT<>("createProductDiscountPolicyWithConstraint: "+e.getMessage());
+        }
     }
 
-    public ResponseT<Integer> createCategoryDiscountPolicy(String memberUserName, String storeName, String categoryName,  int discountPercentage, boolean addAsStoreDiscountPolicy) throws Exception {
-        return new ResponseT<>("");
+    public ResponseT<Integer> createCategoryDiscountPolicy(String memberUserName, String storeName, String categoryName,  int discountPercentage, boolean addAsStoreDiscountPolicy) {
+        try{
+            return new ResponseT<>(market.createCategoryDiscountPolicy(memberUserName, storeName, categoryName, discountPercentage, addAsStoreDiscountPolicy));
+        }catch (Exception e){
+            return new ResponseT<>("createCategoryDiscountPolicy: "+e.getMessage());
+        }
     }
 
-    public ResponseT<Integer> createCategoryDiscountPolicyWithConstraint(String memberUserName, String storeName, String categoryName,  int discountPercentage, Integer bagConstraintId, boolean addAsStoreDiscountPolicy) throws Exception {
-        return new ResponseT<>("");
-    }
-
-
-    public ResponseT<Integer> createAllStoreDiscountPolicy(String memberUserName, String storeName, int discountPercentage, boolean addAsStoreDiscountPolicy) throws Exception {
-        return new ResponseT<>("");
-    }
-
-    public ResponseT<Integer> createAllStoreDiscountPolicyWithConstraint(String memberUserName, String storeName, int discountPercentage, Integer bagConstraintId, boolean addAsStoreDiscountPolicy) throws Exception {
-        return new ResponseT<>("");
-    }
-
-    public ResponseT<Integer> createAdditionDiscountPolicy(String memberUserName, String storeName, Integer firstDiscountPolicyId, Integer secondDiscountPolicyId, boolean addAsStoreDiscountPolicy) throws Exception {
-        return new ResponseT<>("");
-    }
-
-    public ResponseT<Integer> createAdditionDiscountPolicyWithConstraint(String memberUserName, String storeName, Integer firstDiscountPolicyId, Integer secondDiscountPolicyId, Integer bagConstraintId, boolean addAsStoreDiscountPolicy) throws Exception {
-        return new ResponseT<>("");
-    }
-
-    public ResponseT<Integer> createMaxValDiscountPolicy(String memberUserName, String storeName, Integer firstDiscountPolicyId, Integer secondDiscountPolicyId, boolean addAsStoreDiscountPolicy) throws Exception {
-        return new ResponseT<>("");
-    }
-
-    public ResponseT<Integer> createMaxValDiscountPolicyWithConstraint(String memberUserName, String storeName, Integer firstDiscountPolicyId, Integer secondDiscountPolicyId, Integer bagConstraintId, boolean addAsStoreDiscountPolicy) throws Exception {
-        return new ResponseT<>("");
+    public ResponseT<Integer> createCategoryDiscountPolicyWithConstraint(String memberUserName, String storeName, String categoryName,  int discountPercentage, Integer bagConstraintId, boolean addAsStoreDiscountPolicy)  {
+        try{
+            return new ResponseT<>(market.createCategoryDiscountPolicyWithConstraint(memberUserName, storeName, categoryName, discountPercentage, bagConstraintId, addAsStoreDiscountPolicy));
+        }catch (Exception e){
+            return new ResponseT<>("createCategoryDiscountPolicyWithConstraint: "+e.getMessage());
+        }
     }
 
 
-    public ResponseT<Boolean> addAsStoreDiscountPolicy(String memberUserName, String storeName, Integer discountPolicyId) throws Exception {
-        return new ResponseT<>("");
+    public ResponseT<Integer> createAllStoreDiscountPolicy(String memberUserName, String storeName, int discountPercentage, boolean addAsStoreDiscountPolicy)  {
+        try{
+            return new ResponseT<>(market.createAllStoreDiscountPolicy(memberUserName, storeName, discountPercentage, addAsStoreDiscountPolicy));
+        }catch (Exception e){
+            return new ResponseT<>("createAllStoreDiscountPolicy: "+e.getMessage());
+        }
     }
 
-    public ResponseT<Boolean> removeFromStoreDiscountPolicies(String memberUserName, String storeName, Integer discountPolicyId) throws Exception {
-        return new ResponseT<>("");
+    public ResponseT<Integer> createAllStoreDiscountPolicyWithConstraint(String memberUserName, String storeName, int discountPercentage, Integer bagConstraintId, boolean addAsStoreDiscountPolicy)  {
+        try{
+            return new ResponseT<>(market.createAllStoreDiscountPolicyWithConstraint(memberUserName, storeName, discountPercentage, bagConstraintId, addAsStoreDiscountPolicy));
+        }catch (Exception e){
+            return new ResponseT<>("createAllStoreDiscountPolicyWithConstraint: "+e.getMessage());
+        }
+    }
+
+    public ResponseT<Integer> createAdditionDiscountPolicy(String memberUserName, String storeName, Integer firstDiscountPolicyId, Integer secondDiscountPolicyId, boolean addAsStoreDiscountPolicy) {
+        try{
+            return new ResponseT<>(market.createAdditionDiscountPolicy(memberUserName, storeName, firstDiscountPolicyId, secondDiscountPolicyId, addAsStoreDiscountPolicy));
+        }catch (Exception e){
+            return new ResponseT<>("createAdditionDiscountPolicy: "+e.getMessage());
+        }
+    }
+
+    public ResponseT<Integer> createAdditionDiscountPolicyWithConstraint(String memberUserName, String storeName, Integer firstDiscountPolicyId, Integer secondDiscountPolicyId, Integer bagConstraintId, boolean addAsStoreDiscountPolicy) {
+        try{
+            return new ResponseT<>(market.createAdditionDiscountPolicyWithConstraint(memberUserName, storeName, firstDiscountPolicyId, secondDiscountPolicyId, bagConstraintId, addAsStoreDiscountPolicy));
+        }catch (Exception e){
+            return new ResponseT<>("createAdditionDiscountPolicyWithConstraint: "+e.getMessage());
+        }
+    }
+
+    public ResponseT<Integer> createMaxValDiscountPolicy(String memberUserName, String storeName, Integer firstDiscountPolicyId, Integer secondDiscountPolicyId, boolean addAsStoreDiscountPolicy) {
+        try{
+            return new ResponseT<>(market.createMaxValDiscountPolicy(memberUserName, storeName, firstDiscountPolicyId, secondDiscountPolicyId, addAsStoreDiscountPolicy));
+        }catch (Exception e){
+            return new ResponseT<>("createMaxValDiscountPolicy: "+e.getMessage());
+        }
+    }
+
+    public ResponseT<Integer> createMaxValDiscountPolicyWithConstraint(String memberUserName, String storeName, Integer firstDiscountPolicyId, Integer secondDiscountPolicyId, Integer bagConstraintId, boolean addAsStoreDiscountPolicy) {
+        try{
+            return new ResponseT<>(market.createMaxValDiscountPolicyWithConstraint(memberUserName, storeName, firstDiscountPolicyId, secondDiscountPolicyId, bagConstraintId, addAsStoreDiscountPolicy));
+        }catch (Exception e){
+            return new ResponseT<>("createMaxValDiscountPolicyWithConstraint: "+e.getMessage());
+        }
     }
 
 
-    public ResponseT<List<String>> getAllCreatedDiscountPolicies(String memberUserName, String storeName) throws Exception {
-        return new ResponseT<>("");
+    public ResponseT<Boolean> addAsStoreDiscountPolicy(String memberUserName, String storeName, Integer discountPolicyId) {
+        try{
+            return new ResponseT<>(market.addAsStoreDiscountPolicy(memberUserName, storeName, discountPolicyId));
+        }catch (Exception e){
+            return new ResponseT<>("addAsStoreDiscountPolicy: "+e.getMessage());
+        }
     }
 
-    public ResponseT<List<String>> getAllStoreDiscountPolicies(String memberUserName, String storeName) throws Exception {
-        return new ResponseT<>("");
+    public ResponseT<Boolean> removeFromStoreDiscountPolicies(String memberUserName, String storeName, Integer discountPolicyId) {
+        try{
+            return new ResponseT<>(market.removeFromStoreDiscountPolicies(memberUserName, storeName, discountPolicyId));
+        }catch (Exception e){
+            return new ResponseT<>("removeFromStoreDiscountPolicies: "+e.getMessage());
+        }
+    }
+
+
+    public ResponseT<List<String>> getAllCreatedDiscountPolicies(String memberUserName, String storeName) {
+        try{
+            return new ResponseT<>(market.getAllCreatedDiscountPolicies(memberUserName, storeName));
+        }catch (Exception e){
+            return new ResponseT<>("getAllCreatedDiscountPolicies: "+e.getMessage());
+        }
+    }
+
+    public ResponseT<List<String>> getAllStoreDiscountPolicies(String memberUserName, String storeName) {
+        try{
+            return new ResponseT<>(market.getAllStoreDiscountPolicies(memberUserName, storeName));
+        }catch (Exception e){
+            return new ResponseT<>("getAllStoreDiscountPolicies: "+e.getMessage());
+        }
     }
 
 

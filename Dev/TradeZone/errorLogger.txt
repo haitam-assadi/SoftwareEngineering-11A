@@ -16,3 +16,21 @@ fail in appointing member as system manager: userName baraa does not exists!
 מאי 27, 2023 6:24:40 אחה״צ DomainLayer.LoggerManager sendErrorLog
 WARNING: 
 fail in creating store: userName baraa2 is a system manager!
+מאי 30, 2023 3:15:45 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Card Number cant be null
+מאי 30, 2023 3:24:15 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Card Number cant be null
+מאי 30, 2023 3:25:15 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Card Number cant be null
+מאי 30, 2023 3:31:06 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Card Number cant be null
+מאי 30, 2023 3:39:02 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Card Number cant be null
+מאי 30, 2023 3:47:19 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Card Number cant be null

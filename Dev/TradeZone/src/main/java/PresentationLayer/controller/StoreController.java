@@ -6,6 +6,7 @@ import DTO.StoreDTO;
 import PresentationLayer.model.*;
 import PresentationLayer.model.Policies.AllConstraints;
 import PresentationLayer.model.Policies.BagConstraint;
+import PresentationLayer.model.Policies.DiscountPolicy;
 import ServiceLayer.ResponseT;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -331,10 +332,12 @@ public class StoreController {
             controller = (GeneralModel) request.getSession().getAttribute("controller");
             if(request.getSession().getAttribute("store") != null)
                 store = (StoreDTO) request.getSession().getAttribute("store");
-//            if(request.getSession().getAttribute("constraints") != null)
-//                constraints = (Constraints) request.getSession().getAttribute("constraints");
+            if(request.getSession().getAttribute("constraints") != null)
+                constraints = (AllConstraints) request.getSession().getAttribute("constraints");
+            else
+                constraints = new AllConstraints(store.storeName);
         }
-        constraints = new AllConstraints(store.storeName);
+//        constraints = new AllConstraints(store.storeName);
         ResponseT<List<String>> response = server.getAllBagConstraints(controller.getName(), store.storeName);
         if(response.ErrorOccurred){
             alert.setFail(true);
@@ -363,7 +366,7 @@ public class StoreController {
                 store = (StoreDTO) request.getSession().getAttribute("store");
         }
         ResponseT<Integer> response;
-        boolean activate = constraint.getActivate().equals("on");
+        boolean activate = constraint.getActivate() != null;
         if(constraint.getConstType() == null || constraint.getConstType().equals("")){
             alert.setFail(true);
             alert.setMessage("You have to choose one of the constraints to add");
@@ -371,41 +374,41 @@ public class StoreController {
         }
         if(constraint.getConstType().equals("type1")){
             response = server.createMaxTimeAtDayProductBagConstraint(controller.getName(), constraint.getStoreName(),
-                    constraint.getProductName(), constraint.getHour(), constraint.getMinutes(), activate);
+                    constraint.getProductName(0), constraint.getHour(0), constraint.getMinutes(0), activate);
         }
         else if(constraint.getConstType().equals("type2")){
             response = server.createRangeOfDaysProductBagConstraint(controller.getName(), constraint.getStoreName(),
-                    constraint.getProductName(), constraint.getFromYear(), constraint.getFromMonth(), constraint.getFromDay(),
-                    constraint.getToYear(), constraint.getToMonth(), constraint.getToDay(), activate);
+                    constraint.getProductName(1), constraint.getFromYear(0), constraint.getFromMonth(0), constraint.getFromDay(0),
+                    constraint.getToYear(0), constraint.getToMonth(0), constraint.getToDay(0), activate);
         }
         else if(constraint.getConstType().equals("type3")){
             response = server.createMaxTimeAtDayCategoryBagConstraint(controller.getName(), constraint.getStoreName(),
-                    constraint.getCategoryName(), constraint.getHour(), constraint.getMinutes(), activate);
+                    constraint.getCategoryName(0), constraint.getHour(1), constraint.getMinutes(1), activate);
         }
         else if(constraint.getConstType().equals("type4")){
             response = server.createRangeOfDaysCategoryBagConstraint(controller.getName(), constraint.getStoreName(),
-                    constraint.getCategoryName(), constraint.getFromYear(), constraint.getFromMonth(), constraint.getFromDay(),
-                    constraint.getToYear(), constraint.getToMonth(), constraint.getToDay(), activate);
+                    constraint.getCategoryName(1), constraint.getFromYear(1), constraint.getFromMonth(1), constraint.getFromDay(1),
+                    constraint.getToYear(1), constraint.getToMonth(1), constraint.getToDay(1), activate);
         }
         else if(constraint.getConstType().equals("type5")){
             response = server.createMinProductAmountAllContentBagConstraint(controller.getName(), constraint.getStoreName(),
-                    constraint.getProductName(), constraint.getMin(), activate);
+                    constraint.getProductName(2), constraint.getMin(0), activate);
         }
         else if(constraint.getConstType().equals("type6")){
             response = server.createMaxProductAmountAllContentBagConstraint(controller.getName(), constraint.getStoreName(),
-                    constraint.getProductName(), constraint.getMax(), activate);
+                    constraint.getProductName(3), constraint.getMax(0), activate);
         }
         else if(constraint.getConstType().equals("type7")){
             response = server.createAndBagConstraint(controller.getName(), constraint.getStoreName(),
-                    constraint.getFirstID(),constraint.getSecondID(), activate);
+                    constraint.getFirstID(0),constraint.getSecondID(0), activate);
         }
         else if(constraint.getConstType().equals("type8")){
             response = server.createOrBagConstraint(controller.getName(), constraint.getStoreName(),
-                    constraint.getFirstID(),constraint.getSecondID(), activate);
+                    constraint.getFirstID(1),constraint.getSecondID(1), activate);
         }
         else { //if(constraint.getConstType().equals("type9")){
             response = server.createOnlyIfBagConstraint(controller.getName(), constraint.getStoreName(),
-                    constraint.getFirstID(),constraint.getSecondID(), activate);
+                    constraint.getFirstID(2),constraint.getSecondID(2), activate);
         }
         if(response.ErrorOccurred){
             alert.setFail(true);
@@ -445,6 +448,125 @@ public class StoreController {
     }
 
 
+    //    ------------------------- DISCOUNT POLICIES -------------------------
+    @GetMapping("/discountPolicies")
+    public String getDiscountPolicies(HttpServletRequest request){
+        if(request.getSession().getAttribute("controller") != null){
+            controller = (GeneralModel) request.getSession().getAttribute("controller");
+            if(request.getSession().getAttribute("store") != null)
+                store = (StoreDTO) request.getSession().getAttribute("store");
+            if(request.getSession().getAttribute("constraints") != null)
+                constraints = (AllConstraints) request.getSession().getAttribute("constraints");
+            else
+                constraints = new AllConstraints(store.storeName);
+        }
+//        constraints = new AllConstraints(store.storeName);
+        ResponseT<List<String>> response = server.getAllBagConstraints(controller.getName(), store.storeName);
+        if(response.ErrorOccurred){
+            alert.setFail(true);
+            alert.setMessage(response.errorMessage);
+            return "redirect:/store";
+        }
+        constraints.setAllBagConstraints(response.getValue());
+
+        response = server.getAllCreatedDiscountPolicies(controller.getName(), store.storeName);
+        if(response.ErrorOccurred){
+            alert.setFail(true);
+            alert.setMessage(response.errorMessage);
+            return "redirect:/store";
+        }
+        constraints.setAllDiscountPolicies(response.getValue());
+
+        response = server.getAllStoreDiscountPolicies(controller.getName(), store.storeName);
+        if(response.ErrorOccurred){
+            alert.setFail(true);
+            alert.setMessage(response.errorMessage);
+            return "redirect:/store";
+        }
+        constraints.setActiveDiscountPolicies(response.getValue());
+
+        currentPage = "discountPolicies";
+        request.getSession().setAttribute("constraints", constraints);
+        request.getSession().setAttribute("currentPage", currentPage);
+        return "redirect:/store";
+    }
+
+    @PostMapping("/addDiscountPolicy")
+    public String addDiscountPolicy(HttpServletRequest request, @ModelAttribute DiscountPolicy discount){
+        if(request.getSession().getAttribute("controller") != null){
+            controller = (GeneralModel) request.getSession().getAttribute("controller");
+            if(request.getSession().getAttribute("store") != null)
+                store = (StoreDTO) request.getSession().getAttribute("store");
+        }
+        ResponseT<Integer> response;
+        int constraintId = -1;
+        boolean activate = discount.getActivate() != null;
+        if(discount.getConstraintId() != null && !discount.getConstraintId().equals(""))
+            constraintId = Integer.parseInt(discount.getConstraintId());
+
+        if(discount.getDiscountType() == null || discount.getDiscountType().equals("")){
+            alert.setFail(true);
+            alert.setMessage("You have to choose one of the policies to add");
+            return "redirect:/discountPolicies";
+        }
+        if(discount.getDiscountType().equals("type1")){
+            response = server.createProductDiscountPolicyWithConstraint(controller.getName(), discount.getStoreName(),
+                    discount.getProductName(), discount.getPercent(0), constraintId, activate);
+        }
+        else if(discount.getDiscountType().equals("type2")){
+            response = server.createCategoryDiscountPolicyWithConstraint(controller.getName(), discount.getStoreName(),
+                    discount.getCategoryName(), discount.getPercent(1), constraintId, activate);
+        }
+        else if(discount.getDiscountType().equals("type3")){
+            response = server.createAllStoreDiscountPolicyWithConstraint(controller.getName(), discount.getStoreName(),
+                    discount.getPercent(2), constraintId, activate);
+        }
+        else if(discount.getDiscountType().equals("type4")){
+            response = server.createMaxValDiscountPolicyWithConstraint(controller.getName(), discount.getStoreName(),
+                    discount.getFirstID(0), discount.getSecondID(0), constraintId, activate);
+        }
+        else { // if(constraint.getConstType().equals("type5")){
+            response = server.createAdditionDiscountPolicyWithConstraint(controller.getName(), discount.getStoreName(),
+                    discount.getFirstID(1), discount.getSecondID(1), constraintId, activate);
+        }
+
+        if(response.ErrorOccurred){
+            alert.setFail(true);
+            alert.setMessage(response.errorMessage);
+            return "redirect:/discountPolicies";
+        }
+        alert.setSuccess(true);
+        alert.setMessage("Discount policy has been added successfully");
+        return "redirect:/discountPolicies";
+    }
+
+
+    @PostMapping("/activateDiscount")
+    public String activateDiscount(HttpServletRequest request, @RequestParam String choice, @RequestParam int id){
+        if(request.getSession().getAttribute("controller") != null){
+            controller = (GeneralModel) request.getSession().getAttribute("controller");
+            if(request.getSession().getAttribute("store") != null)
+                store = (StoreDTO) request.getSession().getAttribute("store");
+        }
+        ResponseT<Boolean> response;
+        String msg;
+        if(choice.equals("activate")){
+            msg = "activated";
+            response = server.addAsStoreDiscountPolicy(controller.getName(), store.storeName, id);
+        }
+        else{ // (choice.equals("deactivate"))
+            msg = "deactivated";
+            response = server.removeFromStoreDiscountPolicies(controller.getName(), store.storeName, id);
+        }
+        if(response.ErrorOccurred){
+            alert.setFail(true);
+            alert.setMessage(response.errorMessage);
+            return "redirect:/discountPolicies";
+        }
+        alert.setSuccess(true);
+        alert.setMessage("Constraint has " + msg + " successfully");
+        return "redirect:/discountPolicies";
+    }
 
     private Map<String, List<Worker>> buildWorkers(StoreDTO store){
         Map<String, List<Worker>> workers = new LinkedHashMap<>();
@@ -464,22 +586,6 @@ public class StoreController {
         workers.put("Managers", names);
         return workers;
     }
-
-//    public static List<Deal> buildDeals(List<DealDTO> dealDTOS){
-//        List<Deal> deals = new LinkedList<>();
-//        for(DealDTO dealDTO : dealDTOS){
-//            Map<String, List<Double>> products = new HashMap<>();
-//            for(String productName : dealDTO.products_amount.keySet()){
-//                List<Double> amount_price = new LinkedList<>();
-//                amount_price.add(0, dealDTO.products_amount.get(productName)*1.0);
-//                amount_price.add(1, dealDTO.products_prices.get(productName));
-//                products.put(productName, amount_price);
-//            }
-//            Deal deal = new Deal(dealDTO.storeName, dealDTO.date, dealDTO.username, products, dealDTO.totalPrice);
-//            deals.add(deal);
-//        }
-//        return deals;
-//    }
 
     private ProductDTO getProductFromStore(StoreDTO store, String productName){
         for(ProductDTO p : store.productsInfo){

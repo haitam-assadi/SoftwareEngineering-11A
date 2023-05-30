@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -37,7 +38,7 @@ public class purchaseControllerPre {
     }
 
     @PostMapping("/purchase")
-    public String purchase(HttpServletRequest request, @ModelAttribute Purchase purchase){
+    public String purchasePost(HttpServletRequest request, @ModelAttribute Purchase purchase){
         if(request.getSession().getAttribute("controller") != null){
             controller = (GeneralModel) request.getSession().getAttribute("controller");
         }
