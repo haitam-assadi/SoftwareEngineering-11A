@@ -2,6 +2,7 @@ package DataAccessLayer;
 
 import DataAccessLayer.DTO.*;
 import DataAccessLayer.DTO.compositeKeys.ProductId;
+import DataAccessLayer.DTO.compositeKeys.ProductbagId;
 import DataAccessLayer.Repositories.*;
 import DomainLayer.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +41,9 @@ public class DALService {
 
     @Autowired
     public static CartRepository cartRepository;
+
+    @Autowired
+    public static ProductBagRepository productBagRepository;
 
     public DALService(){
         super();
@@ -146,7 +150,8 @@ public class DALService {
         DTOStore dtoStore = storeRepository.getById(storeName);
         DTOBag dtoBag = bagRepository.save(new DTOBag(dtoCart,dtoStore));
         DTOProduct dtoProduct = productRepository.getById(new ProductId(productName,storeName));
-        
+        DTOProductBag dtoProductBag = new DTOProductBag(new ProductbagId(productName,storeName,dtoBag.getBagId()),dtoProduct,dtoBag,amount);
+        productBagRepository.save(dtoProductBag);
     }
 }
 /*

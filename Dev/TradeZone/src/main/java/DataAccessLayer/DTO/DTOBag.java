@@ -21,8 +21,10 @@ public class DTOBag {
     @JoinColumn(name = "store_name")
     private DTOStore store;
 
-    @ManyToMany(mappedBy = "bags")
-    private List<DTOProduct> products;
+    @OneToMany(mappedBy = "bag")
+    private List<DTOProductBag> productBags;
+//    @ManyToMany(mappedBy = "bags")
+//    private List<DTOProduct> products;
 
     public DTOBag(DTOCart cart, DTOStore store) {
         this.cart = cart;
@@ -30,5 +32,17 @@ public class DTOBag {
     }
 
     public DTOBag() {
+    }
+
+    public int getBagId() {
+        return bagId;
+    }
+
+    public DTOCart getCart() {
+        return cart;
+    }
+
+    public DTOStore getStore() {
+        return store;
     }
 }

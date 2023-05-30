@@ -61,3 +61,6 @@ fail in registeration: aaa is not valid userName!
 מאי 30, 2023 6:30:52 לפנה״צ DomainLayer.LoggerManager sendErrorLog
 WARNING: 
 fail in getting products info: productName is null or empty!
+מאי 30, 2023 11:51:16 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: No default constructor for entity:  : DataAccessLayer.DTO.compositeKeys.ProductbagId; nested exception is org.hibernate.InstantiationException: No default constructor for entity:  : DataAccessLayer.DTO.compositeKeys.ProductbagId

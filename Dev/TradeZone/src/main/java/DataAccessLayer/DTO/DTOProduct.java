@@ -32,14 +32,17 @@ public class DTOProduct {
     })
     private DTOCategory category;
 
-    @ManyToMany
-    @JoinTable(
-            name = "bag_product",
-            joinColumns = {@JoinColumn(name = "product_name", referencedColumnName = "productName"),
-                    @JoinColumn(name = "store_name", referencedColumnName = "storeName")},
-            inverseJoinColumns = @JoinColumn(name = "bag_id", referencedColumnName = "bagId")
-    )
-    private List<DTOBag> bags;
+    @OneToMany(mappedBy = "product")
+    private List<DTOProductBag> productBags;
+
+//    @ManyToMany
+//    @JoinTable(
+//            name = "bag_product",
+//            joinColumns = {@JoinColumn(name = "product_name", referencedColumnName = "productName"),
+//                    @JoinColumn(name = "store_name", referencedColumnName = "storeName")},
+//            inverseJoinColumns = @JoinColumn(name = "bag_id", referencedColumnName = "bagId")
+//    )
+//    private List<DTOBag> bags;
 
 
     public DTOProduct(String productName, String storeName, Double price, String description, DTOStock dtoStock, Integer amount,DTOCategory dtoCategory) {
