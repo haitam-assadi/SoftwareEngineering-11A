@@ -1,9 +1,12 @@
 package DataAccessLayer.DTO;
 
 
+import DataAccessLayer.DALService;
 import DomainLayer.Member;
+import DomainLayer.Store;
 
 import javax.persistence.*;
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -66,9 +69,19 @@ public class DTOMember {
     }
 
 
-    public Member loadMember(){
+    @Transactional
+    public Member loadMember() throws Exception {
         //TODO: database
-        return new Member(this.userName, this.password);
+        Member member = new Member(this.userName, this.password,isSystemManager,false);
+        if (isStoreFounder){
+            List<DTOStore> myStores = DALService.storeRepository.findByDtoMember(this);
+            List<Store> stores = new ArrayList<>();
+            for (DTOStore dtoStore1:myStores){
+                stores.add(DALService.DTOStore2Store(dtoStore1.getStoreName()));
+            }
+            member.addFounderRole(stores);
+        }
+        return member;
     }
 
     public String getUserName() {

@@ -35,7 +35,7 @@ public class Market {
     //TODO: closeStore req is not implemented as it should be , i(Ahmad) didn't pay attention to close stores handling..
 
 
-    public String firstManagerInitializer() {
+    public String firstManagerInitializer() throws Exception {
         return userController.firstManagerInitializer();
     }
 

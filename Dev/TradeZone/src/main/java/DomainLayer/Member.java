@@ -32,6 +32,16 @@ public class Member extends User{
         DALService.memberRepository.save(getDTOMember());
     }
 
+    public void addFounderRole(List<Store> stores) throws Exception {
+        if (!roles.containsKey(RoleEnum.StoreFounder)){
+            StoreFounder storeFounder = new StoreFounder(this);
+            for (Store store: stores) {
+                storeFounder.appointMemberAsStoreFounder(store);
+            }
+            roles.put(RoleEnum.StoreFounder,storeFounder);
+        }
+    }
+
     public boolean checkIsSystemManager(){
         return isSystemManager;
     }
@@ -55,6 +65,9 @@ public class Member extends User{
         this.password = password;
         this.isSystemManager=isSystemManager;
         this.isOnline=isOnline;
+        roles = new ConcurrentHashMap<>();
+        pendingMessages = new ArrayList<>();
+
     }
 
 

@@ -58,3 +58,12 @@ fail in getting products info: store: init0 does not exists!
 מאי 30, 2023 3:02:13 לפנה״צ DomainLayer.LoggerManager sendErrorLog
 WARNING: 
 fail in creating store: store: pppp is already store
+מאי 30, 2023 3:03:02 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in creating store: store: pppp is already store
+מאי 30, 2023 3:26:15 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: Cannot invoke "java.util.concurrent.ConcurrentHashMap.containsKey(Object)" because "this.roles" is null
+מאי 30, 2023 3:27:40 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: Cannot invoke "java.util.List.isEmpty()" because "this.pendingMessages" is null

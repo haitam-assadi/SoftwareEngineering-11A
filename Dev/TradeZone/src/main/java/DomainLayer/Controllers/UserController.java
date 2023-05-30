@@ -48,7 +48,7 @@ public class UserController {
     }
 
 
-    public String firstManagerInitializer() {
+    public String firstManagerInitializer() throws Exception {
         String user = "systemmanager1";
         if(members.containsKey(user)){
             DTOMember dtomember = DALService.memberRepository.getById(user);
@@ -169,7 +169,7 @@ public class UserController {
         if(st==null || st.isBlank())
             throw new Exception("string is null or empty");
     }
-    private Member loadMember(DTOMember dtoMember){
+    private Member loadMember(DTOMember dtoMember) throws Exception {
         return dtoMember.loadMember();
     }
 
