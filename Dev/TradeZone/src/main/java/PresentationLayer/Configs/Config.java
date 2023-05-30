@@ -24,7 +24,9 @@ public class Config {
                                   ProductRepository productRepository,
                                   CategoryRepository categoryRepository,
                                   StoresOwnersRepository storesOwnersRepository,
-                                  StoresManagersRepository storesManagersRepository) {
+                                  StoresManagersRepository storesManagersRepository,
+                                  BagRepository bagRepository,
+                                  CartRepository cartRepository) {
         return (args) -> {
             System.out.println("member config");
             DALService.memberRepository=memberRepository;
@@ -41,6 +43,10 @@ public class Config {
             System.out.println(storesOwnersRepository);
             DALService.storesManagersRepository = storesManagersRepository;
             System.out.println(storesManagersRepository);
+            DALService.bagRepository = bagRepository;
+            System.out.println(bagRepository);
+            DALService.cartRepository = cartRepository;
+            System.out.println(cartRepository);
         };
     }
 

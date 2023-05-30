@@ -299,7 +299,7 @@ public class Member extends User{
         if (roles.containsKey(RoleEnum.StoreOwner)) owner = true;
         if (roles.containsKey(RoleEnum.StoreManager)) manager = true;
         if(roles.containsKey(RoleEnum.StoreFounder)) founder = true;
-        return new DTOMember(this.userName, this.password, this.isOnline, 1, this.isSystemManager,founder,owner,manager);
+        return new DTOMember(this.userName, this.password, this.isOnline/*, this.d*/, this.isSystemManager,founder,owner,manager);
     }
 
 

@@ -110,12 +110,12 @@ public class StoreController {
 
     public List<ProductDTO> getProductInfoFromMarketByCategory(String categoryName) throws Exception {
         List<ProductDTO> productDTOList = new ArrayList<>();
-        for(Store store: stores.values()) {
-            String storeName = store.getStoreName();
+        for(String storeName: stores.keySet()) {
+            //String storeName = store.getStoreName();
             //isActiveStore(storeName);
             if(IsActiveStore(storeName)) {
-                if (store.containsCategory(categoryName))
-                    productDTOList.addAll(store.getProductsInfoByCategory(categoryName));
+                if (stores.get(storeName).containsCategory(categoryName))
+                    productDTOList.addAll(stores.get(storeName).getProductsInfoByCategory(categoryName));
             }
         }
         return productDTOList;

@@ -19,7 +19,10 @@ public class DTOMember {
     private String password;
 
     private boolean isOnline;
-    private Integer cartId;
+
+    @OneToOne
+    @JoinColumn(name = "cart_id")
+    private DTOCart dtoCart;
     private boolean isSystemManager;
 
     private boolean isStoreFounder;
@@ -49,7 +52,7 @@ public class DTOMember {
     public DTOMember(String userName,
                      String password,
                      boolean isOnline,
-                     Integer cartId,
+                     //DTOCart dtoCart,
                      boolean isSystemManager,
                      boolean isStoreFounder,
                      boolean isStoreOwner,
@@ -57,7 +60,7 @@ public class DTOMember {
         this.userName = userName;
         this.password = password;
         this.isOnline = isOnline;
-        this.cartId = cartId;
+        //this.dtoCart = dtoCart;
         this.isSystemManager = isSystemManager;
         this.isStoreFounder = isStoreFounder;
         this.isStoreOwner = isStoreOwner;

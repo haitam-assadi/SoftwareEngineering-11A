@@ -3,6 +3,7 @@ package DataAccessLayer.DTO;
 import DataAccessLayer.DTO.compositeKeys.ProductId;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "Product")
@@ -30,6 +31,15 @@ public class DTOProduct {
             @JoinColumn(name = "store_id", referencedColumnName = "storeName")
     })
     private DTOCategory category;
+
+    @ManyToMany
+    @JoinTable(
+            name = "bag_product",
+            joinColumns = {@JoinColumn(name = "product_name", referencedColumnName = "productName"),
+                    @JoinColumn(name = "store_name", referencedColumnName = "storeName")},
+            inverseJoinColumns = @JoinColumn(name = "bag_id", referencedColumnName = "bagId")
+    )
+    private List<DTOBag> bags;
 
 
     public DTOProduct(String productName, String storeName, Double price, String description, DTOStock dtoStock, Integer amount,DTOCategory dtoCategory) {

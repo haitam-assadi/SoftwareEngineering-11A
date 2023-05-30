@@ -1,9 +1,6 @@
 package DataAccessLayer;
 
-import DataAccessLayer.DTO.DTOCategory;
-import DataAccessLayer.DTO.DTOProduct;
-import DataAccessLayer.DTO.DTOStock;
-import DataAccessLayer.DTO.DTOStore;
+import DataAccessLayer.DTO.*;
 import DataAccessLayer.DTO.compositeKeys.ProductId;
 import DataAccessLayer.Repositories.*;
 import DomainLayer.*;
@@ -37,6 +34,12 @@ public class DALService {
     public static StoresManagersRepository storesManagersRepository;
     @Autowired
     public static StoresOwnersRepository storesOwnersRepository;
+
+    @Autowired
+    public static BagRepository bagRepository;
+
+    @Autowired
+    public static CartRepository cartRepository;
 
     public DALService(){
         super();
@@ -134,6 +137,16 @@ public class DALService {
         Store store = new Store(storeName,stock, dtoStore.isActive());
         System.out.println("as;ldska;d");
         return store;
+    }
+
+    @Transactional
+    public static void saveCart(Member member, String storeName, String productName, Integer amount) {
+        DTOCart dtoCart = new DTOCart(member.getDTOMember());
+        DALService.cartRepository.save(dtoCart);
+        DTOStore dtoStore = storeRepository.getById(storeName);
+        DTOBag dtoBag = bagRepository.save(new DTOBag(dtoCart,dtoStore));
+        DTOProduct dtoProduct = productRepository.getById(new ProductId(productName,storeName));
+        
     }
 }
 /*

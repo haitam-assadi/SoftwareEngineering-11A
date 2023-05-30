@@ -2,6 +2,7 @@ package DomainLayer;
 
 import DTO.*;
 import DataAccessLayer.DALService;
+import DataAccessLayer.DTO.DTOCart;
 import DomainLayer.BagConstraints.*;
 import DomainLayer.Controllers.StoreController;
 import DomainLayer.Controllers.UserController;
@@ -129,7 +130,12 @@ public class Market {
         userController.assertIsGuestOrLoggedInMember(userName);
         storeController.assertIsStore(storeName);
         User user = userController.getUser(userName);
-        return user.addToCart(storeController.getStore(storeName), productName, amount);
+        boolean res =  user.addToCart(storeController.getStore(storeName), productName, amount);
+        if (userController.isMember(userName)){
+            Member member = userController.getMember(userName);
+            DALService.saveCart(member,storeName,productName,amount);
+        }
+        return res;
     }
     public boolean removeFromCart(String userName, String storeName, String productName) throws Exception {
         userController.assertIsGuestOrLoggedInMember(userName);
