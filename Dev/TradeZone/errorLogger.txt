@@ -76,3 +76,12 @@ fail in adding product to stock: could not execute statement; SQL [n/a]; constra
 מאי 30, 2023 12:02:41 אחה״צ DomainLayer.LoggerManager sendErrorLog
 WARNING: 
 fail in adding product to stock: could not execute statement; SQL [n/a]; constraint [fklanax7eg8i7syhimn05vlrwlf]; nested exception is org.hibernate.exception.ConstraintViolationException: could not execute statement
+מאי 30, 2023 12:14:25 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: incorrect password!
+מאי 30, 2023 1:05:12 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: No converter found capable of converting from type [DataAccessLayer.DTO.DTOStore] to type [DataAccessLayer.DTO.DTOMember]
+מאי 30, 2023 1:09:16 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: could not extract ResultSet; SQL [n/a]; nested exception is org.hibernate.exception.SQLGrammarException: could not extract ResultSet

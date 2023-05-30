@@ -1150,3 +1150,123 @@ INFO: in 2023-05-30 12:02:48 the user moslem got information about the store mos
 INFO: 
 memberLogOut(String memberUserName)
 in 2023-05-30 12:04:43 the member moslem wants to make logout- logout(moslem)
+מאי 30, 2023 12:09:02 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-05-30 12:09:02 the user guest_0 wants to make registeration register(guest_0, moslem,123moslem)
+מאי 30, 2023 12:09:02 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-30 12:09:02 a new member joined .
+- Memer name: moslem
+
+מאי 30, 2023 12:09:20 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-05-30 12:09:20 the user guest_0 wants to make login login(guest_0, moslem,123moslem)
+מאי 30, 2023 12:09:20 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-30 12:09:20 a new member Logged in .
+- Memer name: moslem
+
+מאי 30, 2023 12:09:26 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+createStore(String memberUserName, String newStoreName)
+in 2023-05-30 12:09:26 the member moslem tries to create store  - createStore(moslem, moslemstore)
+מאי 30, 2023 12:09:27 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-30 12:09:27 the user moslem wants to get information about the store moslemstore- getStoreInfo(moslem, moslemstore)
+מאי 30, 2023 12:09:27 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-30 12:09:27 the user moslem got information about the store moslemstore
+מאי 30, 2023 12:09:27 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-30 12:09:27 the user moslem wants to get information about the store moslemstore- getStoreInfo(moslem, moslemstore)
+מאי 30, 2023 12:09:27 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-30 12:09:27 the user moslem got information about the store moslemstore
+מאי 30, 2023 12:09:33 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-05-30 12:09:33 the member moslem tries to add product to store  - addNewProductToStock(moslem, moslemstore, aaa, aaa, 123.0, aaa, 111)
+מאי 30, 2023 12:09:33 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-30 12:09:33 the user moslem wants to get information about the store moslemstore- getStoreInfo(moslem, moslemstore)
+מאי 30, 2023 12:09:33 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-30 12:09:33 the user moslem got information about the store moslemstore
+מאי 30, 2023 12:09:43 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-05-30 12:09:43 the member moslem tries to add product to store  - addNewProductToStock(moslem, moslemstore, bbb, aaa, 123.0, bbb, 111)
+מאי 30, 2023 12:09:43 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-30 12:09:43 the user moslem wants to get information about the store moslemstore- getStoreInfo(moslem, moslemstore)
+מאי 30, 2023 12:09:43 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-30 12:09:43 the user moslem got information about the store moslemstore
+מאי 30, 2023 12:14:25 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-05-30 12:14:25 the user guest_0 wants to make login login(guest_0, moslem,123moslemn)
+מאי 30, 2023 12:14:29 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-05-30 12:14:29 the user guest_0 wants to make login login(guest_0, moslem,123moslem)
+מאי 30, 2023 12:14:29 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-30 12:14:29 a new member Logged in .
+- Memer name: moslem
+
+מאי 30, 2023 12:16:18 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-05-30 12:16:18 the user guest_0 wants to make login login(guest_0, moslem,123moslem)
+מאי 30, 2023 12:16:27 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-30 12:16:27 a new member Logged in .
+- Memer name: moslem
+
+מאי 30, 2023 12:17:57 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-05-30 12:17:57 the user guest_0 wants to make login login(guest_0, moslem,123moslem)
+מאי 30, 2023 12:18:01 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-30 12:18:01 a new member Logged in .
+- Memer name: moslem
+
+מאי 30, 2023 12:19:10 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-05-30 12:19:10 the user guest_0 wants to make login login(guest_0, moslem,123moslem)
+מאי 30, 2023 12:19:14 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-30 12:19:14 a new member Logged in .
+- Memer name: moslem
+
+מאי 30, 2023 12:48:30 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-05-30 12:48:30 the user guest_0 wants to make login login(guest_0, moslem,123moslem)
+מאי 30, 2023 12:48:30 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-30 12:48:30 a new member Logged in .
+- Memer name: moslem
+
+מאי 30, 2023 12:52:52 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-05-30 12:52:52 the user guest_0 wants to make login login(guest_0, moslem,123moslem)
+מאי 30, 2023 12:54:15 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-05-30 12:54:15 the user guest_0 wants to make login login(guest_0, moslem,123moslem)
+מאי 30, 2023 1:05:12 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-05-30 13:05:12 the user guest_0 wants to make login login(guest_0, moslem,123moslem)
+מאי 30, 2023 1:09:16 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-05-30 13:09:16 the user guest_0 wants to make login login(guest_0, moslem,123moslem)
+מאי 30, 2023 1:11:33 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-05-30 13:11:33 the user guest_0 wants to make login login(guest_0, moslem,123moslem)
+מאי 30, 2023 1:11:51 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-30 13:11:51 a new member Logged in .
+- Memer name: moslem
+

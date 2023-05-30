@@ -52,10 +52,11 @@ public class Store {
         bagConstraintsIdCounter =1;
     }
 
-    public Store(String storeName, Stock stock, boolean isActive) {
+    public Store(String storeName, Stock stock, boolean isActive/*,StoreFounder storeFounder*/) {
         this.storeName = storeName;
         this.stock = stock;
         this.isActive = isActive;
+        //this.storeFounder = storeFounder;
     }
 
     public DTOStore getStoreDTO(Member member){
@@ -173,6 +174,10 @@ public class Store {
     }
 
     public StoreDTO getStoreInfo(){
+        if (storeOwners == null) storeOwners = new ConcurrentHashMap<>();
+        if (storeManagers == null) storeManagers = new ConcurrentHashMap<>();
+        if (storeFounder == null) storeFounder = new StoreFounder(new Member("should_change"));
+        //todo: should delete this when loading the owners and managers also and storefounder!!!!!
         List<String> ownersNames = this.storeOwners.values().stream().map(Role::getUserName).toList();
         List<String> managersNames = this.storeManagers.values().stream().map(Role::getUserName).toList();
         return new StoreDTO(storeName, storeFounder.getUserName(), ownersNames, managersNames, stock.getProductsInfo(),isActive);

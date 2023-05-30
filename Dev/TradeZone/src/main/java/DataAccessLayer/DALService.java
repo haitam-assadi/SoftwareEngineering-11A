@@ -142,7 +142,9 @@ public class DALService {
             }
         }
         Stock stock = new Stock(dtoStore.getDtoStock().getStockName(),products,stockCategories);
-        Store store = new Store(storeName,stock, dtoStore.isActive());
+//        DTOMember dtoMember = storeRepository.findMemberByStoreName(storeName);
+//        Member member = dtoMember.loadMember();
+        Store store = new Store(storeName,stock, dtoStore.isActive()/*,new StoreFounder(member)*/);
         System.out.println("as;ldska;d");
         return store;
     }
