@@ -593,12 +593,6 @@ public class Store {
 
 
 
-
-
-
-
-
-
     public boolean addAsStoreDiscountPolicy(String memberUserName, Integer discountPolicyId) throws Exception {
         assertIsOwnerOrFounderOrAuthorizedManager(memberUserName, ManagerPermissions.manageStoreDiscountPolicies);
         if(discountPolicyId == null)
@@ -933,6 +927,25 @@ public class Store {
         NotificationService.getInstance().removeAllRulers(storeName);
         return true;
     }
+
+    public List<Integer> getCreatedBagConstIds(){
+        return createdBagConstraints.keySet().stream().toList();
+    }
+
+    public List<Integer> getStoreBagConstIds(){
+        return storePaymentPolicies.keySet().stream().toList();
+    }
+
+
+    public List<Integer> getCreatedDiscountPoliciesIds(){
+        return createdDiscountPolicies.keySet().stream().toList();
+    }
+
+    public List<Integer> getStoreDiscountPoliciesIds(){
+        return storeDiscountPolicies.keySet().stream().toList();
+    }
+
+
 
 
 }

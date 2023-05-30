@@ -24,6 +24,10 @@ public class Product {
         productCategories.put(category.getCategoryName(), category);
     }
 
+    public Product(String name){
+        this.name = name;
+    }
+
     public String getName() {
         return name;
     }
