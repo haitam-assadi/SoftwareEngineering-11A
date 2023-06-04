@@ -35,7 +35,7 @@ public class loginController {
     @PostMapping("/login")
     public String loginDemand(HttpServletRequest request, @ModelAttribute User user, Model model) {
         List<ProductDTO> products = new ArrayList<>();
-        controller = new GeneralModel();
+//        controller = new GeneralModel();
         if(request.getSession().getAttribute("controller") != null){
             controller = (GeneralModel) request.getSession().getAttribute("controller");
         }
@@ -46,6 +46,7 @@ public class loginController {
             model.addAttribute("name", controller.getName());
             return "login";
         }
+        controller = new GeneralModel();
         controller.setName(response.value);
 //        controller.setHasRole(hasRole.getValue());
         controller.setLogged(true);
@@ -58,11 +59,7 @@ public class loginController {
 //            return "login";
 //        }
         ResponseT<Boolean> isSystemManager = server.isSystemManager(controller.getName());
-        if(isSystemManager.ErrorOccurred){
-            controller.setSystemManager(false);
-        }
-        else
-            controller.setSystemManager(true);
+        controller.setSystemManager(!isSystemManager.ErrorOccurred);
 
 
         model.addAttribute("logged", controller.getLogged());

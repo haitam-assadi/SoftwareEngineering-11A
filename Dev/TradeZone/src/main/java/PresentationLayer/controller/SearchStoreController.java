@@ -46,9 +46,10 @@ public class SearchStoreController {
             store = null;
             alert.setFail(true);
             alert.setMessage(response.errorMessage);
-            return "redirect:/searchStore";
+//            return "redirect:/searchStore";
         }
-        store = response.getValue();
+        else
+            store = response.getValue();
         request.getSession().setAttribute("searchStore", store);
         return "redirect:/searchStore";
     }

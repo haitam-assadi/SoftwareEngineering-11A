@@ -2848,3 +2848,837 @@ getStoreInfo(String userName, String storeName)
 in 2023-05-30 03:49:50 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
 מאי 30, 2023 3:49:50 לפנה״צ DomainLayer.LoggerManager sendEventLog
 INFO: in 2023-05-30 03:49:50 the user user1 got information about the store user1_second_store
+מאי 30, 2023 3:50:26 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-05-30 03:50:26 the user guest_4 wants to make login login(guest_4, user1,Aa12345678)
+מאי 30, 2023 3:50:26 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-30 03:50:26 a new member Logged in .
+- Memer name: user1
+
+מאי 30, 2023 3:50:27 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-30 03:50:27 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 30, 2023 3:50:27 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-30 03:50:27 the user user1 got information about the store user1_second_store
+מאי 30, 2023 3:50:27 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-05-30 03:50:27 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+מאי 30, 2023 3:50:27 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-05-30 03:50:27 the user user1 got information about the store user1_second_store
+מאי 30, 2023 3:50:34 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+memberLogOut(String memberUserName)
+in 2023-05-30 03:50:34 the member user1 wants to make logout- logout(user1)
+יוני 03, 2023 4:52:51 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromStore(String userName, String storeName, String productName)
+in 2023-06-03 16:52:51 the user guest_4 wants to get information about product in market my nameuser1_first_Store_product1- getProductInfoFromMarketByName(guest_4, user1_first_Store_product1)
+יוני 03, 2023 4:52:54 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-03 16:52:54 the user guest_4 tries to add product to his cart  - addToCart(guest_4, user1_first_store, user1_first_store_product1, 3)
+יוני 03, 2023 4:52:54 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-03 16:52:54 the user guest_4 tries to get his cart content  - getCartContent(guest_4)
+יוני 03, 2023 4:52:55 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-03 16:52:55 the user guest_4 tries to get his cart content  - getCartContent(guest_4)
+יוני 03, 2023 4:53:01 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-03 16:53:01 the user guest_4 wants to make registeration register(guest_4, user1,Aa12345678)
+יוני 03, 2023 4:53:09 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-03 16:53:09 the user guest_4 wants to make registeration register(guest_4, user2,Aa12345678)
+יוני 03, 2023 4:53:09 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-03 16:53:09 a new member joined .
+- Memer name: user2
+
+יוני 03, 2023 4:53:14 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-03 16:53:14 the user guest_4 wants to make login login(guest_4, user2,Aa12345678)
+יוני 03, 2023 4:53:14 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-03 16:53:14 a new member Logged in .
+- Memer name: user2
+
+יוני 03, 2023 4:53:16 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-03 16:53:16 the user user2 tries to get his cart content  - getCartContent(user2)
+יוני 03, 2023 4:53:52 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ changeProductAmountInCart(String userName, String storeName, String productName, Integer newAmount)
+in 2023-06-03 16:53:52 the user user2 tries to change a product amount in his cart  - changeProductAmountInCart(user2, user1_first_store, user1_first_store_product1, 6)
+יוני 03, 2023 4:53:52 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-03 16:53:52 the user user2 tries to get his cart content  - getCartContent(user2)
+יוני 03, 2023 4:53:52 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-03 16:53:52 the user user2 tries to get his cart content  - getCartContent(user2)
+יוני 03, 2023 4:54:00 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-03 16:54:00 the user user2 wants to get information about the store user1_first_Store- getStoreInfo(user2, user1_first_Store)
+יוני 03, 2023 4:54:00 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-03 16:54:00 the user user2 got information about the store user1_first_Store
+יוני 03, 2023 4:54:03 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+memberLogOut(String memberUserName)
+in 2023-06-03 16:54:03 the member user2 wants to make logout- logout(user2)
+יוני 03, 2023 4:54:08 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-03 16:54:08 the user guest_5 wants to get information about the store user1_first_Store- getStoreInfo(guest_5, user1_first_Store)
+יוני 03, 2023 4:54:08 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-03 16:54:08 the user guest_5 got information about the store user1_first_Store
+יוני 03, 2023 4:54:10 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-03 16:54:10 the user guest_5 tries to get his cart content  - getCartContent(guest_5)
+יוני 03, 2023 4:54:14 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-03 16:54:14 the user guest_5 wants to get information about the store user1_first_Store- getStoreInfo(guest_5, user1_first_Store)
+יוני 03, 2023 4:54:14 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-03 16:54:14 the user guest_5 got information about the store user1_first_Store
+יוני 03, 2023 5:03:17 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-03 17:03:17 the user guest_4 wants to get information about the store user1_first_Store- getStoreInfo(guest_4, user1_first_Store)
+יוני 03, 2023 5:03:17 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-03 17:03:17 the user guest_4 got information about the store user1_first_Store
+יוני 03, 2023 5:03:20 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-03 17:03:20 the user guest_4 tries to add product to his cart  - addToCart(guest_4, user1_first_store, user1_first_store_product5, 3)
+יוני 03, 2023 5:03:20 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-03 17:03:20 the user guest_4 tries to get his cart content  - getCartContent(guest_4)
+יוני 03, 2023 5:03:22 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-03 17:03:22 the user guest_4 tries to get his cart content  - getCartContent(guest_4)
+יוני 03, 2023 5:03:27 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-03 17:03:27 the user guest_4 wants to make registeration register(guest_4, user2,Aa12345678)
+יוני 03, 2023 5:03:27 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-03 17:03:27 a new member joined .
+- Memer name: user2
+
+יוני 03, 2023 5:03:30 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-03 17:03:30 the user guest_4 tries to get his cart content  - getCartContent(guest_4)
+יוני 03, 2023 5:03:33 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-03 17:03:33 the user guest_4 wants to make login login(guest_4, user2,Aa12345678)
+יוני 03, 2023 5:03:33 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-03 17:03:33 a new member Logged in .
+- Memer name: user2
+
+יוני 03, 2023 5:03:40 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-03 17:03:40 the user user2 wants to get information about the store user1_first_Store- getStoreInfo(user2, user1_first_Store)
+יוני 03, 2023 5:03:40 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-03 17:03:40 the user user2 got information about the store user1_first_Store
+יוני 03, 2023 5:03:49 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-03 17:03:49 the user user2 tries to add product to his cart  - addToCart(user2, user1_first_store, user1_first_store_product6, 4)
+יוני 03, 2023 5:03:49 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-03 17:03:49 the user user2 tries to get his cart content  - getCartContent(user2)
+יוני 03, 2023 5:03:52 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-03 17:03:52 the user user2 tries to get his cart content  - getCartContent(user2)
+יוני 03, 2023 5:04:11 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+memberLogOut(String memberUserName)
+in 2023-06-03 17:04:11 the member user2 wants to make logout- logout(user2)
+יוני 03, 2023 5:04:15 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-03 17:04:15 the user guest_5 wants to get information about the store user1_first_Store- getStoreInfo(guest_5, user1_first_Store)
+יוני 03, 2023 5:04:15 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-03 17:04:15 the user guest_5 got information about the store user1_first_Store
+יוני 03, 2023 5:04:18 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-03 17:04:18 the user guest_5 tries to get his cart content  - getCartContent(guest_5)
+יוני 03, 2023 5:04:24 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-03 17:04:24 the user guest_5 wants to get information about the store - getStoreInfo(guest_5, )
+יוני 03, 2023 5:04:33 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-03 17:04:33 the user guest_5 wants to get information about the store - getStoreInfo(guest_5, )
+יוני 03, 2023 5:04:51 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromStore(String userName, String storeName, String productName)
+in 2023-06-03 17:04:51 the user guest_5 wants to get information about product in market my nameuser1_first_Store_product1- getProductInfoFromMarketByName(guest_5, user1_first_Store_product1)
+יוני 03, 2023 5:04:55 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromStore(String userName, String storeName, String productName)
+in 2023-06-03 17:04:55 the user guest_5 wants to get information about product in market my name- getProductInfoFromMarketByName(guest_5, )
+יוני 03, 2023 5:10:21 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromStore(String userName, String storeName, String productName)
+in 2023-06-03 17:10:21 the user guest_4 wants to get information about product in market my nameuser1_first_Store_product1- getProductInfoFromMarketByName(guest_4, user1_first_Store_product1)
+יוני 03, 2023 5:10:22 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromStore(String userName, String storeName, String productName)
+in 2023-06-03 17:10:22 the user guest_4 wants to get information about product in market my name- getProductInfoFromMarketByName(guest_4, )
+יוני 03, 2023 5:10:27 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-03 17:10:27 the user guest_4 wants to get information about the store user1_first_Store- getStoreInfo(guest_4, user1_first_Store)
+יוני 03, 2023 5:10:27 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-03 17:10:27 the user guest_4 got information about the store user1_first_Store
+יוני 03, 2023 5:10:29 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-03 17:10:29 the user guest_4 wants to get information about the store - getStoreInfo(guest_4, )
+יוני 03, 2023 5:10:33 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromStore(String userName, String storeName, String productName)
+in 2023-06-03 17:10:33 the user guest_4 wants to get information about product in market my name- getProductInfoFromMarketByName(guest_4, )
+יוני 03, 2023 5:12:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromStore(String userName, String storeName, String productName)
+in 2023-06-03 17:12:34 the user guest_4 wants to get information about product in market my nameuser1_first_Store_product1- getProductInfoFromMarketByName(guest_4, user1_first_Store_product1)
+יוני 03, 2023 5:12:38 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-03 17:12:38 the user guest_4 tries to add product to his cart  - addToCart(guest_4, user1_first_store, user1_first_store_product1, 3)
+יוני 03, 2023 5:12:38 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-03 17:12:38 the user guest_4 tries to get his cart content  - getCartContent(guest_4)
+יוני 03, 2023 5:12:40 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromStore(String userName, String storeName, String productName)
+in 2023-06-03 17:12:40 the user guest_4 wants to get information about product in market my name- getProductInfoFromMarketByName(guest_4, )
+יוני 03, 2023 5:12:44 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromStore(String userName, String storeName, String productName)
+in 2023-06-03 17:12:44 the user guest_4 wants to get information about product in market my nameuser1_first_Store_product1- getProductInfoFromMarketByName(guest_4, user1_first_Store_product1)
+יוני 03, 2023 5:12:46 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-03 17:12:46 the user guest_4 tries to get his cart content  - getCartContent(guest_4)
+יוני 03, 2023 5:12:49 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-03 17:12:49 the user guest_4 wants to get information about the store - getStoreInfo(guest_4, )
+יוני 03, 2023 5:12:53 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-03 17:12:53 the user guest_4 wants to get information about the store user1_first_Store- getStoreInfo(guest_4, user1_first_Store)
+יוני 03, 2023 5:12:53 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-03 17:12:53 the user guest_4 got information about the store user1_first_Store
+יוני 03, 2023 5:12:55 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-03 17:12:55 the user guest_4 wants to get information about the store - getStoreInfo(guest_4, )
+יוני 03, 2023 5:13:35 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-03 17:13:35 the user guest_4 tries to get his cart content  - getCartContent(guest_4)
+יוני 03, 2023 5:14:47 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-03 17:14:47 the user guest_4 wants to make login login(guest_4, user2,Aa12345678)
+יוני 03, 2023 5:14:52 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-03 17:14:52 the user guest_4 wants to make login login(guest_4, user1,Aa12345678)
+יוני 03, 2023 5:14:52 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-03 17:14:52 a new member Logged in .
+- Memer name: user1
+
+יוני 03, 2023 5:15:04 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-03 17:15:04 the user user1 tries to get his cart content  - getCartContent(user1)
+יוני 03, 2023 5:18:19 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-03 17:18:19 the user guest_4 tries to get his cart content  - getCartContent(guest_4)
+יוני 03, 2023 5:18:23 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-03 17:18:23 the user guest_4 wants to get information about the store user1_first_Store- getStoreInfo(guest_4, user1_first_Store)
+יוני 03, 2023 5:18:23 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-03 17:18:23 the user guest_4 got information about the store user1_first_Store
+יוני 03, 2023 5:18:26 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-03 17:18:26 the user guest_4 tries to add product to his cart  - addToCart(guest_4, user1_first_store, user1_first_store_product5, 2)
+יוני 03, 2023 5:18:26 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-03 17:18:26 the user guest_4 tries to get his cart content  - getCartContent(guest_4)
+יוני 03, 2023 5:18:27 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-03 17:18:27 the user guest_4 tries to get his cart content  - getCartContent(guest_4)
+יוני 03, 2023 5:18:50 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-03 17:18:50 the user guest_4 wants to make registeration register(guest_4, user2,Aa12345678)
+יוני 03, 2023 5:18:50 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-03 17:18:50 a new member joined .
+- Memer name: user2
+
+יוני 03, 2023 5:18:54 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-03 17:18:54 the user guest_4 wants to make login login(guest_4, user2,Aa12345678)
+יוני 03, 2023 5:18:54 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-03 17:18:54 a new member Logged in .
+- Memer name: user2
+
+יוני 03, 2023 5:18:55 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-03 17:18:55 the user user2 tries to get his cart content  - getCartContent(user2)
+יוני 03, 2023 5:22:47 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+purchaseCartByCreditCard(String userName, String cardNumber, String month, String year, String holder, String cvv, String id, String receiverName, String shipmentAddress, String shipmentCity, String shipmentCountry, String zipCode)
+in 2023-06-03 17:22:47 the user user2 tries make purchase  - purchaseCartByCreditCard(user2, null, null, null, null, null, null, null, null, null, null, null)
+יוני 03, 2023 5:23:19 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromStore(String userName, String storeName, String productName)
+in 2023-06-03 17:23:19 the user guest_4 wants to get information about product in market my nameuser1_first_Store_product1- getProductInfoFromMarketByName(guest_4, user1_first_Store_product1)
+יוני 03, 2023 5:23:22 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-03 17:23:22 the user guest_4 tries to add product to his cart  - addToCart(guest_4, user1_first_store, user1_first_store_product1, 2)
+יוני 03, 2023 5:23:22 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-03 17:23:22 the user guest_4 tries to get his cart content  - getCartContent(guest_4)
+יוני 03, 2023 5:23:24 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-03 17:23:24 the user guest_4 tries to get his cart content  - getCartContent(guest_4)
+יוני 03, 2023 5:24:30 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+purchaseCartByCreditCard(String userName, String cardNumber, String month, String year, String holder, String cvv, String id, String receiverName, String shipmentAddress, String shipmentCity, String shipmentCountry, String zipCode)
+in 2023-06-03 17:24:30 the user guest_4 tries make purchase  - purchaseCartByCreditCard(guest_4, null, null, null, null, null, null, null, null, null, null, null)
+יוני 03, 2023 5:27:20 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromStore(String userName, String storeName, String productName)
+in 2023-06-03 17:27:20 the user guest_4 wants to get information about product in market my nameuser1_first_Store_product1- getProductInfoFromMarketByName(guest_4, user1_first_Store_product1)
+יוני 03, 2023 5:27:22 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-03 17:27:22 the user guest_4 tries to add product to his cart  - addToCart(guest_4, user1_first_store, user1_first_store_product1, 2)
+יוני 03, 2023 5:27:22 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-03 17:27:22 the user guest_4 tries to get his cart content  - getCartContent(guest_4)
+יוני 03, 2023 5:27:24 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-03 17:27:24 the user guest_4 tries to get his cart content  - getCartContent(guest_4)
+יוני 03, 2023 5:28:24 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+purchaseCartByCreditCard(String userName, String cardNumber, String month, String year, String holder, String cvv, String id, String receiverName, String shipmentAddress, String shipmentCity, String shipmentCountry, String zipCode)
+in 2023-06-03 17:28:24 the user guest_4 tries make purchase  - purchaseCartByCreditCard(guest_4, null, null, null, null, null, null, null, null, null, null, null)
+יוני 03, 2023 5:28:55 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromStore(String userName, String storeName, String productName)
+in 2023-06-03 17:28:55 the user guest_4 wants to get information about product in market my nameuser1_first_Store_product1- getProductInfoFromMarketByName(guest_4, user1_first_Store_product1)
+יוני 03, 2023 5:28:56 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-03 17:28:56 the user guest_4 tries to add product to his cart  - addToCart(guest_4, user1_first_store, user1_first_store_product1, 1)
+יוני 03, 2023 5:28:56 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-03 17:28:56 the user guest_4 tries to get his cart content  - getCartContent(guest_4)
+יוני 03, 2023 5:28:57 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-03 17:28:57 the user guest_4 tries to get his cart content  - getCartContent(guest_4)
+יוני 03, 2023 5:31:54 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+purchaseCartByCreditCard(String userName, String cardNumber, String month, String year, String holder, String cvv, String id, String receiverName, String shipmentAddress, String shipmentCity, String shipmentCountry, String zipCode)
+in 2023-06-03 17:31:54 the user guest_4 tries make purchase  - purchaseCartByCreditCard(guest_4, null, null, null, null, null, null, null, null, null, null, null)
+יוני 03, 2023 5:32:03 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromStore(String userName, String storeName, String productName)
+in 2023-06-03 17:32:03 the user guest_4 wants to get information about product in market my nameuser1_first_Store_product1- getProductInfoFromMarketByName(guest_4, user1_first_Store_product1)
+יוני 03, 2023 5:32:06 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-03 17:32:06 the user guest_4 tries to get his cart content  - getCartContent(guest_4)
+יוני 03, 2023 5:32:24 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromStore(String userName, String storeName, String productName)
+in 2023-06-03 17:32:24 the user guest_4 wants to get information about product in market my nameuser1_first_Store_product1- getProductInfoFromMarketByName(guest_4, user1_first_Store_product1)
+יוני 03, 2023 5:32:25 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-03 17:32:25 the user guest_4 tries to add product to his cart  - addToCart(guest_4, user1_first_store, user1_first_store_product1, 1)
+יוני 03, 2023 5:32:25 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-03 17:32:25 the user guest_4 tries to get his cart content  - getCartContent(guest_4)
+יוני 03, 2023 5:32:26 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-03 17:32:26 the user guest_4 tries to get his cart content  - getCartContent(guest_4)
+יוני 03, 2023 5:33:31 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+purchaseCartByCreditCard(String userName, String cardNumber, String month, String year, String holder, String cvv, String id, String receiverName, String shipmentAddress, String shipmentCity, String shipmentCountry, String zipCode)
+in 2023-06-03 17:33:31 the user guest_4 tries make purchase  - purchaseCartByCreditCard(guest_4, null, null, null, null, null, null, null, null, null, null, null)
+יוני 04, 2023 6:36:22 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-04 18:36:22 the user guest_4 wants to make login login(guest_4, user1,Aa12345678)
+יוני 04, 2023 6:36:22 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-04 18:36:22 a new member Logged in .
+- Memer name: user1
+
+יוני 04, 2023 6:36:25 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-04 18:36:25 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+יוני 04, 2023 6:36:25 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-04 18:36:25 the user user1 got information about the store user1_second_store
+יוני 04, 2023 6:36:25 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-04 18:36:25 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+יוני 04, 2023 6:36:25 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-04 18:36:25 the user user1 got information about the store user1_second_store
+יוני 04, 2023 6:37:06 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-04 18:37:06 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+יוני 04, 2023 6:37:06 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-04 18:37:06 the user user1 got information about the store user1_second_store
+יוני 04, 2023 6:37:55 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-04 18:37:55 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+יוני 04, 2023 6:37:55 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-04 18:37:55 the user user1 got information about the store user1_second_store
+יוני 04, 2023 6:38:41 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-04 18:38:41 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+יוני 04, 2023 6:38:41 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-04 18:38:41 the user user1 got information about the store user1_second_store
+יוני 04, 2023 6:55:11 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromStore(String userName, String storeName, String productName)
+in 2023-06-04 18:55:11 the user user1 wants to get information about product in market my nameuser1_first_Store_product1- getProductInfoFromMarketByName(user1, user1_first_Store_product1)
+יוני 04, 2023 6:57:41 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromStore(String userName, String storeName, String productName)
+in 2023-06-04 18:57:41 the user guest_4 wants to get information about product in market my nameuser1_first_Store_product1- getProductInfoFromMarketByName(guest_4, user1_first_Store_product1)
+יוני 04, 2023 6:58:17 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-04 18:58:17 the user guest_4 wants to get information about the store user1_first_Store- getStoreInfo(guest_4, user1_first_Store)
+יוני 04, 2023 6:58:17 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-04 18:58:17 the user guest_4 got information about the store user1_first_Store
+יוני 04, 2023 7:00:10 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-04 19:00:10 the user guest_4 tries to add product to his cart  - addToCart(guest_4, user1_first_store, user1_first_store_product5, 1)
+יוני 04, 2023 7:00:10 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-04 19:00:10 the user guest_4 tries to get his cart content  - getCartContent(guest_4)
+יוני 04, 2023 7:00:12 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-04 19:00:12 the user guest_4 tries to get his cart content  - getCartContent(guest_4)
+יוני 04, 2023 7:00:26 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+purchaseCartByCreditCard(String userName, String cardNumber, String month, String year, String holder, String cvv, String id, String receiverName, String shipmentAddress, String shipmentCity, String shipmentCountry, String zipCode)
+in 2023-06-04 19:00:26 the user guest_4 tries make purchase  - purchaseCartByCreditCard(guest_4, null, null, null, null, null, null, null, null, null, null, null)
+יוני 04, 2023 7:05:21 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromStore(String userName, String storeName, String productName)
+in 2023-06-04 19:05:21 the user guest_4 wants to get information about product in market my nameuser1_first_Store_product1- getProductInfoFromMarketByName(guest_4, user1_first_Store_product1)
+יוני 04, 2023 7:05:23 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-04 19:05:23 the user guest_4 tries to add product to his cart  - addToCart(guest_4, user1_first_store, user1_first_store_product1, 3)
+יוני 04, 2023 7:05:23 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-04 19:05:23 the user guest_4 tries to get his cart content  - getCartContent(guest_4)
+יוני 04, 2023 7:05:25 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-04 19:05:25 the user guest_4 tries to get his cart content  - getCartContent(guest_4)
+יוני 04, 2023 7:07:18 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+purchaseCartByCreditCard(String userName, String cardNumber, String month, String year, String holder, String cvv, String id, String receiverName, String shipmentAddress, String shipmentCity, String shipmentCountry, String zipCode)
+in 2023-06-04 19:07:18 the user guest_4 tries make purchase  - purchaseCartByCreditCard(guest_4, null, null, null, null, null, null, null, null, null, null, null)
+יוני 04, 2023 7:07:30 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromStore(String userName, String storeName, String productName)
+in 2023-06-04 19:07:30 the user guest_4 wants to get information about product in market my nameuser1_first_Store_product1- getProductInfoFromMarketByName(guest_4, user1_first_Store_product1)
+יוני 04, 2023 7:07:33 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-04 19:07:33 the user guest_4 tries to add product to his cart  - addToCart(guest_4, user1_first_store, user1_first_store_product1, 2)
+יוני 04, 2023 7:07:33 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-04 19:07:33 the user guest_4 tries to get his cart content  - getCartContent(guest_4)
+יוני 04, 2023 7:07:35 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-04 19:07:35 the user guest_4 tries to get his cart content  - getCartContent(guest_4)
+יוני 04, 2023 7:08:44 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+purchaseCartByCreditCard(String userName, String cardNumber, String month, String year, String holder, String cvv, String id, String receiverName, String shipmentAddress, String shipmentCity, String shipmentCountry, String zipCode)
+in 2023-06-04 19:08:44 the user guest_4 tries make purchase  - purchaseCartByCreditCard(guest_4, 123456, null, null, null, null, null, null, null, null, null, null)
+יוני 04, 2023 7:11:20 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromStore(String userName, String storeName, String productName)
+in 2023-06-04 19:11:20 the user guest_4 wants to get information about product in market my nameuser1_first_Store_product1- getProductInfoFromMarketByName(guest_4, user1_first_Store_product1)
+יוני 04, 2023 7:11:22 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-04 19:11:22 the user guest_4 tries to add product to his cart  - addToCart(guest_4, user1_first_store, user1_first_store_product1, 2)
+יוני 04, 2023 7:11:22 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-04 19:11:22 the user guest_4 tries to get his cart content  - getCartContent(guest_4)
+יוני 04, 2023 7:11:24 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-04 19:11:24 the user guest_4 tries to get his cart content  - getCartContent(guest_4)
+יוני 04, 2023 7:12:26 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+purchaseCartByCreditCard(String userName, String cardNumber, String month, String year, String holder, String cvv, String id, String receiverName, String shipmentAddress, String shipmentCity, String shipmentCountry, String zipCode)
+in 2023-06-04 19:12:26 the user guest_4 tries make purchase  - purchaseCartByCreditCard(guest_4, 123456789, 01, 2024, baraa, 111, 123456789, baraa, haifa 17, Haifa, Israel, 100300)
+יוני 04, 2023 7:15:56 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+purchaseCartByCreditCard(String userName, String cardNumber, String month, String year, String holder, String cvv, String id, String receiverName, String shipmentAddress, String shipmentCity, String shipmentCountry, String zipCode)
+in 2023-06-04 19:15:56 the user guest_4 tries make purchase  - purchaseCartByCreditCard(guest_4, , , , , , , , , , , )
+יוני 04, 2023 7:22:20 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromStore(String userName, String storeName, String productName)
+in 2023-06-04 19:22:20 the user guest_4 wants to get information about product in market my nameuser1_first_Store_product1- getProductInfoFromMarketByName(guest_4, user1_first_Store_product1)
+יוני 04, 2023 7:22:21 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-04 19:22:21 the user guest_4 tries to add product to his cart  - addToCart(guest_4, user1_first_store, user1_first_store_product1, 1)
+יוני 04, 2023 7:22:21 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-04 19:22:21 the user guest_4 tries to get his cart content  - getCartContent(guest_4)
+יוני 04, 2023 7:22:22 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-04 19:22:22 the user guest_4 tries to get his cart content  - getCartContent(guest_4)
+יוני 04, 2023 7:22:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+purchaseCartByCreditCard(String userName, String cardNumber, String month, String year, String holder, String cvv, String id, String receiverName, String shipmentAddress, String shipmentCity, String shipmentCountry, String zipCode)
+in 2023-06-04 19:22:34 the user guest_4 tries make purchase  - purchaseCartByCreditCard(guest_4, , , , , , , , , , , )
+יוני 04, 2023 7:24:42 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+purchaseCartByCreditCard(String userName, String cardNumber, String month, String year, String holder, String cvv, String id, String receiverName, String shipmentAddress, String shipmentCity, String shipmentCountry, String zipCode)
+in 2023-06-04 19:24:42 the user guest_4 tries make purchase  - purchaseCartByCreditCard(guest_4, , , , , , , , , , , )
+יוני 04, 2023 7:24:54 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromStore(String userName, String storeName, String productName)
+in 2023-06-04 19:24:54 the user guest_4 wants to get information about product in market my nameuser1_first_Store_product1- getProductInfoFromMarketByName(guest_4, user1_first_Store_product1)
+יוני 04, 2023 7:24:56 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-04 19:24:56 the user guest_4 tries to add product to his cart  - addToCart(guest_4, user1_first_store, user1_first_store_product1, 1)
+יוני 04, 2023 7:24:56 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-04 19:24:56 the user guest_4 tries to get his cart content  - getCartContent(guest_4)
+יוני 04, 2023 7:24:58 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-04 19:24:58 the user guest_4 tries to get his cart content  - getCartContent(guest_4)
+יוני 04, 2023 7:25:33 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromStore(String userName, String storeName, String productName)
+in 2023-06-04 19:25:33 the user guest_4 wants to get information about product in market my name- getProductInfoFromMarketByName(guest_4, )
+יוני 04, 2023 7:25:35 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromStore(String userName, String storeName, String productName)
+in 2023-06-04 19:25:35 the user guest_4 wants to get information about product in market my nameuser1_first_Store_product1- getProductInfoFromMarketByName(guest_4, user1_first_Store_product1)
+יוני 04, 2023 7:25:37 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-04 19:25:37 the user guest_4 tries to add product to his cart  - addToCart(guest_4, user1_first_store, user1_first_store_product1, 1)
+יוני 04, 2023 7:25:37 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-04 19:25:37 the user guest_4 tries to get his cart content  - getCartContent(guest_4)
+יוני 04, 2023 7:25:38 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-04 19:25:38 the user guest_4 tries to get his cart content  - getCartContent(guest_4)
+יוני 04, 2023 7:27:48 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromStore(String userName, String storeName, String productName)
+in 2023-06-04 19:27:48 the user guest_4 wants to get information about product in market my nameuser1_first_Store_product1- getProductInfoFromMarketByName(guest_4, user1_first_Store_product1)
+יוני 04, 2023 7:27:51 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-04 19:27:51 the user guest_4 tries to add product to his cart  - addToCart(guest_4, user1_first_store, user1_first_store_product1, 1)
+יוני 04, 2023 7:27:51 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-04 19:27:51 the user guest_4 tries to get his cart content  - getCartContent(guest_4)
+יוני 04, 2023 7:27:53 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-04 19:27:53 the user guest_4 tries to get his cart content  - getCartContent(guest_4)
+יוני 04, 2023 7:30:20 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromStore(String userName, String storeName, String productName)
+in 2023-06-04 19:30:20 the user guest_4 wants to get information about product in market my nameuser1_first_Store_product1- getProductInfoFromMarketByName(guest_4, user1_first_Store_product1)
+יוני 04, 2023 7:30:22 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-04 19:30:22 the user guest_4 tries to add product to his cart  - addToCart(guest_4, user1_first_store, user1_first_store_product1, 1)
+יוני 04, 2023 7:30:22 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-04 19:30:22 the user guest_4 tries to get his cart content  - getCartContent(guest_4)
+יוני 04, 2023 7:30:23 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-04 19:30:23 the user guest_4 tries to get his cart content  - getCartContent(guest_4)
+יוני 04, 2023 7:30:49 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+purchaseCartByCreditCard(String userName, String cardNumber, String month, String year, String holder, String cvv, String id, String receiverName, String shipmentAddress, String shipmentCity, String shipmentCountry, String zipCode)
+in 2023-06-04 19:30:49 the user guest_4 tries make purchase  - purchaseCartByCreditCard(guest_4, , , , , , , , , , , )
+יוני 04, 2023 7:34:06 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromStore(String userName, String storeName, String productName)
+in 2023-06-04 19:34:06 the user guest_4 wants to get information about product in market my nameuser1_first_Store_product1- getProductInfoFromMarketByName(guest_4, user1_first_Store_product1)
+יוני 04, 2023 7:34:08 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-04 19:34:08 the user guest_4 tries to add product to his cart  - addToCart(guest_4, user1_first_store, user1_first_store_product1, 1)
+יוני 04, 2023 7:34:08 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-04 19:34:08 the user guest_4 tries to get his cart content  - getCartContent(guest_4)
+יוני 04, 2023 7:34:09 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-04 19:34:09 the user guest_4 tries to get his cart content  - getCartContent(guest_4)
+יוני 04, 2023 7:34:21 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+purchaseCartByCreditCard(String userName, String cardNumber, String month, String year, String holder, String cvv, String id, String receiverName, String shipmentAddress, String shipmentCity, String shipmentCountry, String zipCode)
+in 2023-06-04 19:34:21 the user guest_4 tries make purchase  - purchaseCartByCreditCard(guest_4, , , , , , , , , , , )
+יוני 04, 2023 7:36:16 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+purchaseCartByCreditCard(String userName, String cardNumber, String month, String year, String holder, String cvv, String id, String receiverName, String shipmentAddress, String shipmentCity, String shipmentCountry, String zipCode)
+in 2023-06-04 19:36:16 the user guest_4 tries make purchase  - purchaseCartByCreditCard(guest_4, , , , , , , baraa, h, , , )
+יוני 04, 2023 7:36:55 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+purchaseCartByCreditCard(String userName, String cardNumber, String month, String year, String holder, String cvv, String id, String receiverName, String shipmentAddress, String shipmentCity, String shipmentCountry, String zipCode)
+in 2023-06-04 19:36:55 the user guest_4 tries make purchase  - purchaseCartByCreditCard(guest_4, 123456789, 01, 2024, baraa, 111, 123456789, baraa, haifa 17, Haifa, Israel, 100300)
+יוני 04, 2023 7:50:06 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromStore(String userName, String storeName, String productName)
+in 2023-06-04 19:50:06 the user guest_4 wants to get information about product in market my nameuser1_first_Store_product1- getProductInfoFromMarketByName(guest_4, user1_first_Store_product1)
+יוני 04, 2023 7:50:08 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-04 19:50:08 the user guest_4 tries to add product to his cart  - addToCart(guest_4, user1_first_store, user1_first_store_product1, 1)
+יוני 04, 2023 7:50:08 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-04 19:50:08 the user guest_4 tries to get his cart content  - getCartContent(guest_4)
+יוני 04, 2023 7:50:10 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-04 19:50:10 the user guest_4 tries to get his cart content  - getCartContent(guest_4)
+יוני 04, 2023 7:52:42 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+purchaseCartByCreditCard(String userName, String cardNumber, String month, String year, String holder, String cvv, String id, String receiverName, String shipmentAddress, String shipmentCity, String shipmentCountry, String zipCode)
+in 2023-06-04 19:52:42 the user guest_4 tries make purchase  - purchaseCartByCreditCard(guest_4, 123456789, 2024-01, 2024, baraa, 111, 123456789, baraa, haifa 17, Haifa, Israel, 100300)
+יוני 04, 2023 7:55:56 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+purchaseCartByCreditCard(String userName, String cardNumber, String month, String year, String holder, String cvv, String id, String receiverName, String shipmentAddress, String shipmentCity, String shipmentCountry, String zipCode)
+in 2023-06-04 19:55:56 the user guest_4 tries make purchase  - purchaseCartByCreditCard(guest_4, 123456, 2024-03, 2024, baraa, 1, 123465, baraa, haifa 17, Haifa, Israel, 100300)
+יוני 04, 2023 7:56:38 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+purchaseCartByCreditCard(String userName, String cardNumber, String month, String year, String holder, String cvv, String id, String receiverName, String shipmentAddress, String shipmentCity, String shipmentCountry, String zipCode)
+in 2023-06-04 19:56:38 the user guest_4 tries make purchase  - purchaseCartByCreditCard(guest_4, 123, 2024-01, 1, baraa, 123, 123465, baraa, haifa 17, Haifa, Israel, 100300)
+יוני 04, 2023 8:02:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromStore(String userName, String storeName, String productName)
+in 2023-06-04 20:02:07 the user guest_4 wants to get information about product in market my nameuser1_first_Store_product1- getProductInfoFromMarketByName(guest_4, user1_first_Store_product1)
+יוני 04, 2023 8:02:09 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-04 20:02:09 the user guest_4 tries to add product to his cart  - addToCart(guest_4, user1_first_store, user1_first_store_product1, 1)
+יוני 04, 2023 8:02:09 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-04 20:02:09 the user guest_4 tries to get his cart content  - getCartContent(guest_4)
+יוני 04, 2023 8:02:11 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-04 20:02:11 the user guest_4 tries to get his cart content  - getCartContent(guest_4)
+יוני 04, 2023 8:03:59 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+purchaseCartByCreditCard(String userName, String cardNumber, String month, String year, String holder, String cvv, String id, String receiverName, String shipmentAddress, String shipmentCity, String shipmentCountry, String zipCode)
+in 2023-06-04 20:03:59 the user guest_4 tries make purchase  - purchaseCartByCreditCard(guest_4, 123456, 01, 202411, baraa, 111, 123456, baraa, haifa 17, Haifa, Israel, 100300)
+יוני 04, 2023 8:08:03 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromStore(String userName, String storeName, String productName)
+in 2023-06-04 20:08:03 the user guest_4 wants to get information about product in market my nameuser1_first_Store_product1- getProductInfoFromMarketByName(guest_4, user1_first_Store_product1)
+יוני 04, 2023 8:08:05 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-04 20:08:05 the user guest_4 tries to add product to his cart  - addToCart(guest_4, user1_first_store, user1_first_store_product1, 1)
+יוני 04, 2023 8:08:05 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-04 20:08:05 the user guest_4 tries to get his cart content  - getCartContent(guest_4)
+יוני 04, 2023 8:08:06 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-04 20:08:06 the user guest_4 tries to get his cart content  - getCartContent(guest_4)
+יוני 04, 2023 8:15:54 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromStore(String userName, String storeName, String productName)
+in 2023-06-04 20:15:54 the user guest_4 wants to get information about product in market my nameuser1_first_Store_product1- getProductInfoFromMarketByName(guest_4, user1_first_Store_product1)
+יוני 04, 2023 8:15:56 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-04 20:15:56 the user guest_4 tries to add product to his cart  - addToCart(guest_4, user1_first_store, user1_first_store_product1, 1)
+יוני 04, 2023 8:15:56 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-04 20:15:56 the user guest_4 tries to get his cart content  - getCartContent(guest_4)
+יוני 04, 2023 8:15:58 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-04 20:15:58 the user guest_4 tries to get his cart content  - getCartContent(guest_4)
+יוני 04, 2023 8:17:26 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+purchaseCartByCreditCard(String userName, String cardNumber, String month, String year, String holder, String cvv, String id, String receiverName, String shipmentAddress, String shipmentCity, String shipmentCountry, String zipCode)
+in 2023-06-04 20:17:26 the user guest_4 tries make purchase  - purchaseCartByCreditCard(guest_4, 123456, 05, 2023, baraa, 111, 123456798, baraa, haifa 17, Haifa, Israel, 100300)
+יוני 04, 2023 8:20:29 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+purchaseCartByCreditCard(String userName, String cardNumber, String month, String year, String holder, String cvv, String id, String receiverName, String shipmentAddress, String shipmentCity, String shipmentCountry, String zipCode)
+in 2023-06-04 20:20:29 the user guest_4 tries make purchase  - purchaseCartByCreditCard(guest_4, 123456, 02, 2024, baraa, 211, 123456, baraa, haifa 17, Haifa, Israel, 100300)
+יוני 04, 2023 8:21:52 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+purchaseCartByCreditCard(String userName, String cardNumber, String month, String year, String holder, String cvv, String id, String receiverName, String shipmentAddress, String shipmentCity, String shipmentCountry, String zipCode)
+in 2023-06-04 20:21:52 the user guest_4 tries make purchase  - purchaseCartByCreditCard(guest_4, 123456, 01, 2024, baraa, 111, 123456798, baraa, haifa 17, Haifa, Israel, 100300)
+יוני 04, 2023 8:22:20 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromStore(String userName, String storeName, String productName)
+in 2023-06-04 20:22:20 the user guest_4 wants to get information about product in market my nameuser1_first_Store_product1- getProductInfoFromMarketByName(guest_4, user1_first_Store_product1)
+יוני 04, 2023 8:22:25 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-04 20:22:25 the user guest_4 tries to add product to his cart  - addToCart(guest_4, user1_first_store, user1_first_store_product1, 1)
+יוני 04, 2023 8:22:25 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-04 20:22:25 the user guest_4 tries to get his cart content  - getCartContent(guest_4)
+יוני 04, 2023 8:22:26 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-04 20:22:26 the user guest_4 tries to get his cart content  - getCartContent(guest_4)
+יוני 04, 2023 8:22:55 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+purchaseCartByCreditCard(String userName, String cardNumber, String month, String year, String holder, String cvv, String id, String receiverName, String shipmentAddress, String shipmentCity, String shipmentCountry, String zipCode)
+in 2023-06-04 20:22:55 the user guest_4 tries make purchase  - purchaseCartByCreditCard(guest_4, 123456, 01, 2024, baraa, 111, 123456789, baraa, haifa 17, Haifa, Israel, 100300)
+יוני 04, 2023 8:23:55 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-04 20:23:55 the user guest_4 tries to get his cart content  - getCartContent(guest_4)
+יוני 04, 2023 8:24:23 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-04 20:24:23 the user guest_4 tries to get his cart content  - getCartContent(guest_4)
+יוני 04, 2023 8:32:05 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-04 20:32:05 the user guest_4 tries to get his cart content  - getCartContent(guest_4)
+יוני 04, 2023 8:32:09 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromStore(String userName, String storeName, String productName)
+in 2023-06-04 20:32:09 the user guest_4 wants to get information about product in market my nameuser1_first_Store_product1- getProductInfoFromMarketByName(guest_4, user1_first_Store_product1)
+יוני 04, 2023 8:32:11 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-04 20:32:11 the user guest_4 tries to add product to his cart  - addToCart(guest_4, user1_first_store, user1_first_store_product1, 1)
+יוני 04, 2023 8:32:11 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-04 20:32:11 the user guest_4 tries to get his cart content  - getCartContent(guest_4)
+יוני 04, 2023 8:32:12 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-04 20:32:12 the user guest_4 tries to get his cart content  - getCartContent(guest_4)
+יוני 04, 2023 8:32:42 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+purchaseCartByCreditCard(String userName, String cardNumber, String month, String year, String holder, String cvv, String id, String receiverName, String shipmentAddress, String shipmentCity, String shipmentCountry, String zipCode)
+in 2023-06-04 20:32:42 the user guest_4 tries make purchase  - purchaseCartByCreditCard(guest_4, 12345679, 02, 2024, baraa, 111, 123456789, baraa, haifa 17, Haifa, Israel, 100300)
+יוני 04, 2023 8:33:05 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromStore(String userName, String storeName, String productName)
+in 2023-06-04 20:33:05 the user guest_4 wants to get information about product in market my nameuser1_first_Store_product1- getProductInfoFromMarketByName(guest_4, user1_first_Store_product1)
+יוני 04, 2023 8:33:17 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-04 20:33:17 the user guest_4 tries to get his cart content  - getCartContent(guest_4)
+יוני 04, 2023 8:36:53 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-04 20:36:53 the user guest_4 tries to get his cart content  - getCartContent(guest_4)
+יוני 04, 2023 8:36:56 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromStore(String userName, String storeName, String productName)
+in 2023-06-04 20:36:56 the user guest_4 wants to get information about product in market my nameuser1_first_Store_product1- getProductInfoFromMarketByName(guest_4, user1_first_Store_product1)
+יוני 04, 2023 8:36:58 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-04 20:36:58 the user guest_4 tries to add product to his cart  - addToCart(guest_4, user1_first_store, user1_first_store_product1, 1)
+יוני 04, 2023 8:36:58 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-04 20:36:58 the user guest_4 tries to get his cart content  - getCartContent(guest_4)
+יוני 04, 2023 8:37:00 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-04 20:37:00 the user guest_4 tries to get his cart content  - getCartContent(guest_4)
+יוני 04, 2023 8:37:38 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+purchaseCartByCreditCard(String userName, String cardNumber, String month, String year, String holder, String cvv, String id, String receiverName, String shipmentAddress, String shipmentCity, String shipmentCountry, String zipCode)
+in 2023-06-04 20:37:38 the user guest_4 tries make purchase  - purchaseCartByCreditCard(guest_4, 123456, 02, 2024, baraa, 111, 0123, baraa, haifa 17, Haifa, Israel, 100300)

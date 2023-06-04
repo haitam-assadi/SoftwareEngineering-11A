@@ -34,3 +34,117 @@ fail in purchasing: Card Number cant be null
 מאי 30, 2023 3:47:19 לפנה״צ DomainLayer.LoggerManager sendErrorLog
 WARNING: 
 fail in purchasing: Card Number cant be null
+יוני 03, 2023 4:53:01 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: user1 is already a member
+יוני 03, 2023 5:04:24 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store name is null or empty
+יוני 03, 2023 5:04:33 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store name is null or empty
+יוני 03, 2023 5:04:55 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting products info: productName is null or empty!
+יוני 03, 2023 5:10:22 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting products info: productName is null or empty!
+יוני 03, 2023 5:10:29 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store name is null or empty
+יוני 03, 2023 5:10:33 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting products info: productName is null or empty!
+יוני 03, 2023 5:12:40 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting products info: productName is null or empty!
+יוני 03, 2023 5:12:49 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store name is null or empty
+יוני 03, 2023 5:12:55 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store name is null or empty
+יוני 03, 2023 5:14:47 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: userName user2 does not exists!
+יוני 03, 2023 5:22:47 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Card Number cant be null
+יוני 03, 2023 5:24:30 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Card Number cant be null
+יוני 03, 2023 5:28:24 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Card Number cant be null
+יוני 03, 2023 5:31:54 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Card Number cant be null
+יוני 03, 2023 5:33:31 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Card Number cant be null
+יוני 04, 2023 7:00:26 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Card Number cant be null
+יוני 04, 2023 7:07:18 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Card Number cant be null
+יוני 04, 2023 7:08:44 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: month cant be null
+יוני 04, 2023 7:12:27 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: transaction has failed
+יוני 04, 2023 7:15:56 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Card Number must contain numbers only
+יוני 04, 2023 7:22:34 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Card Number must contain numbers only
+יוני 04, 2023 7:24:42 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Card Number must contain numbers only
+יוני 04, 2023 7:25:33 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting products info: productName is null or empty!
+יוני 04, 2023 7:30:49 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Card Number must contain numbers only
+יוני 04, 2023 7:34:21 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Card Number must contain numbers only
+יוני 04, 2023 7:36:16 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Card Number must contain numbers only
+יוני 04, 2023 7:36:56 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: transaction has failed
+יוני 04, 2023 7:52:42 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: month must contain numbers only
+יוני 04, 2023 7:55:56 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: month must contain numbers only
+יוני 04, 2023 7:56:38 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: month must contain numbers only
+יוני 04, 2023 8:04:00 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: transaction has failed
+יוני 04, 2023 8:17:27 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: transaction has failed
+יוני 04, 2023 8:20:50 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: transaction has failed
+יוני 04, 2023 8:21:54 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: transaction has failed
+יוני 04, 2023 8:22:57 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: transaction has failed
+יוני 04, 2023 8:32:44 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: transaction has failed
+יוני 04, 2023 8:37:46 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: transaction has failed

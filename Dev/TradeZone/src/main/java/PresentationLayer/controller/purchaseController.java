@@ -10,15 +10,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 
 @Controller
-public class purchaseControllerPre {
+public class purchaseController {
     private Server server = Server.getInstance();
     private GeneralModel controller;
-    boolean done = false;
+    boolean done;
     Alert alert = Alert.getInstance();
 
     @GetMapping("/purchase")
@@ -33,6 +33,10 @@ public class purchaseControllerPre {
         model.addAttribute("alert", alert.copy());
         model.addAttribute("done", done);
         alert.reset();
+        if(done){
+            done = false;
+            request.getSession().setAttribute("done", done);
+        }
 //        done = false;
         return "purchase";
     }
@@ -47,6 +51,8 @@ public class purchaseControllerPre {
                 purchase.getYear(), purchase.getHolder(), purchase.getCvv(), purchase.getId(),
                 purchase.getReceiverName(), purchase.getShipmentAddress(),
                 purchase.getShipmentCity(), purchase.getShipmentCountry(), purchase.getZipCode());
+
+        // TODO: uncomment
         if(response.ErrorOccurred){
             done = false;
             alert.setFail(true);
@@ -54,8 +60,10 @@ public class purchaseControllerPre {
             request.getSession().setAttribute("done", done); // TODO: ???
             return "redirect:/purchase";
         }
+
         if(response.getValue()){ // true
             done = true;
+            controller.setCart(new ArrayList<>()); // TODO: ???
             alert.setSuccess(true);
             alert.setMessage("Your order has been successfully received!");
         }
@@ -64,7 +72,17 @@ public class purchaseControllerPre {
             alert.setFail(true);
             alert.setMessage(response.errorMessage);
         }
-        request.getSession().setAttribute("done", done); // TODO: ???
+
+        // TODO: delete if
+//        if(response.errorMessage.equals("purchaseCartByCreditCard: transaction has failed")){
+//            done = true;
+//            controller.setCart(new ArrayList<>()); // TODO: ???
+//            alert.setSuccess(true);
+//            alert.setMessage("Your order has been successfully received!");
+//        }
+        request.getSession().setAttribute("done", done);
+        request.getSession().setAttribute("controller", controller);
+
         return "redirect:/purchase";
     }
 }

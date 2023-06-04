@@ -35,7 +35,7 @@ public class IndexController {
 				model.addAttribute("controller", controller);
 				model.addAttribute("alert", alert.copy());
 				model.addAttribute("products", products);
-				return "index"; // "/" ???
+				return "error"; // ??? or index
 			}
 			isMarketInit = true;
 		}
@@ -74,10 +74,12 @@ public class IndexController {
 				products = null;
 				alert.setFail(true);
 				alert.setMessage(response1.errorMessage);
-				return "redirect:/";
+//				return "redirect:/";
 			}
-			products = new ArrayList<>();
-			products.add(response1.value);
+			else{
+				products = new ArrayList<>();
+				products.add(response1.value);
+			}
 		}
 		else{
 			if(search.getSearchBy().equals("product")){
@@ -86,7 +88,7 @@ public class IndexController {
 					products = null;
 					alert.setFail(true);
 					alert.setMessage(response.errorMessage);
-					return "redirect:/";
+//					return "redirect:/";
 				}
 			} else if(search.getSearchBy().equals("category")){
 				response = server.getProductInfoFromMarketByCategory(controller.getName(), search.getSearchProducts());
@@ -94,7 +96,7 @@ public class IndexController {
 					products = null;
 					alert.setFail(true);
 					alert.setMessage(response.errorMessage);
-					return "redirect:/";
+//					return "redirect:/";
 				}
 			} else{
 				response = server.getProductInfoFromMarketByKeyword(controller.getName(), search.getSearchProducts());
@@ -102,10 +104,11 @@ public class IndexController {
 					products = null;
 					alert.setFail(true);
 					alert.setMessage(response.errorMessage);
-					return "redirect:/";
+//					return "redirect:/";
 				}
 			}
-			products = response.getValue();
+			if(!response.ErrorOccurred)
+				products = response.getValue();
 		}
 		request.getSession().setAttribute("products", products);
 		return "redirect:/";
@@ -124,15 +127,15 @@ public class IndexController {
 			alert.setMessage(response.errorMessage);
 			return "redirect:/";
 		}
-//		controller = new GeneralModel(); // TODO: ???
+		controller = new GeneralModel(); // TODO: ???
 		controller.setName(response.value);
 		controller.setLogged(false);
 		controller.setSystemManager(false);
 		controller.setHasRole(false);
+		products = null; // TODO: ???
 		request.getSession().setAttribute("controller", controller);
-		request.getSession().setAttribute("products", null);
-//		products = null; // TODO: ???
-		return "redirect:/"; // TODO: redirect + request
+		request.getSession().setAttribute("products", products);
+		return "redirect:/";
 	}
 
 	@GetMapping("/memberDeals")
