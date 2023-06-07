@@ -324,8 +324,8 @@ public class RealBridge implements Bridge{
             throw new Exception(response.errorMessage);
         }
         List<String> ret = new LinkedList<>();
-        List<ProductDTO> storeProducts = response.getValue().productsInfo;
-        for(ProductDTO p : storeProducts){
+        ConcurrentHashMap<ProductDTO,Integer> storeProducts = response.getValue().productsInfoAmount;
+        for(ProductDTO p : storeProducts.keySet().stream().toList()){
             ret.add(p.name);
         }
         return ret;

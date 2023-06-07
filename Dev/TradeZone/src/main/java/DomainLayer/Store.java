@@ -158,7 +158,7 @@ public class Store {
     public StoreDTO getStoreInfo(){
         List<String> ownersNames = this.storeOwners.values().stream().map(Role::getUserName).toList();
         List<String> managersNames = this.storeManagers.values().stream().map(Role::getUserName).toList();
-        return new StoreDTO(storeName, storeFounder.getUserName(), ownersNames, managersNames, stock.getProductsInfo(),isActive);
+        return new StoreDTO(storeName, storeFounder.getUserName(), ownersNames, managersNames, stock.getProductsInfoAmount(),isActive);
     }
     public ProductDTO getProductInfo(String productName) throws Exception {
         return stock.getProductInfo(productName);
@@ -186,6 +186,14 @@ public class Store {
 
     public boolean containsCategory(String categoryName) throws Exception {
         return stock.containsCategory(categoryName);
+    }
+
+    public List<ProductDTO> getProductInfoFromMarketByKeyword(String keyword) throws Exception {
+        return stock.getProductInfoFromMarketByKeyword(keyword);
+    }
+
+    public boolean containsKeyWord(String keyword) throws Exception {
+        return stock.containsKeyWord(keyword);
     }
 
     public boolean isAlreadyStoreOwner(String memberUserName){

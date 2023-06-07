@@ -98,13 +98,14 @@ public class Stock {
         return true;
     }
 
-    public synchronized List<ProductDTO> getProductsInfo(){
+    public synchronized ConcurrentHashMap<ProductDTO, Integer> getProductsInfoAmount(){
         Collection<ConcurrentHashMap<Product,Integer>> currentStockProducts = stockProducts.values();
-        List<ProductDTO> productsInfo = new ArrayList<>();
-        for(ConcurrentHashMap<Product,Integer> curr_hash_map: currentStockProducts)
-            productsInfo.add(curr_hash_map.keys().nextElement().getProductInfo());
-
-        return productsInfo;
+        ConcurrentHashMap<ProductDTO, Integer> productsInfoAmount = new ConcurrentHashMap<>();
+        for(ConcurrentHashMap<Product,Integer> curr_hash_map: currentStockProducts) {
+            ProductDTO productDTO = curr_hash_map.keys().nextElement().getProductInfo();
+            productsInfoAmount.put(productDTO, curr_hash_map.get(productDTO));
+        }
+        return productsInfoAmount;
     }
 
     public synchronized ProductDTO getProductInfo(String productName) throws Exception {
@@ -173,7 +174,6 @@ public class Stock {
         return true;
     }
 
-
     public synchronized List<ProductDTO> getProductsInfoByCategory(String categoryName) throws Exception {
 
         //TODO: do we allow return info about products with amount == 0 ?????
@@ -183,6 +183,25 @@ public class Stock {
         categoryName = categoryName.strip().toLowerCase();
 
         return stockCategories.get(categoryName).getProductsInfo();
+
+    }
+
+    public synchronized boolean containsKeyWord(String keyword) throws Exception {
+        if(keyword == null || keyword.isBlank())
+            throw new Exception("key word  is null or empty!");
+        return true;
+    }
+
+
+    public synchronized List<ProductDTO> getProductInfoFromMarketByKeyword(String keyword) throws Exception {
+        keyword = keyword.strip().toLowerCase();
+        List<ProductDTO> filteredProductsByKeyWord = new LinkedList<>();
+        for(String productName : stockProducts.keySet()){
+            if(productName.contains(keyword)){
+                filteredProductsByKeyWord.add(getProductInfo(productName));
+            }
+        }
+        return filteredProductsByKeyWord;
 
     }
 

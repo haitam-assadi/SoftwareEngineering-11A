@@ -69,6 +69,8 @@ public class Member extends User{
     public boolean appointMemberAsStoreOwner(Store store, AbstractStoreOwner myBoss) throws Exception {
         if(store.isAlreadyStoreOwner(getUserName()))
             throw new Exception("member"+getUserName()+" is already store owner");
+        if(store.isAlreadyStoreManager(getUserName()))
+            throw new Exception("member"+getUserName()+" is already store manager");
         StoreOwner storeOwner =  new StoreOwner(this);
         roles.putIfAbsent(RoleEnum.StoreOwner,storeOwner);
         subscribeOwnerForNotifications(store.getStoreName());
