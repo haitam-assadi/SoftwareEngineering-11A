@@ -1,5 +1,6 @@
 package DomainLayer;
 
+import DTO.DealDTO;
 import DTO.MemberDTO;
 import DTO.StoreDTO;
 
@@ -48,8 +49,12 @@ public class Member extends User{
         return password;
     }
 
-    public MemberDTO getMemberDTO(String jobTitle) {
-        return new MemberDTO(this.userName, jobTitle);
+    public MemberDTO getMemberDTO() {
+        List<DealDTO> dealDTOList = new LinkedList<>();
+        for (Deal deal : userDeals){
+            dealDTOList.add(deal.getDealDTO());
+        }
+        return new MemberDTO(this.userName, myStores(),dealDTOList);
     }
     public boolean appointOtherMemberAsStoreOwner(Store store, Member otherMember) throws Exception {
         AbstractStoreOwner owner = null;

@@ -661,3 +661,21 @@ fail in remove owner: req_user3is not owner for this store
 May 30, 2023 12:48:19 PM DomainLayer.LoggerManager sendErrorLog
 WARNING: 
 fail in adding product to stock: req_user2 is not a founder/owner or an authorized manager
+יוני 07, 2023 6:11:31 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store manager: memberbrain123 is already store owner
+יוני 07, 2023 6:11:47 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: memberbrain123 is already store manager
+יוני 07, 2023 6:20:41 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info ny keyword: key word  is null or empty!
+יוני 07, 2023 6:23:21 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info ny keyword: key word  is null or empty!
+יוני 07, 2023 6:54:47 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store manager: memberbrain123 is already store owner
+יוני 07, 2023 6:54:57 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: memberbrain123 is already store manager

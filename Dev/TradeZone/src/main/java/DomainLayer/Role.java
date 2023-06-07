@@ -94,7 +94,7 @@ public abstract class Role {
     }
 
     public MemberDTO getMemberDTO() {
-        return this.member.getMemberDTO(this.myRole.name());
+        return this.member.getMemberDTO();
     }
 
 

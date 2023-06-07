@@ -588,7 +588,7 @@ public class StoreController {
     }
 
     private ProductDTO getProductFromStore(StoreDTO store, String productName){
-        for(ProductDTO p : store.productsInfo){
+        for(ProductDTO p : store.productsInfoAmount.keySet()){
             if(p.name.equals(productName)){
                 return p;
             }

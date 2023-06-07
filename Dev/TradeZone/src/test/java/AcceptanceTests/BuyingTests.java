@@ -241,128 +241,129 @@ public class BuyingTests {
         }
     }
 
-//    @Test
-//    public void search_product_by_keyword_success(){
-//        try{
-//            // guest search
-//            Map<String, List<String>> searched = proxy.getProductInfoFromMarketByKeyword(guest_name, "gam");
-//            Assertions.assertTrue(searched.containsKey(storeName1));
-//            Assertions.assertTrue(searched.containsKey(storeName2));
-//            Assertions.assertTrue(searched.get(storeName1).contains("gaming chair 1"));
-//            Assertions.assertTrue(searched.get(storeName2).contains("gaming mouse 1"));
-//            Assertions.assertEquals(2, searched.size());
-//            Assertions.assertEquals(1, searched.get(storeName1).size());
-//            Assertions.assertEquals(1, searched.get(storeName2).size());
-//
-//            // member search
-//            searched = proxy.getProductInfoFromMarketByKeyword(member_name, "gam");
-//            Assertions.assertTrue(searched.containsKey(storeName1));
-//            Assertions.assertTrue(searched.containsKey(storeName2));
-//            Assertions.assertTrue(searched.get(storeName1).contains("gaming chair 1"));
-//            Assertions.assertTrue(searched.get(storeName2).contains("gaming mouse 1"));
-//            Assertions.assertEquals(2, searched.size());
-//            Assertions.assertEquals(1, searched.get(storeName1).size());
-//            Assertions.assertEquals(1, searched.get(storeName2).size());
-//        } catch (Exception e){
-//            Assertions.fail(e.getMessage());
-//        }
-//    }
+    @Test
+    public void search_product_by_keyword_success(){
+        try{
+            // guest search
+            Map<String, List<String>> searched = proxy.getProductInfoFromMarketByKeyword(guest_name, "gaming");
+            Assertions.assertTrue(searched.containsKey(storeName1));
+            Assertions.assertTrue(searched.containsKey(storeName2));
+            Assertions.assertTrue(searched.get(storeName1).contains("gaming chair 1"));
+            Assertions.assertTrue(searched.get(storeName2).contains("gaming mouse 1"));
+            Assertions.assertEquals(2, searched.size());
+            Assertions.assertEquals(1, searched.get(storeName1).size());
+            Assertions.assertEquals(1, searched.get(storeName2).size());
 
-//    @Test
-//    public void search_product_by_keyword_does_not_exist(){
-//        try{
-//            // guest search
-//            Map<String, List<String>> searched = proxy.getProductInfoFromMarketByKeyword(guest_name, "aaa");
-//            Assertions.assertEquals(0, searched.size());
-//
-//            // member search
-//            searched = proxy.getProductInfoFromMarketByCategory(member_name, "aaa");
-//            Assertions.assertEquals(0, searched.size());
-//        } catch (Exception e){
-//            Assertions.fail(e.getMessage());
-//        }
-//    }
+            // member search
+            searched = proxy.getProductInfoFromMarketByKeyword(member_name, "gaming");
+            Assertions.assertTrue(searched.containsKey(storeName1));
+            Assertions.assertTrue(searched.containsKey(storeName2));
+            Assertions.assertTrue(searched.get(storeName1).contains("gaming chair 1"));
+            Assertions.assertTrue(searched.get(storeName2).contains("gaming mouse 1"));
+            Assertions.assertEquals(2, searched.size());
+            Assertions.assertEquals(1, searched.get(storeName1).size());
+            Assertions.assertEquals(1, searched.get(storeName2).size());
+        } catch (Exception e){
+            Assertions.fail(e.getMessage());
+        }
+    }
 
-//    @Test
-//    public void filter_products_by_price_success(){
-//        try{
-//            // guest
-//            Map<String, List<String>> searched = proxy.getProductInfoFromMarketByName(guest_name, "iphone 14");
-//            Map<String, List<String>> filtered = proxy.filterByPrice(guest_name, searched, 0, 3000);
-//            Assertions.assertEquals(1, filtered.size());
-//            Assertions.assertTrue(filtered.containsKey(storeName1));
-//            Assertions.assertTrue(filtered.get(storeName1).contains("iphone 14"));
-//
-//            //member
-//            searched = proxy.getProductInfoFromMarketByName(member_name, "iphone 14");
-//            filtered = proxy.filterByPrice(member_name, searched, 0, 3000);
-//            Assertions.assertEquals(1, filtered.size());
-//            Assertions.assertTrue(filtered.containsKey(storeName1));
-//            Assertions.assertTrue(filtered.get(storeName1).contains("iphone 14"));
-//        } catch (Exception e){
-//            Assertions.fail(e.getMessage());
-//        }
-//    }
+    @Test
+    public void search_product_by_keyword_does_not_exist(){
+        try{
+            // guest search
+            Map<String, List<String>> searched = proxy.getProductInfoFromMarketByKeyword(guest_name, "aaa");
+            Assertions.assertEquals(0, searched.size());
 
-//    @Test
-//    public void filter_products_bad_price(){
-//        try{
-//            // guest
-//            Map<String, List<String>> searched = proxy.getProductInfoFromMarketByName(guest_name, "iphone 14");
-//            Map<String, List<String>> filtered = proxy.filterByPrice(guest_name, searched, -10, 3000);
-//            Assertions.assertEquals(0, filtered.size()); // or error msg ???
-//            filtered = proxy.filterByPrice(guest_name, searched, 3000, 0);
-//            Assertions.assertEquals(0, filtered.size()); // or error msg ???
-//
-//            //member
-//            searched = proxy.getProductInfoFromMarketByName(member_name, "iphone 14");
-//            filtered = proxy.filterByPrice(member_name, searched, -10, 3000);
-//            Assertions.assertEquals(0, filtered.size()); // or error msg ???
-//            filtered = proxy.filterByPrice(member_name, searched, 3000, 0);
-//            Assertions.assertEquals(0, filtered.size()); // or error msg ???
-//
-//        } catch (Exception e){
-//            Assertions.fail(e.getMessage());
-//        }
-//    }
+            // member search
+            searched = proxy.getProductInfoFromMarketByCategory(member_name, "aaa");
+            Assertions.assertEquals(0, searched.size());
+        } catch (Exception e){
+            Assertions.fail(e.getMessage());
+        }
+    }
 
-//    @Test
-//    public void filter_products_by_category_success(){
-//        try{
-//            // guest
-//            Map<String, List<String>> searched = proxy.getProductInfoFromMarketByKeyword(guest_name, "gaming");
-//            Map<String, List<String>> filtered = proxy.filterByCategory(guest_name, searched, "Gaming chairs");
-//            Assertions.assertEquals(1, filtered.size());
-//            Assertions.assertTrue(filtered.containsKey(storeName1));
-//            Assertions.assertTrue(filtered.get(storeName1).contains("gaming chair 1"));
-//
-//            //member
-//            searched = proxy.getProductInfoFromMarketByKeyword(member_name, "gaming");
-//            filtered = proxy.filterByCategory(member_name, searched, "Gaming chairs");
-//            Assertions.assertEquals(1, filtered.size());
-//            Assertions.assertTrue(filtered.containsKey(storeName1));
-//            Assertions.assertTrue(filtered.get(storeName1).contains("gaming chair 1"));
-//        } catch (Exception e){
-//            Assertions.fail(e.getMessage());
-//        }
-//    }
+    @Test
+    public void filter_products_by_price_success(){
+        try{
+            // guest
+            Map<String, List<String>> searched = proxy.getProductInfoFromMarketByName(guest_name, "iphone 14");
+            Map<String, List<String>> filtered = proxy.filterByPrice(guest_name, searched, 0, 3100);
+            Assertions.assertEquals(1, filtered.size());
+            Assertions.assertTrue(filtered.containsKey(storeName1));
+            Assertions.assertTrue(filtered.get(storeName1).contains("iphone 14"));
 
-//    @Test
-//    public void filter_products_bad_category_name(){
-//        try{
-//            // guest
-//            Map<String, List<String>> searched = proxy.getProductInfoFromMarketByKeyword(guest_name, "gaming");
-//            Map<String, List<String>> filtered = proxy.filterByCategory(guest_name, searched, "Gaming");
-//            Assertions.assertEquals(0, filtered.size()); // or error msg ???
-//
-//            //member
-//            searched = proxy.getProductInfoFromMarketByKeyword(member_name, "gaming");
-//            filtered = proxy.filterByCategory(member_name, searched, "Gaming");
-//            Assertions.assertEquals(0, filtered.size()); // or error msg ???
-//        } catch (Exception e){
-//            Assertions.fail(e.getMessage());
-//        }
-//    }
+            //member
+            searched = proxy.getProductInfoFromMarketByName(member_name, "iphone 14");
+            filtered = proxy.filterByPrice(member_name, searched, 0, 3100);
+            Assertions.assertEquals(1, filtered.size());
+            Assertions.assertTrue(filtered.containsKey(storeName1));
+            Assertions.assertTrue(filtered.get(storeName1).contains("iphone 14"));
+        } catch (Exception e){
+            Assertions.fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void filter_products_bad_price(){
+        try{
+            // guest
+            Map<String, List<String>> searched = proxy.getProductInfoFromMarketByName(guest_name, "iphone 14");
+            Map<String, List<String>> filtered = proxy.filterByPrice(guest_name, searched, 0, 2000);
+            Assertions.assertEquals(0, filtered.size()); // or error msg ???
+            Map<String, List<String>> finalSearched = searched;
+            Assertions.assertThrows(Exception.class,()-> proxy.filterByPrice(guest_name, finalSearched, 2000, 0));
+
+
+            //member
+            searched = proxy.getProductInfoFromMarketByName(member_name, "iphone 14");
+            filtered = proxy.filterByPrice(member_name, searched, 0, 2000);
+            Assertions.assertEquals(0, filtered.size()); // or error msg ???
+            Map<String, List<String>> finalSearched2 = searched;
+            Assertions.assertThrows(Exception.class,()-> proxy.filterByPrice(guest_name, finalSearched2, 2000, 0));
+
+        } catch (Exception e){
+            Assertions.fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void filter_products_by_category_success(){
+        try{
+            // guest
+            Map<String, List<String>> searched = proxy.getProductInfoFromMarketByKeyword(guest_name, "gaming");
+            Map<String, List<String>> filtered = proxy.filterByCategory(guest_name, searched, "Gaming chairs");
+            Assertions.assertEquals(1, filtered.size());
+            Assertions.assertTrue(filtered.containsKey(storeName1));
+            Assertions.assertTrue(filtered.get(storeName1).contains("gaming chair 1"));
+
+            //member
+            searched = proxy.getProductInfoFromMarketByKeyword(member_name, "gaming");
+            filtered = proxy.filterByCategory(member_name, searched, "Gaming chairs");
+            Assertions.assertEquals(1, filtered.size());
+            Assertions.assertTrue(filtered.containsKey(storeName1));
+            Assertions.assertTrue(filtered.get(storeName1).contains("gaming chair 1"));
+        } catch (Exception e){
+            Assertions.fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void filter_products_bad_category_name(){
+        try{
+            // guest
+            Map<String, List<String>> searched = proxy.getProductInfoFromMarketByKeyword(guest_name, "gaming");
+            Map<String, List<String>> filtered = proxy.filterByCategory(guest_name, searched, "Gaming");
+            Assertions.assertEquals(0, filtered.size()); // or error msg ???
+
+            //member
+            searched = proxy.getProductInfoFromMarketByKeyword(member_name, "gaming");
+            filtered = proxy.filterByCategory(member_name, searched, "Gaming");
+            Assertions.assertEquals(0, filtered.size()); // or error msg ???
+        } catch (Exception e){
+            Assertions.fail(e.getMessage());
+        }
+    }
 
     // II.2.3 ********** DONE **********
     @Test

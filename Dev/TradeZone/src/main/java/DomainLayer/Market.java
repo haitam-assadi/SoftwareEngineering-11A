@@ -429,4 +429,10 @@ public class Market {
         return userController.removeMemberBySystemManager(managerName,memberName);
     }
 
+    public MemberDTO getMemberInfo(String callerMemberName, String returnedMemberName) throws Exception {
+        userController.assertIsMemberLoggedIn(callerMemberName);
+        userController.isMember(returnedMemberName);
+        return userController.getMemberInfo(callerMemberName,returnedMemberName);
+    }
+
 }

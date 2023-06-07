@@ -107,7 +107,7 @@ public class StoreController {
         return productDTOList;
     }
 
-    public List<ProductDTO> getProductInfoFromMarketByKeyword(String keyword){
+    public List<ProductDTO> getProductInfoFromMarketByKeyword(String keyword) throws Exception {
         List<ProductDTO> productDTOList = new ArrayList<>();
         for(Store store: stores.values()) {
             String storeName = store.getStoreName();
@@ -457,6 +457,7 @@ public class StoreController {
 
     public List<ProductDTO> filterByCategory(List<ProductDTO> productsInfo, String categoryName) throws Exception {
         List<ProductDTO> filteredProducts = new LinkedList<>();
+        categoryName = categoryName.strip().toLowerCase();
         for (ProductDTO productDTO : productsInfo){
             if(productDTO.categories.contains(categoryName))
                 filteredProducts.add(productDTO);
@@ -468,6 +469,8 @@ public class StoreController {
         if(maxPrice < minPrice){
             throw new Exception("the min price is bigger than the max price");
         }
+        if(minPrice < 0)
+            throw new Exception("the min price is minus");
         List<ProductDTO> filteredProducts = new LinkedList<>();
         for (ProductDTO productDTO : productsInfo){
             if(productDTO.price >= minPrice && productDTO.price <= maxPrice)
