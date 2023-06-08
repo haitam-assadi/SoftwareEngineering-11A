@@ -29,6 +29,17 @@ public class SearchStoreController {
             if(request.getHeader("referer").contentEquals(request.getRequestURL()))
                 store = (StoreDTO) request.getSession().getAttribute("searchStore");
         }
+        if(store != null){
+            ResponseT<StoreDTO> response = server.getStoreInfo(controller.getName(), store.storeName);
+            if(response.ErrorOccurred){
+                store = null;
+                alert.setFail(true);
+                alert.setMessage(response.errorMessage);
+            }
+            else
+                store = response.getValue();
+            request.getSession().setAttribute("searchStore", store);
+        }
         model.addAttribute("controller", controller);
         model.addAttribute("alert", alert.copy());
         model.addAttribute("store", store);
@@ -46,7 +57,6 @@ public class SearchStoreController {
             store = null;
             alert.setFail(true);
             alert.setMessage(response.errorMessage);
-//            return "redirect:/searchStore";
         }
         else
             store = response.getValue();

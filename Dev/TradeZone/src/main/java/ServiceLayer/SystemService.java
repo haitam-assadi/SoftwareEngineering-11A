@@ -770,5 +770,12 @@ public class SystemService {
         }
     }
 
+    public ResponseT<MemberDTO> getMemberInfo(String callerMemberName, String returnedMemberName) {
+        try{
+            return new ResponseT<>(market.getMemberInfo(callerMemberName, returnedMemberName));
+        }catch (Exception e){
+            return new ResponseT<>("getMemberInfo: "+e.getMessage());
+        }
+    }
 
 }

@@ -307,6 +307,8 @@ public class Server {
 //        return new ResponseT<>(list);
     }
 
+    // ------------------------------------------------------------
+
     public ResponseT<Boolean> hasRole(String userName){
         return service.hasRole(userName);
     }
@@ -333,5 +335,9 @@ public class Server {
 
     public ResponseT<Boolean> removeMemberBySystemManager(String managerName,String memberName){
         return service.removeMemberBySystemManager(managerName, memberName);
+    }
+
+    public ResponseT<MemberDTO> getMemberInfo(String callerMemberName, String returnedMemberName) {
+        return service.getMemberInfo(callerMemberName, returnedMemberName);
     }
 }

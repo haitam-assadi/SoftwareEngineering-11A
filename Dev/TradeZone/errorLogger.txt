@@ -148,3 +148,21 @@ fail in purchasing: transaction has failed
 יוני 04, 2023 8:37:46 אחה״צ DomainLayer.LoggerManager sendErrorLog
 WARNING: 
 fail in purchasing: transaction has failed
+יוני 08, 2023 4:55:45 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: memberbaraa is already store manager
+יוני 08, 2023 4:55:52 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store manager: memberalaa is already store owner
+יוני 08, 2023 4:58:38 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: string is null or empty
+יוני 08, 2023 5:02:12 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: string is null or empty
+יוני 08, 2023 5:16:42 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: userName guest_4 does not exists!
+יוני 08, 2023 5:26:44 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: userName guest_4 does not exists!

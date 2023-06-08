@@ -98,12 +98,13 @@ public class Stock {
         return true;
     }
 
-    public synchronized ConcurrentHashMap<ProductDTO, Integer> getProductsInfoAmount(){
+    public synchronized Map<ProductDTO, Integer> getProductsInfoAmount(){
         Collection<ConcurrentHashMap<Product,Integer>> currentStockProducts = stockProducts.values();
-        ConcurrentHashMap<ProductDTO, Integer> productsInfoAmount = new ConcurrentHashMap<>();
+        Map<ProductDTO, Integer> productsInfoAmount = new LinkedHashMap<>();
         for(ConcurrentHashMap<Product,Integer> curr_hash_map: currentStockProducts) {
+            Product product = curr_hash_map.keys().nextElement();
             ProductDTO productDTO = curr_hash_map.keys().nextElement().getProductInfo();
-            productsInfoAmount.put(productDTO, curr_hash_map.get(productDTO));
+            productsInfoAmount.put(productDTO, curr_hash_map.get(product));
         }
         return productsInfoAmount;
     }
