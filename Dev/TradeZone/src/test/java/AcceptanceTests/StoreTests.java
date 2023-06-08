@@ -319,6 +319,26 @@ public class StoreTests {
             Assertions.fail(e.getMessage());
         }
     }
+    @Test
+    public void appoint_member_as_a_owner_and_manager_to_the_same_store_fail() {
+        try {
+            Assertions.assertTrue(proxy.appointOtherMemberAsStoreOwner(store_founder, storeName, member_name1));
+            Assertions.assertThrows(Exception.class, () -> proxy.appointOtherMemberAsStoreManager(store_founder, storeName, member_name1));
+        }catch (Exception e){
+            Assertions.fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void appoint_member_as_a_manager_and_owner_to_the_same_store_fail() {
+        try {
+            Assertions.assertTrue(proxy.appointOtherMemberAsStoreManager(store_founder, storeName, member_name1));
+            Assertions.assertThrows(Exception.class, () -> proxy.appointOtherMemberAsStoreOwner(store_founder, storeName, member_name1));
+        }catch (Exception e){
+            Assertions.fail(e.getMessage());
+        }
+    }
+
 
     // II.4.9
     //close store tests

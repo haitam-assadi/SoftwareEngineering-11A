@@ -107,6 +107,19 @@ public class StoreController {
         return productDTOList;
     }
 
+    public List<ProductDTO> getProductInfoFromMarketByKeyword(String keyword) throws Exception {
+        List<ProductDTO> productDTOList = new ArrayList<>();
+        for(Store store: stores.values()) {
+            String storeName = store.getStoreName();
+            //isActiveStore(storeName);
+            if(IsActiveStore(storeName)) {
+                if(store.containsKeyWord(keyword))
+                    productDTOList.addAll(store.getProductInfoFromMarketByKeyword(keyword));
+            }
+        }
+        return productDTOList;
+    }
+
     public Store getStore(String storeName) throws Exception {
         assertIsStore(storeName);
         storeName = storeName.strip().toLowerCase();
@@ -442,5 +455,28 @@ public class StoreController {
         return this.stores.get(storeName).systemManagerCloseStore(storeName);
     }
 
+    public List<ProductDTO> filterByCategory(List<ProductDTO> productsInfo, String categoryName) throws Exception {
+        List<ProductDTO> filteredProducts = new LinkedList<>();
+        categoryName = categoryName.strip().toLowerCase();
+        for (ProductDTO productDTO : productsInfo){
+            if(productDTO.categories.contains(categoryName))
+                filteredProducts.add(productDTO);
+        }
+        return filteredProducts;
+    }
+
+    public List<ProductDTO> filterByPrice(List<ProductDTO> productsInfo,  Integer minPrice, Integer maxPrice) throws Exception {
+        if(maxPrice < minPrice){
+            throw new Exception("the min price is bigger than the max price");
+        }
+        if(minPrice < 0)
+            throw new Exception("the min price is minus");
+        List<ProductDTO> filteredProducts = new LinkedList<>();
+        for (ProductDTO productDTO : productsInfo){
+            if(productDTO.price >= minPrice && productDTO.price <= maxPrice)
+                filteredProducts.add(productDTO);
+        }
+        return filteredProducts;
+    }
 
 }

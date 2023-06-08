@@ -36,14 +36,16 @@ public class AbstractStoreOwner extends Role{
         String storeName = store.getStoreName();
         if(appointedOwners.containsKey(storeName)){
             if(!appointedOwners.get(storeName).contains(otherOwner)) throw new Exception(""+otherMember.getUserName()+" is not owner for "+storeName + " by "+getUserName());
-        if(!store.isAlreadyStoreOwner(otherMember.getUserName())) throw new Exception(""+otherMember.getUserName()+" is not owner for "+storeName);
-        }else{
+            if(!store.isAlreadyStoreOwner(otherMember.getUserName())) throw new Exception(""+otherMember.getUserName()+" is not owner for "+storeName);
+
             otherOwner.removeOwnerByHisAppointer(store,this);
             appointedOwners.get(storeName).remove(otherOwner);
             store.removeOwner(otherMember.getUserName());
             String msg = "you have been removed from being store owner for " + storeName+ " by " + getUserName();
             NotificationService.getInstance().notifySingle(storeName,getUserName(),msg,NotificationType.RemovedFromOwningStore);
             NotificationService.getInstance().removeRule(storeName,otherMember);
+        }else{
+            throw new Exception(getUserName() + "is not owner for this store");
         }
     }
 

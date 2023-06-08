@@ -1,5 +1,6 @@
 package DomainLayer.Controllers;
 
+import DTO.MemberDTO;
 import DTO.StoreDTO;
 import DomainLayer.*;
 
@@ -421,6 +422,13 @@ public class UserController {
         }
         NotificationService.getInstance().unsubscribeMember(memberName);
         return true;
+    }
+
+    public MemberDTO getMemberInfo(String callerMemberName, String returnedMemberName) throws Exception {
+        if(!isSystemManager(callerMemberName))
+            throw new Exception("the caller member is not a system manager");
+        Member member = members.get(returnedMemberName);
+        return member.getMemberDTO();
     }
 
 

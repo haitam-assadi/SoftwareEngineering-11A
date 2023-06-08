@@ -1,8 +1,10 @@
 package DomainLayer;
 
 import DTO.BagDTO;
+import DTO.DealDTO;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public abstract class User {

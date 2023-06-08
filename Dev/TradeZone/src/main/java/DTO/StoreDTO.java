@@ -1,6 +1,7 @@
 package DTO;
 
 import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class StoreDTO {
 
@@ -8,17 +9,17 @@ public class StoreDTO {
     public String founderName;
     public List<String> ownersNames;
     public List<String> managersNames;
-    public List<ProductDTO> productsInfo; //TODO: maybe productDTO instead of String
+    public ConcurrentHashMap<ProductDTO, Integer> productsInfoAmount; //TODO: maybe productDTO instead of String
 
     public boolean isActive;
 
 
-    public StoreDTO(String storeName, String founderName, List<String> ownersNames, List<String> managersNames, List<ProductDTO> productsInfo,boolean isActive) {
+    public StoreDTO(String storeName, String founderName, List<String> ownersNames, List<String> managersNames, ConcurrentHashMap<ProductDTO, Integer> productsInfoAmount,boolean isActive) {
         this.storeName = storeName;
         this.founderName = founderName;
         this.ownersNames = ownersNames;
         this.managersNames = managersNames;
-        this.productsInfo = productsInfo;
+        this.productsInfoAmount = productsInfoAmount;
         this.isActive = isActive;
     }
 

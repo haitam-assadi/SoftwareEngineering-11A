@@ -98,17 +98,19 @@ public class Market {
         return storeController.getProductInfoFromMarketByCategory(categoryName);
     }
 
-    public List<ProductDTO> getProductInfoFromMarketByKeyword(String userName, String keyword) throws ExecutionControl.NotImplementedException {
-        // TODO: low priority Don't test it
-        throw new ExecutionControl.NotImplementedException("");
+    public List<ProductDTO> getProductInfoFromMarketByKeyword(String userName, String keyword) throws Exception{
+        userController.assertIsGuestOrLoggedInMember(userName);
+        return storeController.getProductInfoFromMarketByKeyword(keyword);
     }
 
-    public List<ProductDTO> filterByPrice(String userName, List<ProductDTO> productsInfo, Integer minPrice, Integer maxPrice) throws ExecutionControl.NotImplementedException {
-        throw new ExecutionControl.NotImplementedException("");
+    public List<ProductDTO> filterByPrice(String userName, List<ProductDTO> productsInfo, Integer minPrice, Integer maxPrice) throws Exception {
+        userController.assertIsGuestOrLoggedInMember(userName);
+        return storeController.filterByPrice(productsInfo, minPrice, maxPrice);
     }
 
-    public List<ProductDTO> filterByCategory(String userName, List<ProductDTO> productsInfo, String categoryName) throws ExecutionControl.NotImplementedException {
-        throw new ExecutionControl.NotImplementedException("");
+    public List<ProductDTO> filterByCategory(String userName, List<ProductDTO> productsInfo, String categoryName) throws Exception {
+        userController.assertIsGuestOrLoggedInMember(userName);
+        return storeController.filterByCategory(productsInfo,categoryName);
     }
 
     public List<ProductDTO> filterByProductRate(String userName, List<ProductDTO> productsInfo, Integer productRate) throws ExecutionControl.NotImplementedException {
@@ -425,6 +427,12 @@ public class Market {
 
     public boolean removeMemberBySystemManager(String managerName,String memberName) throws Exception{
         return userController.removeMemberBySystemManager(managerName,memberName);
+    }
+
+    public MemberDTO getMemberInfo(String callerMemberName, String returnedMemberName) throws Exception {
+        userController.assertIsMemberLoggedIn(callerMemberName);
+        userController.isMember(returnedMemberName);
+        return userController.getMemberInfo(callerMemberName,returnedMemberName);
     }
 
 }
