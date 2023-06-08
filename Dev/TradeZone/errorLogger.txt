@@ -679,3 +679,63 @@ fail in appointing member as store manager: memberbrain123 is already store owne
 יוני 07, 2023 6:54:57 אחה״צ DomainLayer.LoggerManager sendErrorLog
 WARNING: 
 fail in appointing member as store owner: memberbrain123 is already store manager
+יוני 08, 2023 4:08:49 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in creating store: store: ebay is already store
+יוני 08, 2023 4:09:20 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: productName is null or empty!
+יוני 08, 2023 4:09:45 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Card Number cant be null
+יוני 08, 2023 4:53:09 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: category iphones is not allowed after 15:53 .
+יוני 08, 2023 4:54:37 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: category iphones is not allowed after 15:54 .
+יוני 08, 2023 5:24:18 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: bag must contain minimum 5 iphone 14 product
+יוני 08, 2023 5:24:18 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Shipment service error
+יוני 08, 2023 5:24:18 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: (category iphones is not allowed between 2024-06-08 and 2025-06-08 . ONLY IF category iphones is not allowed after 16:24 .)
+יוני 08, 2023 5:24:18 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: product iphone 14 is not allowed after 16:24 .
+יוני 08, 2023 5:24:18 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: category iphones is not allowed between 2022-06-08 and 2025-06-08 .
+יוני 08, 2023 5:24:18 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: bag must contain maximum 5 iphone 14 product
+יוני 08, 2023 5:24:18 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: category iphones is not allowed after 16:24 .
+יוני 08, 2023 5:24:18 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: gaming mouse 1 have only 10 amount in stock!
+יוני 08, 2023 5:24:18 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Payment service error
+יוני 08, 2023 5:24:18 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: (category iphones is not allowed between 2022-06-08 and 2024-06-08 . AND category iphones is not allowed after 16:24 .)
+יוני 08, 2023 5:24:18 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: ((bag must contain minimum 2 iphone 13 product AND bag must contain minimum 7 iphone 14 product) AND bag must contain minimum 1 gaming chair1 product)
+יוני 08, 2023 5:24:18 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: gaming mouse 1 have only 10 amount in stock!
+יוני 08, 2023 5:24:18 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: (category iphones is not allowed between 2022-06-08 and 2025-06-08 . OR category iphones is not allowed after 16:24 .)
+יוני 08, 2023 5:24:18 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: product iphone 14 is not allowed between 2022-06-08 and 2024-06-08 .
+יוני 08, 2023 5:24:19 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Payment service error

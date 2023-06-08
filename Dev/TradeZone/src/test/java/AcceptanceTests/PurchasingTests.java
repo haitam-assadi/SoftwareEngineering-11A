@@ -251,7 +251,7 @@ public class PurchasingTests {
             Assertions.fail(e.getMessage());
         }
     }*/
-
+///////////////////////////////////////payment policy teats ///////////////////////////////////////////
     /**
      * put a policy and buy the cart with good amount for the policy
      */
@@ -601,4 +601,69 @@ public class PurchasingTests {
             Assertions.fail(e.getMessage());
         }
     }
+    @Test
+    public void add_Constraint_As_Payment_Policy_Success(){
+        try{
+            Integer paymentPolicy1 = proxy.createMaxTimeAtDayCategoryBagConstraint(store_founder,storeName1,"Iphones",java.time.LocalTime.now().getHour() + 1,java.time.LocalTime.now().getMinute(),false);
+            Assertions.assertTrue(proxy.getAllPaymentPolicies(store_founder,storeName1).isEmpty());
+            proxy.addConstraintAsPaymentPolicy(store_founder, storeName1, paymentPolicy1);
+            Assertions.assertFalse(proxy.getAllPaymentPolicies(store_founder,storeName1).isEmpty());
+        } catch (Exception e) {
+            Assertions.fail(e.getMessage());
+        }
+    }
+
+//    @Test
+//    public void add_Constraint_As_Payment_Policy_Fail(){
+//        try{
+//            Integer paymentPolicy1 = proxy.createMaxTimeAtDayCategoryBagConstraint(store_founder,storeName1,"Iphones",java.time.LocalTime.now().getHour()-1,java.time.LocalTime.now().getMinute(),false);
+//            Assertions.assertTrue(proxy.getAllPaymentPolicies(store_founder,storeName1).isEmpty());
+//            proxy.addConstraintAsPaymentPolicy(store_founder, storeName1, paymentPolicy1);
+//            Assertions.assertTrue(proxy.getAllPaymentPolicies(store_founder,storeName1).isEmpty());
+//        } catch (Exception e) {
+//            Assertions.fail(e.getMessage());
+//        }
+//    }
+
+    @Test
+    public void remove_Constraint_From_Payment_Policies_Success(){
+        try{
+            Integer paymentPolicy1 = proxy.createMaxTimeAtDayCategoryBagConstraint(store_founder,storeName1,"Iphones",java.time.LocalTime.now().getHour() + 1,java.time.LocalTime.now().getMinute(),true);
+            Assertions.assertFalse(proxy.getAllPaymentPolicies(store_founder,storeName1).isEmpty());
+            proxy.removeConstraintFromPaymentPolicies(store_founder, storeName1, paymentPolicy1);
+            Assertions.assertTrue(proxy.getAllPaymentPolicies(store_founder,storeName1).isEmpty());
+        } catch (Exception e) {
+            Assertions.fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void add_And_remove_Constraint_From_Payment_Policies_Success(){
+        try{
+            Integer paymentPolicy1 = proxy.createMaxTimeAtDayCategoryBagConstraint(store_founder,storeName1,"Iphones",java.time.LocalTime.now().getHour() + 1,java.time.LocalTime.now().getMinute(),false);
+            Assertions.assertTrue(proxy.getAllPaymentPolicies(store_founder,storeName1).isEmpty());
+            proxy.addConstraintAsPaymentPolicy(store_founder, storeName1, paymentPolicy1);
+            Assertions.assertFalse(proxy.getAllPaymentPolicies(store_founder,storeName1).isEmpty());
+            proxy.removeConstraintFromPaymentPolicies(store_founder, storeName1, paymentPolicy1);
+            Assertions.assertTrue(proxy.getAllPaymentPolicies(store_founder,storeName1).isEmpty());
+        } catch (Exception e) {
+            Assertions.fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void remove_Constraint_From_Payment_Policies_Fail(){
+        try{
+            Integer paymentPolicy1 = proxy.createMaxTimeAtDayCategoryBagConstraint(store_founder,storeName1,"Iphones",java.time.LocalTime.now().getHour() + 1,java.time.LocalTime.now().getMinute(),false);
+            Assertions.assertTrue(proxy.getAllPaymentPolicies(store_founder,storeName1).isEmpty());
+            Assertions.assertThrows(Exception.class,()->proxy.removeConstraintFromPaymentPolicies(store_founder, storeName1, paymentPolicy1));
+        } catch (Exception e) {
+            Assertions.fail(e.getMessage());
+        }
+    }
+
+    ////////////////////////////////// Discount policy Tests //////////////////////////////////////
+
+
+
 }

@@ -461,6 +461,142 @@ public class ProxyBridge implements Bridge{
     }
 
     @Override
+    public Boolean addConstraintAsPaymentPolicy(String memberUserName, String storeName, Integer bagConstraintId) throws Exception {
+        if(realBridge!=null){
+            return realBridge.addConstraintAsPaymentPolicy(memberUserName,storeName,bagConstraintId);
+        }
+        return false;
+    }
+
+    @Override
+    public Boolean removeConstraintFromPaymentPolicies(String memberUserName, String storeName, Integer bagConstraintId) throws Exception {
+        if(realBridge!=null){
+            return realBridge.removeConstraintFromPaymentPolicies(memberUserName,storeName,bagConstraintId);
+        }
+        return false;
+    }
+
+    @Override
+    public List<String> getAllPaymentPolicies(String memberUserName, String storeName) throws Exception {
+        if(realBridge!=null){
+            return realBridge.getAllPaymentPolicies(memberUserName,storeName);
+        }
+        return null;
+    }
+
+    @Override
+    public Integer createProductDiscountPolicy(String memberUserName, String storeName, String productName, int discountPercentage, boolean addAsStoreDiscountPolicy) throws Exception {
+        if(realBridge!=null){
+            return realBridge.createProductDiscountPolicy(memberUserName,storeName,productName,discountPercentage,addAsStoreDiscountPolicy);
+        }
+        return -1;
+    }
+
+    @Override
+    public Integer createProductDiscountPolicyWithConstraint(String memberUserName, String storeName, String productName, int discountPercentage, Integer bagConstraintId, boolean addAsStoreDiscountPolicy) throws Exception {
+        if(realBridge!=null){
+            return realBridge.createProductDiscountPolicyWithConstraint(memberUserName,storeName,productName,discountPercentage,bagConstraintId,addAsStoreDiscountPolicy);
+        }
+        return -1;
+    }
+
+    @Override
+    public Integer createCategoryDiscountPolicy(String memberUserName, String storeName, String categoryName, int discountPercentage, boolean addAsStoreDiscountPolicy) throws Exception {
+        if(realBridge!=null){
+            return realBridge.createCategoryDiscountPolicy(memberUserName,storeName,categoryName,discountPercentage,addAsStoreDiscountPolicy);
+        }
+        return -1;
+    }
+
+    @Override
+    public Integer createCategoryDiscountPolicyWithConstraint(String memberUserName, String storeName, String categoryName, int discountPercentage, Integer bagConstraintId, boolean addAsStoreDiscountPolicy) throws Exception {
+        if(realBridge!=null){
+            return realBridge.createCategoryDiscountPolicyWithConstraint(memberUserName,storeName,categoryName,discountPercentage,bagConstraintId,addAsStoreDiscountPolicy);
+        }
+        return -1;
+    }
+
+    @Override
+    public Integer createAllStoreDiscountPolicy(String memberUserName, String storeName, int discountPercentage, boolean addAsStoreDiscountPolicy) throws Exception {
+        if(realBridge!=null){
+            return realBridge.createAllStoreDiscountPolicy(memberUserName,storeName,discountPercentage,addAsStoreDiscountPolicy);
+        }
+        return -1;
+    }
+
+    @Override
+    public Integer createAllStoreDiscountPolicyWithConstraint(String memberUserName, String storeName, int discountPercentage, Integer bagConstraintId, boolean addAsStoreDiscountPolicy) throws Exception {
+        if(realBridge!=null){
+            return realBridge.createAllStoreDiscountPolicyWithConstraint(memberUserName,storeName,discountPercentage,bagConstraintId,addAsStoreDiscountPolicy);
+        }
+        return -1;
+    }
+
+    @Override
+    public Integer createAdditionDiscountPolicy(String memberUserName, String storeName, Integer firstDiscountPolicyId, Integer secondDiscountPolicyId, boolean addAsStoreDiscountPolicy) throws Exception {
+        if(realBridge!=null){
+            return realBridge.createAdditionDiscountPolicy(memberUserName,storeName,firstDiscountPolicyId,secondDiscountPolicyId,addAsStoreDiscountPolicy);
+        }
+        return -1;
+    }
+
+    @Override
+    public Integer createAdditionDiscountPolicyWithConstraint(String memberUserName, String storeName, Integer firstDiscountPolicyId, Integer secondDiscountPolicyId, Integer bagConstraintId, boolean addAsStoreDiscountPolicy) throws Exception {
+        if(realBridge!=null){
+            return realBridge.createAdditionDiscountPolicyWithConstraint(memberUserName,storeName,firstDiscountPolicyId,secondDiscountPolicyId,bagConstraintId,addAsStoreDiscountPolicy);
+        }
+        return -1;
+    }
+
+    @Override
+    public Integer createMaxValDiscountPolicy(String memberUserName, String storeName, Integer firstDiscountPolicyId, Integer secondDiscountPolicyId, boolean addAsStoreDiscountPolicy) throws Exception {
+        if(realBridge!=null){
+            return realBridge.createMaxValDiscountPolicy(memberUserName,storeName,firstDiscountPolicyId,secondDiscountPolicyId,addAsStoreDiscountPolicy);
+        }
+        return -1;
+    }
+
+    @Override
+    public Integer createMaxValDiscountPolicyWithConstraint(String memberUserName, String storeName, Integer firstDiscountPolicyId, Integer secondDiscountPolicyId, Integer bagConstraintId, boolean addAsStoreDiscountPolicy) throws Exception {
+        if(realBridge!=null){
+            return realBridge.createMaxValDiscountPolicyWithConstraint(memberUserName,storeName,firstDiscountPolicyId,secondDiscountPolicyId,bagConstraintId,addAsStoreDiscountPolicy);
+        }
+        return -1;
+    }
+
+    @Override
+    public Boolean addAsStoreDiscountPolicy(String memberUserName, String storeName, Integer discountPolicyId) throws Exception {
+        if(realBridge!=null){
+            return realBridge.addAsStoreDiscountPolicy(memberUserName,storeName,discountPolicyId);
+        }
+        return false;
+    }
+
+    @Override
+    public Boolean removeFromStoreDiscountPolicies(String memberUserName, String storeName, Integer discountPolicyId) throws Exception {
+        if(realBridge!=null){
+            return realBridge.removeFromStoreDiscountPolicies(memberUserName,storeName,discountPolicyId);
+        }
+        return false;
+    }
+
+    @Override
+    public List<String> getAllCreatedDiscountPolicies(String memberUserName, String storeName) throws Exception {
+        if(realBridge!=null){
+            return realBridge.getAllCreatedDiscountPolicies(memberUserName,storeName);
+        }
+        return null;
+    }
+
+    @Override
+    public List<String> getAllStoreDiscountPolicies(String memberUserName, String storeName) throws Exception {
+        if(realBridge!=null){
+            return realBridge.getAllStoreDiscountPolicies(memberUserName,storeName);
+        }
+        return null;
+    }
+
+    @Override
     public Boolean AppointMemberAsSystemManager(String managerName, String otherMemberName) throws Exception {
         if(realBridge!=null){
             return realBridge.AppointMemberAsSystemManager(managerName,otherMemberName);
