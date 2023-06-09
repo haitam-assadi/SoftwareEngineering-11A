@@ -1,6 +1,7 @@
 package PresentationLayer.controller;
 
 import CommunicationLayer.Server;
+import DTO.BagDTO;
 import DTO.ProductDTO;
 import PresentationLayer.model.GeneralModel;
 import ServiceLayer.ResponseT;
@@ -13,7 +14,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+
+import static PresentationLayer.controller.CartController.buildCart;
 
 @Controller
 public class loginController {
@@ -48,7 +52,6 @@ public class loginController {
         }
         controller = new GeneralModel();
         controller.setName(response.value);
-//        controller.setHasRole(hasRole.getValue());
         controller.setLogged(true);
 
 //        ResponseT<Boolean> hasRole = server.hasRole(controller.getName());
@@ -58,9 +61,19 @@ public class loginController {
 //            model.addAttribute("name", controller.getName());
 //            return "login";
 //        }
+//        controller.setHasRole(hasRole.getValue());
+
         ResponseT<Boolean> isSystemManager = server.isSystemManager(controller.getName());
         controller.setSystemManager(!isSystemManager.ErrorOccurred);
 
+        ResponseT<List<BagDTO>> cartResponse  = server.getCartContent(controller.getName());
+        if(cartResponse.ErrorOccurred){
+            model.addAttribute("isError", true);
+            model.addAttribute("error_message", cartResponse.errorMessage);
+            model.addAttribute("name", controller.getName());
+            return "login";
+        }
+        controller.setCart(buildCart(cartResponse.value));
 
         model.addAttribute("logged", controller.getLogged());
         model.addAttribute("hasRole", controller.getHasRole());

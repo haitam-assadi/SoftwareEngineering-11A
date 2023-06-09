@@ -20,7 +20,7 @@
 			<form action="search" method="post">
 				<div>
 					<label for="search_product" class="form-label">Search for products: </label>
-					<input type="text" class="form-control" name="search_product" id="search_product" placeholder="Enter product name" data-siid="si_input_0">
+					<input type="text" class="form-control" name="search_product" id="search_product" placeholder="Search for.." data-siid="si_input_0">
 				</div>
 
 				<div class="mt-3">
@@ -33,7 +33,7 @@
 				</div>
 				<div class="mt-3">
 					<label for="search_store_name" class="form-label">Store name: </label>
-					<input type="text" class="form-control" name="search_store_name" id="search_store_name" placeholder="Optional" data-siid="si_input_0">
+					<input type="text" class="form-control" name="search_store_name" id="search_store_name" placeholder="Optional.." data-siid="si_input_0">
 				</div>
 				<div class="row container justify-content-center text-center align-items-center">
 					<button class="btn btn-outline-success mt-3 mb-3" style="width:150px" type="submit">Search</button>
@@ -60,7 +60,71 @@
 		</div>
 		<div th:replace="fragments/alert :: alert(${alert})"></div>
 
-		<h3 th:if="${products != null && !products.empty}">Search results:</h3>
+		<div th:if="${products != null && !products.empty}" class="row">
+			<h3 class="col">Search results:</h3>
+			<div class="col-3 mb-4">
+				<p class="card mb-4">
+					<a class="btn btn-outline-danger" data-bs-toggle="collapse" href="#collapseFilter" role="button" aria-expanded="false" aria-controls="collapseFilter">
+						Filter by
+					</a>
+				</p>
+				<form action="filter" method="post">
+<!--					<input type="hidden" name="products" th:value="${products}">-->
+					<div class="collapse" id="collapseFilter">
+						<div class="card card-body">
+							<div class="accordion" id="accordionFilter">
+
+<!--								filter by price:-->
+								<div class="accordion-item form-check">
+									<input id="filterPrice" value="filterPrice" name="filterPrice" type="radio" class="my-3 form-check-input">
+									<label class="w-100 form-check-label" for="filterPrice">
+										<h2 class="accordion-header">
+											<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+												Price
+											</button>
+										</h2>
+									</label>
+									<div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFilter">
+										<div class="accordion-body row">
+											<div class="col">
+												<label for="min" class="form-label">Min: </label>
+												<input type="number" step="any" class="form-control mb-2" name="min" id="min" min="0">
+											</div>
+											<div class="col">
+												<label for="max" class="form-label">Max: </label>
+												<input type="number" step="any" class="form-control mb-2" name="max" id="max" min="0">
+											</div>
+										</div>
+									</div>
+								</div>
+
+<!--								filter by category:-->
+								<div class="accordion-item form-check">
+									<input id="filterCategory" value="filterCategory" name="filterCategory" type="radio" class="my-3 form-check-input">
+									<label class="w-100 form-check-label" for="filterCategory">
+										<h2 class="accordion-header">
+											<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+												Category
+											</button>
+										</h2>
+									</label>
+									<div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFilter">
+										<div class="accordion-body">
+											<label for="categoryName" class="form-label">Category name: </label>
+											<input type="text" class="form-control mb-2" name="categoryName" id="categoryName" placeholder="Enter category name">
+										</div>
+									</div>
+								</div>
+							</div>
+							<button class="container btn btn-danger mt-3 mb-3" style="width:150px" type="submit">Filter</button>
+						</div>
+					</div>
+				</form>
+			</div>
+
+<!--			<h5 style="color:red">Filter:</h5>-->
+		</div>
+<!--		<h3 th:if="${products != null && !products.empty}">Search results:</h3>-->
 		<div th:if="${products != null && !products.empty}" th:replace="fragments/product :: product(${controller}, ${products}, 'true')"></div>
 	</main>
 </div>

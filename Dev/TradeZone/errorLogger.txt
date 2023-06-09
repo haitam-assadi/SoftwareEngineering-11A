@@ -166,3 +166,81 @@ fail in getting store info: userName guest_4 does not exists!
 יוני 08, 2023 5:26:44 אחה״צ DomainLayer.LoggerManager sendErrorLog
 WARNING: 
 fail in getting store info: userName guest_4 does not exists!
+יוני 08, 2023 8:10:01 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: baraa store does not exists!
+יוני 08, 2023 8:10:23 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: user1_first_store_product6 product does not exist in this store!
+יוני 08, 2023 8:10:47 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: user1 is already logged in
+יוני 08, 2023 8:11:14 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: user1_first_store_product3 product does not exist in this store!
+יוני 08, 2023 8:17:21 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: bag already contains user1_first_store_product1 product
+יוני 08, 2023 8:27:22 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: userName guest_7 does not exists!
+יוני 08, 2023 8:27:28 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: userName guest_7 does not exists!
+יוני 08, 2023 8:28:04 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store name is null or empty
+יוני 08, 2023 8:28:06 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: userName guest_7 does not exists!
+יוני 08, 2023 8:28:19 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: user1_second_store_product5 product does not exist in this store!
+יוני 08, 2023 8:28:28 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: user1_second_store_product5 product does not exist in this store!
+יוני 08, 2023 8:34:30 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: userName guest_7 does not exists!
+יוני 08, 2023 8:34:46 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: userName guest_7 does not exists!
+יוני 08, 2023 8:35:07 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: user does not exists!
+יוני 08, 2023 8:36:44 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: userName guest_7 does not exists!
+יוני 08, 2023 8:37:40 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: userName guest_7 does not exists!
+יוני 09, 2023 4:04:05 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting products info: productName is null or empty!
+יוני 09, 2023 4:04:09 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting products info: productName is null or empty!
+יוני 09, 2023 4:22:53 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: baraais not owner for this store
+יוני 09, 2023 4:29:39 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: alaa is not owner for user1_first_store
+יוני 09, 2023 4:31:09 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as system manager: baraa have a role in a store
+יוני 09, 2023 4:31:16 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as system manager: user1 have a role in a store
+יוני 09, 2023 4:31:19 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as system manager: alaa have a role in a store
+יוני 09, 2023 4:31:35 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as system manager: baraa have a role in a store
+יוני 09, 2023 4:34:10 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: user1 is already logged in
+יוני 09, 2023 4:34:14 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: user1 is already logged in

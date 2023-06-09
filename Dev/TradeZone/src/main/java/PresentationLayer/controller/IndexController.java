@@ -114,6 +114,40 @@ public class IndexController {
 		return "redirect:/";
 	}
 
+	@PostMapping("/filter")
+	public String filter(HttpServletRequest request, @ModelAttribute Filter filter){
+		products = null; // new List???
+		if(request.getSession().getAttribute("controller") != null){
+			controller = (GeneralModel) request.getSession().getAttribute("controller");
+			if(request.getSession().getAttribute("products") != null)
+				products = (List<ProductDTO>) request.getSession().getAttribute("products");
+		}
+		filter.setProducts(products);
+		ResponseT<List<ProductDTO>> response;
+		if(filter.getFilterPrice().equals("filterPrice")){
+			response = server.filterByPrice(controller.getName(), filter.getProducts(), filter.getMin(), filter.getMax());
+			if(response.ErrorOccurred){
+				alert.setFail(true);
+				alert.setMessage(response.errorMessage);
+				return "redirect:/";
+			}
+			filter.setProducts(response.getValue());
+			products = response.getValue();
+		}
+		if(filter.getFilterCategory().equals("filterCategory")){
+			response = server.filterByCategory(controller.getName(), filter.getProducts(), filter.getCategoryName());
+			if(response.ErrorOccurred){
+				alert.setFail(true);
+				alert.setMessage(response.errorMessage);
+				return "redirect:/";
+			}
+			filter.setProducts(response.getValue());
+			products = response.getValue();
+		}
+		request.getSession().setAttribute("products", products);
+		return "redirect:/";
+	}
+
 	@GetMapping("/logout")
 	public String logout(HttpServletRequest request) {
 //		GeneralModel controller = new GeneralModel();
