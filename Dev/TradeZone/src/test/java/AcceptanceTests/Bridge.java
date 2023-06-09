@@ -173,4 +173,8 @@ public interface Bridge {
     public Boolean removeMemberBySystemManager(String managerName, String memberName) throws Exception;
 
     public Set<String> getAllSystemManagers(String managerName) throws Exception;
+
+    Double getCartPriceBeforeDiscount(String memberUserName) throws Exception;
+
+    Double getCartPriceAfterDiscount(String memberUserName) throws Exception;
 }

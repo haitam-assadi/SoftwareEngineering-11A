@@ -94,11 +94,11 @@ class CartTest {
         //totalBagPrice += product.getProductPrice(curr.get(product));
         Mockito.when(product.getProductPrice(5)).thenReturn(price);
         cart.addToCart(store, "milk 3%", 5);
-        assertEquals(price, cart.getCartPrice());
+        assertEquals(price, cart.getCartPriceAfterDiscount());
     }
 
     @Test
     void get_empty_cart_price_success() throws Exception {
-        assertEquals(0, cart.getCartPrice());
+        assertEquals(0, cart.getCartPriceAfterDiscount());
     }
 }

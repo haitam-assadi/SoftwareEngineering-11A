@@ -770,5 +770,21 @@ public class SystemService {
         }
     }
 
+    public ResponseT<Double> getCartPriceBeforeDiscount(String memberUserName) {
+        try{
+            return new ResponseT<>(market.getCartPriceBeforeDiscount(memberUserName));
+        }catch (Exception e){
+            return new ResponseT<>("getCartPriceBeforeDiscount: "+e.getMessage());
+        }
+    }
+
+    public ResponseT<Double> getCartPriceAfterDiscount(String memberUserName) {
+        try{
+            return new ResponseT<>(market.getCartPriceAfterDiscount(memberUserName));
+        }catch (Exception e){
+            return new ResponseT<>("getCartPriceAfterDiscount: "+e.getMessage());
+        }
+    }
+
 
 }

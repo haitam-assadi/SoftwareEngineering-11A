@@ -80,7 +80,16 @@ public class Bag {
         }
     }
 
-    public Double getBagPrice() throws Exception {
+    public Double getBagPriceBeforeDiscount() throws Exception {
+        Double totalBagPrice = 0.0;
+        for (ConcurrentHashMap<Product,Integer> curr: this.bagContent.values()) {
+            Product product = curr.keys().nextElement();
+            totalBagPrice += product.getProductPrice(curr.get(product));
+        }
+        return totalBagPrice;
+    }
+
+    public Double getBagPriceAfterDiscount() throws Exception {
         Double totalBagPrice = 0.0;
         for (ConcurrentHashMap<Product,Integer> curr: this.bagContent.values()) {
             Product product = curr.keys().nextElement();

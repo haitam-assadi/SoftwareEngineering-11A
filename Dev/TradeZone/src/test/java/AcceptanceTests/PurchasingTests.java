@@ -664,6 +664,367 @@ public class PurchasingTests {
 
     ////////////////////////////////// Discount policy Tests //////////////////////////////////////
 
+    @Test
+    public void create_Product_Discount_Policy_success(){
+        try{
+            proxy.createProductDiscountPolicy(store_founder,storeName1,"iphone 14",20,true);
+            Assertions.assertFalse(proxy.getAllStoreDiscountPolicies(store_founder,storeName1).isEmpty());
+            proxy.addToCart(member_name, storeName1, "iphone 14",1);
+            Assertions.assertEquals(proxy.getCartPriceBeforeDiscount(member_name),3000.0);
+            Assertions.assertEquals(proxy.getCartPriceAfterDiscount(member_name),3000.0-(3000.0*0.2));
+        } catch (Exception e) {
+            Assertions.fail(e.getMessage());
+        }
+    }
 
+    @Test
+    public void create_Product_Discount_Policy_fail(){
+        try{
+            proxy.createProductDiscountPolicy(store_founder,storeName1,"iphone 14",20,true);
+            Assertions.assertFalse(proxy.getAllStoreDiscountPolicies(store_founder,storeName1).isEmpty());
+            proxy.addToCart(member_name, storeName1, "iphone 14",1);
+            Assertions.assertEquals(proxy.getCartPriceBeforeDiscount(member_name),3000.0);
+            Assertions.assertNotEquals(proxy.getCartPriceAfterDiscount(member_name),3000.0);
+        } catch (Exception e) {
+            Assertions.fail(e.getMessage());
+        }
+    }
 
+    @Test
+    public void create_Product_Discount_Policy_With_Constraint_Success(){
+        try{
+            Integer paymentPolicy1 = proxy.createMaxProductAmountAllContentBagConstraint(store_founder,storeName1,"iphone 14",5,true);
+            proxy.createProductDiscountPolicyWithConstraint(store_founder,storeName1,"iphone 14",20,paymentPolicy1,true);
+            Assertions.assertFalse(proxy.getAllStoreDiscountPolicies(store_founder,storeName1).isEmpty());
+            proxy.addToCart(member_name, storeName1, "iphone 14",1);
+            Assertions.assertEquals(proxy.getCartPriceBeforeDiscount(member_name),3000.0);
+            Assertions.assertEquals(proxy.getCartPriceAfterDiscount(member_name),3000.0-(3000.0*0.2));
+        } catch (Exception e) {
+            Assertions.fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void create_Product_Discount_Policy_With_Constraint_Fail(){
+        try{
+            Integer paymentPolicy1 = proxy.createMaxProductAmountAllContentBagConstraint(store_founder,storeName1,"iphone 14",5,true);
+            proxy.createProductDiscountPolicyWithConstraint(store_founder,storeName1,"iphone 14",20,paymentPolicy1,true);
+            Assertions.assertFalse(proxy.getAllStoreDiscountPolicies(store_founder,storeName1).isEmpty());
+            proxy.addToCart(member_name, storeName1, "iphone 14",6);
+            Assertions.assertEquals(proxy.getCartPriceBeforeDiscount(member_name),3000.0*6);
+            Assertions.assertNotEquals(proxy.getCartPriceAfterDiscount(member_name),(3000.0-(3000.0*0.2))*6);
+        } catch (Exception e) {
+            Assertions.fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void create_Category_Discount_Policy_Success(){
+        try{
+            proxy.createCategoryDiscountPolicy(store_founder,storeName1,"Iphones",20,true);
+            Assertions.assertFalse(proxy.getAllStoreDiscountPolicies(store_founder,storeName1).isEmpty());
+            proxy.addToCart(member_name, storeName1, "iphone 14",1);
+            Assertions.assertEquals(proxy.getCartPriceBeforeDiscount(member_name),3000.0);
+            Assertions.assertEquals(proxy.getCartPriceAfterDiscount(member_name),3000.0-(3000.0*0.2));
+        } catch (Exception e) {
+            Assertions.fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void create_Category_Discount_Policy_fail(){
+        try{
+            proxy.createCategoryDiscountPolicy(store_founder,storeName1,"Iphones",20,true);
+            Assertions.assertFalse(proxy.getAllStoreDiscountPolicies(store_founder,storeName1).isEmpty());
+            proxy.addToCart(member_name, storeName1, "iphone 14",1);
+            Assertions.assertEquals(proxy.getCartPriceBeforeDiscount(member_name),3000.0);
+            Assertions.assertNotEquals(proxy.getCartPriceAfterDiscount(member_name),3000.0);
+        } catch (Exception e) {
+            Assertions.fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void create_Category_Discount_Policy_With_Constraint_Success(){
+        try{
+            Integer paymentPolicy1 = proxy.createMaxProductAmountAllContentBagConstraint(store_founder,storeName1,"iphone 14",5,true);
+            proxy.createCategoryDiscountPolicyWithConstraint(store_founder,storeName1,"Iphones",20,paymentPolicy1,true);
+            Assertions.assertFalse(proxy.getAllStoreDiscountPolicies(store_founder,storeName1).isEmpty());
+            proxy.addToCart(member_name, storeName1, "iphone 14",1);
+            Assertions.assertEquals(proxy.getCartPriceBeforeDiscount(member_name),3000.0);
+            Assertions.assertEquals(proxy.getCartPriceAfterDiscount(member_name),3000.0-(3000.0*0.2));
+        } catch (Exception e) {
+            Assertions.fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void create_Category_Discount_Policy_With_Constraint_Fail(){
+        try{
+            Integer paymentPolicy1 = proxy.createMaxProductAmountAllContentBagConstraint(store_founder,storeName1,"iphone 14",5,true);
+            proxy.createCategoryDiscountPolicyWithConstraint(store_founder,storeName1,"Iphones",20,paymentPolicy1,true);
+            Assertions.assertFalse(proxy.getAllStoreDiscountPolicies(store_founder,storeName1).isEmpty());
+            proxy.addToCart(member_name, storeName1, "iphone 14",6);
+            Assertions.assertEquals(proxy.getCartPriceBeforeDiscount(member_name),3000.0*6);
+            Assertions.assertNotEquals(proxy.getCartPriceAfterDiscount(member_name),(3000.0-(3000.0*0.2))*6);
+        } catch (Exception e) {
+            Assertions.fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void create_All_Store_Discount_Policy_Success(){
+        try{
+            proxy.createAllStoreDiscountPolicy(store_founder,storeName1,20,true);
+            Assertions.assertFalse(proxy.getAllStoreDiscountPolicies(store_founder,storeName1).isEmpty());
+            proxy.addToCart(member_name, storeName1, "iphone 14",1);
+            proxy.addToCart(member_name, storeName1, "iphone 13",1);
+            Assertions.assertEquals(proxy.getCartPriceBeforeDiscount(member_name),5000.0);
+            Assertions.assertEquals(proxy.getCartPriceAfterDiscount(member_name),5000.0-(5000.0*0.2));
+        } catch (Exception e) {
+            Assertions.fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void create_All_Store_Discount_Policy_Fail(){
+        try{
+            proxy.createAllStoreDiscountPolicy(store_founder,storeName1,20,true);
+            Assertions.assertFalse(proxy.getAllStoreDiscountPolicies(store_founder,storeName1).isEmpty());
+            proxy.addToCart(member_name, storeName1, "iphone 14",1);
+            proxy.addToCart(member_name, storeName1, "iphone 13",1);
+            Assertions.assertEquals(proxy.getCartPriceBeforeDiscount(member_name),5000.0);
+            Assertions.assertNotEquals(proxy.getCartPriceAfterDiscount(member_name),5000.0);
+        } catch (Exception e) {
+            Assertions.fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void create_All_Store_Discount_Policy_With_Constraint_Success(){
+        try{
+            Integer paymentPolicy1 = proxy.createMaxProductAmountAllContentBagConstraint(store_founder,storeName1,"iphone 14",5,true);
+            proxy.createAllStoreDiscountPolicyWithConstraint(store_founder,storeName1,20,paymentPolicy1,true);
+            Assertions.assertFalse(proxy.getAllStoreDiscountPolicies(store_founder,storeName1).isEmpty());
+            proxy.addToCart(member_name, storeName1, "iphone 14",1);
+            proxy.addToCart(member_name, storeName1, "iphone 13",1);
+            Assertions.assertEquals(proxy.getCartPriceBeforeDiscount(member_name),5000.0);
+            Assertions.assertEquals(proxy.getCartPriceAfterDiscount(member_name),5000.0-(5000.0*0.2));
+        } catch (Exception e) {
+            Assertions.fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void create_All_Store_Discount_Policy_With_Constraint_Fail(){
+        try{
+            Integer paymentPolicy1 = proxy.createMaxProductAmountAllContentBagConstraint(store_founder,storeName1,"iphone 14",5,true);
+            proxy.createAllStoreDiscountPolicyWithConstraint(store_founder,storeName1,20,paymentPolicy1,true);
+            Assertions.assertFalse(proxy.getAllStoreDiscountPolicies(store_founder,storeName1).isEmpty());
+            proxy.addToCart(member_name, storeName1, "iphone 14",6);
+            proxy.addToCart(member_name, storeName1, "iphone 13",1);
+            Assertions.assertEquals(proxy.getCartPriceBeforeDiscount(member_name),(3000.0*6)+2000.0);
+            Assertions.assertNotEquals(proxy.getCartPriceAfterDiscount(member_name),20000.0-(20000.0*0.2));
+        } catch (Exception e) {
+            Assertions.fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void create_Addition_Discount_Policy_Success(){
+        try{
+            Integer discountPolicy1 = proxy.createProductDiscountPolicy(store_founder,storeName1,"iphone 14",20,false);
+            Integer discountPolicy2 = proxy.createProductDiscountPolicy(store_founder,storeName1,"iphone 13",30,false);
+            proxy.createAdditionDiscountPolicy(store_founder,storeName1,discountPolicy1,discountPolicy2,true);
+            Assertions.assertFalse(proxy.getAllStoreDiscountPolicies(store_founder,storeName1).isEmpty());
+            proxy.addToCart(member_name, storeName1, "iphone 14",1);
+            proxy.addToCart(member_name, storeName1, "iphone 13",1);
+            Assertions.assertEquals(proxy.getCartPriceBeforeDiscount(member_name),5000.0);
+            Assertions.assertEquals(proxy.getCartPriceAfterDiscount(member_name),5000.0-((3000.0*0.2)+(2000.0*0.3)));
+        } catch (Exception e) {
+            Assertions.fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void create_Addition_Discount_Policy_Fail(){
+        try{
+            Integer discountPolicy1 = proxy.createProductDiscountPolicy(store_founder,storeName1,"iphone 14",20,false);
+            Integer discountPolicy2 = proxy.createProductDiscountPolicy(store_founder,storeName1,"iphone 13",30,false);
+            proxy.createAdditionDiscountPolicy(store_founder,storeName1,discountPolicy1,discountPolicy2,true);
+            Assertions.assertFalse(proxy.getAllStoreDiscountPolicies(store_founder,storeName1).isEmpty());
+            proxy.addToCart(member_name, storeName1, "iphone 14",1);
+            proxy.addToCart(member_name, storeName1, "iphone 13",1);
+            Assertions.assertEquals(proxy.getCartPriceBeforeDiscount(member_name),5000.0);
+            Assertions.assertNotEquals(proxy.getCartPriceAfterDiscount(member_name),5000.0);
+        } catch (Exception e) {
+            Assertions.fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void create_Addition_Discount_Policy_With_Constraint_Success(){
+        try{
+            Integer paymentPolicy1 = proxy.createMaxProductAmountAllContentBagConstraint(store_founder,storeName1,"iphone 14",5,true);
+            Integer discountPolicy1 = proxy.createProductDiscountPolicy(store_founder,storeName1,"iphone 14",20,false);
+            Integer discountPolicy2 = proxy.createProductDiscountPolicy(store_founder,storeName1,"iphone 13",30,false);
+            proxy.createAdditionDiscountPolicyWithConstraint(store_founder,storeName1,discountPolicy1,discountPolicy2,paymentPolicy1,true);
+            Assertions.assertFalse(proxy.getAllStoreDiscountPolicies(store_founder,storeName1).isEmpty());
+            proxy.addToCart(member_name, storeName1, "iphone 14",1);
+            proxy.addToCart(member_name, storeName1, "iphone 13",1);
+            Assertions.assertEquals(proxy.getCartPriceBeforeDiscount(member_name),5000.0);
+            Assertions.assertEquals(proxy.getCartPriceAfterDiscount(member_name),5000.0-((3000.0*0.2)+(2000.0*0.3)));
+        } catch (Exception e) {
+            Assertions.fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void create_Addition_Discount_Policy_With_Constraint_Fail(){
+        try{
+            Integer paymentPolicy1 = proxy.createMaxProductAmountAllContentBagConstraint(store_founder,storeName1,"iphone 14",5,true);
+            Integer discountPolicy1 = proxy.createProductDiscountPolicy(store_founder,storeName1,"iphone 14",20,false);
+            Integer discountPolicy2 = proxy.createProductDiscountPolicy(store_founder,storeName1,"iphone 13",30,false);
+            proxy.createAdditionDiscountPolicyWithConstraint(store_founder,storeName1,discountPolicy1,discountPolicy2,paymentPolicy1,true);
+            Assertions.assertFalse(proxy.getAllStoreDiscountPolicies(store_founder,storeName1).isEmpty());
+            proxy.addToCart(member_name, storeName1, "iphone 14",6);
+            proxy.addToCart(member_name, storeName1, "iphone 13",1);
+            Assertions.assertEquals(proxy.getCartPriceBeforeDiscount(member_name),(3000.0*6)+2000.0);
+            Assertions.assertNotEquals(proxy.getCartPriceAfterDiscount(member_name),5000.0-((3000.0*0.2)+(2000.0*0.3)));
+        } catch (Exception e) {
+            Assertions.fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void create_MaxVal_Discount_Policy_Success(){
+        try{
+            Integer discountPolicy1 = proxy.createProductDiscountPolicy(store_founder,storeName1,"iphone 14",20,false);
+            Integer discountPolicy2 = proxy.createProductDiscountPolicy(store_founder,storeName1,"iphone 14",30,false);
+            proxy.createMaxValDiscountPolicy(store_founder,storeName1,discountPolicy1,discountPolicy2,true);
+            Assertions.assertFalse(proxy.getAllStoreDiscountPolicies(store_founder,storeName1).isEmpty());
+            proxy.addToCart(member_name, storeName1, "iphone 14",1);
+            Assertions.assertEquals(proxy.getCartPriceBeforeDiscount(member_name),3000.0);
+            Assertions.assertEquals(proxy.getCartPriceAfterDiscount(member_name),3000.0-(3000.0*0.3));
+        } catch (Exception e) {
+            Assertions.fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void create_MaxVal_Discount_Policy_Fail(){
+        try{
+            Integer discountPolicy1 = proxy.createProductDiscountPolicy(store_founder,storeName1,"iphone 14",20,false);
+            Integer discountPolicy2 = proxy.createProductDiscountPolicy(store_founder,storeName1,"iphone 14",30,false);
+            proxy.createMaxValDiscountPolicy(store_founder,storeName1,discountPolicy1,discountPolicy2,true);
+            Assertions.assertFalse(proxy.getAllStoreDiscountPolicies(store_founder,storeName1).isEmpty());
+            proxy.addToCart(member_name, storeName1, "iphone 14",1);
+            Assertions.assertEquals(proxy.getCartPriceBeforeDiscount(member_name),3000.0);
+            Assertions.assertNotEquals(proxy.getCartPriceAfterDiscount(member_name),3000.0-(3000.0*0.2));
+        } catch (Exception e) {
+            Assertions.fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void create_MaxVal_Discount_Policy_With_Constraint_Success(){
+        try{
+            Integer paymentPolicy1 = proxy.createMaxProductAmountAllContentBagConstraint(store_founder,storeName1,"iphone 14",5,true);
+            Integer discountPolicy1 = proxy.createProductDiscountPolicy(store_founder,storeName1,"iphone 14",20,false);
+            Integer discountPolicy2 = proxy.createProductDiscountPolicy(store_founder,storeName1,"iphone 13",20,false);
+            proxy.createMaxValDiscountPolicyWithConstraint(store_founder,storeName1,discountPolicy1,discountPolicy2,paymentPolicy1,true);
+            Assertions.assertFalse(proxy.getAllStoreDiscountPolicies(store_founder,storeName1).isEmpty());
+            proxy.addToCart(member_name, storeName1, "iphone 14",1);
+            proxy.addToCart(member_name, storeName1, "iphone 13",1);
+            Assertions.assertEquals(proxy.getCartPriceBeforeDiscount(member_name),5000.0);
+            Assertions.assertEquals(proxy.getCartPriceAfterDiscount(member_name),5000.0-(3000.0*0.2));
+        } catch (Exception e) {
+            Assertions.fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void create_MaxVal_Discount_Policy_With_Constraint_Fail(){
+        try{
+            Integer paymentPolicy1 = proxy.createMaxProductAmountAllContentBagConstraint(store_founder,storeName1,"iphone 14",5,true);
+            Integer discountPolicy1 = proxy.createProductDiscountPolicy(store_founder,storeName1,"iphone 14",20,false);
+            Integer discountPolicy2 = proxy.createProductDiscountPolicy(store_founder,storeName1,"iphone 13",20,false);
+            proxy.createMaxValDiscountPolicyWithConstraint(store_founder,storeName1,discountPolicy1,discountPolicy2,paymentPolicy1,true);
+            Assertions.assertFalse(proxy.getAllStoreDiscountPolicies(store_founder,storeName1).isEmpty());
+            proxy.addToCart(member_name, storeName1, "iphone 14",6);
+            proxy.addToCart(member_name, storeName1, "iphone 13",1);
+            Assertions.assertEquals(proxy.getCartPriceBeforeDiscount(member_name),(3000.0*6)+2000.0);
+            Assertions.assertNotEquals(proxy.getCartPriceAfterDiscount(member_name),((3000.0*6)+2000.0)-(18000.0*0.2));
+        } catch (Exception e) {
+            Assertions.fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void add_As_Store_Discount_Policy_Success(){
+        try{
+            Integer discountPolicy1 = proxy.createProductDiscountPolicy(store_founder,storeName1,"iphone 14",20,false);
+            proxy.addToCart(member_name, storeName1, "iphone 14",1);
+            Assertions.assertTrue(proxy.getAllStoreDiscountPolicies(store_founder,storeName1).isEmpty());
+            Assertions.assertEquals(proxy.getCartPriceBeforeDiscount(member_name),3000.0);
+            Assertions.assertEquals(proxy.getCartPriceAfterDiscount(member_name),3000.0);
+            proxy.addAsStoreDiscountPolicy(store_founder,storeName1,discountPolicy1);
+            Assertions.assertFalse(proxy.getAllStoreDiscountPolicies(store_founder,storeName1).isEmpty());
+            Assertions.assertEquals(proxy.getCartPriceBeforeDiscount(member_name),3000.0);
+            Assertions.assertEquals(proxy.getCartPriceAfterDiscount(member_name),3000.0-(3000.0*0.2));
+        } catch (Exception e) {
+            Assertions.fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void add_As_Store_Discount_Policy_Fail(){
+        try{
+            Integer discountPolicy1 = proxy.createProductDiscountPolicy(store_founder,storeName1,"iphone 14",20,false);
+            proxy.addToCart(member_name, storeName1, "iphone 14",1);
+            Assertions.assertTrue(proxy.getAllStoreDiscountPolicies(store_founder,storeName1).isEmpty());
+            Assertions.assertEquals(proxy.getCartPriceBeforeDiscount(member_name),3000.0);
+            Assertions.assertEquals(proxy.getCartPriceAfterDiscount(member_name),3000.0);
+            proxy.addAsStoreDiscountPolicy(store_founder,storeName1,discountPolicy1);
+            Assertions.assertFalse(proxy.getAllStoreDiscountPolicies(store_founder,storeName1).isEmpty());
+            Assertions.assertEquals(proxy.getCartPriceBeforeDiscount(member_name),3000.0);
+            Assertions.assertNotEquals(proxy.getCartPriceAfterDiscount(member_name),3000.0);
+        } catch (Exception e) {
+            Assertions.fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void remove_From_Store_Discount_Policies_Success(){
+        try{
+            Integer discountPolicy1 = proxy.createProductDiscountPolicy(store_founder,storeName1,"iphone 14",20,true);
+            proxy.addToCart(member_name, storeName1, "iphone 14",1);
+            Assertions.assertFalse(proxy.getAllStoreDiscountPolicies(store_founder,storeName1).isEmpty());
+            Assertions.assertEquals(proxy.getCartPriceBeforeDiscount(member_name),3000.0);
+            Assertions.assertEquals(proxy.getCartPriceAfterDiscount(member_name),3000.0-(3000.0*0.2));
+            proxy.removeFromStoreDiscountPolicies(store_founder,storeName1,discountPolicy1);
+            Assertions.assertTrue(proxy.getAllStoreDiscountPolicies(store_founder,storeName1).isEmpty());
+            Assertions.assertEquals(proxy.getCartPriceBeforeDiscount(member_name),3000.0);
+            Assertions.assertEquals(proxy.getCartPriceAfterDiscount(member_name),3000.0);
+        } catch (Exception e) {
+            Assertions.fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void remove_From_Store_Discount_Policies_Fail(){
+        try{
+            Integer discountPolicy1 = proxy.createProductDiscountPolicy(store_founder,storeName1,"iphone 14",20,true);
+            proxy.addToCart(member_name, storeName1, "iphone 14",1);
+            Assertions.assertFalse(proxy.getAllStoreDiscountPolicies(store_founder,storeName1).isEmpty());
+            Assertions.assertEquals(proxy.getCartPriceBeforeDiscount(member_name),3000.0);
+            Assertions.assertEquals(proxy.getCartPriceAfterDiscount(member_name),3000.0-(3000.0*0.2));
+            proxy.removeFromStoreDiscountPolicies(store_founder,storeName1,discountPolicy1);
+            Assertions.assertTrue(proxy.getAllStoreDiscountPolicies(store_founder,storeName1).isEmpty());
+            Assertions.assertEquals(proxy.getCartPriceBeforeDiscount(member_name),3000.0);
+            Assertions.assertNotEquals(proxy.getCartPriceAfterDiscount(member_name),3000.0-(3000.0*0.2));
+        } catch (Exception e) {
+            Assertions.fail(e.getMessage());
+        }
+    }
 }

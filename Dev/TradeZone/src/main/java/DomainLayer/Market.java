@@ -241,8 +241,9 @@ public class Market {
             userController.assertIsGuestOrLoggedInMember(userName);
             userController.validateStorePolicy(userName);
             userController.validateAllProductsAmounts(userName);
-            Double price=userController.getCartPrice(userName);
-            transactionId = paymentService.pay(price, cardNumber, month, year,holder, cvv, id);
+            Double priceBeforeDiscount = userController.getCartPriceBeforeDiscount(userName);
+            Double priceAfterDiscount=userController.getCartPriceAfterDiscount(userName);
+            transactionId = paymentService.pay(priceAfterDiscount, cardNumber, month, year,holder, cvv, id);
             supplyId = shipmentService.supply(receiverName, shipmentAddress, shipmentCity, shipmentCountry, zipCode);
             return userController.updateStockAmount(userName);
         }
@@ -255,6 +256,16 @@ public class Market {
             shipmentService.cancelSupply(supplyId);
             throw e;
         }
+    }
+
+    public Double getCartPriceBeforeDiscount(String memberUserName) throws Exception {
+        userController.assertIsMemberLoggedIn(memberUserName);
+        return userController.getCartPriceBeforeDiscount(memberUserName);
+    }
+
+    public Double getCartPriceAfterDiscount(String memberUserName) throws Exception {
+        userController.assertIsMemberLoggedIn(memberUserName);
+        return userController.getCartPriceAfterDiscount(memberUserName);
     }
 
     public boolean removeOwnerByHisAppointer(String appointerUserName, String storeName, String ownerUserName ) throws Exception {

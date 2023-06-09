@@ -2,7 +2,6 @@ package DomainLayer;
 
 import DTO.BagDTO;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
@@ -61,10 +60,18 @@ public class Cart {
     }
 
 
-    public Double getCartPrice() throws Exception {
+    public Double getCartPriceBeforeDiscount() throws Exception {
         Double totalPrice = 0.0;
         for(Bag bag : bags.values())
-            totalPrice += bag.getBagPrice();
+            totalPrice += bag.getBagPriceBeforeDiscount();
+
+        return totalPrice;
+    }
+
+    public Double getCartPriceAfterDiscount() throws Exception {
+        Double totalPrice = 0.0;
+        for(Bag bag : bags.values())
+            totalPrice += bag.getBagPriceAfterDiscount();
 
         return totalPrice;
     }

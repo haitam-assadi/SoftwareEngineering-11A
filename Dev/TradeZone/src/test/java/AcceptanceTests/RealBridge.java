@@ -825,4 +825,22 @@ public class RealBridge implements Bridge{
         }
         return response.getValue();
     }
+
+    @Override
+    public Double getCartPriceBeforeDiscount(String memberUserName) throws Exception {
+        ResponseT<Double> response = systemService.getCartPriceBeforeDiscount(memberUserName);
+        if (response.ErrorOccurred){
+            throw new Exception(response.errorMessage);
+        }
+        return response.getValue();
+    }
+
+    @Override
+    public Double getCartPriceAfterDiscount(String memberUserName) throws Exception {
+        ResponseT<Double> response = systemService.getCartPriceAfterDiscount(memberUserName);
+        if (response.ErrorOccurred){
+            throw new Exception(response.errorMessage);
+        }
+        return response.getValue();
+    }
 }

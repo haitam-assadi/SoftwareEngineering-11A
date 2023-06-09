@@ -619,4 +619,20 @@ public class ProxyBridge implements Bridge{
         }
         return null;
     }
+
+    @Override
+    public Double getCartPriceBeforeDiscount(String memberUserName) throws Exception {
+        if(realBridge!=null){
+            return realBridge.getCartPriceBeforeDiscount(memberUserName);
+        }
+        return 0.0;
+    }
+
+    @Override
+    public Double getCartPriceAfterDiscount(String memberUserName) throws Exception {
+        if(realBridge!=null){
+            return realBridge.getCartPriceAfterDiscount(memberUserName);
+        }
+        return 0.0;
+    }
 }

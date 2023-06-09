@@ -357,10 +357,14 @@ public class UserController {
         user.getCart().validateAllProductsAmounts();
     }
 
-
-    public Double getCartPrice(String userName) throws Exception {
+    public Double getCartPriceBeforeDiscount(String userName) throws Exception {
         User user = getUser(userName);
-        return user.getCart().getCartPrice();
+        return user.getCart().getCartPriceBeforeDiscount();
+    }
+
+    public Double getCartPriceAfterDiscount(String userName) throws Exception {
+        User user = getUser(userName);
+        return user.getCart().getCartPriceAfterDiscount();
     }
 
     public boolean updateStockAmount(String userName) throws Exception {
