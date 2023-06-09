@@ -17,6 +17,7 @@
             <div class="card-body">
                 <h3 class="card-title pricing-card-title" th:text="${'Price: ' + product.price} + ' $'"></h3>
                 <p th:text="${'Store Name: ' + product.storeName}"></p>
+                <p th:text="${'Category: ' + product.categories.get(0)}"></p>
                 <p th:text="${'Description: ' + product.description}"></p>
 
                 <form th:if="${isActive && !controller.cartContainsProduct(product.storeName, product.name)}" action="add_to_cart" method="post">

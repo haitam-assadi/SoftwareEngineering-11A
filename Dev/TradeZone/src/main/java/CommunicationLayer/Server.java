@@ -88,13 +88,13 @@ public class Server {
         return service.filterByCategory(userName, productsInfo, categoryName);
     }
 
-    public ResponseT<List<ProductDTO>> filterByProductRate(String userName, List<ProductDTO> productsInfo, Integer productRate){
-        return service.filterByProductRate(userName, productsInfo, productRate);
-    }
-
-    public ResponseT<List<ProductDTO>> filterByStoreRate(String userName, List<ProductDTO> productsInfo, Integer storeRate){
-        return service.filterByStoreRate(userName, productsInfo, storeRate);
-    }
+//    public ResponseT<List<ProductDTO>> filterByProductRate(String userName, List<ProductDTO> productsInfo, Integer productRate){
+//        return service.filterByProductRate(userName, productsInfo, productRate);
+//    }
+//
+//    public ResponseT<List<ProductDTO>> filterByStoreRate(String userName, List<ProductDTO> productsInfo, Integer storeRate){
+//        return service.filterByStoreRate(userName, productsInfo, storeRate);
+//    }
 
     public ResponseT<Boolean> addToCart(String userName, String storeName, String productName, Integer amount){
         return service.addToCart(userName, storeName, productName, amount);
@@ -307,6 +307,8 @@ public class Server {
 //        return new ResponseT<>(list);
     }
 
+    // ------------------------------------------------------------
+
     public ResponseT<Boolean> hasRole(String userName){
         return service.hasRole(userName);
     }
@@ -333,5 +335,9 @@ public class Server {
 
     public ResponseT<Boolean> removeMemberBySystemManager(String managerName,String memberName){
         return service.removeMemberBySystemManager(managerName, memberName);
+    }
+
+    public ResponseT<MemberDTO> getMemberInfo(String callerMemberName, String returnedMemberName) {
+        return service.getMemberInfo(callerMemberName, returnedMemberName);
     }
 }

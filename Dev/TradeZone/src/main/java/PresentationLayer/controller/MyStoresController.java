@@ -69,7 +69,7 @@ public class MyStoresController {
             return "redirect:/myStores";
         }
         alert.setSuccess(true);
-        alert.setMessage("Store " + storeName + " created");
+        alert.setMessage("Store " + storeName + " has been created");
         return "redirect:/myStores";
     }
 }

@@ -68,6 +68,8 @@ public class StoreController {
             storeName = store.storeName;
             workers = buildWorkers(store);
         }
+        request.getSession().setAttribute("store", store);
+        request.getSession().setAttribute("workers", workers);
         model.addAttribute("controller", controller);
         model.addAttribute("alert", alert.copy());
         model.addAttribute("store", store);
@@ -138,10 +140,12 @@ public class StoreController {
             if(request.getSession().getAttribute("store") != null)
                 store = (StoreDTO) request.getSession().getAttribute("store");
         }
-        ProductDTO p = getProductFromStore(store, product.getName());
-        ResponseT<Boolean> response;
-        if(p == null)
+        Map<ProductDTO, Integer> pAmount = getProductFromStore(store, product.getName());
+        if(pAmount == null)
             return "redirect:/stock";
+        ProductDTO p = pAmount.keySet().iterator().next();
+        ResponseT<Boolean> response;
+
         if(!product.getDescription().equals(p.description)){
             response = server.updateProductDescription(controller.getName(), store.storeName, product.getName(), product.getDescription());
             if(response.ErrorOccurred){
@@ -158,16 +162,16 @@ public class StoreController {
                 return "redirect:/stock";
             }
         }
-//        if(product.getAmount() != p.amount){ // TODO: uncomment
+        if(product.getAmount() != pAmount.get(p)){
             response = server.updateProductAmount(controller.getName(), store.storeName, product.getName(), product.getAmount());
             if(response.ErrorOccurred){
                 alert.setFail(true);
                 alert.setMessage(response.errorMessage);
                 return "redirect:/stock";
             }
-//        }
+        }
         alert.setSuccess(true);
-        alert.setMessage("Product info updated successfully");
+        alert.setMessage("Product info has been updated successfully");
         return "redirect:/stock";
     }
 
@@ -194,7 +198,7 @@ public class StoreController {
         }
         else {
             alert.setFail(true);
-            alert.setMessage("Product does not removed from stock");
+            alert.setMessage("Product has not been added to stock");
         }
         return "redirect:/stock";
     }
@@ -219,7 +223,7 @@ public class StoreController {
         }
         else {
             alert.setFail(true);
-            alert.setMessage("Product does not removed from stock");
+            alert.setMessage("Product has not been removed from stock");
         }
         return "redirect:/stock";
     }
@@ -587,10 +591,12 @@ public class StoreController {
         return workers;
     }
 
-    private ProductDTO getProductFromStore(StoreDTO store, String productName){
+    private Map<ProductDTO, Integer> getProductFromStore(StoreDTO store, String productName){
         for(ProductDTO p : store.productsInfoAmount.keySet()){
             if(p.name.equals(productName)){
-                return p;
+                Map<ProductDTO, Integer> map = new HashMap<>();
+                map.put(p, store.productsInfoAmount.get(p));
+                return map;
             }
         }
         return null;
