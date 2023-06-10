@@ -26,7 +26,6 @@
                             <label class="form-check-label" for="appointAsManager">Appoint As Manager</label>
                         </div>
                     </div>
-                    <!--                    TODO: add permissions-->
                     <div class="form-check mb-4">
                         <input class="form-check-input" type="checkbox" value="" id="invalidCheckAppoint" required>
                         <label class="form-check-label" for="invalidCheckAppoint">
@@ -58,12 +57,26 @@
                                     </form>
                                 </div>
                                 <div th:if="${role == 'Managers'}">
-                                    <h6>Permissions:</h6>
-<!--                                    TODO: after merge-->
-<!--                                    <div th:each="p : ${worker.permissions}">-->
-<!--                                        -->
-<!--                                    </div>-->
+                                    <form action="changeManagerPermissions" method="post">
+                                        <input type="hidden" name="managerName" th:value="${worker.name}">
+                                        <h6>Permissions:</h6>
+                                        <!--                                    TODO: after merge-->
+                                        <div th:each="pID : ${worker.permissions.keySet}">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" th:value="${pID}" th:name="'perms'" th:id="${pID}" th:checked="${worker.hasPermission(pID)}">
+                                                <label class="form-check-label" th:for="${pID}">
+                                                    <h6 th:text="${worker.getPermission(pID)}"></h6>
+                                                </label>
+                                            </div>
+                                        </div>
 
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" id="changePerms" required>
+                                            <label class="form-check-label" for="changePerms">
+                                                <button type="submit" class="btn btn-outline-success">Save</button>
+                                            </label>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </ul>

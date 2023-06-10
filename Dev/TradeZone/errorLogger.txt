@@ -262,3 +262,6 @@ fail in creating store: userName baraa is a system manager!
 יוני 10, 2023 4:05:48 אחה״צ DomainLayer.LoggerManager sendErrorLog
 WARNING: 
 fail in creating store: userName baraa is a system manager!
+יוני 10, 2023 6:46:25 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: memberbaraa is already store manager

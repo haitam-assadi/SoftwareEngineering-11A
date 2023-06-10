@@ -286,6 +286,30 @@ public class StoreController {
 
     // changePermissions
     //TODO:
+    @PostMapping("/changeManagerPermissions")
+    public String changeManagerPermissions(HttpServletRequest request, @RequestParam String managerName, @RequestParam(required = false) String[] perms){
+        if(request.getSession().getAttribute("controller") != null){
+            controller = (GeneralModel) request.getSession().getAttribute("controller");
+            if(request.getSession().getAttribute("store") != null)
+                store = (StoreDTO) request.getSession().getAttribute("store");
+        }
+        List<Integer> permsIDs = new ArrayList<>();
+        if(perms != null){
+            for(String id : perms){
+                permsIDs.add(Integer.parseInt(id));
+            }
+        }
+
+        ResponseT<Boolean> response = server.changeManagerPermissions(controller.getName(), store.storeName, managerName, permsIDs);
+        if(response.ErrorOccurred){
+            alert.setFail(true);
+            alert.setMessage(response.errorMessage);
+            return "redirect:/workers";
+        }
+        alert.setSuccess(true);
+        alert.setMessage(managerName + " permissions are updated successfully");
+        return "redirect:/workers";
+    }
 
 
 //    ------------------------- DEALS -------------------------
@@ -582,10 +606,15 @@ public class StoreController {
             names.add(new Worker(owner, "Owner"));
         }
         workers.put("Owners", names);
+
+        String[] allPermissions = server.getAllPermissions();
+
         names = new ArrayList<>();
         for(String manager : store.managersNames){
-//            permission = server.getManagerPermission(...)
-            names.add(new Worker(manager, "Manager" /*permissions*/));
+            List<Integer> managerPerms = server.getManagerPermission(controller.getName(), manager);
+            Worker worker = new Worker(manager, "Manager");
+            worker.buildAndSetPermissions(allPermissions, managerPerms);
+            names.add(worker);
         }
         workers.put("Managers", names);
         return workers;

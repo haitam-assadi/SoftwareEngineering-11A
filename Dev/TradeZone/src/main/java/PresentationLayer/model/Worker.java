@@ -56,4 +56,18 @@ public class Worker {
         }
         this.permissions = permissions;
     }
+
+    public String getPermission(int permId){
+        Map<String, Boolean> perm = permissions.getOrDefault(permId, null);
+        if(perm == null)
+            return "";
+        return perm.keySet().iterator().next();
+    }
+
+    public boolean hasPermission(int permId){
+        Map<String, Boolean> perm = permissions.getOrDefault(permId, null);
+        if(perm == null)
+            return false;
+        return perm.values().iterator().next();
+    }
 }

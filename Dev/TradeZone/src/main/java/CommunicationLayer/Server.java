@@ -145,8 +145,10 @@ public class Server {
     }
 
     // TODO: change params
-    public ResponseT<Boolean> changeManagerPermissions(String memberUserName, String storeName, String managerUserName){
-        return service.changeManagerPermissions(memberUserName, storeName, managerUserName);
+    public ResponseT<Boolean> changeManagerPermissions(String memberUserName, String storeName, String managerName, List<Integer> permsIDs){
+        // TODO: call service...
+        //        return service.changeManagerPermissions(memberUserName, storeName, permsIDs);
+        return new ResponseT<>(true);
     }
 
     public ResponseT<Boolean> closeStore(String memberUserName, String storeName){
@@ -340,4 +342,20 @@ public class Server {
     public ResponseT<MemberDTO> getMemberInfo(String callerMemberName, String returnedMemberName) {
         return service.getMemberInfo(callerMemberName, returnedMemberName);
     }
+
+    public String[] getAllPermissions() {
+        //TODO: delete this and call service....
+        String[] perm = {"perm1", "perm2", "perm3", "perm4"};
+        return perm;
+    }
+
+    public List<Integer> getManagerPermission(String memberUserName, String managerName) {
+        // TODO: delete this and call service....
+        List<Integer> list = new ArrayList<>();
+        list.add(1);
+        list.add(3);
+        return list;
+    }
+
+
 }
