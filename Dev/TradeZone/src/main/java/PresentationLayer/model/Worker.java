@@ -10,13 +10,11 @@ public class Worker {
     // Permissions
     Map<Integer, Map<String, Boolean>> permissions; // <permission ID, <"permission", have/not have>>
 
-//    1.Get store deals permission.
-//    2.Add new product to stock permission.
-//    3.Remove product from stock permission.
-//    4.Update product information permission.
-//    5.Get workers information permission.
-//    6.Manage store discount policies permission.
-//    7.Manage store payment policies permission.
+//    1. Get store deals.
+//    2. Manage stock.
+//    3. Get workers information.
+//    4. Manage store discount policies.
+//    5. Manage store payment policies.
 
     public Worker(String name, String jobTitle){
         this.name = name;
