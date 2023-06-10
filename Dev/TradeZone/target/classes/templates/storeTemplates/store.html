@@ -35,9 +35,9 @@
 
 <!--        <form th:if="${!store.isActive}" class="col-auto" action="store" method="post">-->
             <div th:if="${!store.isActive}" class="col-auto form-check mb-3">
-                <input class="form-check-input" type="checkbox" value="" id="invalidCheckOpen" required>
+                <input disabled class="form-check-input" type="checkbox" value="" id="invalidCheckOpen" required>
                 <label class="form-check-label w-100" for="invalidCheckOpen">
-                    <button type="submit" class="btn btn-outline-success">Open Store</button>
+                    <button disabled type="submit" class="btn btn-outline-success">Open Store</button>
                 </label>
             </div>
 <!--        </form>-->
@@ -55,7 +55,7 @@
         <div th:if="${currentPage == 'workers'}">
             <div th:replace="storeTemplates/workers :: workers(store=${store}, workers=${workers})"></div>
         </div>
-        <div th:if="${currentPage == 'deals'}">
+        <div class="container col-md-8 mt-3" th:if="${currentPage == 'deals'}">
             <div th:replace="storeTemplates/deals :: deals(deals=${deals})"></div>
         </div>
         <div th:if="${currentPage == 'bagConstraints'}">

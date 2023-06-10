@@ -69,6 +69,8 @@ public class GeneralModel {
     }
 
     public boolean isSystemManager() {
+        ResponseT<Boolean> isSystemManager = server.isSystemManager(this.name);
+        systemManager = (!isSystemManager.ErrorOccurred);
         return systemManager;
     }
 

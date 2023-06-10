@@ -30,6 +30,11 @@ public class MyStoresController {
             controller = (GeneralModel) request.getSession().getAttribute("controller");
 //            myStores = (Map<String, List<StoreDTO>>) request.getSession().getAttribute("myStores");
         }
+        if(controller.isSystemManager()){
+//            alert.setFail(true);
+//            alert.setMessage(""); // TODO: add msg ???
+            return "redirect:/";
+        }
         ResponseT<Map<String,List<StoreDTO>>> response  = server.myStores(controller.getName());
         if(response.ErrorOccurred){
             alert.setFail(true);

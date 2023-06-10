@@ -244,3 +244,21 @@ fail in login: user1 is already logged in
 יוני 09, 2023 4:34:14 אחה״צ DomainLayer.LoggerManager sendErrorLog
 WARNING: 
 fail in login: user1 is already logged in
+יוני 09, 2023 5:29:22 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: baraais not owner for this store
+יוני 09, 2023 6:15:19 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: baraa is already logged in
+יוני 10, 2023 2:48:53 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in creating store: userName baraa is a system manager!
+יוני 10, 2023 3:27:56 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting products info: userName baraa does not exists!
+יוני 10, 2023 4:00:24 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in creating store: userName baraa is a system manager!
+יוני 10, 2023 4:05:48 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in creating store: userName baraa is a system manager!
