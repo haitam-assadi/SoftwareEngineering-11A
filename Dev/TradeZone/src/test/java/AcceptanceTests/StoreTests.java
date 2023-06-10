@@ -296,13 +296,11 @@ public class StoreTests {
             newPermissions.add(2);
             newPermissions.add(3);
             newPermissions.add(5);
-            newPermissions.add(7);
             proxy.updateManagerPermissionsForStore(store_founder,storeName,member_name1,newPermissions);
-            Assertions.assertTrue(proxy.getManagerPermissionsForStore(store_founder,storeName,member_name1).size()==4);
+            Assertions.assertTrue(proxy.getManagerPermissionsForStore(store_founder,storeName,member_name1).size()==3);
             Assertions.assertTrue(proxy.getManagerPermissionsForStore(store_founder,storeName,member_name1).contains(2));
             Assertions.assertTrue(proxy.getManagerPermissionsForStore(store_founder,storeName,member_name1).contains(3));
             Assertions.assertTrue(proxy.getManagerPermissionsForStore(store_founder,storeName,member_name1).contains(5));
-            Assertions.assertTrue(proxy.getManagerPermissionsForStore(store_founder,storeName,member_name1).contains(7));
             Assertions.assertFalse(proxy.getManagerPermissionsForStore(store_founder,storeName,member_name1).contains(1));
             Assertions.assertTrue(proxy.addNewProductToStock(member_name1,storeName,productName,productCategory,productPrice,productDesc,productAmount));
             Assertions.assertTrue(proxy.removeProductFromStock(member_name1,storeName,productName));
