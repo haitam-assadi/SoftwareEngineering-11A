@@ -1,5 +1,6 @@
 package AcceptanceTests;
 
+import DTO.ProductDTO;
 import DomainLayer.PaymentService;
 import DomainLayer.ShipmentService;
 import ServiceLayer.ResponseT;
@@ -661,5 +662,13 @@ public class ProxyBridge implements Bridge{
             return realBridge.getManagerPermissionsForStore(ownerUserName, storeName, managerUserName);
         }
         return new ArrayList<>();
+    }
+    @Override
+    public ProductDTO getProductInfoFromStore(String userName, String storeName, String productName) throws Exception{
+        if(realBridge!=null){
+            return realBridge.getProductInfoFromStore(userName, storeName, productName);
+        }
+
+        return null;
     }
 }

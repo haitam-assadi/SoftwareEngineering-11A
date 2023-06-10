@@ -4,6 +4,7 @@ import DTO.BagDTO;
 import DTO.MemberDTO;
 import DTO.ProductDTO;
 import DTO.StoreDTO;
+import DomainLayer.LoggerManager;
 import DomainLayer.PaymentService;
 import DomainLayer.ShipmentService;
 import DomainLayer.Store;
@@ -874,6 +875,15 @@ public class RealBridge implements Bridge{
     @Override
     public List<Integer> getManagerPermissionsForStore(String ownerUserName, String storeName, String managerUserName) throws Exception {
         ResponseT<List<Integer>> response = systemService.getManagerPermissionsForStore(ownerUserName, storeName, managerUserName);
+        if (response.ErrorOccurred){
+            throw new Exception(response.errorMessage);
+        }
+        return response.getValue();
+    }
+
+    @Override
+    public ProductDTO getProductInfoFromStore(String userName, String storeName, String productName)throws Exception{
+        ResponseT<ProductDTO> response = systemService.getProductInfoFromStore(userName, storeName, productName);
         if (response.ErrorOccurred){
             throw new Exception(response.errorMessage);
         }

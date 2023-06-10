@@ -1,5 +1,6 @@
 package AcceptanceTests;
 
+import DTO.ProductDTO;
 import ServiceLayer.ResponseT;
 
 import java.util.List;
@@ -180,4 +181,5 @@ public interface Bridge {
     Integer getRuleForStore(String storeName, String memberName) throws Exception;
     boolean updateManagerPermissionsForStore(String ownerUserName, String storeName, String managerUserName, List<Integer> newPermissions) throws Exception;
     List<Integer> getManagerPermissionsForStore(String ownerUserName, String storeName, String managerUserName) throws Exception;
+    ProductDTO getProductInfoFromStore(String userName, String storeName, String productName) throws Exception;
 }

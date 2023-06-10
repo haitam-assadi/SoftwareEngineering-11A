@@ -953,7 +953,6 @@ public class Store {
     }
 
     public List<String> getAllBagConstraints(String memberUserName) throws Exception {
-        assertIsOwnerOrFounderOrAuthorizedManager(memberUserName, ManagerPermissions.manageStorePaymentPolicies);
         List<String> allBagConstraints = new LinkedList<>();
         for(Integer bagConstraintId : createdBagConstraints.keySet().stream().toList().stream().sorted().toList())
             allBagConstraints.add(bagConstraintId+". "+ createdBagConstraints.get(bagConstraintId).toString());
