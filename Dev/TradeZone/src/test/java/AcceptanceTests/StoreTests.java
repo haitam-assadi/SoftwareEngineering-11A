@@ -303,13 +303,15 @@ public class StoreTests {
             Assertions.assertTrue(proxy.getManagerPermissionsForStore(store_founder,storeName,member_name1).contains(5));
             Assertions.assertFalse(proxy.getManagerPermissionsForStore(store_founder,storeName,member_name1).contains(1));
             Assertions.assertTrue(proxy.addNewProductToStock(member_name1,storeName,productName,productCategory,productPrice,productDesc,productAmount));
+            proxy.createMaxProductAmountAllContentBagConstraint(member_name1,storeName,productName,5,false);
+            Assertions.assertThrows(Exception.class, ()->proxy.createProductDiscountPolicy(member_name1,storeName,productName,50,false));
             Assertions.assertTrue(proxy.removeProductFromStock(member_name1,storeName,productName));
+
 
         }catch (Exception e){
             Assertions.fail(e.getMessage());
         }
     }
-
 
 
 
