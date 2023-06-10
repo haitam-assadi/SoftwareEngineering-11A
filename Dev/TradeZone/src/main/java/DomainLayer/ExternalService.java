@@ -13,7 +13,7 @@ public class ExternalService {
     protected String url;
     protected boolean demo;
     protected int demoTransactionIds=1;
-    protected int serviceResTimeInMin = 3;
+    protected int serviceResTimeInSeconds = 35;
     String serviceType;
 
     public ExternalService(){
@@ -26,9 +26,9 @@ public class ExternalService {
         HashMap<String, String> action_params = new HashMap<>();
         action_params.put("action_type","handshake");
 
-        String serviceAnswer = sendPostRequest(action_params, serviceResTimeInMin).strip();
+        String serviceAnswer = sendPostRequest(action_params, serviceResTimeInSeconds).strip();
 
-        if(serviceAnswer != "OK")
+        if(!serviceAnswer.equals("OK"))
             throw new Exception(serviceType+ " service is not available");
 
         return true;
@@ -45,13 +45,17 @@ public class ExternalService {
 
         Future<Object> future = executor.submit(task);
         try {
-            serviceResponse = (String)future.get(timeOut, TimeUnit.MINUTES);
+            serviceResponse = (String)future.get(timeOut, TimeUnit.SECONDS);
         } catch (TimeoutException ex) {
             throw new Exception(serviceType+" service is not available");
         } catch (Exception e) {
             throw new Exception("transaction has failed");
         }finally {
-            executor.shutdownNow();
+            try {
+                executor.shutdownNow();
+            }catch (Exception e){
+                System.out.println("unexpected external connections error");
+            }
         }
         return serviceResponse;
     }

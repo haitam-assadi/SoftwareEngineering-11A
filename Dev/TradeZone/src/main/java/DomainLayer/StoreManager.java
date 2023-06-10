@@ -1,6 +1,8 @@
 package DomainLayer;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 enum  ManagerPermissions{
@@ -22,13 +24,20 @@ public class StoreManager extends Role{
         this.managedStoresPermissions = new ConcurrentHashMap<>();
     }
     public boolean assertHasPermissionForStore(String storeName, ManagerPermissions permission) throws Exception {
+        if(!hasPermissionForStore(storeName,permission))
+            throw new Exception(this.getUserName()+ " does not have permission to "+permission.toString() +" for store "+ storeName);
+
+        return true;
+    }
+
+    public boolean hasPermissionForStore(String storeName, ManagerPermissions permission) throws Exception {
         if(storeName==null)
             throw new Exception("storeName cant be null");
         storeName = storeName.strip().toLowerCase();
         if(! managedStoresPermissions.containsKey(storeName))
             throw new Exception(this.getUserName()+ " is not Manager for store "+ storeName);
         if(!managedStoresPermissions.get(storeName).contains(permission))
-            throw new Exception(this.getUserName()+ " does not have permission to "+permission.toString() +" for store "+ storeName);
+            return false;
 
         return true;
     }
@@ -66,6 +75,46 @@ public class StoreManager extends Role{
         }
     }
 
+    public static List<String> getAllPermissions(){
+        List<String> allPermissions = new ArrayList<>();
+        allPermissions.add("1.Get store deals permission.");
+        allPermissions.add("2.Add new product to stock permission.");
+        allPermissions.add("3.Remove product from stock permission.");
+        allPermissions.add("4.Update product information permission.");
+        allPermissions.add("5.Get workers information permission.");
+        allPermissions.add("6.Manage store discount policies permission.");
+        allPermissions.add("7.Manage store payment policies permission.");
+        return allPermissions;
+    }
+
+    public List<Integer> getManagerPermissionsForStore(String storeName) throws Exception {
+        List<Integer> allPermissions = new ArrayList<>();
+        for (int i=1; i<=7; i++){
+            if(hasPermissionForStore(storeName, getPermissionById(i)))
+                allPermissions.add(i);
+        }
+        return allPermissions;
+    }
+
+    public boolean updateManagerPermissionsForStore(String storeName, List<Integer> newPermissions) throws Exception {
+
+        if(storeName==null)
+            throw new Exception("storeName cant be null");
+        if(newPermissions==null)
+            throw new Exception("newPermissions cant be null");
+        storeName = storeName.strip().toLowerCase();
+        if(! managedStoresPermissions.containsKey(storeName))
+            throw new Exception(this.getUserName()+ " is not Manager for store "+ storeName);
+
+        Set<ManagerPermissions> newPermSet = new HashSet<ManagerPermissions>();
+        for(Integer permissionId :newPermissions)
+            newPermSet.add(getPermissionById(permissionId));
+
+        managedStoresPermissions.put(storeName, newPermSet);
+
+        return true;
+    }
+
 
 
     public boolean appointMemberAsStoreManager(Store store, AbstractStoreOwner myBoss) throws Exception {
@@ -86,4 +135,5 @@ public class StoreManager extends Role{
         removeOneStore(storeName);
         managedStoresPermissions.remove(storeName);
     }
+
 }

@@ -3,6 +3,7 @@ import org.junit.jupiter.api.*;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -277,6 +278,62 @@ public class StoreTests {
         }
     }
 
+
+    @Test
+    public void updateManagerPermissionSuccess(){
+        try{
+            proxy.appointOtherMemberAsStoreManager(store_founder,storeName,member_name1);
+            Assertions.assertTrue(proxy.getStoreManagersNames(store_founder, storeName).contains(member_name1));
+            Assertions.assertTrue(proxy.getManagerPermissionsForStore(store_founder,storeName,member_name1).size()==1);
+            Assertions.assertTrue(proxy.getManagerPermissionsForStore(store_founder,storeName,member_name1).contains(1));
+            String productName = "newProductName";
+            String productCategory = "newProductCategory";
+            Integer productAmount = 10;
+            Double productPrice = 200.3;
+            String productDesc = "description";
+            Assertions.assertThrows(Exception.class, ()->proxy.addNewProductToStock(member_name1,storeName,productName,productCategory,productPrice,productDesc,productAmount));
+            List<Integer> newPermissions = new ArrayList<>();
+            newPermissions.add(2);
+            newPermissions.add(3);
+            newPermissions.add(5);
+            newPermissions.add(7);
+            proxy.updateManagerPermissionsForStore(store_founder,storeName,member_name1,newPermissions);
+            Assertions.assertTrue(proxy.getManagerPermissionsForStore(store_founder,storeName,member_name1).size()==4);
+            Assertions.assertTrue(proxy.getManagerPermissionsForStore(store_founder,storeName,member_name1).contains(2));
+            Assertions.assertTrue(proxy.getManagerPermissionsForStore(store_founder,storeName,member_name1).contains(3));
+            Assertions.assertTrue(proxy.getManagerPermissionsForStore(store_founder,storeName,member_name1).contains(5));
+            Assertions.assertTrue(proxy.getManagerPermissionsForStore(store_founder,storeName,member_name1).contains(7));
+            Assertions.assertFalse(proxy.getManagerPermissionsForStore(store_founder,storeName,member_name1).contains(1));
+            Assertions.assertTrue(proxy.addNewProductToStock(member_name1,storeName,productName,productCategory,productPrice,productDesc,productAmount));
+            Assertions.assertTrue(proxy.removeProductFromStock(member_name1,storeName,productName));
+
+        }catch (Exception e){
+            Assertions.fail(e.getMessage());
+        }
+    }
+
+
+
+
+
+    @Test
+    public void updateManagerPermissionFailPermissionDoesNotExist(){
+        try{
+            proxy.appointOtherMemberAsStoreManager(store_founder,storeName,member_name1);
+            Assertions.assertTrue(proxy.getStoreManagersNames(store_founder, storeName).contains(member_name1));
+            Assertions.assertTrue(proxy.getManagerPermissionsForStore(store_founder,storeName,member_name1).size()==1);
+            Assertions.assertTrue(proxy.getManagerPermissionsForStore(store_founder,storeName,member_name1).contains(1));
+            List<Integer> newPermissions = new ArrayList<>();
+            newPermissions.add(8);
+            Assertions.assertThrows(Exception.class, ()->proxy.updateManagerPermissionsForStore(store_founder,storeName,member_name1,newPermissions));
+            Assertions.assertTrue(proxy.getManagerPermissionsForStore(store_founder,storeName,member_name1).size()==1);
+            Assertions.assertTrue(proxy.getManagerPermissionsForStore(store_founder,storeName,member_name1).contains(1));
+
+        }catch (Exception e){
+            Assertions.fail(e.getMessage());
+        }
+    }
+
     @Test
     public void appoint_member_as_store_manager_from_OwnerNotFounder_success(){
         try{
@@ -433,6 +490,26 @@ public class StoreTests {
             proxy.appointOtherMemberAsStoreOwner(store_founder, storeName, member_name1);
             proxy.appointOtherMemberAsStoreOwner(store_founder, storeName, member_name2);
             Assertions.assertThrows(Exception.class,()-> proxy.removeOwnerByHisAppointer(member_name1,storeName,member_name2));
+        }catch (Exception e){
+            Assertions.fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void getRuleForStoreTest(){
+        try{
+            proxy.appointOtherMemberAsStoreOwner(store_founder, storeName, member_name1);
+            proxy.appointOtherMemberAsStoreManager(store_founder, storeName, member_name2);
+            String newGuest = proxy.enterMarket();
+            String newMemberName = "newMemberForGetRuleForStoreTest";
+            String newMemberPassword = "Password1";
+            proxy.register(newGuest, newMemberName,newMemberPassword);
+            proxy.login(newGuest,newMemberName,newMemberPassword);
+            Assertions.assertTrue(proxy.getRuleForStore(storeName,store_founder) == 1);
+            Assertions.assertTrue(proxy.getRuleForStore(storeName,member_name1) == 2);
+            Assertions.assertTrue(proxy.getRuleForStore(storeName,member_name2) == 3);
+            Assertions.assertTrue(proxy.getRuleForStore(storeName,newMemberName) == -1);
+
         }catch (Exception e){
             Assertions.fail(e.getMessage());
         }

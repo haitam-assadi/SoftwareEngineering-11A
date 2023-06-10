@@ -134,9 +134,50 @@ public interface Bridge {
 
     public Integer createOnlyIfBagConstraint(String memberUserName, String storeName, Integer firstBagConstraintId, Integer secondBagConstraintId, boolean addAsStorePaymentPolicy) throws Exception;
 
-    public Boolean AppointMemberAsSystemManager(String managerName,String otherMemberName) throws Exception;
+    Boolean addConstraintAsPaymentPolicy(String memberUserName, String storeName, Integer bagConstraintId) throws Exception;
+
+    Boolean removeConstraintFromPaymentPolicies(String memberUserName, String storeName, Integer bagConstraintId) throws Exception;
+
+    List<String> getAllPaymentPolicies(String memberUserName, String storeName) throws Exception;
+
+    Integer createProductDiscountPolicy(String memberUserName, String storeName, String productName, int discountPercentage, boolean addAsStoreDiscountPolicy) throws Exception;
+
+    Integer createProductDiscountPolicyWithConstraint(String memberUserName, String storeName, String productName, int discountPercentage, Integer bagConstraintId, boolean addAsStoreDiscountPolicy) throws Exception;
+
+    Integer createCategoryDiscountPolicy(String memberUserName, String storeName, String categoryName, int discountPercentage, boolean addAsStoreDiscountPolicy) throws Exception;
+
+    Integer createCategoryDiscountPolicyWithConstraint(String memberUserName, String storeName, String categoryName, int discountPercentage, Integer bagConstraintId, boolean addAsStoreDiscountPolicy) throws Exception;
+
+    Integer createAllStoreDiscountPolicy(String memberUserName, String storeName, int discountPercentage, boolean addAsStoreDiscountPolicy) throws Exception;
+
+    Integer createAllStoreDiscountPolicyWithConstraint(String memberUserName, String storeName, int discountPercentage, Integer bagConstraintId, boolean addAsStoreDiscountPolicy) throws Exception;
+
+    Integer createAdditionDiscountPolicy(String memberUserName, String storeName, Integer firstDiscountPolicyId, Integer secondDiscountPolicyId, boolean addAsStoreDiscountPolicy) throws Exception;
+
+    Integer createAdditionDiscountPolicyWithConstraint(String memberUserName, String storeName, Integer firstDiscountPolicyId, Integer secondDiscountPolicyId, Integer bagConstraintId, boolean addAsStoreDiscountPolicy) throws Exception;
+
+    Integer createMaxValDiscountPolicy(String memberUserName, String storeName, Integer firstDiscountPolicyId, Integer secondDiscountPolicyId, boolean addAsStoreDiscountPolicy) throws Exception;
+
+    Integer createMaxValDiscountPolicyWithConstraint(String memberUserName, String storeName, Integer firstDiscountPolicyId, Integer secondDiscountPolicyId, Integer bagConstraintId, boolean addAsStoreDiscountPolicy) throws Exception;
+
+    Boolean addAsStoreDiscountPolicy(String memberUserName, String storeName, Integer discountPolicyId) throws Exception;
+
+    Boolean removeFromStoreDiscountPolicies(String memberUserName, String storeName, Integer discountPolicyId) throws Exception;
+
+    List<String> getAllCreatedDiscountPolicies(String memberUserName, String storeName) throws Exception;
+
+    List<String> getAllStoreDiscountPolicies(String memberUserName, String storeName) throws Exception;
+
+    public Boolean AppointMemberAsSystemManager(String managerName, String otherMemberName) throws Exception;
 
     public Boolean removeMemberBySystemManager(String managerName, String memberName) throws Exception;
 
     public Set<String> getAllSystemManagers(String managerName) throws Exception;
+
+    Double getCartPriceBeforeDiscount(String memberUserName) throws Exception;
+
+    Double getCartPriceAfterDiscount(String memberUserName) throws Exception;
+    Integer getRuleForStore(String storeName, String memberName) throws Exception;
+    boolean updateManagerPermissionsForStore(String ownerUserName, String storeName, String managerUserName, List<Integer> newPermissions) throws Exception;
+    List<Integer> getManagerPermissionsForStore(String ownerUserName, String storeName, String managerUserName) throws Exception;
 }

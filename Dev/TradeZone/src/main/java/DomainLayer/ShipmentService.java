@@ -17,14 +17,14 @@ public class ShipmentService extends ExternalService{
             return demoTransactionIds++;
 
         HashMap<String, String> action_params = new HashMap<>();
-        action_params.put("action_type","pay");
+        action_params.put("action_type","supply");
         action_params.put("name",receiverName);
         action_params.put("address",shipmentAddress);
         action_params.put("city",shipmentCity);
         action_params.put("country",shipmentCountry);
         action_params.put("zip",zipCode);
 
-        String serviceAnswer = sendPostRequest(action_params, serviceResTimeInMin).strip();
+        String serviceAnswer = sendPostRequest(action_params, serviceResTimeInSeconds).strip();
 
         if(!isNumeric(serviceAnswer))
             throw new Exception("transaction has failed");
@@ -58,7 +58,7 @@ public class ShipmentService extends ExternalService{
         action_params.put("action_type","cancel_supply");
         action_params.put("transaction_id",Integer.toString(supplyId));
 
-        String serviceAnswer = sendPostRequest(action_params, serviceResTimeInMin).strip();
+        String serviceAnswer = sendPostRequest(action_params, serviceResTimeInSeconds).strip();
 
         if(!isNumeric(serviceAnswer))
             throw new Exception("canceling supply transaction has failed");

@@ -14,14 +14,8 @@ import java.time.LocalTime;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        String str = "";
-        boolean result = str.matches("[0-9]+");
-        System.out.println("Original String : " + str);
-        System.out.println(result);
-
-
-
-
 
     }
+
+
 }
