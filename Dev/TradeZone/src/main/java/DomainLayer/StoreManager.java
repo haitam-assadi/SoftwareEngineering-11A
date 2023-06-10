@@ -7,13 +7,12 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 enum  ManagerPermissions{
     getStoreDeals,
-    addNewProduct,
-    removeProduct,
-    updateProductInfo,
+    manageStock,
     getWorkersInfo,
     manageStoreDiscountPolicies,
     manageStorePaymentPolicies
 }
+
 public class StoreManager extends Role{
 
     private ConcurrentHashMap<String, Set<ManagerPermissions>> managedStoresPermissions;
@@ -62,34 +61,30 @@ public class StoreManager extends Role{
     public ManagerPermissions getPermissionById(Integer permissionId) throws Exception {
         if(permissionId == null)
             throw new Exception("permission Id cant be null");
-        if(permissionId<1 || permissionId>7 )
-            throw new Exception("permission Id have to be between 1 and 7");
+        if(permissionId<1 || permissionId>5 )
+            throw new Exception("permission Id have to be between 1 and 5");
         switch (permissionId){
             case 1: return ManagerPermissions.getStoreDeals;
-            case 2: return ManagerPermissions.addNewProduct;
-            case 3: return ManagerPermissions.removeProduct;
-            case 4: return ManagerPermissions.updateProductInfo;
-            case 5: return ManagerPermissions.getWorkersInfo;
-            case 6: return ManagerPermissions.manageStoreDiscountPolicies;
+            case 2: return ManagerPermissions.manageStock;
+            case 3: return ManagerPermissions.getWorkersInfo;
+            case 4: return ManagerPermissions.manageStoreDiscountPolicies;
             default: return ManagerPermissions.manageStorePaymentPolicies;
         }
     }
 
     public static List<String> getAllPermissions(){
         List<String> allPermissions = new ArrayList<>();
-        allPermissions.add("1.Get store deals permission.");
-        allPermissions.add("2.Add new product to stock permission.");
-        allPermissions.add("3.Remove product from stock permission.");
-        allPermissions.add("4.Update product information permission.");
-        allPermissions.add("5.Get workers information permission.");
-        allPermissions.add("6.Manage store discount policies permission.");
-        allPermissions.add("7.Manage store payment policies permission.");
+        allPermissions.add("Get store deals.");
+        allPermissions.add("Manage stock.");
+        allPermissions.add("Get workers information.");
+        allPermissions.add("Manage store discount policies.");
+        allPermissions.add("Manage store payment policies.");
         return allPermissions;
     }
 
     public List<Integer> getManagerPermissionsForStore(String storeName) throws Exception {
         List<Integer> allPermissions = new ArrayList<>();
-        for (int i=1; i<=7; i++){
+        for (int i=1; i<=5; i++){
             if(hasPermissionForStore(storeName, getPermissionById(i)))
                 allPermissions.add(i);
         }
@@ -97,7 +92,6 @@ public class StoreManager extends Role{
     }
 
     public boolean updateManagerPermissionsForStore(String storeName, List<Integer> newPermissions) throws Exception {
-
         if(storeName==null)
             throw new Exception("storeName cant be null");
         if(newPermissions==null)
@@ -114,8 +108,6 @@ public class StoreManager extends Role{
 
         return true;
     }
-
-
 
     public boolean appointMemberAsStoreManager(Store store, AbstractStoreOwner myBoss) throws Exception {
         super.appointMemberAsStoreManager(store,myBoss);

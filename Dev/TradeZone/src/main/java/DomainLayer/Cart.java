@@ -40,7 +40,7 @@ public class Cart {
         return true;
     }
 
-    public List<BagDTO> getCartContent(){
+    public List<BagDTO> getCartContent() throws Exception {
         List<BagDTO> bagsDTO = new LinkedList<>();
         for(Bag bag: bags.values())
             bagsDTO.add(bag.getBagInfo());

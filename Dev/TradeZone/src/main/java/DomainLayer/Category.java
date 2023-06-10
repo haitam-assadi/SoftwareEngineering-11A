@@ -25,12 +25,12 @@ public class Category {
         return true;
     }
 
-    public List<ProductDTO> getProductsInfo(){
-        List<ProductDTO> productDTOList = new ArrayList<>();
+    public List<Product> getProducts(){
+        List<Product> productList = new ArrayList<>();
         for (Product product:categoryProducts.values())
-            productDTOList.add(product.getProductInfo());
+            productList.add(product);
 
-        return productDTOList;
+        return productList;
     }
 
     public String getCategoryName() {

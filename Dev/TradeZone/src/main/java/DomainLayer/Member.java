@@ -49,7 +49,7 @@ public class Member extends User{
         return password;
     }
 
-    public MemberDTO getMemberDTO() {
+    public MemberDTO getMemberDTO() throws Exception {
         List<DealDTO> dealDTOList = new LinkedList<>();
         for (Deal deal : userDeals){
             dealDTOList.add(deal.getDealDTO());
@@ -142,7 +142,7 @@ public class Member extends User{
         return true;
     }
 
-    public Map<String, List<StoreDTO>> myStores() {
+    public Map<String, List<StoreDTO>> myStores() throws Exception {
         Map<String,List<StoreDTO>> memberStores = new ConcurrentHashMap<>();
 
         if(roles.containsKey(RoleEnum.StoreFounder)){

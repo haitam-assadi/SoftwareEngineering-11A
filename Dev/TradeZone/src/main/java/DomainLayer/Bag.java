@@ -63,10 +63,11 @@ public class Bag {
         }
         return productNameAmount;
     }
-    public BagDTO getBagInfo(){
+    public BagDTO getBagInfo() throws Exception {
         ConcurrentHashMap<ProductDTO, Integer> bagContent = new ConcurrentHashMap<>();
         for (ConcurrentHashMap<Product,Integer> curr: this.bagContent.values()) {
-            bagContent.put(curr.keys().nextElement().getProductInfo(), curr.values().stream().toList().get(0));
+            Product currProduct = curr.keys().nextElement();
+            bagContent.put(currProduct.getProductInfo(storeBag.getProductDiscountPolicies(currProduct.getName())), curr.values().stream().toList().get(0));
         }
         return new BagDTO(storeBag.getStoreName(), bagContent);
     }
