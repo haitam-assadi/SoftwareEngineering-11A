@@ -177,4 +177,7 @@ public interface Bridge {
     Double getCartPriceBeforeDiscount(String memberUserName) throws Exception;
 
     Double getCartPriceAfterDiscount(String memberUserName) throws Exception;
+    Integer getRuleForStore(String storeName, String memberName) throws Exception;
+    boolean updateManagerPermissionsForStore(String ownerUserName, String storeName, String managerUserName, List<Integer> newPermissions) throws Exception;
+    List<Integer> getManagerPermissionsForStore(String ownerUserName, String storeName, String managerUserName) throws Exception;
 }

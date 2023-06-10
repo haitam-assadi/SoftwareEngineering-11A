@@ -357,6 +357,12 @@ public class UserController {
         user.getCart().validateAllProductsAmounts();
     }
 
+    public void validateAllStoresIsActive(String userName) throws Exception {
+        assertIsGuestOrLoggedInMember(userName);
+        User user = getUser(userName);
+        user.getCart().validateAllStoresIsActive();
+    }
+
     public Double getCartPriceBeforeDiscount(String userName) throws Exception {
         User user = getUser(userName);
         return user.getCart().getCartPriceBeforeDiscount();

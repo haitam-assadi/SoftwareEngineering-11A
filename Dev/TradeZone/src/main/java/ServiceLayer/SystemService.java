@@ -1,10 +1,7 @@
 package ServiceLayer;
 
 import DTO.*;
-import DomainLayer.LoggerManager;
-import DomainLayer.Market;
-import DomainLayer.PaymentService;
-import DomainLayer.ShipmentService;
+import DomainLayer.*;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -790,6 +787,36 @@ public class SystemService {
             return new ResponseT<>(market.getCartPriceAfterDiscount(memberUserName));
         }catch (Exception e){
             return new ResponseT<>("getCartPriceAfterDiscount: "+e.getMessage());
+        }
+    }
+
+
+
+    //return 1=storeFounder, 2=storeOwner, 3=storeManager, -1= noRule
+    public ResponseT<Integer> getRuleForStore(String storeName, String memberName){
+        try{
+            return new ResponseT<>(market.getRuleForStore(storeName,memberName));
+        }catch (Exception e){
+            return new ResponseT<>("getRuleForStore: "+e.getMessage());
+        }
+
+    }
+
+
+
+    public ResponseT<Boolean> updateManagerPermissionsForStore(String ownerUserName, String storeName, String managerUserName, List<Integer> newPermissions){
+        try{
+            return new ResponseT<>(market.updateManagerPermissionsForStore(ownerUserName, storeName, managerUserName, newPermissions));
+        }catch (Exception e){
+            return new ResponseT<>("updateManagerPermissionsForStore: "+e.getMessage());
+        }
+    }
+
+    public ResponseT<List<Integer>> getManagerPermissionsForStore(String ownerUserName, String storeName, String managerUserName){
+        try{
+            return new ResponseT<>(market.getManagerPermissionsForStore(ownerUserName, storeName, managerUserName));
+        }catch (Exception e){
+            return new ResponseT<>("getManagerPermissionsForStore: "+e.getMessage());
         }
     }
 

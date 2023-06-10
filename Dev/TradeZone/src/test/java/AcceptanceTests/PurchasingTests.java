@@ -109,7 +109,7 @@ public class PurchasingTests {
         proxy.setPaymentService(this.paymentService);
         proxy.setShipmentService(this.shipmentService);
         Mockito.when(paymentService.pay(Mockito.anyDouble(),Mockito.anyString(),Mockito.anyString(),Mockito.anyString(),Mockito.anyString(),Mockito.anyString(),Mockito.anyString())).thenReturn(1);
-        Mockito.when(paymentService.pay(Mockito.anyDouble(),Mockito.anyString(),Mockito.anyString(),Mockito.anyString(),Mockito.anyString(),Mockito.anyString(),Mockito.anyString())).thenReturn(2);
+        Mockito.when(shipmentService.supply(Mockito.anyString(),Mockito.anyString(),Mockito.anyString(),Mockito.anyString(),Mockito.anyString())).thenReturn(1);
     }
 
     @Test
@@ -131,6 +131,29 @@ public class PurchasingTests {
             Assertions.fail(e.getMessage());
         }
     }
+
+
+
+    @Test
+    public void purchase_cart_success_with_real_external_connections(){
+        try{
+            paymentService = new PaymentService("https://php-server-try.000webhostapp.com/");
+            shipmentService = new ShipmentService("https://php-server-try.000webhostapp.com/");
+            proxy.setPaymentService(this.paymentService);
+            proxy.setShipmentService(this.shipmentService);
+
+            proxy.addToCart(guest_name, storeName2, "gaming mouse 1", 1);
+            proxy.addToCart(member_name, storeName2, "iphone 14",1);
+            Assertions.assertTrue(proxy.purchaseCartByCreditCard(guest_name,user1_cardNumber,user1_month,user1_year,user1_holder,user1_cvv,user1_id,user1_receiverName,user1_shipmentAddress,user1_shipmentCity,user1_shipmentCountry,user1_zipCode));
+            Assertions.assertTrue(proxy.purchaseCartByCreditCard(member_name,member1_cardNumber,member1_month,member1_year,member1_holder,member1_cvv,member1_id,member1_receiverName,member1_shipmentAddress,member1_shipmentCity,member1_shipmentCountry,member1_zipCode));
+            Assertions.assertTrue(proxy.getCartContent(guest_name).isEmpty());
+            Assertions.assertTrue(proxy.getCartContent(member_name).isEmpty());
+
+        } catch (Exception e) {
+            Assertions.fail(e.getMessage());
+        }
+    }
+
 
 
     @Test
@@ -212,6 +235,30 @@ public class PurchasingTests {
             Assertions.assertTrue(proxy.getCartContent(guest_name).isEmpty());
             Assertions.assertThrows(Exception.class,()-> proxy.purchaseCartByCreditCard(member_name,member1_cardNumber,member1_month,member1_year,member1_holder,member1_cvv,member1_id,member1_receiverName,member1_shipmentAddress,member1_shipmentCity,member1_shipmentCountry,member1_zipCode));
             Assertions.assertFalse(proxy.getCartContent(member_name).isEmpty());
+        } catch (Exception e) {
+            Assertions.fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void purchase_cart_fail_store_is_not_active(){
+        try{
+            proxy.addToCart(member_name, storeName1, "iphone 14",1);
+            proxy.addToCart(member_name, storeName2, "gaming mouse 1", 1);
+            proxy.addToCart(guest_name, storeName2, "iphone 14",1);
+            proxy.setPaymentService(this.paymentService);
+            proxy.setShipmentService(this.shipmentService);
+            Mockito.when(paymentService.pay(Mockito.anyDouble(),Mockito.eq(user1_cardNumber),Mockito.eq(user1_month),Mockito.eq(user1_year),Mockito.eq(user1_holder),Mockito.eq(user1_cvv),Mockito.eq(user1_id))).thenReturn(1);
+            Mockito.when(paymentService.pay(Mockito.anyDouble(),Mockito.eq(member1_cardNumber),Mockito.eq(member1_month),Mockito.eq(member1_year),Mockito.eq(member1_holder),Mockito.eq(member1_cvv),Mockito.eq(member1_id))).thenReturn(2);
+            Mockito.when(shipmentService.supply(user1_receiverName,user1_shipmentAddress,user1_shipmentCity,user1_shipmentCountry,user1_zipCode)).thenReturn(1);
+            Mockito.when(shipmentService.supply(member1_receiverName,member1_shipmentAddress,member1_shipmentCity,member1_shipmentCountry,member1_zipCode)).thenReturn(2);
+
+            proxy.closeStore(store_founder,storeName1);
+            Assertions.assertTrue(proxy.purchaseCartByCreditCard(guest_name,user1_cardNumber,user1_month,user1_year,user1_holder,user1_cvv,user1_id,user1_receiverName,user1_shipmentAddress,user1_shipmentCity,user1_shipmentCountry,user1_zipCode));
+            Assertions.assertThrows(Exception.class, () -> proxy.purchaseCartByCreditCard(member_name,member1_cardNumber,member1_month,member1_year,member1_holder,member1_cvv,member1_id,member1_receiverName,member1_shipmentAddress,member1_shipmentCity,member1_shipmentCountry,member1_zipCode));
+            Assertions.assertTrue(proxy.getCartContent(guest_name).isEmpty());
+            Assertions.assertFalse(proxy.getCartContent(member_name).isEmpty());
+
         } catch (Exception e) {
             Assertions.fail(e.getMessage());
         }

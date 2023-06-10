@@ -59,6 +59,12 @@ public class Cart {
         }
     }
 
+    public void validateAllStoresIsActive() throws Exception {
+        for(Bag bag : bags.values()){
+            bag.validateStoreIsActive();
+        }
+    }
+
 
     public Double getCartPriceBeforeDiscount() throws Exception {
         Double totalPrice = 0.0;

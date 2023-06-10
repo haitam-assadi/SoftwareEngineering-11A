@@ -236,6 +236,36 @@ public class Store {
         return storeManager.addPermissionForStore(getStoreName(),permissionId);
     }
 
+
+    public boolean updateManagerPermissionsForStore(String ownerUserName, String managerUserName, List<Integer> newPermissions) throws Exception {
+        assertIsOwnerOrFounder(ownerUserName);
+        assertIsManager(managerUserName);
+        managerUserName = managerUserName.strip().toLowerCase();
+        StoreManager storeManager = storeManagers.get(managerUserName);
+        if(!storeManager.isMyBossForStore(getStoreName(), ownerUserName))
+            throw new Exception(ownerUserName+ " is not a boss for "+managerUserName+" in store "+getStoreName());
+
+        return storeManager.updateManagerPermissionsForStore(getStoreName(), newPermissions);
+    }
+
+
+
+    public List<Integer> getManagerPermissionsForStore(String ownerUserName, String managerUserName) throws Exception {
+        assertIsOwnerOrFounder(ownerUserName);
+        assertIsManager(managerUserName);
+        managerUserName = managerUserName.strip().toLowerCase();
+        StoreManager storeManager = storeManagers.get(managerUserName);
+        if(!storeManager.isMyBossForStore(getStoreName(), ownerUserName))
+            throw new Exception(ownerUserName+ " is not a boss for "+managerUserName+" in store "+getStoreName());
+
+        return storeManager.getManagerPermissionsForStore(getStoreName());
+    }
+
+    public List<String> getAllPermissions(String ownerUserName) throws Exception {
+        assertIsOwnerOrFounder(ownerUserName);
+        return StoreManager.getAllPermissions();
+    }
+
     public boolean isActive() {
         return isActive;
     }
@@ -293,7 +323,6 @@ public class Store {
             deals.add(deal.getDealDTO());
         }
         return deals;
-
     }
 
     public List<DealDTO> getMemberDeals(String otherMemberUserName, List<DealDTO> deals) {
@@ -953,6 +982,17 @@ public class Store {
         return storeDiscountPolicies.keySet().stream().toList();
     }
 
+
+
+    //return 1=storeFounder, 2=storeOwner, 3=storeManager, -1= noRule
+    public int getRuleForStore(String memberName) throws Exception {
+        memberName = memberName.strip().toLowerCase();
+        return
+                storeFounder.getUserName().equals(memberName) ? 1
+                : storeOwners.containsKey(memberName) ? 2
+                : storeManagers.containsKey(memberName) ? 3
+                : -1;
+    }
 
 
 
