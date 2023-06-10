@@ -716,11 +716,13 @@ public class PurchasingTests {
         try{
             proxy.createProductDiscountPolicy(store_founder,storeName1,"iphone 14",20,true);
             Assertions.assertFalse(proxy.getAllStoreDiscountPolicies(store_founder,storeName1).isEmpty());
+
+
             proxy.addToCart(member_name, storeName1, "iphone 14",1);
             Assertions.assertEquals(proxy.getCartPriceBeforeDiscount(member_name),3000.0);
             Assertions.assertEquals(proxy.getCartPriceAfterDiscount(member_name),3000.0-(3000.0*0.2));
 
-        } catch (Exception e) {
+        }catch (Exception e) {
             Assertions.fail(e.getMessage());
         }
     }

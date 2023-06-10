@@ -275,7 +275,7 @@ public class Store {
         assertIsManager(managerUserName);
         managerUserName = managerUserName.strip().toLowerCase();
         StoreManager storeManager = storeManagers.get(managerUserName);
-        if(!storeManager.isMyBossForStore(getStoreName(), ownerUserName))
+        if(!ownerUserName.equals(managerUserName) && !storeManager.isMyBossForStore(getStoreName(), ownerUserName))
             throw new Exception(ownerUserName+ " is not a boss for "+managerUserName+" in store "+getStoreName());
 
         return storeManager.getManagerPermissionsForStore(getStoreName());
