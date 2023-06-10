@@ -66,7 +66,8 @@ public class StoreController {
         else {
             store = response.getValue();
             storeName = store.storeName;
-            workers = buildWorkers(store);
+            if(currentPage.equals("workers"))
+                workers = buildWorkers(controller.getName(), store);
         }
         request.getSession().setAttribute("store", store);
         request.getSession().setAttribute("workers", workers);
@@ -300,7 +301,7 @@ public class StoreController {
             }
         }
 
-        ResponseT<Boolean> response = server.changeManagerPermissions(controller.getName(), store.storeName, managerName, permsIDs);
+        ResponseT<Boolean> response = server.updateManagerPermissionsForStore(controller.getName(), store.storeName, managerName, permsIDs);
         if(response.ErrorOccurred){
             alert.setFail(true);
             alert.setMessage(response.errorMessage);
@@ -596,7 +597,7 @@ public class StoreController {
         return "redirect:/discountPolicies";
     }
 
-    private Map<String, List<Worker>> buildWorkers(StoreDTO store){
+    private Map<String, List<Worker>> buildWorkers(String ownerName, StoreDTO store){
         Map<String, List<Worker>> workers = new LinkedHashMap<>();
         List<Worker> names = new ArrayList<>();
         names.add(new Worker(store.founderName, "Founder"));
@@ -607,11 +608,23 @@ public class StoreController {
         }
         workers.put("Owners", names);
 
-        String[] allPermissions = server.getAllPermissions();
+        ResponseT<List<String>> response = server.getAllPermissions(ownerName, store.storeName);
+        if(response.ErrorOccurred){
+            alert.setFail(true);
+            alert.setMessage(response.errorMessage);
+            return new LinkedHashMap<>();
+        }
+        List<String> allPermissions = response.getValue();
 
         names = new ArrayList<>();
         for(String manager : store.managersNames){
-            List<Integer> managerPerms = server.getManagerPermission(controller.getName(), manager);
+            ResponseT<List<Integer>> responseManager = server.getManagerPermissionsForStore(ownerName, store.storeName, manager);
+            if(responseManager.ErrorOccurred){
+                alert.setFail(true);
+                alert.setMessage(responseManager.errorMessage);
+                return new LinkedHashMap<>();
+            }
+            List<Integer> managerPerms = responseManager.getValue();
             Worker worker = new Worker(manager, "Manager");
             worker.buildAndSetPermissions(allPermissions, managerPerms);
             names.add(worker);

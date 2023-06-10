@@ -17,7 +17,7 @@
         <nav class="nav nav-pills nav-fill d-flex justify-content-end mt-2 mb-3">
 <!--            aria-current="page"-->
             <a th:classappend="${currentPage == 'stock' ? 'active' : ''}" class="nav-link" href="stock">Stock</a>
-            <a th:classappend="${currentPage == 'workers' ? 'active' : ''}" class="nav-link" href="workers">Workers</a>
+            <a th:if="${controller.hasPermission(store.storeName, 5)}" th:classappend="${currentPage == 'workers' ? 'active' : ''}" class="nav-link" href="workers">Workers</a>
             <a th:classappend="${currentPage == 'deals' ? 'active' : ''}" class="nav-link" href="deals">Deals</a>
             <a th:classappend="${currentPage == 'bagConstraints' ? 'active' : ''}" class="nav-link" href="bagConstraints">Bag Constraints</a>
             <a th:classappend="${currentPage == 'discountPolicies' ? 'active' : ''}" class="nav-link" href="discountPolicies">Discount Policies</a>

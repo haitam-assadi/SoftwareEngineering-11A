@@ -820,5 +820,12 @@ public class SystemService {
         }
     }
 
+    public ResponseT<List<String>> getAllPermissions(String ownerUserName, String storeName) {
+        try{
+            return new ResponseT<>(market.getAllPermissions(ownerUserName, storeName));
+        }catch (Exception e){
+            return new ResponseT<>("getAllPermissions: "+e.getMessage());
+        }
+    }
 
 }

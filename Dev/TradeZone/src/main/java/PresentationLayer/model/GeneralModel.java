@@ -152,6 +152,37 @@ public class GeneralModel {
         return total;
     }
 
+    private List<Integer> getManagerPermissionsForStore(String storeName){
+        ResponseT<List<Integer>> response = server.getManagerPermissionsForStore(this.name, storeName, this.name);
+        if(response.ErrorOccurred){
+            return null;
+        }
+        return response.getValue();
+    }
+
+    //return 1=storeFounder, 2=storeOwner, 3=storeManager, -1= noRule
+    public boolean hasPermission(String storeName, int permId){
+        ResponseT<Integer> response = server.getRuleForStore(storeName, this.name);
+        if(response.ErrorOccurred)
+            return false;
+        int role = response.getValue();
+        if(role == 1 || role == 2)
+            return true;
+        if(role == -1)
+            return false;
+        List<Integer> permissions = getManagerPermissionsForStore(storeName);
+        if(permissions == null)
+            return false;
+        return permissions.contains(permId);
+    }
+
+    public int getRole(String storeName){
+        ResponseT<Integer> response = server.getRuleForStore(storeName, this.name);
+        if(response.ErrorOccurred)
+            return -1;
+        return response.getValue();
+    }
+
     public static double round(double value, int places) {
         if (places < 0) throw new IllegalArgumentException();
 

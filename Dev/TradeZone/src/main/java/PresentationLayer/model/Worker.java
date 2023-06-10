@@ -10,7 +10,15 @@ public class Worker {
     // Permissions
     Map<Integer, Map<String, Boolean>> permissions; // <permission ID, <"permission", have/not have>>
 
-    public Worker(String name, String jobTitle /*, Map<id, string> Permissions*/){
+//    1.Get store deals permission.
+//    2.Add new product to stock permission.
+//    3.Remove product from stock permission.
+//    4.Update product information permission.
+//    5.Get workers information permission.
+//    6.Manage store discount policies permission.
+//    7.Manage store payment policies permission.
+
+    public Worker(String name, String jobTitle){
         this.name = name;
         this.jobTitle = jobTitle;
         this.permissions = new LinkedHashMap<>();
@@ -40,7 +48,7 @@ public class Worker {
         this.permissions = permissions;
     }
 
-    public void buildAndSetPermissions(String[] allPermissions, List<Integer> IDs) {
+    public void buildAndSetPermissions(List<String> allPermissions, List<Integer> IDs) {
         Map<Integer, Map<String, Boolean>> permissions = new LinkedHashMap<>();
         int id = 1;
         for(String s : allPermissions){
@@ -67,7 +75,7 @@ public class Worker {
     public boolean hasPermission(int permId){
         Map<String, Boolean> perm = permissions.getOrDefault(permId, null);
         if(perm == null)
-            return false;
+            return true; // TODO: ??? false
         return perm.values().iterator().next();
     }
 }
