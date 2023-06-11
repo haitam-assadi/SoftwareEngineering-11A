@@ -335,20 +335,12 @@ public class Store {
         return members;
     }
 
-    public List<DealDTO> getStoreDeals(String memberUserName) throws Exception {
-        assertIsOwnerOrFounderOrAuthorizedManager(memberUserName, ManagerPermissions.getStoreDeals);
+    public List<DealDTO> getStoreDeals(String memberUserName, boolean isSystemManager) throws Exception {
+        if(!isSystemManager)
+            assertIsOwnerOrFounderOrAuthorizedManager(memberUserName, ManagerPermissions.getStoreDeals);
         List<DealDTO> deals = new ArrayList<DealDTO>();
         for(Deal deal : this.storeDeals){
             deals.add(deal.getDealDTO());
-        }
-        return deals;
-    }
-
-    public List<DealDTO> getMemberDeals(String otherMemberUserName, List<DealDTO> deals) {
-        for(Deal deal : this.storeDeals){
-            if(deal.getDealUserName().equals(otherMemberUserName)){
-                deals.add(deal.getDealDTO());
-            }
         }
         return deals;
     }
@@ -380,9 +372,29 @@ public class Store {
 
 
     public Double getDiscountForBag(ConcurrentHashMap<String, ConcurrentHashMap<Product,Integer>> bagContent) throws Exception {
+//        Double totalBagDiscount = 0.0;
+//        for(DiscountPolicy discountPolicy : storeDiscountPolicies.values()){
+//            totalBagDiscount+= discountPolicy.calculateDiscount(bagContent);
+//        }
+//        return totalBagDiscount;
+
+        // should calculate the same value
         Double totalBagDiscount = 0.0;
         for(DiscountPolicy discountPolicy : storeDiscountPolicies.values()){
-            totalBagDiscount+= discountPolicy.calculateDiscount(bagContent);
+            for(String productName: bagContent.keySet())
+                totalBagDiscount+= discountPolicy.calculateDiscountForProduct(bagContent,productName);
+        }
+        return totalBagDiscount;
+    }
+
+    public Double getDiscountForProductInBag(ConcurrentHashMap<String, ConcurrentHashMap<Product,Integer>> bagContent, String productName) throws Exception {
+        assertStringIsNotNullOrBlank(productName);
+        stock.assertContainsProduct(productName);
+        productName=productName.strip().toLowerCase();
+        Double totalBagDiscount = 0.0;
+        for(DiscountPolicy discountPolicy : storeDiscountPolicies.values()){
+            if(bagContent.containsKey(productName))
+                totalBagDiscount+= discountPolicy.calculateDiscountForProduct(bagContent,productName);
         }
         return totalBagDiscount;
     }

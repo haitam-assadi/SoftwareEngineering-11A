@@ -1,5 +1,6 @@
 package DomainLayer.Controllers;
 
+import DTO.DealDTO;
 import DTO.MemberDTO;
 import DTO.StoreDTO;
 import DomainLayer.*;
@@ -180,6 +181,15 @@ public class UserController {
         throw new Exception("can't getUser: userName "+ userName+" does not exists!");
     }
 
+    public List<DealDTO> getUserDeals(String userName) throws Exception {
+        assertStringIsNotNullOrBlank(userName);
+        userName=userName.strip().toLowerCase();
+        if(!isGuest(userName))
+            assertIsMember(userName);
+        User user = getUser(userName);
+        return user.getUserDeals();
+    }
+
     public void assertIsGuestOrLoggedInMember(String userName) throws Exception {
         if(isGuest(userName))
             return;
@@ -242,7 +252,7 @@ public class UserController {
         }
     }
 
-    private boolean isSystemManager(String managerName) throws Exception {
+    public boolean isSystemManager(String managerName) throws Exception {
         assertStringIsNotNullOrBlank(managerName);
 
         managerName = managerName.strip().toLowerCase();
@@ -316,18 +326,6 @@ public class UserController {
     public Map<String, List<StoreDTO>> myStores(String memberUserName) throws Exception {
         assertIsMemberLoggedIn(memberUserName);
         return getMember(memberUserName).myStores();
-    }
-
-    public void checkMemberRole(String systemManagerUserName, String otherMemberUserName) throws Exception {
-        if(!this.members.containsKey(systemManagerUserName)){
-            throw new Exception(systemManagerUserName + "has to be a member to get member's deals.");
-        }
-        if(!this.members.containsKey(otherMemberUserName)){
-            throw new Exception(otherMemberUserName + "has to be a member to get his deals.");
-        }
-        if(!this.members.get(systemManagerUserName).containsRole("SystemManager")){
-            throw new Exception(systemManagerUserName + "has to be a system manager to get member's deals.");
-        }
     }
 
     public String memberLogOut(String memberUserName) throws Exception {

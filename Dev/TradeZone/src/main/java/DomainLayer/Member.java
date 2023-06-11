@@ -23,7 +23,6 @@ public class Member extends User{
 
     private boolean isOnline;
 
-
     public void setSystemManager(SystemManager systemManager) {
         this.systemManager = systemManager;
         isSystemManager = true;
