@@ -2,6 +2,7 @@ package AcceptanceTests;
 
 import DomainLayer.PaymentService;
 import DomainLayer.ShipmentService;
+import ServiceLayer.ResponseT;
 
 import java.util.*;
 
@@ -634,5 +635,31 @@ public class ProxyBridge implements Bridge{
             return realBridge.getCartPriceAfterDiscount(memberUserName);
         }
         return 0.0;
+    }
+
+
+
+    @Override
+    //return 1=storeFounder, 2=storeOwner, 3=storeManager, -1= noRule
+    public Integer getRuleForStore(String storeName, String memberName) throws Exception {
+        if(realBridge!=null){
+            return realBridge.getRuleForStore(storeName,memberName);
+        }
+        return -1;
+    }
+    @Override
+    public boolean updateManagerPermissionsForStore(String ownerUserName, String storeName, String managerUserName, List<Integer> newPermissions) throws Exception {
+        if(realBridge!=null){
+            return realBridge.updateManagerPermissionsForStore(ownerUserName, storeName, managerUserName, newPermissions);
+        }
+        return false;
+    }
+
+    @Override
+    public List<Integer> getManagerPermissionsForStore(String ownerUserName, String storeName, String managerUserName) throws Exception {
+        if(realBridge!=null){
+            return realBridge.getManagerPermissionsForStore(ownerUserName, storeName, managerUserName);
+        }
+        return new ArrayList<>();
     }
 }

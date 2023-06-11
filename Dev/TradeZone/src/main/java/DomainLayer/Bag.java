@@ -1,8 +1,11 @@
 package DomainLayer;
 
 import DTO.BagDTO;
+import DTO.DealDTO;
 import DTO.ProductDTO;
 
+import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -60,10 +63,11 @@ public class Bag {
         }
         return productNameAmount;
     }
-    public BagDTO getBagInfo(){
+    public BagDTO getBagInfo() throws Exception {
         ConcurrentHashMap<ProductDTO, Integer> bagContent = new ConcurrentHashMap<>();
         for (ConcurrentHashMap<Product,Integer> curr: this.bagContent.values()) {
-            bagContent.put(curr.keys().nextElement().getProductInfo(), curr.values().stream().toList().get(0));
+            Product currProduct = curr.keys().nextElement();
+            bagContent.put(currProduct.getProductInfo(storeBag.getProductDiscountPolicies(currProduct.getName())), curr.values().stream().toList().get(0));
         }
         return new BagDTO(storeBag.getStoreName(), bagContent);
     }
@@ -77,6 +81,15 @@ public class Bag {
             for (Product p : prodct_amount.keySet()){
                 storeBag.getProductWithAmount(p.getName(),prodct_amount.get(p));
             }
+        }
+    }
+
+
+    public void validateStoreIsActive() throws Exception {
+        if(!storeBag.isActive()){
+            List<String> productsNamesList = bagContent.keySet().stream().toList();
+            throw new Exception("store "+storeBag.getStoreName()+" is not active, you can't purchase these products "
+                    +productsNamesList.toString()+ " .");
         }
     }
 
@@ -110,5 +123,18 @@ public class Bag {
 
     public void removeAllProducts() {
         bagContent = new ConcurrentHashMap<>();
+    }
+
+    public Deal createDeal(User user) throws Exception {
+        HashMap<String, Double> products_prices = new HashMap<>();
+        HashMap<String, Integer> products_amount = new HashMap<>();
+        for (String productName: bagContent.keySet()){
+            Product product = bagContent.get(productName).keys().nextElement();
+            products_prices.put(productName, product.getPrice());
+            products_amount.put(productName, bagContent.get(productName).get(product));
+        }
+        Deal deal = new Deal(storeBag,user, LocalDate.now().toString(), products_prices, products_amount, getBagPriceBeforeDiscount(), getBagPriceAfterDiscount());
+        storeBag.addDeal(deal);
+        return deal;
     }
 }

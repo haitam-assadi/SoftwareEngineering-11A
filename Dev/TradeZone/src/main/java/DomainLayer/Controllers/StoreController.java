@@ -479,4 +479,12 @@ public class StoreController {
         return filteredProducts;
     }
 
+    //return 1=storeFounder, 2=storeOwner, 3=storeManager, -1= noRule
+    public int getRuleForStore(String storeName, String memberName) throws Exception {
+        assertIsStore(storeName);
+        storeName = storeName.strip().toLowerCase();
+        Store store = getStore(storeName);
+        return store.getRuleForStore(memberName);
+    }
+
 }

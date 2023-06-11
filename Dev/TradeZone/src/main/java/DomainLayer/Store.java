@@ -109,7 +109,7 @@ public class Store {
     }
 
     public boolean addNewProductToStock(String memberUserName,String nameProduct,String category, Double price, String description, Integer amount) throws Exception {
-        assertIsOwnerOrFounderOrAuthorizedManager(memberUserName, ManagerPermissions.addNewProduct);
+        assertIsOwnerOrFounderOrAuthorizedManager(memberUserName, ManagerPermissions.manageStock);
         if(amount == null || amount < 0)
             throw new Exception("the amount of the product cannot be negative or null");
         if(price==null ||  price < 0)
@@ -122,12 +122,12 @@ public class Store {
     }
 
     public boolean removeProductFromStock(String memberUserName, String productName) throws Exception {
-        assertIsOwnerOrFounderOrAuthorizedManager(memberUserName, ManagerPermissions.removeProduct);
+        assertIsOwnerOrFounderOrAuthorizedManager(memberUserName, ManagerPermissions.manageStock);
         return stock.removeProductFromStock(productName);
     }
 
     public boolean updateProductDescription(String memberUserName, String productName, String newProductDescription) throws Exception {
-        assertIsOwnerOrFounderOrAuthorizedManager(memberUserName, ManagerPermissions.updateProductInfo);
+        assertIsOwnerOrFounderOrAuthorizedManager(memberUserName, ManagerPermissions.manageStock);
         if(newProductDescription == null || newProductDescription.isBlank())
             throw new Exception("the Description of the product cannot be null");
         if(newProductDescription.length()>300)
@@ -138,7 +138,7 @@ public class Store {
     }
 
     public boolean updateProductAmount(String memberUserName, String productName, Integer newAmount) throws Exception {
-        assertIsOwnerOrFounderOrAuthorizedManager(memberUserName, ManagerPermissions.updateProductInfo);
+        assertIsOwnerOrFounderOrAuthorizedManager(memberUserName, ManagerPermissions.manageStock);
         if(newAmount < 0)
             throw new Exception("the amount of the product cannot be negative");
         if(!storeFounder.getUserName().equals(memberUserName) && !storeOwners.containsKey(memberUserName))
@@ -147,7 +147,7 @@ public class Store {
     }
 
     public boolean updateProductPrice(String memberUserName, String productName, Double newPrice) throws Exception {
-        assertIsOwnerOrFounderOrAuthorizedManager(memberUserName, ManagerPermissions.updateProductInfo);
+        assertIsOwnerOrFounderOrAuthorizedManager(memberUserName, ManagerPermissions.manageStock);
         if(newPrice <= 0)
             throw new Exception("the price of the product cannot be negative");
         if(!storeFounder.getUserName().equals(memberUserName) && !storeOwners.containsKey(memberUserName))
@@ -155,13 +155,27 @@ public class Store {
         return stock.updateProductPrice(productName,newPrice);
     }
 
-    public StoreDTO getStoreInfo(){
+    public StoreDTO getStoreInfo() throws Exception {
         List<String> ownersNames = this.storeOwners.values().stream().map(Role::getUserName).toList();
         List<String> managersNames = this.storeManagers.values().stream().map(Role::getUserName).toList();
         return new StoreDTO(storeName, storeFounder.getUserName(), ownersNames, managersNames, stock.getProductsInfoAmount(),isActive);
     }
     public ProductDTO getProductInfo(String productName) throws Exception {
-        return stock.getProductInfo(productName);
+        List<String> productDiscountPolicies = getProductDiscountPolicies(productName);
+        return stock.getProductInfo(productName, productDiscountPolicies);
+    }
+
+    public List<String> getProductDiscountPolicies(String productName) throws Exception {
+        assertStringIsNotNullOrBlank(productName);
+        stock.assertContainsProduct(productName);
+        productName=productName.strip().toLowerCase();
+
+        List<String> productDiscountPolicies = new ArrayList<>();
+        for(Integer discountId: storeDiscountPolicies.keySet())
+            if(storeDiscountPolicies.get(discountId).checkIfProductHaveDiscount(productName))
+                productDiscountPolicies.add(storeDiscountPolicies.get(discountId).toString());
+
+        return productDiscountPolicies;
     }
 
     public Integer getProductAmount(String productName) throws Exception {
@@ -236,6 +250,41 @@ public class Store {
         return storeManager.addPermissionForStore(getStoreName(),permissionId);
     }
 
+
+    public boolean updateManagerPermissionsForStore(String ownerUserName, String managerUserName, List<Integer> newPermissions) throws Exception {
+        assertIsOwnerOrFounder(ownerUserName);
+        assertIsManager(managerUserName);
+        managerUserName = managerUserName.strip().toLowerCase();
+        StoreManager storeManager = storeManagers.get(managerUserName);
+        if(!storeManager.isMyBossForStore(getStoreName(), ownerUserName))
+            throw new Exception(ownerUserName+ " is not a boss for "+managerUserName+" in store "+getStoreName());
+
+        return storeManager.updateManagerPermissionsForStore(getStoreName(), newPermissions);
+    }
+
+
+    public List<Integer> getManagerPermissionsForStore(String ownerUserName, String managerUserName) throws Exception {
+        assertStringIsNotNullOrBlank(ownerUserName);
+        assertStringIsNotNullOrBlank(managerUserName);
+        ownerUserName = ownerUserName.strip().toLowerCase();
+        managerUserName = managerUserName.strip().toLowerCase();
+
+        if(!ownerUserName.equals(managerUserName))
+            assertIsOwnerOrFounder(ownerUserName);
+
+        assertIsManager(managerUserName);
+        managerUserName = managerUserName.strip().toLowerCase();
+        StoreManager storeManager = storeManagers.get(managerUserName);
+        if(!storeManager.isMyBossForStore(getStoreName(), ownerUserName))
+            throw new Exception(ownerUserName+ " is not a boss for "+managerUserName+" in store "+getStoreName());
+
+        return storeManager.getManagerPermissionsForStore(getStoreName());
+    }
+
+    public List<String> getAllPermissions(String ownerUserName) throws Exception {
+        return StoreManager.getAllPermissions();
+    }
+
     public boolean isActive() {
         return isActive;
     }
@@ -293,7 +342,6 @@ public class Store {
             deals.add(deal.getDealDTO());
         }
         return deals;
-
     }
 
     public List<DealDTO> getMemberDeals(String otherMemberUserName, List<DealDTO> deals) {
@@ -953,6 +1001,17 @@ public class Store {
         return storeDiscountPolicies.keySet().stream().toList();
     }
 
+
+
+    //return 1=storeFounder, 2=storeOwner, 3=storeManager, -1= noRule
+    public int getRuleForStore(String memberName) throws Exception {
+        memberName = memberName.strip().toLowerCase();
+        return
+                storeFounder.getUserName().equals(memberName) ? 1
+                : storeOwners.containsKey(memberName) ? 2
+                : storeManagers.containsKey(memberName) ? 3
+                : -1;
+    }
 
 
 

@@ -44,7 +44,7 @@ public class Cart {
         return true;
     }
 
-    public List<BagDTO> getCartContent(){
+    public List<BagDTO> getCartContent() throws Exception {
         List<BagDTO> bagsDTO = new LinkedList<>();
         for(Bag bag: bags.values())
             bagsDTO.add(bag.getBagInfo());
@@ -60,6 +60,12 @@ public class Cart {
     public void validateAllProductsAmounts() throws Exception {
         for(Bag bag : bags.values()){
             bag.validateAllProductsAmounts();
+        }
+    }
+
+    public void validateAllStoresIsActive() throws Exception {
+        for(Bag bag : bags.values()){
+            bag.validateStoreIsActive();
         }
     }
 

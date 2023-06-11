@@ -6,6 +6,7 @@ import DTO.ProductDTO;
 import DTO.StoreDTO;
 import DomainLayer.PaymentService;
 import DomainLayer.ShipmentService;
+import DomainLayer.Store;
 import ServiceLayer.ResponseT;
 import ServiceLayer.SystemService;
 
@@ -838,6 +839,41 @@ public class RealBridge implements Bridge{
     @Override
     public Double getCartPriceAfterDiscount(String memberUserName) throws Exception {
         ResponseT<Double> response = systemService.getCartPriceAfterDiscount(memberUserName);
+        if (response.ErrorOccurred){
+            throw new Exception(response.errorMessage);
+        }
+        return response.getValue();
+    }
+
+
+
+
+    @Override
+    //return 1=storeFounder, 2=storeOwner, 3=storeManager, -1= noRule
+    public Integer getRuleForStore(String storeName, String memberName) throws Exception {
+        ResponseT<Integer> response = systemService.getRuleForStore(storeName,memberName);
+        if (response.ErrorOccurred){
+            throw new Exception(response.errorMessage);
+        }
+        return response.getValue();
+    }
+
+
+
+
+
+    @Override
+    public boolean updateManagerPermissionsForStore(String ownerUserName, String storeName, String managerUserName, List<Integer> newPermissions) throws Exception {
+        ResponseT<Boolean> response = systemService.updateManagerPermissionsForStore(ownerUserName, storeName, managerUserName, newPermissions);
+        if (response.ErrorOccurred){
+            throw new Exception(response.errorMessage);
+        }
+        return response.getValue();
+    }
+
+    @Override
+    public List<Integer> getManagerPermissionsForStore(String ownerUserName, String storeName, String managerUserName) throws Exception {
+        ResponseT<List<Integer>> response = systemService.getManagerPermissionsForStore(ownerUserName, storeName, managerUserName);
         if (response.ErrorOccurred){
             throw new Exception(response.errorMessage);
         }

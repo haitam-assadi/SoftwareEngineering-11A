@@ -93,7 +93,7 @@ public abstract class Role {
         return true;
     }
 
-    public MemberDTO getMemberDTO() {
+    public MemberDTO getMemberDTO() throws Exception {
         return this.member.getMemberDTO();
     }
 

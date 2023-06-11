@@ -15,24 +15,37 @@ public class Deal {
 
     private HashMap<String, Integer> products_amount;              //<productName, productAmount>
 
-    private double totalPrice;
+    private double totalPriceBeforeDiscount;
+    private double totalPriceAfterDiscount;
 
 
     public Deal(Store store, User user, String date, HashMap<String, Double> products_prices,  HashMap<String,
-            Integer> products_amount, double totalPrice){
+            Integer> products_amount, double totalPriceBeforeDiscount){
         this.store = store;
         this.user = user;
         this.date = date;
         this.products_prices = products_prices;
         this.products_amount = products_amount;
-        this.totalPrice = totalPrice;
+        this.totalPriceBeforeDiscount = totalPriceBeforeDiscount;
+    }
+
+
+    public Deal(Store store, User user, String date, HashMap<String, Double> products_prices,  HashMap<String,
+            Integer> products_amount, double totalPriceBeforeDiscount, double totalPriceAfterDiscount){
+        this.store = store;
+        this.user = user;
+        this.date = date;
+        this.products_prices = products_prices;
+        this.products_amount = products_amount;
+        this.totalPriceBeforeDiscount = totalPriceBeforeDiscount;
+        this.totalPriceAfterDiscount = totalPriceAfterDiscount;
     }
 
     public DealDTO getDealDTO() {
         //DealDTO(String storeName, String date, String username, HashMap<String, Double> products_prices,
         //                   HashMap<String, Integer> products_amount, double totalPrice){
         return new DealDTO(this.store.getStoreName(), this.date, this.user.userName, this.products_prices, this.products_amount,
-                this.totalPrice);
+                this.totalPriceBeforeDiscount);
     }
 
     public String getDealUserName(){
