@@ -4438,3 +4438,18 @@ fail in remove owner: req_user3is not owner for this store
 Jun 10, 2023 11:37:03 PM DomainLayer.LoggerManager sendErrorLog
 WARNING: 
 fail in adding product to stock: req_user2 is not a founder/owner or an authorized manager
+יוני 11, 2023 3:36:21 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store :user1_second_storeis closed
+יוני 11, 2023 3:36:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: userName guest_5 does not exists!
+יוני 11, 2023 3:50:16 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: string is null or empty
+יוני 11, 2023 3:50:56 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store :user1_second_storeis closed
+יוני 11, 2023 3:52:54 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: jnkjnk does not exists!
