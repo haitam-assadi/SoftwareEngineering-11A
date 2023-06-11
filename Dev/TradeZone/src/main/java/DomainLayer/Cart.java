@@ -16,8 +16,12 @@ public class Cart {
     }
 
     public boolean addToCart(Store store, String productName, Integer amount) throws Exception {
-        bags.putIfAbsent(store.getStoreName(), new Bag(store));
-        return bags.get(store.getStoreName()).addProduct(productName, amount);
+        if(!store.containsProduct(productName))
+            throw new Exception("the product dose not exist in the store");
+        else {
+            bags.putIfAbsent(store.getStoreName(), new Bag(store));
+            return bags.get(store.getStoreName()).addProduct(productName, amount);
+        }
 //        Bag bag = new Bag(store);
 //        bag.addProduct(productName,amount);
 //        bags.putIfAbsent(store.getStoreName(), bag);

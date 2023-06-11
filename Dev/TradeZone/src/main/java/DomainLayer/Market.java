@@ -79,8 +79,10 @@ public class Market {
         if(active) return storeController.getStoreInfo(storeName);
         else {
             Store store = storeController.getStore(storeName);
-            userController.assertIsOwnerOrSystemManager(userName, store);
-            return storeController.getStoreInfo(storeName);
+            if(!userController.assertIsOwnerOrSystemManager(userName, store))
+                throw new Exception("store :" + storeName + "is closed");
+            else
+                return storeController.getStoreInfo(storeName);
         }
     }
     public ProductDTO getProductInfoFromStore(String userName, String storeName, String productName) throws Exception {
