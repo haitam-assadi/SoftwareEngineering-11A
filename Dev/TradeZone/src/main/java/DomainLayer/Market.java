@@ -134,6 +134,7 @@ public class Market {
     public boolean addToCart(String userName, String storeName, String productName, Integer amount) throws Exception {
         userController.assertIsGuestOrLoggedInMember(userName);
         storeController.assertIsStore(storeName);
+        storeController.isActiveStore(storeName);
         User user = userController.getUser(userName);
         return user.addToCart(storeController.getStore(storeName), productName, amount);
     }
