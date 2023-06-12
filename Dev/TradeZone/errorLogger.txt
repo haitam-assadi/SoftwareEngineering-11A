@@ -4453,3 +4453,84 @@ fail in getting store info: store :user1_second_storeis closed
 יוני 11, 2023 3:52:54 אחה״צ DomainLayer.LoggerManager sendErrorLog
 WARNING: 
 fail in getting store info: store: jnkjnk does not exists!
+יוני 11, 2023 4:18:23 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: store moslem store is not active, you can't purchase these products [iphone 14] .
+יוני 11, 2023 4:24:50 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: store moslem store is not active, you can't purchase these products [iphone 14] .
+יוני 11, 2023 4:27:03 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: store moslem store is not active, you can't purchase these products [iphone 13] .
+יוני 11, 2023 6:19:29 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store :moslem storeis closed
+יוני 11, 2023 6:20:21 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store :moslem storeis closed
+יוני 11, 2023 6:20:51 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store :moslem storeis closed
+יוני 11, 2023 6:29:13 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: moslem store is not Active!
+יוני 11, 2023 6:29:34 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: bag must contain minimum 5 iphone 14 product
+יוני 11, 2023 6:29:34 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Shipment service error
+יוני 11, 2023 6:29:34 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: store moslem store is not active, you can't purchase these products [iphone 14] .
+יוני 11, 2023 6:29:34 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: store moslem store is not active, you can't purchase these products [iphone 13] .
+יוני 11, 2023 6:29:34 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: (category iphones is not allowed between 2024-06-11 and 2025-06-11 . ONLY IF category iphones is not allowed after 17:29 .)
+יוני 11, 2023 6:29:34 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: product iphone 14 is not allowed after 17:29 .
+יוני 11, 2023 6:29:34 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: category iphones is not allowed between 2022-06-11 and 2025-06-11 .
+יוני 11, 2023 6:29:34 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: bag must contain maximum 5 iphone 14 product
+יוני 11, 2023 6:29:34 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: category iphones is not allowed after 17:29 .
+יוני 11, 2023 6:29:34 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: moslem store is not Active!
+יוני 11, 2023 6:29:34 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: gaming mouse 1 have only 10 amount in stock!
+יוני 11, 2023 6:29:34 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Payment service error
+יוני 11, 2023 6:29:34 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: (category iphones is not allowed between 2022-06-11 and 2024-06-11 . AND category iphones is not allowed after 17:29 .)
+יוני 11, 2023 6:29:34 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: ((bag must contain minimum 2 iphone 13 product AND bag must contain minimum 7 iphone 14 product) AND bag must contain minimum 1 gaming chair1 product)
+יוני 11, 2023 6:29:34 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: store moslem store is not active, you can't purchase these products [iphone 14] .
+יוני 11, 2023 6:29:35 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: gaming mouse 1 have only 10 amount in stock!
+יוני 11, 2023 6:29:35 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store :moslem storeis closed
+יוני 11, 2023 6:29:35 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: (category iphones is not allowed between 2022-06-11 and 2025-06-11 . OR category iphones is not allowed after 17:29 .)
+יוני 11, 2023 6:29:35 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: product iphone 14 is not allowed between 2022-06-11 and 2024-06-11 .
+יוני 11, 2023 6:29:35 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Payment service error
