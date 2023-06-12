@@ -5,14 +5,7 @@ import DomainLayer.ShipmentService;
 import org.junit.jupiter.api.*;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
-
-import java.sql.SQLOutput;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 
 @TestInstance(value = TestInstance.Lifecycle.PER_CLASS)
@@ -1165,6 +1158,83 @@ public class PurchasingTests {
             Assertions.fail(e.getMessage());
         }
     }
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    /**
+     if a product in cart but the store closed after that , fail the purchase
+     */
+    @Test
+    public void purchase_for_product_but_the_store_closed_Success(){
+        try{
+            proxy.addToCart(member_name, storeName1, "iphone 13",1);
+            proxy.addToCart(member_name, storeName2, "iphone 14",1);
+            proxy.closeStore(store_founder,storeName1);
+            Assertions.assertThrows(Exception.class,()-> proxy.purchaseCartByCreditCard(member_name,member1_cardNumber,member1_month,member1_year,member1_holder,member1_cvv,member1_id,member1_receiverName,member1_shipmentAddress,member1_shipmentCity,member1_shipmentCountry,member1_zipCode));
+            proxy.removeProductFromCart(member_name,storeName1,"iphone 13");
+            Assertions.assertTrue(proxy.purchaseCartByCreditCard(member_name,member1_cardNumber,member1_month,member1_year,member1_holder,member1_cvv,member1_id,member1_receiverName,member1_shipmentAddress,member1_shipmentCity,member1_shipmentCountry,member1_zipCode));
+        } catch (Exception e) {
+            Assertions.fail(e.getMessage());
+        }
+    }
+
+
+    /**
+     if a product in cart but the store closed after that , fail the purchase
+     */
+    @Test
+    public void purchase_for_product_but_the_store_closed_Fail(){
+        try{
+            proxy.addToCart(member_name, storeName1, "iphone 14",1);
+            proxy.closeStore(store_founder,storeName1);
+            Assertions.assertThrows(Exception.class,()-> proxy.purchaseCartByCreditCard(member_name,member1_cardNumber,member1_month,member1_year,member1_holder,member1_cvv,member1_id,member1_receiverName,member1_shipmentAddress,member1_shipmentCity,member1_shipmentCountry,member1_zipCode));
+        } catch (Exception e) {
+            Assertions.fail(e.getMessage());
+        }
+    }
+
+    /**
+     we're going to add to cart form store closed
+     */
+    @Test
+    public void purchase_add_to_cart_but_the_store_closed(){
+        try{
+            proxy.closeStore(store_founder,storeName1);
+            Assertions.assertThrows(Exception.class,()-> proxy.addToCart(member_name, storeName1, "iphone 14",1));
+        } catch (Exception e) {
+            Assertions.fail(e.getMessage());
+        }
+    }
+
+    /**
+     the product iphone 13 just in storeName1, I closed the store,
+                the search for iphone 13 will give me an empty list
+     */
+    @Test
+    public void Scenario_search_for_specific_product_but_the_store_closed(){
+        try{
+            proxy.closeStore(store_founder,storeName1);
+            Assertions.assertTrue(proxy.getProductInfoFromMarketByName(member_name,"iphone 13").isEmpty());
+        } catch (Exception e) {
+            Assertions.fail(e.getMessage());
+        }
+    }
+
+    /**
+     we do a search in specific store but the store is close
+     */
+    @Test
+    public void Scenario_for_search_product_in_store_but_it_is_closed(){
+        try{
+            proxy.closeStore(store_founder,storeName1);
+            Assertions.assertThrows(Exception.class,()->proxy.getStoreProducts(member_name,storeName1));
+        } catch (Exception e) {
+            Assertions.fail(e.getMessage());
+        }
+    }
+
+
 
 
 }

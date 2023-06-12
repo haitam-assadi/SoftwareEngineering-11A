@@ -402,7 +402,17 @@ public class UserController {
         return false;
     }
 
-    private String nowTime(){
+    public boolean IsOwnerOrSystemManager(String userName,Store store){
+        try {
+            assertIsOwnerOrSystemManager(userName,store);
+            return true;
+        }catch (Exception e){
+            return false;
+        }
+    }
+
+
+        private String nowTime(){
         LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         return now.format(formatter);
