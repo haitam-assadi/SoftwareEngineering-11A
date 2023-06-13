@@ -387,6 +387,38 @@ public class SystemService {
         }
     }
 
+    public ResponseT<Boolean> fillOwnerContract(String memberUserName, String storeName, String newOwnerUserName, Boolean decisions){
+        try{
+             return new ResponseT<>(market.fillOwnerContract(memberUserName, storeName, newOwnerUserName,decisions));
+        }catch(Exception e){
+            return new ResponseT<>("fillOwnerContract: "+e.getMessage());
+        }
+    }
+
+    public ResponseT<List<OwnerContractDTO>> getAlreadyDoneContracts(String memberUserName, String storeName){
+        try{
+            return new ResponseT<>(market.getAlreadyDoneContracts(memberUserName, storeName));
+        }catch(Exception e){
+            return new ResponseT<>("getAlreadyDoneContracts: "+e.getMessage());
+        }
+    }
+
+    public ResponseT<List<OwnerContractDTO>> getMyCreatedContracts(String memberUserName, String storeName){
+        try{
+            return new ResponseT<>(market.getMyCreatedContracts(memberUserName, storeName));
+        }catch(Exception e){
+            return new ResponseT<>("getMyCreatedContracts: "+e.getMessage());
+        }
+    }
+
+    public ResponseT<List<OwnerContractDTO>> getPendingContractsForOwner(String memberUserName, String storeName){
+        try{
+            return new ResponseT<>(market.getPendingContractsForOwner(memberUserName, storeName));
+        }catch(Exception e){
+            return new ResponseT<>("getPendingContractsForOwner: "+e.getMessage());
+        }
+    }
+
     public ResponseT<Boolean> appointOtherMemberAsStoreManager(String memberUserName, String storeName, String newManagerUserName){
         try{
             String loggerMsg ="\nappointOtherMemberAsStoreManager(String memberUserName, String storeName, String newManagerUserName)\n"+

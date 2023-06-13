@@ -1,5 +1,6 @@
 package AcceptanceTests;
 
+import DTO.OwnerContractDTO;
 import DTO.ProductDTO;
 import ServiceLayer.ResponseT;
 
@@ -57,6 +58,14 @@ public interface Bridge {
     public boolean appointOtherMemberAsStoreOwner(String memberUserName, String storeName, String newOwnerUserName) throws Exception;
 
 //    List<String> getStoreOwners(String storeName); // delete
+
+    boolean fillOwnerContract(String memberUserName, String storeName, String newOwnerUserName, Boolean decisions) throws Exception;
+
+    List<OwnerContractDTO> getAlreadyDoneContracts(String memberUserName, String storeName) throws Exception;
+
+    List<OwnerContractDTO> getMyCreatedContracts(String memberUserName, String storeName) throws Exception;
+
+    List<OwnerContractDTO> getPendingContractsForOwner(String memberUserName, String storeName) throws Exception;
 
     String getOwnerAppointer(String OwnerName, String storeName) throws Exception;
 

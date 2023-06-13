@@ -1046,7 +1046,7 @@ public class Store {
                 storeOwnersDecisions.put(storeOwnerName,null);
         }
 
-        if(storeOwnersDecisions.keySet().size() ==0 ){
+        if(storeOwnersDecisions.keySet().size() == 0 ){
             triggerOwner.appointOtherMemberAsStoreOwner(this,newOwner);
             return true;
         }

@@ -1,13 +1,8 @@
 package AcceptanceTests;
 
-import DTO.BagDTO;
-import DTO.MemberDTO;
-import DTO.ProductDTO;
-import DTO.StoreDTO;
-import DomainLayer.LoggerManager;
+import DTO.*;
 import DomainLayer.PaymentService;
 import DomainLayer.ShipmentService;
-import DomainLayer.Store;
 import ServiceLayer.ResponseT;
 import ServiceLayer.SystemService;
 
@@ -167,6 +162,42 @@ public class RealBridge implements Bridge{
     @Override
     public boolean appointOtherMemberAsStoreOwner(String memberUserName, String storeName, String newOwnerUserName) throws Exception {
         ResponseT<Boolean> response = systemService.appointOtherMemberAsStoreOwner(memberUserName, storeName, newOwnerUserName);
+        if (response.ErrorOccurred){
+            throw new Exception(response.errorMessage);
+        }
+        return response.getValue();
+    }
+
+    @Override
+    public boolean fillOwnerContract(String memberUserName, String storeName, String newOwnerUserName, Boolean decisions) throws Exception {
+        ResponseT<Boolean> response = systemService.fillOwnerContract(memberUserName, storeName, newOwnerUserName,decisions);
+        if (response.ErrorOccurred){
+            throw new Exception(response.errorMessage);
+        }
+        return response.getValue();
+    }
+
+    @Override
+    public List<OwnerContractDTO> getAlreadyDoneContracts(String memberUserName, String storeName) throws Exception {
+        ResponseT<List<OwnerContractDTO>> response = systemService.getAlreadyDoneContracts(memberUserName, storeName);
+        if (response.ErrorOccurred){
+            throw new Exception(response.errorMessage);
+        }
+        return response.getValue();
+    }
+
+    @Override
+    public List<OwnerContractDTO> getMyCreatedContracts(String memberUserName, String storeName) throws Exception {
+        ResponseT<List<OwnerContractDTO>> response = systemService.getMyCreatedContracts(memberUserName, storeName);
+        if (response.ErrorOccurred){
+            throw new Exception(response.errorMessage);
+        }
+        return response.getValue();
+    }
+
+    @Override
+    public List<OwnerContractDTO> getPendingContractsForOwner(String memberUserName, String storeName) throws Exception {
+        ResponseT<List<OwnerContractDTO>> response = systemService.getPendingContractsForOwner(memberUserName, storeName);
         if (response.ErrorOccurred){
             throw new Exception(response.errorMessage);
         }

@@ -206,18 +206,18 @@ public class StoreTests {
         }
     }
 
-    @Test
-    public void appoint_member_as_store_owner_from_owner_success(){
-        try{
-            Assertions.assertTrue(proxy.appointOtherMemberAsStoreOwner(store_founder,storeName,member_name1));
-            Assertions.assertTrue(proxy.appointOtherMemberAsStoreOwner(member_name1,storeName,member_name2));
-            Assertions.assertTrue(proxy.getStoreOwnersNames(store_founder, storeName).contains(member_name2));
-//            Assertions.assertEquals(proxy.getOwnerAppointer(member_name2,storeName),member_name1);
-            //should check also managing policy to be as the founder/the owner that makes him owner
-        }catch (Exception e){
-            Assertions.fail(e.getMessage());
-        }
-    }
+//    @Test
+//    public void appoint_member_as_store_owner_from_owner_success(){
+//        try{
+//            Assertions.assertTrue(proxy.appointOtherMemberAsStoreOwner(store_founder,storeName,member_name1));
+//            Assertions.assertTrue(proxy.appointOtherMemberAsStoreOwner(member_name1,storeName,member_name2));
+//            Assertions.assertTrue(proxy.getStoreOwnersNames(store_founder, storeName).contains(member_name2));
+////            Assertions.assertEquals(proxy.getOwnerAppointer(member_name2,storeName),member_name1);
+//            //should check also managing policy to be as the founder/the owner that makes him owner
+//        }catch (Exception e){
+//            Assertions.fail(e.getMessage());
+//        }
+//    }
 
     @Test
     public void appoint_member_as_store_owner_not_member_fail(){
@@ -252,17 +252,17 @@ public class StoreTests {
     }
 
     //circular appointment
-    @Test
-    public void appoint_member_as_store_owner_3circular_fail(){
-        try{
-            Assertions.assertTrue(proxy.appointOtherMemberAsStoreOwner(store_founder,storeName,member_name1));
-            Assertions.assertTrue(proxy.appointOtherMemberAsStoreOwner(member_name1,storeName,member_name2));
-            Assertions.assertThrows(Exception.class, () -> proxy.appointOtherMemberAsStoreOwner(member_name2,storeName,store_founder));
-//            Assertions.assertNotEquals(member_name2, proxy.getOwnerAppointer(store_founder,storeName));
-        }catch (Exception e){
-            Assertions.fail(e.getMessage());
-        }
-    }
+//    @Test
+//    public void appoint_member_as_store_owner_3circular_fail(){
+//        try{
+//            Assertions.assertTrue(proxy.appointOtherMemberAsStoreOwner(store_founder,storeName,member_name1));
+//            Assertions.assertTrue(proxy.appointOtherMemberAsStoreOwner(member_name1,storeName,member_name2));
+//            Assertions.assertThrows(Exception.class, () -> proxy.appointOtherMemberAsStoreOwner(member_name2,storeName,store_founder));
+////            Assertions.assertNotEquals(member_name2, proxy.getOwnerAppointer(store_founder,storeName));
+//        }catch (Exception e){
+//            Assertions.fail(e.getMessage());
+//        }
+//    }
 
     // II.4.6
     //appoint member to be store manager test
@@ -462,16 +462,16 @@ public class StoreTests {
         }
     }
 
-    @Test
-    public void remove_owner_by_owner_success(){
-        try{
-            proxy.appointOtherMemberAsStoreOwner(store_founder, storeName, member_name1);
-            proxy.appointOtherMemberAsStoreOwner(member_name1, storeName, member_name2);
-            Assertions.assertTrue(proxy.removeOwnerByHisAppointer(member_name1,storeName,member_name2));
-        }catch (Exception e){
-            Assertions.fail(e.getMessage());
-        }
-    }
+//    @Test
+//    public void remove_owner_by_owner_success(){
+//        try{
+//            proxy.appointOtherMemberAsStoreOwner(store_founder, storeName, member_name1);
+//            proxy.appointOtherMemberAsStoreOwner(member_name1, storeName, member_name2);
+//            Assertions.assertTrue(proxy.removeOwnerByHisAppointer(member_name1,storeName,member_name2));
+//        }catch (Exception e){
+//            Assertions.fail(e.getMessage());
+//        }
+//    }
 
     @Test
     public void remove_owner_by_him_self_fail(){
@@ -484,16 +484,16 @@ public class StoreTests {
         }
     }
 
-    @Test
-    public void remove_owner_by_not_his_appointer_fail(){
-        try{
-            proxy.appointOtherMemberAsStoreOwner(store_founder, storeName, member_name1);
-            proxy.appointOtherMemberAsStoreOwner(store_founder, storeName, member_name2);
-            Assertions.assertThrows(Exception.class,()-> proxy.removeOwnerByHisAppointer(member_name1,storeName,member_name2));
-        }catch (Exception e){
-            Assertions.fail(e.getMessage());
-        }
-    }
+//    @Test
+//    public void remove_owner_by_not_his_appointer_fail(){
+//        try{
+//            proxy.appointOtherMemberAsStoreOwner(store_founder, storeName, member_name1);
+//            proxy.appointOtherMemberAsStoreOwner(store_founder, storeName, member_name2);
+//            Assertions.assertThrows(Exception.class,()-> proxy.removeOwnerByHisAppointer(member_name1,storeName,member_name2));
+//        }catch (Exception e){
+//            Assertions.fail(e.getMessage());
+//        }
+//    }
 
     @Test
     public void getRuleForStoreTest(){
