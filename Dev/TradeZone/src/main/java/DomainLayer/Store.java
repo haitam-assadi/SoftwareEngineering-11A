@@ -1,9 +1,6 @@
 package DomainLayer;
 
-import DTO.DealDTO;
-import DTO.MemberDTO;
-import DTO.ProductDTO;
-import DTO.StoreDTO;
+import DTO.*;
 import DomainLayer.BagConstraints.*;
 import DomainLayer.DiscountPolicies.*;
 
@@ -23,12 +20,15 @@ public class Store {
     //TODO:: maybe need to make it Concurrent
     private List<Deal> storeDeals;
     private ConcurrentHashMap<Integer,BagConstraint> createdBagConstraints;
-    Integer bagConstraintsIdCounter;
+    private Integer bagConstraintsIdCounter;
 
     private ConcurrentHashMap<Integer,DiscountPolicy> createdDiscountPolicies;
-    Integer discountPoliciesIdCounter;
+    private Integer discountPoliciesIdCounter;
     private ConcurrentHashMap<Integer,DiscountPolicy> storeDiscountPolicies;
     private ConcurrentHashMap<Integer,BagConstraint> storePaymentPolicies;
+
+    private ConcurrentHashMap<String, OwnerContract> newOwnersContracts;
+    private List<OwnerContract> alreadyDoneContracts;
 
     public Store(String storeName) {
         this.storeName = storeName;
@@ -46,6 +46,9 @@ public class Store {
         storePaymentPolicies = new ConcurrentHashMap<>();
         createdBagConstraints = new ConcurrentHashMap<>();
         bagConstraintsIdCounter =1;
+
+        this.newOwnersContracts = new ConcurrentHashMap<>();
+        this.alreadyDoneContracts = new ArrayList<>();
     }
     public void setStoreFounderAtStoreCreation(StoreFounder storeFounder) throws Exception {
         if(this.alreadyHaveFounder()){
@@ -335,20 +338,12 @@ public class Store {
         return members;
     }
 
-    public List<DealDTO> getStoreDeals(String memberUserName) throws Exception {
-        assertIsOwnerOrFounderOrAuthorizedManager(memberUserName, ManagerPermissions.getStoreDeals);
+    public List<DealDTO> getStoreDeals(String memberUserName, boolean isSystemManager) throws Exception {
+        if(!isSystemManager)
+            assertIsOwnerOrFounderOrAuthorizedManager(memberUserName, ManagerPermissions.getStoreDeals);
         List<DealDTO> deals = new ArrayList<DealDTO>();
         for(Deal deal : this.storeDeals){
             deals.add(deal.getDealDTO());
-        }
-        return deals;
-    }
-
-    public List<DealDTO> getMemberDeals(String otherMemberUserName, List<DealDTO> deals) {
-        for(Deal deal : this.storeDeals){
-            if(deal.getDealUserName().equals(otherMemberUserName)){
-                deals.add(deal.getDealDTO());
-            }
         }
         return deals;
     }
@@ -380,15 +375,37 @@ public class Store {
 
 
     public Double getDiscountForBag(ConcurrentHashMap<String, ConcurrentHashMap<Product,Integer>> bagContent) throws Exception {
+//        Double totalBagDiscount = 0.0;
+//        for(DiscountPolicy discountPolicy : storeDiscountPolicies.values()){
+//            totalBagDiscount+= discountPolicy.calculateDiscount(bagContent);
+//        }
+//        return totalBagDiscount;
+
+        // should calculate the same value
         Double totalBagDiscount = 0.0;
         for(DiscountPolicy discountPolicy : storeDiscountPolicies.values()){
-            totalBagDiscount+= discountPolicy.calculateDiscount(bagContent);
+            for(String productName: bagContent.keySet())
+                totalBagDiscount+= discountPolicy.calculateDiscountForProduct(bagContent,productName);
         }
         return totalBagDiscount;
     }
 
-    public void removeOwner(String userName) {
-        storeOwners.remove(userName);
+    public Double getDiscountForProductInBag(ConcurrentHashMap<String, ConcurrentHashMap<Product,Integer>> bagContent, String productName) throws Exception {
+        assertStringIsNotNullOrBlank(productName);
+        stock.assertContainsProduct(productName);
+        productName=productName.strip().toLowerCase();
+        Double totalBagDiscount = 0.0;
+        for(DiscountPolicy discountPolicy : storeDiscountPolicies.values()){
+            if(bagContent.containsKey(productName))
+                totalBagDiscount+= discountPolicy.calculateDiscountForProduct(bagContent,productName);
+        }
+        return totalBagDiscount;
+    }
+
+
+
+    public void removeManager(String userName) {
+        storeManagers.remove(userName);
     }
 
     public boolean removeBagAmountFromStock(ConcurrentHashMap<String, ConcurrentHashMap<Product,Integer>> bagContent) throws Exception {
@@ -953,7 +970,6 @@ public class Store {
     }
 
     public List<String> getAllBagConstraints(String memberUserName) throws Exception {
-        assertIsOwnerOrFounderOrAuthorizedManager(memberUserName, ManagerPermissions.manageStorePaymentPolicies);
         List<String> allBagConstraints = new LinkedList<>();
         for(Integer bagConstraintId : createdBagConstraints.keySet().stream().toList().stream().sorted().toList())
             allBagConstraints.add(bagConstraintId+". "+ createdBagConstraints.get(bagConstraintId).toString());
@@ -1013,6 +1029,116 @@ public class Store {
                 : -1;
     }
 
+    public boolean isContractExistsForNewOwner(String newOwnerName) throws Exception {
+        assertStringIsNotNullOrBlank(newOwnerName);
+        newOwnerName = newOwnerName.strip().toLowerCase();
+        return newOwnersContracts.containsKey(newOwnerName);
+    }
+
+
+    public boolean createContractForNewOwner(AbstractStoreOwner triggerOwner, Member newOwner) throws Exception {
+        ConcurrentHashMap<String, Boolean> storeOwnersDecisions = new ConcurrentHashMap<>();
+        if(!storeFounder.getUserName().equals(triggerOwner.getUserName()))
+            storeOwnersDecisions.put(storeFounder.getUserName(),false);
+
+        for (String storeOwnerName: this.storeOwners.keySet()){
+            if(!storeOwnerName.equals(triggerOwner.getUserName()))
+                storeOwnersDecisions.put(storeOwnerName,false);
+        }
+
+        if(storeOwnersDecisions.keySet().size() == 0 ){
+            triggerOwner.appointOtherMemberAsStoreOwner(this,newOwner);
+            return true;
+        }
+
+        OwnerContract ownerContract = new OwnerContract(triggerOwner, newOwner,this, storeOwnersDecisions);
+        newOwnersContracts.put(newOwner.getUserName(),ownerContract);
+        return true;
+    }
+
+    public boolean fillOwnerContract(String memberUserName, String newOwnerUserName, Boolean decisions) throws Exception {
+        if(decisions == null)
+            throw new Exception("decision can't be null");
+        assertStringIsNotNullOrBlank(newOwnerUserName);
+        newOwnerUserName = newOwnerUserName.strip().toLowerCase();
+        assertIsOwnerOrFounder(memberUserName);
+        memberUserName = memberUserName.strip().toLowerCase();
+
+        if(isOwnerOrFounder(newOwnerUserName))
+            throw new Exception("member "+ newOwnerUserName +" is already owner for store "+getStoreName());
+        if(!isContractExistsForNewOwner(newOwnerUserName))
+            throw new Exception("member "+ newOwnerUserName +" does not have ownership contract for store "+getStoreName());
+
+
+        OwnerContract ownerContract = newOwnersContracts.get(newOwnerUserName);
+        ownerContract.fillOwnerContract(memberUserName,decisions);
+        if (ownerContract.getContractIsDone()){
+            newOwnersContracts.remove(newOwnerUserName);
+            alreadyDoneContracts.add(ownerContract);
+        }
+        return true;
+    }
+
+
+    public List<OwnerContractDTO> getAlreadyDoneContracts(String memberUserName) throws Exception {
+        assertIsOwnerOrFounder(memberUserName);
+        memberUserName=memberUserName.strip().toLowerCase();
+        List<OwnerContractDTO> ownerContracts = new ArrayList<>();
+        for(OwnerContract ownerContract: this.alreadyDoneContracts){
+            if(ownerContract.getTriggerOwnerName().equals(memberUserName))
+                ownerContracts.add(ownerContract.getOwnerContractInfo());
+        }
+
+        return ownerContracts;
+    }
+
+    public List<OwnerContractDTO> getMyCreatedContracts(String memberUserName) throws Exception {
+        assertIsOwnerOrFounder(memberUserName);
+        memberUserName=memberUserName.strip().toLowerCase();
+        List<OwnerContractDTO> ownerContracts = new ArrayList<>();
+        for(OwnerContract ownerContract: this.newOwnersContracts.values()){
+            if(ownerContract.getTriggerOwnerName().equals(memberUserName))
+                ownerContracts.add(ownerContract.getOwnerContractInfo());
+        }
+
+        return ownerContracts;
+    }
+
+    public List<OwnerContractDTO> getPendingContractsForOwner(String memberUserName) throws Exception {
+        assertIsOwnerOrFounder(memberUserName);
+        memberUserName=memberUserName.strip().toLowerCase();
+        List<OwnerContractDTO> ownerPendingContracts = new ArrayList<>();
+        for(OwnerContract ownerContract: this.newOwnersContracts.values()){
+            if(ownerContract.contractIsPendingOnMember(memberUserName))
+                ownerPendingContracts.add(ownerContract.getOwnerContractInfo());
+        }
+
+        return ownerPendingContracts;
+    }
+
+    public void removeOwner(String userName) throws Exception {
+        storeOwners.remove(userName);
+
+        for(OwnerContract ownerContract: this.alreadyDoneContracts.stream().toList()){
+            if(ownerContract.getTriggerOwnerName().equals(userName))
+                alreadyDoneContracts.remove(ownerContract);
+        }
+
+        for(String otherUserName: this.newOwnersContracts.keySet().stream().toList()){
+            OwnerContract ownerContract = newOwnersContracts.get(otherUserName);
+            if(ownerContract.getTriggerOwnerName().equals(userName))
+                newOwnersContracts.remove(otherUserName);
+        }
+
+        for(String otherUserName: this.newOwnersContracts.keySet().stream().toList()){
+            OwnerContract ownerContract = newOwnersContracts.get(otherUserName);
+            if(ownerContract.contractIsPendingOnMember(userName)){
+                ownerContract.involvedOwnerIsRemoved(userName);
+                newOwnersContracts.remove(otherUserName);
+                alreadyDoneContracts.add(ownerContract);
+            }
+        }
+    }
 
 
 }

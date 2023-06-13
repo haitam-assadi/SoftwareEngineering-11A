@@ -16,5 +16,8 @@ enum BagConstraintType {
 }
 public interface BagConstraint {
 
+    public default boolean isPositiveBagConstraint(){
+        return false;
+    }
     boolean checkConstraint(ConcurrentHashMap<String, ConcurrentHashMap<Product,Integer>> bagContent);
 }

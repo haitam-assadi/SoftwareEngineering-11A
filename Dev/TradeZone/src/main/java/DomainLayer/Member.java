@@ -23,7 +23,6 @@ public class Member extends User{
 
     private boolean isOnline;
 
-
     public void setSystemManager(SystemManager systemManager) {
         this.systemManager = systemManager;
         isSystemManager = true;
@@ -59,6 +58,7 @@ public class Member extends User{
     public boolean appointOtherMemberAsStoreOwner(Store store, Member otherMember) throws Exception {
         AbstractStoreOwner owner = null;
         String storeName = store.getStoreName();
+
         if(roles.containsKey(RoleEnum.StoreFounder) && roles.get(RoleEnum.StoreFounder).haveStore(storeName))
             owner = (StoreFounder)roles.get(RoleEnum.StoreFounder);
         else if (roles.containsKey(RoleEnum.StoreOwner) && roles.get(RoleEnum.StoreOwner).haveStore(storeName))
@@ -66,7 +66,14 @@ public class Member extends User{
 
         if(owner == null) throw new Exception(""+getUserName()+" is not owner for "+storeName);
         else{
-            owner.appointOtherMemberAsStoreOwner(store,otherMember);
+            if(store.isAlreadyStoreOwner(otherMember.getUserName()))
+                throw new Exception("member "+otherMember.getUserName()+" is already store owner");
+            if(store.isAlreadyStoreManager(otherMember.getUserName()))
+                throw new Exception("member "+otherMember.getUserName()+" is already store manager");
+            if(store.isContractExistsForNewOwner(otherMember.getUserName()))
+                throw new Exception("member "+otherMember.getUserName()+" already have a contract for this store ownership");
+
+            store.createContractForNewOwner(owner, otherMember);
             return true;
         }
     }
@@ -84,6 +91,7 @@ public class Member extends User{
         store.appointMemberAsStoreOwner(storeOwnerRole);
         return true;
     }
+
 
     public StoreOwner getStoreOwner(){
         StoreOwner storeOwnerRole =  (StoreOwner) roles.get(RoleEnum.StoreOwner);
@@ -108,6 +116,22 @@ public class Member extends User{
         if(owner == null) throw new Exception(""+getUserName()+" is not owner for "+storeName);
         else{
             owner.appointOtherMemberAsStoreManager(store,otherMember);
+            return true;
+        }
+    }
+
+
+    public boolean removeOwnerByHisAppointer(Store store, Member otherMember) throws Exception {
+        AbstractStoreOwner owner = null;
+        String storeName = store.getStoreName();
+        if(roles.containsKey(RoleEnum.StoreFounder) && roles.get(RoleEnum.StoreFounder).haveStore(storeName))
+            owner = (StoreFounder)roles.get(RoleEnum.StoreFounder);
+        else if (roles.containsKey(RoleEnum.StoreOwner) && roles.get(RoleEnum.StoreOwner).haveStore(storeName))
+            owner = (StoreOwner)roles.get(RoleEnum.StoreOwner);
+
+        if(owner == null) throw new Exception(""+getUserName()+" is not owner for "+storeName);
+        else{
+            owner.removeOwnerByHisAppointer(store,otherMember);
             return true;
         }
     }
@@ -189,23 +213,6 @@ public class Member extends User{
             case "StoreFounder":
                 return RoleEnum.StoreFounder;
             default: return null;
-        }
-    }
-
-    public boolean removeOwnerByHisAppointer(Store store, Member otherMember) throws Exception {
-        AbstractStoreOwner owner = null;
-        StoreOwner otherOwner = null;
-        String storeName = store.getStoreName();
-        if(roles.containsKey(RoleEnum.StoreFounder) && roles.get(RoleEnum.StoreFounder).haveStore(storeName))
-            owner = (StoreFounder)roles.get(RoleEnum.StoreFounder);
-        else if (roles.containsKey(RoleEnum.StoreOwner) && roles.get(RoleEnum.StoreOwner).haveStore(storeName))
-            owner = (StoreOwner)roles.get(RoleEnum.StoreOwner);
-        if(owner == null) throw new Exception(""+getUserName()+" is not owner for "+storeName);
-        otherOwner = otherMember.getStoreOwner();
-        if(otherOwner == null) throw new Exception(""+otherOwner.getUserName()+" is not owner");
-        else{
-            owner.removeOwnerByHisAppointer(store,otherMember,otherOwner);
-            return true;
         }
     }
 

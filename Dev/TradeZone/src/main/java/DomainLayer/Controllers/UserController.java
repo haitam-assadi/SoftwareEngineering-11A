@@ -1,5 +1,6 @@
 package DomainLayer.Controllers;
 
+import DTO.DealDTO;
 import DTO.MemberDTO;
 import DTO.StoreDTO;
 import DomainLayer.*;
@@ -180,6 +181,15 @@ public class UserController {
         throw new Exception("can't getUser: userName "+ userName+" does not exists!");
     }
 
+    public List<DealDTO> getUserDeals(String userName) throws Exception {
+        assertStringIsNotNullOrBlank(userName);
+        userName=userName.strip().toLowerCase();
+        if(!isGuest(userName))
+            assertIsMember(userName);
+        User user = getUser(userName);
+        return user.getUserDeals();
+    }
+
     public void assertIsGuestOrLoggedInMember(String userName) throws Exception {
         if(isGuest(userName))
             return;
@@ -242,7 +252,7 @@ public class UserController {
         }
     }
 
-    private boolean isSystemManager(String managerName) throws Exception {
+    public boolean isSystemManager(String managerName) throws Exception {
         assertStringIsNotNullOrBlank(managerName);
 
         managerName = managerName.strip().toLowerCase();
@@ -318,18 +328,6 @@ public class UserController {
         return getMember(memberUserName).myStores();
     }
 
-    public void checkMemberRole(String systemManagerUserName, String otherMemberUserName) throws Exception {
-        if(!this.members.containsKey(systemManagerUserName)){
-            throw new Exception(systemManagerUserName + "has to be a member to get member's deals.");
-        }
-        if(!this.members.containsKey(otherMemberUserName)){
-            throw new Exception(otherMemberUserName + "has to be a member to get his deals.");
-        }
-        if(!this.members.get(systemManagerUserName).containsRole("SystemManager")){
-            throw new Exception(systemManagerUserName + "has to be a system manager to get member's deals.");
-        }
-    }
-
     public String memberLogOut(String memberUserName) throws Exception {
         assertIsMemberLoggedIn(memberUserName);
         loggedInMembers.get(memberUserName).Logout();
@@ -379,10 +377,10 @@ public class UserController {
         return user.getCart().updateStockAmount();
     }
 
-    public boolean removeOwnerByHisAppointer(String appointerUserName, Store store, String ownerUserName) throws Exception {
-        assertIsMemberLoggedIn(appointerUserName); // assert
+    public boolean removeOwnerByHisAppointer(String memberUserName, Store store, String ownerUserName) throws Exception {
+        assertIsMemberLoggedIn(memberUserName); // assert
         assertIsMember(ownerUserName); // assert
-        Member member = getMember(appointerUserName);
+        Member member = getMember(memberUserName);
         Member otherMember = getMember(ownerUserName);
         return member.removeOwnerByHisAppointer(store, otherMember);
     }
@@ -404,7 +402,17 @@ public class UserController {
         return false;
     }
 
-    private String nowTime(){
+    public boolean IsOwnerOrSystemManager(String userName,Store store){
+        try {
+            assertIsOwnerOrSystemManager(userName,store);
+            return true;
+        }catch (Exception e){
+            return false;
+        }
+    }
+
+
+        private String nowTime(){
         LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         return now.format(formatter);
