@@ -127,11 +127,45 @@
     </div>
 
     <div th:if="${!hasPerm}">
-        <h4>Not has Perm</h4>
-    </div>
+        <h4>TODO: Not has Perm - show products without change / add / remove</h4>
+        <div class="col-md-7 col-lg-8">
+            <div th:if="${store != null && store.productsInfoAmount != null && store.productsInfoAmount.isEmpty}" class="alert alert-warning text-center" role="alert">
+                <h2>No Products In This Store</h2>
+            </div>
 
+            <div th:if="${store != null && store.productsInfoAmount != null && !store.productsInfoAmount.empty}" class="row row-cols-1 mb-3">
+                <div class="col" th:each="product : ${store.productsInfoAmount.keySet}">
+                    <div class="card mb-5 rounded-3 shadow-sm">
+                        <div class="card-header py-3 text-center">
+                            <h4 class="text-center my-0 fw-normal" th:text="${product.name}">Name</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <h6 class="col-sm-2 mb-3">Category:</h6>
+                                <h6 class="col mb-3" th:text="${product.categories.get(0)}"></h6>
+                            </div>
+
+                            <div class="row align-items-center">
+                                <h6 class="col-sm-2 mb-3">Description:</h6>
+                                <h6 class="col mb-3" th:text="${product.description}"></h6>
+                            </div>
+
+                            <div class="row align-items-center">
+                                <h6 class="col-sm-2 mb-3">Price:</h6>
+                                <h6 class="col mb-3" th:text="${product.price} + ' $'"></h6>
+                            </div>
+
+                            <div class="row align-items-center">
+                                <h6 class="col-sm-2 mb-3">Amount:</h6>
+                                <h6 class="col mb-3" th:text="${store.productsInfoAmount.get(product)}"></h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </main>
 </div>
-
 </body>
 </html>

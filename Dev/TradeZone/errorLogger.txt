@@ -274,3 +274,24 @@ fail in appointing member as system manager: alaa have a role in a store
 יוני 10, 2023 11:02:14 אחה״צ DomainLayer.LoggerManager sendErrorLog
 WARNING: 
 fail in appointing member as system manager: baraa have a role in a store
+יוני 13, 2023 4:46:01 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: baraais not owner for this store
+יוני 13, 2023 4:51:46 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in closing the store: baraais not the founder of the store
+יוני 13, 2023 4:52:57 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: baraa is not owner for user1_second_store
+יוני 13, 2023 5:05:30 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: baraa is not owner for user1_second_store
+יוני 13, 2023 5:07:38 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: alaa is not owner for user1_second_store by user1
+יוני 13, 2023 5:08:14 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store manager: memberbaraa is already store owner
+יוני 13, 2023 5:08:30 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: baraa is not owner for user1_second_store

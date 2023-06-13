@@ -5,11 +5,12 @@
     <title>Workers</title>
 </head>
 <body>
-<div id="workers" th:fragment="workers(store, workers)">
+<div id="workers" th:fragment="workers(myName, store, workers, mRole)">
     <main class="container col-md-10">
+<!--        th:if="${mRole == 1 || mRole == 2}"-->
         <div class="row justify-content-between g-5 mt-3">
             <!--            appoint member-->
-            <div class="col-md-5 order-md-last">
+            <div th:if="${mRole == 1 || mRole == 2}" class="col-md-5 order-md-last">
                 <form action="appointMember" method="post">
                     <div>
                         <!--                    <label for="storeName" class="form-label">Search for stores:</label>-->
@@ -46,7 +47,7 @@
                             <div class="list-group-item">
                                 <div class="row align-items-center">
                                     <h5 class="col" th:text="${worker.name}"></h5>
-                                    <form th:if="${role == 'Owners'}" class="col-auto" action="removeOwner" method="post">
+                                    <form th:if="${myName != worker.name && role == 'Owners' && (mRole == 1 || mRole == 2)}" class="col-auto" action="removeOwner" method="post">
                                         <input type="hidden" name="memberName" th:value="${worker.name}">
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" value="" id="invalidCheckRemove" required>
@@ -57,10 +58,11 @@
                                     </form>
                                 </div>
                                 <div th:if="${role == 'Managers'}">
-                                    <form action="changeManagerPermissions" method="post">
+                                    <h6 style="color:orange">Permissions:</h6>
+
+<!--                                    founder / owner -->
+                                    <form th:if="${mRole == 1 || mRole == 2}" action="changeManagerPermissions" method="post">
                                         <input type="hidden" name="managerName" th:value="${worker.name}">
-                                        <h6>Permissions:</h6>
-                                        <!--                                    TODO: after merge-->
                                         <div th:each="pID : ${worker.permissions.keySet}">
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" th:value="${pID}" th:name="'perms'" th:id="${pID}" th:checked="${worker.hasPermission(pID)}">
@@ -77,6 +79,11 @@
                                             </label>
                                         </div>
                                     </form>
+
+<!--                                    manager-->
+                                    <div th:if="${mRole == 3}" th:each="pID : ${worker.permissions.keySet}">
+                                        <h6 th:if="${worker.hasPermission(pID)}" th:text="${worker.getPermission(pID)}"></h6>
+                                    </div>
                                 </div>
                             </div>
                         </ul>
@@ -87,6 +94,10 @@
             </div>
         </div>
 
+<!--        <div th:if="${mRole == 3}">-->
+<!--            <h4>TODO: manager does not have Perm - show workers name</h4>-->
+
+<!--        </div>-->
     </main>
 
 </div>
