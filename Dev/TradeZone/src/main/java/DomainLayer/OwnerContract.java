@@ -11,6 +11,7 @@ public class OwnerContract {
     private AbstractStoreOwner triggerOwner;
     private Member newOwner;
     private ConcurrentHashMap<String, Boolean> storeOwnersDecisions;
+    private String declinedOwner;
     private Store store;
 
 
@@ -25,6 +26,7 @@ public class OwnerContract {
         this.storeOwnersDecisions = storeOwnersDecisions;
         this.contractIsDone= false;
         contractStatus = "in progress";
+        declinedOwner = "";
     }
 
 
@@ -40,12 +42,13 @@ public class OwnerContract {
         if(!storeOwnersDecisions.containsKey(memberUserName))
             throw new Exception("owner "+ memberUserName +" can't fill this contract");
 
-        if(storeOwnersDecisions.get(memberUserName) != null)
+        if(storeOwnersDecisions.get(memberUserName))
             throw new Exception("owner "+ memberUserName +" already filled this contract");
 
         storeOwnersDecisions.put(memberUserName, decisions);
 
         if(!decisions){
+            declinedOwner = memberUserName;
             contractIsDone = true;
             contractStatus = "contract is rejected by "+memberUserName;
             return true;
@@ -85,12 +88,16 @@ public class OwnerContract {
         List<String> alreadyAcceptedOwners= new ArrayList<>();
         List<String> pendingOwners= new ArrayList<>();
         for(String ownerName: storeOwnersDecisions.keySet()){
-            if(storeOwnersDecisions.get(ownerName) == null){
+            if(storeOwnersDecisions.get(ownerName) == false){
                 pendingOwners.add(ownerName);
             }else if (storeOwnersDecisions.get(ownerName) == true){
                 alreadyAcceptedOwners.add(ownerName);
             }
         }
+
+        if (!declinedOwner.equals(""))
+            pendingOwners.remove(declinedOwner);
+
         return new OwnerContractDTO(triggerOwner.getUserName(), newOwner.getUserName(), store.getStoreName(),
                 contractStatus, alreadyAcceptedOwners, pendingOwners, contractIsDone);
     }
@@ -98,13 +105,16 @@ public class OwnerContract {
     public boolean contractIsPendingOnMember(String ownerUserName) throws Exception {
         assertStringIsNotNullOrBlank(ownerUserName);
         ownerUserName = ownerUserName.strip().toLowerCase();
-        if(storeOwnersDecisions.containsKey(ownerUserName) && storeOwnersDecisions.get(ownerUserName)==null)
+        if(!contractIsDone &&storeOwnersDecisions.containsKey(ownerUserName) && storeOwnersDecisions.get(ownerUserName)==false)
             return true;
 
         return false;
     }
 
-    public void involvedOwnerIsRemoved(String userName){
+    public void involvedOwnerIsRemoved(String userName) throws Exception {
+        assertStringIsNotNullOrBlank(userName);
+        userName=userName.strip().toLowerCase();
+        declinedOwner = userName;
         contractStatus = "owner "+userName +" has been removed before accepting, contract is rejected.";
         contractIsDone = true;
     }

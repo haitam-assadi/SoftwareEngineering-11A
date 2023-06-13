@@ -1039,11 +1039,11 @@ public class Store {
     public boolean createContractForNewOwner(AbstractStoreOwner triggerOwner, Member newOwner) throws Exception {
         ConcurrentHashMap<String, Boolean> storeOwnersDecisions = new ConcurrentHashMap<>();
         if(!storeFounder.getUserName().equals(triggerOwner.getUserName()))
-            storeOwnersDecisions.put(storeFounder.getUserName(),null);
+            storeOwnersDecisions.put(storeFounder.getUserName(),false);
 
         for (String storeOwnerName: this.storeOwners.keySet()){
             if(!storeOwnerName.equals(triggerOwner.getUserName()))
-                storeOwnersDecisions.put(storeOwnerName,null);
+                storeOwnersDecisions.put(storeOwnerName,false);
         }
 
         if(storeOwnersDecisions.keySet().size() == 0 ){
