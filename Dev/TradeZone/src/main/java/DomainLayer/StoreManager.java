@@ -128,4 +128,23 @@ public class StoreManager extends Role{
         managedStoresPermissions.remove(storeName);
     }
 
+    public boolean removeMemberAsStoreManager(Store store, AbstractStoreOwner myBoss) throws Exception {
+        String storeName = store.getStoreName();
+        if(!store.isAlreadyStoreManager(getUserName()))
+            throw new Exception("member "+getUserName()+" is not store Manager for store " + storeName);
+
+        if(!responsibleForStores.containsKey(storeName))
+            throw new Exception("member "+getUserName()+" is not store Manager for store " + storeName);
+
+        if(!myBossesForStores.get(storeName).getUserName().equals(myBoss.getUserName()))
+            throw new Exception(myBoss.getUserName()+" is not my boss for store "+ storeName);
+
+        store.removeManager(getUserName());
+        myBossesForStores.remove(storeName);
+        responsibleForStores.remove(storeName);
+        managedStoresPermissions.remove(storeName);
+
+        return true;
+    }
+
 }

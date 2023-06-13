@@ -36,9 +36,16 @@ public class MaxValDiscountPolicy implements DiscountPolicy{
     public Double calculateDiscountForProduct(ConcurrentHashMap<String, ConcurrentHashMap<Product, Integer>> bagContent, String productName) throws Exception {
         Double discountValue = 0.0;
 
-        if (bagConstraint.checkConstraint(bagContent))
-            discountValue = Double.max(firstDiscountPolicy.calculateDiscountForProduct(bagContent,productName), secondDiscountPolicy.calculateDiscountForProduct(bagContent,productName));
+        if(bagConstraint.checkConstraint(bagContent)){
 
+            Double firstDiscountValue = firstDiscountPolicy.calculateDiscount(bagContent);
+            Double secDiscountValue = secondDiscountPolicy.calculateDiscount(bagContent);
+            if (firstDiscountValue > secDiscountValue){
+                return firstDiscountPolicy.calculateDiscountForProduct(bagContent,productName);
+            }else {
+                return secondDiscountPolicy.calculateDiscountForProduct(bagContent,productName);
+            }
+        }
         return discountValue;
     }
 
@@ -48,6 +55,9 @@ public class MaxValDiscountPolicy implements DiscountPolicy{
     }
 
     public String toString(){
-        return "Max value discount between ("+ firstDiscountPolicy.toString()+") AND ("+secondDiscountPolicy.toString() +").";
+        String ret = "Max value discount between ("+ firstDiscountPolicy.toString()+") AND ("+secondDiscountPolicy.toString() +").";
+        if(!bagConstraint.isPositiveBagConstraint())
+            ret = "if ("+bagConstraint.toString()+") then you get "+ret;
+        return ret;
     }
 }

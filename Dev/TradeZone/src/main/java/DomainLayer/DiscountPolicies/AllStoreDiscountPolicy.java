@@ -55,6 +55,9 @@ public class AllStoreDiscountPolicy implements DiscountPolicy{
     }
 
     public String toString(){
-        return discountPercentage+"% discount on all store products.";
+        String ret =  discountPercentage+"% discount on all store products.";
+        if(!bagConstraint.isPositiveBagConstraint())
+            ret = "if ("+bagConstraint.toString()+") then you get "+ret;
+        return ret;
     }
 }

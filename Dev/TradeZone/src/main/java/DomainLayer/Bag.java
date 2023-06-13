@@ -69,7 +69,18 @@ public class Bag {
             Product currProduct = curr.keys().nextElement();
             bagContent.put(currProduct.getProductInfo(storeBag.getProductDiscountPolicies(currProduct.getName())), curr.values().stream().toList().get(0));
         }
-        return new BagDTO(storeBag.getStoreName(), bagContent);
+
+        ConcurrentHashMap<String, Double> priceWithAmountWithoutDiscount = new ConcurrentHashMap<>();
+        ConcurrentHashMap<String, Double> priceWithAmountWithDiscount = new ConcurrentHashMap<>();
+
+        for(ProductDTO productDTO: bagContent.keySet()){
+            String productName = productDTO.name;
+            Double discountValue = storeBag.getDiscountForProductInBag(this.bagContent, productName);
+            priceWithAmountWithoutDiscount.put(productName, productDTO.price*bagContent.get(productDTO));
+            priceWithAmountWithDiscount.put(productName, priceWithAmountWithoutDiscount.get(productName)-discountValue);
+        }
+
+        return new BagDTO(storeBag.getStoreName(), bagContent, priceWithAmountWithoutDiscount, priceWithAmountWithDiscount);
     }
 
     public void validateStorePolicy(String userName) throws Exception {
@@ -109,6 +120,7 @@ public class Bag {
             totalBagPrice += product.getProductPrice(curr.get(product));
         }
         totalBagPrice -= storeBag.getDiscountForBag(bagContent);
+
         return totalBagPrice;
     }
 
@@ -124,16 +136,26 @@ public class Bag {
     public void removeAllProducts() {
         bagContent = new ConcurrentHashMap<>();
     }
-
     public Deal createDeal(User user) throws Exception {
-        HashMap<String, Double> products_prices = new HashMap<>();
-        HashMap<String, Integer> products_amount = new HashMap<>();
+        ConcurrentHashMap<String, Double> products_prices = new ConcurrentHashMap<>();
+        ConcurrentHashMap<String, Integer> products_amount = new ConcurrentHashMap<>();
+        ConcurrentHashMap<String, Double> productPriceMultipleAmount = new ConcurrentHashMap<>();
+        ConcurrentHashMap<String, Double> productFinalPriceWithDiscount = new ConcurrentHashMap<>();
+
         for (String productName: bagContent.keySet()){
             Product product = bagContent.get(productName).keys().nextElement();
             products_prices.put(productName, product.getPrice());
             products_amount.put(productName, bagContent.get(productName).get(product));
         }
-        Deal deal = new Deal(storeBag,user, LocalDate.now().toString(), products_prices, products_amount, getBagPriceBeforeDiscount(), getBagPriceAfterDiscount());
+
+        for(String productName: products_prices.keySet()){
+            Double discountValue = storeBag.getDiscountForProductInBag(this.bagContent, productName);
+            productPriceMultipleAmount.put(productName, products_prices.get(productName)*products_amount.get(productName));
+            productFinalPriceWithDiscount.put(productName, productPriceMultipleAmount.get(productName)-discountValue);
+        }
+        Double totalPrice = getBagPriceAfterDiscount();
+
+        Deal deal = new Deal(storeBag,user, LocalDate.now().toString(), products_prices, products_amount, productPriceMultipleAmount, productFinalPriceWithDiscount,totalPrice);
         storeBag.addDeal(deal);
         return deal;
     }

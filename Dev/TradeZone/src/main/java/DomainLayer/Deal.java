@@ -3,6 +3,7 @@ package DomainLayer;
 import DTO.DealDTO;
 
 import java.util.HashMap;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class Deal {
 
@@ -11,41 +12,28 @@ public class Deal {
 
     private String date;
 
-    private HashMap<String, Double> products_prices;              //<productName, productPrice>
+    private ConcurrentHashMap<String, Double> products_prices;
+    private ConcurrentHashMap<String, Integer> products_amount;
+    private ConcurrentHashMap<String, Double> productPriceMultipleAmount;
+    private ConcurrentHashMap<String, Double> productFinalPriceWithDiscount;
+    private double totalPrice;
 
-    private HashMap<String, Integer> products_amount;              //<productName, productAmount>
 
-    private double totalPriceBeforeDiscount;
-    private double totalPriceAfterDiscount;
-
-
-    public Deal(Store store, User user, String date, HashMap<String, Double> products_prices,  HashMap<String,
-            Integer> products_amount, double totalPriceBeforeDiscount){
+    public Deal(Store store, User user, String date, ConcurrentHashMap<String, Double> products_prices,
+                ConcurrentHashMap<String, Integer> products_amount, ConcurrentHashMap<String, Double> productPriceMultipleAmount, ConcurrentHashMap<String, Double> productFinalPriceWithDiscount, double totalPrice){
         this.store = store;
         this.user = user;
         this.date = date;
         this.products_prices = products_prices;
         this.products_amount = products_amount;
-        this.totalPriceBeforeDiscount = totalPriceBeforeDiscount;
-    }
-
-
-    public Deal(Store store, User user, String date, HashMap<String, Double> products_prices,  HashMap<String,
-            Integer> products_amount, double totalPriceBeforeDiscount, double totalPriceAfterDiscount){
-        this.store = store;
-        this.user = user;
-        this.date = date;
-        this.products_prices = products_prices;
-        this.products_amount = products_amount;
-        this.totalPriceBeforeDiscount = totalPriceBeforeDiscount;
-        this.totalPriceAfterDiscount = totalPriceAfterDiscount;
+        this.totalPrice=totalPrice;
+        this.productPriceMultipleAmount=productPriceMultipleAmount;
+        this.productFinalPriceWithDiscount=productFinalPriceWithDiscount;
     }
 
     public DealDTO getDealDTO() {
-        //DealDTO(String storeName, String date, String username, HashMap<String, Double> products_prices,
-        //                   HashMap<String, Integer> products_amount, double totalPrice){
-        return new DealDTO(this.store.getStoreName(), this.date, this.user.userName, this.products_prices, this.products_amount,
-                this.totalPriceBeforeDiscount);
+        return new DealDTO(this.store.getStoreName(), this.date, this.user.userName, this.products_amount, this.products_prices,
+                this.productPriceMultipleAmount, this.productFinalPriceWithDiscount, this.totalPrice);
     }
 
     public String getDealUserName(){

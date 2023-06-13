@@ -60,6 +60,12 @@ public class CategoryDiscountPolicy implements DiscountPolicy{
     }
 
     public String toString(){
-        return discountPercentage+"% discount on "+category.getName()+" category.";
+        String ret = discountPercentage+"% discount on "+category.getName()+" category.";
+        if(!bagConstraint.isPositiveBagConstraint())
+            ret = "if ("+bagConstraint.toString()+") then you get "+ret;
+
+
+        return ret;
+
     }
 }

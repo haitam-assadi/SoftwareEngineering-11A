@@ -49,6 +49,7 @@ public class ProductDiscountPolicy implements DiscountPolicy{
         return discountValue;
     }
 
+
     @Override
     public boolean checkIfProductHaveDiscount(String productName) {
         productName=productName.strip().toLowerCase();
@@ -56,6 +57,10 @@ public class ProductDiscountPolicy implements DiscountPolicy{
     }
 
     public String toString(){
-        return discountPercentage+"% discount on "+product.getName()+" product.";
+        String ret = discountPercentage+"% discount on "+product.getName()+" product.";
+        if(!bagConstraint.isPositiveBagConstraint())
+            ret = "if ("+bagConstraint.toString()+") then you get "+ret;
+
+        return ret;
     }
 }
