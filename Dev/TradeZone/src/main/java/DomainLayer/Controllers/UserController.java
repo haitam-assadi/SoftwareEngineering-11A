@@ -377,10 +377,10 @@ public class UserController {
         return user.getCart().updateStockAmount();
     }
 
-    public boolean removeOwnerByHisAppointer(String appointerUserName, Store store, String ownerUserName) throws Exception {
-        assertIsMemberLoggedIn(appointerUserName); // assert
+    public boolean removeOwnerByHisAppointer(String memberUserName, Store store, String ownerUserName) throws Exception {
+        assertIsMemberLoggedIn(memberUserName); // assert
         assertIsMember(ownerUserName); // assert
-        Member member = getMember(appointerUserName);
+        Member member = getMember(memberUserName);
         Member otherMember = getMember(ownerUserName);
         return member.removeOwnerByHisAppointer(store, otherMember);
     }

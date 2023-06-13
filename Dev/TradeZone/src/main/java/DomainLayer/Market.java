@@ -192,8 +192,38 @@ public class Market {
 
     public boolean appointOtherMemberAsStoreOwner(String memberUserName, String storeName, String newOwnerUserName) throws Exception {
         userController.assertIsNotSystemManager(newOwnerUserName);
-        Store store = storeController.getStore(storeName); // TODO: MAYBE WE NEED TO CHECK IF STORE IS ACTIVE
+        Store store = storeController.getStore(storeName);
         return userController.appointOtherMemberAsStoreOwner(memberUserName,store,newOwnerUserName);
+    }
+
+    public boolean removeOwnerByHisAppointer(String memberUserName, String storeName, String ownerUserName) throws Exception {
+        Store store = storeController.getStore(storeName);
+        return userController.removeOwnerByHisAppointer(memberUserName,store,ownerUserName);
+    }
+
+    public boolean fillOwnerContract(String memberUserName, String storeName, String newOwnerUserName, Boolean decisions) throws Exception {
+        userController.assertIsMemberLoggedIn(memberUserName);
+        userController.assertIsMember(newOwnerUserName);
+        Store store = storeController.getStore(storeName);
+        return store.fillOwnerContract(memberUserName, newOwnerUserName, decisions);
+    }
+
+    public List<OwnerContractDTO> getAlreadyDoneContracts(String memberUserName, String storeName) throws Exception {
+        userController.assertIsMemberLoggedIn(memberUserName);
+        Store store = storeController.getStore(storeName);
+        return store.getAlreadyDoneContracts(memberUserName);
+    }
+
+    public List<OwnerContractDTO> getMyCreatedContracts(String memberUserName, String storeName) throws Exception {
+        userController.assertIsMemberLoggedIn(memberUserName);
+        Store store = storeController.getStore(storeName);
+        return store.getMyCreatedContracts(memberUserName);
+    }
+
+    public List<OwnerContractDTO> getPendingContractsForOwner(String memberUserName, String storeName) throws Exception {
+        userController.assertIsMemberLoggedIn(memberUserName);
+        Store store = storeController.getStore(storeName);
+        return store.getPendingContractsForOwner(memberUserName);
     }
 
     public boolean appointOtherMemberAsStoreManager(String memberUserName, String storeName, String newManagerUserName/*,list<Integer> permissions*/) throws Exception {
@@ -292,11 +322,6 @@ public class Market {
     public Double getCartPriceAfterDiscount(String memberUserName) throws Exception {
         userController.assertIsMemberLoggedIn(memberUserName);
         return userController.getCartPriceAfterDiscount(memberUserName);
-    }
-
-    public boolean removeOwnerByHisAppointer(String appointerUserName, String storeName, String ownerUserName ) throws Exception {
-        Store store = storeController.getStore(storeName); // TODO: MAYBE WE NEED TO CHECK IF STORE IS ACTIVE
-        return userController.removeOwnerByHisAppointer(appointerUserName,store,ownerUserName);
     }
 
     public Integer createMaxTimeAtDayProductBagConstraint(String memberUserName, String storeName, String productName, int hour, int minute, boolean addAsStorePaymentPolicy) throws Exception {

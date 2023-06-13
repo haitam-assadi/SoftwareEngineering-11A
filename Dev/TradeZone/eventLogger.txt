@@ -61538,3 +61538,45 @@ Jun 12, 2023 11:40:26 AM DomainLayer.LoggerManager sendEventLog
 INFO: 
  addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
 in 2023-06-12 11:40:26 the member req_user2 tries to add product to store  - addNewProductToStock(req_user2, store1, product5, category, 100.0, desc, 50)
+Jun 12, 2023 4:01:14 PM DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-12 16:01:14 the user guest_4 wants to make login login(guest_4, user1,Aa12345678)
+Jun 12, 2023 4:01:14 PM DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-12 16:01:14 a new member Logged in .
+- Memer name: user1
+
+Jun 12, 2023 4:01:14 PM DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-12 16:01:14 the user user1 tries to get his cart content  - getCartContent(user1)
+Jun 12, 2023 4:01:20 PM DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-12 16:01:20 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+Jun 12, 2023 4:01:20 PM DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-12 16:01:20 the user user1 got information about the store user1_second_store
+Jun 12, 2023 4:01:20 PM DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-12 16:01:20 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+Jun 12, 2023 4:01:20 PM DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-12 16:01:20 the user user1 got information about the store user1_second_store
+Jun 12, 2023 4:01:30 PM DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-12 16:01:30 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+Jun 12, 2023 4:01:30 PM DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-12 16:01:30 the user user1 got information about the store user1_second_store
+Jun 12, 2023 4:01:30 PM DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-12 16:01:30 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+Jun 12, 2023 4:01:31 PM DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-12 16:01:31 the user user1 got information about the store user1_second_store
+Jun 12, 2023 4:01:37 PM DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-12 16:01:37 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
+Jun 12, 2023 4:01:37 PM DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-12 16:01:37 the user user1 got information about the store user1_second_store
