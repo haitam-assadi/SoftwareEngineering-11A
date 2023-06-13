@@ -879,4 +879,25 @@ public class RealBridge implements Bridge{
         }
         return response.getValue();
     }
+
+    public void takeDownSystemManagerAppointment(String storeName, String appointedMember) {
+        systemService.takeDownSystemManagerAppointment(storeName, appointedMember);
+    }
+
+    public Map<String, List<String>> getStoreInfo(String userName, String storeName) throws Exception {
+        ResponseT<StoreDTO> response = systemService.getStoreInfo(userName, storeName);
+        if (response.ErrorOccurred){
+            throw new Exception(response.errorMessage);
+        }
+        Map details = new HashMap();
+        List store= new ArrayList();
+        store.add(response.value.storeName);
+        List founder = new ArrayList();
+        founder.add(response.value.founderName);
+        details.put("storeName",store);
+        details.put("founderName", founder);
+        details.put("ownersNames", response.value.ownersNames);
+        details.put("managersNames", response.value.managersNames);
+        return details;
+    }
 }

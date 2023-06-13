@@ -3,6 +3,8 @@ package DomainLayer;
 
 import java.util.LinkedList;
 import java.util.concurrent.ConcurrentHashMap;
+import CommunicationLayer.Server;
+import java.io.IOException;
 
 enum  NotificationType{
     storeClosed,
@@ -40,6 +42,12 @@ public class NotificationService {
                 type_memberList.get(notificationType).add(member);
                 storeRulesNotificator.put(storeName,type_memberList);
             }
+            else{
+                LinkedList<Member> members = new LinkedList<>();
+                members.add(member);
+                type_memberList.put(notificationType,members);
+                storeRulesNotificator.put(storeName,type_memberList);
+            }
         }else{
             LinkedList<Member> members = new LinkedList<>();
             members.add(member);
@@ -62,22 +70,24 @@ public class NotificationService {
         }
     }
 
-    public void notify(String storeName,String msg,NotificationType notificationType){
+    public void notify(String storeName,String msg,NotificationType notificationType) throws IOException {
         ConcurrentHashMap<NotificationType, LinkedList<Member>> type_memberList = storeRulesNotificator.get(storeName);
         if(type_memberList.containsKey(notificationType)) {
             LinkedList<Member> members = type_memberList.get(notificationType);
-            members.forEach(member -> member.send(msg));
+            for(Member member : members){
+                member.send(msg);
+            }
         }
     }
 
-    public void notifyMember(String userName,String msg,NotificationType notificationType){
+    public void notifyMember(String userName,String msg,NotificationType notificationType) throws IOException {
         ConcurrentHashMap<NotificationType, Member> type_member = memberNotificator.get(userName);
         if(type_member.containsKey(notificationType)) {
             type_member.get(notificationType).send(msg);
         }
     }
 
-    public void notifySingle(String storeName,String user,String msg,NotificationType notificationType){
+    public void notifySingle(String storeName,String user,String msg,NotificationType notificationType) throws IOException {
         ConcurrentHashMap<NotificationType, LinkedList<Member>> type_memberList = storeRulesNotificator.get(storeName);
         if(type_memberList.containsKey(notificationType)) {
             LinkedList<Member> members = type_memberList.get(notificationType);
@@ -90,8 +100,8 @@ public class NotificationService {
             }
         }
     }
-    public void send(String userName,String msg){
-
+    public void send(String userName,String msg) throws IOException {
+        Server.getInstance().sendMessage(userName, msg);
     }
 
     public void removeRule(String storeName, Member member) {

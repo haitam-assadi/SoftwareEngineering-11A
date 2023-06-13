@@ -5,6 +5,7 @@ import DomainLayer.LoggerManager;
 import ServiceLayer.ResponseT;
 import ServiceLayer.SystemService;
 import jdk.jshell.spi.ExecutionControl;
+import PresentationLayer.controller.MyWebSocketHandler;
 
 import java.io.IOException;
 import java.util.*;
@@ -12,6 +13,7 @@ import java.util.*;
 public class Server {
 
     private static Server server = null;
+    private MyWebSocketHandler socket;
     private SystemService service;
     public static Server getInstance(){
         if(server == null){
@@ -22,6 +24,7 @@ public class Server {
 
     private Server(){
         service = new SystemService();
+        socket = MyWebSocketHandler.getInstance();
     }
 
 
@@ -339,5 +342,17 @@ public class Server {
 
     public ResponseT<MemberDTO> getMemberInfo(String callerMemberName, String returnedMemberName) {
         return service.getMemberInfo(callerMemberName, returnedMemberName);
+    }
+
+    public void sendMessage(String userName, String message) throws IOException {
+        socket.sendMessage(userName, message);
+    }
+
+    public ResponseT<List<String>> checkForAppendingMessages(String guestName) throws Exception {
+        return service.checkForAppendingMessages(guestName);
+    }
+
+    public List<String> getLiveMessages(String memberName) throws Exception {
+        return service.getLiveMessages(memberName);
     }
 }

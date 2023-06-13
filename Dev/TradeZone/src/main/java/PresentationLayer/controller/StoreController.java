@@ -78,6 +78,7 @@ public class StoreController {
         model.addAttribute("deals", deals);
         model.addAttribute("constraints", constraints);
         alert.reset();
+        model.addAttribute("hasMessages", controller.hasMessages());
 //        currentPage = "stock"; // ???
         return "storeTemplates/store";
     }

@@ -25,6 +25,8 @@ public class GeneralModel {
     private List<Bag> cart;
     private Alert alert;
 
+    private List<String> messages;
+
     private static GeneralModel controller = null;
     public static GeneralModel getInstance(){
         if(controller == null){
@@ -42,6 +44,7 @@ public class GeneralModel {
         this.cartTotalPrice = 0;
         cart = new ArrayList<>();
         alert = Alert.getInstance();
+        messages = new ArrayList<>();
     }
 
     public String getName(){
@@ -186,5 +189,21 @@ public class GeneralModel {
         }
 
         return currentPage;
+    }
+
+    public List<String> getMessages(){
+        return this.messages;
+    }
+
+    public boolean hasMessages(){
+        return this.messages.size() != 0;
+    }
+
+    public void addMessage(String inputMessage) {
+        for(String currentMessage : this.messages){
+            if(currentMessage.equals(inputMessage))
+                return;
+        }
+        this.messages.add(inputMessage);
     }
 }

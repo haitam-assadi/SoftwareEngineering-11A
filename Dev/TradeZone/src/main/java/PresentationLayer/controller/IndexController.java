@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import java.lang.System;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,12 +19,13 @@ import java.util.List;
 public class IndexController {
 	private static boolean isMarketInit = false;
 	private Server server = Server.getInstance();
+	static String guestName;
 	GeneralModel controller;
 	List<ProductDTO> products; // = new ArrayList<>()
 	Alert alert = Alert.getInstance();
 
 	@GetMapping("/")
-	public String index(HttpServletRequest request, Model model) {
+	public String index(HttpServletRequest request, Model model) throws Exception {
 		String referer = request.getHeader("referer");
 		controller = new GeneralModel();
 		products = null;
@@ -52,10 +54,28 @@ public class IndexController {
 			request.getSession().setAttribute("controller",controller);
 			request.getSession().setAttribute("products",null);
 		}
+		guestName = controller.getName();
 		model.addAttribute("controller", controller);
 		model.addAttribute("alert", alert.copy());
 		model.addAttribute("products", products);
 		alert.reset();
+		ResponseT response = server.checkForAppendingMessages(guestName);
+		if(response.ErrorOccurred){
+			System.out.println(response.errorMessage);
+		}
+		else{
+			List<String> appendedMessages = (List<String>) response.value;
+			for(String message : appendedMessages){
+				controller.addMessage(message);
+			}
+		}
+		List<String> liveMessages = Server.getInstance().getLiveMessages(controller.getName());
+		for(String message : liveMessages){
+			controller.addMessage(message);
+		}
+		List<String> messages = controller.getMessages();
+		model.addAttribute("hasMessages", controller.hasMessages());
+		model.addAttribute("messages", messages);
 //		products = null; // TODO: ???
 		return "index";
 	}

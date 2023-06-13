@@ -5,6 +5,7 @@ import DomainLayer.Controllers.StoreController;
 import DomainLayer.Controllers.UserController;
 import jdk.jshell.spi.ExecutionControl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -474,6 +475,32 @@ public class Market {
     public int getRuleForStore(String storeName, String memberName) throws Exception {
         userController.assertIsMemberLoggedIn(memberName);
         return storeController.getRuleForStore(storeName,memberName);
+    }
+
+
+    public void takeDownSystemManagerAppointment(String storeName, String appointedMember) {
+        userController.takeDownSystemManagerAppointment(appointedMember);
+        storeController.takeDownSystemManagerAppointment(storeName, appointedMember);
+    }
+
+    public List<String> checkForAppendingMessages(String guestName) throws Exception {
+        List<String> messages = new ArrayList<>();
+        List<String> loggedIn_members = getAllLoggedInMembers();
+        if(loggedIn_members.contains(guestName)){
+            Member member = userController.getMember(guestName);
+            messages = member.checkForAppendingMessages();
+        }
+        return messages;
+    }
+
+    public List<String> getLiveMessages(String memberName) throws Exception {
+        List<String> messages = new ArrayList<>();
+        List<String> loggedIn_members = getAllLoggedInMembers();
+        if(loggedIn_members.contains(memberName)){
+            Member member = userController.getMember(memberName);
+            messages = member.getLiveMessages();
+        }
+        return messages;
     }
 
 }

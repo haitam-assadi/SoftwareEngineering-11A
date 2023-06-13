@@ -24,7 +24,7 @@ public class MyStoresController {
     Alert alert = Alert.getInstance();
 
     @GetMapping("/myStores")
-    public String myStores(HttpServletRequest request, Model model) {
+    public String myStores(HttpServletRequest request, Model model) throws Exception {
         myStores = null; // or new ... ???
         if(request.getSession().getAttribute("controller") != null){
             controller = (GeneralModel) request.getSession().getAttribute("controller");
@@ -45,6 +45,13 @@ public class MyStoresController {
         model.addAttribute("myStores", myStores);
         request.getSession().setAttribute("myStores", myStores);
         alert.reset();
+        List<String> liveMessages = Server.getInstance().getLiveMessages(controller.getName());
+        for(String message : liveMessages){
+            controller.addMessage(message);
+        }
+        List<String> messages = controller.getMessages();
+        model.addAttribute("hasMessages", controller.hasMessages());
+        model.addAttribute("messages", messages);
         return "myStores";
     }
 

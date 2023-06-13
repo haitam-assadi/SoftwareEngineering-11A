@@ -662,4 +662,20 @@ public class ProxyBridge implements Bridge{
         }
         return new ArrayList<>();
     }
+
+    //FOR ACCTEST OF STORE MANAGER
+    public boolean takeDownSystemManagerAppointment(String storeName, String appointedMember){
+        if(realBridge!=null){
+            realBridge.takeDownSystemManagerAppointment(storeName, appointedMember);
+            return true;
+        }
+        return false;
+    }
+
+    public Map<String, List<String>> getStoreInfo(String userName, String storeName) throws Exception {
+        if(realBridge!=null){
+            return realBridge.getStoreInfo(userName, storeName);
+        }
+        return null;
+    }
 }

@@ -7,8 +7,10 @@ import DTO.StoreDTO;
 import DomainLayer.BagConstraints.*;
 import DomainLayer.DiscountPolicies.*;
 
+import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
+import java.io.IOException;
 
 
 public class Store {
@@ -389,6 +391,10 @@ public class Store {
 
     public void removeOwner(String userName) {
         storeOwners.remove(userName);
+    }
+
+    public void removeManager(String userName) {
+        storeManagers.remove(userName);
     }
 
     public boolean removeBagAmountFromStock(ConcurrentHashMap<String, ConcurrentHashMap<Product,Integer>> bagContent) throws Exception {
@@ -965,7 +971,7 @@ public class Store {
         return storeFounder.getUserName().equals(memberUserName) || storeOwners.containsKey(memberUserName) || storeManagers.containsKey(memberUserName);
     }
 
-    public boolean systemManagerCloseStore(String managerName) {
+    public boolean systemManagerCloseStore(String managerName) throws IOException {
         storeFounder.removeStore(storeName);
         for (StoreOwner storeOwner: storeOwners.values()){
             storeOwner.removeStore(storeName);

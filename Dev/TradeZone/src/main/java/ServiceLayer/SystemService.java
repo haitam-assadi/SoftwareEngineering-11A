@@ -820,5 +820,21 @@ public class SystemService {
         }
     }
 
+    //FOR ACCTEST OF STORE MANAGER
+    public void takeDownSystemManagerAppointment(String storeName, String appointedMember){
+        this.market.takeDownSystemManagerAppointment(storeName, appointedMember);
+    }
 
+    public ResponseT<List<String>> checkForAppendingMessages(String guestName) throws Exception {
+        try{
+            List<String> messages = market.checkForAppendingMessages(guestName);
+            return new ResponseT<>(messages);
+        }catch (Exception e){
+            return new ResponseT<>("checkForAppendingMessages: " + e.getMessage());
+        }
+    }
+
+    public List<String> getLiveMessages(String memberName) throws Exception {
+        return market.getLiveMessages(memberName);
+    }
 }

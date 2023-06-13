@@ -6,6 +6,7 @@ import DTO.StoreDTO;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
+import java.io.IOException;
 enum RoleEnum {
     StoreOwner,
     StoreFounder,
@@ -22,6 +23,8 @@ public class Member extends User{
     private List<String> pendingMessages;
 
     private boolean isOnline;
+
+    private List<String> liveMessages;
 
 
     public void setSystemManager(SystemManager systemManager) {
@@ -41,6 +44,7 @@ public class Member extends User{
         systemManager = null;
         pendingMessages = new ArrayList<>();
         isOnline = false;
+        liveMessages = new ArrayList<>();
     }
 
 
@@ -230,15 +234,16 @@ public class Member extends User{
     }
 
 
-    public void send(String msg){
+    public void send(String msg) throws IOException {
         if(isOnline){
             NotificationService.getInstance().send(userName,msg);
+            liveMessages.add(msg);
         }else{
             pendingMessages.add(msg);
         }
     }
 
-    public void Login() {
+    public void Login() throws IOException {
         isOnline = true;
         if(!pendingMessages.isEmpty()){
             StringBuilder msg = new StringBuilder("Attention: you got " + pendingMessages.size() + " messages:\n");
@@ -269,6 +274,29 @@ public class Member extends User{
         }
     }
 
+
+    //FOR ACCTEST OF STORE MANAGER
+    public void takeDownSystemManagerAppointment(){
+        this.roles.remove(RoleEnum.StoreManager);
+    }
+
+    public List<String> checkForAppendingMessages() throws IOException {
+        List<String> messages = new ArrayList<>();
+        if(!pendingMessages.isEmpty()){
+            StringBuilder msg = new StringBuilder("Attention: you got " + pendingMessages.size() + " new messages:\n");
+            for(String str: pendingMessages){
+                msg.append("   - ").append(str);
+            }
+            String message = msg.toString();
+            messages.add(message);
+            pendingMessages.clear();
+        }
+        return messages;
+    }
+
+    public List<String> getLiveMessages(){
+        return this.liveMessages;
+    }
 
 
 

@@ -8,6 +8,33 @@
 <body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 
+<script>
+	const socket = new WebSocket('ws://localhost:8080/websocket');
+
+	socket.onopen = function() {
+	  console.log('WebSocket connection established.');
+	};
+
+	socket.onmessage = function(event) {
+	  	 const message = event.data;
+ 		 appendMessageToList(message);
+ 		 document.getElementById("notificationBadge").classList.remove("d-none");
+	};
+
+	socket.onclose = function(event) {
+	  console.log('WebSocket connection closed: ', event);
+	};
+
+	function appendMessageToList(message) {
+	  const messageList = document.getElementById('message-list');
+	  const listItem = document.createElement('li');
+	  listItem.textContent = message;
+	  messageList.appendChild(listItem);
+	}
+
+
+</script>
+
 <div style="display:none;" class="container">
 
 </div>

@@ -462,4 +462,10 @@ public class UserController {
 //        assertIsSystemManager(managerName);
 //        return systemManagers.get(managerName);
 //    }
+
+
+    public void takeDownSystemManagerAppointment(String appointedMember) {
+        Member member = this.members.get(appointedMember);
+        member.takeDownSystemManagerAppointment();
+    }
 }

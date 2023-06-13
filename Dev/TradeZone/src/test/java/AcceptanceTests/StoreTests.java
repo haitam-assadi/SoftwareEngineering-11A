@@ -514,6 +514,98 @@ public class StoreTests {
     }
 
 
+    //Req 4.11
+    @Test
+    public void get_store_info_by_store_founder_success(){
+        try{
+            proxy.appointOtherMemberAsStoreOwner(store_founder, storeName, member_name1); // member_name1 = owner
+            proxy.appointOtherMemberAsStoreManager(store_founder, storeName, member_name2); //// member_name1 = manager
+            Map<String, List<String>> storeDetails = proxy.getStoreInfo(store_founder, storeName);
+            Assertions.assertEquals(storeDetails.get("storeName").get(0), storeName);
+            Assertions.assertEquals(storeDetails.get("founderName").get(0), store_founder);
+            Assertions.assertEquals(storeDetails.get("ownersNames").size(), 1);
+            Assertions.assertTrue(storeDetails.get("ownersNames").contains(member_name1));
+            Assertions.assertEquals(storeDetails.get("managersNames").size(), 1);
+            Assertions.assertTrue(storeDetails.get("managersNames").contains(member_name2));
+        }catch (Exception e){
+            Assertions.fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void get_store_info_by_store_owner_success(){
+        try{
+            proxy.appointOtherMemberAsStoreOwner(store_founder, storeName, member_name1); // member_name1 = owner
+            proxy.appointOtherMemberAsStoreManager(store_founder, storeName, member_name2); //// member_name2 = manager
+            Map<String, List<String>> storeDetails = proxy.getStoreInfo(member_name1, storeName);
+            Assertions.assertEquals(storeDetails.get("storeName").get(0), storeName);
+            Assertions.assertEquals(storeDetails.get("founderName").get(0), store_founder);
+            Assertions.assertEquals(storeDetails.get("ownersNames").size(), 1);
+            Assertions.assertTrue(storeDetails.get("ownersNames").contains(member_name1));
+            Assertions.assertEquals(storeDetails.get("managersNames").size(), 1);
+            Assertions.assertTrue(storeDetails.get("managersNames").contains(member_name2));
+        }catch (Exception e){
+            Assertions.fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void get_store_info_by_store_manager_success(){
+        try{
+            proxy.appointOtherMemberAsStoreOwner(store_founder, storeName, member_name1); // member_name1 = owner
+            proxy.appointOtherMemberAsStoreManager(store_founder, storeName, member_name2); //// member_name2 = manager
+            Map<String, List<String>> storeDetails = proxy.getStoreInfo(member_name2, storeName);
+            Assertions.assertEquals(storeDetails.get("storeName").get(0), storeName);
+            Assertions.assertEquals(storeDetails.get("founderName").get(0), store_founder);
+            Assertions.assertEquals(storeDetails.get("ownersNames").size(), 1);
+            Assertions.assertTrue(storeDetails.get("ownersNames").contains(member_name1));
+            Assertions.assertEquals(storeDetails.get("managersNames").size(), 1);
+            Assertions.assertTrue(storeDetails.get("managersNames").contains(member_name2));
+        }catch (Exception e){
+            Assertions.fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void get_store_info_for_unavailable_store_failure(){
+        try{
+            proxy.appointOtherMemberAsStoreOwner(store_founder, storeName, member_name1); // member_name1 = owner
+            proxy.appointOtherMemberAsStoreManager(store_founder, storeName, member_name2); //// member_name2 = manager
+            Exception exception = Assertions.assertThrows(Exception.class ,() -> proxy.getStoreInfo(store_founder, "unavailable_store"));
+        }catch (Exception e){
+            Assertions.fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void get_store_info_by_unavailable_username_failure(){  //unavailable = is not a guest or logged in
+        try{
+            proxy.appointOtherMemberAsStoreOwner(store_founder, storeName, member_name1); // member_name1 = owner
+            proxy.appointOtherMemberAsStoreManager(store_founder, storeName, member_name2); //// member_name2 = manager
+            Exception exception = Assertions.assertThrows(Exception.class ,() -> proxy.getStoreInfo("unavailable_name", storeName));
+        }catch (Exception e){
+            Assertions.fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void get_store_info_for_closed_store_success(){  //unavailable = is not a guest or logged in
+        try{
+            proxy.appointOtherMemberAsStoreOwner(store_founder, storeName, member_name1); // member_name1 = owner
+            proxy.appointOtherMemberAsStoreManager(store_founder, storeName, member_name2); //// member_name2 = manager
+            proxy.closeStore(store_founder, storeName);
+            Map<String, List<String>> storeDetails = proxy.getStoreInfo(store_founder, storeName);
+            Assertions.assertEquals(storeDetails.get("storeName").get(0), storeName);
+            Assertions.assertEquals(storeDetails.get("founderName").get(0), store_founder);
+            Assertions.assertEquals(storeDetails.get("ownersNames").size(), 1);
+            Assertions.assertTrue(storeDetails.get("ownersNames").contains(member_name1));
+            Assertions.assertEquals(storeDetails.get("managersNames").size(), 1);
+            Assertions.assertTrue(storeDetails.get("managersNames").contains(member_name2));
+        }catch (Exception e){
+            Assertions.fail(e.getMessage());
+        }
+    }
+
 
     // II.6.4
 
