@@ -295,3 +295,15 @@ fail in appointing member as store manager: memberbaraa is already store owner
 יוני 13, 2023 5:08:30 אחה״צ DomainLayer.LoggerManager sendErrorLog
 WARNING: 
 fail in getting store info: baraa is not owner for user1_second_store
+יוני 13, 2023 5:28:38 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: user1_second_store is not Active!
+יוני 13, 2023 5:28:55 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store :user1_second_Storeis closed
+יוני 13, 2023 5:29:14 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: user1 is already logged in
+יוני 13, 2023 5:29:25 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store :user1_second_Storeis closed

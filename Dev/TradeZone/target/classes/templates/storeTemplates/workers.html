@@ -58,7 +58,7 @@
                                     </form>
                                 </div>
                                 <div th:if="${role == 'Managers'}">
-                                    <h6>Permissions:</h6>
+                                    <h6 style="color:orange">Permissions:</h6>
 
 <!--                                    founder / owner -->
                                     <form th:if="${mRole == 1 || mRole == 2}" action="changeManagerPermissions" method="post">
@@ -93,11 +93,6 @@
 
             </div>
         </div>
-
-<!--        <div th:if="${mRole == 3}">-->
-<!--            <h4>TODO: manager does not have Perm - show workers name</h4>-->
-
-<!--        </div>-->
     </main>
 
 </div>

@@ -22,6 +22,7 @@ public class GeneralModel {
     private boolean systemManager;
     private String currentPage;
     private double cartTotalPrice;
+    private double cartDiscountTotalPrice;
     private List<Bag> cart;
     private Alert alert;
 
@@ -87,12 +88,30 @@ public class GeneralModel {
     }
 
     public double getCartTotalPrice() {
-        cartTotalPrice = getCartTotalPrice(cart);
+        ResponseT<Double> response = server.getCartPriceBeforeDiscount(this.name);
+        if(!response.ErrorOccurred){
+            cartTotalPrice = round(response.getValue(), 2);
+        }
+        else cartTotalPrice = -1;
+//        cartTotalPrice = getCartTotalPrice(cart);
         return cartTotalPrice;
     }
 
     public void setCartTotalPrice(double cartTotalPrice) {
         this.cartTotalPrice = cartTotalPrice;
+    }
+
+    public double getCartDiscountTotalPrice() {
+        ResponseT<Double> response = server.getCartPriceAfterDiscount(this.name);
+        if(!response.ErrorOccurred){
+            cartDiscountTotalPrice = round(response.getValue(), 2);
+        }
+        else cartDiscountTotalPrice = -1;
+        return cartDiscountTotalPrice;
+    }
+
+    public void setCartDiscountTotalPrice(double cartDiscountTotalPrice) {
+        this.cartDiscountTotalPrice = cartDiscountTotalPrice;
     }
 
     public List<Bag> getCart() {
@@ -141,6 +160,10 @@ public class GeneralModel {
             }
         }
         return amount;
+    }
+
+    public boolean cartHasDisc(){
+        return (getCartTotalPrice() != getCartDiscountTotalPrice());
     }
 
     private double getCartTotalPrice(List<Bag> bags){

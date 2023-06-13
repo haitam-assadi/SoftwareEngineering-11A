@@ -343,6 +343,14 @@ public class Server {
         return service.getMemberInfo(callerMemberName, returnedMemberName);
     }
 
+    public ResponseT<Double> getCartPriceBeforeDiscount(String memberUserName) {
+        return service.getCartPriceBeforeDiscount(memberUserName);
+    }
+
+    public ResponseT<Double> getCartPriceAfterDiscount(String memberUserName) {
+        return service.getCartPriceAfterDiscount(memberUserName);
+    }
+
     //return 1=storeFounder, 2=storeOwner, 3=storeManager, -1= noRule
     public ResponseT<Integer> getRuleForStore(String storeName, String memberName){
         return service.getRuleForStore(storeName, memberName);

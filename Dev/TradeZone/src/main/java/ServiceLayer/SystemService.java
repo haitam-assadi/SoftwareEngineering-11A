@@ -78,7 +78,8 @@ public class SystemService {
         market.addNewProductToStock(userName, userFirstStoreName, userFirstStoreProduct4, userFirstStoreCategory2, 70.54, "new product", 100);
         market.addNewProductToStock(userName, userFirstStoreName, userFirstStoreProduct5, userFirstStoreCategory2, 70.54, "new product", 100);
         market.addNewProductToStock(userName, userFirstStoreName, userFirstStoreProduct6, userFirstStoreCategory2, 70.54, "new product", 100);
-
+        market.createProductDiscountPolicy(userName, userFirstStoreName, userFirstStoreProduct1, 30, true);
+        market.createProductDiscountPolicy(userName, userFirstStoreName, userFirstStoreProduct2, 50, true);
 
         market.createStore(userName, userSecStoreName);
         market.addNewProductToStock(userName, userSecStoreName, userSecStoreProduct1, userSecStoreCategory1, 70.54, "new product", 100);
