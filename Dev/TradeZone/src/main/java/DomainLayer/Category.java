@@ -72,6 +72,7 @@ public class Category {
     }
 
     public List<ProductDTO> getProductsInfo(){
+        loadCategory();
         List<ProductDTO> productDTOList = new ArrayList<>();
         for (Product product:categoryProducts.values())
             productDTOList.add(product.getProductInfo());
@@ -85,6 +86,7 @@ public class Category {
     public boolean containsProduct(String productName) throws Exception {
         if(productName == null || productName.isBlank())
             throw new Exception("productName is null or empty!");
+        loadCategory();
         productName = productName.strip().toLowerCase();
         if(!categoryProducts.containsKey(productName))
             return false;

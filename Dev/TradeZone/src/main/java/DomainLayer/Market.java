@@ -1,6 +1,8 @@
 package DomainLayer;
 
 import DTO.*;
+import DataAccessLayer.Controller.MemberMapper;
+import DataAccessLayer.Controller.StoreMapper;
 import DataAccessLayer.DALService;
 import DomainLayer.Controllers.StoreController;
 import DomainLayer.Controllers.UserController;
@@ -450,8 +452,10 @@ public class Market {
 
     public void loadData() {
         //if (Market.dataBaseFlag) {
-            userController.loadAllMembersNames();
-            storeController.loadAllStoresNames();
+        MemberMapper.getInstance().loadAllMembersNames();
+        StoreMapper.getInstance().loadAllStoresNames();
+//            userController.loadAllMembersNames();
+//            storeController.loadAllStoresNames();
         //}
     }
 

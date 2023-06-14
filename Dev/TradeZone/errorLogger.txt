@@ -1012,3 +1012,42 @@ fail in login: incorrect password!
 יוני 13, 2023 11:25:15 אחה״צ DomainLayer.LoggerManager sendErrorLog
 WARNING: 
 fail in adding product to stock: stock does already contains this product pr1
+יוני 14, 2023 11:05:19 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: store: str1 does not exists!
+יוני 14, 2023 11:45:58 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: pr1 have only -1 amount in stock!
+יוני 14, 2023 12:30:24 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info by category: categoryName is null or empty!
+יוני 14, 2023 12:52:52 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: userName qqqq does not exists!
+יוני 14, 2023 12:53:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: store: c3 does not exists!
+יוני 14, 2023 12:55:43 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info by category: Cannot invoke "DomainLayer.Store.getStoreName()" because "store" is null
+יוני 14, 2023 1:00:10 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info by category: Cannot invoke "DomainLayer.Store.getStoreName()" because "store" is null
+יוני 14, 2023 1:03:15 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: password must have at least 8 characters, at least one digit and one char
+יוני 14, 2023 1:15:23 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info by category: Cannot invoke "DomainLayer.Store.getStoreName()" because "store" is null
+יוני 14, 2023 1:15:30 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info by category: Cannot invoke "DomainLayer.Store.getStoreName()" because "store" is null
+יוני 14, 2023 1:20:34 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info by category: Cannot invoke "DomainLayer.Store.getStoreName()" because "store" is null
+יוני 14, 2023 3:40:34 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: pr2product does not exist in this store!
+יוני 14, 2023 3:40:40 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: pr2product does not exist in this store!

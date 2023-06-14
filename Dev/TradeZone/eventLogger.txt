@@ -46844,3 +46844,777 @@ getStoreInfo(String userName, String storeName)
 in 2023-06-13 23:28:11 the user qqqq wants to get information about the store str1- getStoreInfo(qqqq, str1)
 יוני 13, 2023 11:28:11 אחה״צ DomainLayer.LoggerManager sendEventLog
 INFO: in 2023-06-13 23:28:11 the user qqqq got information about the store str1
+יוני 14, 2023 10:59:52 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-14 10:59:52 the user guest_0 wants to make registeration register(guest_0, qqqq,1q1q1q1q)
+יוני 14, 2023 10:59:52 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-14 10:59:52 a new member joined .
+- Memer name: qqqq
+
+יוני 14, 2023 10:59:56 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-14 10:59:56 the user guest_0 wants to make login login(guest_0, qqqq,1q1q1q1q)
+יוני 14, 2023 10:59:56 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-14 10:59:56 a new member Logged in .
+- Memer name: qqqq
+
+יוני 14, 2023 10:59:56 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-14 10:59:56 the user qqqq tries to get his cart content  - getCartContent(qqqq)
+יוני 14, 2023 11:00:01 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+createStore(String memberUserName, String newStoreName)
+in 2023-06-14 11:00:01 the member qqqq tries to create store  - createStore(qqqq, str1)
+יוני 14, 2023 11:00:02 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-14 11:00:02 the user qqqq wants to get information about the store str1- getStoreInfo(qqqq, str1)
+יוני 14, 2023 11:00:02 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-14 11:00:02 the user qqqq got information about the store str1
+יוני 14, 2023 11:00:02 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-14 11:00:02 the user qqqq wants to get information about the store str1- getStoreInfo(qqqq, str1)
+יוני 14, 2023 11:00:02 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-14 11:00:02 the user qqqq got information about the store str1
+יוני 14, 2023 11:00:14 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-14 11:00:14 the member qqqq tries to add product to store  - addNewProductToStock(qqqq, str1, pr1, c1, 213.0, dsc, 2134)
+יוני 14, 2023 11:00:14 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-14 11:00:14 the user qqqq wants to get information about the store str1- getStoreInfo(qqqq, str1)
+יוני 14, 2023 11:00:14 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-14 11:00:14 the user qqqq got information about the store str1
+יוני 14, 2023 11:00:28 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+createStore(String memberUserName, String newStoreName)
+in 2023-06-14 11:00:28 the member qqqq tries to create store  - createStore(qqqq, str2)
+יוני 14, 2023 11:00:30 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-14 11:00:30 the user qqqq wants to get information about the store str2- getStoreInfo(qqqq, str2)
+יוני 14, 2023 11:00:30 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-14 11:00:30 the user qqqq got information about the store str2
+יוני 14, 2023 11:00:30 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-14 11:00:30 the user qqqq wants to get information about the store str2- getStoreInfo(qqqq, str2)
+יוני 14, 2023 11:00:30 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-14 11:00:30 the user qqqq got information about the store str2
+יוני 14, 2023 11:00:38 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-14 11:00:38 the member qqqq tries to add product to store  - addNewProductToStock(qqqq, str2, pr1, aaa, 123.0, asad, 1234)
+יוני 14, 2023 11:00:38 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-14 11:00:38 the user qqqq wants to get information about the store str2- getStoreInfo(qqqq, str2)
+יוני 14, 2023 11:00:38 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-14 11:00:38 the user qqqq got information about the store str2
+יוני 14, 2023 11:00:47 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromMarketByKeyword(String userName, String keyword)
+in 2023-06-14 11:00:47 the user qqqq wants to get information about products in market by keyword p} - getProductInfoFromMarketByCategory(qqqq, p)
+יוני 14, 2023 11:00:56 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromStore(String userName, String storeName, String productName)
+in 2023-06-14 11:00:56 the user qqqq wants to get information about product pr1 in the store str1- getProductInfoFromStore(qqqq, str1)
+יוני 14, 2023 11:02:07 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-14 11:02:07 the user guest_0 wants to make registeration register(guest_0, qqqq,1q1q1q1q)
+יוני 14, 2023 11:02:07 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-14 11:02:07 a new member joined .
+- Memer name: qqqq
+
+יוני 14, 2023 11:02:11 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-14 11:02:11 the user guest_0 wants to make login login(guest_0, qqqq,1q1q1q1q)
+יוני 14, 2023 11:02:11 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-14 11:02:11 a new member Logged in .
+- Memer name: qqqq
+
+יוני 14, 2023 11:02:11 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-14 11:02:11 the user qqqq tries to get his cart content  - getCartContent(qqqq)
+יוני 14, 2023 11:03:43 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+createStore(String memberUserName, String newStoreName)
+in 2023-06-14 11:03:43 the member qqqq tries to create store  - createStore(qqqq, str1)
+יוני 14, 2023 11:03:44 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-14 11:03:44 the user qqqq wants to get information about the store str1- getStoreInfo(qqqq, str1)
+יוני 14, 2023 11:03:44 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-14 11:03:44 the user qqqq got information about the store str1
+יוני 14, 2023 11:03:44 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-14 11:03:44 the user qqqq wants to get information about the store str1- getStoreInfo(qqqq, str1)
+יוני 14, 2023 11:03:44 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-14 11:03:44 the user qqqq got information about the store str1
+יוני 14, 2023 11:03:51 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-14 11:03:51 the member qqqq tries to add product to store  - addNewProductToStock(qqqq, str1, pr1, c1, 112.0, sAD, 112)
+יוני 14, 2023 11:03:51 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-14 11:03:51 the user qqqq wants to get information about the store str1- getStoreInfo(qqqq, str1)
+יוני 14, 2023 11:03:51 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-14 11:03:51 the user qqqq got information about the store str1
+יוני 14, 2023 11:04:00 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+createStore(String memberUserName, String newStoreName)
+in 2023-06-14 11:04:00 the member qqqq tries to create store  - createStore(qqqq, str2)
+יוני 14, 2023 11:04:02 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-14 11:04:02 the user qqqq wants to get information about the store str2- getStoreInfo(qqqq, str2)
+יוני 14, 2023 11:04:02 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-14 11:04:02 the user qqqq got information about the store str2
+יוני 14, 2023 11:04:02 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-14 11:04:02 the user qqqq wants to get information about the store str2- getStoreInfo(qqqq, str2)
+יוני 14, 2023 11:04:02 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-14 11:04:02 the user qqqq got information about the store str2
+יוני 14, 2023 11:04:16 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-14 11:04:16 the member qqqq tries to add product to store  - addNewProductToStock(qqqq, str2, pr1, DDS, 123.0, 23dcs, 111)
+יוני 14, 2023 11:04:16 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-14 11:04:16 the user qqqq wants to get information about the store str2- getStoreInfo(qqqq, str2)
+יוני 14, 2023 11:04:16 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-14 11:04:16 the user qqqq got information about the store str2
+יוני 14, 2023 11:04:29 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+memberLogOut(String memberUserName)
+in 2023-06-14 11:04:29 the member qqqq wants to make logout- logout(qqqq)
+יוני 14, 2023 11:04:43 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromStore(String userName, String storeName, String productName)
+in 2023-06-14 11:04:43 the user guest_1 wants to get information about product pr1 in the store str1- getProductInfoFromStore(guest_1, str1)
+יוני 14, 2023 11:05:19 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromStore(String userName, String storeName, String productName)
+in 2023-06-14 11:05:19 the user guest_0 wants to get information about product pr1 in the store str1- getProductInfoFromStore(guest_0, str1)
+יוני 14, 2023 11:45:07 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromStore(String userName, String storeName, String productName)
+in 2023-06-14 11:45:07 the user guest_0 wants to get information about product pr1 in the store str1- getProductInfoFromStore(guest_0, str1)
+יוני 14, 2023 11:45:18 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromStore(String userName, String storeName, String productName)
+in 2023-06-14 11:45:18 the user guest_0 wants to get information about product in market my namepr1- getProductInfoFromMarketByName(guest_0, pr1)
+יוני 14, 2023 11:45:29 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromStore(String userName, String storeName, String productName)
+in 2023-06-14 11:45:29 the user guest_0 wants to get information about product pr1 in the store str2- getProductInfoFromStore(guest_0, str2)
+יוני 14, 2023 11:45:35 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromStore(String userName, String storeName, String productName)
+in 2023-06-14 11:45:35 the user guest_0 wants to get information about product in market my namepr1- getProductInfoFromMarketByName(guest_0, pr1)
+יוני 14, 2023 11:45:58 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-14 11:45:58 the user guest_0 tries to add product to his cart  - addToCart(guest_0, str1, pr1, 30)
+יוני 14, 2023 12:13:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromStore(String userName, String storeName, String productName)
+in 2023-06-14 12:13:34 the user guest_0 wants to get information about product pr1 in the store str1- getProductInfoFromStore(guest_0, str1)
+יוני 14, 2023 12:13:37 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-14 12:13:37 the user guest_0 tries to add product to his cart  - addToCart(guest_0, str1, pr1, 50)
+יוני 14, 2023 12:13:37 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-14 12:13:37 the user guest_0 tries to get his cart content  - getCartContent(guest_0)
+יוני 14, 2023 12:30:10 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromMarketByCategory(String userName, String categoryName)
+in 2023-06-14 12:30:10 the user guest_0 wants to get information about products in market by category {pr1} - getProductInfoFromMarketByCategory(guest_0, pr1)
+יוני 14, 2023 12:30:15 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromStore(String userName, String storeName, String productName)
+in 2023-06-14 12:30:15 the user guest_0 wants to get information about product in market my namepr1- getProductInfoFromMarketByName(guest_0, pr1)
+יוני 14, 2023 12:30:20 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromMarketByKeyword(String userName, String keyword)
+in 2023-06-14 12:30:20 the user guest_0 wants to get information about products in market by keyword pr1} - getProductInfoFromMarketByCategory(guest_0, pr1)
+יוני 14, 2023 12:30:24 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromMarketByCategory(String userName, String categoryName)
+in 2023-06-14 12:30:24 the user guest_0 wants to get information about products in market by category {} - getProductInfoFromMarketByCategory(guest_0, )
+יוני 14, 2023 12:30:30 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromStore(String userName, String storeName, String productName)
+in 2023-06-14 12:30:30 the user guest_0 wants to get information about product in market my namepr1- getProductInfoFromMarketByName(guest_0, pr1)
+יוני 14, 2023 12:30:33 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromMarketByCategory(String userName, String categoryName)
+in 2023-06-14 12:30:33 the user guest_0 wants to get information about products in market by category {pr1} - getProductInfoFromMarketByCategory(guest_0, pr1)
+יוני 14, 2023 12:31:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromMarketByKeyword(String userName, String keyword)
+in 2023-06-14 12:31:07 the user guest_0 wants to get information about products in market by keyword p} - getProductInfoFromMarketByCategory(guest_0, p)
+יוני 14, 2023 12:31:14 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromStore(String userName, String storeName, String productName)
+in 2023-06-14 12:31:14 the user guest_0 wants to get information about product pr1 in the store str2- getProductInfoFromStore(guest_0, str2)
+יוני 14, 2023 12:31:19 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromStore(String userName, String storeName, String productName)
+in 2023-06-14 12:31:19 the user guest_0 wants to get information about product in market my namepr1- getProductInfoFromMarketByName(guest_0, pr1)
+יוני 14, 2023 12:31:23 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromMarketByKeyword(String userName, String keyword)
+in 2023-06-14 12:31:23 the user guest_0 wants to get information about products in market by keyword p} - getProductInfoFromMarketByCategory(guest_0, p)
+יוני 14, 2023 12:51:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromMarketByCategory(String userName, String categoryName)
+in 2023-06-14 12:51:07 the user guest_0 wants to get information about products in market by category {pr1} - getProductInfoFromMarketByCategory(guest_0, pr1)
+יוני 14, 2023 12:51:14 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromStore(String userName, String storeName, String productName)
+in 2023-06-14 12:51:14 the user guest_0 wants to get information about product pr1 in the store str1- getProductInfoFromStore(guest_0, str1)
+יוני 14, 2023 12:51:24 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromMarketByCategory(String userName, String categoryName)
+in 2023-06-14 12:51:24 the user guest_0 wants to get information about products in market by category {pr1} - getProductInfoFromMarketByCategory(guest_0, pr1)
+יוני 14, 2023 12:52:52 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-14 12:52:52 the user guest_0 wants to make login login(guest_0, qqqq,1q1q1q1q)
+יוני 14, 2023 12:53:05 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-14 12:53:05 the user guest_0 wants to make registeration register(guest_0, aaaa,1q1q1q1q)
+יוני 14, 2023 12:53:05 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-14 12:53:05 a new member joined .
+- Memer name: aaaa
+
+יוני 14, 2023 12:53:12 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-14 12:53:12 the user guest_0 wants to make login login(guest_0, aaaa,1q1q1q1q)
+יוני 14, 2023 12:53:12 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-14 12:53:12 a new member Logged in .
+- Memer name: aaaa
+
+יוני 14, 2023 12:53:12 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-14 12:53:12 the user aaaa tries to get his cart content  - getCartContent(aaaa)
+יוני 14, 2023 12:53:19 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+createStore(String memberUserName, String newStoreName)
+in 2023-06-14 12:53:19 the member aaaa tries to create store  - createStore(aaaa, str3)
+יוני 14, 2023 12:53:20 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-14 12:53:20 the user aaaa wants to get information about the store str3- getStoreInfo(aaaa, str3)
+יוני 14, 2023 12:53:20 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-14 12:53:20 the user aaaa got information about the store str3
+יוני 14, 2023 12:53:20 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-14 12:53:20 the user aaaa wants to get information about the store str3- getStoreInfo(aaaa, str3)
+יוני 14, 2023 12:53:20 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-14 12:53:20 the user aaaa got information about the store str3
+יוני 14, 2023 12:53:32 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-14 12:53:32 the member aaaa tries to add product to store  - addNewProductToStock(aaaa, str3, pr3, c3, 123.0, qwdsa, 112)
+יוני 14, 2023 12:53:32 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-14 12:53:32 the user aaaa wants to get information about the store str3- getStoreInfo(aaaa, str3)
+יוני 14, 2023 12:53:32 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-14 12:53:32 the user aaaa got information about the store str3
+יוני 14, 2023 12:53:42 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromMarketByCategory(String userName, String categoryName)
+in 2023-06-14 12:53:42 the user aaaa wants to get information about products in market by category {pr3} - getProductInfoFromMarketByCategory(aaaa, pr3)
+יוני 14, 2023 12:53:51 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromStore(String userName, String storeName, String productName)
+in 2023-06-14 12:53:51 the user aaaa wants to get information about product in market my namepr3- getProductInfoFromMarketByName(aaaa, pr3)
+יוני 14, 2023 12:53:59 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromStore(String userName, String storeName, String productName)
+in 2023-06-14 12:53:59 the user aaaa wants to get information about product pr3 in the store c3- getProductInfoFromStore(aaaa, c3)
+יוני 14, 2023 12:54:31 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromStore(String userName, String storeName, String productName)
+in 2023-06-14 12:54:31 the user aaaa wants to get information about product in market my namepr1- getProductInfoFromMarketByName(aaaa, pr1)
+יוני 14, 2023 12:55:22 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromMarketByCategory(String userName, String categoryName)
+in 2023-06-14 12:55:22 the user aaaa wants to get information about products in market by category {pr1} - getProductInfoFromMarketByCategory(aaaa, pr1)
+יוני 14, 2023 12:55:33 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromStore(String userName, String storeName, String productName)
+in 2023-06-14 12:55:33 the user aaaa wants to get information about product in market my namec1- getProductInfoFromMarketByName(aaaa, c1)
+יוני 14, 2023 12:55:37 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-14 12:55:37 the user aaaa wants to get information about the store str3- getStoreInfo(aaaa, str3)
+יוני 14, 2023 12:55:37 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-14 12:55:37 the user aaaa got information about the store str3
+יוני 14, 2023 12:55:37 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-14 12:55:37 the user aaaa wants to get information about the store str3- getStoreInfo(aaaa, str3)
+יוני 14, 2023 12:55:37 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-14 12:55:37 the user aaaa got information about the store str3
+יוני 14, 2023 12:55:43 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromMarketByCategory(String userName, String categoryName)
+in 2023-06-14 12:55:43 the user aaaa wants to get information about products in market by category {c3} - getProductInfoFromMarketByCategory(aaaa, c3)
+יוני 14, 2023 12:59:53 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-14 12:59:53 the user aaaa wants to get information about the store str3- getStoreInfo(aaaa, str3)
+יוני 14, 2023 12:59:53 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-14 12:59:53 the user aaaa got information about the store str3
+יוני 14, 2023 12:59:53 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-14 12:59:53 the user aaaa wants to get information about the store str3- getStoreInfo(aaaa, str3)
+יוני 14, 2023 12:59:53 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-14 12:59:53 the user aaaa got information about the store str3
+יוני 14, 2023 1:00:10 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromMarketByCategory(String userName, String categoryName)
+in 2023-06-14 13:00:10 the user guest_1 wants to get information about products in market by category {c3} - getProductInfoFromMarketByCategory(guest_1, c3)
+יוני 14, 2023 1:03:15 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-14 13:03:15 the user guest_0 wants to make registeration register(guest_0, kkkk,1q11q1q)
+יוני 14, 2023 1:03:20 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-14 13:03:20 the user guest_0 wants to make registeration register(guest_0, kkkk,1q1q1q1q)
+יוני 14, 2023 1:03:20 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-14 13:03:20 a new member joined .
+- Memer name: kkkk
+
+יוני 14, 2023 1:03:25 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-14 13:03:25 the user guest_0 wants to make login login(guest_0, kkkk,1q1q1q1q)
+יוני 14, 2023 1:03:25 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-14 13:03:25 a new member Logged in .
+- Memer name: kkkk
+
+יוני 14, 2023 1:03:25 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-14 13:03:25 the user kkkk tries to get his cart content  - getCartContent(kkkk)
+יוני 14, 2023 1:03:30 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+createStore(String memberUserName, String newStoreName)
+in 2023-06-14 13:03:30 the member kkkk tries to create store  - createStore(kkkk, str4)
+יוני 14, 2023 1:03:37 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-14 13:03:37 the user kkkk wants to get information about the store str4- getStoreInfo(kkkk, str4)
+יוני 14, 2023 1:03:37 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-14 13:03:37 the user kkkk got information about the store str4
+יוני 14, 2023 1:03:37 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-14 13:03:37 the user kkkk wants to get information about the store str4- getStoreInfo(kkkk, str4)
+יוני 14, 2023 1:03:37 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-14 13:03:37 the user kkkk got information about the store str4
+יוני 14, 2023 1:03:58 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-14 13:03:58 the member kkkk tries to add product to store  - addNewProductToStock(kkkk, str4, product5, cat1, 5641.0, dsafc, 5613)
+יוני 14, 2023 1:03:58 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-14 13:03:58 the user kkkk wants to get information about the store str4- getStoreInfo(kkkk, str4)
+יוני 14, 2023 1:03:58 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-14 13:03:58 the user kkkk got information about the store str4
+יוני 14, 2023 1:04:05 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromMarketByCategory(String userName, String categoryName)
+in 2023-06-14 13:04:05 the user kkkk wants to get information about products in market by category {cat1} - getProductInfoFromMarketByCategory(kkkk, cat1)
+יוני 14, 2023 1:06:05 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromMarketByCategory(String userName, String categoryName)
+in 2023-06-14 13:06:04 the user guest_0 wants to get information about products in market by category {c1} - getProductInfoFromMarketByCategory(guest_0, c1)
+יוני 14, 2023 1:13:11 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromMarketByCategory(String userName, String categoryName)
+in 2023-06-14 13:13:11 the user guest_0 wants to get information about products in market by category {c3} - getProductInfoFromMarketByCategory(guest_0, c3)
+יוני 14, 2023 1:13:29 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromMarketByCategory(String userName, String categoryName)
+in 2023-06-14 13:13:29 the user guest_0 wants to get information about products in market by category {c1} - getProductInfoFromMarketByCategory(guest_0, c1)
+יוני 14, 2023 1:13:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromMarketByCategory(String userName, String categoryName)
+in 2023-06-14 13:13:34 the user guest_0 wants to get information about products in market by category {dds} - getProductInfoFromMarketByCategory(guest_0, dds)
+יוני 14, 2023 1:14:47 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-14 13:14:46 the user guest_0 wants to make registeration register(guest_0, wwww,1w1w1w1w)
+יוני 14, 2023 1:14:47 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-14 13:14:47 a new member joined .
+- Memer name: wwww
+
+יוני 14, 2023 1:14:53 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-14 13:14:53 the user guest_0 wants to make login login(guest_0, wwww,1w1w1w1w)
+יוני 14, 2023 1:14:53 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-14 13:14:53 a new member Logged in .
+- Memer name: wwww
+
+יוני 14, 2023 1:14:53 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-14 13:14:53 the user wwww tries to get his cart content  - getCartContent(wwww)
+יוני 14, 2023 1:14:58 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+createStore(String memberUserName, String newStoreName)
+in 2023-06-14 13:14:58 the member wwww tries to create store  - createStore(wwww, str6)
+יוני 14, 2023 1:14:59 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-14 13:14:59 the user wwww wants to get information about the store str6- getStoreInfo(wwww, str6)
+יוני 14, 2023 1:14:59 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-14 13:14:59 the user wwww got information about the store str6
+יוני 14, 2023 1:14:59 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-14 13:14:59 the user wwww wants to get information about the store str6- getStoreInfo(wwww, str6)
+יוני 14, 2023 1:14:59 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-14 13:14:59 the user wwww got information about the store str6
+יוני 14, 2023 1:15:09 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-14 13:15:09 the member wwww tries to add product to store  - addNewProductToStock(wwww, str6, pr1, c4, 12323.0, sac, 2123)
+יוני 14, 2023 1:15:09 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-14 13:15:09 the user wwww wants to get information about the store str6- getStoreInfo(wwww, str6)
+יוני 14, 2023 1:15:09 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-14 13:15:09 the user wwww got information about the store str6
+יוני 14, 2023 1:15:23 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromMarketByCategory(String userName, String categoryName)
+in 2023-06-14 13:15:23 the user wwww wants to get information about products in market by category {c4} - getProductInfoFromMarketByCategory(wwww, c4)
+יוני 14, 2023 1:15:30 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromMarketByCategory(String userName, String categoryName)
+in 2023-06-14 13:15:30 the user wwww wants to get information about products in market by category {c4} - getProductInfoFromMarketByCategory(wwww, c4)
+יוני 14, 2023 1:15:39 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromMarketByCategory(String userName, String categoryName)
+in 2023-06-14 13:15:39 the user wwww wants to get information about products in market by category {c4} - getProductInfoFromMarketByCategory(wwww, c4)
+יוני 14, 2023 1:29:22 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromMarketByCategory(String userName, String categoryName)
+in 2023-06-14 13:29:22 the user guest_0 wants to get information about products in market by category {c1} - getProductInfoFromMarketByCategory(guest_0, c1)
+יוני 14, 2023 1:30:04 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromMarketByCategory(String userName, String categoryName)
+in 2023-06-14 13:30:04 the user guest_0 wants to get information about products in market by category {c3} - getProductInfoFromMarketByCategory(guest_0, c3)
+יוני 14, 2023 1:30:20 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromMarketByCategory(String userName, String categoryName)
+in 2023-06-14 13:30:20 the user guest_0 wants to get information about products in market by category {c3} - getProductInfoFromMarketByCategory(guest_0, c3)
+יוני 14, 2023 1:30:27 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromMarketByCategory(String userName, String categoryName)
+in 2023-06-14 13:30:27 the user guest_0 wants to get information about products in market by category {dds} - getProductInfoFromMarketByCategory(guest_0, dds)
+יוני 14, 2023 1:30:48 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-14 13:30:48 the user guest_0 wants to make registeration register(guest_0, eeee,1q1q1q1q)
+יוני 14, 2023 1:30:48 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-14 13:30:48 a new member joined .
+- Memer name: eeee
+
+יוני 14, 2023 1:30:53 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-14 13:30:53 the user guest_0 wants to make login login(guest_0, eeee,1q1q1q1q)
+יוני 14, 2023 1:30:53 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-14 13:30:53 a new member Logged in .
+- Memer name: eeee
+
+יוני 14, 2023 1:30:53 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-14 13:30:53 the user eeee tries to get his cart content  - getCartContent(eeee)
+יוני 14, 2023 1:30:59 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+createStore(String memberUserName, String newStoreName)
+in 2023-06-14 13:30:59 the member eeee tries to create store  - createStore(eeee, eeestr)
+יוני 14, 2023 1:31:00 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-14 13:31:00 the user eeee wants to get information about the store eeestr- getStoreInfo(eeee, eeestr)
+יוני 14, 2023 1:31:00 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-14 13:31:00 the user eeee got information about the store eeestr
+יוני 14, 2023 1:31:00 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-14 13:31:00 the user eeee wants to get information about the store eeestr- getStoreInfo(eeee, eeestr)
+יוני 14, 2023 1:31:00 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-14 13:31:00 the user eeee got information about the store eeestr
+יוני 14, 2023 1:31:13 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-14 13:31:13 the member eeee tries to add product to store  - addNewProductToStock(eeee, eeestr, pr1, c6, 123.0, dasc, 123)
+יוני 14, 2023 1:31:13 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-14 13:31:13 the user eeee wants to get information about the store eeestr- getStoreInfo(eeee, eeestr)
+יוני 14, 2023 1:31:13 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-14 13:31:13 the user eeee got information about the store eeestr
+יוני 14, 2023 1:31:20 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromMarketByCategory(String userName, String categoryName)
+in 2023-06-14 13:31:20 the user eeee wants to get information about products in market by category {c6} - getProductInfoFromMarketByCategory(eeee, c6)
+יוני 14, 2023 1:31:26 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-14 13:31:26 the user eeee wants to get information about the store eeestr- getStoreInfo(eeee, eeestr)
+יוני 14, 2023 1:31:26 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-14 13:31:26 the user eeee got information about the store eeestr
+יוני 14, 2023 1:31:26 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-14 13:31:26 the user eeee wants to get information about the store eeestr- getStoreInfo(eeee, eeestr)
+יוני 14, 2023 1:31:26 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-14 13:31:26 the user eeee got information about the store eeestr
+יוני 14, 2023 1:31:38 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-14 13:31:38 the member eeee tries to add product to store  - addNewProductToStock(eeee, eeestr, pr2, c1, 1320000.0, sad, 2133)
+יוני 14, 2023 1:31:38 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-14 13:31:38 the user eeee wants to get information about the store eeestr- getStoreInfo(eeee, eeestr)
+יוני 14, 2023 1:31:38 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-14 13:31:38 the user eeee got information about the store eeestr
+יוני 14, 2023 1:31:42 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromMarketByCategory(String userName, String categoryName)
+in 2023-06-14 13:31:42 the user eeee wants to get information about products in market by category {c1} - getProductInfoFromMarketByCategory(eeee, c1)
+יוני 14, 2023 3:31:31 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromMarketByKeyword(String userName, String keyword)
+in 2023-06-14 15:31:31 the user guest_0 wants to get information about products in market by keyword pr1} - getProductInfoFromMarketByCategory(guest_0, pr1)
+יוני 14, 2023 3:32:42 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromMarketByKeyword(String userName, String keyword)
+in 2023-06-14 15:32:41 the user guest_0 wants to get information about products in market by keyword pr1} - getProductInfoFromMarketByCategory(guest_0, pr1)
+יוני 14, 2023 3:40:13 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromMarketByCategory(String userName, String categoryName)
+in 2023-06-14 15:40:13 the user guest_0 wants to get information about products in market by category {c1} - getProductInfoFromMarketByCategory(guest_0, c1)
+יוני 14, 2023 3:40:27 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromStore(String userName, String storeName, String productName)
+in 2023-06-14 15:40:27 the user guest_0 wants to get information about product pr1 in the store str1- getProductInfoFromStore(guest_0, str1)
+יוני 14, 2023 3:40:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromStore(String userName, String storeName, String productName)
+in 2023-06-14 15:40:34 the user guest_0 wants to get information about product pr2 in the store str1- getProductInfoFromStore(guest_0, str1)
+יוני 14, 2023 3:40:40 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromStore(String userName, String storeName, String productName)
+in 2023-06-14 15:40:40 the user guest_0 wants to get information about product pr2 in the store str2- getProductInfoFromStore(guest_0, str2)
+יוני 14, 2023 3:40:51 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromStore(String userName, String storeName, String productName)
+in 2023-06-14 15:40:51 the user guest_0 wants to get information about product pr1 in the store str2- getProductInfoFromStore(guest_0, str2)
+יוני 14, 2023 3:40:57 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromMarketByKeyword(String userName, String keyword)
+in 2023-06-14 15:40:57 the user guest_0 wants to get information about products in market by keyword pr1} - getProductInfoFromMarketByCategory(guest_0, pr1)
+יוני 14, 2023 3:41:15 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromStore(String userName, String storeName, String productName)
+in 2023-06-14 15:41:15 the user guest_0 wants to get information about product pr1 in the store str6- getProductInfoFromStore(guest_0, str6)
+יוני 14, 2023 3:41:18 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromMarketByKeyword(String userName, String keyword)
+in 2023-06-14 15:41:18 the user guest_0 wants to get information about products in market by keyword pr1} - getProductInfoFromMarketByCategory(guest_0, pr1)
+יוני 14, 2023 3:41:27 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromMarketByKeyword(String userName, String keyword)
+in 2023-06-14 15:41:27 the user guest_0 wants to get information about products in market by keyword p} - getProductInfoFromMarketByCategory(guest_0, p)
+יוני 14, 2023 3:41:36 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromStore(String userName, String storeName, String productName)
+in 2023-06-14 15:41:36 the user guest_0 wants to get information about product pr1 in the store str1- getProductInfoFromStore(guest_0, str1)
+יוני 14, 2023 3:41:40 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromMarketByKeyword(String userName, String keyword)
+in 2023-06-14 15:41:40 the user guest_0 wants to get information about products in market by keyword p} - getProductInfoFromMarketByCategory(guest_0, p)
+יוני 14, 2023 3:49:00 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromMarketByKeyword(String userName, String keyword)
+in 2023-06-14 15:48:59 the user guest_0 wants to get information about products in market by keyword p} - getProductInfoFromMarketByCategory(guest_0, p)
+יוני 14, 2023 3:49:12 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromMarketByKeyword(String userName, String keyword)
+in 2023-06-14 15:49:12 the user guest_0 wants to get information about products in market by keyword pr1} - getProductInfoFromMarketByCategory(guest_0, pr1)
+יוני 14, 2023 3:50:28 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromMarketByKeyword(String userName, String keyword)
+in 2023-06-14 15:50:28 the user guest_0 wants to get information about products in market by keyword pr1} - getProductInfoFromMarketByCategory(guest_0, pr1)
+יוני 14, 2023 3:59:19 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromMarketByKeyword(String userName, String keyword)
+in 2023-06-14 15:59:19 the user guest_0 wants to get information about products in market by keyword p} - getProductInfoFromMarketByCategory(guest_0, p)
+יוני 14, 2023 4:01:18 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromStore(String userName, String storeName, String productName)
+in 2023-06-14 16:01:18 the user guest_0 wants to get information about product in market my namep- getProductInfoFromMarketByName(guest_0, p)
+יוני 14, 2023 4:01:22 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromMarketByKeyword(String userName, String keyword)
+in 2023-06-14 16:01:22 the user guest_0 wants to get information about products in market by keyword p} - getProductInfoFromMarketByCategory(guest_0, p)
+יוני 14, 2023 4:01:42 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromMarketByKeyword(String userName, String keyword)
+in 2023-06-14 16:01:42 the user guest_0 wants to get information about products in market by keyword pr1} - getProductInfoFromMarketByCategory(guest_0, pr1)
+יוני 14, 2023 4:02:02 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromMarketByKeyword(String userName, String keyword)
+in 2023-06-14 16:02:02 the user guest_0 wants to get information about products in market by keyword pr} - getProductInfoFromMarketByCategory(guest_0, pr)
+יוני 14, 2023 4:02:57 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromMarketByKeyword(String userName, String keyword)
+in 2023-06-14 16:02:57 the user guest_0 wants to get information about products in market by keyword pr1} - getProductInfoFromMarketByCategory(guest_0, pr1)
+יוני 14, 2023 4:03:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromMarketByKeyword(String userName, String keyword)
+in 2023-06-14 16:03:07 the user guest_0 wants to get information about products in market by keyword pr} - getProductInfoFromMarketByCategory(guest_0, pr)
+יוני 14, 2023 4:04:12 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromMarketByKeyword(String userName, String keyword)
+in 2023-06-14 16:04:12 the user guest_0 wants to get information about products in market by keyword pr} - getProductInfoFromMarketByCategory(guest_0, pr)
+יוני 14, 2023 4:05:02 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromMarketByKeyword(String userName, String keyword)
+in 2023-06-14 16:05:02 the user guest_0 wants to get information about products in market by keyword pr} - getProductInfoFromMarketByCategory(guest_0, pr)
+יוני 14, 2023 4:08:09 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromMarketByKeyword(String userName, String keyword)
+in 2023-06-14 16:08:09 the user guest_0 wants to get information about products in market by keyword pr} - getProductInfoFromMarketByCategory(guest_0, pr)
+יוני 14, 2023 4:23:04 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromMarketByKeyword(String userName, String keyword)
+in 2023-06-14 16:23:04 the user guest_0 wants to get information about products in market by keyword pr1} - getProductInfoFromMarketByCategory(guest_0, pr1)
+יוני 14, 2023 4:23:22 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromMarketByKeyword(String userName, String keyword)
+in 2023-06-14 16:23:22 the user guest_0 wants to get information about products in market by keyword pr1} - getProductInfoFromMarketByCategory(guest_0, pr1)
+יוני 14, 2023 4:23:32 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromMarketByKeyword(String userName, String keyword)
+in 2023-06-14 16:23:32 the user guest_0 wants to get information about products in market by keyword pr} - getProductInfoFromMarketByCategory(guest_0, pr)
+יוני 14, 2023 4:30:00 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromMarketByKeyword(String userName, String keyword)
+in 2023-06-14 16:30:00 the user guest_0 wants to get information about products in market by keyword pr1} - getProductInfoFromMarketByCategory(guest_0, pr1)
+יוני 14, 2023 4:30:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromMarketByKeyword(String userName, String keyword)
+in 2023-06-14 16:30:07 the user guest_0 wants to get information about products in market by keyword pr} - getProductInfoFromMarketByCategory(guest_0, pr)
+יוני 14, 2023 4:30:27 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromMarketByKeyword(String userName, String keyword)
+in 2023-06-14 16:30:27 the user guest_0 wants to get information about products in market by keyword pr1} - getProductInfoFromMarketByCategory(guest_0, pr1)
+יוני 14, 2023 4:30:40 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromMarketByKeyword(String userName, String keyword)
+in 2023-06-14 16:30:40 the user guest_0 wants to get information about products in market by keyword pr} - getProductInfoFromMarketByCategory(guest_0, pr)
+יוני 14, 2023 4:30:58 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromMarketByKeyword(String userName, String keyword)
+in 2023-06-14 16:30:58 the user guest_0 wants to get information about products in market by keyword pr2} - getProductInfoFromMarketByCategory(guest_0, pr2)
+יוני 14, 2023 4:31:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromMarketByKeyword(String userName, String keyword)
+in 2023-06-14 16:31:07 the user guest_0 wants to get information about products in market by keyword pr} - getProductInfoFromMarketByCategory(guest_0, pr)
+יוני 14, 2023 4:32:45 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromMarketByKeyword(String userName, String keyword)
+in 2023-06-14 16:32:45 the user guest_0 wants to get information about products in market by keyword pr} - getProductInfoFromMarketByCategory(guest_0, pr)
+יוני 14, 2023 4:33:12 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromMarketByKeyword(String userName, String keyword)
+in 2023-06-14 16:33:12 the user guest_0 wants to get information about products in market by keyword pr} - getProductInfoFromMarketByCategory(guest_0, pr)
+יוני 14, 2023 4:37:14 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromMarketByKeyword(String userName, String keyword)
+in 2023-06-14 16:37:14 the user guest_0 wants to get information about products in market by keyword pr} - getProductInfoFromMarketByCategory(guest_0, pr)
+יוני 14, 2023 4:37:54 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromMarketByKeyword(String userName, String keyword)
+in 2023-06-14 16:37:54 the user guest_0 wants to get information about products in market by keyword pr} - getProductInfoFromMarketByCategory(guest_0, pr)
+יוני 14, 2023 4:38:15 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromMarketByKeyword(String userName, String keyword)
+in 2023-06-14 16:38:15 the user guest_0 wants to get information about products in market by keyword pr} - getProductInfoFromMarketByCategory(guest_0, pr)
+יוני 14, 2023 4:41:59 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromMarketByKeyword(String userName, String keyword)
+in 2023-06-14 16:41:59 the user guest_0 wants to get information about products in market by keyword pr} - getProductInfoFromMarketByCategory(guest_0, pr)
+יוני 14, 2023 4:59:16 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromMarketByKeyword(String userName, String keyword)
+in 2023-06-14 16:59:16 the user guest_0 wants to get information about products in market by keyword pr} - getProductInfoFromMarketByCategory(guest_0, pr)
+יוני 14, 2023 5:00:18 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromMarketByCategory(String userName, String categoryName)
+in 2023-06-14 17:00:18 the user guest_0 wants to get information about products in market by category {c1} - getProductInfoFromMarketByCategory(guest_0, c1)
+יוני 14, 2023 5:15:32 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromStore(String userName, String storeName, String productName)
+in 2023-06-14 17:15:32 the user guest_0 wants to get information about product in market my namepr1- getProductInfoFromMarketByName(guest_0, pr1)
+יוני 14, 2023 5:16:40 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromMarketByKeyword(String userName, String keyword)
+in 2023-06-14 17:16:40 the user guest_0 wants to get information about products in market by keyword pr1} - getProductInfoFromMarketByCategory(guest_0, pr1)
+יוני 14, 2023 5:16:45 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromMarketByKeyword(String userName, String keyword)
+in 2023-06-14 17:16:45 the user guest_0 wants to get information about products in market by keyword p} - getProductInfoFromMarketByCategory(guest_0, p)
+יוני 14, 2023 5:16:59 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromMarketByKeyword(String userName, String keyword)
+in 2023-06-14 17:16:59 the user guest_0 wants to get information about products in market by keyword r1} - getProductInfoFromMarketByCategory(guest_0, r1)
+יוני 14, 2023 5:17:05 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromMarketByKeyword(String userName, String keyword)
+in 2023-06-14 17:17:05 the user guest_0 wants to get information about products in market by keyword 1} - getProductInfoFromMarketByCategory(guest_0, 1)
+יוני 14, 2023 5:17:12 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromStore(String userName, String storeName, String productName)
+in 2023-06-14 17:17:12 the user guest_0 wants to get information about product in market my namepr2- getProductInfoFromMarketByName(guest_0, pr2)
+יוני 14, 2023 5:17:21 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromStore(String userName, String storeName, String productName)
+in 2023-06-14 17:17:21 the user guest_0 wants to get information about product in market my nameproduct5- getProductInfoFromMarketByName(guest_0, product5)

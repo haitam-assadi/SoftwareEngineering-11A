@@ -96,7 +96,7 @@ public class Product {
 
 
     public ProductDTO getProductInfo(){
-        //loadProduct();
+        loadProduct();
         List<String> categories = new LinkedList<>();
         categories.addAll(productCategories.keySet());
         return new ProductDTO(this.name, this.storeName, this.price, this.description,  categories);

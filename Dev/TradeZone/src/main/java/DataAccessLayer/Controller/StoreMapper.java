@@ -3,12 +3,10 @@ package DataAccessLayer.Controller;
 import DataAccessLayer.CompositeKeys.CategoryId;
 import DataAccessLayer.CompositeKeys.ProductId;
 import DataAccessLayer.DALService;
+import DataAccessLayer.Repositories.StockRepository;
 import DomainLayer.*;
 
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class StoreMapper {
@@ -40,13 +38,42 @@ public class StoreMapper {
         assertStringIsNotNullOrBlank(storeName);
         storeName = storeName.toLowerCase().strip();
         if (!storesNamesConcurrentSet.contains(storeName)){
-            throw new Exception("store does not exist! " + storeName);
+            return null;
+            //throw new Exception("store does not exist! " + storeName);
         }
         if (!stores.containsKey(storeName)){
             Store store = new Store(storeName,false);
             stores.put(storeName,store);
         }
         return stores.get(storeName);
+    }
+
+    public List<Store> getStoresByCategoryName(String categoryName) throws Exception {
+        //in this way we make getStore(storeName) twice: first here second in storeController
+        //we may should add flag if read the first time from db dont needs to be read again and check the
+        //list in the class
+        List<String>storesNames = DALService.categoryRepository.findAllStoresNamesByCategoryName(categoryName);
+        Map<String,Store> stores = new ConcurrentHashMap<>();
+        for (String storeName: storesNames){
+            if (!stores.containsKey(storeName)){
+                stores.put(storeName,getStore(storeName));
+            }
+        }
+        return stores.values().stream().toList();
+    }
+
+    public List<Store> getStoresByProductKeyWord(String prefix) throws Exception {
+        //in this way we make getStore(storeName) twice: first here second in storeController
+        //we may should add flag if read the first time from db dont needs to be read again and check the
+        //list in the class
+        List<String> storesNames = DALService.productRepository.getStoresByProductKeyWord(prefix);
+        Map<String,Store> stores = new ConcurrentHashMap<>();
+        for (String storeName: storesNames){
+            if (!stores.containsKey(storeName)){
+                stores.put(storeName,getStore(storeName));
+            }
+        }
+        return stores.values().stream().toList();
     }
     private void assertStringIsNotNullOrBlank(String st) throws Exception {
         if(st==null || st.isBlank())
@@ -72,7 +99,8 @@ public class StoreMapper {
         if (isProductExists(productId)){
             return products.get(productId);
         }else{
-            throw new Exception("product: " + productId.getName() + " does not found");
+            //throw new Exception("product: " + productId.getName() + " does not found");
+            return null;
         }
     }
 
@@ -110,7 +138,8 @@ public class StoreMapper {
         if (isCategoryExists(categoryId)){
             return categories.get(categoryId);
         }else{
-            throw new Exception("category: " + categoryId.getCategoryName() + " does not found");
+            return null;
+//            throw new Exception("category: " + categoryId.getCategoryName() + " does not found");
         }
     }
 
@@ -145,5 +174,17 @@ public class StoreMapper {
         }else{
             throw new Exception("store does not exist! " + stockName);
         }
+    }
+
+    public int updateProductAmountInStock(String productName,String stockName){
+        //used in Stock.getProductWithAmount after we check that the product exists abd set the amount with -1
+        int amount = DALService.stockRepository.getProductAmount(stockName,productName);
+        stores.get(stockName).getStock().setProductAmountAfterLoadingAmount(products.get(new ProductId(productName,stockName)),productName,amount);
+        return amount;
+    }
+
+    public void insertStore(String newStoreName, Store newStore) {
+        storesNamesConcurrentSet.add(newStoreName);
+        stores.put(newStoreName,newStore);
     }
 }

@@ -4,6 +4,7 @@ import DTO.DealDTO;
 import DTO.MemberDTO;
 import DTO.ProductDTO;
 import DTO.StoreDTO;
+import DataAccessLayer.Controller.StoreMapper;
 import DataAccessLayer.DALService;
 import DomainLayer.BagConstraints.BagConstraint;
 import DomainLayer.Category;
@@ -87,40 +88,54 @@ public class StoreController {
 
     public List<ProductDTO> getProductInfoFromMarketByName(String productName) throws Exception {
         List<ProductDTO> productDTOList = new ArrayList<>();
-        for(Store store: stores.values()) {
-            String storeName = store.getStoreName();
-            //isActiveStore(storeName);
-            if(IsActiveStore(storeName)) {
-                if (store.containsProduct(productName))
-                    productDTOList.add(store.getProductInfo(productName));
+        for (Store store:StoreMapper.getInstance().getStoresByProductKeyWord(productName)){
+            if (IsActiveStore(store.getStoreName())){
+                productDTOList.add(store.getProductInfo(productName));
             }
         }
+//        for(Store store: stores.values()) {
+//            String storeName = store.getStoreName();
+//            //isActiveStore(storeName);
+//            if(IsActiveStore(storeName)) {
+//                if (store.containsProduct(productName))
+//                    productDTOList.add(store.getProductInfo(productName));
+//            }
+//        }
         return productDTOList;
     }
 
     public List<ProductDTO> getProductInfoFromMarketByCategory(String categoryName) throws Exception {
         List<ProductDTO> productDTOList = new ArrayList<>();
-        for(Store store: stores.values()) {
-            String storeName = store.getStoreName();
-            //isActiveStore(storeName);
-            if(IsActiveStore(storeName)) {
-                if (store.containsCategory(categoryName))
-                    productDTOList.addAll(store.getProductsInfoByCategory(categoryName));
+        for (Store store:StoreMapper.getInstance().getStoresByCategoryName(categoryName).stream().toList()){
+            if (IsActiveStore(store.getStoreName())){
+                productDTOList.addAll(store.getProductsInfoByCategory(categoryName));
             }
         }
+//        for(Store store: stores.values()) {
+//            String storeName = store.getStoreName();
+//            //isActiveStore(storeName);
+//            if(IsActiveStore(storeName)) {
+//                if (store.containsCategory(categoryName))
+//                    productDTOList.addAll(store.getProductsInfoByCategory(categoryName));
+//            }
+//        }
         return productDTOList;
     }
 
     public List<ProductDTO> getProductInfoFromMarketByKeyword(String keyword) throws Exception {
         List<ProductDTO> productDTOList = new ArrayList<>();
-        for(Store store: stores.values()) {
-            String storeName = store.getStoreName();
-            //isActiveStore(storeName);
-            if(IsActiveStore(storeName)) {
-                if(store.containsKeyWord(keyword))
-                    productDTOList.addAll(store.getProductInfoFromMarketByKeyword(keyword));
+        for (Store store:StoreMapper.getInstance().getStoresByProductKeyWord(keyword)){
+            if (IsActiveStore(store.getStoreName())){
+                productDTOList.addAll(store.getProductInfoFromMarketByKeyword(keyword));
             }
         }
+//        for(Store store: stores.values()) {
+//            String storeName = store.getStoreName();
+//            if(IsActiveStore(storeName)) {
+//                //if(store.containsKeyWord(keyword))
+//                    productDTOList.addAll(store.getProductInfoFromMarketByKeyword(keyword));
+//            }
+//        }
         return productDTOList;
     }
 
@@ -148,10 +163,13 @@ public class StoreController {
         if(storeName==null || storeName.isBlank())
             throw new Exception("store name is null or empty");
         storeName = storeName.strip().toLowerCase();
-
-        if(!stores.containsKey(storeName)) // TODO for Lazy load , maybe we need to change to set of names
-            return false;
-
+        // TODO for Lazy load , maybe we need to change to set of names
+        if(!stores.containsKey(storeName)){
+            Store store = StoreMapper.getInstance().getStore(storeName);
+            if (store == null) return false;
+            stores.put(storeName,store);
+            return true;
+        }
         return true;
     }
 
@@ -201,6 +219,7 @@ public class StoreController {
         Store newStore = new Store(newStoreName);
         stores.put(newStoreName,newStore);
         storesNamesConcurrentSet.add(newStoreName);
+        StoreMapper.getInstance().insertStore(newStoreName,newStore);
         return newStore;
     }
 

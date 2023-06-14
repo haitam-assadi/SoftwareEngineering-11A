@@ -4,6 +4,7 @@ import DTO.DealDTO;
 import DTO.MemberDTO;
 import DTO.ProductDTO;
 import DTO.StoreDTO;
+import DataAccessLayer.CompositeKeys.BagConstrainsId;
 import DataAccessLayer.Controller.MemberMapper;
 import DataAccessLayer.DALService;
 import DomainLayer.BagConstraints.*;
@@ -108,6 +109,7 @@ public class Store {
     public void setLoaded(boolean loaded){
         isLoaded = loaded;
     }
+
     public void setStoreFounderAtStoreCreation(StoreFounder storeFounder) throws Exception {
         if(this.alreadyHaveFounder()){
             throw new Exception("store already have a founder");
@@ -217,7 +219,6 @@ public class Store {
     }
 
     public StoreDTO getStoreInfo(){
-        Optional<Stock> stock1 =  DALService.stockRepository.findById(storeName);
         List<String> ownersNames = this.storeOwners.values().stream().map(Role::getUserName).toList();
         List<String> managersNames = this.storeManagers.values().stream().map(Role::getUserName).toList();
         return new StoreDTO(storeName, storeFounder.getUserName(), ownersNames, managersNames, stock.getProductsInfoAmount(),isActive);
@@ -786,6 +787,7 @@ public class Store {
         CategoryBagConstraint categoryBagConstraint = new CategoryBagConstraint(category, hour,minute);
         int currentBagConstraintsIdCounter =this.bagConstraintsIdCounter;
         createdBagConstraints.put(currentBagConstraintsIdCounter, categoryBagConstraint);
+        categoryBagConstraint.setBagConstrainsId(new BagConstrainsId(bagConstraintsIdCounter,storeName));
         this.bagConstraintsIdCounter++;
         if(addAsStorePaymentPolicy)
             storePaymentPolicies.put(currentBagConstraintsIdCounter, categoryBagConstraint);
@@ -812,6 +814,7 @@ public class Store {
         CategoryBagConstraint categoryBagConstraint = new CategoryBagConstraint(category, fromYear,fromMonth,fromDay, toYear,toMonth,toDay);
         int currentBagConstraintsIdCounter =this.bagConstraintsIdCounter;
         createdBagConstraints.put(currentBagConstraintsIdCounter, categoryBagConstraint);
+        categoryBagConstraint.setBagConstrainsId(new BagConstrainsId(bagConstraintsIdCounter,storeName));
         this.bagConstraintsIdCounter++;
         if(addAsStorePaymentPolicy)
             storePaymentPolicies.put(currentBagConstraintsIdCounter, categoryBagConstraint);

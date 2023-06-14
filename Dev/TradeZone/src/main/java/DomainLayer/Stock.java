@@ -1,6 +1,9 @@
 package DomainLayer;
 
 import DTO.ProductDTO;
+import DataAccessLayer.CompositeKeys.CategoryId;
+import DataAccessLayer.CompositeKeys.ProductId;
+import DataAccessLayer.Controller.StoreMapper;
 import DataAccessLayer.DALService;
 
 import javax.persistence.*;
@@ -51,6 +54,13 @@ public class Stock {
     }
 
     public Stock(){}
+
+    public void loadStock() throws Exception {
+        if (!isLoaded){
+            StoreMapper.getInstance().getStock(stockName);
+            isLoaded = true;
+        }
+    }
 
     public synchronized void assertStringIsNotNullOrBlank(String st) throws Exception {
         if(st==null || st.isBlank())
@@ -187,10 +197,13 @@ public class Stock {
         //TODO: do we allow return info about products with amount == 0 ?????
         if(!containsProduct(productName))
             throw new Exception(""+productName+" product does not exist in this store!");
-
+        //the convince is that if the product amount in stock is -1 then the actual amount should be loaded:
         Integer currentProductAmount = ((Integer)stockProducts.get(productName).values().toArray()[0]);
+        if (currentProductAmount == -1)
+            currentProductAmount = StoreMapper.getInstance().updateProductAmountInStock(productName,stockName);
+
         if( currentProductAmount < amount)
-            throw new Exception(""+productName+" have only "+ currentProductAmount +" amount in stock!");
+            throw new Exception(""+productName+" have only "+ currentProductAmount +" amount in stock!");//todo: need to send another msg without telling the amount of the product in the store
 
         if(amount < 0)
             throw new Exception("The amount must be positive, it can't be " + amount);
@@ -204,9 +217,20 @@ public class Stock {
             throw new Exception("productName is null or empty!");
 
         productName = productName.strip().toLowerCase();
-        if(!stockProducts.containsKey(productName))
-            return false;
-
+        if(!stockProducts.containsKey(productName)) {
+            //todo: needs repair
+            Product product = StoreMapper.getInstance().getProduct(new ProductId(productName,stockName));
+            //Product product = StoreMapper.getInstance().getProductWithoutLoading(new ProductId(productName,stockName));
+            if (product == null){
+                return false;
+            }else{
+                ConcurrentHashMap<Product,Integer> product_amount = new ConcurrentHashMap<>();
+                product_amount.put(product,-1);
+                stockProducts.put(productName,product_amount);
+                productAmount.put(product,-1);
+                return true;
+            }
+        }
         return true;
     }
 
@@ -215,8 +239,15 @@ public class Stock {
             throw new Exception("categoryName is null or empty!");
 
         categoryName = categoryName.strip().toLowerCase();
-        if(!stockCategories.containsKey(categoryName))
-            return false;
+        if(!stockCategories.containsKey(categoryName)) {
+            Category category = StoreMapper.getInstance().getCategory(new CategoryId(categoryName,stockName));
+            if (category == null){
+                return false;
+            }else{
+                stockCategories.put(categoryName,category);
+                return true;
+            }
+        }
 
         return true;
     }
@@ -241,7 +272,9 @@ public class Stock {
 
 
     public synchronized List<ProductDTO> getProductInfoFromMarketByKeyword(String keyword) throws Exception {
+        containsKeyWord(keyword);
         keyword = keyword.strip().toLowerCase();
+        loadStock();
         List<ProductDTO> filteredProductsByKeyWord = new LinkedList<>();
         for(String productName : stockProducts.keySet()){
             if(productName.contains(keyword)){
@@ -323,8 +356,11 @@ public class Stock {
         //TODO: do we allow return info about products with amount == 0 ?????
         if(!containsProduct(productName))
             throw new Exception(""+productName+" product does not exist in this store!");
-
-        return  ((Integer)stockProducts.get(productName).values().toArray()[0]);
+        Integer currentProductAmount = ((Integer)stockProducts.get(productName).values().toArray()[0]);
+        if (currentProductAmount == -1)
+            currentProductAmount = StoreMapper.getInstance().updateProductAmountInStock(productName,stockName);
+        return currentProductAmount;
+        //return  ((Integer)stockProducts.get(productName).values().toArray()[0]);
     }
 
     public void defineStockProductsMap() {
@@ -355,5 +391,10 @@ public class Stock {
             stockProducts.put(product.getName(),product_amount);
         }
         this.isLoaded = true;
+    }
+
+    public void setProductAmountAfterLoadingAmount(Product product,String productName,int amount){
+        productAmount.put(product,amount);
+        stockProducts.get(productName).put(product,amount);
     }
 }

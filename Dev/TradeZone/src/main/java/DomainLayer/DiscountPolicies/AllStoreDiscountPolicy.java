@@ -5,10 +5,22 @@ import DomainLayer.BagConstraints.PositiveBagConstraint;
 import DomainLayer.Category;
 import DomainLayer.Product;
 
+import javax.persistence.*;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class AllStoreDiscountPolicy implements DiscountPolicy{
+@Entity
+@Table
+@PrimaryKeyJoinColumns({
+        @PrimaryKeyJoinColumn(name = "id", referencedColumnName = "id"),
+        @PrimaryKeyJoinColumn(name = "storeName", referencedColumnName = "storeName")
+})
+public class AllStoreDiscountPolicy extends DiscountPolicy{
     int discountPercentage;
+    @OneToOne
+    @JoinColumns({
+            @JoinColumn(name = "constraintId", referencedColumnName = "id"),
+            @JoinColumn(name = "constraintStoreName", referencedColumnName = "storeName")
+    })
     BagConstraint bagConstraint;
 
     public AllStoreDiscountPolicy(int discountPercentage){
