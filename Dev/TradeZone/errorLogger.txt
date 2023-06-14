@@ -5107,3 +5107,180 @@ fail in appointing member as store owner: null
 יוני 13, 2023 2:36:44 אחה״צ DomainLayer.LoggerManager sendErrorLog
 WARNING: 
 fail in appointing member as store owner: null
+יוני 13, 2023 6:39:53 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: member moslem123 is already store owner
+יוני 13, 2023 6:40:43 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: member moslem123 is already store owner
+יוני 13, 2023 6:43:41 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: member moslem123 is already store owner
+יוני 13, 2023 6:46:49 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: harry123is not owner for store moslem store
+יוני 13, 2023 6:47:24 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: harry123is not owner for store moslem store
+יוני 13, 2023 6:47:24 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: harry123is not owner for store moslem store
+יוני 13, 2023 7:01:19 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: member brain123 is already store owner
+יוני 13, 2023 7:03:52 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: member harry123 already have a contract for this store ownership
+יוני 13, 2023 7:17:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store manager: memberbrain123 is already store owner
+יוני 13, 2023 7:26:33 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: harry123is not owner for store moslem store
+יוני 13, 2023 7:26:33 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: harry123is not owner for store moslem store
+יוני 13, 2023 7:26:34 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: member brain123 is already store owner
+יוני 13, 2023 7:26:34 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: member moslem123 is already store owner
+יוני 13, 2023 7:26:34 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: member moslem123 is already store owner
+יוני 13, 2023 7:26:34 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: userName koko does not exists!
+יוני 13, 2023 7:26:34 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: member brain123 is already store owner
+יוני 13, 2023 7:26:34 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store manager: memberbrain123 is already store owner
+יוני 13, 2023 7:26:34 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: member harry123 already have a contract for this store ownership
+יוני 13, 2023 7:35:28 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: harry123is not owner for store moslem store
+יוני 13, 2023 7:35:28 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: harry123is not owner for store moslem store
+יוני 13, 2023 7:35:28 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: member brain123 is already store owner
+יוני 13, 2023 7:35:28 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: member moslem123 is already store owner
+יוני 13, 2023 7:35:28 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: member moslem123 is already store owner
+יוני 13, 2023 7:35:28 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: userName koko does not exists!
+יוני 13, 2023 7:35:28 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: member brain123 is already store owner
+יוני 13, 2023 7:35:28 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store manager: memberbrain123 is already store owner
+יוני 13, 2023 7:35:28 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: member harry123 already have a contract for this store ownership
+יוני 14, 2023 9:30:30 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: harry123is not owner for store moslem store
+יוני 14, 2023 9:30:30 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: harry123is not owner for store moslem store
+יוני 14, 2023 9:30:30 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: member brain123 is already store owner
+יוני 14, 2023 9:30:30 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: member moslem123 is already store owner
+יוני 14, 2023 9:30:30 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: member moslem123 is already store owner
+יוני 14, 2023 9:30:30 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: userName koko does not exists!
+יוני 14, 2023 9:30:30 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: member brain123 is already store owner
+יוני 14, 2023 9:30:30 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store manager: memberbrain123 is already store owner
+יוני 14, 2023 9:30:30 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: member harry123 already have a contract for this store ownership
+יוני 14, 2023 10:27:15 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: harry123is not owner for store moslem store
+יוני 14, 2023 10:27:15 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: harry123is not owner for store moslem store
+יוני 14, 2023 10:27:16 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: member brain123 is already store owner
+יוני 14, 2023 10:27:16 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: member moslem123 is already store owner
+יוני 14, 2023 10:27:16 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: member moslem123 is already store owner
+יוני 14, 2023 10:27:16 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: userName koko does not exists!
+יוני 14, 2023 10:27:16 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: member brain123 is already store owner
+יוני 14, 2023 10:27:16 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store manager: memberbrain123 is already store owner
+יוני 14, 2023 10:27:16 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: member harry123 already have a contract for this store ownership
+יוני 14, 2023 10:28:50 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: req_user2 is not a founder/owner or an authorized manager
+יוני 14, 2023 10:28:50 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: req_user3 is not a founder/owner or an authorized manager
+יוני 14, 2023 10:28:50 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: req_user3is not owner for store store1
+יוני 14, 2023 10:28:50 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: req_user2 is not a founder/owner or an authorized manager
+יוני 14, 2023 5:17:41 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: moslem123 is not boss for harry123 in store moslem store
+יוני 14, 2023 5:20:48 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: moslem123 is not boss for harry123 in store moslem store
+יוני 14, 2023 5:21:07 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: moslem123 is not boss for harry123 in store moslem store
+יוני 14, 2023 6:55:28 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: moslem123 is not boss for harry123 in store moslem store
+יוני 14, 2023 6:56:08 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: moslem123 is not my boss for store moslem store
+יוני 14, 2023 6:57:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: moslem123 is not my boss for store moslem store
+יוני 14, 2023 7:18:47 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: moslem123 is not my boss for store moslem store
+יוני 14, 2023 7:19:44 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: moslem123 is not my boss for store moslem store
+יוני 14, 2023 7:27:23 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: haitam123 is not owner for moslem store
+יוני 14, 2023 7:29:45 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: brain123is not owner for store moslem store

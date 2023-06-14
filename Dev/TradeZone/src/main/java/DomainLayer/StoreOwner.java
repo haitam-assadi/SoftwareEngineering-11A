@@ -21,7 +21,7 @@ public class StoreOwner extends AbstractStoreOwner{
         if(!myBossesForStores.containsKey(storeName))
             throw new Exception(""+getUserName()+" is founder for this store");
 
-        if(!myBossesForStores.get(storeName).getUserName().equals(myBoss.getUserName()))
+        if(!isMyAncestorBoss(store,myBoss))
             throw new Exception(myBoss.getUserName()+" is not my boss for store "+ storeName);
 
         store.removeOwner(getUserName());
