@@ -1,6 +1,7 @@
 package DomainLayer;
 
 import DTO.*;
+import DataAccessLayer.DALService;
 import DomainLayer.Controllers.StoreController;
 import DomainLayer.Controllers.UserController;
 import jdk.jshell.spi.ExecutionControl;
@@ -127,19 +128,19 @@ public class Market {
         userController.assertIsGuestOrLoggedInMember(userName);
         storeController.assertIsStore(storeName);
         User user = userController.getUser(userName);
-        return user.addToCart(storeController.getStore(storeName), productName, amount);
+        return user.addToCart(storeController.getStore(storeName), productName, amount,userController.isMember(userName));
     }
     public boolean removeFromCart(String userName, String storeName, String productName) throws Exception {
         userController.assertIsGuestOrLoggedInMember(userName);
         storeController.assertIsStore(storeName);
         User user = userController.getUser(userName);
-        return user.removeFromCart(storeController.getStore(storeName), productName);
+        return user.removeFromCart(storeController.getStore(storeName), productName,userController.isMember(userName));
     }
     public boolean changeProductAmountInCart(String userName, String storeName, String productName, Integer newAmount) throws Exception {
         userController.assertIsGuestOrLoggedInMember(userName);
         storeController.assertIsStore(storeName);
         User user = userController.getUser(userName);
-        return user.changeProductAmountInCart(storeController.getStore(storeName), productName, newAmount);
+        return user.changeProductAmountInCart(storeController.getStore(storeName), productName, newAmount,userController.isMember(userName));
     }
     public List<BagDTO> getCartContent(String userName) throws Exception {
         userController.assertIsGuestOrLoggedInMember(userName);
@@ -151,7 +152,8 @@ public class Market {
         userController.assertIsMemberLoggedIn(memberUserName);
         Member member = userController.getMember(memberUserName);
         Store store = storeController.createStore(newStoreName);
-        member.appointMemberAsStoreFounder(store);
+        StoreFounder newFounder = member.appointMemberAsStoreFounder(store);
+        DALService.saveStore(store,newFounder,member);
         return store.getStoreInfo();
     }
     public boolean addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount) throws Exception {
@@ -444,6 +446,13 @@ public class Market {
         userController.assertIsMemberLoggedIn(callerMemberName);
         userController.isMember(returnedMemberName);
         return userController.getMemberInfo(callerMemberName,returnedMemberName);
+    }
+
+    public void loadData() {
+        //if (Market.dataBaseFlag) {
+            userController.loadAllMembersNames();
+            storeController.loadAllStoresNames();
+        //}
     }
 
 }

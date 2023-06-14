@@ -1,21 +1,67 @@
 package DomainLayer;
 
 import DTO.ProductDTO;
+import DataAccessLayer.CompositeKeys.CategoryId;
+import DataAccessLayer.CompositeKeys.ProductId;
+import DataAccessLayer.Controller.StoreMapper;
+import DataAccessLayer.DALService;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 
+@Entity
+@Table(name = "Category")
+@IdClass(CategoryId.class)
 public class Category {
 
-    private Stock stock;
+    @Id
     private String categoryName;
-    private ConcurrentHashMap<String,Product> categoryProducts;
+    @Id
+    private String storeName;
+    @ManyToMany(mappedBy = "productCategories",fetch = FetchType.EAGER)
+    @MapKey(name = "name")
+    private Map<String, Product> categoryProducts;
 
-    public Category (String categoryName, Stock stock){
+    @Transient
+    private boolean productsIsLoaded;
+
+    public Category (String categoryName, String storeName){
         this.categoryName = categoryName;
-        this.stock = stock;
+        this.storeName = storeName;
         categoryProducts = new ConcurrentHashMap<>();
+        productsIsLoaded = true;
+    }
+    public Category(){}
+
+    public Category(CategoryId categoryId){
+        productsIsLoaded = false;
+        categoryName = categoryId.getCategoryName();
+        storeName = categoryId.getStoreName();
+        categoryProducts = new ConcurrentHashMap<>();
+    }
+
+    public void loadCategory(){
+        if (!productsIsLoaded){
+            Optional<Category> category = DALService.categoryRepository.findById(new CategoryId(categoryName,storeName));
+            if (category.isPresent()){
+                this.categoryName = category.get().categoryName;
+                this.storeName = category.get().storeName;
+                this.categoryProducts = category.get().categoryProducts;
+                setCategoryProducts();
+            }
+        }
+    }
+
+    public void setCategoryProducts(){
+        productsIsLoaded = true;
+        for (String productName: categoryProducts.keySet().stream().toList()){
+            categoryProducts.put(productName,StoreMapper.getInstance().
+                    getProductWithoutLoading(new ProductId(productName,storeName)));
+        }
     }
 
     public boolean putProductInCategory(Product product) throws Exception {
@@ -39,7 +85,6 @@ public class Category {
     public boolean containsProduct(String productName) throws Exception {
         if(productName == null || productName.isBlank())
             throw new Exception("productName is null or empty!");
-
         productName = productName.strip().toLowerCase();
         if(!categoryProducts.containsKey(productName))
             return false;

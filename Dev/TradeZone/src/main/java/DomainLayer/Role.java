@@ -2,15 +2,32 @@ package DomainLayer;
 
 import java.util.concurrent.ConcurrentHashMap;
 import DTO.MemberDTO;
+import DataAccessLayer.CompositeKeys.RolesId;
 
+import javax.persistence.*;
+
+@MappedSuperclass
 public abstract class Role {
 
+    @EmbeddedId
+    protected RolesId id;
 
+    @Transient
     protected RoleEnum myRole;
 
-    private ConcurrentHashMap<String, AbstractStoreOwner> myBossesForStores;
-    private ConcurrentHashMap<String, Store> responsibleForStores;
+    @Transient
+    protected ConcurrentHashMap<String, AbstractStoreOwner> myBossesForStores;
+    @Transient
+    protected ConcurrentHashMap<String, Store> responsibleForStores;
+
+    @Transient
     protected Member member;
+    @OneToOne
+    @JoinColumn(name = "myBoss")
+    private Member boss;
+
+    @Transient
+    protected boolean isLoaded;
 
     public ConcurrentHashMap<String, Store> getResponsibleForStores() {
         return responsibleForStores;
@@ -21,6 +38,18 @@ public abstract class Role {
         myBossesForStores = new ConcurrentHashMap<>();
         responsibleForStores = new ConcurrentHashMap<>();
     }
+    public Role() {
+    }
+    public void setBoss(Member boss) {
+        this.boss = boss;
+    }
+    public void setId(RolesId id) {
+        this.id = id;
+    }
+    public void setLoaded(boolean b){
+        isLoaded = b;
+    }
+
     public String getUserName(){
         return member.getUserName();
     }
@@ -67,6 +96,12 @@ public abstract class Role {
         return true;
     }
 
+    public boolean loadAppointMemberAsStoreOwner(Store store, AbstractStoreOwner myBoss) throws Exception {
+        String storeName = store.getStoreName();
+        responsibleForStores.put(storeName, store);
+        myBossesForStores.put(storeName, myBoss);
+        return true;
+    }
 
     public boolean appointMemberAsStoreFounder(Store store) throws Exception {
         String storeName = store.getStoreName();
@@ -93,7 +128,7 @@ public abstract class Role {
         return true;
     }
 
-    public MemberDTO getMemberDTO() {
+    public MemberDTO getMemberDTO() throws Exception {
         return this.member.getMemberDTO();
     }
 

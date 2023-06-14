@@ -1,21 +1,56 @@
 package DomainLayer;
 
 import DTO.ProductDTO;
+import DataAccessLayer.DALService;
 
+import javax.persistence.*;
+import javax.transaction.Transactional;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
+@Entity
+@Table
 public class Stock {
 
-    Store store;
-    private ConcurrentHashMap<String, ConcurrentHashMap<Product,Integer>> stockProducts;
-    private ConcurrentHashMap<String,Category> stockCategories;
+    @Id
+    private String stockName;
 
-    public Stock(Store store){
-        this.store = store;
+    @Transient
+    private ConcurrentHashMap<String, ConcurrentHashMap<Product,Integer>> stockProducts;
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "Stock_Products", joinColumns = @JoinColumn(name = "stock_name"))
+    @MapKeyJoinColumns({
+            @MapKeyJoinColumn(name = "product_name", referencedColumnName = "productName"),
+            @MapKeyJoinColumn(name = "store_name", referencedColumnName = "storeName")
+    })
+    @Column(name = "amount")
+    private Map<Product,Integer> productAmount;
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "stock_categories")
+    @Column(name = "category")
+    private Map<String,Category> stockCategories;
+
+    @Transient
+    private boolean isLoaded;
+
+    public Stock(String stockName){
+        this.stockName = stockName;
         stockProducts =new ConcurrentHashMap<>();
         stockCategories = new ConcurrentHashMap<>();
+        productAmount = new ConcurrentHashMap<>();
+        isLoaded = true;
     }
+    public Stock(String stockName,boolean isLoaded){
+        this.stockName = stockName;
+        stockProducts =new ConcurrentHashMap<>();
+        stockCategories = new ConcurrentHashMap<>();
+        productAmount = new ConcurrentHashMap<>();
+        this.isLoaded = isLoaded;
+    }
+
+    public Stock(){}
 
     public synchronized void assertStringIsNotNullOrBlank(String st) throws Exception {
         if(st==null || st.isBlank())
@@ -35,6 +70,7 @@ public class Stock {
             throw new Exception("stock does already contains this product "+productName);
     }
 
+    @Transactional
     public synchronized boolean addNewProductToStock(String nameProduct,String category, Double price, String description, Integer amount) throws Exception {
         assertDoesNotContainProduct(nameProduct);
         assertStringIsNotNullOrBlank(category);
@@ -42,15 +78,21 @@ public class Stock {
 
         nameProduct=nameProduct.strip().toLowerCase();
         category = category.strip().toLowerCase();
-
-        if(!containsCategory(category))
-            stockCategories.put(category, new Category(category, this));
-
-        Product product = new Product(nameProduct,this,stockCategories.get(category),price,description);
-        stockCategories.get(category).putProductInCategory(product);
+        Category productCategory;
+        if(!containsCategory(category)) {
+            productCategory = new Category(category, getStoreName());
+            DALService.categoryRepository.save(productCategory);
+            stockCategories.put(category,productCategory);
+            DALService.stockRepository.save(this);
+        }
+        productCategory = stockCategories.get(category);
+        Product product = new Product(nameProduct,stockName,productCategory,price,description);
+        productCategory.putProductInCategory(product);
         ConcurrentHashMap<Product,Integer> productAmount = new ConcurrentHashMap<Product, Integer>();
+        this.productAmount.put(product,amount);
         productAmount.put(product,amount);
         stockProducts.put(nameProduct,productAmount);
+        DALService.saveProduct(this,productCategory,product);
         return true;
     }
 
@@ -60,6 +102,8 @@ public class Stock {
         Product product = stockProducts.get(productName).keys().nextElement();
         product.removeFromAllCategories();
         stockProducts.remove(productName);
+        productAmount.remove(product);
+        DALService.removeProduct(product,this);
         return true;
     }
 
@@ -81,8 +125,10 @@ public class Stock {
             throw new Exception("the amount of the product equals to the new amount");
         stockProducts.remove(productName);
         ConcurrentHashMap<Product,Integer> productAmount = new ConcurrentHashMap<Product, Integer>();
+        this.productAmount.put(product,newAmount);
         productAmount.put(product,newAmount);
-        stockProducts.put(productName, productAmount);
+        stockProducts.put(productName,productAmount);
+        DALService.stockRepository.save(this);
         return true;
     }
 
@@ -225,7 +271,7 @@ public class Stock {
         return this.stockProducts.get(productName).get(product);
     }
     public String getStoreName(){
-        return store.getStoreName();
+        return stockName;
     }
 
 
@@ -254,8 +300,8 @@ public class Stock {
             counter--;
         }
         if(counter!=0) msg+="]";
-        msg+= " from the store: " + store.getStoreName();
-        NotificationService.getInstance().notify(store.getStoreName(),msg,NotificationType.productBought);
+        msg+= " from the stock: " + stockName;
+        NotificationService.getInstance().notify(stockName,msg,NotificationType.productBought);
         return true;
     }
     public synchronized boolean replaceBagAmountToStock(ConcurrentHashMap<String, ConcurrentHashMap<Product,Integer>> bagContent) throws Exception {
@@ -279,5 +325,35 @@ public class Stock {
             throw new Exception(""+productName+" product does not exist in this store!");
 
         return  ((Integer)stockProducts.get(productName).values().toArray()[0]);
+    }
+
+    public void defineStockProductsMap() {
+        stockProducts = new ConcurrentHashMap<>();
+        for (Product p: productAmount.keySet()){
+            ConcurrentHashMap<Product,Integer> product_amount = new ConcurrentHashMap<>();
+            product_amount.put(p,productAmount.get(p));
+            stockProducts.put(p.getName(),product_amount);
+        }
+    }
+
+    public Map<Product, Integer> getProductAmount() {
+        return productAmount;
+    }
+
+    public Map<String, Category> getStockCategories() {
+        return stockCategories;
+    }
+
+    public void updateStock(Stock stock) {
+        this.stockName = stock.stockName;
+        this.stockProducts = new ConcurrentHashMap<>();
+        this.productAmount = stock.productAmount;
+        this.stockCategories = stock.stockCategories;
+        for (Product product: productAmount.keySet()){
+            ConcurrentHashMap<Product,Integer> product_amount = new ConcurrentHashMap<>();
+            product_amount.put(product,productAmount.get(product));
+            stockProducts.put(product.getName(),product_amount);
+        }
+        this.isLoaded = true;
     }
 }

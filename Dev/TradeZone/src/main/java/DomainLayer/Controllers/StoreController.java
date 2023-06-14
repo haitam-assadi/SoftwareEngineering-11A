@@ -4,6 +4,7 @@ import DTO.DealDTO;
 import DTO.MemberDTO;
 import DTO.ProductDTO;
 import DTO.StoreDTO;
+import DataAccessLayer.DALService;
 import DomainLayer.BagConstraints.BagConstraint;
 import DomainLayer.Category;
 import DomainLayer.DiscountPolicies.*;
@@ -15,13 +16,16 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class StoreController {
     private ConcurrentHashMap<String, Store> stores;
+    private Set<String> storesNamesConcurrentSet;
 
     public StoreController() {
         stores = new ConcurrentHashMap<>();
+        storesNamesConcurrentSet = ConcurrentHashMap.newKeySet();
     }
 
     //TODO: isStore() method currentlu checking if storeName exists in hashmap, this does not work with lazyLoad
@@ -196,6 +200,7 @@ public class StoreController {
         newStoreName = newStoreName.strip().toLowerCase();
         Store newStore = new Store(newStoreName);
         stores.put(newStoreName,newStore);
+        storesNamesConcurrentSet.add(newStoreName);
         return newStore;
     }
 
@@ -479,4 +484,7 @@ public class StoreController {
         return filteredProducts;
     }
 
+    public void loadAllStoresNames() {
+        storesNamesConcurrentSet = DALService.storeRepository.getAllStoresNames();
+    }
 }

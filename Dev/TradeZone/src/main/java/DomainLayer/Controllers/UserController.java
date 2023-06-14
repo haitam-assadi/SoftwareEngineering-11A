@@ -2,12 +2,15 @@ package DomainLayer.Controllers;
 
 import DTO.MemberDTO;
 import DTO.StoreDTO;
+import DataAccessLayer.DALService;
 import DomainLayer.*;
 
+import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -35,12 +38,16 @@ public class UserController {
 
     public String firstManagerInitializer() {
         String user = "systemmanager1";
-        Member member = new Member(user,Security.Encode("systemmanager1Pass"));
-        membersNamesConcurrentSet.add(user);
-        members.put(user,member);
-        SystemManager systemManager = new SystemManager(member);
-        member.setSystemManager(systemManager);
-        systemManagers.put(user,systemManager);
+        if(!membersNamesConcurrentSet.contains(user)) {
+            Member member = new Member(user, Security.Encode("systemmanager1Pass"));
+            membersNamesConcurrentSet.add(user);
+            members.put(user, member);
+            SystemManager systemManager = new SystemManager(member);
+            member.setSystemManager(systemManager);
+            systemManagers.put(user, systemManager);
+            DALService.saveMember(member, member.getCart());
+            DALService.systemManagerRepository.save(systemManager);
+        }
         return user;
     }
 
@@ -58,8 +65,10 @@ public class UserController {
     public boolean exitMarket(String userName) throws Exception {
         assertIsGuestOrLoggedInMember(userName);
         userName = userName.strip().toLowerCase();
-        if(isGuest(userName))
+        if(isGuest(userName)) {
             guests.remove(userName);
+            DALService.cartRepository.deleteGuest();
+        }
         else
             loggedInMemberExitMarket(userName);
 
@@ -69,11 +78,13 @@ public class UserController {
         registerValidateParameters(guestUserName, newMemberUserName, password);
         newMemberUserName = newMemberUserName.strip().toLowerCase();
         Member member = new Member(newMemberUserName, Security.Encode(password));
-        member.addCart(guests.get(guestUserName).getCart());
         members.put(newMemberUserName, member);
         member.defineNotifications(newMemberUserName);
         membersNamesConcurrentSet.add(newMemberUserName);
-        //TODO: add user to database
+        DALService.saveMember(member,member.getCart());
+        member.getCart().setMemberCart(member);
+        DALService.cartRepository.save(member.getCart());
+        member.addCart(guests.get(guestUserName).getCart());
         return true;
     }
 
@@ -132,6 +143,7 @@ public class UserController {
         loggedInMembers.put(MemberUserName, member);
         guests.remove(guestUserName);
         member.Login();
+        DALService.memberRepository.save(member);
         return MemberUserName;
     }
 
@@ -151,10 +163,23 @@ public class UserController {
         assertIsMember(userName);
 
         userName = userName.strip().toLowerCase();
-        if(!members.containsKey(userName))
+        if(!members.containsKey(userName)) {
             // TODO: read from database AND add to members hashmap
-            throw new Exception("user needs to be read from database");
-
+            Optional<Member> memberD = DALService.memberRepository.findById(userName);
+            if (memberD.isPresent()){
+                Member member = memberD.get();
+                if (member.checkIsSystemManager()){
+                    SystemManager systemManager = DALService.systemManagerRepository.findByMember(member);
+                    member.setSystemManager(systemManager);
+                    systemManagers.put(userName,systemManager);
+                }else{
+                    member.declareRoles();
+                }
+                members.put(userName,member);
+            }else{
+                throw new Exception(userName + " does not exist!");
+            }
+        }
         return members.get(userName);
     }
 
@@ -281,6 +306,7 @@ public class UserController {
 
 
 
+    @Transactional
     public Boolean AppointMemberAsSystemManager(String managerName, String otherMemberName) throws Exception {
         assertIsSystemManager(managerName);
         assertIsMemberLoggedIn(managerName);
@@ -292,6 +318,8 @@ public class UserController {
         SystemManager newManager = manager.AppointMemberAsSystemManager(otherMember);
         otherMember.setSystemManager(newManager);
         systemManagers.put(otherMemberName,newManager);
+        DALService.memberRepository.save(otherMember);
+        DALService.systemManagerRepository.save(newManager);
         return true;
     }
 
@@ -332,15 +360,20 @@ public class UserController {
 
     public String memberLogOut(String memberUserName) throws Exception {
         assertIsMemberLoggedIn(memberUserName);
-        loggedInMembers.get(memberUserName).Logout();
+        Member member = loggedInMembers.get(memberUserName);
+        member.Logout();
         loggedInMembers.remove(memberUserName);
         String newGuest = loginAsGuest();
+        DALService.memberRepository.save(member);
         return newGuest;
     }
 
     public boolean loggedInMemberExitMarket(String memberUserName) throws Exception {
         assertIsMemberLoggedIn(memberUserName);
+        Member member = getMember(memberUserName);
+        member.Logout();
         loggedInMembers.remove(memberUserName);
+        DALService.memberRepository.save(member);
         return true;
     }
 
@@ -433,6 +466,10 @@ public class UserController {
             throw new Exception("the caller member is not a system manager");
         Member member = members.get(returnedMemberName);
         return member.getMemberDTO();
+    }
+
+    public void loadAllMembersNames() {
+        membersNamesConcurrentSet = DALService.memberRepository.getAllMemberNames();
     }
 
 

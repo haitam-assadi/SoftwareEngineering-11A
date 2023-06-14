@@ -4,35 +4,71 @@ import DTO.DealDTO;
 import DTO.MemberDTO;
 import DTO.ProductDTO;
 import DTO.StoreDTO;
+import DataAccessLayer.Controller.MemberMapper;
+import DataAccessLayer.DALService;
 import DomainLayer.BagConstraints.*;
 import DomainLayer.DiscountPolicies.*;
 
+import javax.persistence.*;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 
+@Entity
 public class Store {
 
+    @Id
     private String storeName;
+
+    @OneToOne
+    @JoinColumn(name = "stockName")
     private Stock stock;
     private boolean isActive;
+
+    @Transient
     private StoreFounder storeFounder;
-    private ConcurrentHashMap<String, StoreOwner> storeOwners;
-    private ConcurrentHashMap<String, StoreManager> storeManagers;
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "store_owners", joinColumns = @JoinColumn(name = "store_name"))
+    @MapKeyJoinColumns({
+            @MapKeyJoinColumn(name = "member_name", referencedColumnName = "memberName"),
+            @MapKeyJoinColumn(name = "store_name", referencedColumnName = "storeName")
+    })
+    @Column(name = "owner")
+    private Map<String, StoreOwner> storeOwners;
+
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "store_managers", joinColumns = @JoinColumn(name = "store_name"))
+    @MapKeyJoinColumns({
+            @MapKeyJoinColumn(name = "member_name", referencedColumnName = "memberName"),
+            @MapKeyJoinColumn(name = "store_name", referencedColumnName = "storeName")
+    })
+    @Column(name = "manager")
+    private Map<String, StoreManager> storeManagers;
 
     //TODO:: maybe need to make it Concurrent
+    @Transient
     private List<Deal> storeDeals;
+    @Transient
     private ConcurrentHashMap<Integer,BagConstraint> createdBagConstraints;
+    @Transient
     Integer bagConstraintsIdCounter;
-
+    @Transient
     private ConcurrentHashMap<Integer,DiscountPolicy> createdDiscountPolicies;
+    @Transient
     Integer discountPoliciesIdCounter;
+    @Transient
     private ConcurrentHashMap<Integer,DiscountPolicy> storeDiscountPolicies;
+    @Transient
     private ConcurrentHashMap<Integer,BagConstraint> storePaymentPolicies;
+
+    @Transient
+    private boolean isLoaded;
 
     public Store(String storeName) {
         this.storeName = storeName;
-        stock = new Stock(this);
+        stock = new Stock(storeName);
         isActive = true;
         storeFounder = null;
         storeOwners = new ConcurrentHashMap<>();
@@ -46,6 +82,31 @@ public class Store {
         storePaymentPolicies = new ConcurrentHashMap<>();
         createdBagConstraints = new ConcurrentHashMap<>();
         bagConstraintsIdCounter =1;
+        isLoaded = true;
+    }
+    public Store(String storeName,boolean isLoaded) {
+        this.storeName = storeName;
+        stock = new Stock(storeName,isLoaded);
+        isActive = true;
+        storeFounder = null;
+        storeOwners = new ConcurrentHashMap<>();
+        storeManagers = new ConcurrentHashMap<>();
+        storeDeals = new ArrayList<>();
+
+        storeDiscountPolicies = new ConcurrentHashMap<>();
+        createdDiscountPolicies = new ConcurrentHashMap<>();
+        discountPoliciesIdCounter=1;
+
+        storePaymentPolicies = new ConcurrentHashMap<>();
+        createdBagConstraints = new ConcurrentHashMap<>();
+        bagConstraintsIdCounter =1;
+        this.isLoaded = isLoaded;
+    }
+
+    public Store(){}
+
+    public void setLoaded(boolean loaded){
+        isLoaded = loaded;
     }
     public void setStoreFounderAtStoreCreation(StoreFounder storeFounder) throws Exception {
         if(this.alreadyHaveFounder()){
@@ -156,6 +217,7 @@ public class Store {
     }
 
     public StoreDTO getStoreInfo(){
+        Optional<Stock> stock1 =  DALService.stockRepository.findById(storeName);
         List<String> ownersNames = this.storeOwners.values().stream().map(Role::getUserName).toList();
         List<String> managersNames = this.storeManagers.values().stream().map(Role::getUserName).toList();
         return new StoreDTO(storeName, storeFounder.getUserName(), ownersNames, managersNames, stock.getProductsInfoAmount(),isActive);
@@ -224,6 +286,10 @@ public class Store {
         return true;
     }
 
+    public boolean loadAppointMemberAsStoreOwner(StoreOwner storeOwner) throws Exception {
+        storeOwners.put(storeOwner.getUserName(), storeOwner);
+        return true;
+    }
 
     public boolean addPermissionForStoreManager(String ownerUserName, String managerUserName, Integer permissionId) throws Exception {
         assertIsOwnerOrFounder(ownerUserName);
@@ -252,11 +318,11 @@ public class Store {
         return storeFounder;
     }
 
-    public ConcurrentHashMap<String, StoreOwner> getStoreOwners() {
+    public Map<String, StoreOwner> getStoreOwners() {
         return storeOwners;
     }
 
-    public ConcurrentHashMap<String, StoreManager> getStoreManagers() {
+    public Map<String, StoreManager> getStoreManagers() {
         return storeManagers;
     }
 
@@ -268,6 +334,7 @@ public class Store {
             this.isActive = false;
             String msg = "store: " + storeName + " has been closed by " + memberUserName + " at " + java.time.LocalTime.now();
             NotificationService.getInstance().notify(storeName,msg,NotificationType.storeClosed);
+            DALService.storeRepository.save(this);
             return true;
         }
         throw new Exception(memberUserName + "is not the founder of the store");
@@ -953,7 +1020,33 @@ public class Store {
         return storeDiscountPolicies.keySet().stream().toList();
     }
 
+    public void loadStore(){
+        if (!isLoaded) {
+            Store store = DALService.storeRepository.getById(storeName);
+            //String founderName
+            this.isActive = store.isActive;
+            //this.storeFounder = MemberMapper.getInstance().getStoreFounder(foundername???);
 
+            for (String ownerName: store.storeOwners.keySet()){
+                //storeOwners.put(ownerName,MemberMapper.getInstance().getStoreOwner(ownerName));
+            }
+            for (String managerName: store.storeManagers.keySet()){
+                //storeOwners.put(ownerName,MemberMapper.getInstance().getStoreManager(managerName));
+            }
+        }
+        isLoaded = true;
+    }
 
+    @Override
+    public String toString() {
+        String res = "Store{" +
+                "storeName='" + storeName + '\'' +
+                ", isActive=" + isActive + ", ";
 
+//        for (String owner: storeOwners.keySet()){
+//            res = res + storeOwners.get(owner).toString() + ", ";
+//        }
+        res = res + '}';
+        return res;
+    }
 }

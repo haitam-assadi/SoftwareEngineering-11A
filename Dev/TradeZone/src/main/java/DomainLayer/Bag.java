@@ -2,21 +2,42 @@ package DomainLayer;
 
 import DTO.BagDTO;
 import DTO.ProductDTO;
+import DataAccessLayer.DALService;
 
+import javax.persistence.*;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-
+@Entity
+@Table
 public class Bag {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int bagId;
 
+    @OneToOne
+    @JoinColumn(name = "storeName")
     private Store storeBag;
+
+    @Transient
     private ConcurrentHashMap<String, ConcurrentHashMap<Product,Integer>> bagContent;
 
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "Bag_Products", joinColumns = @JoinColumn(name = "bag_id"))
+    @MapKeyJoinColumns({
+            @MapKeyJoinColumn(name = "product_name", referencedColumnName = "productName"),
+            @MapKeyJoinColumn(name = "store_name", referencedColumnName = "storeName")
+    })
+    @Column(name = "amount")
+    private Map<Product,Integer> productAmount;
     public Bag(Store storeBag) {
         this.storeBag = storeBag;
         bagContent = new ConcurrentHashMap<>();
+        productAmount = new ConcurrentHashMap<>();
     }
+    public Bag(){}
 
-    public boolean addProduct(String productName, Integer amount) throws Exception {
+    public boolean addProduct(String productName, Integer amount,boolean member) throws Exception {
         productName = productName.strip().toLowerCase();
         if(bagContent.containsKey(productName))
             throw new Exception("bag already contains "+productName+" product");
@@ -26,15 +47,21 @@ public class Bag {
         ConcurrentHashMap<Product,Integer> innerHashMap = new ConcurrentHashMap<>();
         innerHashMap.put(product,amount);
         bagContent.put(productName,innerHashMap);
+        productAmount.put(product,amount);
+        if (member)
+            DALService.addProduct(this,product);
         return true;
     }
 
-    public boolean changeProductAmount(String productName, Integer newAmount) throws Exception {
+    public boolean changeProductAmount(String productName, Integer newAmount,boolean member) throws Exception {
         productName = productName.strip().toLowerCase();
         if(! bagContent.containsKey(productName))
             throw new Exception("bag does not contain "+productName+" product");
         Product product =storeBag.getProductWithAmount(productName,newAmount);
+        productAmount.put(findProductbyName(productName),newAmount);
         bagContent.get(productName).put(product,newAmount);
+        if (member)
+            DALService.bagRepository.save(this);
         return true;
     }
 
@@ -42,8 +69,17 @@ public class Bag {
         productName = productName.strip().toLowerCase();
         if(! bagContent.containsKey(productName))
             throw new Exception("bag does not contain "+productName+" product");
+        this.productAmount.remove(findProductbyName(productName));
+        //DALService.bagRepository.save(this);
         bagContent.remove(productName);
         return bagContent.isEmpty()? false:true;
+    }
+    private Product findProductbyName(String productName){
+        for (Product product: productAmount.keySet()){
+            if (product.getName().equals(productName))
+                return product;
+        }
+        return null;
     }
 
     public Store getStoreBag() {
@@ -110,5 +146,12 @@ public class Bag {
 
     public void removeAllProducts() {
         bagContent = new ConcurrentHashMap<>();
+        productAmount = new ConcurrentHashMap<>();
+        DALService.bagRepository.save(this);
+        DALService.bagRepository.delete(this);
+    }
+
+    public Map<Product, Integer> getProductAmount() {
+        return productAmount;
     }
 }

@@ -1,16 +1,22 @@
 package DomainLayer;
 
 import DTO.BagDTO;
-import DTO.DealDTO;
 
+import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
+@MappedSuperclass
 public abstract class User {
 
+    @Id
     protected String userName;
+
+    @OneToOne
+    @JoinColumn(name = "cart_id")
     protected Cart cart;
+
+    @Transient
     protected List<Deal> userDeals;
 
     public User(String userName){
@@ -18,6 +24,7 @@ public abstract class User {
         this.cart = new Cart(this);
         userDeals = new ArrayList<>();
     }
+    public User(){}
 
     public String getUserName(){
         return userName;
@@ -33,22 +40,19 @@ public abstract class User {
         return this.cart;
     }
 
-    public void removeCart(){
-        cart.removeAllCart();
-        cart = null;
+
+
+
+    public boolean addToCart(Store store, String productName, Integer amount, boolean member) throws Exception {
+        return cart.addToCart(store,productName,amount,member);
     }
 
-
-    public boolean addToCart(Store store, String productName, Integer amount) throws Exception {
-        return cart.addToCart(store,productName,amount);
+    public boolean changeProductAmountInCart(Store store, String productName, Integer newAmount, boolean member) throws Exception {
+        return cart.changeProductAmountInCart(store,productName,newAmount,member);
     }
 
-    public boolean changeProductAmountInCart(Store store, String productName, Integer newAmount) throws Exception {
-        return cart.changeProductAmountInCart(store,productName,newAmount);
-    }
-
-    public boolean removeFromCart(Store store, String productName) throws Exception {
-        return cart.removeFromCart(store,productName);
+    public boolean removeFromCart(Store store, String productName, boolean member) throws Exception {
+        return cart.removeFromCart(store,productName,member);
     }
 
 

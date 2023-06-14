@@ -1,6 +1,9 @@
 package DomainLayer;
 
+import javax.persistence.*;
+import java.io.Serializable;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 enum  ManagerPermissions{
@@ -12,14 +15,28 @@ enum  ManagerPermissions{
     manageStoreDiscountPolicies,
     manageStorePaymentPolicies
 }
-public class StoreManager extends Role{
 
+@Entity
+@Table(name = "StoreManager")
+@PrimaryKeyJoinColumn(name = "member_name")
+public class StoreManager extends Role implements Serializable {
+
+    @Transient
     private ConcurrentHashMap<String, Set<ManagerPermissions>> managedStoresPermissions;
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "manager_permission")
+    @Column(name = "permission")
+    @Enumerated(EnumType.STRING)
+    protected Set<ManagerPermissions> managerPermissions;
 
     public StoreManager(Member member) {
         super(member);
         this.myRole = RoleEnum.StoreManager;
         this.managedStoresPermissions = new ConcurrentHashMap<>();
+        managerPermissions = new HashSet<>();
+    }
+    public StoreManager(){
     }
     public boolean assertHasPermissionForStore(String storeName, ManagerPermissions permission) throws Exception {
         if(storeName==null)
@@ -79,6 +96,7 @@ public class StoreManager extends Role{
 
         managedStoresPermissions.put(storeName, new HashSet<ManagerPermissions>());
         managedStoresPermissions.get(storeName).add(ManagerPermissions.getStoreDeals);
+        managerPermissions.add(ManagerPermissions.getStoreDeals);
         return true;
     }
 

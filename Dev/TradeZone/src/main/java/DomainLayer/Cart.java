@@ -1,41 +1,79 @@
 package DomainLayer;
 
 import DTO.BagDTO;
+import DataAccessLayer.DALService;
 
+import javax.persistence.*;
+import javax.transaction.Transactional;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+@Entity
+@Table(name = "Carts")
 public class Cart {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int cartId;
+
+    @OneToOne
+    @JoinColumn(name = "memberName")
+    Member memberCart;
+
+    @Transient
     User cartOwner;
-    private ConcurrentHashMap<String, Bag> bags;
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "cart_bags", joinColumns = @JoinColumn(name = "cart_id"))
+    @MapKeyJoinColumns({
+            @MapKeyJoinColumn(name = "bag_id", referencedColumnName = "bagId")
+    })
+    @Column(name = "bag")
+    private Map<String, Bag> bags;
     public Cart(User cartOwner){
         this.cartOwner = cartOwner;
         bags = new ConcurrentHashMap<>();
     }
+    public Cart(){}
 
-    public boolean addToCart(Store store, String productName, Integer amount) throws Exception {
+    public Cart(Member cartOwner){
+        this.memberCart = cartOwner;
+    }
+
+    public void setMemberCart(Member memberCart) {
+        this.memberCart = memberCart;
+    }
+
+
+
+    public boolean addToCart(Store store, String productName, Integer amount,boolean member) throws Exception {
         bags.putIfAbsent(store.getStoreName(), new Bag(store));
-        return bags.get(store.getStoreName()).addProduct(productName, amount);
+        if (member)
+            DALService.modifyBag(this,bags.get(store.getStoreName()));
+        return bags.get(store.getStoreName()).addProduct(productName, amount,member);
 //        Bag bag = new Bag(store);
 //        bag.addProduct(productName,amount);
 //        bags.putIfAbsent(store.getStoreName(), bag);
 //        return true;
     }
 
-    public boolean changeProductAmountInCart(Store store, String productName, Integer newAmount) throws Exception {
+    public boolean changeProductAmountInCart(Store store, String productName, Integer newAmount,boolean member) throws Exception {
         if(!bags.containsKey(store.getStoreName()))
             throw new Exception("bag does not contain "+productName+" product");
 
-        return bags.get(store.getStoreName()).changeProductAmount(productName, newAmount);
+        return bags.get(store.getStoreName()).changeProductAmount(productName, newAmount,member);
     }
 
-    public boolean removeFromCart(Store store, String productName) throws Exception {
+    public boolean removeFromCart(Store store, String productName,boolean member) throws Exception {
         if(!bags.containsKey(store.getStoreName()))
             throw new Exception("bag does not contain "+productName+" product");
         if(!bags.get(store.getStoreName()).removeProduct(productName)){
+            Bag bag = bags.get(store.getStoreName());
             bags.remove(store.getStoreName());
+            if (member)
+                DALService.modifyAndRemoveBag(this,bag);
         }
         return true;
     }
@@ -95,8 +133,16 @@ public class Cart {
 
     public void removeAllCart() {
         for (Bag b: bags.values()){
+            bags.remove(b.getStoreBag().getStoreName());
+            DALService.cartRepository.save(this);
             b.removeAllProducts();
         }
         bags = new ConcurrentHashMap<>();
+        memberCart = null;
+
+    }
+
+    public Map<String, Bag> getBags() {
+        return bags;
     }
 }

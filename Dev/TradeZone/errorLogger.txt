@@ -784,3 +784,231 @@ fail in purchasing: Bag does not follow store: moslem store payment policy: prod
 יוני 09, 2023 5:43:50 אחה״צ DomainLayer.LoggerManager sendErrorLog
 WARNING: 
 fail in purchasing: Payment service error
+יוני 10, 2023 9:10:19 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: org.hibernate.TransientPropertyValueException: object references an unsaved transient instance - save the transient instance before flushing : DomainLayer.Cart.memberCart -> DomainLayer.Member; nested exception is java.lang.IllegalStateException: org.hibernate.TransientPropertyValueException: object references an unsaved transient instance - save the transient instance before flushing : DomainLayer.Cart.memberCart -> DomainLayer.Member
+יוני 10, 2023 9:23:22 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: password must have at least 8 characters, at least one digit and one char
+יוני 10, 2023 9:34:24 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: string is null or empty
+יוני 11, 2023 7:21:13 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: Unable to find DomainLayer.Product with id DataAccessLayer.CompositeKeys.ProductId@cb01b710; nested exception is javax.persistence.EntityNotFoundException: Unable to find DomainLayer.Product with id DataAccessLayer.CompositeKeys.ProductId@cb01b710
+יוני 11, 2023 7:24:17 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: password must have at least 8 characters, at least one digit and one char
+יוני 11, 2023 7:25:12 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: Unable to find DomainLayer.Product with id DataAccessLayer.CompositeKeys.ProductId@6a2bd0; nested exception is javax.persistence.EntityNotFoundException: Unable to find DomainLayer.Product with id DataAccessLayer.CompositeKeys.ProductId@6a2bd0
+יוני 11, 2023 7:31:35 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: password must have at least 8 characters, at least one digit and one char
+יוני 11, 2023 7:37:55 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: password must have at least 8 characters, at least one digit and one char
+יוני 11, 2023 7:37:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: password must have at least 8 characters, at least one digit and one char
+יוני 11, 2023 7:38:42 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: No default constructor for entity:  : DomainLayer.Product; nested exception is org.hibernate.InstantiationException: No default constructor for entity:  : DomainLayer.Product
+יוני 11, 2023 7:39:46 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: password must have at least 8 characters, at least one digit and one char
+יוני 11, 2023 7:56:57 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: password must have at least 8 characters, at least one digit and one char
+יוני 12, 2023 8:54:48 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: incorrect password!
+יוני 12, 2023 9:07:14 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: password must have at least 8 characters, at least one digit and one char
+יוני 12, 2023 9:07:19 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: password must have at least 8 characters, at least one digit and one char
+יוני 12, 2023 9:07:30 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: incorrect password!
+יוני 12, 2023 9:07:34 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: incorrect password!
+יוני 12, 2023 9:12:14 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: incorrect password!
+יוני 12, 2023 9:47:16 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: memberqqqq is already store owner
+יוני 12, 2023 9:49:06 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: memberaaaa is already store owner
+יוני 12, 2023 9:49:09 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: userName sa does not exists!
+יוני 12, 2023 10:26:40 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: password must have at least 8 characters, at least one digit and one char
+יוני 12, 2023 10:28:09 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: Cannot invoke "java.util.List.iterator()" because the return value of "java.util.concurrent.ConcurrentHashMap.get(Object)" is null
+יוני 12, 2023 10:31:52 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: Cannot invoke "java.util.List.iterator()" because the return value of "java.util.concurrent.ConcurrentHashMap.get(Object)" is null
+יוני 12, 2023 10:39:19 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: ssss is not owner for str1 by qqqq
+יוני 12, 2023 10:53:32 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: password must have at least 8 characters, at least one digit and one char
+יוני 12, 2023 10:53:39 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: incorrect password!
+יוני 12, 2023 10:53:45 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: incorrect password!
+יוני 12, 2023 10:53:49 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: incorrect password!
+יוני 12, 2023 11:01:32 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: string is null or empty
+יוני 12, 2023 11:01:49 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: productName is null or empty!
+יוני 12, 2023 11:02:12 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info ny keyword: key word  is null or empty!
+יוני 12, 2023 11:07:54 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: password must have at least 8 characters, at least one digit and one char
+יוני 12, 2023 11:08:07 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: incorrect password!
+יוני 12, 2023 11:08:10 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: incorrect password!
+יוני 12, 2023 11:27:57 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: password must have at least 8 characters, at least one digit and one char
+יוני 12, 2023 12:09:10 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: org.hibernate.TransientObjectException: object references an unsaved transient instance - save the transient instance before flushing: DomainLayer.Bag; nested exception is java.lang.IllegalStateException: org.hibernate.TransientObjectException: object references an unsaved transient instance - save the transient instance before flushing: DomainLayer.Bag
+יוני 12, 2023 12:37:31 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove product from cart: could not execute statement; SQL [n/a]; constraint [fkg3ud4x649uc65glqas9lbmd34]; nested exception is org.hibernate.exception.ConstraintViolationException: could not execute statement
+יוני 12, 2023 12:41:47 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove product from cart: could not execute statement; SQL [n/a]; constraint [fkg3ud4x649uc65glqas9lbmd34]; nested exception is org.hibernate.exception.ConstraintViolationException: could not execute statement
+יוני 12, 2023 12:47:23 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove product from cart: Entity must not be null.; nested exception is java.lang.IllegalArgumentException: Entity must not be null.
+יוני 12, 2023 12:49:44 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove product from cart: Entity must not be null.; nested exception is java.lang.IllegalArgumentException: Entity must not be null.
+יוני 12, 2023 12:57:35 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: str1 does not exists!
+יוני 12, 2023 1:06:05 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove product from cart: could not extract ResultSet; nested exception is org.hibernate.exception.GenericJDBCException: could not extract ResultSet
+יוני 12, 2023 1:12:06 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove product from cart: could not extract ResultSet; nested exception is org.hibernate.exception.GenericJDBCException: could not extract ResultSet
+יוני 12, 2023 1:14:20 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove product from cart: could not extract ResultSet; nested exception is org.hibernate.exception.GenericJDBCException: could not extract ResultSet
+יוני 12, 2023 1:15:36 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove product from cart: could not extract ResultSet; nested exception is org.hibernate.exception.GenericJDBCException: could not extract ResultSet
+יוני 12, 2023 1:21:54 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: incorrect password!
+יוני 12, 2023 1:22:54 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove product from cart: could not extract ResultSet; nested exception is org.hibernate.exception.GenericJDBCException: could not extract ResultSet
+יוני 12, 2023 1:40:24 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: incorrect password!
+יוני 12, 2023 1:40:29 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: incorrect password!
+יוני 12, 2023 2:34:26 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove product from cart: Entity must not be null.; nested exception is java.lang.IllegalArgumentException: Entity must not be null.
+יוני 12, 2023 2:38:10 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove product from cart: Entity must not be null.; nested exception is java.lang.IllegalArgumentException: Entity must not be null.
+יוני 12, 2023 2:39:52 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: stock does already contains this product pr1
+יוני 12, 2023 2:42:07 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove product from cart: Entity must not be null.; nested exception is java.lang.IllegalArgumentException: Entity must not be null.
+יוני 12, 2023 2:44:20 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove product from cart: Entity must not be null.; nested exception is java.lang.IllegalArgumentException: Entity must not be null.
+יוני 12, 2023 2:45:42 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove product from cart: could not execute statement; SQL [n/a]; constraint [fkanlym9855ufo3x73jynanmx6s]; nested exception is org.hibernate.exception.ConstraintViolationException: could not execute statement
+יוני 12, 2023 2:46:56 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: qqqq is already a member
+יוני 12, 2023 3:43:41 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: string is null or empty
+יוני 12, 2023 3:43:45 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: string is null or empty
+יוני 12, 2023 3:54:36 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: systemmanager1 is already a member
+יוני 12, 2023 3:54:42 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: incorrect password!
+יוני 12, 2023 4:23:17 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting products info: userName aaaa does not exists!
+יוני 12, 2023 5:06:25 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: password must have at least 8 characters, at least one digit and one char
+יוני 12, 2023 5:20:12 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: qqqq is already a member
+יוני 12, 2023 5:27:43 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: user needs to be read from database
+יוני 12, 2023 5:33:56 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in creating store: Cannot invoke "java.util.Map.putIfAbsent(Object, Object)" because "this.roles" is null
+יוני 12, 2023 6:01:27 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: No default constructor for entity:  : DomainLayer.SystemManager; nested exception is org.hibernate.InstantiationException: No default constructor for entity:  : DomainLayer.SystemManager
+יוני 12, 2023 6:13:06 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: systemmanager1 is already a member
+יוני 12, 2023 6:44:56 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: qqqq is already a member
+יוני 13, 2023 8:39:18 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: qqqq is already a member
+יוני 13, 2023 8:56:57 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: incorrect password!
+יוני 13, 2023 9:01:19 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in creating store: store: str1 is already store
+יוני 13, 2023 9:01:47 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in creating store: store: str1 is already store
+יוני 13, 2023 9:58:40 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: incorrect password!
+יוני 13, 2023 12:21:24 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: incorrect password!
+יוני 13, 2023 11:25:15 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: stock does already contains this product pr1
