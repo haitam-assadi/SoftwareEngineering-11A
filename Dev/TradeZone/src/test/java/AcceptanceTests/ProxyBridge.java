@@ -1,5 +1,6 @@
 package AcceptanceTests;
 
+import DTO.DealDTO;
 import DTO.OwnerContractDTO;
 import DTO.ProductDTO;
 import DomainLayer.PaymentService;
@@ -702,5 +703,23 @@ public class ProxyBridge implements Bridge{
         }
 
         return null;
+    }
+
+    @Override
+    public List<DealDTO> getStoreDeals(String memberUserName, String storeName) throws Exception {
+        if(realBridge!=null){
+            return realBridge.getStoreDeals(memberUserName, storeName);
+        }
+
+        return new LinkedList<>();
+    }
+
+    @Override
+    public List<DealDTO> getMemberDeals(String memberUserName, String otherMemberUserName) throws Exception {
+        if(realBridge!=null){
+            return realBridge.getMemberDeals(memberUserName, otherMemberUserName);
+        }
+
+        return new LinkedList<>();
     }
 }

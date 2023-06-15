@@ -268,6 +268,7 @@ public class Member extends User{
 
     public void addCart(Cart cart) {
         this.cart = cart;
+        cart.setUser(this);
     }
 
     public void assertHaveNoRule() throws Exception {

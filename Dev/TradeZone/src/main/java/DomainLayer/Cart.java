@@ -113,4 +113,8 @@ public class Cart {
         }
         bags = new ConcurrentHashMap<>();
     }
+
+    public void setUser(Member member) {
+        this.cartOwner = member;
+    }
 }

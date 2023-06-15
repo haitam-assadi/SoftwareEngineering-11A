@@ -483,9 +483,9 @@ public class SystemService {
         }
     }
 
-    public ResponseT<List<DealDTO>> getMemberDeals(String systemManagerUserName, String otherMemberUserName){
+    public ResponseT<List<DealDTO>> getMemberDeals(String memberUserName, String otherMemberUserName){
         try{
-            return new ResponseT<>(market.getMemberDeals(systemManagerUserName, otherMemberUserName));
+            return new ResponseT<>(market.getMemberDeals(memberUserName, otherMemberUserName));
         }catch(Exception e){
             return new ResponseT<>("getMemberDeals: "+e.getMessage());
         }
