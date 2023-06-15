@@ -1051,3 +1051,60 @@ fail in getting product info: pr2product does not exist in this store!
 יוני 14, 2023 3:40:40 אחה״צ DomainLayer.LoggerManager sendErrorLog
 WARNING: 
 fail in getting product info: pr2product does not exist in this store!
+יוני 15, 2023 12:08:55 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: Cannot invoke "DomainLayer.StoreFounder.getUserName()" because "this.storeFounder" is null
+יוני 15, 2023 12:11:16 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: Cannot invoke "DomainLayer.StoreFounder.getUserName()" because "this.storeFounder" is null
+יוני 15, 2023 1:03:03 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: qqqq is already a member
+יוני 15, 2023 1:03:09 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: Cannot invoke "String.equals(Object)" because the return value of "DomainLayer.Member.getPassword()" is null
+יוני 15, 2023 2:13:11 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: Cannot invoke "String.equals(Object)" because the return value of "DomainLayer.Member.getPassword()" is null
+יוני 15, 2023 2:14:24 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting cart content: Cannot invoke "DomainLayer.Cart.getCartContent()" because "this.cart" is null
+יוני 15, 2023 2:17:15 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting cart content: Cannot invoke "DomainLayer.Cart.getCartContent()" because "this.cart" is null
+יוני 15, 2023 2:17:22 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: userName guest_0 does not exists!
+יוני 15, 2023 2:17:32 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: userName guest_0 does not exists!
+יוני 15, 2023 2:17:43 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: userName guest_0 does not exists!
+יוני 15, 2023 2:18:36 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: userName guest_0 does not exists!
+יוני 15, 2023 2:19:15 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: userName guest_0 does not exists!
+יוני 15, 2023 2:19:48 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting cart content: Cannot invoke "DomainLayer.Cart.getCartContent()" because "this.cart" is null
+יוני 15, 2023 2:22:31 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting cart content: Cannot invoke "DomainLayer.Cart.getCartContent()" because "this.cart" is null
+יוני 15, 2023 2:25:17 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting cart content: Cannot invoke "DomainLayer.Cart.getCartContent()" because "this.cart" is null
+יוני 15, 2023 2:30:18 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting cart content: Cannot invoke "DomainLayer.Cart.getCartContent()" because "this.cart" is null
+יוני 15, 2023 3:38:47 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in creating store: store: str1 is already store
+יוני 15, 2023 3:57:07 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: Cannot invoke "DomainLayer.StoreFounder.getUserName()" because "this.storeFounder" is null
+יוני 15, 2023 4:42:30 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: incorrect password!

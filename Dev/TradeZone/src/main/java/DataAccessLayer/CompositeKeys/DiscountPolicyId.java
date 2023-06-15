@@ -12,6 +12,7 @@ public class DiscountPolicyId implements Serializable {
         this.id = id;
         this.storeName =storeName;
     }
+    public DiscountPolicyId(){}
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

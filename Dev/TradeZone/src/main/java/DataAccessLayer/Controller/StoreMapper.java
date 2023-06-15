@@ -187,4 +187,16 @@ public class StoreMapper {
         storesNamesConcurrentSet.add(newStoreName);
         stores.put(newStoreName,newStore);
     }
+    public void insertProduct(ProductId productId,Product product){
+        //used only in run time, when adding new product to market
+        products.put(productId,product);
+    }
+    public void insertCategory(CategoryId categoryId,Category category){
+        //used only in run time, when adding new category to market
+        categories.put(categoryId,category);
+    }
+
+    public void removeProduct(ProductId productId) {
+        products.remove(productId);
+    }
 }

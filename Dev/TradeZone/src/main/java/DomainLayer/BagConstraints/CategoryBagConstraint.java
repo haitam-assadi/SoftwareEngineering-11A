@@ -41,7 +41,7 @@ public class CategoryBagConstraint extends BagConstraint implements Serializable
     //MinimumAge:
     int minAge;
 
-
+    public CategoryBagConstraint(){}
     public CategoryBagConstraint(Category category, int hour, int minute){
         this.category=category;
         this.categoryPPType = BagConstraintType.MaxTimeAtDay;

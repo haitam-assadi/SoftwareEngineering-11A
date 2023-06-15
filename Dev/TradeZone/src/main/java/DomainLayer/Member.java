@@ -4,6 +4,8 @@ import DTO.DealDTO;
 import DTO.MemberDTO;
 import DTO.StoreDTO;
 import DataAccessLayer.CompositeKeys.RolesId;
+import DataAccessLayer.Controller.MemberMapper;
+import DataAccessLayer.Controller.StoreMapper;
 import DataAccessLayer.DALService;
 
 import javax.persistence.*;
@@ -41,10 +43,11 @@ public class Member extends User{
     @CollectionTable(name = "member_roles", joinColumns = @JoinColumn(name = "member_name"))
     @Enumerated(value = EnumType.STRING)
     @Column(name = "role")
-    private List<RoleEnum> memberRolesFlag;
+    private Set<RoleEnum> memberRolesFlag;
 
     @Transient
     private boolean isLoaded;
+
 
 
     public void setSystemManager(SystemManager systemManager) {
@@ -52,8 +55,14 @@ public class Member extends User{
         isSystemManager = true;
     }
 
-    public boolean checkIsSystemManager(){
-        return isSystemManager;
+    public SystemManager checkIsSystemManager() throws Exception {
+        if (isSystemManager){
+            if (systemManager==null){
+                //todo:check if we should load appointedSystemManagers
+                this.systemManager = MemberMapper.getInstance().getSystemManager(userName);
+            }
+        }
+        return systemManager;
     }
 
     public Member(String userName, String password) {
@@ -64,7 +73,7 @@ public class Member extends User{
         systemManager = null;
         pendingMessages = new ArrayList<>();
         isOnline = false;
-        memberRolesFlag = new LinkedList<>();
+        memberRolesFlag = new HashSet<>();
         //isLoaded??
     }
 
@@ -118,7 +127,7 @@ public class Member extends User{
         storeOwnerRole.appointMemberAsStoreOwner(store,myBoss);
         store.appointMemberAsStoreOwner(storeOwnerRole);
         storeOwnerRole.setId(new RolesId(userName, store.getStoreName()));
-        storeOwnerRole.setBoss(myBoss.member);
+        storeOwnerRole.setBoss(myBoss.member,myBoss.getRoleType());
         DALService.saveStoreOwner(storeOwnerRole,store,this);
         return true;
     }
@@ -136,7 +145,7 @@ public class Member extends User{
         storeOwnerRole.loadAppointMemberAsStoreOwner(store,myBoss);
         store.loadAppointMemberAsStoreOwner(storeOwnerRole);
         storeOwnerRole.setId(new RolesId(userName, store.getStoreName()));
-        storeOwnerRole.setBoss(myBoss.member);
+        storeOwnerRole.setBoss(myBoss.member,myBoss.getRoleType());
         return true;
     }
 
@@ -180,7 +189,7 @@ public class Member extends User{
         storeManagerRole.appointMemberAsStoreManager(store,myBoss);
         store.appointMemberAsStoreManager(storeManagerRole);//TODO: CHECK IF OWNER IN THE STORE
         storeManagerRole.setId(new RolesId(userName, store.getStoreName()));
-        storeManagerRole.setBoss(myBoss.member);
+        storeManagerRole.setBoss(myBoss.member,myBoss.getRoleType());
         DALService.saveStoreManager(storeManagerRole,store,this);
         return true;
     }
@@ -191,9 +200,10 @@ public class Member extends User{
         addRole(RoleEnum.StoreFounder);
         roles.putIfAbsent(RoleEnum.StoreFounder, new StoreFounder(this));
         StoreFounder storeFounderRole =  (StoreFounder) roles.get(RoleEnum.StoreFounder);
-
+        MemberMapper.getInstance().insertFounder(storeFounderRole);
         storeFounderRole.appointMemberAsStoreFounder(store);
         store.setStoreFounderAtStoreCreation(storeFounderRole);
+        StoreMapper.getInstance().insertStore(store.getStoreName(),store);
         NotificationService.getInstance().subscribe(store.getStoreName(),NotificationType.productBought,this);
         NotificationService.getInstance().subscribe(store.getStoreName(),NotificationType.storeClosedBySystemManager,this);
 
@@ -206,6 +216,9 @@ public class Member extends User{
 
         if(memberRolesFlag.contains(RoleEnum.StoreFounder)){
             if (!roles.containsKey(RoleEnum.StoreFounder)){
+                StoreFounder storeFounder = MemberMapper.getInstance().getStoreFounder(userName);
+                roles.put(RoleEnum.StoreFounder,storeFounder);
+                storeFounder.loadFounder();
 //                //todo: load role
 //                List<StoreFounder> storeFounders = DALService.storeFounderRepository.findAllByMemberName(userName);
 //                for (StoreFounder storeFounder: storeFounders){
@@ -238,6 +251,9 @@ public class Member extends User{
         if(memberRolesFlag.contains(RoleEnum.StoreOwner)){
             if(!roles.containsKey(RoleEnum.StoreOwner)){
                 //todo: load role
+                StoreOwner storeOwner = MemberMapper.getInstance().getStoreOwner(userName);
+                roles.put(RoleEnum.StoreOwner,storeOwner);
+                storeOwner.loadOwner();
             }
             Role role = roles.get(RoleEnum.StoreOwner);
             List<StoreDTO> stores = new LinkedList<>();
@@ -249,6 +265,9 @@ public class Member extends User{
         if(memberRolesFlag.contains(RoleEnum.StoreManager)){
             if (!roles.containsKey(RoleEnum.StoreManager)){
                 //todo: load role
+                StoreManager storeManager = MemberMapper.getInstance().getStoreManager(userName);
+                roles.put(RoleEnum.StoreOwner,storeManager);
+                storeManager.loadManager();
             }
             Role role = roles.get(RoleEnum.StoreManager);
             List<StoreDTO> stores = new LinkedList<>();
@@ -327,6 +346,7 @@ public class Member extends User{
     }
 
     public void Login() {
+        //loadMember();
         isOnline = true;
         if(!pendingMessages.isEmpty()){
             StringBuilder msg = new StringBuilder("Attention: you got " + pendingMessages.size() + " messages:\n");
@@ -371,7 +391,7 @@ public class Member extends User{
         }
     }
 
-    private void loadMember(){
+    public void loadMember(){
         if (!isLoaded) {
             Member member = DALService.memberRepository.findById(userName).get();
             this.password = member.password;
@@ -381,6 +401,7 @@ public class Member extends User{
             this.isOnline = member.isOnline;
             this.roles = new ConcurrentHashMap<>();//todo: call the roler constructor
             this.systemManager = null;//todo: call system manager
+            this.cart = member.cart;//todo: load cart lazily
             this.isLoaded = true;
 
         }

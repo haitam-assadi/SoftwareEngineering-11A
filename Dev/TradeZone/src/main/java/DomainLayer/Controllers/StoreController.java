@@ -219,7 +219,7 @@ public class StoreController {
         Store newStore = new Store(newStoreName);
         stores.put(newStoreName,newStore);
         storesNamesConcurrentSet.add(newStoreName);
-        StoreMapper.getInstance().insertStore(newStoreName,newStore);
+        //StoreMapper.getInstance().insertStore(newStoreName,newStore);
         return newStore;
     }
 

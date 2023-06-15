@@ -2,7 +2,10 @@ package DataAccessLayer;//package DataAccessLayer;
 
 import DataAccessLayer.CompositeKeys.RolesId;
 import DataAccessLayer.Repositories.*;
+import DataAccessLayer.Repositories.BagConstraints.*;
+import DataAccessLayer.Repositories.DiscountPolicies.*;
 import DomainLayer.*;
+import DomainLayer.BagConstraints.AllContentBagConstraint;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -41,6 +44,30 @@ public class DALService {
 
     @Autowired
     public static SystemManagerRepository systemManagerRepository;
+    @Autowired
+    public static AllContentBagConstraintRepository allContentBagConstraintRepository;
+    @Autowired
+    public static BagConstraintAndRepository bagConstraintAndRepository;
+    @Autowired
+    public static BagConstraintOnlyIfRepository bagConstraintOnlyIfRepository;
+    @Autowired
+    public static BagConstraintOrRepository bagConstraintOrRepository;
+    @Autowired
+    public static CategoryBagConstraintRepository categoryBagConstraintRepository;
+    @Autowired
+    public static PositiveBagConstraintRepository positiveBagConstraintRepository;
+    @Autowired
+    public static ProductBagConstraintRepository productBagConstraintRepository;
+    @Autowired
+    public static AdditionDiscountPolicyRepository additionDiscountPolicyRepository;
+    @Autowired
+    public static AllStoreDiscountPolicyRepository allStoreDiscountPolicyRepository;
+    @Autowired
+    public static CategoryDiscountPolicyRepository categoryDiscountPolicyRepository;
+    @Autowired
+    public static MaxValDiscountPolicyRepository maxValDiscountPolicyRepository;
+    @Autowired
+    public static ProductDiscountPolicyRepository productDiscountPolicyRepository;
 
     public DALService(){
         super();
@@ -59,7 +86,7 @@ public class DALService {
         stockRepository.save(stock);
         RolesId founder = new RolesId(storeFounder.getUserName(), store.getStoreName());
         storeFounder.setId(founder);
-        storeFounder.setBoss(member);
+        storeFounder.setBoss(member,storeFounder.getRoleType());
         storeFounderRepository.save(storeFounder);
         storeRepository.save(store);
         memberRepository.save(member);

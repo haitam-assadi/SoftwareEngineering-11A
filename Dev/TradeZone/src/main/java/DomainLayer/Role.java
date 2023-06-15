@@ -26,6 +26,9 @@ public abstract class Role {
     @JoinColumn(name = "myBoss")
     private Member boss;
 
+    @Enumerated(EnumType.STRING)
+    private RoleEnum myBossType;
+
     @Transient
     protected boolean isLoaded;
 
@@ -40,14 +43,19 @@ public abstract class Role {
     }
     public Role() {
     }
-    public void setBoss(Member boss) {
+    public void setBoss(Member boss,RoleEnum myBossType) {
         this.boss = boss;
+        this.myBossType = myBossType;
     }
     public void setId(RolesId id) {
         this.id = id;
     }
     public void setLoaded(boolean b){
         isLoaded = b;
+    }
+
+    public RoleEnum getRoleType(){
+        return this.myRole;
     }
 
     public String getUserName(){

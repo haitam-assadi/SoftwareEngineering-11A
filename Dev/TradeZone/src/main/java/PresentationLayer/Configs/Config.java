@@ -2,6 +2,9 @@ package PresentationLayer.Configs;//package PresentationLayer.Configs;
 
 import DataAccessLayer.DALService;
 import DataAccessLayer.Repositories.*;
+import DataAccessLayer.Repositories.BagConstraints.*;
+import DataAccessLayer.Repositories.DiscountPolicies.*;
+import DomainLayer.BagConstraints.AllContentBagConstraint;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
@@ -24,7 +27,19 @@ public class Config {
                                   BagRepository bagRepository,
                                   CartRepository cartRepository,
                                   StoreFounderRepository storeFounderRepository,
-                                  SystemManagerRepository systemManagerRepository) {
+                                  SystemManagerRepository systemManagerRepository,
+                                  AllContentBagConstraintRepository allContentBagConstraintRepository,
+                                  BagConstraintAndRepository bagConstraintAndRepository,
+                                  BagConstraintOnlyIfRepository bagConstraintOnlyIfRepository,
+                                  BagConstraintOrRepository bagConstraintOrRepository,
+                                  CategoryBagConstraintRepository categoryBagConstraintRepository,
+                                  PositiveBagConstraintRepository positiveBagConstraintRepository,
+                                  ProductBagConstraintRepository productBagConstraintRepository,
+                                  AdditionDiscountPolicyRepository additionDiscountPolicyRepository,
+                                  AllStoreDiscountPolicyRepository allStoreDiscountPolicyRepository,
+                                  CategoryDiscountPolicyRepository categoryDiscountPolicyRepository,
+                                  MaxValDiscountPolicyRepository maxValDiscountPolicyRepository,
+                                  ProductDiscountPolicyRepository productDiscountPolicyRepository) {
         return (args) -> {
             System.out.println("member config");
             DALService.memberRepository=memberRepository;
@@ -49,6 +64,30 @@ public class Config {
             System.out.println(storeFounderRepository);
             DALService.systemManagerRepository = systemManagerRepository;
             System.out.println(systemManagerRepository);
+            DALService.allContentBagConstraintRepository = allContentBagConstraintRepository;
+            System.out.println(allContentBagConstraintRepository);
+            DALService.bagConstraintAndRepository = bagConstraintAndRepository;
+            System.out.println(bagConstraintAndRepository);
+            DALService.bagConstraintOnlyIfRepository = bagConstraintOnlyIfRepository;
+            System.out.println(bagConstraintOnlyIfRepository);
+            DALService.bagConstraintOrRepository = bagConstraintOrRepository;
+            System.out.println(bagConstraintOrRepository);
+            DALService.categoryBagConstraintRepository = categoryBagConstraintRepository;
+            System.out.println(categoryBagConstraintRepository);
+            DALService.positiveBagConstraintRepository = positiveBagConstraintRepository;
+            System.out.println(positiveBagConstraintRepository);
+            DALService.productBagConstraintRepository = productBagConstraintRepository;
+            System.out.println(productBagConstraintRepository);
+            DALService.additionDiscountPolicyRepository = additionDiscountPolicyRepository;
+            System.out.println(additionDiscountPolicyRepository);
+            DALService.allStoreDiscountPolicyRepository = allStoreDiscountPolicyRepository;
+            System.out.println(allStoreDiscountPolicyRepository);
+            DALService.categoryDiscountPolicyRepository = categoryDiscountPolicyRepository;
+            System.out.println(categoryDiscountPolicyRepository);
+            DALService.maxValDiscountPolicyRepository = maxValDiscountPolicyRepository;
+            System.out.println(maxValDiscountPolicyRepository);
+            DALService.productDiscountPolicyRepository = productDiscountPolicyRepository;
+            System.out.println(productDiscountPolicyRepository);
         };
     }
 

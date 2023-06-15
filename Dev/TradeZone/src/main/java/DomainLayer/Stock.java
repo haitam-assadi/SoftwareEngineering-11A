@@ -91,12 +91,14 @@ public class Stock {
         Category productCategory;
         if(!containsCategory(category)) {
             productCategory = new Category(category, getStoreName());
+            StoreMapper.getInstance().insertCategory(new CategoryId(category,getStoreName()),productCategory);
             DALService.categoryRepository.save(productCategory);
             stockCategories.put(category,productCategory);
             DALService.stockRepository.save(this);
         }
         productCategory = stockCategories.get(category);
         Product product = new Product(nameProduct,stockName,productCategory,price,description);
+        StoreMapper.getInstance().insertProduct(new ProductId(nameProduct,stockName),product);
         productCategory.putProductInCategory(product);
         ConcurrentHashMap<Product,Integer> productAmount = new ConcurrentHashMap<Product, Integer>();
         this.productAmount.put(product,amount);
@@ -113,26 +115,40 @@ public class Stock {
         product.removeFromAllCategories();
         stockProducts.remove(productName);
         productAmount.remove(product);
+        StoreMapper.getInstance().removeProduct(new ProductId(productName,stockName));
         DALService.removeProduct(product,this);
         return true;
     }
 
     public synchronized boolean updateProductDescription(String productName, String newProductDescription) throws Exception {
-        productName = productName.strip().toLowerCase();
-        if(!stockProducts.containsKey(productName))
-            throw new Exception("can't remove product from stock : productName "+ productName+" is not in the stock!");
+//        productName = productName.strip().toLowerCase();
+//        if(!stockProducts.containsKey(productName))
+//            throw new Exception("can't remove product from stock : productName "+ productName+" is not in the stock!");
+        if (!containsProduct(productName)){
+            throw new Exception("can't update product description : productName "+ productName+" is not in the stock!");
+        }
         Product product = stockProducts.get(productName).keys().nextElement();
         product.setDescription(newProductDescription);
         return true;
     }
 
-    public synchronized boolean updateProductAmount(String productName, Integer newAmount) throws Exception {
-        productName = productName.strip().toLowerCase();
-        if(!stockProducts.containsKey(productName))
-            throw new Exception("can't remove product from stock : productName "+ productName+" is not in the stock!");
+    public synchronized boolean updateProductAmount(String productName, int newAmount) throws Exception {
+        //productName = productName.strip().toLowerCase();
+//        if(!stockProducts.containsKey(productName))
+//            throw new Exception("can't remove product from stock : productName "+ productName+" is not in the stock!");
+        if (!containsProduct(productName)){
+            throw new Exception("can't update product amount : productName "+ productName+" is not in the stock!");
+        }
         Product product = stockProducts.get(productName).keys().nextElement();
-        if(stockProducts.get(productName).get(product) == newAmount)
+        Integer currentProductAmount = ((Integer)stockProducts.get(productName).values().toArray()[0]);
+        if (currentProductAmount == -1)
+            currentProductAmount = StoreMapper.getInstance().updateProductAmountInStock(productName,stockName);
+
+//        if(stockProducts.get(productName).get(product) == newAmount)
+//            throw new Exception("the amount of the product equals to the new amount");
+        if (currentProductAmount == newAmount){
             throw new Exception("the amount of the product equals to the new amount");
+        }
         stockProducts.remove(productName);
         ConcurrentHashMap<Product,Integer> productAmount = new ConcurrentHashMap<Product, Integer>();
         this.productAmount.put(product,newAmount);
@@ -144,9 +160,12 @@ public class Stock {
 
 
     public synchronized boolean updateProductPrice(String productName, Double newPrice) throws Exception {
-        productName = productName.strip().toLowerCase();
-        if(!stockProducts.containsKey(productName))
-            throw new Exception("can't remove product from stock : productName "+ productName+" is not in the stock!");
+//        productName = productName.strip().toLowerCase();
+//        if(!stockProducts.containsKey(productName))
+//            throw new Exception("can't remove product from stock : productName "+ productName+" is not in the stock!");
+        if (!containsProduct(productName)){
+            throw new Exception("can't update product price : productName "+ productName+" is not in the stock!");
+        }
         Product product = stockProducts.get(productName).keys().nextElement();
         if(Objects.equals(product.getPrice(), newPrice))
             throw new Exception("the price of the product equals to the new price");
@@ -154,7 +173,8 @@ public class Stock {
         return true;
     }
 
-    public synchronized Map<ProductDTO, Integer> getProductsInfoAmount(){
+    public synchronized Map<ProductDTO, Integer> getProductsInfoAmount() throws Exception {
+        loadStock();
         Collection<ConcurrentHashMap<Product,Integer>> currentStockProducts = stockProducts.values();
         Map<ProductDTO, Integer> productsInfoAmount = new LinkedHashMap<>();
         for(ConcurrentHashMap<Product,Integer> curr_hash_map: currentStockProducts) {

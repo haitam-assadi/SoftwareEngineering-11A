@@ -26,6 +26,8 @@ public class BagConstraintOnlyIf extends BagConstraint {
             @JoinColumn(name = "secBagConstraintStoreName", referencedColumnName = "storeName")
     })
     BagConstraint secBagConstraint;
+
+    public BagConstraintOnlyIf(){}
     public BagConstraintOnlyIf(BagConstraint firstBagConstraint, BagConstraint secBagConstraint){
         this.firstBagConstraint = firstBagConstraint;
         this.secBagConstraint = secBagConstraint;

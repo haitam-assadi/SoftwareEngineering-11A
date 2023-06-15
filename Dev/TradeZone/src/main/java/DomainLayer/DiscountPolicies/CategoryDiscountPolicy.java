@@ -29,6 +29,8 @@ public class CategoryDiscountPolicy extends DiscountPolicy{
     })
     BagConstraint bagConstraint;
 
+    public CategoryDiscountPolicy(){}
+
     public CategoryDiscountPolicy(Category category, int discountPercentage){
         this.category=category;
         this.discountPercentage= discountPercentage;

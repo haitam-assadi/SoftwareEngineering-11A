@@ -28,6 +28,7 @@ public class BagConstraintAnd extends BagConstraint {
     })
     BagConstraint secBagConstraint;
 
+    public BagConstraintAnd(){}
     public BagConstraintAnd(BagConstraint firstBagConstraint, BagConstraint secBagConstraint){
         this.firstBagConstraint = firstBagConstraint;
         this.secBagConstraint = secBagConstraint;

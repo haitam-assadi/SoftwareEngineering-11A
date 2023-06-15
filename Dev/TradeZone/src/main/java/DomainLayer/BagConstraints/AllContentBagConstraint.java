@@ -25,6 +25,7 @@ public class AllContentBagConstraint extends BagConstraint {
     Product product;
     int amountLimit;
 
+    public AllContentBagConstraint(){}
     public AllContentBagConstraint(Product product, int amountLimit, String cartPPType){
         this.product=product;
         this.amountLimit = amountLimit;

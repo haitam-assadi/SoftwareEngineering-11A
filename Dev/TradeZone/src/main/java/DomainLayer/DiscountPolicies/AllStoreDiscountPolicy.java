@@ -23,6 +23,7 @@ public class AllStoreDiscountPolicy extends DiscountPolicy{
     })
     BagConstraint bagConstraint;
 
+    public AllStoreDiscountPolicy(){}
     public AllStoreDiscountPolicy(int discountPercentage){
         this.discountPercentage= discountPercentage;
         this.bagConstraint= new PositiveBagConstraint();

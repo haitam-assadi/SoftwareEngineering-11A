@@ -27,6 +27,8 @@ public class BagConstraintOr extends BagConstraint {
     })
     BagConstraint secBagConstraint;
 
+    public BagConstraintOr(){}
+
     public BagConstraintOr(BagConstraint firstBagConstraint, BagConstraint secBagConstraint){
         this.firstBagConstraint = firstBagConstraint;
         this.secBagConstraint = secBagConstraint;

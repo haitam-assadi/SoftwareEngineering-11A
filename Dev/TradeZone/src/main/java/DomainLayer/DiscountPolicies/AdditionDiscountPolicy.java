@@ -35,6 +35,8 @@ public class AdditionDiscountPolicy extends DiscountPolicy{
     })
     BagConstraint bagConstraint;
 
+    public AdditionDiscountPolicy(){}
+
     public AdditionDiscountPolicy(DiscountPolicy firstDiscountPolicy, DiscountPolicy secondDiscountPolicy){
         this.firstDiscountPolicy=firstDiscountPolicy;
         this.secondDiscountPolicy = secondDiscountPolicy;

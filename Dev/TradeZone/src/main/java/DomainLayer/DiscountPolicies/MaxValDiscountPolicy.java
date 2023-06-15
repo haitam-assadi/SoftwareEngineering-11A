@@ -35,6 +35,8 @@ public class MaxValDiscountPolicy extends DiscountPolicy{
             @JoinColumn(name = "constraintStoreName", referencedColumnName = "storeName")
     })
     BagConstraint bagConstraint;
+
+    public MaxValDiscountPolicy(){}
     public MaxValDiscountPolicy(DiscountPolicy firstDiscountPolicy, DiscountPolicy secondDiscountPolicy){
         this.firstDiscountPolicy=firstDiscountPolicy;
         this.secondDiscountPolicy = secondDiscountPolicy;

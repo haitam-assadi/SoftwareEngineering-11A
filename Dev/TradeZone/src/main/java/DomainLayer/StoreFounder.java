@@ -1,6 +1,7 @@
 package DomainLayer;
 
 import DataAccessLayer.Controller.MemberMapper;
+import DataAccessLayer.Controller.StoreMapper;
 import DataAccessLayer.DALService;
 
 import javax.persistence.Entity;
@@ -42,21 +43,28 @@ public class StoreFounder extends AbstractStoreOwner implements Serializable {
         return Objects.hash(getUserName());
     }
 
-    public void loadFounder(){
+    public void loadFounder() throws Exception {
         if (!isLoaded) {
             List<String> storesNames = DALService.storeFounderRepository.getStoreNameByMemberName(getUserName());
             for (String storeName : storesNames) {
-                //responsibleForStores.put(store,getStore(store));
+                responsibleForStores.put(storeName, StoreMapper.getInstance().getStore(storeName));
+                Store store = responsibleForStores.get(storeName);
+                store.setStoreFounderAtStoreCreation(this);
                 List<String> appointedOwnersNames = DALService.storesOwnersRepository.findAllByStoreNameAndBoss(storeName,getUserName());
                 List<StoreOwner> owners = new LinkedList<>();
                 for (String ownerName: appointedOwnersNames){
-                    //owners.add(MemberMapper.getInstance().getOwner(ownerName));
+                    owners.add(MemberMapper.getInstance().getStoreOwner(ownerName));
                 }
-                //appointedOwners.put(ownerName,owners);
-                //todo: the same for store manager
+                appointedOwners.put(storeName,owners);
+                List<String> appointedManagersNames = DALService.storesManagersRepository.findAllByStoreNameAndBoss(storeName,getUserName());
+                List<StoreManager> managers = new LinkedList<>();
+                for (String managerName: appointedManagersNames){
+                    managers.add(MemberMapper.getInstance().getStoreManager(managerName));
+                }
+                appointedManagers.put(storeName,managers);
+                //todo: chcek if should add the owners and managers to the store
             }
             isLoaded = true;
         }
-
     }
 }

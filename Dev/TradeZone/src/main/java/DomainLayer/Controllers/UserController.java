@@ -2,6 +2,7 @@ package DomainLayer.Controllers;
 
 import DTO.MemberDTO;
 import DTO.StoreDTO;
+import DataAccessLayer.Controller.MemberMapper;
 import DataAccessLayer.DALService;
 import DomainLayer.*;
 
@@ -36,9 +37,9 @@ public class UserController {
         systemManagers = new ConcurrentHashMap<>();
     }
 
-    public String firstManagerInitializer() {
+    public String firstManagerInitializer() throws Exception {
         String user = "systemmanager1";
-        if(!membersNamesConcurrentSet.contains(user)) {
+        if(!isMember(user)) {
             Member member = new Member(user, Security.Encode("systemmanager1Pass"));
             membersNamesConcurrentSet.add(user);
             members.put(user, member);
@@ -81,6 +82,7 @@ public class UserController {
         members.put(newMemberUserName, member);
         member.defineNotifications(newMemberUserName);
         membersNamesConcurrentSet.add(newMemberUserName);
+        MemberMapper.getInstance().insertMember(member);
         DALService.saveMember(member,member.getCart());
         member.getCart().setMemberCart(member);
         DALService.cartRepository.save(member.getCart());
@@ -138,6 +140,11 @@ public class UserController {
         guestUserName = guestUserName.strip().toLowerCase();
         MemberUserName = MemberUserName.strip().toLowerCase();
         Member member = getMember(MemberUserName);
+        member.loadMember();
+        SystemManager systemManager = member.checkIsSystemManager();
+        if (systemManager !=null){
+            systemManagers.put(MemberUserName,systemManager);
+        }
         if(!member.getPassword().equals(Security.Encode(password)))
             throw new Exception("incorrect password!");
         loggedInMembers.put(MemberUserName, member);
@@ -165,20 +172,20 @@ public class UserController {
         userName = userName.strip().toLowerCase();
         if(!members.containsKey(userName)) {
             // TODO: read from database AND add to members hashmap
-            Optional<Member> memberD = DALService.memberRepository.findById(userName);
-            if (memberD.isPresent()){
-                Member member = memberD.get();
-                if (member.checkIsSystemManager()){
-                    SystemManager systemManager = DALService.systemManagerRepository.findByMember(member);
-                    member.setSystemManager(systemManager);
-                    systemManagers.put(userName,systemManager);
-                }else{
-                    member.declareRoles();
-                }
-                members.put(userName,member);
-            }else{
+//            Optional<Member> memberD = DALService.memberRepository.findById(userName);
+//            if (memberD.isPresent()){
+//                Member member = memberD.get();
+//                if (member.checkIsSystemManager()){
+//                    SystemManager systemManager = DALService.systemManagerRepository.findByMember(member);
+//                    member.setSystemManager(systemManager);
+//                    systemManagers.put(userName,systemManager);
+//                }else{
+//                    member.declareRoles();
+//                }
+//                members.put(userName,member);
+//            }else{
                 throw new Exception(userName + " does not exist!");
-            }
+            //}
         }
         return members.get(userName);
     }
@@ -241,8 +248,14 @@ public class UserController {
         assertStringIsNotNullOrBlank(memberUserName);
 
         memberUserName = memberUserName.strip().toLowerCase();
-        if(!membersNamesConcurrentSet.contains(memberUserName))
-            return false;
+        if(!membersNamesConcurrentSet.contains(memberUserName)){
+            Member member = MemberMapper.getInstance().getMember(memberUserName);
+            if (member == null)
+                return false;
+            membersNamesConcurrentSet.add(memberUserName);
+            members.put(memberUserName,member);//check this
+            return true;
+        }
 
         return true;
     }
@@ -269,7 +282,6 @@ public class UserController {
 
     private boolean isSystemManager(String managerName) throws Exception {
         assertStringIsNotNullOrBlank(managerName);
-
         managerName = managerName.strip().toLowerCase();
         return systemManagers.containsKey(managerName);
     }

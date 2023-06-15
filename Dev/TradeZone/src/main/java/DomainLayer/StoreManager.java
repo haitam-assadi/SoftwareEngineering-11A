@@ -1,10 +1,12 @@
 package DomainLayer;
 
+import DataAccessLayer.Controller.MemberMapper;
+import DataAccessLayer.Controller.StoreMapper;
+import DataAccessLayer.DALService;
+
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 enum  ManagerPermissions{
     getStoreDeals,
@@ -64,6 +66,7 @@ public class StoreManager extends Role implements Serializable {
             throw new Exception(this.getUserName()+ " already have permission to "+permission.toString() +" for store "+ storeName);
 
         managedStoresPermissions.get(storeName).add(permission);
+        managerPermissions.add(permission);
         return true;
     }
 
@@ -103,5 +106,46 @@ public class StoreManager extends Role implements Serializable {
     public void removeStore(String storeName){
         removeOneStore(storeName);
         managedStoresPermissions.remove(storeName);
+    }
+
+    public void loadManager() throws Exception {
+        if (!isLoaded) {
+            List<String> storesNames = DALService.storesManagersRepository.getStoreNameByMemberName(getUserName());
+            for (String storeName : storesNames) {
+                responsibleForStores.put(storeName, StoreMapper.getInstance().getStore(storeName));
+                Store store = responsibleForStores.get(storeName);
+                Map<String,String> bossTypeAndName = DALService.storesOwnersRepository.findBossById(getUserName(),storeName);
+                String bossType = bossTypeAndName.keySet().stream().toList().get(0);
+                String bossName = bossTypeAndName.get(bossType);
+                if (bossType.equals(RoleEnum.StoreFounder.toString())){
+                    StoreFounder myBoss = MemberMapper.getInstance().getStoreFounder(bossName);
+                    myBossesForStores.put(storeName,myBoss);
+                }
+                if (bossType.equals(RoleEnum.StoreOwner.toString())){
+                    StoreOwner myBoss = MemberMapper.getInstance().getStoreOwner(bossName);
+                    myBossesForStores.put(bossName,myBoss);
+                }
+                //todo: chcek if should add the owners and managers to the store
+                List<String> managerStorePermissions = DALService.storesManagersRepository.findManagerPermissionsPerStore(getUserName(),storeName);
+                Set<ManagerPermissions> managerPermissions1 = new HashSet<>();
+                for (String permission: managerStorePermissions){
+                    managerPermissions.add(convertPermissionString2PermissionType(permission));
+                    managerPermissions1.add(convertPermissionString2PermissionType(permission));
+                }
+                managedStoresPermissions.put(storeName,managerPermissions1);
+            }
+            isLoaded = true;
+        }
+    }
+
+    private ManagerPermissions convertPermissionString2PermissionType(String permission) throws Exception{
+        if (ManagerPermissions.getStoreDeals.toString().equals(permission)) return ManagerPermissions.getStoreDeals;
+        if (ManagerPermissions.addNewProduct.toString().equals(permission)) return ManagerPermissions.addNewProduct;
+        if (ManagerPermissions.removeProduct.toString().equals(permission)) return ManagerPermissions.removeProduct;
+        if (ManagerPermissions.updateProductInfo.toString().equals(permission)) return ManagerPermissions.updateProductInfo;
+        if (ManagerPermissions.getWorkersInfo.toString().equals(permission)) return ManagerPermissions.getWorkersInfo;
+        if (ManagerPermissions.manageStoreDiscountPolicies.toString().equals(permission)) return ManagerPermissions.manageStoreDiscountPolicies;
+        if (ManagerPermissions.manageStorePaymentPolicies.toString().equals(permission)) return ManagerPermissions.manageStorePaymentPolicies;
+        throw new Exception("permission " + permission + " not found");
     }
 }

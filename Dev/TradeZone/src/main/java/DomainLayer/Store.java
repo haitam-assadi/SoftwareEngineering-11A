@@ -5,6 +5,7 @@ import DTO.MemberDTO;
 import DTO.ProductDTO;
 import DTO.StoreDTO;
 import DataAccessLayer.CompositeKeys.BagConstrainsId;
+import DataAccessLayer.CompositeKeys.DiscountPolicyId;
 import DataAccessLayer.Controller.MemberMapper;
 import DataAccessLayer.DALService;
 import DomainLayer.BagConstraints.*;
@@ -29,23 +30,25 @@ public class Store {
     @Transient
     private StoreFounder storeFounder;
 
-    @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(name = "store_owners", joinColumns = @JoinColumn(name = "store_name"))
-    @MapKeyJoinColumns({
-            @MapKeyJoinColumn(name = "member_name", referencedColumnName = "memberName"),
-            @MapKeyJoinColumn(name = "store_name", referencedColumnName = "storeName")
-    })
-    @Column(name = "owner")
+//    @ElementCollection(fetch = FetchType.EAGER)
+//    @CollectionTable(name = "store_owners", joinColumns = @JoinColumn(name = "store_name"))
+//    @MapKeyJoinColumns({
+//            @MapKeyJoinColumn(name = "member_name", referencedColumnName = "memberName"),
+//            @MapKeyJoinColumn(name = "store_name", referencedColumnName = "storeName")
+//    })
+//    @Column(name = "owner")
+    @Transient
     private Map<String, StoreOwner> storeOwners;
 
 
-    @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(name = "store_managers", joinColumns = @JoinColumn(name = "store_name"))
-    @MapKeyJoinColumns({
-            @MapKeyJoinColumn(name = "member_name", referencedColumnName = "memberName"),
-            @MapKeyJoinColumn(name = "store_name", referencedColumnName = "storeName")
-    })
-    @Column(name = "manager")
+//    @ElementCollection(fetch = FetchType.EAGER)
+//    @CollectionTable(name = "store_managers", joinColumns = @JoinColumn(name = "store_name"))
+//    @MapKeyJoinColumns({
+//            @MapKeyJoinColumn(name = "member_name", referencedColumnName = "memberName"),
+//            @MapKeyJoinColumn(name = "store_name", referencedColumnName = "storeName")
+//    })
+//    @Column(name = "manager")
+    @Transient
     private Map<String, StoreManager> storeManagers;
 
     //TODO:: maybe need to make it Concurrent
@@ -218,7 +221,8 @@ public class Store {
         return stock.updateProductPrice(productName,newPrice);
     }
 
-    public StoreDTO getStoreInfo(){
+    public StoreDTO getStoreInfo() throws Exception {
+        //todo: need load store owners and managers and founders
         List<String> ownersNames = this.storeOwners.values().stream().map(Role::getUserName).toList();
         List<String> managersNames = this.storeManagers.values().stream().map(Role::getUserName).toList();
         return new StoreDTO(storeName, storeFounder.getUserName(), ownersNames, managersNames, stock.getProductsInfoAmount(),isActive);
@@ -433,8 +437,9 @@ public class Store {
         ProductDiscountPolicy productDiscountPolicy = new ProductDiscountPolicy(product,discountPercentage);
         int currentDisPolIdCounter =this.discountPoliciesIdCounter;
         createdDiscountPolicies.put(currentDisPolIdCounter, productDiscountPolicy);
+        productDiscountPolicy.setDiscountPolicyId(new DiscountPolicyId(currentDisPolIdCounter,storeName));
+        DALService.productDiscountPolicyRepository.save(productDiscountPolicy);
         this.discountPoliciesIdCounter++;
-
         if(addAsStoreDiscountPolicy)
             storeDiscountPolicies.put(currentDisPolIdCounter, productDiscountPolicy);
 
@@ -459,8 +464,9 @@ public class Store {
         ProductDiscountPolicy productDiscountPolicy = new ProductDiscountPolicy(product,discountPercentage, bagConstraint);
         int currentDisPolIdCounter =this.discountPoliciesIdCounter;
         createdDiscountPolicies.put(currentDisPolIdCounter, productDiscountPolicy);
+        productDiscountPolicy.setDiscountPolicyId(new DiscountPolicyId(currentDisPolIdCounter,storeName));
+        DALService.productDiscountPolicyRepository.save(productDiscountPolicy);
         this.discountPoliciesIdCounter++;
-
         if(addAsStoreDiscountPolicy)
             storeDiscountPolicies.put(currentDisPolIdCounter, productDiscountPolicy);
 
@@ -478,6 +484,8 @@ public class Store {
         CategoryDiscountPolicy categoryDiscountPolicy = new CategoryDiscountPolicy(category,discountPercentage);
         int currentDisPolIdCounter =this.discountPoliciesIdCounter;
         createdDiscountPolicies.put(currentDisPolIdCounter, categoryDiscountPolicy);
+        categoryDiscountPolicy.setDiscountPolicyId(new DiscountPolicyId(currentDisPolIdCounter,storeName));
+        DALService.categoryDiscountPolicyRepository.save(categoryDiscountPolicy);
         this.discountPoliciesIdCounter++;
 
         if(addAsStoreDiscountPolicy)
@@ -504,6 +512,8 @@ public class Store {
         CategoryDiscountPolicy categoryDiscountPolicy = new CategoryDiscountPolicy(category,discountPercentage, bagConstraint);
         int currentDisPolIdCounter =this.discountPoliciesIdCounter;
         createdDiscountPolicies.put(currentDisPolIdCounter, categoryDiscountPolicy);
+        categoryDiscountPolicy.setDiscountPolicyId(new DiscountPolicyId(currentDisPolIdCounter,storeName));
+        DALService.categoryDiscountPolicyRepository.save(categoryDiscountPolicy);
         this.discountPoliciesIdCounter++;
 
         if(addAsStoreDiscountPolicy)
@@ -522,6 +532,8 @@ public class Store {
         AllStoreDiscountPolicy allStoreDiscountPolicy = new AllStoreDiscountPolicy(discountPercentage);
         int currentDisPolIdCounter =this.discountPoliciesIdCounter;
         createdDiscountPolicies.put(currentDisPolIdCounter, allStoreDiscountPolicy);
+        allStoreDiscountPolicy.setDiscountPolicyId(new DiscountPolicyId(currentDisPolIdCounter,storeName));
+        DALService.allStoreDiscountPolicyRepository.save(allStoreDiscountPolicy);
         this.discountPoliciesIdCounter++;
 
         if(addAsStoreDiscountPolicy)
@@ -546,6 +558,8 @@ public class Store {
         AllStoreDiscountPolicy allStoreDiscountPolicy = new AllStoreDiscountPolicy(discountPercentage, bagConstraint);
         int currentDisPolIdCounter =this.discountPoliciesIdCounter;
         createdDiscountPolicies.put(currentDisPolIdCounter, allStoreDiscountPolicy);
+        allStoreDiscountPolicy.setDiscountPolicyId(new DiscountPolicyId(currentDisPolIdCounter,storeName));
+        DALService.allStoreDiscountPolicyRepository.save(allStoreDiscountPolicy);
         this.discountPoliciesIdCounter++;
 
         if(addAsStoreDiscountPolicy)
@@ -571,6 +585,8 @@ public class Store {
         AdditionDiscountPolicy additionDiscountPolicy = new AdditionDiscountPolicy(firstDiscountPolicy, secondDiscountPolicy);
         int currentDisPolIdCounter =this.discountPoliciesIdCounter;
         createdDiscountPolicies.put(currentDisPolIdCounter, additionDiscountPolicy);
+        additionDiscountPolicy.setDiscountPolicyId(new DiscountPolicyId(currentDisPolIdCounter,storeName));
+        DALService.additionDiscountPolicyRepository.save(additionDiscountPolicy);
         this.discountPoliciesIdCounter++;
         if(addAsStoreDiscountPolicy)
             storeDiscountPolicies.put(currentDisPolIdCounter, additionDiscountPolicy);
@@ -603,6 +619,8 @@ public class Store {
         AdditionDiscountPolicy additionDiscountPolicy = new AdditionDiscountPolicy(firstDiscountPolicy, secondDiscountPolicy, bagConstraint);
         int currentDisPolIdCounter =this.discountPoliciesIdCounter;
         createdDiscountPolicies.put(currentDisPolIdCounter, additionDiscountPolicy);
+        additionDiscountPolicy.setDiscountPolicyId(new DiscountPolicyId(currentDisPolIdCounter,storeName));
+        DALService.additionDiscountPolicyRepository.save(additionDiscountPolicy);
         this.discountPoliciesIdCounter++;
         if(addAsStoreDiscountPolicy)
             storeDiscountPolicies.put(currentDisPolIdCounter, additionDiscountPolicy);
@@ -627,6 +645,8 @@ public class Store {
         MaxValDiscountPolicy maxValDiscountPolicy = new MaxValDiscountPolicy(firstDiscountPolicy, secondDiscountPolicy);
         int currentDisPolIdCounter =this.discountPoliciesIdCounter;
         createdDiscountPolicies.put(currentDisPolIdCounter, maxValDiscountPolicy);
+        maxValDiscountPolicy.setDiscountPolicyId(new DiscountPolicyId(currentDisPolIdCounter,storeName));
+        DALService.maxValDiscountPolicyRepository.save(maxValDiscountPolicy);
         this.discountPoliciesIdCounter++;
         if(addAsStoreDiscountPolicy)
             storeDiscountPolicies.put(currentDisPolIdCounter, maxValDiscountPolicy);
@@ -659,6 +679,8 @@ public class Store {
         MaxValDiscountPolicy maxValDiscountPolicy = new MaxValDiscountPolicy(firstDiscountPolicy, secondDiscountPolicy, bagConstraint);
         int currentDisPolIdCounter =this.discountPoliciesIdCounter;
         createdDiscountPolicies.put(currentDisPolIdCounter, maxValDiscountPolicy);
+        maxValDiscountPolicy.setDiscountPolicyId(new DiscountPolicyId(currentDisPolIdCounter,storeName));
+        DALService.maxValDiscountPolicyRepository.save(maxValDiscountPolicy);
         this.discountPoliciesIdCounter++;
         if(addAsStoreDiscountPolicy)
             storeDiscountPolicies.put(currentDisPolIdCounter, maxValDiscountPolicy);
@@ -737,6 +759,8 @@ public class Store {
         ProductBagConstraint productBagConstraint = new ProductBagConstraint(product, hour,minute);
         int currentBagConstraintsIdCounter =this.bagConstraintsIdCounter;
         createdBagConstraints.put(currentBagConstraintsIdCounter, productBagConstraint);
+        productBagConstraint.setBagConstrainsId(new BagConstrainsId(currentBagConstraintsIdCounter,storeName));
+        DALService.productBagConstraintRepository.save(productBagConstraint);
         this.bagConstraintsIdCounter++;
         if(addAsStorePaymentPolicy)
             storePaymentPolicies.put(currentBagConstraintsIdCounter, productBagConstraint);
@@ -762,6 +786,8 @@ public class Store {
         ProductBagConstraint productBagConstraint = new ProductBagConstraint(product, fromYear,fromMonth,fromDay, toYear,toMonth,toDay);
         int currentBagConstraintsIdCounter =this.bagConstraintsIdCounter;
         createdBagConstraints.put(currentBagConstraintsIdCounter, productBagConstraint);
+        productBagConstraint.setBagConstrainsId(new BagConstrainsId(currentBagConstraintsIdCounter,storeName));
+        DALService.productBagConstraintRepository.save(productBagConstraint);
         this.bagConstraintsIdCounter++;
         if(addAsStorePaymentPolicy)
             storePaymentPolicies.put(currentBagConstraintsIdCounter, productBagConstraint);
@@ -788,6 +814,7 @@ public class Store {
         int currentBagConstraintsIdCounter =this.bagConstraintsIdCounter;
         createdBagConstraints.put(currentBagConstraintsIdCounter, categoryBagConstraint);
         categoryBagConstraint.setBagConstrainsId(new BagConstrainsId(bagConstraintsIdCounter,storeName));
+        DALService.categoryBagConstraintRepository.save(categoryBagConstraint);
         this.bagConstraintsIdCounter++;
         if(addAsStorePaymentPolicy)
             storePaymentPolicies.put(currentBagConstraintsIdCounter, categoryBagConstraint);
@@ -815,6 +842,7 @@ public class Store {
         int currentBagConstraintsIdCounter =this.bagConstraintsIdCounter;
         createdBagConstraints.put(currentBagConstraintsIdCounter, categoryBagConstraint);
         categoryBagConstraint.setBagConstrainsId(new BagConstrainsId(bagConstraintsIdCounter,storeName));
+        DALService.categoryBagConstraintRepository.save(categoryBagConstraint);
         this.bagConstraintsIdCounter++;
         if(addAsStorePaymentPolicy)
             storePaymentPolicies.put(currentBagConstraintsIdCounter, categoryBagConstraint);
@@ -839,6 +867,8 @@ public class Store {
         AllContentBagConstraint allContentBagConstraint = new AllContentBagConstraint(product, amountLimit, "MaxProductAmount");
         int currentBagConstraintsIdCounter =this.bagConstraintsIdCounter;
         createdBagConstraints.put(currentBagConstraintsIdCounter, allContentBagConstraint);
+        allContentBagConstraint.setBagConstrainsId(new BagConstrainsId(currentBagConstraintsIdCounter,storeName));
+        DALService.allContentBagConstraintRepository.save(allContentBagConstraint);
         this.bagConstraintsIdCounter++;
         if(addAsStorePaymentPolicy)
             storePaymentPolicies.put(currentBagConstraintsIdCounter, allContentBagConstraint);
@@ -857,6 +887,8 @@ public class Store {
         AllContentBagConstraint allContentBagConstraint = new AllContentBagConstraint(product, amountLimit, "MinProductAmount");
         int currentBagConstraintsIdCounter =this.bagConstraintsIdCounter;
         createdBagConstraints.put(currentBagConstraintsIdCounter, allContentBagConstraint);
+        allContentBagConstraint.setBagConstrainsId(new BagConstrainsId(currentBagConstraintsIdCounter,storeName));
+        DALService.allContentBagConstraintRepository.save(allContentBagConstraint);
         this.bagConstraintsIdCounter++;
         if(addAsStorePaymentPolicy)
             storePaymentPolicies.put(currentBagConstraintsIdCounter, allContentBagConstraint);
@@ -881,6 +913,8 @@ public class Store {
         BagConstraintAnd bagConstraintAnd = new BagConstraintAnd(firstBagConstraint, secondBagConstraint);
         int currentBagConstraintsIdCounter =this.bagConstraintsIdCounter;
         createdBagConstraints.put(currentBagConstraintsIdCounter, bagConstraintAnd);
+        bagConstraintAnd.setBagConstrainsId(new BagConstrainsId(currentBagConstraintsIdCounter,storeName));
+        DALService.bagConstraintAndRepository.save(bagConstraintAnd);
         this.bagConstraintsIdCounter++;
         if(addAsStorePaymentPolicy)
             storePaymentPolicies.put(currentBagConstraintsIdCounter, bagConstraintAnd);
@@ -904,6 +938,8 @@ public class Store {
         BagConstraintOr bagConstraintOr = new BagConstraintOr(firstBagConstraint, secondBagConstraint);
         int currentBagConstraintsIdCounter =this.bagConstraintsIdCounter;
         createdBagConstraints.put(currentBagConstraintsIdCounter, bagConstraintOr);
+        bagConstraintOr.setBagConstrainsId(new BagConstrainsId(currentBagConstraintsIdCounter,storeName));
+        DALService.bagConstraintOrRepository.save(bagConstraintOr);
         this.bagConstraintsIdCounter++;
         if(addAsStorePaymentPolicy)
             storePaymentPolicies.put(currentBagConstraintsIdCounter, bagConstraintOr);
@@ -928,6 +964,8 @@ public class Store {
         BagConstraintOnlyIf bagConstraintOnlyIf = new BagConstraintOnlyIf(firstBagConstraint, secondBagConstraint);
         int currentBagConstraintsIdCounter =this.bagConstraintsIdCounter;
         createdBagConstraints.put(currentBagConstraintsIdCounter, bagConstraintOnlyIf);
+        bagConstraintOnlyIf.setBagConstrainsId(new BagConstrainsId(currentBagConstraintsIdCounter,storeName));
+        DALService.bagConstraintOnlyIfRepository.save(bagConstraintOnlyIf);
         this.bagConstraintsIdCounter++;
         if(addAsStorePaymentPolicy)
             storePaymentPolicies.put(currentBagConstraintsIdCounter, bagConstraintOnlyIf);

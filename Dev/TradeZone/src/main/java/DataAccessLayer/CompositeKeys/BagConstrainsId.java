@@ -12,6 +12,8 @@ public class BagConstrainsId implements Serializable {
         this.id = id;
         this.storeName =storeName;
     }
+
+    public BagConstrainsId(){}
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

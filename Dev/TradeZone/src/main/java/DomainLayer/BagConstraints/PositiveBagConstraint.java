@@ -16,6 +16,7 @@ import java.util.concurrent.ConcurrentHashMap;
 })
 public class PositiveBagConstraint extends BagConstraint{
 
+    public PositiveBagConstraint(){}
     public boolean checkConstraint(ConcurrentHashMap<String, ConcurrentHashMap<Product, Integer>> bagContent){
         return true;
     }

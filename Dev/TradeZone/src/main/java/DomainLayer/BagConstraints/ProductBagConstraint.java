@@ -41,6 +41,7 @@ public class ProductBagConstraint extends BagConstraint {
     //MinimumAge:
     int minAge;
 
+    public ProductBagConstraint(){}
     public ProductBagConstraint(Product product, int hour, int minute){
         this.product=product;
         this.productPPType = BagConstraintType.MaxTimeAtDay;

@@ -43,6 +43,7 @@ public class Cart {
     }
 
     public void setMemberCart(Member memberCart) {
+        this.cartOwner = memberCart;
         this.memberCart = memberCart;
     }
 
