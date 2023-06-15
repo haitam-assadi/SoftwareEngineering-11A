@@ -355,4 +355,6 @@ public class Server {
     public List<String> getLiveMessages(String memberName) throws Exception {
         return service.getLiveMessages(memberName);
     }
+
+    //THIS IS A TEST
 }
