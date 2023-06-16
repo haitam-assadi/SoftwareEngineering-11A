@@ -128,4 +128,10 @@ public class StoreManager extends Role{
         managedStoresPermissions.remove(storeName);
     }
 
+    //FOR UNIT TESTING:
+    public String getPermission(Integer permissionId) throws Exception {
+        ManagerPermissions result = this.getPermissionById(2);
+        return result.toString();
+    }
+
 }
