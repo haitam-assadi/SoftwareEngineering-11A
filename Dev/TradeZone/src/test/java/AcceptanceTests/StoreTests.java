@@ -527,6 +527,7 @@ public class StoreTests {
             Assertions.assertTrue(storeDetails.get("ownersNames").contains(member_name1));
             Assertions.assertEquals(storeDetails.get("managersNames").size(), 1);
             Assertions.assertTrue(storeDetails.get("managersNames").contains(member_name2));
+            Assertions.assertEquals(proxy.getManagerPermissionsForStore(store_founder, storeName, member_name2).get(0), 1);
         }catch (Exception e){
             Assertions.fail(e.getMessage());
         }
@@ -544,6 +545,7 @@ public class StoreTests {
             Assertions.assertTrue(storeDetails.get("ownersNames").contains(member_name1));
             Assertions.assertEquals(storeDetails.get("managersNames").size(), 1);
             Assertions.assertTrue(storeDetails.get("managersNames").contains(member_name2));
+            Assertions.assertEquals(proxy.getManagerPermissionsForStore(store_founder, storeName, member_name2).get(0), 1);
         }catch (Exception e){
             Assertions.fail(e.getMessage());
         }
@@ -589,7 +591,7 @@ public class StoreTests {
     }
 
     @Test
-    public void get_store_info_for_closed_store_success(){  //unavailable = is not a guest or logged in
+    public void get_store_info_for_closed_store_success(){
         try{
             proxy.appointOtherMemberAsStoreOwner(store_founder, storeName, member_name1); // member_name1 = owner
             proxy.appointOtherMemberAsStoreManager(store_founder, storeName, member_name2); //// member_name2 = manager

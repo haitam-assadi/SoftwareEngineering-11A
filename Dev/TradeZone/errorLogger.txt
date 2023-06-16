@@ -5134,3 +5134,171 @@ fail in remove owner: req_user3is not owner for this store
 Jun 13, 2023 1:52:10 PM DomainLayer.LoggerManager sendErrorLog
 WARNING: 
 fail in adding product to stock: req_user2 is not a founder/owner or an authorized manager
+Jun 16, 2023 9:20:28 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store manager: member2 is not logged in
+Jun 16, 2023 9:20:40 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store manager: member2 is not logged in
+Jun 16, 2023 9:21:12 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store manager: member2 is not logged in
+Jun 16, 2023 9:21:21 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store manager: member2 is not owner for new store
+Jun 16, 2023 9:22:06 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store manager: member2 is not logged in
+Jun 16, 2023 9:29:13 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store manager: member2 is not owner for new store
+Jun 16, 2023 9:29:13 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: member2 is already logged in
+Jun 16, 2023 9:29:45 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store manager: member2 is not owner for new store
+Jun 16, 2023 9:29:55 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store manager: member2 is not logged in
+Jun 16, 2023 9:31:18 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store manager: member2 is not owner for new store
+Jun 16, 2023 9:31:18 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: member2 is already logged in
+Jun 16, 2023 9:31:58 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store manager: member2 is not owner for new store
+Jun 16, 2023 9:31:58 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: member2 is already logged in
+Jun 16, 2023 9:32:12 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store manager: member2 is not owner for new store
+Jun 16, 2023 9:32:12 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: member2 is already logged in
+Jun 16, 2023 9:35:41 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store manager: member2 is not owner for new store
+Jun 16, 2023 9:37:19 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store manager: member2 is not owner for new store
+Jun 16, 2023 9:38:09 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store manager: member2 is not owner for new store
+Jun 16, 2023 9:39:11 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store :moslem storeis closed
+Jun 16, 2023 9:39:11 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store :moslem storeis closed
+Jun 16, 2023 9:39:11 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store manager: memberbrain123 is already store owner
+Jun 16, 2023 9:39:11 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: memberbrain123 is already store manager
+Jun 16, 2023 9:39:11 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: brain123is not owner for this store
+Jun 16, 2023 9:39:11 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store manager: memberharry123 is already store manager
+Jun 16, 2023 9:39:11 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store manager: memberharry123 is already store manager
+Jun 16, 2023 9:39:11 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in closing the store: brain123is not the founder of the store
+Jun 16, 2023 9:39:11 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in removing product from store: stock does not contain this product iphone 11
+Jun 16, 2023 9:39:11 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: membermoslem123 is already store owner
+Jun 16, 2023 9:39:11 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: userName unavailable_name does not exists!
+Jun 16, 2023 9:39:11 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: membermoslem123 is already store owner
+Jun 16, 2023 9:39:11 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: userName koko does not exists!
+Jun 16, 2023 9:39:11 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: brain123 does not have permission to manageStock for store moslem store
+Jun 16, 2023 9:39:11 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: Cannot invoke "DomainLayer.StoreOwner.getUserName()" because "otherOwner" is null
+Jun 16, 2023 9:39:11 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: brain123is not owner for this store
+Jun 16, 2023 9:39:11 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: stock does already contains this product iphone 14
+Jun 16, 2023 9:39:11 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: memberbrain123 is already store owner
+Jun 16, 2023 9:39:11 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: unavailable_store does not exists!
+Jun 16, 2023 10:11:16 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store :moslem storeis closed
+Jun 16, 2023 10:11:16 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store :moslem storeis closed
+Jun 16, 2023 10:11:16 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store manager: memberbrain123 is already store owner
+Jun 16, 2023 10:11:16 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: memberbrain123 is already store manager
+Jun 16, 2023 10:11:16 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: brain123is not owner for this store
+Jun 16, 2023 10:11:16 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store manager: memberharry123 is already store manager
+Jun 16, 2023 10:11:16 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store manager: memberharry123 is already store manager
+Jun 16, 2023 10:11:16 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in closing the store: brain123is not the founder of the store
+Jun 16, 2023 10:11:16 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in removing product from store: stock does not contain this product iphone 11
+Jun 16, 2023 10:11:16 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: membermoslem123 is already store owner
+Jun 16, 2023 10:11:16 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: userName unavailable_name does not exists!
+Jun 16, 2023 10:11:16 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: membermoslem123 is already store owner
+Jun 16, 2023 10:11:16 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: userName koko does not exists!
+Jun 16, 2023 10:11:16 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: brain123 does not have permission to manageStock for store moslem store
+Jun 16, 2023 10:11:16 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: Cannot invoke "DomainLayer.StoreOwner.getUserName()" because "otherOwner" is null
+Jun 16, 2023 10:11:16 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: brain123is not owner for this store
+Jun 16, 2023 10:11:16 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: stock does already contains this product iphone 14
+Jun 16, 2023 10:11:16 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: memberbrain123 is already store owner
+Jun 16, 2023 10:11:16 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: unavailable_store does not exists!

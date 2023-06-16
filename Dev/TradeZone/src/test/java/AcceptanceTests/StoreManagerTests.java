@@ -48,19 +48,32 @@ public class StoreManagerTests {
     2. appoint member as store manager without being a store founder or store owner
     */
 
+    /*
+        case 1: return ManagerPermissions.getStoreDeals;
+            case 2: return ManagerPermissions.manageStock;
+            case 3: return ManagerPermissions.getWorkersInfo;
+            case 4: return ManagerPermissions.manageStoreDiscountPolicies;
+            default: return ManagerPermissions.manageStorePaymentPolicies;
+    */
+
     @Test
     public void appoint_member_as_store_manager_by_store_owner_success(){
         try{
             user2 = proxy.enterMarket();
+            String new_user = proxy.enterMarket();
+            String new_name = "newname";
+            String new_pass = "newpass12345";
+            proxy.register(new_user, new_name, new_pass);
+            proxy.login(new_user, new_name, new_pass);
             proxy.takeDownSystemManagerAppointment(storeName, member2Name);
-            proxy.appointOtherMemberAsStoreOwner(storeFounder, storeName, member2Name);
+            proxy.appointOtherMemberAsStoreOwner(storeFounder, storeName, new_name);
             proxy.login(user3, member3Name, member3Password);
-            Assertions.assertTrue(proxy.appointOtherMemberAsStoreManager(member2Name, storeName, member3Name));
+            Assertions.assertTrue(proxy.appointOtherMemberAsStoreManager(new_name, storeName, member3Name));
             Assertions.assertTrue(proxy.getStoreManagersNames(member1Name, storeName).contains(member3Name));
+            //Founder can't get permissions of manager, because he didn't appoint him???
+            Assertions.assertEquals(proxy.getManagerPermissionsForStore(new_name, storeName, member3Name).get(0), 1);
             user3 = proxy.memberLogOut(member3Name);
             proxy.takeDownSystemManagerAppointment(storeName, member3Name);
-            proxy.removeOwnerByHisAppointer(storeFounder, storeName, member2Name);
-
         }catch (Exception e){
             Assertions.fail(e.getMessage());
         }
@@ -71,6 +84,7 @@ public class StoreManagerTests {
         try{
             Assertions.assertTrue(proxy.appointOtherMemberAsStoreManager(storeFounder, storeName, member2Name));
             Assertions.assertTrue(proxy.getStoreManagersNames(member1Name, storeName).contains(member2Name));
+            Assertions.assertEquals(proxy.getManagerPermissionsForStore(storeFounder, storeName, member2Name).get(0), 1);
             proxy.takeDownSystemManagerAppointment(storeName, member2Name);
 
         }catch (Exception e){
@@ -84,6 +98,7 @@ public class StoreManagerTests {
             proxy.login(user3, member3Name, member3Password);
             Assertions.assertTrue(proxy.appointOtherMemberAsStoreManager(storeFounder, storeName, member3Name));
             Assertions.assertTrue(proxy.getStoreManagersNames(member1Name, storeName).contains(member3Name));
+            Assertions.assertEquals(proxy.getManagerPermissionsForStore(storeFounder, storeName, member3Name).get(0), 1);
             user3 = proxy.memberLogOut(member3Name);
             proxy.takeDownSystemManagerAppointment(storeName, member3Name);
             proxy.takeDownSystemManagerAppointment(storeName, member2Name);
