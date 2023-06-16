@@ -135,34 +135,10 @@ public class Member extends User{
         return true;
     }
 
-    private boolean appointMemberAsStoreOwner(Store store, AbstractStoreOwner myBoss,Member member) throws Exception {
-//        if(store.isAlreadyStoreOwner(getUserName()))
-//            throw new Exception("member"+getUserName()+" is already store owner");
-//        if(store.isAlreadyStoreManager(getUserName()))
-//            throw new Exception("member"+getUserName()+" is already store manager");
-        StoreOwner storeOwner =  new StoreOwner(member);
-        addRole(RoleEnum.StoreOwner);
-        roles.putIfAbsent(RoleEnum.StoreOwner,storeOwner);
-        subscribeOwnerForNotifications(store.getStoreName());
-        StoreOwner storeOwnerRole =  (StoreOwner) roles.get(RoleEnum.StoreOwner);
-        storeOwnerRole.loadAppointMemberAsStoreOwner(store,myBoss);
-        store.loadAppointMemberAsStoreOwner(storeOwnerRole);
-        storeOwnerRole.setId(new RolesId(userName, store.getStoreName()));
-        storeOwnerRole.setBoss(myBoss.member,myBoss.getRoleType());
-        return true;
-    }
 
-    public StoreOwner getStoreOwner() throws Exception {
+    public StoreOwner getStoreOwner(){
         loadMember();
-        if (memberRolesFlag.contains(RoleEnum.StoreOwner)) {
-            if (!roles.containsKey(RoleEnum.StoreOwner)) {
-                StoreOwner storeOwner = MemberMapper.getInstance().getStoreOwner(userName);
-                roles.put(RoleEnum.StoreOwner, storeOwner);
-                //storeOwner.loadOwner();
-            }
-        }
         StoreOwner storeOwnerRole =  (StoreOwner) roles.get(RoleEnum.StoreOwner);
-        storeOwnerRole.loadOwner();
         return storeOwnerRole;
     }
 
@@ -225,12 +201,7 @@ public class Member extends User{
 
     public Map<String, List<StoreDTO>> myStores() throws Exception {
         Map<String,List<StoreDTO>> memberStores = new ConcurrentHashMap<>();
-        if(memberRolesFlag.contains(RoleEnum.StoreFounder)){
-            if (!roles.containsKey(RoleEnum.StoreFounder)){
-                StoreFounder storeFounder = MemberMapper.getInstance().getStoreFounder(userName);
-                roles.put(RoleEnum.StoreFounder,storeFounder);
-                storeFounder.loadFounder();
-            }
+        if(roles.containsKey(RoleEnum.StoreFounder)){
             Role role = roles.get(RoleEnum.StoreFounder);
             List<StoreDTO> stores = new LinkedList<>();
             for (Store store: role.getResponsibleForStores().values()) {
@@ -238,13 +209,7 @@ public class Member extends User{
             }
             memberStores.put("StoreFounder",stores);
         }
-        if(memberRolesFlag.contains(RoleEnum.StoreOwner)){
-            if(!roles.containsKey(RoleEnum.StoreOwner)){
-                //todo: load role
-                StoreOwner storeOwner = MemberMapper.getInstance().getStoreOwner(userName);
-                roles.put(RoleEnum.StoreOwner,storeOwner);
-                storeOwner.loadOwner();
-            }
+        if(roles.containsKey(RoleEnum.StoreOwner)){
             Role role = roles.get(RoleEnum.StoreOwner);
             List<StoreDTO> stores = new LinkedList<>();
             for (Store store: role.getResponsibleForStores().values()) {
@@ -252,13 +217,7 @@ public class Member extends User{
             }
             memberStores.put("StoreOwner",stores);
         }
-        if(memberRolesFlag.contains(RoleEnum.StoreManager)){
-            if (!roles.containsKey(RoleEnum.StoreManager)){
-                //todo: load role
-                StoreManager storeManager = MemberMapper.getInstance().getStoreManager(userName);
-                roles.put(RoleEnum.StoreOwner,storeManager);
-                storeManager.loadManager();
-            }
+        if(roles.containsKey(RoleEnum.StoreManager)){
             Role role = roles.get(RoleEnum.StoreManager);
             List<StoreDTO> stores = new LinkedList<>();
             for (Store store: role.getResponsibleForStores().values()) {
@@ -309,32 +268,10 @@ public class Member extends User{
     public void assertIsOwnerForTheStore(Store store) throws Exception {
         AbstractStoreOwner owner = null;
         String storeName = store.getStoreName();
-        if(memberRolesFlag.contains(RoleEnum.StoreFounder)){
-            if (!roles.containsKey(RoleEnum.StoreFounder)){
-                StoreFounder storeFounder = MemberMapper.getInstance().getStoreFounder(userName);
-                roles.put(RoleEnum.StoreFounder,storeFounder);
-                storeFounder.loadFounder();
-            }
-            if (roles.get(RoleEnum.StoreFounder).haveStore(storeName)){
-                owner = (StoreFounder)roles.get(RoleEnum.StoreFounder);
-            }
-        }
-        if (memberRolesFlag.contains(RoleEnum.StoreOwner) && owner == null){
-            if (!roles.containsKey(RoleEnum.StoreOwner)){
-                StoreOwner storeOwner = MemberMapper.getInstance().getStoreOwner(userName);
-                roles.put(RoleEnum.StoreOwner,storeOwner);
-                storeOwner.loadOwner();
-            }
-            if (roles.get(RoleEnum.StoreOwner).haveStore(storeName)){
-                owner = (StoreOwner)roles.get(RoleEnum.StoreOwner);
-            }
-        }
-//        AbstractStoreOwner owner = null;
-//        String storeName = store.getStoreName();
-//        if(roles.containsKey(RoleEnum.StoreFounder) && roles.get(RoleEnum.StoreFounder).haveStore(storeName))
-//            owner = (StoreFounder)roles.get(RoleEnum.StoreFounder);
-//        else if (roles.containsKey(RoleEnum.StoreOwner) && roles.get(RoleEnum.StoreOwner).haveStore(storeName))
-//            owner = (StoreOwner)roles.get(RoleEnum.StoreOwner);
+        if(roles.containsKey(RoleEnum.StoreFounder) && roles.get(RoleEnum.StoreFounder).haveStore(storeName))
+            owner = (StoreFounder)roles.get(RoleEnum.StoreFounder);
+        else if (roles.containsKey(RoleEnum.StoreOwner) && roles.get(RoleEnum.StoreOwner).haveStore(storeName))
+            owner = (StoreOwner)roles.get(RoleEnum.StoreOwner);
         if(owner == null) throw new Exception(""+getUserName()+" is not owner for "+storeName);
     }
 
@@ -358,7 +295,6 @@ public class Member extends User{
     }
 
     public void Login() {
-        //loadMember();
         isOnline = true;
         if(!pendingMessages.isEmpty()){
             StringBuilder msg = new StringBuilder("Attention: you got " + pendingMessages.size() + " messages:\n");
