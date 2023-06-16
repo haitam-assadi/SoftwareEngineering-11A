@@ -18,4 +18,7 @@ public interface StoreManagerRepository extends JpaRepository<StoreManager, Role
 
     @Query(value = "SELECT permission FROM manager_permission WHERE store_manager_member_name = ? AND store_manager_store_name = ?",nativeQuery = true)
     public List<String> findManagerPermissionsPerStore(String memberName,String storeName);
+
+    @Query(value = "SELECT member_name FROM store_manager WHERE store_name = ?",nativeQuery = true)
+    public List<String> findManagersNamesByStoreName(String storeName);
 }

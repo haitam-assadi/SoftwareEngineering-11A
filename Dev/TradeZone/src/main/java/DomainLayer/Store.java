@@ -120,6 +120,10 @@ public class Store {
         this.storeFounder = storeFounder;
     }
 
+    public void setStoreFounder(StoreFounder storeFounder){
+        this.storeFounder = storeFounder;
+    }
+
     public boolean alreadyHaveFounder(){
         return storeFounder!=null;
     }
@@ -223,6 +227,7 @@ public class Store {
 
     public StoreDTO getStoreInfo() throws Exception {
         //todo: need load store owners and managers and founders
+        loadStore();
         List<String> ownersNames = this.storeOwners.values().stream().map(Role::getUserName).toList();
         List<String> managersNames = this.storeManagers.values().stream().map(Role::getUserName).toList();
         return new StoreDTO(storeName, storeFounder.getUserName(), ownersNames, managersNames, stock.getProductsInfoAmount(),isActive);
@@ -1061,21 +1066,43 @@ public class Store {
         return storeDiscountPolicies.keySet().stream().toList();
     }
 
-    public void loadStore(){
+    public void loadStore() throws Exception {
         if (!isLoaded) {
-            Store store = DALService.storeRepository.getById(storeName);
-            //String founderName
-            this.isActive = store.isActive;
-            //this.storeFounder = MemberMapper.getInstance().getStoreFounder(foundername???);
-
-            for (String ownerName: store.storeOwners.keySet()){
-                //storeOwners.put(ownerName,MemberMapper.getInstance().getStoreOwner(ownerName));
+            Optional<Store> storeD = DALService.storeRepository.findById(storeName);
+            if (storeD.isPresent()) {
+                Store store = storeD.get();
+                //String founderName
+                this.isActive = store.isActive;
+                String founderName = DALService.storeFounderRepository.findFounderNameByStoreName(storeName);
+                this.storeFounder = MemberMapper.getInstance().getStoreFounder(founderName);
+                //todo: check founder.add resposiple for stores?
+                this.storeFounder.responsibleForStores.put(storeName, this);
+                List<String> ownersNames = DALService.storesOwnersRepository.findOwnersNamesByStoreName(storeName);
+                for (String ownerName : ownersNames) {
+                    StoreOwner storeOwner = MemberMapper.getInstance().getStoreOwner(ownerName);
+                    storeOwners.put(ownerName, storeOwner);
+                    //todo: check owner.add resposiple for stores?
+                    storeOwner.responsibleForStores.put(storeName, this);
+                }
+                List<String> managersNames = DALService.storesManagersRepository.findManagersNamesByStoreName(storeName);
+                for (String managerName : managersNames) {
+                    StoreManager storeManager = MemberMapper.getInstance().getStoreManager(managerName);
+                    storeManagers.put(managerName, storeManager);
+                    //todo: check add manager.resposipleforstores?
+                    storeManager.responsibleForStores.put(storeName, this);
+                }
             }
-            for (String managerName: store.storeManagers.keySet()){
-                //storeOwners.put(ownerName,MemberMapper.getInstance().getStoreManager(managerName));
-            }
+            isLoaded = true;
         }
-        isLoaded = true;
+    }
+
+    public void addStoreOwner(String ownerName,StoreOwner storeOwner){
+        if(!storeOwners.containsKey(ownerName))
+            storeOwners.put(ownerName,storeOwner);
+    }
+    public void addStoreManager(String managerName,StoreManager storeManager){
+        if(!storeManagers.containsKey(managerName))
+            storeManagers.put(managerName,storeManager);
     }
 
     @Override

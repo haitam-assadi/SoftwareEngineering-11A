@@ -14,4 +14,7 @@ public interface StoreFounderRepository extends JpaRepository<StoreFounder, Role
 
     @Query(value = "SELECT * FROM store_founder WHERE member_name = ?",nativeQuery = true)
     public List<StoreFounder> findAllByMemberName(String memberName);
+
+    @Query(value = "SELECT member_name FROM store_founder WHERE store_name = ?",nativeQuery = true)
+    public String findFounderNameByStoreName(String storeName);
 }

@@ -114,16 +114,21 @@ public class StoreManager extends Role implements Serializable {
             for (String storeName : storesNames) {
                 responsibleForStores.put(storeName, StoreMapper.getInstance().getStore(storeName));
                 Store store = responsibleForStores.get(storeName);
+                store.addStoreManager(getUserName(),this);
                 Map<String,String> bossTypeAndName = DALService.storesOwnersRepository.findBossById(getUserName(),storeName);
                 String bossType = bossTypeAndName.keySet().stream().toList().get(0);
                 String bossName = bossTypeAndName.get(bossType);
                 if (bossType.equals(RoleEnum.StoreFounder.toString())){
                     StoreFounder myBoss = MemberMapper.getInstance().getStoreFounder(bossName);
                     myBossesForStores.put(storeName,myBoss);
+                    if (!store.alreadyHaveFounder()){
+                        store.setStoreFounder(myBoss);
+                    }
                 }
                 if (bossType.equals(RoleEnum.StoreOwner.toString())){
                     StoreOwner myBoss = MemberMapper.getInstance().getStoreOwner(bossName);
                     myBossesForStores.put(bossName,myBoss);
+                    store.addStoreOwner(myBoss.getUserName(),myBoss);
                 }
                 //todo: chcek if should add the owners and managers to the store
                 List<String> managerStorePermissions = DALService.storesManagersRepository.findManagerPermissionsPerStore(getUserName(),storeName);

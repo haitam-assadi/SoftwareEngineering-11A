@@ -48056,3 +48056,1079 @@ getStoreInfo(String userName, String storeName)
 in 2023-06-15 17:37:08 the user qqqq wants to get information about the store str1- getStoreInfo(qqqq, str1)
 יוני 15, 2023 5:37:08 אחה״צ DomainLayer.LoggerManager sendEventLog
 INFO: in 2023-06-15 17:37:08 the user qqqq got information about the store str1
+יוני 16, 2023 11:38:07 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 11:38:07 the user guest_0 wants to make registeration register(guest_0, qqqq,1q1q1q1q)
+יוני 16, 2023 11:38:07 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 11:38:07 a new member joined .
+- Memer name: qqqq
+
+יוני 16, 2023 11:38:48 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-16 11:38:48 the user guest_0 wants to make login login(guest_0, qqqq,1q1q1q1q)
+יוני 16, 2023 11:38:48 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 11:38:48 a new member Logged in .
+- Memer name: qqqq
+
+יוני 16, 2023 11:38:48 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-16 11:38:48 the user qqqq tries to get his cart content  - getCartContent(qqqq)
+יוני 16, 2023 11:38:49 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+memberLogOut(String memberUserName)
+in 2023-06-16 11:38:49 the member qqqq wants to make logout- logout(qqqq)
+יוני 16, 2023 11:39:00 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 11:39:00 the user guest_1 wants to make registeration register(guest_1, aaaa,1q1q1q1q)
+יוני 16, 2023 11:39:00 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 11:39:00 a new member joined .
+- Memer name: aaaa
+
+יוני 16, 2023 11:39:07 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-16 11:39:07 the user guest_1 wants to make login login(guest_1, qqqq,1q1q1q1q)
+יוני 16, 2023 11:39:07 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 11:39:07 a new member Logged in .
+- Memer name: qqqq
+
+יוני 16, 2023 11:39:07 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-16 11:39:07 the user qqqq tries to get his cart content  - getCartContent(qqqq)
+יוני 16, 2023 11:39:15 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+createStore(String memberUserName, String newStoreName)
+in 2023-06-16 11:39:15 the member qqqq tries to create store  - createStore(qqqq, str1)
+יוני 16, 2023 11:39:16 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 11:39:16 the user qqqq wants to get information about the store str1- getStoreInfo(qqqq, str1)
+יוני 16, 2023 11:39:16 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 11:39:16 the user qqqq got information about the store str1
+יוני 16, 2023 11:39:16 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 11:39:16 the user qqqq wants to get information about the store str1- getStoreInfo(qqqq, str1)
+יוני 16, 2023 11:39:16 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 11:39:16 the user qqqq got information about the store str1
+יוני 16, 2023 11:39:17 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 11:39:17 the user qqqq wants to get information about the store str1- getStoreInfo(qqqq, str1)
+יוני 16, 2023 11:39:17 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 11:39:17 the user qqqq got information about the store str1
+יוני 16, 2023 11:39:20 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+appointOtherMemberAsStoreOwner(String memberUserName, String storeName, String newOwnerUserName)
+in 2023-06-16 11:39:20 the member qqqq tries to assign other user as store owner  - appointOtherMemberAsStoreOwner(qqqq, str1, aaaa)
+יוני 16, 2023 11:39:20 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 11:39:20 the user qqqq wants to get information about the store str1- getStoreInfo(qqqq, str1)
+יוני 16, 2023 11:39:20 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 11:39:20 the user qqqq got information about the store str1
+יוני 16, 2023 11:39:32 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-16 11:39:32 the user guest_2 wants to make login login(guest_2, aaaa,1111111a)
+יוני 16, 2023 11:39:35 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-16 11:39:35 the user guest_2 wants to make login login(guest_2, aaaa,1q1q1q1q)
+יוני 16, 2023 11:39:35 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 11:39:35 a new member Logged in .
+- Memer name: aaaa
+
+יוני 16, 2023 11:39:35 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-16 11:39:35 the user aaaa tries to get his cart content  - getCartContent(aaaa)
+יוני 16, 2023 11:39:41 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 11:39:41 the user aaaa wants to get information about the store str1- getStoreInfo(aaaa, str1)
+יוני 16, 2023 11:39:41 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 11:39:41 the user aaaa got information about the store str1
+יוני 16, 2023 11:39:41 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 11:39:41 the user aaaa wants to get information about the store str1- getStoreInfo(aaaa, str1)
+יוני 16, 2023 11:39:41 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 11:39:41 the user aaaa got information about the store str1
+יוני 16, 2023 11:39:47 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 11:39:47 the user aaaa wants to get information about the store str1- getStoreInfo(aaaa, str1)
+יוני 16, 2023 11:39:47 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 11:39:47 the user aaaa got information about the store str1
+יוני 16, 2023 11:39:59 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 11:39:59 the user qqqq wants to get information about the store str1- getStoreInfo(qqqq, str1)
+יוני 16, 2023 11:39:59 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 11:39:59 the user qqqq got information about the store str1
+יוני 16, 2023 11:40:07 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-16 11:40:07 the member qqqq tries to add product to store  - addNewProductToStock(qqqq, str1, pr1, c1, 213.0, sdad, 2324)
+יוני 16, 2023 11:40:07 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 11:40:07 the user qqqq wants to get information about the store str1- getStoreInfo(qqqq, str1)
+יוני 16, 2023 11:40:07 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 11:40:07 the user qqqq got information about the store str1
+יוני 16, 2023 11:40:17 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-16 11:40:17 the member qqqq tries to add product to store  - addNewProductToStock(qqqq, str1, pr2, c1, 123.0, adsdc, 9956)
+יוני 16, 2023 11:40:17 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 11:40:17 the user qqqq wants to get information about the store str1- getStoreInfo(qqqq, str1)
+יוני 16, 2023 11:40:17 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 11:40:17 the user qqqq got information about the store str1
+יוני 16, 2023 11:40:25 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 11:40:25 the user aaaa wants to get information about the store str1- getStoreInfo(aaaa, str1)
+יוני 16, 2023 11:40:25 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 11:40:25 the user aaaa got information about the store str1
+יוני 16, 2023 11:40:40 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-16 11:40:40 the member aaaa tries to add product to store  - addNewProductToStock(aaaa, str1, pr3, c2, 123.0, sadf, 2133)
+יוני 16, 2023 11:40:40 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 11:40:40 the user aaaa wants to get information about the store str1- getStoreInfo(aaaa, str1)
+יוני 16, 2023 11:40:40 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 11:40:40 the user aaaa got information about the store str1
+יוני 16, 2023 11:40:50 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 11:40:50 the user qqqq wants to get information about the store str1- getStoreInfo(qqqq, str1)
+יוני 16, 2023 11:40:50 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 11:40:50 the user qqqq got information about the store str1
+יוני 16, 2023 11:41:14 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+createStore(String memberUserName, String newStoreName)
+in 2023-06-16 11:41:14 the member aaaa tries to create store  - createStore(aaaa, str2)
+יוני 16, 2023 11:41:16 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 11:41:16 the user aaaa wants to get information about the store str1- getStoreInfo(aaaa, str1)
+יוני 16, 2023 11:41:16 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 11:41:16 the user aaaa got information about the store str1
+יוני 16, 2023 11:41:16 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 11:41:16 the user aaaa wants to get information about the store str1- getStoreInfo(aaaa, str1)
+יוני 16, 2023 11:41:16 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 11:41:16 the user aaaa got information about the store str1
+יוני 16, 2023 11:41:17 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 11:41:17 the user aaaa wants to get information about the store str1- getStoreInfo(aaaa, str1)
+יוני 16, 2023 11:41:17 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 11:41:17 the user aaaa got information about the store str1
+יוני 16, 2023 11:41:22 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+appointOtherMemberAsStoreOwner(String memberUserName, String storeName, String newOwnerUserName)
+in 2023-06-16 11:41:22 the member aaaa tries to assign other user as store owner  - appointOtherMemberAsStoreOwner(aaaa, str1, qqqq)
+יוני 16, 2023 11:41:22 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 11:41:22 the user aaaa wants to get information about the store str1- getStoreInfo(aaaa, str1)
+יוני 16, 2023 11:41:22 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 11:41:22 the user aaaa got information about the store str1
+יוני 16, 2023 11:41:31 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 11:41:31 the user aaaa wants to get information about the store str2- getStoreInfo(aaaa, str2)
+יוני 16, 2023 11:41:31 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 11:41:31 the user aaaa got information about the store str2
+יוני 16, 2023 11:41:31 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 11:41:31 the user aaaa wants to get information about the store str2- getStoreInfo(aaaa, str2)
+יוני 16, 2023 11:41:31 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 11:41:31 the user aaaa got information about the store str2
+יוני 16, 2023 11:41:32 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 11:41:32 the user aaaa wants to get information about the store str2- getStoreInfo(aaaa, str2)
+יוני 16, 2023 11:41:32 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 11:41:32 the user aaaa got information about the store str2
+יוני 16, 2023 11:41:35 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+appointOtherMemberAsStoreOwner(String memberUserName, String storeName, String newOwnerUserName)
+in 2023-06-16 11:41:35 the member aaaa tries to assign other user as store owner  - appointOtherMemberAsStoreOwner(aaaa, str2, qqqq)
+יוני 16, 2023 11:41:36 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 11:41:36 the user aaaa wants to get information about the store str2- getStoreInfo(aaaa, str2)
+יוני 16, 2023 11:41:36 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 11:41:36 the user aaaa got information about the store str2
+יוני 16, 2023 11:43:55 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-16 11:43:55 the user guest_0 wants to make login login(guest_0, qqqq,1q1q1q1q)
+יוני 16, 2023 11:43:55 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 11:43:55 a new member Logged in .
+- Memer name: qqqq
+
+יוני 16, 2023 11:43:55 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-16 11:43:55 the user qqqq tries to get his cart content  - getCartContent(qqqq)
+יוני 16, 2023 11:44:13 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 11:44:13 the user qqqq wants to get information about the store str1- getStoreInfo(qqqq, str1)
+יוני 16, 2023 11:44:13 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 11:44:13 the user qqqq got information about the store str1
+יוני 16, 2023 11:44:13 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 11:44:13 the user qqqq wants to get information about the store str1- getStoreInfo(qqqq, str1)
+יוני 16, 2023 11:44:13 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 11:44:13 the user qqqq got information about the store str1
+יוני 16, 2023 11:44:41 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 11:44:41 the user qqqq wants to get information about the store str1- getStoreInfo(qqqq, str1)
+יוני 16, 2023 11:44:41 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 11:44:41 the user qqqq got information about the store str1
+יוני 16, 2023 11:44:46 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-16 11:44:46 the user guest_1 wants to make login login(guest_1, aaaa,1111111a)
+יוני 16, 2023 11:44:50 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-16 11:44:50 the user guest_1 wants to make login login(guest_1, aaaa,1q1q1q1q)
+יוני 16, 2023 11:44:50 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 11:44:50 a new member Logged in .
+- Memer name: aaaa
+
+יוני 16, 2023 11:44:50 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-16 11:44:50 the user aaaa tries to get his cart content  - getCartContent(aaaa)
+יוני 16, 2023 11:46:09 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-16 11:46:09 the user guest_0 wants to make login login(guest_0, qqqq,1q1q1q1q)
+יוני 16, 2023 11:46:09 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 11:46:09 a new member Logged in .
+- Memer name: qqqq
+
+יוני 16, 2023 11:46:09 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-16 11:46:09 the user qqqq tries to get his cart content  - getCartContent(qqqq)
+יוני 16, 2023 11:50:04 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-16 11:50:04 the user guest_1 wants to make login login(guest_1, aaaa,1q1q1q1q)
+יוני 16, 2023 11:50:07 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 11:50:07 a new member Logged in .
+- Memer name: aaaa
+
+יוני 16, 2023 11:50:07 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-16 11:50:07 the user aaaa tries to get his cart content  - getCartContent(aaaa)
+יוני 16, 2023 11:54:02 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-16 11:54:02 the user guest_0 wants to make login login(guest_0, qqqq,1q1q1q1q)
+יוני 16, 2023 11:54:02 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 11:54:02 a new member Logged in .
+- Memer name: qqqq
+
+יוני 16, 2023 11:54:02 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-16 11:54:02 the user qqqq tries to get his cart content  - getCartContent(qqqq)
+יוני 16, 2023 11:56:40 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-16 11:56:40 the user guest_0 wants to make login login(guest_0, qqqq,1q1q1q1q)
+יוני 16, 2023 11:57:22 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 11:57:22 a new member Logged in .
+- Memer name: qqqq
+
+יוני 16, 2023 11:57:22 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-16 11:57:22 the user qqqq tries to get his cart content  - getCartContent(qqqq)
+יוני 16, 2023 12:06:00 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-16 12:06:00 the user guest_0 wants to make login login(guest_0, qqqq,1q1q1q1q)
+יוני 16, 2023 12:06:00 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 12:06:00 a new member Logged in .
+- Memer name: qqqq
+
+יוני 16, 2023 12:06:00 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-16 12:06:00 the user qqqq tries to get his cart content  - getCartContent(qqqq)
+יוני 16, 2023 12:06:15 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-16 12:06:15 the user guest_1 wants to make login login(guest_1, aaaa,1q1q1q1q)
+יוני 16, 2023 12:06:15 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 12:06:15 a new member Logged in .
+- Memer name: aaaa
+
+יוני 16, 2023 12:06:15 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-16 12:06:15 the user aaaa tries to get his cart content  - getCartContent(aaaa)
+יוני 16, 2023 12:09:47 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-16 12:09:47 the user guest_0 wants to make login login(guest_0, qqqq,1q1q1q1q)
+יוני 16, 2023 12:09:48 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 12:09:48 a new member Logged in .
+- Memer name: qqqq
+
+יוני 16, 2023 12:09:48 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-16 12:09:48 the user qqqq tries to get his cart content  - getCartContent(qqqq)
+יוני 16, 2023 12:09:54 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-16 12:09:54 the user guest_1 wants to make login login(guest_1, aaaa,1q1qq11q)
+יוני 16, 2023 12:09:57 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-16 12:09:57 the user guest_1 wants to make login login(guest_1, aaaa,1q1q1q1q)
+יוני 16, 2023 12:09:57 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 12:09:57 a new member Logged in .
+- Memer name: aaaa
+
+יוני 16, 2023 12:09:57 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-16 12:09:57 the user aaaa tries to get his cart content  - getCartContent(aaaa)
+יוני 16, 2023 12:10:06 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 12:10:06 the user qqqq wants to get information about the store str1- getStoreInfo(qqqq, str1)
+יוני 16, 2023 12:10:06 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 12:10:06 the user qqqq got information about the store str1
+יוני 16, 2023 12:10:06 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 12:10:06 the user qqqq wants to get information about the store str1- getStoreInfo(qqqq, str1)
+יוני 16, 2023 12:10:06 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 12:10:06 the user qqqq got information about the store str1
+יוני 16, 2023 12:10:10 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 12:10:10 the user qqqq wants to get information about the store str1- getStoreInfo(qqqq, str1)
+יוני 16, 2023 12:10:10 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 12:10:10 the user qqqq got information about the store str1
+יוני 16, 2023 12:10:16 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+removeOwnerByHisAppointer(String appointerUserName, String storeName, String ownerUserName)
+in 2023-06-16 12:10:16 the member qqqq tries to remove other owner from being owner in a store  - removeOwnerByHisAppointer(str1, aaaa)
+יוני 16, 2023 12:10:16 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 12:10:16 the user qqqq wants to get information about the store str1- getStoreInfo(qqqq, str1)
+יוני 16, 2023 12:10:16 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 12:10:16 the user qqqq got information about the store str1
+יוני 16, 2023 12:10:47 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 12:10:47 the user qqqq wants to get information about the store str1- getStoreInfo(qqqq, str1)
+יוני 16, 2023 12:10:47 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 12:10:47 the user qqqq got information about the store str1
+יוני 16, 2023 12:10:50 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+removeOwnerByHisAppointer(String appointerUserName, String storeName, String ownerUserName)
+in 2023-06-16 12:10:50 the member qqqq tries to remove other owner from being owner in a store  - removeOwnerByHisAppointer(str1, aaaa)
+יוני 16, 2023 12:10:50 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 12:10:50 the user qqqq wants to get information about the store str1- getStoreInfo(qqqq, str1)
+יוני 16, 2023 12:10:50 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 12:10:50 the user qqqq got information about the store str1
+יוני 16, 2023 12:14:14 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 12:14:14 the user aaaa wants to get information about the store str2- getStoreInfo(aaaa, str2)
+יוני 16, 2023 12:14:14 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 12:14:14 the user aaaa got information about the store str2
+יוני 16, 2023 12:14:14 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 12:14:14 the user aaaa wants to get information about the store str2- getStoreInfo(aaaa, str2)
+יוני 16, 2023 12:14:14 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 12:14:14 the user aaaa got information about the store str2
+יוני 16, 2023 12:14:15 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 12:14:15 the user aaaa wants to get information about the store str2- getStoreInfo(aaaa, str2)
+יוני 16, 2023 12:14:15 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 12:14:15 the user aaaa got information about the store str2
+יוני 16, 2023 12:14:18 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+removeOwnerByHisAppointer(String appointerUserName, String storeName, String ownerUserName)
+in 2023-06-16 12:14:18 the member aaaa tries to remove other owner from being owner in a store  - removeOwnerByHisAppointer(str2, qqqq)
+יוני 16, 2023 12:14:18 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 12:14:18 the user aaaa wants to get information about the store str2- getStoreInfo(aaaa, str2)
+יוני 16, 2023 12:14:18 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 12:14:18 the user aaaa got information about the store str2
+יוני 16, 2023 12:15:31 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-16 12:15:31 the user guest_0 wants to make login login(guest_0, qqqq,1q1q1q1q)
+יוני 16, 2023 12:15:31 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 12:15:31 a new member Logged in .
+- Memer name: qqqq
+
+יוני 16, 2023 12:15:31 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-16 12:15:31 the user qqqq tries to get his cart content  - getCartContent(qqqq)
+יוני 16, 2023 12:15:40 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-16 12:15:40 the user guest_1 wants to make login login(guest_1, aaaa,1q1q1q1q)
+יוני 16, 2023 12:15:40 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 12:15:40 a new member Logged in .
+- Memer name: aaaa
+
+יוני 16, 2023 12:15:40 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-16 12:15:40 the user aaaa tries to get his cart content  - getCartContent(aaaa)
+יוני 16, 2023 12:15:48 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 12:15:48 the user qqqq wants to get information about the store str1- getStoreInfo(qqqq, str1)
+יוני 16, 2023 12:15:48 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 12:15:48 the user qqqq got information about the store str1
+יוני 16, 2023 12:15:48 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 12:15:48 the user qqqq wants to get information about the store str1- getStoreInfo(qqqq, str1)
+יוני 16, 2023 12:15:48 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 12:15:48 the user qqqq got information about the store str1
+יוני 16, 2023 12:15:50 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 12:15:50 the user qqqq wants to get information about the store str1- getStoreInfo(qqqq, str1)
+יוני 16, 2023 12:15:50 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 12:15:50 the user qqqq got information about the store str1
+יוני 16, 2023 12:15:58 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+removeOwnerByHisAppointer(String appointerUserName, String storeName, String ownerUserName)
+in 2023-06-16 12:15:58 the member qqqq tries to remove other owner from being owner in a store  - removeOwnerByHisAppointer(str1, aaaa)
+יוני 16, 2023 12:20:50 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 12:20:50 the user qqqq wants to get information about the store str1- getStoreInfo(qqqq, str1)
+יוני 16, 2023 12:20:50 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 12:20:50 the user qqqq got information about the store str1
+יוני 16, 2023 12:20:56 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+removeOwnerByHisAppointer(String appointerUserName, String storeName, String ownerUserName)
+in 2023-06-16 12:20:56 the member qqqq tries to remove other owner from being owner in a store  - removeOwnerByHisAppointer(str1, aaaa)
+יוני 16, 2023 12:21:02 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 12:21:02 the user qqqq wants to get information about the store str1- getStoreInfo(qqqq, str1)
+יוני 16, 2023 12:21:02 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 12:21:02 the user qqqq got information about the store str1
+יוני 16, 2023 12:21:04 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+removeOwnerByHisAppointer(String appointerUserName, String storeName, String ownerUserName)
+in 2023-06-16 12:21:04 the member qqqq tries to remove other owner from being owner in a store  - removeOwnerByHisAppointer(str1, aaaa)
+יוני 16, 2023 12:23:02 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 12:23:02 the user qqqq wants to get information about the store str1- getStoreInfo(qqqq, str1)
+יוני 16, 2023 12:23:02 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 12:23:02 the user qqqq got information about the store str1
+יוני 16, 2023 12:23:50 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-16 12:23:50 the user guest_0 wants to make login login(guest_0, qqqq,1q1q1q1q)
+יוני 16, 2023 12:23:50 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 12:23:50 a new member Logged in .
+- Memer name: qqqq
+
+יוני 16, 2023 12:23:50 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-16 12:23:50 the user qqqq tries to get his cart content  - getCartContent(qqqq)
+יוני 16, 2023 12:23:58 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-16 12:23:58 the user guest_1 wants to make login login(guest_1, aaaa,1q1q1q1q)
+יוני 16, 2023 12:23:58 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 12:23:58 a new member Logged in .
+- Memer name: aaaa
+
+יוני 16, 2023 12:23:58 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-16 12:23:58 the user aaaa tries to get his cart content  - getCartContent(aaaa)
+יוני 16, 2023 12:24:03 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 12:24:03 the user qqqq wants to get information about the store str1- getStoreInfo(qqqq, str1)
+יוני 16, 2023 12:24:03 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 12:24:03 the user qqqq got information about the store str1
+יוני 16, 2023 12:24:03 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 12:24:03 the user qqqq wants to get information about the store str1- getStoreInfo(qqqq, str1)
+יוני 16, 2023 12:24:03 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 12:24:03 the user qqqq got information about the store str1
+יוני 16, 2023 12:24:15 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 12:24:15 the user qqqq wants to get information about the store str1- getStoreInfo(qqqq, str1)
+יוני 16, 2023 12:24:15 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 12:24:15 the user qqqq got information about the store str1
+יוני 16, 2023 12:24:23 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+removeOwnerByHisAppointer(String appointerUserName, String storeName, String ownerUserName)
+in 2023-06-16 12:24:23 the member qqqq tries to remove other owner from being owner in a store  - removeOwnerByHisAppointer(str1, aaaa)
+יוני 16, 2023 12:25:50 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 12:25:50 the user qqqq wants to get information about the store str1- getStoreInfo(qqqq, str1)
+יוני 16, 2023 12:25:50 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 12:25:50 the user qqqq got information about the store str1
+יוני 16, 2023 12:26:15 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-16 12:26:15 the user guest_0 wants to make login login(guest_0, qqqq,1q1q1q1q)
+יוני 16, 2023 12:26:15 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 12:26:15 a new member Logged in .
+- Memer name: qqqq
+
+יוני 16, 2023 12:26:15 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-16 12:26:15 the user qqqq tries to get his cart content  - getCartContent(qqqq)
+יוני 16, 2023 12:26:20 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-16 12:26:20 the user guest_1 wants to make login login(guest_1, aaaa,1q1q1q1q)
+יוני 16, 2023 12:26:20 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 12:26:20 a new member Logged in .
+- Memer name: aaaa
+
+יוני 16, 2023 12:26:20 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-16 12:26:20 the user aaaa tries to get his cart content  - getCartContent(aaaa)
+יוני 16, 2023 12:26:28 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 12:26:28 the user qqqq wants to get information about the store str1- getStoreInfo(qqqq, str1)
+יוני 16, 2023 12:26:28 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 12:26:28 the user qqqq got information about the store str1
+יוני 16, 2023 12:26:28 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 12:26:28 the user qqqq wants to get information about the store str1- getStoreInfo(qqqq, str1)
+יוני 16, 2023 12:26:28 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 12:26:28 the user qqqq got information about the store str1
+יוני 16, 2023 12:26:30 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 12:26:30 the user qqqq wants to get information about the store str1- getStoreInfo(qqqq, str1)
+יוני 16, 2023 12:26:30 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 12:26:30 the user qqqq got information about the store str1
+יוני 16, 2023 12:26:31 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+removeOwnerByHisAppointer(String appointerUserName, String storeName, String ownerUserName)
+in 2023-06-16 12:26:31 the member qqqq tries to remove other owner from being owner in a store  - removeOwnerByHisAppointer(str1, aaaa)
+יוני 16, 2023 12:26:31 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 12:26:31 the user qqqq wants to get information about the store str1- getStoreInfo(qqqq, str1)
+יוני 16, 2023 12:26:31 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 12:26:31 the user qqqq got information about the store str1
+יוני 16, 2023 12:27:20 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-16 12:27:20 the user guest_0 wants to make login login(guest_0, qqqq,1q1q1q1q)
+יוני 16, 2023 12:27:20 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 12:27:20 a new member Logged in .
+- Memer name: qqqq
+
+יוני 16, 2023 12:27:20 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-16 12:27:20 the user qqqq tries to get his cart content  - getCartContent(qqqq)
+יוני 16, 2023 12:27:24 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-16 12:27:24 the user guest_1 wants to make login login(guest_1, aaaa,1q1q1q1q)
+יוני 16, 2023 12:27:24 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 12:27:24 a new member Logged in .
+- Memer name: aaaa
+
+יוני 16, 2023 12:27:24 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-16 12:27:24 the user aaaa tries to get his cart content  - getCartContent(aaaa)
+יוני 16, 2023 12:27:31 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 12:27:31 the user qqqq wants to get information about the store str1- getStoreInfo(qqqq, str1)
+יוני 16, 2023 12:27:31 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 12:27:31 the user qqqq got information about the store str1
+יוני 16, 2023 12:27:31 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 12:27:31 the user qqqq wants to get information about the store str1- getStoreInfo(qqqq, str1)
+יוני 16, 2023 12:27:31 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 12:27:31 the user qqqq got information about the store str1
+יוני 16, 2023 12:27:32 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 12:27:32 the user qqqq wants to get information about the store str1- getStoreInfo(qqqq, str1)
+יוני 16, 2023 12:27:32 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 12:27:32 the user qqqq got information about the store str1
+יוני 16, 2023 12:27:39 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+removeOwnerByHisAppointer(String appointerUserName, String storeName, String ownerUserName)
+in 2023-06-16 12:27:39 the member qqqq tries to remove other owner from being owner in a store  - removeOwnerByHisAppointer(str1, aaaa)
+יוני 16, 2023 12:28:53 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 12:28:53 the user qqqq wants to get information about the store str1- getStoreInfo(qqqq, str1)
+יוני 16, 2023 12:28:53 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 12:28:53 the user qqqq got information about the store str1
+יוני 16, 2023 2:16:09 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-16 14:16:09 the user guest_0 wants to make login login(guest_0, qqqq,1q1q1q1q)
+יוני 16, 2023 2:16:09 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 14:16:09 a new member Logged in .
+- Memer name: qqqq
+
+יוני 16, 2023 2:16:09 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-16 14:16:09 the user qqqq tries to get his cart content  - getCartContent(qqqq)
+יוני 16, 2023 2:26:50 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-16 14:26:50 the user guest_0 wants to make login login(guest_0, qqqq,1q1q1q1q)
+יוני 16, 2023 2:26:50 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 14:26:50 a new member Logged in .
+- Memer name: qqqq
+
+יוני 16, 2023 2:26:50 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-16 14:26:50 the user qqqq tries to get his cart content  - getCartContent(qqqq)
+יוני 16, 2023 2:31:40 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-16 14:31:40 the user guest_0 wants to make login login(guest_0, qqqq,1q1q1q1q)
+יוני 16, 2023 2:31:41 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 14:31:41 a new member Logged in .
+- Memer name: qqqq
+
+יוני 16, 2023 2:31:41 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-16 14:31:41 the user qqqq tries to get his cart content  - getCartContent(qqqq)
+יוני 16, 2023 2:32:43 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-16 14:32:43 the user guest_1 wants to make login login(guest_1, aaaa,1q1q1q1q)
+יוני 16, 2023 2:32:43 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 14:32:43 a new member Logged in .
+- Memer name: aaaa
+
+יוני 16, 2023 2:32:43 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-16 14:32:43 the user aaaa tries to get his cart content  - getCartContent(aaaa)
+יוני 16, 2023 2:32:49 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 14:32:49 the user qqqq wants to get information about the store str1- getStoreInfo(qqqq, str1)
+יוני 16, 2023 2:32:49 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 14:32:49 the user qqqq got information about the store str1
+יוני 16, 2023 2:32:49 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 14:32:49 the user qqqq wants to get information about the store str1- getStoreInfo(qqqq, str1)
+יוני 16, 2023 2:32:49 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 14:32:49 the user qqqq got information about the store str1
+יוני 16, 2023 2:32:51 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 14:32:51 the user qqqq wants to get information about the store str1- getStoreInfo(qqqq, str1)
+יוני 16, 2023 2:32:51 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 14:32:51 the user qqqq got information about the store str1
+יוני 16, 2023 2:32:53 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+removeOwnerByHisAppointer(String appointerUserName, String storeName, String ownerUserName)
+in 2023-06-16 14:32:53 the member qqqq tries to remove other owner from being owner in a store  - removeOwnerByHisAppointer(str1, aaaa)
+יוני 16, 2023 2:32:53 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 14:32:53 the user qqqq wants to get information about the store str1- getStoreInfo(qqqq, str1)
+יוני 16, 2023 2:32:53 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 14:32:53 the user qqqq got information about the store str1
+יוני 16, 2023 2:42:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-16 14:42:34 the user guest_0 wants to make login login(guest_0, qqqq,1q1q1q1q)
+יוני 16, 2023 2:42:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 14:42:34 a new member Logged in .
+- Memer name: qqqq
+
+יוני 16, 2023 2:42:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-16 14:42:34 the user qqqq tries to get his cart content  - getCartContent(qqqq)
+יוני 16, 2023 2:42:42 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 14:42:42 the user qqqq wants to get information about the store str1- getStoreInfo(qqqq, str1)
+יוני 16, 2023 2:42:42 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 14:42:42 the user qqqq got information about the store str1
+יוני 16, 2023 2:42:42 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 14:42:42 the user qqqq wants to get information about the store str1- getStoreInfo(qqqq, str1)
+יוני 16, 2023 2:42:42 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 14:42:42 the user qqqq got information about the store str1
+יוני 16, 2023 2:42:43 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 14:42:43 the user qqqq wants to get information about the store str1- getStoreInfo(qqqq, str1)
+יוני 16, 2023 2:42:43 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 14:42:43 the user qqqq got information about the store str1
+יוני 16, 2023 2:42:45 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+removeOwnerByHisAppointer(String appointerUserName, String storeName, String ownerUserName)
+in 2023-06-16 14:42:45 the member qqqq tries to remove other owner from being owner in a store  - removeOwnerByHisAppointer(str1, aaaa)
+יוני 16, 2023 2:42:45 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 14:42:45 the user qqqq wants to get information about the store str1- getStoreInfo(qqqq, str1)
+יוני 16, 2023 2:42:45 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 14:42:45 the user qqqq got information about the store str1
+יוני 16, 2023 2:47:11 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-16 14:47:11 the user guest_0 wants to make login login(guest_0, qqqq,1q1q1q1q)
+יוני 16, 2023 2:47:11 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 14:47:11 a new member Logged in .
+- Memer name: qqqq
+
+יוני 16, 2023 2:47:11 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-16 14:47:11 the user qqqq tries to get his cart content  - getCartContent(qqqq)
+יוני 16, 2023 2:47:13 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 14:47:13 the user qqqq wants to get information about the store str1- getStoreInfo(qqqq, str1)
+יוני 16, 2023 2:47:13 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 14:47:13 the user qqqq got information about the store str1
+יוני 16, 2023 2:47:13 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 14:47:13 the user qqqq wants to get information about the store str1- getStoreInfo(qqqq, str1)
+יוני 16, 2023 2:47:13 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 14:47:13 the user qqqq got information about the store str1
+יוני 16, 2023 2:47:15 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 14:47:15 the user qqqq wants to get information about the store str1- getStoreInfo(qqqq, str1)
+יוני 16, 2023 2:47:15 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 14:47:15 the user qqqq got information about the store str1
+יוני 16, 2023 2:47:17 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+removeOwnerByHisAppointer(String appointerUserName, String storeName, String ownerUserName)
+in 2023-06-16 14:47:17 the member qqqq tries to remove other owner from being owner in a store  - removeOwnerByHisAppointer(str1, aaaa)
+יוני 16, 2023 2:47:17 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 14:47:17 the user qqqq wants to get information about the store str1- getStoreInfo(qqqq, str1)
+יוני 16, 2023 2:47:17 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 14:47:17 the user qqqq got information about the store str1
+יוני 16, 2023 2:48:15 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-16 14:48:15 the user guest_0 wants to make login login(guest_0, qqqq,1q1q1q1q)
+יוני 16, 2023 2:48:15 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 14:48:15 a new member Logged in .
+- Memer name: qqqq
+
+יוני 16, 2023 2:48:15 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-16 14:48:15 the user qqqq tries to get his cart content  - getCartContent(qqqq)
+יוני 16, 2023 2:48:17 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 14:48:17 the user qqqq wants to get information about the store str1- getStoreInfo(qqqq, str1)
+יוני 16, 2023 2:48:17 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 14:48:17 the user qqqq got information about the store str1
+יוני 16, 2023 2:48:17 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 14:48:17 the user qqqq wants to get information about the store str1- getStoreInfo(qqqq, str1)
+יוני 16, 2023 2:48:17 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 14:48:17 the user qqqq got information about the store str1
+יוני 16, 2023 2:48:19 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 14:48:19 the user qqqq wants to get information about the store str1- getStoreInfo(qqqq, str1)
+יוני 16, 2023 2:48:19 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 14:48:19 the user qqqq got information about the store str1
+יוני 16, 2023 2:48:21 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+removeOwnerByHisAppointer(String appointerUserName, String storeName, String ownerUserName)
+in 2023-06-16 14:48:21 the member qqqq tries to remove other owner from being owner in a store  - removeOwnerByHisAppointer(str1, aaaa)
+יוני 16, 2023 2:48:21 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 14:48:21 the user qqqq wants to get information about the store str1- getStoreInfo(qqqq, str1)
+יוני 16, 2023 2:48:21 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 14:48:21 the user qqqq got information about the store str1
+יוני 16, 2023 2:51:41 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-16 14:51:41 the user guest_0 wants to make login login(guest_0, qqqq,1q1q1q1q)
+יוני 16, 2023 2:51:41 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 14:51:41 a new member Logged in .
+- Memer name: qqqq
+
+יוני 16, 2023 2:51:41 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-16 14:51:41 the user qqqq tries to get his cart content  - getCartContent(qqqq)
+יוני 16, 2023 2:51:56 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 14:51:56 the user qqqq wants to get information about the store str1- getStoreInfo(qqqq, str1)
+יוני 16, 2023 2:51:56 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 14:51:56 the user qqqq got information about the store str1
+יוני 16, 2023 2:51:56 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 14:51:56 the user qqqq wants to get information about the store str1- getStoreInfo(qqqq, str1)
+יוני 16, 2023 2:51:56 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 14:51:56 the user qqqq got information about the store str1
+יוני 16, 2023 2:51:57 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 14:51:57 the user qqqq wants to get information about the store str1- getStoreInfo(qqqq, str1)
+יוני 16, 2023 2:51:57 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 14:51:57 the user qqqq got information about the store str1
+יוני 16, 2023 2:51:59 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+removeOwnerByHisAppointer(String appointerUserName, String storeName, String ownerUserName)
+in 2023-06-16 14:51:59 the member qqqq tries to remove other owner from being owner in a store  - removeOwnerByHisAppointer(str1, aaaa)
+יוני 16, 2023 2:51:59 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 14:51:59 the user qqqq wants to get information about the store str1- getStoreInfo(qqqq, str1)
+יוני 16, 2023 2:51:59 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 14:51:59 the user qqqq got information about the store str1
+יוני 16, 2023 2:52:35 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+memberLogOut(String memberUserName)
+in 2023-06-16 14:52:35 the member qqqq wants to make logout- logout(qqqq)
+יוני 16, 2023 2:53:14 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-16 14:53:14 the user guest_0 wants to make login login(guest_0, qqqq,1q1q1q1q)
+יוני 16, 2023 2:53:14 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 14:53:14 a new member Logged in .
+- Memer name: qqqq
+
+יוני 16, 2023 2:53:14 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-16 14:53:14 the user qqqq tries to get his cart content  - getCartContent(qqqq)
+יוני 16, 2023 2:53:19 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-16 14:53:19 the user guest_1 wants to make login login(guest_1, aaaa,1q1q1q1q)
+יוני 16, 2023 2:53:19 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 14:53:19 a new member Logged in .
+- Memer name: aaaa
+
+יוני 16, 2023 2:53:19 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-16 14:53:19 the user aaaa tries to get his cart content  - getCartContent(aaaa)
+יוני 16, 2023 2:53:27 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 14:53:27 the user qqqq wants to get information about the store str1- getStoreInfo(qqqq, str1)
+יוני 16, 2023 2:53:27 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 14:53:27 the user qqqq got information about the store str1
+יוני 16, 2023 2:53:27 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 14:53:27 the user qqqq wants to get information about the store str1- getStoreInfo(qqqq, str1)
+יוני 16, 2023 2:53:27 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 14:53:27 the user qqqq got information about the store str1
+יוני 16, 2023 2:53:29 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 14:53:29 the user qqqq wants to get information about the store str1- getStoreInfo(qqqq, str1)
+יוני 16, 2023 2:53:29 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 14:53:29 the user qqqq got information about the store str1
+יוני 16, 2023 2:53:31 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+removeOwnerByHisAppointer(String appointerUserName, String storeName, String ownerUserName)
+in 2023-06-16 14:53:31 the member qqqq tries to remove other owner from being owner in a store  - removeOwnerByHisAppointer(str1, aaaa)
+יוני 16, 2023 2:53:31 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 14:53:31 the user qqqq wants to get information about the store str1- getStoreInfo(qqqq, str1)
+יוני 16, 2023 2:53:31 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 14:53:31 the user qqqq got information about the store str1
+יוני 16, 2023 2:53:39 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 14:53:39 the user aaaa wants to get information about the store str2- getStoreInfo(aaaa, str2)
+יוני 16, 2023 2:53:39 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 14:53:39 the user aaaa got information about the store str2
+יוני 16, 2023 2:53:39 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 14:53:39 the user aaaa wants to get information about the store str2- getStoreInfo(aaaa, str2)
+יוני 16, 2023 2:53:39 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 14:53:39 the user aaaa got information about the store str2
+יוני 16, 2023 2:53:42 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 14:53:42 the user aaaa wants to get information about the store str2- getStoreInfo(aaaa, str2)
+יוני 16, 2023 2:53:42 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 14:53:42 the user aaaa got information about the store str2
+יוני 16, 2023 2:53:45 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+removeOwnerByHisAppointer(String appointerUserName, String storeName, String ownerUserName)
+in 2023-06-16 14:53:45 the member aaaa tries to remove other owner from being owner in a store  - removeOwnerByHisAppointer(str2, qqqq)
+יוני 16, 2023 2:53:45 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 14:53:45 the user aaaa wants to get information about the store str2- getStoreInfo(aaaa, str2)
+יוני 16, 2023 2:53:45 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 14:53:45 the user aaaa got information about the store str2
+יוני 16, 2023 2:54:04 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 14:54:04 the user qqqq wants to get information about the store str1- getStoreInfo(qqqq, str1)
+יוני 16, 2023 2:54:04 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 14:54:04 the user qqqq got information about the store str1
+יוני 16, 2023 2:54:04 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 14:54:04 the user qqqq wants to get information about the store str1- getStoreInfo(qqqq, str1)
+יוני 16, 2023 2:54:04 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 14:54:04 the user qqqq got information about the store str1
+יוני 16, 2023 2:54:05 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+closeStore(String memberUserName, String storeName)
+in 2023-06-16 14:54:05 the member qqqq tries close store  - closeStore(qqqq, str1)
+יוני 16, 2023 2:54:05 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 14:54:05 the user qqqq wants to get information about the store str1- getStoreInfo(qqqq, str1)
+יוני 16, 2023 2:54:05 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 14:54:05 the user qqqq got information about the store str1
+יוני 16, 2023 2:54:53 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-16 14:54:53 the user guest_0 wants to make login login(guest_0, qqqq,1q1q1q1q)
+יוני 16, 2023 2:54:53 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 14:54:53 a new member Logged in .
+- Memer name: qqqq
+
+יוני 16, 2023 2:54:53 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-16 14:54:53 the user qqqq tries to get his cart content  - getCartContent(qqqq)
+יוני 16, 2023 2:55:03 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 14:55:03 the user qqqq wants to get information about the store str2- getStoreInfo(qqqq, str2)
+יוני 16, 2023 2:55:03 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 14:55:03 the user qqqq got information about the store str2
+יוני 16, 2023 2:55:03 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 14:55:03 the user qqqq wants to get information about the store str2- getStoreInfo(qqqq, str2)
+יוני 16, 2023 2:55:03 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 14:55:03 the user qqqq got information about the store str2
+יוני 16, 2023 2:55:06 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 14:55:06 the user qqqq wants to get information about the store str2- getStoreInfo(qqqq, str2)
+יוני 16, 2023 2:55:06 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 14:55:06 the user qqqq got information about the store str2
+יוני 16, 2023 2:55:15 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-16 14:55:15 the user guest_1 wants to make login login(guest_1, aaaa,1q1q1q1q)
+יוני 16, 2023 2:55:15 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 14:55:15 a new member Logged in .
+- Memer name: aaaa
+
+יוני 16, 2023 2:55:15 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-16 14:55:15 the user aaaa tries to get his cart content  - getCartContent(aaaa)
+יוני 16, 2023 2:55:20 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 14:55:20 the user aaaa wants to get information about the store str2- getStoreInfo(aaaa, str2)
+יוני 16, 2023 2:55:20 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 14:55:20 the user aaaa got information about the store str2
+יוני 16, 2023 2:55:20 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 14:55:20 the user aaaa wants to get information about the store str2- getStoreInfo(aaaa, str2)
+יוני 16, 2023 2:55:20 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 14:55:20 the user aaaa got information about the store str2
+יוני 16, 2023 2:55:22 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 14:55:22 the user aaaa wants to get information about the store str2- getStoreInfo(aaaa, str2)
+יוני 16, 2023 2:55:22 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 14:55:22 the user aaaa got information about the store str2
+יוני 16, 2023 2:55:25 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+removeOwnerByHisAppointer(String appointerUserName, String storeName, String ownerUserName)
+in 2023-06-16 14:55:25 the member aaaa tries to remove other owner from being owner in a store  - removeOwnerByHisAppointer(str2, qqqq)
+יוני 16, 2023 2:55:25 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 14:55:25 the user aaaa wants to get information about the store str2- getStoreInfo(aaaa, str2)
+יוני 16, 2023 2:55:25 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 14:55:25 the user aaaa got information about the store str2

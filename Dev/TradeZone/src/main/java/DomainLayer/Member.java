@@ -83,6 +83,9 @@ public class Member extends User{
 
     public Member(String userName){
         super.userName = userName;
+        memberRolesFlag = new HashSet<>();
+        pendingMessages = new ArrayList<>();
+        roles = new ConcurrentHashMap<>();
         isLoaded = false;
     }
 
@@ -149,8 +152,17 @@ public class Member extends User{
         return true;
     }
 
-    public StoreOwner getStoreOwner(){
+    public StoreOwner getStoreOwner() throws Exception {
+        loadMember();
+        if (memberRolesFlag.contains(RoleEnum.StoreOwner)) {
+            if (!roles.containsKey(RoleEnum.StoreOwner)) {
+                StoreOwner storeOwner = MemberMapper.getInstance().getStoreOwner(userName);
+                roles.put(RoleEnum.StoreOwner, storeOwner);
+                //storeOwner.loadOwner();
+            }
+        }
         StoreOwner storeOwnerRole =  (StoreOwner) roles.get(RoleEnum.StoreOwner);
+        storeOwnerRole.loadOwner();
         return storeOwnerRole;
     }
 
@@ -213,33 +225,11 @@ public class Member extends User{
 
     public Map<String, List<StoreDTO>> myStores() throws Exception {
         Map<String,List<StoreDTO>> memberStores = new ConcurrentHashMap<>();
-
         if(memberRolesFlag.contains(RoleEnum.StoreFounder)){
             if (!roles.containsKey(RoleEnum.StoreFounder)){
                 StoreFounder storeFounder = MemberMapper.getInstance().getStoreFounder(userName);
                 roles.put(RoleEnum.StoreFounder,storeFounder);
                 storeFounder.loadFounder();
-//                //todo: load role
-//                List<StoreFounder> storeFounders = DALService.storeFounderRepository.findAllByMemberName(userName);
-//                for (StoreFounder storeFounder: storeFounders){
-//                    Optional<Store> storeD = DALService.storeRepository.findById(storeFounder.id.getStoreName());
-//                    if (storeD.isPresent()){
-//                        Store store = storeD.get();
-//                        store.getStock().defineStockProductsMap();
-//                        appointMemberAsStoreFounder(store);
-//                        if (!store.getStoreOwners().isEmpty()){
-//                            for (String ownerName: store.getStoreOwners().keySet()) {
-//                                Optional<StoreOwner> storeOwnerD = DALService.storesOwnersRepository.findById(new RolesId(ownerName,store.getStoreName()));
-//                                if (storeOwnerD.isPresent()){
-//                                    StoreOwner storeOwner = storeOwnerD.get();
-//                                    Optional<Member> member = DALService.memberRepository.findById(ownerName);
-//                                    appointMemberAsStoreOwner(store,storeFounder,member.get());
-//                                }
-//                            }
-//                        }
-//                        System.out.println();
-//                    }
-//                }
             }
             Role role = roles.get(RoleEnum.StoreFounder);
             List<StoreDTO> stores = new LinkedList<>();
@@ -301,8 +291,8 @@ public class Member extends User{
 
     public boolean removeOwnerByHisAppointer(Store store, Member otherMember) throws Exception {
         AbstractStoreOwner owner = null;
-        StoreOwner otherOwner = null;
         String storeName = store.getStoreName();
+        StoreOwner otherOwner = null;
         if(roles.containsKey(RoleEnum.StoreFounder) && roles.get(RoleEnum.StoreFounder).haveStore(storeName))
             owner = (StoreFounder)roles.get(RoleEnum.StoreFounder);
         else if (roles.containsKey(RoleEnum.StoreOwner) && roles.get(RoleEnum.StoreOwner).haveStore(storeName))
@@ -319,16 +309,38 @@ public class Member extends User{
     public void assertIsOwnerForTheStore(Store store) throws Exception {
         AbstractStoreOwner owner = null;
         String storeName = store.getStoreName();
-        if(roles.containsKey(RoleEnum.StoreFounder) && roles.get(RoleEnum.StoreFounder).haveStore(storeName))
-            owner = (StoreFounder)roles.get(RoleEnum.StoreFounder);
-        else if (roles.containsKey(RoleEnum.StoreOwner) && roles.get(RoleEnum.StoreOwner).haveStore(storeName))
-            owner = (StoreOwner)roles.get(RoleEnum.StoreOwner);
+        if(memberRolesFlag.contains(RoleEnum.StoreFounder)){
+            if (!roles.containsKey(RoleEnum.StoreFounder)){
+                StoreFounder storeFounder = MemberMapper.getInstance().getStoreFounder(userName);
+                roles.put(RoleEnum.StoreFounder,storeFounder);
+                storeFounder.loadFounder();
+            }
+            if (roles.get(RoleEnum.StoreFounder).haveStore(storeName)){
+                owner = (StoreFounder)roles.get(RoleEnum.StoreFounder);
+            }
+        }
+        if (memberRolesFlag.contains(RoleEnum.StoreOwner) && owner == null){
+            if (!roles.containsKey(RoleEnum.StoreOwner)){
+                StoreOwner storeOwner = MemberMapper.getInstance().getStoreOwner(userName);
+                roles.put(RoleEnum.StoreOwner,storeOwner);
+                storeOwner.loadOwner();
+            }
+            if (roles.get(RoleEnum.StoreOwner).haveStore(storeName)){
+                owner = (StoreOwner)roles.get(RoleEnum.StoreOwner);
+            }
+        }
+//        AbstractStoreOwner owner = null;
+//        String storeName = store.getStoreName();
+//        if(roles.containsKey(RoleEnum.StoreFounder) && roles.get(RoleEnum.StoreFounder).haveStore(storeName))
+//            owner = (StoreFounder)roles.get(RoleEnum.StoreFounder);
+//        else if (roles.containsKey(RoleEnum.StoreOwner) && roles.get(RoleEnum.StoreOwner).haveStore(storeName))
+//            owner = (StoreOwner)roles.get(RoleEnum.StoreOwner);
         if(owner == null) throw new Exception(""+getUserName()+" is not owner for "+storeName);
     }
 
 
 
-    private void subscribeOwnerForNotifications(String storeName) {
+    public void subscribeOwnerForNotifications(String storeName) {
         NotificationService.getInstance().subscribe(storeName,NotificationType.storeClosed,this);
         NotificationService.getInstance().subscribe(storeName,NotificationType.productBought,this);
         NotificationService.getInstance().subscribe(storeName,NotificationType.RemovedFromOwningStore,this);

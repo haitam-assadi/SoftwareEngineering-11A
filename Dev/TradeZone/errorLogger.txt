@@ -1108,3 +1108,54 @@ fail in appointing member as store owner: Cannot invoke "DomainLayer.StoreFounde
 יוני 15, 2023 4:42:30 אחה״צ DomainLayer.LoggerManager sendErrorLog
 WARNING: 
 fail in login: incorrect password!
+יוני 16, 2023 11:39:32 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: incorrect password!
+יוני 16, 2023 11:41:22 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: memberqqqq is already store owner
+יוני 16, 2023 11:44:46 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: incorrect password!
+יוני 16, 2023 12:09:54 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: incorrect password!
+יוני 16, 2023 12:10:16 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: aaaa is founder for this store
+יוני 16, 2023 12:10:50 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: aaaa is founder for this store
+יוני 16, 2023 12:14:18 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: qqqq is founder for this store
+יוני 16, 2023 12:20:50 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: aaaa is founder for this store
+יוני 16, 2023 12:21:02 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: aaaa is founder for this store
+יוני 16, 2023 12:23:02 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: aaaa is founder for this store
+יוני 16, 2023 12:25:50 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: aaaa is founder for this store
+יוני 16, 2023 12:26:31 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: aaaa is founder for this store
+יוני 16, 2023 12:28:53 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: aaaa is founder for this store
+יוני 16, 2023 2:32:53 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: Cannot invoke "java.util.concurrent.ConcurrentHashMap.containsKey(Object)" because "type_memberList" is null
+יוני 16, 2023 2:42:45 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: Cannot invoke "java.util.Set.contains(Object)" because "this.memberRolesFlag" is null
+יוני 16, 2023 2:47:17 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: Cannot invoke "java.util.Map.get(Object)" because "this.roles" is null
+יוני 16, 2023 2:48:21 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: Cannot invoke "DomainLayer.StoreOwner.loadOwner()" because "storeOwnerRole" is null

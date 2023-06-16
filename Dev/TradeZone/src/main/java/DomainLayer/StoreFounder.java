@@ -49,20 +49,26 @@ public class StoreFounder extends AbstractStoreOwner implements Serializable {
             for (String storeName : storesNames) {
                 responsibleForStores.put(storeName, StoreMapper.getInstance().getStore(storeName));
                 Store store = responsibleForStores.get(storeName);
-                store.setStoreFounderAtStoreCreation(this);
+                store.setStoreFounder(this);
                 List<String> appointedOwnersNames = DALService.storesOwnersRepository.findAllByStoreNameAndBoss(storeName,getUserName());
                 List<StoreOwner> owners = new LinkedList<>();
                 for (String ownerName: appointedOwnersNames){
-                    owners.add(MemberMapper.getInstance().getStoreOwner(ownerName));
+                    StoreOwner storeOwner = MemberMapper.getInstance().getStoreOwner(ownerName);
+                    owners.add(storeOwner);
+                    store.addStoreOwner(ownerName,storeOwner);
                 }
                 appointedOwners.put(storeName,owners);
                 List<String> appointedManagersNames = DALService.storesManagersRepository.findAllByStoreNameAndBoss(storeName,getUserName());
                 List<StoreManager> managers = new LinkedList<>();
                 for (String managerName: appointedManagersNames){
-                    managers.add(MemberMapper.getInstance().getStoreManager(managerName));
+                    StoreManager storeManager = MemberMapper.getInstance().getStoreManager(managerName);
+                    managers.add(storeManager);
+                    store.addStoreManager(managerName,storeManager);
                 }
                 appointedManagers.put(storeName,managers);
                 //todo: chcek if should add the owners and managers to the store
+                NotificationService.getInstance().subscribe(store.getStoreName(),NotificationType.productBought,this.member);
+                NotificationService.getInstance().subscribe(store.getStoreName(),NotificationType.storeClosedBySystemManager,this.member);
             }
             isLoaded = true;
         }

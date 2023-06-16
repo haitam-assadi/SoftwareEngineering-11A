@@ -23,4 +23,7 @@ public interface StoreOwnerRepository extends JpaRepository<StoreOwner, RolesId>
     @Query(value = "SELECT my_boss_type, my_boss FROM store_owner WHERE member_name = ? AND store_name = ?",nativeQuery = true)
     public Map<String,String> findBossById(String memberName, String storeName);
 
+    @Query(value = "SELECT member_name FROM store_owner WHERE store_name = ?",nativeQuery = true)
+    public List<String> findOwnersNamesByStoreName(String storeName);
+
 }

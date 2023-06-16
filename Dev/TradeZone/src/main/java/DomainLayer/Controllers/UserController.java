@@ -283,6 +283,7 @@ public class UserController {
     private boolean isSystemManager(String managerName) throws Exception {
         assertStringIsNotNullOrBlank(managerName);
         managerName = managerName.strip().toLowerCase();
+        MemberMapper.getInstance().getSystemManager(managerName);
         return systemManagers.containsKey(managerName);
     }
 
