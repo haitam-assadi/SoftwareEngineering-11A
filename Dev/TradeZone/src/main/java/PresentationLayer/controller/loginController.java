@@ -74,7 +74,6 @@ public class loginController {
             return "login";
         }
         controller.setCart(buildCart(cartResponse.value));
-
         model.addAttribute("logged", controller.getLogged());
         model.addAttribute("hasRole", controller.getHasRole());
         model.addAttribute("name", controller.getName());

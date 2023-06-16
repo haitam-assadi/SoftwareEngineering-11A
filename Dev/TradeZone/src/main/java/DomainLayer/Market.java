@@ -5,6 +5,7 @@ import DomainLayer.Controllers.StoreController;
 import DomainLayer.Controllers.UserController;
 import jdk.jshell.spi.ExecutionControl;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -503,4 +504,21 @@ public class Market {
         return messages;
     }
 
+    public void clearMessages(String name) throws Exception {
+        List<String> loggedIn_members = getAllLoggedInMembers();
+        if(loggedIn_members.contains(name)){
+            Member member = userController.getMember(name);
+            member.clearMessages();
+        }
+    }
+
+    //FOR ACC TEST:
+
+    public void send(String userName1, String message) throws IOException {
+        userController.send(userName1, message);
+    }
+
+    public List<String> getAppendingMessages(String userName1) {
+        return userController.getAppendingMessages(userName1);
+    }
 }

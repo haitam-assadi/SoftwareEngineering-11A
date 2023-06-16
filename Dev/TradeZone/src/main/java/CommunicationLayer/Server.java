@@ -348,12 +348,16 @@ public class Server {
         socket.sendMessage(userName, message);
     }
 
-    public ResponseT<List<String>> checkForAppendingMessages(String guestName) throws Exception {
+    public ResponseT<List<String>> checkForAppendingMessages(String guestName){
         return service.checkForAppendingMessages(guestName);
     }
 
-    public List<String> getLiveMessages(String memberName) throws Exception {
+    public ResponseT<List<String>> getLiveMessages(String memberName){
         return service.getLiveMessages(memberName);
+    }
+
+    public void clearMessages(String name) {
+        service.clearMessages(name);
     }
 
     //THIS IS A TEST

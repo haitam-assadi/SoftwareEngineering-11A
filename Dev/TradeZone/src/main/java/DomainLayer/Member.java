@@ -245,14 +245,14 @@ public class Member extends User{
 
     public void Login() throws IOException {
         isOnline = true;
-        if(!pendingMessages.isEmpty()){
-            StringBuilder msg = new StringBuilder("Attention: you got " + pendingMessages.size() + " messages:\n");
-            for(String str: pendingMessages){
-                msg.append("   - ").append(str);
-            }
-            pendingMessages.clear();
-            NotificationService.getInstance().send(userName, msg.toString());
-        }
+//        if(!pendingMessages.isEmpty()){
+//            StringBuilder msg = new StringBuilder("Attention: you got " + pendingMessages.size() + " messages:\n");
+//            for(String str: pendingMessages){
+//                msg.append("   - ").append(str);
+//            }
+//            pendingMessages.clear();
+//            NotificationService.getInstance().send(userName, msg.toString());
+//        }
     }
 
     public void Logout() {
@@ -296,6 +296,17 @@ public class Member extends User{
 
     public List<String> getLiveMessages(){
         return this.liveMessages;
+    }
+
+    public void clearMessages() {
+        liveMessages.clear();
+        pendingMessages.clear();
+    }
+
+    //FOR ACC TEST:
+
+    public List<String> getAppendingMessages(){
+        return this.pendingMessages;
     }
 
 

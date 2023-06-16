@@ -900,4 +900,20 @@ public class RealBridge implements Bridge{
         details.put("managersNames", response.value.managersNames);
         return details;
     }
+
+    public void send(String member1Name, String message) throws Exception {
+        systemService.send(member1Name, message);
+    }
+
+    public List<String> getLiveMessages(String memberUserName) throws Exception {
+        ResponseT<List<String>> response= systemService.getLiveMessages(memberUserName);
+        if (response.ErrorOccurred){
+            throw new Exception(response.errorMessage);
+        }
+        return response.getValue();
+    }
+
+    public List<String> getAppendingMessages(String memberUserName) {
+        return systemService.getAppendingMessages(memberUserName);
+    }
 }

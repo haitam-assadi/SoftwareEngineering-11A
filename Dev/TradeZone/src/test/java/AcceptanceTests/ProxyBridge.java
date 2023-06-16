@@ -678,4 +678,24 @@ public class ProxyBridge implements Bridge{
         }
         return null;
     }
+
+    public void send(String member1Name, String message) throws Exception {
+        if(realBridge!=null){
+            realBridge.send(member1Name, message);
+        }
+    }
+
+    public List<String> getLiveMessages(String memberUserName) throws Exception {
+        if(realBridge!=null){
+            return realBridge.getLiveMessages(memberUserName);
+        }
+        return null;
+    }
+
+    public List<String> getAppendingMessages(String memberUserName) {
+        if(realBridge!=null){
+            return realBridge.getAppendingMessages(memberUserName);
+        }
+        return null;
+    }
 }

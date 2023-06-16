@@ -4,6 +4,7 @@ import DTO.MemberDTO;
 import DTO.StoreDTO;
 import DomainLayer.*;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -467,5 +468,18 @@ public class UserController {
     public void takeDownSystemManagerAppointment(String appointedMember) {
         Member member = this.members.get(appointedMember);
         member.takeDownSystemManagerAppointment();
+    }
+
+    //FOR ACC TEST:
+    public void send(String userName1, String message) throws IOException {
+        Member member = this.members.get(userName1);
+        member.send(message);
+    }
+
+    //FOR ACC TEST:
+
+    public List<String> getAppendingMessages(String userName1) {
+        Member member = this.members.get(userName1);
+        return member.getAppendingMessages();
     }
 }

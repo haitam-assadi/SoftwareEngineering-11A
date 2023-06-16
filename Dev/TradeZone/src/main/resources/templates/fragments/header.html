@@ -59,22 +59,25 @@
         <a th:if="!${controller.logged}" th:classappend="${currentPage == 'register' ? 'active color:#d106f0' : ''}" class="nav-link py-2 link-body-emphasis text-decoration-none" href="register">Register</a>
         <a th:if="!${controller.logged}" th:classappend="${currentPage == 'login' ? 'active color:#d106f0' : ''}" class="nav-link py-2 link-body-emphasis text-decoration-none" href="login">Login</a>
         <a th:if="${controller.logged}" th:classappend="${currentPage == 'logout' ? 'active color:#d106f0' : ''}" class="nav-link py-2 link-body-emphasis text-decoration-none" href="logout">Logout</a>
-        <div class="dropdown">
+        <div th:if="${controller.checkForLiveMessages}" class="dropdown">
           <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
             Messages
-            <div id="notificationBadge"  th:classappend="${hasMessages ? 'd-inline' : 'd-none'}">
+            <div id="notificationBadge"  th:classappend="${controller.hasMessages ? 'd-inline' : 'd-none'}">
               <span  class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
                 <span class="visually-hidden">New alerts</span>
               </span>
             </div>
           </button>
-          <ul  class="dropdown-menu" id="message-list">
-            <span th:each="message: ${messages}">
+          <ul  class="dropdown-menu" style="width: 400px">
+            <ul id="message-list">
+              <span th:each="message: ${controller.getMessages}">
               <li th:text="${message}"> message</li><br>
             </span>
+            </ul>
             <div>
-              <form action="clearMessages" method="post">
-                <br><button type="button" class="btn btn-secondary">clear</button>
+              <form action="clear" method="post">
+                <input th:value="${controller.name}" type="hidden" name="name">
+                <br><button type="submit" class="btn btn-secondary">clear</button>
               </form>
             </div>
           </ul>

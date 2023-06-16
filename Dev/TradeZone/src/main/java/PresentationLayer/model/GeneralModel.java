@@ -206,4 +206,35 @@ public class GeneralModel {
         }
         this.messages.add(inputMessage);
     }
+
+    public void checkForAppendingMessages(){
+        ResponseT<List<String>> response = server.checkForAppendingMessages(this.name);
+        if(response.ErrorOccurred){
+            java.lang.System.out.println(response.errorMessage);
+        }
+        else{
+            List<String> appendedMessages = (List<String>) response.value;
+            for(String message : appendedMessages){
+                addMessage(message);
+            }
+        }
+    }
+
+    public boolean checkForLiveMessages(){
+        ResponseT<List<String>> response = Server.getInstance().getLiveMessages(name);
+        if(response.ErrorOccurred){
+            java.lang.System.out.println(response.errorMessage);
+        }
+        else{
+            List<String> liveMessages = response.value;
+            for(String message : liveMessages){
+                addMessage(message);
+            }
+        }
+        return true;
+    }
+
+    public void clearMessages() {
+        this.messages.clear();
+    }
 }

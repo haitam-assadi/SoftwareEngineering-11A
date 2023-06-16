@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import java.lang.System;
@@ -54,28 +55,18 @@ public class IndexController {
 			request.getSession().setAttribute("controller",controller);
 			request.getSession().setAttribute("products",null);
 		}
+		if(referer != null && referer.contentEquals("http://localhost:8080/login")){
+			controller.checkForAppendingMessages();
+		}
 		guestName = controller.getName();
 		model.addAttribute("controller", controller);
 		model.addAttribute("alert", alert.copy());
 		model.addAttribute("products", products);
 		alert.reset();
-		ResponseT response = server.checkForAppendingMessages(guestName);
-		if(response.ErrorOccurred){
-			System.out.println(response.errorMessage);
-		}
-		else{
-			List<String> appendedMessages = (List<String>) response.value;
-			for(String message : appendedMessages){
-				controller.addMessage(message);
-			}
-		}
-		List<String> liveMessages = Server.getInstance().getLiveMessages(controller.getName());
-		for(String message : liveMessages){
-			controller.addMessage(message);
-		}
-		List<String> messages = controller.getMessages();
-		model.addAttribute("hasMessages", controller.hasMessages());
-		model.addAttribute("messages", messages);
+//		controller.checkForLiveMessages();
+//		List<String> messages = controller.getMessages();
+//		model.addAttribute("hasMessages", controller.hasMessages());
+//		model.addAttribute("messages", messages);
 //		products = null; // TODO: ???
 		return "index";
 	}
@@ -204,5 +195,17 @@ public class IndexController {
 	public String error(@ModelAttribute User user, Model model) {
 		model.addAttribute("message", "Page not found");
 		return "error";
+	}
+
+	@PostMapping("/clear")
+	public String clearNotifications(HttpServletRequest request, @RequestParam String name){
+		String referer = request.getHeader("referer");
+		if(request.getSession().getAttribute("controller") != null){
+			controller = (GeneralModel) request.getSession().getAttribute("controller");
+		}
+		controller.clearMessages();
+		server.clearMessages(controller.getName());
+		request.getSession().setAttribute("controller", controller);
+		return "redirect:" + referer;
 	}
 }

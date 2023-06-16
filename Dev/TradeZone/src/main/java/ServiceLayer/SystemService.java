@@ -825,7 +825,7 @@ public class SystemService {
         this.market.takeDownSystemManagerAppointment(storeName, appointedMember);
     }
 
-    public ResponseT<List<String>> checkForAppendingMessages(String guestName) throws Exception {
+    public ResponseT<List<String>> checkForAppendingMessages(String guestName){
         try{
             List<String> messages = market.checkForAppendingMessages(guestName);
             return new ResponseT<>(messages);
@@ -834,7 +834,30 @@ public class SystemService {
         }
     }
 
-    public List<String> getLiveMessages(String memberName) throws Exception {
-        return market.getLiveMessages(memberName);
+    public ResponseT<List<String>> getLiveMessages(String memberName){
+        try{
+            List<String> messages = market.getLiveMessages(memberName);
+            return new ResponseT<>(messages);
+        }catch (Exception e){
+            return new ResponseT<>("get live messages: " + e.getMessage());
+        }
+    }
+
+    public ResponseT<Boolean> clearMessages(String name) {
+        try{
+            market.clearMessages(name);
+            return new ResponseT<>(true);
+        }catch (Exception e){
+            return new ResponseT<>("clear messages: " + e.getMessage());
+        }
+
+    }
+
+    public void send(String member1Name, String message) throws IOException {
+        market.send(member1Name, message);
+    }
+
+    public List<String> getAppendingMessages(String memberUserName) {
+        return market.getAppendingMessages(memberUserName);
     }
 }
