@@ -361,12 +361,12 @@ public class StoreController {
             controller = (GeneralModel) request.getSession().getAttribute("controller");
             if(request.getSession().getAttribute("store") != null)
                 store = (StoreDTO) request.getSession().getAttribute("store");
-            if(request.getSession().getAttribute("constraints") != null)
-                constraints = (AllConstraints) request.getSession().getAttribute("constraints");
-            else
-                constraints = new AllConstraints(store.storeName);
+//            if(request.getSession().getAttribute("constraints") != null)
+//                constraints = (AllConstraints) request.getSession().getAttribute("constraints");
+//            else
+//                constraints = new AllConstraints(store.storeName);
         }
-//        constraints = new AllConstraints(store.storeName);
+        constraints = new AllConstraints(store.storeName);
         ResponseT<List<String>> response = server.getAllBagConstraints(controller.getName(), store.storeName);
         if(response.ErrorOccurred){
             alert.setFail(true);
@@ -445,7 +445,7 @@ public class StoreController {
             return "redirect:/bagConstraints";
         }
         alert.setSuccess(true);
-        alert.setMessage("Constraint has been added successfully");
+        alert.setMessage("New constraint has been added successfully to " + constraint.getStoreName());
         return "redirect:/bagConstraints";
     }
 
@@ -484,12 +484,12 @@ public class StoreController {
             controller = (GeneralModel) request.getSession().getAttribute("controller");
             if(request.getSession().getAttribute("store") != null)
                 store = (StoreDTO) request.getSession().getAttribute("store");
-            if(request.getSession().getAttribute("constraints") != null)
-                constraints = (AllConstraints) request.getSession().getAttribute("constraints");
-            else
-                constraints = new AllConstraints(store.storeName);
+//            if(request.getSession().getAttribute("constraints") != null)
+//                constraints = (AllConstraints) request.getSession().getAttribute("constraints");
+//            else
+//                constraints = new AllConstraints(store.storeName);
         }
-//        constraints = new AllConstraints(store.storeName);
+        constraints = new AllConstraints(store.storeName);
         ResponseT<List<String>> response = server.getAllBagConstraints(controller.getName(), store.storeName);
         if(response.ErrorOccurred){
             alert.setFail(true);
@@ -565,7 +565,7 @@ public class StoreController {
             return "redirect:/discountPolicies";
         }
         alert.setSuccess(true);
-        alert.setMessage("Discount policy has been added successfully");
+        alert.setMessage("New Discount policy has been added successfully to " + discount.getStoreName());
         return "redirect:/discountPolicies";
     }
 

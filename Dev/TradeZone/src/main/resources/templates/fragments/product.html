@@ -3,12 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <title>Product</title>
 </head>
 <body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 
 <div id="product" th:fragment="product(controller, products, isActive)" class="row row-cols-1 row-cols-md-3 mb-3">
+
+<!--    <div class="col" th:each="product : ${products}">-->
+<!--        <div class="card">-->
+<!--            <div class="card-header">-->
+<!--                <ul class="nav nav-pills card-header-pills">-->
+<!--                    <li class="nav-item">-->
+<!--                        <a class="nav-link active" th:href="'#details-' + ${product}">Details</a>-->
+<!--                    </li>-->
+<!--                    <li class="nav-item">-->
+<!--                        <a class="nav-link" href="#about">Discounts</a>-->
+<!--                    </li>-->
+<!--                    <li class="nav-item">-->
+<!--                        <a class="nav-link" href="#contact">Constraints</a>-->
+<!--                    </li>-->
+<!--                </ul>-->
+<!--            </div>-->
+<!--            <div class="card-body">-->
+<!--                <div th:id="'details-' + ${product}" class="nav-body">-->
+<!--                    <h5 class="card-title">Welcome to the Home Page</h5>-->
+<!--                    <p class="card-text">This is the content for the Home page.</p>-->
+<!--                    <h7 th:text="${product.name}"></h7>-->
+<!--                </div>-->
+<!--                <div id="about" class="nav-body">-->
+<!--                    <h5 class="card-title">About Us</h5>-->
+<!--                    <p class="card-text">This is the content for the About page.</p>-->
+<!--                </div>-->
+<!--                <div id="contact" class="nav-body">-->
+<!--                    <h5 class="card-title">Contact Us</h5>-->
+<!--                    <p class="card-text">This is the content for the Contact page.</p>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>-->
+<!--    <script>-->
+<!--    // JavaScript code to handle navigation-->
+<!--    document.addEventListener("DOMContentLoaded", function() {-->
+<!--      const navLinks = document.querySelectorAll(".nav-link");-->
+<!--      const navBodies = document.querySelectorAll(".nav-body");-->
+
+<!--      // Hide all nav bodies initially except for the first one-->
+<!--      for (let i = 1; i < navBodies.length; i++) {-->
+<!--        navBodies[i].style.display = "none";-->
+<!--      }-->
+
+<!--      // Add click event listener to each nav link-->
+<!--      navLinks.forEach(function(navLink) {-->
+<!--        navLink.addEventListener("click", function(event) {-->
+<!--          event.preventDefault();-->
+
+<!--          // Remove active class from all nav links-->
+<!--          navLinks.forEach(function(link) {-->
+<!--            link.classList.remove("active");-->
+<!--          });-->
+
+<!--          // Add active class to the clicked nav link-->
+<!--          this.classList.add("active");-->
+
+<!--          // Hide all nav bodies-->
+<!--          navBodies.forEach(function(body) {-->
+<!--            body.style.display = "none";-->
+<!--          });-->
+
+<!--          // Show the corresponding nav body-->
+<!--          const target = this.getAttribute("href");-->
+<!--          document.querySelector(target).style.display = "block";-->
+<!--        });-->
+<!--      });-->
+<!--    });-->
+<!--  </script>-->
+
+
     <div class="col" th:each="product : ${products}">
         <div class="card mb-4 rounded-3 shadow-sm">
             <div class="card-header py-3 text-center">
@@ -48,8 +122,25 @@
                     </div>
                 </form>
 
+<!--                th:if="${product.productDiscountPolicies != null && !product.productDiscountPolicies.isEmpty}"-->
                 <div>
+<!--                    <button class="btn btn-danger" type="button" data-toggle="collapse" th:data-target="'#collapse-' + ${product.id}" aria-expanded="false" aria-controls="collapseExample">-->
 
+<!--                    </button>-->
+
+                    <p class="card">
+<!--                        collapseDiscount-->
+                        <a class="btn btn-danger" data-bs-toggle="collapse" th:href="'#' + ${product}" role="button" aria-expanded="false" aria-controls="${product}">
+                            Discounts && Constraints
+                        </a>
+                    </p>
+                    <div class="collapse card card-body" th:id="${product}">
+                        <div th:if="${!product.productDiscountPolicies.isEmpty}" th:each="discount : ${product.productDiscountPolicies}">
+                            <h6 th:text="${discount}" style="color:red"></h6>
+                        </div>
+
+<!--                        TODO: th:each const : product.constrains...-->
+                    </div>
                 </div>
             </div>
         </div>
@@ -58,3 +149,34 @@
 
 </body>
 </html>
+
+
+<!--<div class="card">-->
+<!--    <div class="card-header">-->
+<!--        <ul class="nav nav-pills card-header-pills">-->
+<!--            <li class="nav-item">-->
+<!--                <a class="nav-link active" href="#home">Home</a>-->
+<!--            </li>-->
+<!--            <li class="nav-item">-->
+<!--                <a class="nav-link" href="#about">About</a>-->
+<!--            </li>-->
+<!--            <li class="nav-item">-->
+<!--                <a class="nav-link" href="#contact">Contact</a>-->
+<!--            </li>-->
+<!--        </ul>-->
+<!--    </div>-->
+<!--    <div class="card-body">-->
+<!--        <div id="home" class="nav-body">-->
+<!--            <h5 class="card-title">Welcome to the Home Page</h5>-->
+<!--            <p class="card-text">This is the content for the Home page.</p>-->
+<!--        </div>-->
+<!--        <div id="about" class="nav-body">-->
+<!--            <h5 class="card-title">About Us</h5>-->
+<!--            <p class="card-text">This is the content for the About page.</p>-->
+<!--        </div>-->
+<!--        <div id="contact" class="nav-body">-->
+<!--            <h5 class="card-title">Contact Us</h5>-->
+<!--            <p class="card-text">This is the content for the Contact page.</p>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->

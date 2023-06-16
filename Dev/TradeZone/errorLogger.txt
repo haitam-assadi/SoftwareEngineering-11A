@@ -307,3 +307,21 @@ fail in login: user1 is already logged in
 יוני 13, 2023 5:29:25 אחה״צ DomainLayer.LoggerManager sendErrorLog
 WARNING: 
 fail in getting store info: store :user1_second_Storeis closed
+יוני 13, 2023 10:33:42 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: user1 is already a member
+יוני 13, 2023 10:34:09 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: password must have at least 8 characters, at least one digit and one char
+יוני 13, 2023 10:42:40 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store name is null or empty
+יוני 14, 2023 12:38:46 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: user1 is already logged in
+יוני 16, 2023 1:19:21 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store name is null or empty
+יוני 16, 2023 1:19:33 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store name is null or empty
