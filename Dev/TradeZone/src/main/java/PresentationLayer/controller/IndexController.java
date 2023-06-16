@@ -116,7 +116,7 @@ public class IndexController {
 
 	@PostMapping("/filter")
 	public String filter(HttpServletRequest request, @ModelAttribute Filter filter){
-		products = null; // new List???
+		products = new ArrayList<>(); // TODO: null ???
 		if(request.getSession().getAttribute("controller") != null){
 			controller = (GeneralModel) request.getSession().getAttribute("controller");
 			if(request.getSession().getAttribute("products") != null)
