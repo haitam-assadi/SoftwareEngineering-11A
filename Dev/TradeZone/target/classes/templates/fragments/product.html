@@ -122,13 +122,11 @@
                     </div>
                 </form>
 
-                <div th:if="${product.productDiscountPolicies != null && !product.productDiscountPolicies.isEmpty}">
+<!--                th:if="${product.productDiscountPolicies != null && !product.productDiscountPolicies.isEmpty}"-->
+                <div>
 <!--                    <button class="btn btn-danger" type="button" data-toggle="collapse" th:data-target="'#collapse-' + ${product.id}" aria-expanded="false" aria-controls="collapseExample">-->
 
 <!--                    </button>-->
-
-
-
 
                     <p class="card">
 <!--                        collapseDiscount-->
@@ -137,9 +135,11 @@
                         </a>
                     </p>
                     <div class="collapse card card-body" th:id="${product}">
-                        <div th:each="discount : ${product.productDiscountPolicies}">
+                        <div th:if="${!product.productDiscountPolicies.isEmpty}" th:each="discount : ${product.productDiscountPolicies}">
                             <h6 th:text="${discount}" style="color:red"></h6>
                         </div>
+
+<!--                        TODO: th:each const : product.constrains...-->
                     </div>
                 </div>
             </div>

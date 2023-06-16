@@ -51,6 +51,12 @@ public class StoreController {
             if(request.getSession().getAttribute("constraints") != null)
                 constraints = (AllConstraints) request.getSession().getAttribute("constraints");
         }
+
+        if(controller.getRole(store.storeName) == -1){
+            alert.setFail(true);
+            alert.setMessage(controller.getName() + " does not have role in " + store.storeName);
+            return "redirect:/myStores";
+        }
         ResponseT<StoreDTO> response = server.getStoreInfo(controller.getName(), storeName);
         if(response.ErrorOccurred){
             alert.setFail(true);
