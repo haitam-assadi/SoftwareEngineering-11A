@@ -315,12 +315,14 @@ public class Market {
     }
 
     public Double getCartPriceBeforeDiscount(String memberUserName) throws Exception {
-        userController.assertIsMemberLoggedIn(memberUserName);
+//        userController.assertIsMemberLoggedIn(memberUserName);
+        userController.assertIsGuestOrLoggedInMember(memberUserName);
         return userController.getCartPriceBeforeDiscount(memberUserName);
     }
 
     public Double getCartPriceAfterDiscount(String memberUserName) throws Exception {
-        userController.assertIsMemberLoggedIn(memberUserName);
+//        userController.assertIsMemberLoggedIn(memberUserName);
+        userController.assertIsGuestOrLoggedInMember(memberUserName);
         return userController.getCartPriceAfterDiscount(memberUserName);
     }
 
