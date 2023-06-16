@@ -124,9 +124,9 @@ public class UserController {
 
 
     public String login(String guestUserName, String MemberUserName, String password) throws Exception {
-        loginValidateParameters(guestUserName, MemberUserName, password);
         guestUserName = guestUserName.strip().toLowerCase();
         MemberUserName = MemberUserName.strip().toLowerCase();
+        loginValidateParameters(guestUserName, MemberUserName, password);
         Member member = getMember(MemberUserName);
         if(!member.getPassword().equals(Security.Encode(password)))
             throw new Exception("incorrect password!");
@@ -181,12 +181,16 @@ public class UserController {
         throw new Exception("can't getUser: userName "+ userName+" does not exists!");
     }
 
-    public List<DealDTO> getUserDeals(String userName) throws Exception {
-        assertStringIsNotNullOrBlank(userName);
-        userName=userName.strip().toLowerCase();
-        if(!isGuest(userName))
-            assertIsMember(userName);
-        User user = getUser(userName);
+    public List<DealDTO> getUserDeals(String memberUserName, String otherMemberuserName , Boolean isSystemManager) throws Exception {
+        otherMemberuserName=otherMemberuserName.strip().toLowerCase();
+        memberUserName=memberUserName.strip().toLowerCase();
+        if(!isSystemManager)
+            if(!memberUserName.equals(otherMemberuserName))
+                throw new Exception(memberUserName + "can not have the member deals");
+        assertStringIsNotNullOrBlank(otherMemberuserName);
+        if(!isGuest(otherMemberuserName))
+            assertIsMember(otherMemberuserName);
+        User user = getUser(otherMemberuserName);
         return user.getUserDeals();
     }
 

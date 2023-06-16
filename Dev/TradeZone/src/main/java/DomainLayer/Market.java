@@ -283,10 +283,10 @@ public class Market {
         return this.storeController.getStoreDeals(memberUserName, storeName, isSystemManager);
     }
 
-    public List<DealDTO> getMemberDeals(String systemManagerUserName, String otherMemberUserName) throws Exception {
-        userController.assertIsMemberLoggedIn(systemManagerUserName);
-        userController.assertIsSystemManager(systemManagerUserName);
-        return this.userController.getUserDeals(otherMemberUserName);
+    public List<DealDTO> getMemberDeals(String memberUserName, String otherMemberUserName) throws Exception {
+        userController.assertIsMemberLoggedIn(memberUserName);
+        boolean isSystemManager = userController.isSystemManager(memberUserName);
+        return this.userController.getUserDeals(memberUserName,otherMemberUserName,isSystemManager);
     }
 
     public boolean purchaseCartByCreditCard(String userName, String cardNumber, String month, String year, String holder, String cvv, String id, String receiverName,String shipmentAddress,String shipmentCity,String shipmentCountry,String zipCode) throws Exception {
