@@ -1,10 +1,9 @@
 package ServiceLayer;
 
 import DTO.*;
-import DomainLayer.LoggerManager;
-import DomainLayer.Market;
-import DomainLayer.PaymentService;
-import DomainLayer.ShipmentService;
+import DataAccessLayer.Controller.MemberMapper;
+import DataAccessLayer.Controller.StoreMapper;
+import DomainLayer.*;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -17,9 +16,15 @@ import java.util.Set;
 public class SystemService {
 
     private Market market;
+    private boolean dbFlag;
 
-    public SystemService(){
-        market = new Market();
+    public SystemService(boolean dbFlag){
+        this.dbFlag = dbFlag;
+        market = new Market(dbFlag);
+        if (!dbFlag){
+            MemberMapper.initMapper();
+            StoreMapper.initMapper();
+        }
     }
 
     public ResponseT<String> initializeMarket(){
@@ -388,6 +393,38 @@ public class SystemService {
         }catch(Exception e){
             LoggerManager.getInstance().sendErrorLog("\nfail in appointing member as store owner: " + e.getMessage());
             return new ResponseT<>("appointOtherMemberAsStoreOwner: "+e.getMessage());
+        }
+    }
+
+    public ResponseT<Boolean> fillOwnerContract(String memberUserName, String storeName, String newOwnerUserName, Boolean decisions){
+        try{
+             return new ResponseT<>(market.fillOwnerContract(memberUserName, storeName, newOwnerUserName,decisions));
+        }catch(Exception e){
+            return new ResponseT<>("fillOwnerContract: "+e.getMessage());
+        }
+    }
+
+    public ResponseT<List<OwnerContractDTO>> getAlreadyDoneContracts(String memberUserName, String storeName){
+        try{
+            return new ResponseT<>(market.getAlreadyDoneContracts(memberUserName, storeName));
+        }catch(Exception e){
+            return new ResponseT<>("getAlreadyDoneContracts: "+e.getMessage());
+        }
+    }
+
+    public ResponseT<List<OwnerContractDTO>> getMyCreatedContracts(String memberUserName, String storeName){
+        try{
+            return new ResponseT<>(market.getMyCreatedContracts(memberUserName, storeName));
+        }catch(Exception e){
+            return new ResponseT<>("getMyCreatedContracts: "+e.getMessage());
+        }
+    }
+
+    public ResponseT<List<OwnerContractDTO>> getPendingContractsForOwner(String memberUserName, String storeName){
+        try{
+            return new ResponseT<>(market.getPendingContractsForOwner(memberUserName, storeName));
+        }catch(Exception e){
+            return new ResponseT<>("getPendingContractsForOwner: "+e.getMessage());
         }
     }
 
@@ -791,6 +828,36 @@ public class SystemService {
             return new ResponseT<>(market.getCartPriceAfterDiscount(memberUserName));
         }catch (Exception e){
             return new ResponseT<>("getCartPriceAfterDiscount: "+e.getMessage());
+        }
+    }
+
+
+
+    //return 1=storeFounder, 2=storeOwner, 3=storeManager, -1= noRule
+    public ResponseT<Integer> getRuleForStore(String storeName, String memberName){
+        try{
+            return new ResponseT<>(market.getRuleForStore(storeName,memberName));
+        }catch (Exception e){
+            return new ResponseT<>("getRuleForStore: "+e.getMessage());
+        }
+
+    }
+
+
+
+    public ResponseT<Boolean> updateManagerPermissionsForStore(String ownerUserName, String storeName, String managerUserName, List<Integer> newPermissions){
+        try{
+            return new ResponseT<>(market.updateManagerPermissionsForStore(ownerUserName, storeName, managerUserName, newPermissions));
+        }catch (Exception e){
+            return new ResponseT<>("updateManagerPermissionsForStore: "+e.getMessage());
+        }
+    }
+
+    public ResponseT<List<Integer>> getManagerPermissionsForStore(String ownerUserName, String storeName, String managerUserName){
+        try{
+            return new ResponseT<>(market.getManagerPermissionsForStore(ownerUserName, storeName, managerUserName));
+        }catch (Exception e){
+            return new ResponseT<>("getManagerPermissionsForStore: "+e.getMessage());
         }
     }
 

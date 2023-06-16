@@ -1,5 +1,7 @@
 package AcceptanceTests;
 
+import DTO.OwnerContractDTO;
+import DTO.ProductDTO;
 import DomainLayer.PaymentService;
 import DomainLayer.ShipmentService;
 
@@ -158,6 +160,38 @@ public class ProxyBridge implements Bridge{
             return realBridge.appointOtherMemberAsStoreOwner(memberUserName, storeName, newOwnerUserName);
         }
         return false;
+    }
+
+    @Override
+    public boolean fillOwnerContract(String memberUserName, String storeName, String newOwnerUserName, Boolean decisions) throws Exception {
+        if(realBridge!=null){
+            return realBridge.fillOwnerContract(memberUserName, storeName, newOwnerUserName, decisions);
+        }
+        return false;
+    }
+
+    @Override
+    public List<OwnerContractDTO> getAlreadyDoneContracts(String memberUserName, String storeName) throws Exception {
+        if(realBridge!=null){
+            return realBridge.getAlreadyDoneContracts(memberUserName, storeName);
+        }
+        return null;
+    }
+
+    @Override
+    public List<OwnerContractDTO> getMyCreatedContracts(String memberUserName, String storeName) throws Exception {
+        if(realBridge!=null){
+            return realBridge.getMyCreatedContracts(memberUserName, storeName);
+        }
+        return null;
+    }
+
+    @Override
+    public List<OwnerContractDTO> getPendingContractsForOwner(String memberUserName, String storeName) throws Exception {
+        if(realBridge!=null){
+            return realBridge.getPendingContractsForOwner(memberUserName, storeName);
+        }
+        return null;
     }
 
     @Override
@@ -634,5 +668,39 @@ public class ProxyBridge implements Bridge{
             return realBridge.getCartPriceAfterDiscount(memberUserName);
         }
         return 0.0;
+    }
+
+
+
+    @Override
+    //return 1=storeFounder, 2=storeOwner, 3=storeManager, -1= noRule
+    public Integer getRuleForStore(String storeName, String memberName) throws Exception {
+        if(realBridge!=null){
+            return realBridge.getRuleForStore(storeName,memberName);
+        }
+        return -1;
+    }
+    @Override
+    public boolean updateManagerPermissionsForStore(String ownerUserName, String storeName, String managerUserName, List<Integer> newPermissions) throws Exception {
+        if(realBridge!=null){
+            return realBridge.updateManagerPermissionsForStore(ownerUserName, storeName, managerUserName, newPermissions);
+        }
+        return false;
+    }
+
+    @Override
+    public List<Integer> getManagerPermissionsForStore(String ownerUserName, String storeName, String managerUserName) throws Exception {
+        if(realBridge!=null){
+            return realBridge.getManagerPermissionsForStore(ownerUserName, storeName, managerUserName);
+        }
+        return new ArrayList<>();
+    }
+    @Override
+    public ProductDTO getProductInfoFromStore(String userName, String storeName, String productName) throws Exception{
+        if(realBridge!=null){
+            return realBridge.getProductInfoFromStore(userName, storeName, productName);
+        }
+
+        return null;
     }
 }

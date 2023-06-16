@@ -71,13 +71,12 @@ public class Category {
         return true;
     }
 
-    public List<ProductDTO> getProductsInfo(){
-        loadCategory();
-        List<ProductDTO> productDTOList = new ArrayList<>();
+    public List<Product> getProducts(){
+        List<Product> productList = new ArrayList<>();
         for (Product product:categoryProducts.values())
-            productDTOList.add(product.getProductInfo());
+            productList.add(product);
 
-        return productDTOList;
+        return productList;
     }
 
     public String getCategoryName() {
@@ -86,7 +85,7 @@ public class Category {
     public boolean containsProduct(String productName) throws Exception {
         if(productName == null || productName.isBlank())
             throw new Exception("productName is null or empty!");
-        loadCategory();
+
         productName = productName.strip().toLowerCase();
         if(!categoryProducts.containsKey(productName))
             return false;

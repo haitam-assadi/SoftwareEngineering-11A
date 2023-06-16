@@ -46,8 +46,10 @@ public class SystemManager{
 
     public void loadSystemManager(){
         if (!isLoaded) {
-            SystemManager systemManager = DALService.systemManagerRepository.findByMember(member);
-            this.appointedSystemManagers = systemManager.appointedSystemManagers;
+            if (Market.dbFlag) {
+                SystemManager systemManager = DALService.systemManagerRepository.findByMember(member);
+                this.appointedSystemManagers = systemManager.appointedSystemManagers;
+            }
             isLoaded = true;
         }
 

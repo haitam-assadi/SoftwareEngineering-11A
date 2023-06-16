@@ -50,11 +50,16 @@ public class Cart {
 
 
     public boolean addToCart(Store store, String productName, Integer amount,boolean member) throws Exception {
-        bags.putIfAbsent(store.getStoreName(), new Bag(store));
-        if (member)
-            DALService.modifyBag(this,bags.get(store.getStoreName()));
-        return bags.get(store.getStoreName()).addProduct(productName, amount,member);
-//        Bag bag = new Bag(store);
+        if(!store.containsProduct(productName))
+            throw new Exception("the product dose not exist in the store");
+        else {
+            bags.putIfAbsent(store.getStoreName(), new Bag(store));
+            if (member)
+                if (Market.dbFlag)
+                    DALService.modifyBag(this, bags.get(store.getStoreName()));
+            return bags.get(store.getStoreName()).addProduct(productName, amount, member);
+        }
+        //        Bag bag = new Bag(store);
 //        bag.addProduct(productName,amount);
 //        bags.putIfAbsent(store.getStoreName(), bag);
 //        return true;
@@ -74,12 +79,13 @@ public class Cart {
             Bag bag = bags.get(store.getStoreName());
             bags.remove(store.getStoreName());
             if (member)
-                DALService.modifyAndRemoveBag(this,bag);
+                if (Market.dbFlag)
+                    DALService.modifyAndRemoveBag(this,bag);
         }
         return true;
     }
 
-    public List<BagDTO> getCartContent(){
+    public List<BagDTO> getCartContent() throws Exception {
         List<BagDTO> bagsDTO = new LinkedList<>();
         for(Bag bag: bags.values())
             bagsDTO.add(bag.getBagInfo());
@@ -95,6 +101,12 @@ public class Cart {
     public void validateAllProductsAmounts() throws Exception {
         for(Bag bag : bags.values()){
             bag.validateAllProductsAmounts();
+        }
+    }
+
+    public void validateAllStoresIsActive() throws Exception {
+        for(Bag bag : bags.values()){
+            bag.validateStoreIsActive();
         }
     }
 
@@ -127,7 +139,11 @@ public class Cart {
                 throw e;
             }
         }
-        //TODO: create deal for each store before deleting bags
+        for(Bag bag: bags.values()){
+            Deal deal = bag.createDeal(this.cartOwner);
+            this.cartOwner.addDeal(deal);
+        }
+
         bags = new ConcurrentHashMap<>();
         return true;
     }
@@ -135,7 +151,8 @@ public class Cart {
     public void removeAllCart() {
         for (Bag b: bags.values()){
             bags.remove(b.getStoreBag().getStoreName());
-            DALService.cartRepository.save(this);
+            if (Market.dbFlag)
+                DALService.cartRepository.save(this);
             b.removeAllProducts();
         }
         bags = new ConcurrentHashMap<>();

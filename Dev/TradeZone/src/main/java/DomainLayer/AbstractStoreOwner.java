@@ -25,7 +25,6 @@ public class AbstractStoreOwner extends Role{
 
 
     public boolean appointOtherMemberAsStoreOwner(Store store, Member otherMember) throws Exception {
-        store.loadStore();
         String storeName = store.getStoreName();
         otherMember.appointMemberAsStoreOwner(store, this);
         appointedOwners.putIfAbsent(storeName, new ArrayList<>());
@@ -34,7 +33,6 @@ public class AbstractStoreOwner extends Role{
     }
 
     public boolean appointOtherMemberAsStoreManager(Store store, Member otherMember) throws Exception {
-        store.loadStore();
         String storeName = store.getStoreName();
         otherMember.appointMemberAsStoreManager(store, this);
         appointedManagers.putIfAbsent(storeName, new ArrayList<>());
@@ -42,6 +40,19 @@ public class AbstractStoreOwner extends Role{
         return true;
     }
 
+
+    public void removeOwnerByHisAppointer(Store store, Member otherMember) throws Exception {
+        String storeName = store.getStoreName();
+        if(!appointedOwners.containsKey(storeName))
+            throw new Exception(getUserName() + "is not owner for store "+storeName);
+        if(!appointedOwners.get(storeName).contains(otherMember.getStoreOwner()))
+            throw new Exception(getUserName()+ " is not boss for "+otherMember.getUserName()+" in store "+storeName);
+        otherMember.getStoreOwner().removeMemberAsStoreOwner(store, this);
+        appointedOwners.get(storeName).remove(otherMember.getStoreOwner());
+    }
+
+
+/*
     public void removeOwnerByHisAppointer(Store store, Member otherMember, StoreOwner otherOwner) throws Exception {
         String storeName = store.getStoreName();
         //store.loadStore();
@@ -62,6 +73,7 @@ public class AbstractStoreOwner extends Role{
             throw new Exception(getUserName() + "is not owner for this store");
         }
     }
+    }*/
 
     public void removeStore(String storeName) {
         removeOneStore(storeName);

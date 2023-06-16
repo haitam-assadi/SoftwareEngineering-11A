@@ -49132,3 +49132,1555 @@ getStoreInfo(String userName, String storeName)
 in 2023-06-16 14:55:25 the user aaaa wants to get information about the store str2- getStoreInfo(aaaa, str2)
 יוני 16, 2023 2:55:25 אחה״צ DomainLayer.LoggerManager sendEventLog
 INFO: in 2023-06-16 14:55:25 the user aaaa got information about the store str2
+יוני 16, 2023 7:17:25 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:17:25 the user guest_0 wants to make registeration register(guest_0, moslem123,Aa123456)
+יוני 16, 2023 7:17:25 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:17:25 a new member joined .
+- Memer name: moslem123
+
+יוני 16, 2023 7:17:25 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-16 19:17:25 the user guest_0 wants to make login login(guest_0, moslem123,Aa123456)
+יוני 16, 2023 7:17:25 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:17:25 a new member Logged in .
+- Memer name: moslem123
+
+יוני 16, 2023 7:17:25 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+createStore(String memberUserName, String newStoreName)
+in 2023-06-16 19:17:25 the member moslem123 tries to create store  - createStore(moslem123, Moslem Store)
+יוני 16, 2023 7:17:25 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-16 19:17:25 the member moslem123 tries to add product to store  - addNewProductToStock(moslem123, moslem store, iphone 14, Iphones, 3000.0, 256 Gb, 50)
+יוני 16, 2023 7:17:25 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:17:25 the user guest_0 wants to make registeration register(guest_0, moslem123,Aa123456)
+יוני 16, 2023 7:17:25 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:17:25 the user guest_0 wants to make registeration register(guest_0, moslem123,Aa123456)
+יוני 16, 2023 7:17:25 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:17:25 the user guest_0 wants to make registeration register(guest_0, moslem123,Aa123456)
+יוני 16, 2023 7:17:25 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:17:25 the user guest_0 wants to make registeration register(guest_0, moslem123,Aa123456)
+יוני 16, 2023 7:17:25 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:17:25 the user guest_0 wants to make registeration register(guest_0, moslem123,Aa123456)
+יוני 16, 2023 7:17:25 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:17:25 the user guest_0 wants to make registeration register(guest_0, moslem123,Aa123456)
+יוני 16, 2023 7:17:25 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:17:25 the user guest_0 wants to make registeration register(guest_0, moslem123,Aa123456)
+יוני 16, 2023 7:17:25 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:17:25 the user guest_0 wants to make registeration register(guest_0, moslem123,Aa123456)
+יוני 16, 2023 7:17:25 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:17:25 the user guest_0 wants to make registeration register(guest_0, moslem123,Aa123456)
+יוני 16, 2023 7:17:25 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:17:25 the user guest_0 wants to make registeration register(guest_0, moslem123,Aa123456)
+יוני 16, 2023 7:17:25 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:17:25 the user guest_0 wants to make registeration register(guest_0, moslem123,Aa123456)
+יוני 16, 2023 7:17:25 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:17:25 the user guest_0 wants to make registeration register(guest_0, moslem123,Aa123456)
+יוני 16, 2023 7:17:25 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:17:25 the user guest_0 wants to make registeration register(guest_0, moslem123,Aa123456)
+יוני 16, 2023 7:17:25 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:17:25 the user guest_0 wants to make registeration register(guest_0, moslem123,Aa123456)
+יוני 16, 2023 7:17:25 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:17:25 the user guest_0 wants to make registeration register(guest_0, moslem123,Aa123456)
+יוני 16, 2023 7:17:25 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:17:25 the user guest_0 wants to make registeration register(guest_0, moslem123,Aa123456)
+יוני 16, 2023 7:17:25 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:17:25 the user guest_0 wants to make registeration register(guest_0, moslem123,Aa123456)
+יוני 16, 2023 7:17:25 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:17:25 the user guest_0 wants to make registeration register(guest_0, moslem123,Aa123456)
+יוני 16, 2023 7:17:25 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:17:25 the user guest_0 wants to make registeration register(guest_0, moslem123,Aa123456)
+יוני 16, 2023 7:17:25 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:17:25 the user guest_0 wants to make registeration register(guest_0, moslem123,Aa123456)
+יוני 16, 2023 7:17:25 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:17:25 the user guest_0 wants to make registeration register(guest_0, moslem123,Aa123456)
+יוני 16, 2023 7:17:25 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:17:25 the user guest_0 wants to make registeration register(guest_0, moslem123,Aa123456)
+יוני 16, 2023 7:17:25 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:17:25 the user guest_0 wants to make registeration register(guest_0, moslem123,Aa123456)
+יוני 16, 2023 7:17:25 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:17:25 the user guest_0 wants to make registeration register(guest_0, moslem123,Aa123456)
+יוני 16, 2023 7:17:25 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:17:25 the user guest_0 wants to make registeration register(guest_0, moslem123,Aa123456)
+יוני 16, 2023 7:17:25 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:17:25 the user guest_0 wants to make registeration register(guest_0, moslem123,Aa123456)
+יוני 16, 2023 7:17:25 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:17:25 the user guest_0 wants to make registeration register(guest_0, moslem123,Aa123456)
+יוני 16, 2023 7:17:25 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:17:25 the user guest_0 wants to make registeration register(guest_0, moslem123,Aa123456)
+יוני 16, 2023 7:17:25 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:17:25 the user guest_0 wants to make registeration register(guest_0, moslem123,Aa123456)
+יוני 16, 2023 7:17:25 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:17:25 the user guest_0 wants to make registeration register(guest_0, moslem123,Aa123456)
+יוני 16, 2023 7:17:25 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:17:25 the user guest_0 wants to make registeration register(guest_0, moslem123,Aa123456)
+יוני 16, 2023 7:17:51 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 19:17:51 the user guest_0 wants to get information about the store user1_first_store- getStoreInfo(guest_0, user1_first_store)
+יוני 16, 2023 7:17:52 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:17:52 the user guest_1 wants to make registeration register(guest_1, user_test3,ValidPassword3)
+יוני 16, 2023 7:17:52 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:17:52 a new member joined .
+- Memer name: user_test3
+
+יוני 16, 2023 7:17:52 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-16 19:17:52 the user guest_1 wants to make login login(guest_1, user_test3,ValidPassword3)
+יוני 16, 2023 7:17:52 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:17:52 a new member Logged in .
+- Memer name: user_test3
+
+יוני 16, 2023 7:17:52 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+createStore(String memberUserName, String newStoreName)
+in 2023-06-16 19:17:52 the member user_test3 tries to create store  - createStore(user_test3, user_test3_newstore)
+יוני 16, 2023 7:17:52 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-16 19:17:52 the member user_test3 tries to add product to store  - addNewProductToStock(user_test3, user_test3_newstore, user_test3_newstore_product1, user_test3_newstore_category1, 400.34, product1_des, 204)
+יוני 16, 2023 7:17:52 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:17:52 the user guest_4 wants to make registeration register(guest_4, user_test1,ValidPassword1)
+יוני 16, 2023 7:17:52 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:17:52 a new member joined .
+- Memer name: user_test1
+
+יוני 16, 2023 7:17:52 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-16 19:17:52 the user guest_4 wants to make login login(guest_4, user_test1,ValidPassword1)
+יוני 16, 2023 7:17:52 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:17:52 a new member Logged in .
+- Memer name: user_test1
+
+יוני 16, 2023 7:17:52 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 19:17:52 the user user_test1 wants to get information about the store user1_first_store- getStoreInfo(user_test1, user1_first_store)
+יוני 16, 2023 7:17:52 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:17:52 the user guest_5 wants to make registeration register(guest_5, moslem123222,Aa123456)
+יוני 16, 2023 7:17:52 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:17:52 a new member joined .
+- Memer name: moslem123222
+
+יוני 16, 2023 7:17:52 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:17:52 the user guest_5 wants to make registeration register(guest_5, BAR,Aa123456)
+יוני 16, 2023 7:17:52 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:17:52 the user guest_6 wants to make registeration register(guest_6, moslem123222,Aa123456)
+יוני 16, 2023 7:17:52 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:17:52 the user guest_8 wants to make registeration register(guest_8, moslem1231,Aa123456)
+יוני 16, 2023 7:17:52 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:17:52 a new member joined .
+- Memer name: moslem1231
+
+יוני 16, 2023 7:17:52 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:17:52 the user guest_9 wants to make registeration register(guest_9, user_test2,ValidPassword1)
+יוני 16, 2023 7:17:52 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:17:52 a new member joined .
+- Memer name: user_test2
+
+יוני 16, 2023 7:17:52 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-16 19:17:52 the user guest_9 wants to make login login(guest_9, user_test2,ValidPassword1)
+יוני 16, 2023 7:17:52 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:17:52 a new member Logged in .
+- Memer name: user_test2
+
+יוני 16, 2023 7:17:52 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 19:17:52 the user user_test2 wants to get information about the store user1_first_store- getStoreInfo(user_test2, user1_first_store)
+יוני 16, 2023 7:18:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:18:34 the user guest_0 wants to make registeration register(guest_0, moslem123,Aa123456)
+יוני 16, 2023 7:18:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:18:34 a new member joined .
+- Memer name: moslem123
+
+יוני 16, 2023 7:18:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-16 19:18:34 the user guest_0 wants to make login login(guest_0, moslem123,Aa123456)
+יוני 16, 2023 7:18:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:18:34 a new member Logged in .
+- Memer name: moslem123
+
+יוני 16, 2023 7:18:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+createStore(String memberUserName, String newStoreName)
+in 2023-06-16 19:18:34 the member moslem123 tries to create store  - createStore(moslem123, Moslem Store)
+יוני 16, 2023 7:18:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-16 19:18:34 the member moslem123 tries to add product to store  - addNewProductToStock(moslem123, moslem store, iphone 14, Iphones, 3000.0, 256 Gb, 50)
+יוני 16, 2023 7:18:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-16 19:18:34 the member moslem123 tries to add product to store  - addNewProductToStock(moslem123, moslem store, iphone 13, Iphones, 2000.0, 256 Gb, 35)
+יוני 16, 2023 7:18:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-16 19:18:34 the member moslem123 tries to add product to store  - addNewProductToStock(moslem123, moslem store, gaming chair 1, Gaming chairs, 600.0, red, 50)
+יוני 16, 2023 7:18:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+createStore(String memberUserName, String newStoreName)
+in 2023-06-16 19:18:34 the member moslem123 tries to create store  - createStore(moslem123, Baraa Store)
+יוני 16, 2023 7:18:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-16 19:18:34 the member moslem123 tries to add product to store  - addNewProductToStock(moslem123, baraa store, iphone 14, Iphones, 3500.0, 256 Gb, 100)
+יוני 16, 2023 7:18:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-16 19:18:34 the member moslem123 tries to add product to store  - addNewProductToStock(moslem123, baraa store, gaming mouse 1, Gaming mouses, 200.0, black, RGB, 70)
+יוני 16, 2023 7:18:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:18:34 the user guest_2 wants to make registeration register(guest_2, Harry123,Hh123456)
+יוני 16, 2023 7:18:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:18:34 a new member joined .
+- Memer name: Harry123
+
+יוני 16, 2023 7:18:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-16 19:18:34 the user guest_2 wants to make login login(guest_2, Harry123,Hh123456)
+יוני 16, 2023 7:18:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:18:34 a new member Logged in .
+- Memer name: Harry123
+
+יוני 16, 2023 7:18:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:18:34 the user guest_3 wants to make registeration register(guest_3, Joe123,Jj456789)
+יוני 16, 2023 7:18:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:18:34 a new member joined .
+- Memer name: Joe123
+
+יוני 16, 2023 7:18:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-16 19:18:34 the user guest_3 wants to make login login(guest_3, Joe123,Jj456789)
+יוני 16, 2023 7:18:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:18:34 a new member Logged in .
+- Memer name: Joe123
+
+יוני 16, 2023 7:18:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:18:34 the user guest_4 wants to make registeration register(guest_4, Tom123,Tt123456)
+יוני 16, 2023 7:18:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:18:34 a new member joined .
+- Memer name: Tom123
+
+יוני 16, 2023 7:18:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-16 19:18:34 the user guest_4 wants to make login login(guest_4, Tom123,Tt123456)
+יוני 16, 2023 7:18:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:18:34 a new member Logged in .
+- Memer name: Tom123
+
+יוני 16, 2023 7:18:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-16 19:18:34 the user guest_1 tries to add product to his cart  - addToCart(guest_1, bad store name, gaming mouse 1, 10)
+יוני 16, 2023 7:18:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-16 19:18:34 the user guest_1 tries to get his cart content  - getCartContent(guest_1)
+יוני 16, 2023 7:18:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-16 19:18:34 the user harry123 tries to add product to his cart  - addToCart(harry123, bad store name, gaming mouse 1, 10)
+יוני 16, 2023 7:18:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-16 19:18:34 the user harry123 tries to get his cart content  - getCartContent(harry123)
+יוני 16, 2023 7:18:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:18:34 the user guest_0 wants to make registeration register(guest_0, moslem123,Aa123456)
+יוני 16, 2023 7:18:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:18:34 the user guest_0 wants to make registeration register(guest_0, moslem123,Aa123456)
+יוני 16, 2023 7:18:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:18:34 the user guest_0 wants to make registeration register(guest_0, moslem123,Aa123456)
+יוני 16, 2023 7:18:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:18:34 the user guest_0 wants to make registeration register(guest_0, moslem123,Aa123456)
+יוני 16, 2023 7:18:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:18:34 the user guest_0 wants to make registeration register(guest_0, moslem123,Aa123456)
+יוני 16, 2023 7:18:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:18:34 the user guest_0 wants to make registeration register(guest_0, moslem123,Aa123456)
+יוני 16, 2023 7:18:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:18:34 the user guest_0 wants to make registeration register(guest_0, moslem123,Aa123456)
+יוני 16, 2023 7:18:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:18:34 the user guest_0 wants to make registeration register(guest_0, moslem123,Aa123456)
+יוני 16, 2023 7:18:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:18:34 the user guest_0 wants to make registeration register(guest_0, moslem123,Aa123456)
+יוני 16, 2023 7:18:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:18:34 the user guest_0 wants to make registeration register(guest_0, moslem123,Aa123456)
+יוני 16, 2023 7:18:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:18:34 the user guest_0 wants to make registeration register(guest_0, moslem123,Aa123456)
+יוני 16, 2023 7:18:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:18:34 the user guest_0 wants to make registeration register(guest_0, moslem123,Aa123456)
+יוני 16, 2023 7:18:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:18:34 the user guest_0 wants to make registeration register(guest_0, moslem123,Aa123456)
+יוני 16, 2023 7:18:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:18:34 the user guest_0 wants to make registeration register(guest_0, moslem123,Aa123456)
+יוני 16, 2023 7:18:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:18:34 the user guest_0 wants to make registeration register(guest_0, moslem123,Aa123456)
+יוני 16, 2023 7:18:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:18:34 the user guest_0 wants to make registeration register(guest_0, moslem123,Aa123456)
+יוני 16, 2023 7:18:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:18:34 the user guest_0 wants to make registeration register(guest_0, moslem123,Aa123456)
+יוני 16, 2023 7:18:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:18:34 the user guest_0 wants to make registeration register(guest_0, moslem123,Aa123456)
+יוני 16, 2023 7:18:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:18:34 the user guest_0 wants to make registeration register(guest_0, moslem123,Aa123456)
+יוני 16, 2023 7:18:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:18:34 the user guest_0 wants to make registeration register(guest_0, moslem123,Aa123456)
+יוני 16, 2023 7:18:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:18:34 the user guest_0 wants to make registeration register(guest_0, moslem123,Aa123456)
+יוני 16, 2023 7:18:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:18:34 the user guest_0 wants to make registeration register(guest_0, moslem123,Aa123456)
+יוני 16, 2023 7:18:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:18:34 the user guest_0 wants to make registeration register(guest_0, moslem123,Aa123456)
+יוני 16, 2023 7:18:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:18:34 the user guest_0 wants to make registeration register(guest_0, moslem123,Aa123456)
+יוני 16, 2023 7:18:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:18:34 the user guest_0 wants to make registeration register(guest_0, moslem123,Aa123456)
+יוני 16, 2023 7:18:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:18:34 the user guest_0 wants to make registeration register(guest_0, moslem123,Aa123456)
+יוני 16, 2023 7:18:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:18:34 the user guest_0 wants to make registeration register(guest_0, moslem123,Aa123456)
+יוני 16, 2023 7:18:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:18:34 the user guest_0 wants to make registeration register(guest_0, moslem123,Aa123456)
+יוני 16, 2023 7:18:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:18:34 the user guest_0 wants to make registeration register(guest_0, moslem123,Aa123456)
+יוני 16, 2023 7:18:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:18:34 the user guest_0 wants to make registeration register(guest_0, moslem123,Aa123456)
+יוני 16, 2023 7:18:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:18:34 the user guest_0 wants to make registeration register(guest_0, moslem123,Aa123456)
+יוני 16, 2023 7:19:19 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:19:19 the user guest_0 wants to make registeration register(guest_0, member1,Aa123456)
+יוני 16, 2023 7:19:20 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:19:20 a new member joined .
+- Memer name: member1
+
+יוני 16, 2023 7:19:20 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-16 19:19:20 the user guest_1 wants to make login login(guest_1, Obiq,Aa123456)
+יוני 16, 2023 7:19:20 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-16 19:19:20 the user guest_2 wants to make login login(guest_2, member1,Aa123456)
+יוני 16, 2023 7:19:20 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:19:20 a new member Logged in .
+- Memer name: member1
+
+יוני 16, 2023 7:19:20 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+memberLogOut(String memberUserName)
+in 2023-06-16 19:19:20 the member member1 wants to make logout- logout(member1)
+יוני 16, 2023 7:19:20 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+memberLogOut(String memberUserName)
+in 2023-06-16 19:19:20 the member member1 wants to make logout- logout(member1)
+יוני 16, 2023 7:19:20 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-16 19:19:20 the user guest_4 wants to make login login(guest_4, member1,)
+יוני 16, 2023 7:19:20 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-16 19:19:20 the user guest_5 wants to make login login(guest_5, member1,Aa123456)
+יוני 16, 2023 7:19:20 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:19:20 a new member Logged in .
+- Memer name: member1
+
+יוני 16, 2023 7:19:20 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+memberLogOut(String memberUserName)
+in 2023-06-16 19:19:20 the member member1 wants to make logout- logout(member1)
+יוני 16, 2023 7:19:20 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-16 19:19:20 the user guest_7 wants to make login login(guest_7, member1,Aa123456)
+יוני 16, 2023 7:19:20 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:19:20 a new member Logged in .
+- Memer name: member1
+
+יוני 16, 2023 7:19:20 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-16 19:19:20 the user guest_8 wants to make login login(guest_8, member1,Aa123456)
+יוני 16, 2023 7:19:20 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:19:20 a new member Logged in .
+- Memer name: member1
+
+יוני 16, 2023 7:19:20 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+memberLogOut(String memberUserName)
+in 2023-06-16 19:19:20 the member member1 wants to make logout- logout(member1)
+יוני 16, 2023 7:19:20 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:19:20 the user guest_10 wants to make registeration register(guest_10, haitamassadih,pASS123456)
+יוני 16, 2023 7:19:20 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:19:20 a new member joined .
+- Memer name: haitamassadih
+
+יוני 16, 2023 7:19:20 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:19:20 the user guest_11 wants to make registeration register(guest_11, adelwattad,pASS123456)
+יוני 16, 2023 7:19:20 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:19:20 a new member joined .
+- Memer name: adelwattad
+
+יוני 16, 2023 7:19:20 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-16 19:19:20 the user guest_10 wants to make login login(guest_10, haitamassadih,pASS123456)
+יוני 16, 2023 7:19:20 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:19:20 a new member Logged in .
+- Memer name: haitamassadih
+
+יוני 16, 2023 7:19:20 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-16 19:19:20 the user guest_11 wants to make login login(guest_11, adelwattad,pASS123456)
+יוני 16, 2023 7:19:20 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:19:20 a new member Logged in .
+- Memer name: adelwattad
+
+יוני 16, 2023 7:19:20 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-16 19:19:20 the user guest_12 wants to make login login(guest_12, member1,Aa123456)
+יוני 16, 2023 7:19:20 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:19:20 a new member Logged in .
+- Memer name: member1
+
+יוני 16, 2023 7:19:20 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+createStore(String memberUserName, String newStoreName)
+in 2023-06-16 19:19:20 the member member1 tries to create store  - createStore(member1, verit)
+יוני 16, 2023 7:19:20 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 19:19:20 the user member1 wants to get information about the store verit- getStoreInfo(member1, verit)
+יוני 16, 2023 7:19:20 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:19:20 the user member1 got information about the store verit
+יוני 16, 2023 7:19:20 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+memberLogOut(String memberUserName)
+in 2023-06-16 19:19:20 the member member1 wants to make logout- logout(member1)
+יוני 16, 2023 7:19:20 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-16 19:19:20 the user guest_14 wants to make login login(guest_14, member1,Aa123456)
+יוני 16, 2023 7:19:20 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:19:20 a new member Logged in .
+- Memer name: member1
+
+יוני 16, 2023 7:19:20 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+createStore(String memberUserName, String newStoreName)
+in 2023-06-16 19:19:20 the member member1 tries to create store  - createStore(member1, verit3)
+יוני 16, 2023 7:19:20 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 19:19:20 the user member1 wants to get information about the store verit3- getStoreInfo(member1, verit3)
+יוני 16, 2023 7:19:20 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:19:20 the user member1 got information about the store verit3
+יוני 16, 2023 7:19:20 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+createStore(String memberUserName, String newStoreName)
+in 2023-06-16 19:19:20 the member member1 tries to create store  - createStore(member1, Moslem Store1)
+יוני 16, 2023 7:19:20 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 19:19:20 the user member1 wants to get information about the store moslem store1- getStoreInfo(member1, moslem store1)
+יוני 16, 2023 7:19:20 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:19:20 the user member1 got information about the store moslem store1
+יוני 16, 2023 7:19:20 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+memberLogOut(String memberUserName)
+in 2023-06-16 19:19:20 the member member1 wants to make logout- logout(member1)
+יוני 16, 2023 7:19:20 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-16 19:19:20 the user guest_16 wants to make login login(guest_16, member1,Aa123456)
+יוני 16, 2023 7:19:21 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:19:21 a new member Logged in .
+- Memer name: member1
+
+יוני 16, 2023 7:19:21 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+createStore(String memberUserName, String newStoreName)
+in 2023-06-16 19:19:21 the member member1 tries to create store  - createStore(member1, verit2)
+יוני 16, 2023 7:19:21 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 19:19:21 the user member1 wants to get information about the store verit2- getStoreInfo(member1, verit2)
+יוני 16, 2023 7:19:21 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:19:21 the user member1 got information about the store verit2
+יוני 16, 2023 7:19:21 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+createStore(String memberUserName, String newStoreName)
+in 2023-06-16 19:19:21 the member member1 tries to create store  - createStore(member1, verit21)
+יוני 16, 2023 7:19:21 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+memberLogOut(String memberUserName)
+in 2023-06-16 19:19:21 the member member1 wants to make logout- logout(member1)
+יוני 16, 2023 7:19:21 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-16 19:19:21 the user guest_18 wants to make login login(guest_18, member1,Aa123456)
+יוני 16, 2023 7:19:21 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:19:21 a new member Logged in .
+- Memer name: member1
+
+יוני 16, 2023 7:19:21 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+memberLogOut(String memberUserName)
+in 2023-06-16 19:19:21 the member member1 wants to make logout- logout(member1)
+יוני 16, 2023 7:19:21 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+memberLogOut(String memberUserName)
+in 2023-06-16 19:19:21 the member member1 wants to make logout- logout(member1)
+יוני 16, 2023 7:21:43 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:21:43 the user guest_0 wants to make registeration register(guest_0, member1,member1Pass)
+יוני 16, 2023 7:21:43 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:21:43 a new member joined .
+- Memer name: member1
+
+יוני 16, 2023 7:21:43 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:21:43 the user guest_1 wants to make registeration register(guest_1, member2,member2Pass)
+יוני 16, 2023 7:21:43 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:21:43 a new member joined .
+- Memer name: member2
+
+יוני 16, 2023 7:21:43 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:21:43 the user guest_2 wants to make registeration register(guest_2, member3,member3Pass)
+יוני 16, 2023 7:21:43 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:21:43 a new member joined .
+- Memer name: member3
+
+יוני 16, 2023 7:21:43 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-16 19:21:43 the user guest_3 wants to make login login(guest_3, systemmanager1,systemmanager1Pass)
+יוני 16, 2023 7:21:43 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:21:43 a new member Logged in .
+- Memer name: systemmanager1
+
+יוני 16, 2023 7:21:43 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+AppointMemberAsSystemManager(String managerName, String otherMemberName)
+in 2023-06-16 19:21:43 the system manager systemmanager1 tries to assign other user as system manager  - AppointMemberAsSystemManager(systemmanager1, not_member)
+יוני 16, 2023 7:21:43 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:21:43 the user guest_0 wants to make registeration register(guest_0, member1,member1Pass)
+יוני 16, 2023 7:21:43 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:21:43 the user guest_0 wants to make registeration register(guest_0, member1,member1Pass)
+יוני 16, 2023 7:21:43 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:21:43 the user guest_0 wants to make registeration register(guest_0, member1,member1Pass)
+יוני 16, 2023 7:21:43 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:21:43 the user guest_0 wants to make registeration register(guest_0, member1,member1Pass)
+יוני 16, 2023 7:21:43 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:21:43 the user guest_0 wants to make registeration register(guest_0, member1,member1Pass)
+יוני 16, 2023 7:21:43 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:21:43 the user guest_0 wants to make registeration register(guest_0, member1,member1Pass)
+יוני 16, 2023 7:21:43 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:21:43 the user guest_0 wants to make registeration register(guest_0, member1,member1Pass)
+יוני 16, 2023 7:21:43 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:21:43 the user guest_0 wants to make registeration register(guest_0, member1,member1Pass)
+יוני 16, 2023 7:21:43 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:21:43 the user guest_0 wants to make registeration register(guest_0, member1,member1Pass)
+יוני 16, 2023 7:21:44 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:21:44 the user guest_0 wants to make registeration register(guest_0, member1,member1Pass)
+יוני 16, 2023 7:21:44 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:21:44 the user guest_0 wants to make registeration register(guest_0, member1,member1Pass)
+יוני 16, 2023 7:21:44 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:21:44 the user guest_0 wants to make registeration register(guest_0, member1,member1Pass)
+יוני 16, 2023 7:21:44 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:21:44 the user guest_0 wants to make registeration register(guest_0, member1,member1Pass)
+יוני 16, 2023 7:22:14 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:22:14 the user guest_0 wants to make registeration register(guest_0, member1,member1Pass)
+יוני 16, 2023 7:22:14 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:22:14 the user guest_0 wants to make registeration register(guest_0, member1,member1Pass)
+יוני 16, 2023 7:22:14 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:22:14 the user guest_0 wants to make registeration register(guest_0, member1,member1Pass)
+יוני 16, 2023 7:22:14 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:22:14 the user guest_0 wants to make registeration register(guest_0, member1,member1Pass)
+יוני 16, 2023 7:22:14 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:22:14 the user guest_0 wants to make registeration register(guest_0, member1,member1Pass)
+יוני 16, 2023 7:22:14 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:22:14 the user guest_0 wants to make registeration register(guest_0, member1,member1Pass)
+יוני 16, 2023 7:22:14 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:22:14 the user guest_0 wants to make registeration register(guest_0, member1,member1Pass)
+יוני 16, 2023 7:22:14 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:22:14 the user guest_0 wants to make registeration register(guest_0, member1,member1Pass)
+יוני 16, 2023 7:22:14 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:22:14 the user guest_0 wants to make registeration register(guest_0, member1,member1Pass)
+יוני 16, 2023 7:22:14 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:22:14 the user guest_0 wants to make registeration register(guest_0, member1,member1Pass)
+יוני 16, 2023 7:22:14 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:22:14 the user guest_0 wants to make registeration register(guest_0, member1,member1Pass)
+יוני 16, 2023 7:22:14 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:22:14 the user guest_0 wants to make registeration register(guest_0, member1,member1Pass)
+יוני 16, 2023 7:22:14 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:22:14 the user guest_0 wants to make registeration register(guest_0, member1,member1Pass)
+יוני 16, 2023 7:22:14 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:22:14 the user guest_0 wants to make registeration register(guest_0, member1,member1Pass)
+יוני 16, 2023 7:23:48 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:23:48 the user guest_0 wants to make registeration register(guest_0, member1,member1Pass)
+יוני 16, 2023 7:23:48 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:23:48 a new member joined .
+- Memer name: member1
+
+יוני 16, 2023 7:23:48 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:23:48 the user guest_1 wants to make registeration register(guest_1, member2,member2Pass)
+יוני 16, 2023 7:23:48 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:23:48 a new member joined .
+- Memer name: member2
+
+יוני 16, 2023 7:23:48 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:23:48 the user guest_2 wants to make registeration register(guest_2, member3,member3Pass)
+יוני 16, 2023 7:23:48 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:23:48 a new member joined .
+- Memer name: member3
+
+יוני 16, 2023 7:23:48 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-16 19:23:48 the user guest_3 wants to make login login(guest_3, systemmanager1,systemmanager1Pass)
+יוני 16, 2023 7:23:48 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:23:48 a new member Logged in .
+- Memer name: systemmanager1
+
+יוני 16, 2023 7:23:48 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+AppointMemberAsSystemManager(String managerName, String otherMemberName)
+in 2023-06-16 19:23:48 the system manager systemmanager1 tries to assign other user as system manager  - AppointMemberAsSystemManager(systemmanager1, not_member)
+יוני 16, 2023 7:23:48 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:23:48 the user guest_0 wants to make registeration register(guest_0, member1,member1Pass)
+יוני 16, 2023 7:23:48 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:23:48 the user guest_0 wants to make registeration register(guest_0, member1,member1Pass)
+יוני 16, 2023 7:23:48 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:23:48 the user guest_0 wants to make registeration register(guest_0, member1,member1Pass)
+יוני 16, 2023 7:23:48 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:23:48 the user guest_0 wants to make registeration register(guest_0, member1,member1Pass)
+יוני 16, 2023 7:23:48 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:23:48 the user guest_0 wants to make registeration register(guest_0, member1,member1Pass)
+יוני 16, 2023 7:23:48 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:23:48 the user guest_0 wants to make registeration register(guest_0, member1,member1Pass)
+יוני 16, 2023 7:23:49 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:23:49 the user guest_0 wants to make registeration register(guest_0, member1,member1Pass)
+יוני 16, 2023 7:23:49 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:23:49 the user guest_0 wants to make registeration register(guest_0, member1,member1Pass)
+יוני 16, 2023 7:23:49 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:23:49 the user guest_0 wants to make registeration register(guest_0, member1,member1Pass)
+יוני 16, 2023 7:23:49 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:23:49 the user guest_0 wants to make registeration register(guest_0, member1,member1Pass)
+יוני 16, 2023 7:23:49 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:23:49 the user guest_0 wants to make registeration register(guest_0, member1,member1Pass)
+יוני 16, 2023 7:23:49 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:23:49 the user guest_0 wants to make registeration register(guest_0, member1,member1Pass)
+יוני 16, 2023 7:23:49 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:23:49 the user guest_0 wants to make registeration register(guest_0, member1,member1Pass)
+יוני 16, 2023 7:26:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:26:34 the user guest_0 wants to make registeration register(guest_0, member1,member1Pass)
+יוני 16, 2023 7:26:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:26:34 a new member joined .
+- Memer name: member1
+
+יוני 16, 2023 7:26:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:26:34 the user guest_1 wants to make registeration register(guest_1, member2,member2Pass)
+יוני 16, 2023 7:26:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:26:34 a new member joined .
+- Memer name: member2
+
+יוני 16, 2023 7:26:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:26:34 the user guest_2 wants to make registeration register(guest_2, member3,member3Pass)
+יוני 16, 2023 7:26:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:26:34 a new member joined .
+- Memer name: member3
+
+יוני 16, 2023 7:26:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-16 19:26:34 the user guest_3 wants to make login login(guest_3, systemmanager1,systemmanager1Pass)
+יוני 16, 2023 7:26:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:26:34 a new member Logged in .
+- Memer name: systemmanager1
+
+יוני 16, 2023 7:26:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+AppointMemberAsSystemManager(String managerName, String otherMemberName)
+in 2023-06-16 19:26:34 the system manager systemmanager1 tries to assign other user as system manager  - AppointMemberAsSystemManager(systemmanager1, not_member)
+יוני 16, 2023 7:26:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:26:34 the user guest_0 wants to make registeration register(guest_0, member1,member1Pass)
+יוני 16, 2023 7:26:35 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:26:35 the user guest_0 wants to make registeration register(guest_0, member1,member1Pass)
+יוני 16, 2023 7:26:35 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:26:35 the user guest_0 wants to make registeration register(guest_0, member1,member1Pass)
+יוני 16, 2023 7:26:35 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:26:35 the user guest_0 wants to make registeration register(guest_0, member1,member1Pass)
+יוני 16, 2023 7:26:35 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:26:35 the user guest_0 wants to make registeration register(guest_0, member1,member1Pass)
+יוני 16, 2023 7:26:35 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:26:35 the user guest_0 wants to make registeration register(guest_0, member1,member1Pass)
+יוני 16, 2023 7:26:35 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:26:35 the user guest_0 wants to make registeration register(guest_0, member1,member1Pass)
+יוני 16, 2023 7:26:35 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:26:35 the user guest_0 wants to make registeration register(guest_0, member1,member1Pass)
+יוני 16, 2023 7:26:35 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:26:35 the user guest_0 wants to make registeration register(guest_0, member1,member1Pass)
+יוני 16, 2023 7:26:35 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:26:35 the user guest_0 wants to make registeration register(guest_0, member1,member1Pass)
+יוני 16, 2023 7:26:35 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:26:35 the user guest_0 wants to make registeration register(guest_0, member1,member1Pass)
+יוני 16, 2023 7:26:35 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:26:35 the user guest_0 wants to make registeration register(guest_0, member1,member1Pass)
+יוני 16, 2023 7:26:35 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:26:35 the user guest_0 wants to make registeration register(guest_0, member1,member1Pass)
+יוני 16, 2023 7:32:06 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:32:06 the user guest_0 wants to make registeration register(guest_0, member1,member1Pass)
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:32:07 a new member joined .
+- Memer name: member1
+
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:32:07 the user guest_1 wants to make registeration register(guest_1, member2,member2Pass)
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:32:07 a new member joined .
+- Memer name: member2
+
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:32:07 the user guest_2 wants to make registeration register(guest_2, member3,member3Pass)
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:32:07 a new member joined .
+- Memer name: member3
+
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-16 19:32:07 the user guest_3 wants to make login login(guest_3, systemmanager1,systemmanager1Pass)
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:32:07 a new member Logged in .
+- Memer name: systemmanager1
+
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+AppointMemberAsSystemManager(String managerName, String otherMemberName)
+in 2023-06-16 19:32:07 the system manager systemmanager1 tries to assign other user as system manager  - AppointMemberAsSystemManager(systemmanager1, not_member)
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:32:07 the user guest_0 wants to make registeration register(guest_0, member1,member1Pass)
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:32:07 a new member joined .
+- Memer name: member1
+
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:32:07 the user guest_1 wants to make registeration register(guest_1, member2,member2Pass)
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:32:07 a new member joined .
+- Memer name: member2
+
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:32:07 the user guest_2 wants to make registeration register(guest_2, member3,member3Pass)
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:32:07 a new member joined .
+- Memer name: member3
+
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-16 19:32:07 the user guest_3 wants to make login login(guest_3, systemmanager1,systemmanager1Pass)
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:32:07 a new member Logged in .
+- Memer name: systemmanager1
+
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+AppointMemberAsSystemManager(String managerName, String otherMemberName)
+in 2023-06-16 19:32:07 the system manager systemmanager1 tries to assign other user as system manager  - AppointMemberAsSystemManager(systemmanager1, member1)
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-16 19:32:07 the user guest_4 wants to make login login(guest_4, member1,member1Pass)
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:32:07 a new member Logged in .
+- Memer name: member1
+
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+AppointMemberAsSystemManager(String managerName, String otherMemberName)
+in 2023-06-16 19:32:07 the system manager member1 tries to assign other user as system manager  - AppointMemberAsSystemManager(member1, member2)
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-16 19:32:07 the user guest_5 wants to make login login(guest_5, member2,member2Pass)
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:32:07 a new member Logged in .
+- Memer name: member2
+
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+AppointMemberAsSystemManager(String managerName, String otherMemberName)
+in 2023-06-16 19:32:07 the system manager member2 tries to assign other user as system manager  - AppointMemberAsSystemManager(member2, systemmanager1)
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+AppointMemberAsSystemManager(String managerName, String otherMemberName)
+in 2023-06-16 19:32:07 the system manager member2 tries to assign other user as system manager  - AppointMemberAsSystemManager(member2, member1)
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+AppointMemberAsSystemManager(String managerName, String otherMemberName)
+in 2023-06-16 19:32:07 the system manager member2 tries to assign other user as system manager  - AppointMemberAsSystemManager(member2, member2)
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:32:07 the user guest_0 wants to make registeration register(guest_0, member1,member1Pass)
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:32:07 a new member joined .
+- Memer name: member1
+
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:32:07 the user guest_1 wants to make registeration register(guest_1, member2,member2Pass)
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:32:07 a new member joined .
+- Memer name: member2
+
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:32:07 the user guest_2 wants to make registeration register(guest_2, member3,member3Pass)
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:32:07 a new member joined .
+- Memer name: member3
+
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-16 19:32:07 the user guest_3 wants to make login login(guest_3, systemmanager1,systemmanager1Pass)
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:32:07 a new member Logged in .
+- Memer name: systemmanager1
+
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:32:07 the user guest_0 wants to make registeration register(guest_0, member1,member1Pass)
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:32:07 a new member joined .
+- Memer name: member1
+
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:32:07 the user guest_1 wants to make registeration register(guest_1, member2,member2Pass)
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:32:07 a new member joined .
+- Memer name: member2
+
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:32:07 the user guest_2 wants to make registeration register(guest_2, member3,member3Pass)
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:32:07 a new member joined .
+- Memer name: member3
+
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-16 19:32:07 the user guest_3 wants to make login login(guest_3, systemmanager1,systemmanager1Pass)
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:32:07 a new member Logged in .
+- Memer name: systemmanager1
+
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+AppointMemberAsSystemManager(String managerName, String otherMemberName)
+in 2023-06-16 19:32:07 the system manager systemmanager1 tries to assign other user as system manager  - AppointMemberAsSystemManager(systemmanager1, member1)
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:32:07 the user guest_0 wants to make registeration register(guest_0, member1,member1Pass)
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:32:07 a new member joined .
+- Memer name: member1
+
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:32:07 the user guest_1 wants to make registeration register(guest_1, member2,member2Pass)
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:32:07 a new member joined .
+- Memer name: member2
+
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:32:07 the user guest_2 wants to make registeration register(guest_2, member3,member3Pass)
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:32:07 a new member joined .
+- Memer name: member3
+
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-16 19:32:07 the user guest_3 wants to make login login(guest_3, systemmanager1,systemmanager1Pass)
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:32:07 a new member Logged in .
+- Memer name: systemmanager1
+
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-16 19:32:07 the user guest_4 wants to make login login(guest_4, member2,member2Pass)
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:32:07 a new member Logged in .
+- Memer name: member2
+
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+createStore(String memberUserName, String newStoreName)
+in 2023-06-16 19:32:07 the member member2 tries to create store  - createStore(member2, member1store)
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+AppointMemberAsSystemManager(String managerName, String otherMemberName)
+in 2023-06-16 19:32:07 the system manager systemmanager1 tries to assign other user as system manager  - AppointMemberAsSystemManager(systemmanager1, member2)
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+memberLogOut(String memberUserName)
+in 2023-06-16 19:32:07 the member member2 wants to make logout- logout(member2)
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:32:07 the user guest_0 wants to make registeration register(guest_0, member1,member1Pass)
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:32:07 a new member joined .
+- Memer name: member1
+
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:32:07 the user guest_1 wants to make registeration register(guest_1, member2,member2Pass)
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:32:07 a new member joined .
+- Memer name: member2
+
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:32:07 the user guest_2 wants to make registeration register(guest_2, member3,member3Pass)
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:32:07 a new member joined .
+- Memer name: member3
+
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-16 19:32:07 the user guest_3 wants to make login login(guest_3, systemmanager1,systemmanager1Pass)
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:32:07 a new member Logged in .
+- Memer name: systemmanager1
+
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-16 19:32:07 the user guest_4 wants to make login login(guest_4, member1,member1Pass)
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:32:07 a new member Logged in .
+- Memer name: member1
+
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+createStore(String memberUserName, String newStoreName)
+in 2023-06-16 19:32:07 the member member1 tries to create store  - createStore(member1, store1)
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 19:32:07 the user systemmanager1 wants to get information about the store store1- getStoreInfo(systemmanager1, store1)
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:32:07 the user systemmanager1 got information about the store store1
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-16 19:32:07 the member member1 tries to add product to store  - addNewProductToStock(member1, store1, product1, cat1, 10.5, desc, 50)
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 19:32:07 the user systemmanager1 wants to get information about the store store1- getStoreInfo(systemmanager1, store1)
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:32:07 the user systemmanager1 got information about the store store1
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:32:07 the user guest_0 wants to make registeration register(guest_0, member1,member1Pass)
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:32:07 a new member joined .
+- Memer name: member1
+
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:32:07 the user guest_1 wants to make registeration register(guest_1, member2,member2Pass)
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:32:07 a new member joined .
+- Memer name: member2
+
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:32:07 the user guest_2 wants to make registeration register(guest_2, member3,member3Pass)
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:32:07 a new member joined .
+- Memer name: member3
+
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-16 19:32:07 the user guest_3 wants to make login login(guest_3, not_manager,systemmanager1Pass)
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:32:07 the user guest_0 wants to make registeration register(guest_0, member1,member1Pass)
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:32:07 a new member joined .
+- Memer name: member1
+
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:32:07 the user guest_1 wants to make registeration register(guest_1, member2,member2Pass)
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:32:07 a new member joined .
+- Memer name: member2
+
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:32:07 the user guest_2 wants to make registeration register(guest_2, member3,member3Pass)
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:32:07 a new member joined .
+- Memer name: member3
+
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-16 19:32:07 the user guest_3 wants to make login login(guest_3, systemmanager1,systemmanager1Pass)
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:32:07 a new member Logged in .
+- Memer name: systemmanager1
+
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-16 19:32:07 the user guest_4 wants to make login login(guest_4, member1,member1Pass)
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:32:07 a new member Logged in .
+- Memer name: member1
+
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-16 19:32:07 the user systemmanager1 wants to get information about the store store1- getStoreInfo(systemmanager1, store1)
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:32:07 the user guest_0 wants to make registeration register(guest_0, member1,member1Pass)
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:32:07 a new member joined .
+- Memer name: member1
+
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:32:07 the user guest_1 wants to make registeration register(guest_1, member2,member2Pass)
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:32:07 a new member joined .
+- Memer name: member2
+
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:32:07 the user guest_2 wants to make registeration register(guest_2, member3,member3Pass)
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:32:07 a new member joined .
+- Memer name: member3
+
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-16 19:32:07 the user guest_3 wants to make login login(guest_3, systemmanager1,systemmanager1Pass)
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:32:07 a new member Logged in .
+- Memer name: systemmanager1
+
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+AppointMemberAsSystemManager(String managerName, String otherMemberName)
+in 2023-06-16 19:32:07 the system manager systemmanager1 tries to assign other user as system manager  - AppointMemberAsSystemManager(systemmanager1, systemmanager1)
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:32:07 the user guest_0 wants to make registeration register(guest_0, member1,member1Pass)
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:32:07 a new member joined .
+- Memer name: member1
+
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:32:07 the user guest_1 wants to make registeration register(guest_1, member2,member2Pass)
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:32:07 a new member joined .
+- Memer name: member2
+
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:32:07 the user guest_2 wants to make registeration register(guest_2, member3,member3Pass)
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:32:07 a new member joined .
+- Memer name: member3
+
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-16 19:32:07 the user guest_3 wants to make login login(guest_3, systemmanager1,systemmanager1Pass)
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:32:07 a new member Logged in .
+- Memer name: systemmanager1
+
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:32:07 the user guest_0 wants to make registeration register(guest_0, member1,member1Pass)
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:32:07 a new member joined .
+- Memer name: member1
+
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:32:07 the user guest_1 wants to make registeration register(guest_1, member2,member2Pass)
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:32:07 a new member joined .
+- Memer name: member2
+
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:32:07 the user guest_2 wants to make registeration register(guest_2, member3,member3Pass)
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:32:07 a new member joined .
+- Memer name: member3
+
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-16 19:32:07 the user guest_3 wants to make login login(guest_3, systemmanager1,systemmanager1Pass)
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:32:07 a new member Logged in .
+- Memer name: systemmanager1
+
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+AppointMemberAsSystemManager(String managerName, String otherMemberName)
+in 2023-06-16 19:32:07 the system manager systemmanager1 tries to assign other user as system manager  - AppointMemberAsSystemManager(systemmanager1, member1)
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+AppointMemberAsSystemManager(String managerName, String otherMemberName)
+in 2023-06-16 19:32:07 the system manager member1 tries to assign other user as system manager  - AppointMemberAsSystemManager(member1, systemmanager1)
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:32:07 the user guest_0 wants to make registeration register(guest_0, member1,member1Pass)
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:32:07 a new member joined .
+- Memer name: member1
+
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:32:07 the user guest_1 wants to make registeration register(guest_1, member2,member2Pass)
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:32:07 a new member joined .
+- Memer name: member2
+
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:32:07 the user guest_2 wants to make registeration register(guest_2, member3,member3Pass)
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:32:07 a new member joined .
+- Memer name: member3
+
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-16 19:32:07 the user guest_3 wants to make login login(guest_3, systemmanager1,systemmanager1Pass)
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:32:07 a new member Logged in .
+- Memer name: systemmanager1
+
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:32:07 the user guest_0 wants to make registeration register(guest_0, member1,member1Pass)
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:32:07 a new member joined .
+- Memer name: member1
+
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:32:07 the user guest_1 wants to make registeration register(guest_1, member2,member2Pass)
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:32:07 a new member joined .
+- Memer name: member2
+
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:32:07 the user guest_2 wants to make registeration register(guest_2, member3,member3Pass)
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:32:07 a new member joined .
+- Memer name: member3
+
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-16 19:32:07 the user guest_3 wants to make login login(guest_3, systemmanager1Pass,wrongPass)
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:32:07 the user guest_0 wants to make registeration register(guest_0, member1,member1Pass)
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:32:07 a new member joined .
+- Memer name: member1
+
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:32:07 the user guest_1 wants to make registeration register(guest_1, member2,member2Pass)
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:32:07 a new member joined .
+- Memer name: member2
+
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-16 19:32:07 the user guest_2 wants to make registeration register(guest_2, member3,member3Pass)
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:32:07 a new member joined .
+- Memer name: member3
+
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-16 19:32:07 the user guest_3 wants to make login login(guest_3, systemmanager1,systemmanager1Pass)
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:32:07 a new member Logged in .
+- Memer name: systemmanager1
+
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-16 19:32:07 the user guest_4 wants to make login login(guest_4, member2,member2Pass)
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-16 19:32:07 a new member Logged in .
+- Memer name: member2
+
+יוני 16, 2023 7:32:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+createStore(String memberUserName, String newStoreName)
+in 2023-06-16 19:32:07 the member member2 tries to create store  - createStore(member2, member2store2)

@@ -1,9 +1,6 @@
 package AcceptanceTests;
 
-import DTO.BagDTO;
-import DTO.MemberDTO;
-import DTO.ProductDTO;
-import DTO.StoreDTO;
+import DTO.*;
 import DomainLayer.PaymentService;
 import DomainLayer.ShipmentService;
 import ServiceLayer.ResponseT;
@@ -20,7 +17,7 @@ public class RealBridge implements Bridge{
 
 
     public RealBridge(){
-        systemService = new SystemService();
+        systemService = new SystemService(false);
     }
 
     @Override
@@ -165,6 +162,42 @@ public class RealBridge implements Bridge{
     @Override
     public boolean appointOtherMemberAsStoreOwner(String memberUserName, String storeName, String newOwnerUserName) throws Exception {
         ResponseT<Boolean> response = systemService.appointOtherMemberAsStoreOwner(memberUserName, storeName, newOwnerUserName);
+        if (response.ErrorOccurred){
+            throw new Exception(response.errorMessage);
+        }
+        return response.getValue();
+    }
+
+    @Override
+    public boolean fillOwnerContract(String memberUserName, String storeName, String newOwnerUserName, Boolean decisions) throws Exception {
+        ResponseT<Boolean> response = systemService.fillOwnerContract(memberUserName, storeName, newOwnerUserName,decisions);
+        if (response.ErrorOccurred){
+            throw new Exception(response.errorMessage);
+        }
+        return response.getValue();
+    }
+
+    @Override
+    public List<OwnerContractDTO> getAlreadyDoneContracts(String memberUserName, String storeName) throws Exception {
+        ResponseT<List<OwnerContractDTO>> response = systemService.getAlreadyDoneContracts(memberUserName, storeName);
+        if (response.ErrorOccurred){
+            throw new Exception(response.errorMessage);
+        }
+        return response.getValue();
+    }
+
+    @Override
+    public List<OwnerContractDTO> getMyCreatedContracts(String memberUserName, String storeName) throws Exception {
+        ResponseT<List<OwnerContractDTO>> response = systemService.getMyCreatedContracts(memberUserName, storeName);
+        if (response.ErrorOccurred){
+            throw new Exception(response.errorMessage);
+        }
+        return response.getValue();
+    }
+
+    @Override
+    public List<OwnerContractDTO> getPendingContractsForOwner(String memberUserName, String storeName) throws Exception {
+        ResponseT<List<OwnerContractDTO>> response = systemService.getPendingContractsForOwner(memberUserName, storeName);
         if (response.ErrorOccurred){
             throw new Exception(response.errorMessage);
         }
@@ -838,6 +871,50 @@ public class RealBridge implements Bridge{
     @Override
     public Double getCartPriceAfterDiscount(String memberUserName) throws Exception {
         ResponseT<Double> response = systemService.getCartPriceAfterDiscount(memberUserName);
+        if (response.ErrorOccurred){
+            throw new Exception(response.errorMessage);
+        }
+        return response.getValue();
+    }
+
+
+
+
+    @Override
+    //return 1=storeFounder, 2=storeOwner, 3=storeManager, -1= noRule
+    public Integer getRuleForStore(String storeName, String memberName) throws Exception {
+        ResponseT<Integer> response = systemService.getRuleForStore(storeName,memberName);
+        if (response.ErrorOccurred){
+            throw new Exception(response.errorMessage);
+        }
+        return response.getValue();
+    }
+
+
+
+
+
+    @Override
+    public boolean updateManagerPermissionsForStore(String ownerUserName, String storeName, String managerUserName, List<Integer> newPermissions) throws Exception {
+        ResponseT<Boolean> response = systemService.updateManagerPermissionsForStore(ownerUserName, storeName, managerUserName, newPermissions);
+        if (response.ErrorOccurred){
+            throw new Exception(response.errorMessage);
+        }
+        return response.getValue();
+    }
+
+    @Override
+    public List<Integer> getManagerPermissionsForStore(String ownerUserName, String storeName, String managerUserName) throws Exception {
+        ResponseT<List<Integer>> response = systemService.getManagerPermissionsForStore(ownerUserName, storeName, managerUserName);
+        if (response.ErrorOccurred){
+            throw new Exception(response.errorMessage);
+        }
+        return response.getValue();
+    }
+
+    @Override
+    public ProductDTO getProductInfoFromStore(String userName, String storeName, String productName)throws Exception{
+        ResponseT<ProductDTO> response = systemService.getProductInfoFromStore(userName, storeName, productName);
         if (response.ErrorOccurred){
             throw new Exception(response.errorMessage);
         }

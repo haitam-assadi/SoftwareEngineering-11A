@@ -21,7 +21,7 @@ public class Server {
     }
 
     private Server(){
-        service = new SystemService();
+        service = new SystemService(true);
     }
 
 

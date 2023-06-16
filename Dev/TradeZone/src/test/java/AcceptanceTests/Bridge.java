@@ -1,5 +1,7 @@
 package AcceptanceTests;
 
+import DTO.OwnerContractDTO;
+import DTO.ProductDTO;
 import ServiceLayer.ResponseT;
 
 import java.util.List;
@@ -56,6 +58,14 @@ public interface Bridge {
     public boolean appointOtherMemberAsStoreOwner(String memberUserName, String storeName, String newOwnerUserName) throws Exception;
 
 //    List<String> getStoreOwners(String storeName); // delete
+
+    boolean fillOwnerContract(String memberUserName, String storeName, String newOwnerUserName, Boolean decisions) throws Exception;
+
+    List<OwnerContractDTO> getAlreadyDoneContracts(String memberUserName, String storeName) throws Exception;
+
+    List<OwnerContractDTO> getMyCreatedContracts(String memberUserName, String storeName) throws Exception;
+
+    List<OwnerContractDTO> getPendingContractsForOwner(String memberUserName, String storeName) throws Exception;
 
     String getOwnerAppointer(String OwnerName, String storeName) throws Exception;
 
@@ -177,4 +187,8 @@ public interface Bridge {
     Double getCartPriceBeforeDiscount(String memberUserName) throws Exception;
 
     Double getCartPriceAfterDiscount(String memberUserName) throws Exception;
+    Integer getRuleForStore(String storeName, String memberName) throws Exception;
+    boolean updateManagerPermissionsForStore(String ownerUserName, String storeName, String managerUserName, List<Integer> newPermissions) throws Exception;
+    List<Integer> getManagerPermissionsForStore(String ownerUserName, String storeName, String managerUserName) throws Exception;
+    ProductDTO getProductInfoFromStore(String userName, String storeName, String productName) throws Exception;
 }

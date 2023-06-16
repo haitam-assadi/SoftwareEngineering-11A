@@ -1,13 +1,16 @@
 package AcceptanceTests;
+import PresentationLayer.SpringbootHtmlApplication;
 import org.junit.jupiter.api.*;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 @TestInstance(value = TestInstance.Lifecycle.PER_CLASS)
+@SpringBootTest(classes = SpringbootHtmlApplication.class)
 public class BuyingTests {
     private ProxyBridge proxy;
     private String user;

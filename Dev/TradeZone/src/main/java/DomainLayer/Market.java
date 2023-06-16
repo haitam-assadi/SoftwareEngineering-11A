@@ -18,7 +18,9 @@ public class Market {
     PaymentService paymentService;
     ShipmentService shipmentService;
 
-    public Market(){
+    public static boolean dbFlag;
+    public Market(boolean dbFlag){
+        Market.dbFlag = dbFlag;
         this.userController = new UserController();
         this.storeController = new StoreController();
         paymentService = new PaymentService("https://php-server-try.000webhostapp.com/");
@@ -41,6 +43,12 @@ public class Market {
     public String enterMarket(){
         return userController.loginAsGuest();
     }
+    public boolean externalConnectionsHandShake() throws Exception {
+        paymentService.handshake();
+        shipmentService.handshake();
+        return true;
+    }
+
     public List<String> getAllGuests(/*String managerName*/){
         return userController.getAllGuests();
     }
@@ -76,8 +84,10 @@ public class Market {
         if(active) return storeController.getStoreInfo(storeName);
         else {
             Store store = storeController.getStore(storeName);
-            userController.assertIsOwnerOrSystemManager(userName, store);
-            return storeController.getStoreInfo(storeName);
+            if(!userController.IsOwnerOrSystemManager(userName,store))
+                throw new Exception("store :" + storeName + "is closed");
+            else
+                return storeController.getStoreInfo(storeName);
         }
     }
     public ProductDTO getProductInfoFromStore(String userName, String storeName, String productName) throws Exception {
@@ -129,6 +139,7 @@ public class Market {
     public boolean addToCart(String userName, String storeName, String productName, Integer amount) throws Exception {
         userController.assertIsGuestOrLoggedInMember(userName);
         storeController.assertIsStore(storeName);
+        storeController.isActiveStore(storeName);
         User user = userController.getUser(userName);
         return user.addToCart(storeController.getStore(storeName), productName, amount,userController.isMember(userName));
     }
@@ -155,7 +166,9 @@ public class Market {
         Member member = userController.getMember(memberUserName);
         Store store = storeController.createStore(newStoreName);
         StoreFounder newFounder = member.appointMemberAsStoreFounder(store);
-        DALService.saveStore(store,newFounder,member);
+        if (Market.dbFlag) {
+            DALService.saveStore(store, newFounder, member);
+        }
         return store.getStoreInfo();
     }
     public boolean addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount) throws Exception {
@@ -187,8 +200,38 @@ public class Market {
 
     public boolean appointOtherMemberAsStoreOwner(String memberUserName, String storeName, String newOwnerUserName) throws Exception {
         userController.assertIsNotSystemManager(newOwnerUserName);
-        Store store = storeController.getStore(storeName); // TODO: MAYBE WE NEED TO CHECK IF STORE IS ACTIVE
+        Store store = storeController.getStore(storeName);
         return userController.appointOtherMemberAsStoreOwner(memberUserName,store,newOwnerUserName);
+    }
+
+    public boolean removeOwnerByHisAppointer(String memberUserName, String storeName, String ownerUserName) throws Exception {
+        Store store = storeController.getStore(storeName);
+        return userController.removeOwnerByHisAppointer(memberUserName,store,ownerUserName);
+    }
+
+    public boolean fillOwnerContract(String memberUserName, String storeName, String newOwnerUserName, Boolean decisions) throws Exception {
+        userController.assertIsMemberLoggedIn(memberUserName);
+        userController.assertIsMember(newOwnerUserName);
+        Store store = storeController.getStore(storeName);
+        return store.fillOwnerContract(memberUserName, newOwnerUserName, decisions);
+    }
+
+    public List<OwnerContractDTO> getAlreadyDoneContracts(String memberUserName, String storeName) throws Exception {
+        userController.assertIsMemberLoggedIn(memberUserName);
+        Store store = storeController.getStore(storeName);
+        return store.getAlreadyDoneContracts(memberUserName);
+    }
+
+    public List<OwnerContractDTO> getMyCreatedContracts(String memberUserName, String storeName) throws Exception {
+        userController.assertIsMemberLoggedIn(memberUserName);
+        Store store = storeController.getStore(storeName);
+        return store.getMyCreatedContracts(memberUserName);
+    }
+
+    public List<OwnerContractDTO> getPendingContractsForOwner(String memberUserName, String storeName) throws Exception {
+        userController.assertIsMemberLoggedIn(memberUserName);
+        Store store = storeController.getStore(storeName);
+        return store.getPendingContractsForOwner(memberUserName);
     }
 
     public boolean appointOtherMemberAsStoreManager(String memberUserName, String storeName, String newManagerUserName/*,list<Integer> permissions*/) throws Exception {
@@ -203,13 +246,27 @@ public class Market {
         Store store = storeController.getStore(storeName);
         return store.addPermissionForStoreManager(ownerUserName, managerUserName, permissionId);
     }
-//    public boolean updatePermissionsForStoreManager(String ownerUserName, String storeName, String managerUserName, List<Integer> permissionId) throws Exception {
-//        userController.assertIsMemberLoggedIn(ownerUserName);
-//        userController.assertIsMember(managerUserName);
-//        Store store = storeController.getStore(storeName);
-//        return store.addPermissionForStoreManager(ownerUserName, managerUserName, permissionId);
-//    }
-    /*remove permittions*/
+
+    public boolean updateManagerPermissionsForStore(String ownerUserName, String storeName, String managerUserName, List<Integer> newPermissions) throws Exception {
+        userController.assertIsMemberLoggedIn(ownerUserName);
+        userController.assertIsMember(managerUserName);
+        Store store = storeController.getStore(storeName);
+        return store.updateManagerPermissionsForStore(ownerUserName, managerUserName, newPermissions);
+    }
+
+    public List<Integer> getManagerPermissionsForStore(String ownerUserName, String storeName, String managerUserName) throws Exception {
+        userController.assertIsMemberLoggedIn(ownerUserName);
+        userController.assertIsMember(managerUserName);
+        Store store = storeController.getStore(storeName);
+        return store.getManagerPermissionsForStore(ownerUserName, managerUserName);
+    }
+
+    public List<String> getAllPermissions(String ownerUserName, String storeName) throws Exception {
+        userController.assertIsMemberLoggedIn(ownerUserName);
+        Store store = storeController.getStore(storeName);
+        return store.getAllPermissions(ownerUserName);
+    }
+
 
     public boolean changeManagerPermissions(String memberUserName, String storeName, String managerUserName) throws ExecutionControl.NotImplementedException {
         // TODO: low priority , DON'T test it, dont forget to change function parameters
@@ -230,12 +287,14 @@ public class Market {
 
     public List<DealDTO> getStoreDeals(String memberUserName, String storeName) throws Exception {
         userController.assertIsMemberLoggedIn(memberUserName);
-        return this.storeController.getStoreDeals(memberUserName, storeName);
+        boolean isSystemManager = userController.isSystemManager(memberUserName);
+        return this.storeController.getStoreDeals(memberUserName, storeName, isSystemManager);
     }
 
     public List<DealDTO> getMemberDeals(String systemManagerUserName, String otherMemberUserName) throws Exception {
-        this.userController.checkMemberRole(systemManagerUserName, otherMemberUserName);
-        return this.storeController.getMemberDeals(otherMemberUserName);
+        userController.assertIsMemberLoggedIn(systemManagerUserName);
+        userController.assertIsSystemManager(systemManagerUserName);
+        return this.userController.getUserDeals(otherMemberUserName);
     }
 
     public boolean purchaseCartByCreditCard(String userName, String cardNumber, String month, String year, String holder, String cvv, String id, String receiverName,String shipmentAddress,String shipmentCity,String shipmentCountry,String zipCode) throws Exception {
@@ -245,6 +304,7 @@ public class Market {
             userController.assertIsGuestOrLoggedInMember(userName);
             userController.validateStorePolicy(userName);
             userController.validateAllProductsAmounts(userName);
+            userController.validateAllStoresIsActive(userName);
             Double priceBeforeDiscount = userController.getCartPriceBeforeDiscount(userName);
             Double priceAfterDiscount=userController.getCartPriceAfterDiscount(userName);
             transactionId = paymentService.pay(priceAfterDiscount, cardNumber, month, year,holder, cvv, id);
@@ -270,11 +330,6 @@ public class Market {
     public Double getCartPriceAfterDiscount(String memberUserName) throws Exception {
         userController.assertIsMemberLoggedIn(memberUserName);
         return userController.getCartPriceAfterDiscount(memberUserName);
-    }
-
-    public boolean removeOwnerByHisAppointer(String appointerUserName, String storeName, String ownerUserName ) throws Exception {
-        Store store = storeController.getStore(storeName); // TODO: MAYBE WE NEED TO CHECK IF STORE IS ACTIVE
-        return userController.removeOwnerByHisAppointer(appointerUserName,store,ownerUserName);
     }
 
     public Integer createMaxTimeAtDayProductBagConstraint(String memberUserName, String storeName, String productName, int hour, int minute, boolean addAsStorePaymentPolicy) throws Exception {
@@ -450,10 +505,19 @@ public class Market {
         return userController.getMemberInfo(callerMemberName,returnedMemberName);
     }
 
+
+    //return 1=storeFounder, 2=storeOwner, 3=storeManager, -1= noRule
+    public int getRuleForStore(String storeName, String memberName) throws Exception {
+        userController.assertIsMemberLoggedIn(memberName);
+        return storeController.getRuleForStore(storeName,memberName);
+    }
+
     public void loadData() {
         //if (Market.dataBaseFlag) {
-        MemberMapper.getInstance().loadAllMembersNames();
-        StoreMapper.getInstance().loadAllStoresNames();
+        if (Market.dbFlag) {
+            MemberMapper.getInstance().loadAllMembersNames();
+            StoreMapper.getInstance().loadAllStoresNames();
+        }
 //            userController.loadAllMembersNames();
 //            storeController.loadAllStoresNames();
         //}

@@ -22,6 +22,11 @@ public class MemberMapper {
 
     private static MemberMapper instance = null;
 
+    public static MemberMapper initMapper(){
+        instance = new MemberMapper();
+        return instance;
+    }
+
     private MemberMapper(){
         members = new ConcurrentHashMap<>();
         systemManagers = new ConcurrentHashMap<>();

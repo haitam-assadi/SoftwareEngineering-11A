@@ -49,7 +49,28 @@ public class AllStoreDiscountPolicy extends DiscountPolicy{
         return 0.0;
     }
 
+    @Override
+    public Double calculateDiscountForProduct(ConcurrentHashMap<String, ConcurrentHashMap<Product, Integer>> bagContent, String productName) throws Exception {
+        Double discountValue = 0.0;
+        productName=productName.strip().toLowerCase();
+        if(bagConstraint.checkConstraint(bagContent) && bagContent.containsKey(productName)){
+            ConcurrentHashMap<Product, Integer> productTuple = bagContent.get(productName);
+            Product product = productTuple.keys().nextElement();
+            int productAmount = productTuple.get(product);
+            discountValue = productAmount*product.getPrice()*(discountPercentage/100.0);
+        }
+        return discountValue;
+    }
+
+    @Override
+    public boolean checkIfProductHaveDiscount(String productName) throws Exception {
+        return true;
+    }
+
     public String toString(){
-        return discountPercentage+"% discount on all store products.";
+        String ret =  discountPercentage+"% discount on all store products.";
+        if(!bagConstraint.isPositiveBagConstraint())
+            ret = "if ("+bagConstraint.toString()+") then you get "+ret;
+        return ret;
     }
 }

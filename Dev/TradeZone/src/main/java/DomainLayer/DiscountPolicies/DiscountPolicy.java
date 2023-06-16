@@ -27,4 +27,7 @@ public abstract class DiscountPolicy {
     }
 
     public abstract Double calculateDiscount(ConcurrentHashMap<String, ConcurrentHashMap<Product, Integer>> bagContent);
+    public abstract Double calculateDiscountForProduct(ConcurrentHashMap<String, ConcurrentHashMap<Product, Integer>> bagContent, String productName) throws Exception;
+
+    public abstract boolean checkIfProductHaveDiscount(String productName) throws Exception;
 }

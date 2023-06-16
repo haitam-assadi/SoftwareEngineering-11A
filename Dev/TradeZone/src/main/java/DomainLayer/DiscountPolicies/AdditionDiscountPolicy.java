@@ -58,8 +58,26 @@ public class AdditionDiscountPolicy extends DiscountPolicy{
         return discountValue;
     }
 
+    @Override
+    public Double calculateDiscountForProduct(ConcurrentHashMap<String, ConcurrentHashMap<Product, Integer>> bagContent, String productName) throws Exception {
+        Double discountValue = 0.0;
+
+        if (bagConstraint.checkConstraint(bagContent))
+            discountValue = firstDiscountPolicy.calculateDiscountForProduct(bagContent, productName) + secondDiscountPolicy.calculateDiscountForProduct(bagContent, productName);
+
+        return discountValue;
+    }
+
+    @Override
+    public boolean checkIfProductHaveDiscount(String productName) throws Exception {
+        return firstDiscountPolicy.checkIfProductHaveDiscount(productName) || secondDiscountPolicy.checkIfProductHaveDiscount(productName);
+    }
+
 
     public String toString(){
-        return "("+ firstDiscountPolicy.toString()+") in addition ("+secondDiscountPolicy.toString() +").";
+        String ret =  "("+ firstDiscountPolicy.toString()+") in addition ("+secondDiscountPolicy.toString() +").";
+        if(!bagConstraint.isPositiveBagConstraint())
+            ret = "if ("+bagConstraint.toString()+") then you get "+ret;
+        return ret;
     }
 }

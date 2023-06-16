@@ -1,6 +1,7 @@
 package DomainLayer;
 
 import DTO.BagDTO;
+import DTO.DealDTO;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -58,5 +59,17 @@ public abstract class User {
 
     public List<BagDTO> getCartContent() throws Exception {
         return cart.getCartContent();
+    }
+    public boolean addDeal(Deal deal){
+        this.userDeals.add(deal);
+        return true;
+    }
+
+    public List<DealDTO> getUserDeals() {
+        List<DealDTO> deals = new ArrayList<>();
+        for(Deal deal : this.userDeals)
+            deals.add(deal.getDealDTO());
+
+        return deals;
     }
 }

@@ -20,4 +20,9 @@ public class PositiveBagConstraint extends BagConstraint{
     public boolean checkConstraint(ConcurrentHashMap<String, ConcurrentHashMap<Product, Integer>> bagContent){
         return true;
     }
+
+    @Override
+    public boolean isPositiveBagConstraint(){
+        return true;
+    }
 }

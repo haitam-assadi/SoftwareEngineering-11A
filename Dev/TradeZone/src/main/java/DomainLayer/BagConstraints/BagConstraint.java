@@ -30,9 +30,11 @@ public abstract class BagConstraint {
     public BagConstraint(){
     }
 
+    public boolean isPositiveBagConstraint(){
+        return false;
+    }
     public void setBagConstrainsId(BagConstrainsId bagConstrainsId){
         this.bagConstrainsId = bagConstrainsId;
     }
-
-    public abstract boolean checkConstraint(ConcurrentHashMap<String, ConcurrentHashMap<Product,Integer>> bagContent);
+    public abstract boolean  checkConstraint(ConcurrentHashMap<String, ConcurrentHashMap<Product,Integer>> bagContent);
 }

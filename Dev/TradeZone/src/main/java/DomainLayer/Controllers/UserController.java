@@ -1,5 +1,6 @@
 package DomainLayer.Controllers;
 
+import DTO.DealDTO;
 import DTO.MemberDTO;
 import DTO.StoreDTO;
 import DataAccessLayer.Controller.MemberMapper;
@@ -46,8 +47,10 @@ public class UserController {
             SystemManager systemManager = new SystemManager(member);
             member.setSystemManager(systemManager);
             systemManagers.put(user, systemManager);
-            DALService.saveMember(member, member.getCart());
-            DALService.systemManagerRepository.save(systemManager);
+            if (Market.dbFlag) {
+                DALService.saveMember(member, member.getCart());
+                DALService.systemManagerRepository.save(systemManager);
+            }
         }
         return user;
     }
@@ -68,7 +71,8 @@ public class UserController {
         userName = userName.strip().toLowerCase();
         if(isGuest(userName)) {
             guests.remove(userName);
-            DALService.cartRepository.deleteGuest();
+            if (Market.dbFlag)
+                DALService.cartRepository.deleteGuest();
         }
         else
             loggedInMemberExitMarket(userName);
@@ -82,10 +86,13 @@ public class UserController {
         members.put(newMemberUserName, member);
         member.defineNotifications(newMemberUserName);
         membersNamesConcurrentSet.add(newMemberUserName);
-        MemberMapper.getInstance().insertMember(member);
-        DALService.saveMember(member,member.getCart());
+        if (Market.dbFlag) {
+            MemberMapper.getInstance().insertMember(member);
+            DALService.saveMember(member, member.getCart());
+        }
         member.getCart().setMemberCart(member);
-        DALService.cartRepository.save(member.getCart());
+        if (Market.dbFlag)
+            DALService.cartRepository.save(member.getCart());
         member.addCart(guests.get(guestUserName).getCart());
         return true;
     }
@@ -150,7 +157,8 @@ public class UserController {
         loggedInMembers.put(MemberUserName, member);
         guests.remove(guestUserName);
         member.Login();
-        DALService.memberRepository.save(member);
+        if (Market.dbFlag)
+            DALService.memberRepository.save(member);
         return MemberUserName;
     }
 
@@ -210,6 +218,15 @@ public class UserController {
             return getMember(userName);
 
         throw new Exception("can't getUser: userName "+ userName+" does not exists!");
+    }
+
+    public List<DealDTO> getUserDeals(String userName) throws Exception {
+        assertStringIsNotNullOrBlank(userName);
+        userName=userName.strip().toLowerCase();
+        if(!isGuest(userName))
+            assertIsMember(userName);
+        User user = getUser(userName);
+        return user.getUserDeals();
     }
 
     public void assertIsGuestOrLoggedInMember(String userName) throws Exception {
@@ -280,7 +297,7 @@ public class UserController {
         }
     }
 
-    private boolean isSystemManager(String managerName) throws Exception {
+    public boolean isSystemManager(String managerName) throws Exception {
         assertStringIsNotNullOrBlank(managerName);
         managerName = managerName.strip().toLowerCase();
         MemberMapper.getInstance().getSystemManager(managerName);
@@ -331,8 +348,10 @@ public class UserController {
         SystemManager newManager = manager.AppointMemberAsSystemManager(otherMember);
         otherMember.setSystemManager(newManager);
         systemManagers.put(otherMemberName,newManager);
-        DALService.memberRepository.save(otherMember);
-        DALService.systemManagerRepository.save(newManager);
+        if (Market.dbFlag) {
+            DALService.memberRepository.save(otherMember);
+            DALService.systemManagerRepository.save(newManager);
+        }
         return true;
     }
 
@@ -359,25 +378,14 @@ public class UserController {
         return getMember(memberUserName).myStores();
     }
 
-    public void checkMemberRole(String systemManagerUserName, String otherMemberUserName) throws Exception {
-        if(!this.members.containsKey(systemManagerUserName)){
-            throw new Exception(systemManagerUserName + "has to be a member to get member's deals.");
-        }
-        if(!this.members.containsKey(otherMemberUserName)){
-            throw new Exception(otherMemberUserName + "has to be a member to get his deals.");
-        }
-        if(!this.members.get(systemManagerUserName).containsRole("SystemManager")){
-            throw new Exception(systemManagerUserName + "has to be a system manager to get member's deals.");
-        }
-    }
-
     public String memberLogOut(String memberUserName) throws Exception {
         assertIsMemberLoggedIn(memberUserName);
         Member member = loggedInMembers.get(memberUserName);
         member.Logout();
         loggedInMembers.remove(memberUserName);
         String newGuest = loginAsGuest();
-        DALService.memberRepository.save(member);
+        if (Market.dbFlag)
+            DALService.memberRepository.save(member);
         return newGuest;
     }
 
@@ -386,7 +394,8 @@ public class UserController {
         Member member = getMember(memberUserName);
         member.Logout();
         loggedInMembers.remove(memberUserName);
-        DALService.memberRepository.save(member);
+        if (Market.dbFlag)
+            DALService.memberRepository.save(member);
         return true;
     }
 
@@ -401,6 +410,12 @@ public class UserController {
         assertIsGuestOrLoggedInMember(userName);
         User user = getUser(userName);
         user.getCart().validateAllProductsAmounts();
+    }
+
+    public void validateAllStoresIsActive(String userName) throws Exception {
+        assertIsGuestOrLoggedInMember(userName);
+        User user = getUser(userName);
+        user.getCart().validateAllStoresIsActive();
     }
 
     public Double getCartPriceBeforeDiscount(String userName) throws Exception {
@@ -419,10 +434,10 @@ public class UserController {
         return user.getCart().updateStockAmount();
     }
 
-    public boolean removeOwnerByHisAppointer(String appointerUserName, Store store, String ownerUserName) throws Exception {
-        assertIsMemberLoggedIn(appointerUserName); // assert
+    public boolean removeOwnerByHisAppointer(String memberUserName, Store store, String ownerUserName) throws Exception {
+        assertIsMemberLoggedIn(memberUserName); // assert
         assertIsMember(ownerUserName); // assert
-        Member member = getMember(appointerUserName);
+        Member member = getMember(memberUserName);
         Member otherMember = getMember(ownerUserName);
         return member.removeOwnerByHisAppointer(store, otherMember);
     }
@@ -444,7 +459,17 @@ public class UserController {
         return false;
     }
 
-    private String nowTime(){
+    public boolean IsOwnerOrSystemManager(String userName,Store store){
+        try {
+            assertIsOwnerOrSystemManager(userName,store);
+            return true;
+        }catch (Exception e){
+            return false;
+        }
+    }
+
+
+        private String nowTime(){
         LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         return now.format(formatter);
@@ -479,10 +504,6 @@ public class UserController {
             throw new Exception("the caller member is not a system manager");
         Member member = members.get(returnedMemberName);
         return member.getMemberDTO();
-    }
-
-    public void loadAllMembersNames() {
-        membersNamesConcurrentSet = DALService.memberRepository.getAllMemberNames();
     }
 
 

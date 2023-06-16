@@ -16,6 +16,11 @@ public class StoreMapper {
     private Map<CategoryId,Category> categories;
     public static StoreMapper instance = null;
 
+    public static StoreMapper initMapper(){
+        instance = new StoreMapper();
+        return instance;
+    }
+
     private StoreMapper(){
         stores = new ConcurrentHashMap<>();
         products = new ConcurrentHashMap<>();

@@ -14,10 +14,11 @@ import java.util.concurrent.ConcurrentHashMap;
 @Entity
 @Table
 public class Stock {
-
     @Id
     private String stockName;
 
+    @Transient
+    Store store;
     @Transient
     private ConcurrentHashMap<String, ConcurrentHashMap<Product,Integer>> stockProducts;
 
@@ -38,8 +39,9 @@ public class Stock {
     @Transient
     private boolean isLoaded;
 
-    public Stock(String stockName){
-        this.stockName = stockName;
+    public Stock(Store store){
+        this.store = store;
+        this.stockName = store.getStoreName();
         stockProducts =new ConcurrentHashMap<>();
         stockCategories = new ConcurrentHashMap<>();
         productAmount = new ConcurrentHashMap<>();
@@ -92,9 +94,11 @@ public class Stock {
         if(!containsCategory(category)) {
             productCategory = new Category(category, getStoreName());
             StoreMapper.getInstance().insertCategory(new CategoryId(category,getStoreName()),productCategory);
-            DALService.categoryRepository.save(productCategory);
+            if (Market.dbFlag)
+                DALService.categoryRepository.save(productCategory);
             stockCategories.put(category,productCategory);
-            DALService.stockRepository.save(this);
+            if (Market.dbFlag)
+                DALService.stockRepository.save(this);
         }
         productCategory = stockCategories.get(category);
         Product product = new Product(nameProduct,stockName,productCategory,price,description);
@@ -104,7 +108,8 @@ public class Stock {
         this.productAmount.put(product,amount);
         productAmount.put(product,amount);
         stockProducts.put(nameProduct,productAmount);
-        DALService.saveProduct(this,productCategory,product);
+        if (Market.dbFlag)
+            DALService.saveProduct(this,productCategory,product);
         return true;
     }
 
@@ -116,7 +121,8 @@ public class Stock {
         stockProducts.remove(productName);
         productAmount.remove(product);
         StoreMapper.getInstance().removeProduct(new ProductId(productName,stockName));
-        DALService.removeProduct(product,this);
+        if (Market.dbFlag)
+            DALService.removeProduct(product,this);
         return true;
     }
 
@@ -127,6 +133,7 @@ public class Stock {
         if (!containsProduct(productName)){
             throw new Exception("can't update product description : productName "+ productName+" is not in the stock!");
         }
+        productName = productName.strip().toLowerCase();
         Product product = stockProducts.get(productName).keys().nextElement();
         product.setDescription(newProductDescription);
         return true;
@@ -139,6 +146,7 @@ public class Stock {
         if (!containsProduct(productName)){
             throw new Exception("can't update product amount : productName "+ productName+" is not in the stock!");
         }
+        productName = productName.strip().toLowerCase();
         Product product = stockProducts.get(productName).keys().nextElement();
         Integer currentProductAmount = ((Integer)stockProducts.get(productName).values().toArray()[0]);
         if (currentProductAmount == -1)
@@ -154,7 +162,8 @@ public class Stock {
         this.productAmount.put(product,newAmount);
         productAmount.put(product,newAmount);
         stockProducts.put(productName,productAmount);
-        DALService.stockRepository.save(this);
+        if (Market.dbFlag)
+            DALService.stockRepository.save(this);
         return true;
     }
 
@@ -166,6 +175,7 @@ public class Stock {
         if (!containsProduct(productName)){
             throw new Exception("can't update product price : productName "+ productName+" is not in the stock!");
         }
+        productName = productName.strip().toLowerCase();
         Product product = stockProducts.get(productName).keys().nextElement();
         if(Objects.equals(product.getPrice(), newPrice))
             throw new Exception("the price of the product equals to the new price");
@@ -179,19 +189,18 @@ public class Stock {
         Map<ProductDTO, Integer> productsInfoAmount = new LinkedHashMap<>();
         for(ConcurrentHashMap<Product,Integer> curr_hash_map: currentStockProducts) {
             Product product = curr_hash_map.keys().nextElement();
-            ProductDTO productDTO = curr_hash_map.keys().nextElement().getProductInfo();
+            ProductDTO productDTO = curr_hash_map.keys().nextElement().getProductInfo(store.getProductDiscountPolicies(product.getName()));
             productsInfoAmount.put(productDTO, curr_hash_map.get(product));
         }
         return productsInfoAmount;
     }
 
-    public synchronized ProductDTO getProductInfo(String productName) throws Exception {
-        //TODO: do we allow return info about products with amount == 0 ?????
+    public synchronized ProductDTO getProductInfo(String productName, List<String> productDiscountPolicies) throws Exception {
         if(!containsProduct(productName))
             throw new Exception(""+productName+"product does not exist in this store!");
 
         productName = productName.strip().toLowerCase();
-        return stockProducts.get(productName).keys().nextElement().getProductInfo();
+        return stockProducts.get(productName).keys().nextElement().getProductInfo(productDiscountPolicies);
     }
 
     public synchronized Product getProduct(String productName) throws Exception {
@@ -280,7 +289,12 @@ public class Stock {
 
         categoryName = categoryName.strip().toLowerCase();
 
-        return stockCategories.get(categoryName).getProductsInfo();
+        List<Product> productList =  stockCategories.get(categoryName).getProducts();
+        List<ProductDTO> productDTOList = new ArrayList<>();
+        for(Product product: productList)
+            productDTOList.add(getProductInfo(product.getName(), store.getProductDiscountPolicies(product.getName())));
+
+        return productDTOList;
 
     }
 
@@ -298,7 +312,7 @@ public class Stock {
         List<ProductDTO> filteredProductsByKeyWord = new LinkedList<>();
         for(String productName : stockProducts.keySet()){
             if(productName.contains(keyword)){
-                filteredProductsByKeyWord.add(getProductInfo(productName));
+                filteredProductsByKeyWord.add(getProductInfo(productName, store.getProductDiscountPolicies(productName)));
             }
         }
         return filteredProductsByKeyWord;
@@ -324,7 +338,7 @@ public class Stock {
         return this.stockProducts.get(productName).get(product);
     }
     public String getStoreName(){
-        return stockName;
+        return store.getStoreName();
     }
 
 
@@ -353,8 +367,8 @@ public class Stock {
             counter--;
         }
         if(counter!=0) msg+="]";
-        msg+= " from the stock: " + stockName;
-        NotificationService.getInstance().notify(stockName,msg,NotificationType.productBought);
+        msg+= " from the store: " + store.getStoreName();
+        NotificationService.getInstance().notify(store.getStoreName(),msg,NotificationType.productBought);
         return true;
     }
     public synchronized boolean replaceBagAmountToStock(ConcurrentHashMap<String, ConcurrentHashMap<Product,Integer>> bagContent) throws Exception {

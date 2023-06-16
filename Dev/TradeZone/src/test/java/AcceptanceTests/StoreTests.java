@@ -3,6 +3,7 @@ import org.junit.jupiter.api.*;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -205,18 +206,18 @@ public class StoreTests {
         }
     }
 
-    @Test
-    public void appoint_member_as_store_owner_from_owner_success(){
-        try{
-            Assertions.assertTrue(proxy.appointOtherMemberAsStoreOwner(store_founder,storeName,member_name1));
-            Assertions.assertTrue(proxy.appointOtherMemberAsStoreOwner(member_name1,storeName,member_name2));
-            Assertions.assertTrue(proxy.getStoreOwnersNames(store_founder, storeName).contains(member_name2));
-//            Assertions.assertEquals(proxy.getOwnerAppointer(member_name2,storeName),member_name1);
-            //should check also managing policy to be as the founder/the owner that makes him owner
-        }catch (Exception e){
-            Assertions.fail(e.getMessage());
-        }
-    }
+//    @Test
+//    public void appoint_member_as_store_owner_from_owner_success(){
+//        try{
+//            Assertions.assertTrue(proxy.appointOtherMemberAsStoreOwner(store_founder,storeName,member_name1));
+//            Assertions.assertTrue(proxy.appointOtherMemberAsStoreOwner(member_name1,storeName,member_name2));
+//            Assertions.assertTrue(proxy.getStoreOwnersNames(store_founder, storeName).contains(member_name2));
+////            Assertions.assertEquals(proxy.getOwnerAppointer(member_name2,storeName),member_name1);
+//            //should check also managing policy to be as the founder/the owner that makes him owner
+//        }catch (Exception e){
+//            Assertions.fail(e.getMessage());
+//        }
+//    }
 
     @Test
     public void appoint_member_as_store_owner_not_member_fail(){
@@ -251,17 +252,17 @@ public class StoreTests {
     }
 
     //circular appointment
-    @Test
-    public void appoint_member_as_store_owner_3circular_fail(){
-        try{
-            Assertions.assertTrue(proxy.appointOtherMemberAsStoreOwner(store_founder,storeName,member_name1));
-            Assertions.assertTrue(proxy.appointOtherMemberAsStoreOwner(member_name1,storeName,member_name2));
-            Assertions.assertThrows(Exception.class, () -> proxy.appointOtherMemberAsStoreOwner(member_name2,storeName,store_founder));
-//            Assertions.assertNotEquals(member_name2, proxy.getOwnerAppointer(store_founder,storeName));
-        }catch (Exception e){
-            Assertions.fail(e.getMessage());
-        }
-    }
+//    @Test
+//    public void appoint_member_as_store_owner_3circular_fail(){
+//        try{
+//            Assertions.assertTrue(proxy.appointOtherMemberAsStoreOwner(store_founder,storeName,member_name1));
+//            Assertions.assertTrue(proxy.appointOtherMemberAsStoreOwner(member_name1,storeName,member_name2));
+//            Assertions.assertThrows(Exception.class, () -> proxy.appointOtherMemberAsStoreOwner(member_name2,storeName,store_founder));
+////            Assertions.assertNotEquals(member_name2, proxy.getOwnerAppointer(store_founder,storeName));
+//        }catch (Exception e){
+//            Assertions.fail(e.getMessage());
+//        }
+//    }
 
     // II.4.6
     //appoint member to be store manager test
@@ -272,6 +273,62 @@ public class StoreTests {
             Assertions.assertTrue(proxy.getStoreManagersNames(store_founder, storeName).contains(member_name1));
 //            Assertions.assertEquals(store_founder, proxy.getManagerAppointer(member_name1,storeName));
             //todo:should check also managing permissions
+        }catch (Exception e){
+            Assertions.fail(e.getMessage());
+        }
+    }
+
+
+    @Test
+    public void updateManagerPermissionSuccess(){
+        try{
+            proxy.appointOtherMemberAsStoreManager(store_founder,storeName,member_name1);
+            Assertions.assertTrue(proxy.getStoreManagersNames(store_founder, storeName).contains(member_name1));
+            Assertions.assertTrue(proxy.getManagerPermissionsForStore(store_founder,storeName,member_name1).size()==1);
+            Assertions.assertTrue(proxy.getManagerPermissionsForStore(store_founder,storeName,member_name1).contains(1));
+            String productName = "newProductName";
+            String productCategory = "newProductCategory";
+            Integer productAmount = 10;
+            Double productPrice = 200.3;
+            String productDesc = "description";
+            Assertions.assertThrows(Exception.class, ()->proxy.addNewProductToStock(member_name1,storeName,productName,productCategory,productPrice,productDesc,productAmount));
+            List<Integer> newPermissions = new ArrayList<>();
+            newPermissions.add(2);
+            newPermissions.add(3);
+            newPermissions.add(5);
+            proxy.updateManagerPermissionsForStore(store_founder,storeName,member_name1,newPermissions);
+            Assertions.assertTrue(proxy.getManagerPermissionsForStore(store_founder,storeName,member_name1).size()==3);
+            Assertions.assertTrue(proxy.getManagerPermissionsForStore(store_founder,storeName,member_name1).contains(2));
+            Assertions.assertTrue(proxy.getManagerPermissionsForStore(store_founder,storeName,member_name1).contains(3));
+            Assertions.assertTrue(proxy.getManagerPermissionsForStore(store_founder,storeName,member_name1).contains(5));
+            Assertions.assertFalse(proxy.getManagerPermissionsForStore(store_founder,storeName,member_name1).contains(1));
+            Assertions.assertTrue(proxy.addNewProductToStock(member_name1,storeName,productName,productCategory,productPrice,productDesc,productAmount));
+            proxy.createMaxProductAmountAllContentBagConstraint(member_name1,storeName,productName,5,false);
+            Assertions.assertThrows(Exception.class, ()->proxy.createProductDiscountPolicy(member_name1,storeName,productName,50,false));
+            Assertions.assertTrue(proxy.removeProductFromStock(member_name1,storeName,productName));
+
+
+        }catch (Exception e){
+            Assertions.fail(e.getMessage());
+        }
+    }
+
+
+
+
+    @Test
+    public void updateManagerPermissionFailPermissionDoesNotExist(){
+        try{
+            proxy.appointOtherMemberAsStoreManager(store_founder,storeName,member_name1);
+            Assertions.assertTrue(proxy.getStoreManagersNames(store_founder, storeName).contains(member_name1));
+            Assertions.assertTrue(proxy.getManagerPermissionsForStore(store_founder,storeName,member_name1).size()==1);
+            Assertions.assertTrue(proxy.getManagerPermissionsForStore(store_founder,storeName,member_name1).contains(1));
+            List<Integer> newPermissions = new ArrayList<>();
+            newPermissions.add(8);
+            Assertions.assertThrows(Exception.class, ()->proxy.updateManagerPermissionsForStore(store_founder,storeName,member_name1,newPermissions));
+            Assertions.assertTrue(proxy.getManagerPermissionsForStore(store_founder,storeName,member_name1).size()==1);
+            Assertions.assertTrue(proxy.getManagerPermissionsForStore(store_founder,storeName,member_name1).contains(1));
+
         }catch (Exception e){
             Assertions.fail(e.getMessage());
         }
@@ -405,16 +462,16 @@ public class StoreTests {
         }
     }
 
-    @Test
-    public void remove_owner_by_owner_success(){
-        try{
-            proxy.appointOtherMemberAsStoreOwner(store_founder, storeName, member_name1);
-            proxy.appointOtherMemberAsStoreOwner(member_name1, storeName, member_name2);
-            Assertions.assertTrue(proxy.removeOwnerByHisAppointer(member_name1,storeName,member_name2));
-        }catch (Exception e){
-            Assertions.fail(e.getMessage());
-        }
-    }
+//    @Test
+//    public void remove_owner_by_owner_success(){
+//        try{
+//            proxy.appointOtherMemberAsStoreOwner(store_founder, storeName, member_name1);
+//            proxy.appointOtherMemberAsStoreOwner(member_name1, storeName, member_name2);
+//            Assertions.assertTrue(proxy.removeOwnerByHisAppointer(member_name1,storeName,member_name2));
+//        }catch (Exception e){
+//            Assertions.fail(e.getMessage());
+//        }
+//    }
 
     @Test
     public void remove_owner_by_him_self_fail(){
@@ -427,12 +484,32 @@ public class StoreTests {
         }
     }
 
+//    @Test
+//    public void remove_owner_by_not_his_appointer_fail(){
+//        try{
+//            proxy.appointOtherMemberAsStoreOwner(store_founder, storeName, member_name1);
+//            proxy.appointOtherMemberAsStoreOwner(store_founder, storeName, member_name2);
+//            Assertions.assertThrows(Exception.class,()-> proxy.removeOwnerByHisAppointer(member_name1,storeName,member_name2));
+//        }catch (Exception e){
+//            Assertions.fail(e.getMessage());
+//        }
+//    }
+
     @Test
-    public void remove_owner_by_not_his_appointer_fail(){
+    public void getRuleForStoreTest(){
         try{
             proxy.appointOtherMemberAsStoreOwner(store_founder, storeName, member_name1);
-            proxy.appointOtherMemberAsStoreOwner(store_founder, storeName, member_name2);
-            Assertions.assertThrows(Exception.class,()-> proxy.removeOwnerByHisAppointer(member_name1,storeName,member_name2));
+            proxy.appointOtherMemberAsStoreManager(store_founder, storeName, member_name2);
+            String newGuest = proxy.enterMarket();
+            String newMemberName = "newMemberForGetRuleForStoreTest";
+            String newMemberPassword = "Password1";
+            proxy.register(newGuest, newMemberName,newMemberPassword);
+            proxy.login(newGuest,newMemberName,newMemberPassword);
+            Assertions.assertTrue(proxy.getRuleForStore(storeName,store_founder) == 1);
+            Assertions.assertTrue(proxy.getRuleForStore(storeName,member_name1) == 2);
+            Assertions.assertTrue(proxy.getRuleForStore(storeName,member_name2) == 3);
+            Assertions.assertTrue(proxy.getRuleForStore(storeName,newMemberName) == -1);
+
         }catch (Exception e){
             Assertions.fail(e.getMessage());
         }

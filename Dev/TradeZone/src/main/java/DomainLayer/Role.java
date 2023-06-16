@@ -62,18 +62,6 @@ public abstract class Role {
         return member.getUserName();
     }
 
-    public boolean removeOwnerByHisAppointer(Store store,AbstractStoreOwner myBoss) throws Exception {
-        String storeName = store.getStoreName();
-        if(!responsibleForStores.containsKey(storeName))
-            throw new Exception(""+getUserName()+" is not owner for this store");
-        if(!myBossesForStores.containsKey(storeName))
-            throw new Exception(""+getUserName()+" is founder for this store");
-        if(!(myBossesForStores.get(storeName).getUserName() == myBoss.getUserName()))
-            throw new Exception(""+myBoss.getUserName()+" is not the my appointer for this store");
-        responsibleForStores.remove(storeName);
-        myBossesForStores.remove(storeName);
-        return true;
-    }
 
     public boolean isMyBossForStore(String storeName, String memberName) throws Exception {
         if(storeName==null)
