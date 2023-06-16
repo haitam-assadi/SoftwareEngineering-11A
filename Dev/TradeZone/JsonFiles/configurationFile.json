@@ -1,0 +1,7 @@
+{
+  "dataBaseUrl": "http:://localhost:data_base_card",
+  "port": 8080,
+  "creditCardUrl": "http:://localhost:credit_card"
+
+}
+

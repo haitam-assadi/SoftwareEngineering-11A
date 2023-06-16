@@ -1,9 +1,6 @@
 package AcceptanceTests;
 
-import DTO.BagDTO;
-import DTO.MemberDTO;
-import DTO.ProductDTO;
-import DTO.StoreDTO;
+import DTO.*;
 import DomainLayer.PaymentService;
 import DomainLayer.ShipmentService;
 import ServiceLayer.ResponseT;
@@ -172,6 +169,42 @@ public class RealBridge implements Bridge{
     }
 
     @Override
+    public boolean fillOwnerContract(String memberUserName, String storeName, String newOwnerUserName, Boolean decisions) throws Exception {
+        ResponseT<Boolean> response = systemService.fillOwnerContract(memberUserName, storeName, newOwnerUserName,decisions);
+        if (response.ErrorOccurred){
+            throw new Exception(response.errorMessage);
+        }
+        return response.getValue();
+    }
+
+    @Override
+    public List<OwnerContractDTO> getAlreadyDoneContracts(String memberUserName, String storeName) throws Exception {
+        ResponseT<List<OwnerContractDTO>> response = systemService.getAlreadyDoneContracts(memberUserName, storeName);
+        if (response.ErrorOccurred){
+            throw new Exception(response.errorMessage);
+        }
+        return response.getValue();
+    }
+
+    @Override
+    public List<OwnerContractDTO> getMyCreatedContracts(String memberUserName, String storeName) throws Exception {
+        ResponseT<List<OwnerContractDTO>> response = systemService.getMyCreatedContracts(memberUserName, storeName);
+        if (response.ErrorOccurred){
+            throw new Exception(response.errorMessage);
+        }
+        return response.getValue();
+    }
+
+    @Override
+    public List<OwnerContractDTO> getPendingContractsForOwner(String memberUserName, String storeName) throws Exception {
+        ResponseT<List<OwnerContractDTO>> response = systemService.getPendingContractsForOwner(memberUserName, storeName);
+        if (response.ErrorOccurred){
+            throw new Exception(response.errorMessage);
+        }
+        return response.getValue();
+    }
+
+    @Override
     public String getOwnerAppointer(String OwnerName, String storeName) { // TODO: add to market and service
             return "";
     }
@@ -219,17 +252,17 @@ public class RealBridge implements Bridge{
         }
         Map<Integer, List<String>> rulesInfo = new HashMap<>();
         for(MemberDTO member : response.getValue()){
-            if(member.jobTitle.equals("StoreFounder")){
+            if(member.memberStores.containsKey("StoreFounder")){
                 if(!rulesInfo.containsKey(0))
                     rulesInfo.put(0, new LinkedList<>());
                 rulesInfo.get(0).add(member.username);
             }
-            else if (member.jobTitle.equals("StoreOwner")){
+            else if (member.memberStores.containsKey("StoreOwner")){
                 if(!rulesInfo.containsKey(1))
                     rulesInfo.put(1, new LinkedList<>());
                 rulesInfo.get(1).add(member.username);
             }
-            else if (member.jobTitle.equals("StoreManager")){
+            else if (member.memberStores.containsKey("StoreManager")){
                 if(!rulesInfo.containsKey(2))
                     rulesInfo.put(2, new LinkedList<>());
                 rulesInfo.get(2).add(member.username);
@@ -324,8 +357,8 @@ public class RealBridge implements Bridge{
             throw new Exception(response.errorMessage);
         }
         List<String> ret = new LinkedList<>();
-        List<ProductDTO> storeProducts = response.getValue().productsInfo;
-        for(ProductDTO p : storeProducts){
+        Map<ProductDTO,Integer> storeProducts = response.getValue().productsInfoAmount;
+        for(ProductDTO p : storeProducts.keySet().stream().toList()){
             ret.add(p.name);
         }
         return ret;
@@ -647,6 +680,159 @@ public class RealBridge implements Bridge{
     }
 
     @Override
+    public Boolean addConstraintAsPaymentPolicy(String memberUserName, String storeName, Integer bagConstraintId) throws Exception {
+        ResponseT<Boolean> response = systemService.addConstraintAsPaymentPolicy(memberUserName,storeName,bagConstraintId);
+        if (response.ErrorOccurred){
+            throw new Exception(response.errorMessage);
+        }
+        return response.getValue();
+    }
+
+    @Override
+    public Boolean removeConstraintFromPaymentPolicies(String memberUserName, String storeName, Integer bagConstraintId) throws Exception {
+        ResponseT<Boolean> response = systemService.removeConstraintFromPaymentPolicies(memberUserName,storeName,bagConstraintId);
+        if (response.ErrorOccurred){
+            throw new Exception(response.errorMessage);
+        }
+        return response.getValue();
+    }
+
+    @Override
+    public List<String> getAllPaymentPolicies(String memberUserName, String storeName) throws Exception {
+        ResponseT<List<String>> response = systemService.getAllPaymentPolicies(memberUserName,storeName);
+        if (response.ErrorOccurred){
+            throw new Exception(response.errorMessage);
+        }
+        return response.getValue();
+    }
+
+    @Override
+    public Integer createProductDiscountPolicy(String memberUserName, String storeName, String productName,  int discountPercentage, boolean addAsStoreDiscountPolicy) throws Exception {
+        ResponseT<Integer> response = systemService.createProductDiscountPolicy(memberUserName,storeName,productName,discountPercentage,addAsStoreDiscountPolicy);
+        if (response.ErrorOccurred){
+            throw new Exception(response.errorMessage);
+        }
+        return response.getValue();
+    }
+
+    @Override
+    public Integer createProductDiscountPolicyWithConstraint(String memberUserName, String storeName, String productName,  int discountPercentage, Integer bagConstraintId, boolean addAsStoreDiscountPolicy) throws Exception {
+        ResponseT<Integer> response = systemService.createProductDiscountPolicyWithConstraint(memberUserName,storeName,productName,discountPercentage,bagConstraintId,addAsStoreDiscountPolicy);
+        if (response.ErrorOccurred){
+            throw new Exception(response.errorMessage);
+        }
+        return response.getValue();
+    }
+
+    @Override
+    public Integer createCategoryDiscountPolicy(String memberUserName, String storeName, String categoryName,  int discountPercentage, boolean addAsStoreDiscountPolicy) throws Exception {
+        ResponseT<Integer> response = systemService.createCategoryDiscountPolicy(memberUserName,storeName,categoryName,discountPercentage,addAsStoreDiscountPolicy);
+        if (response.ErrorOccurred){
+            throw new Exception(response.errorMessage);
+        }
+        return response.getValue();
+    }
+
+    @Override
+    public Integer createCategoryDiscountPolicyWithConstraint(String memberUserName, String storeName, String categoryName,  int discountPercentage, Integer bagConstraintId, boolean addAsStoreDiscountPolicy) throws Exception {
+        ResponseT<Integer> response = systemService.createCategoryDiscountPolicyWithConstraint(memberUserName,storeName,categoryName,discountPercentage,bagConstraintId,addAsStoreDiscountPolicy);
+        if (response.ErrorOccurred){
+            throw new Exception(response.errorMessage);
+        }
+        return response.getValue();
+    }
+
+    @Override
+    public Integer createAllStoreDiscountPolicy(String memberUserName, String storeName, int discountPercentage, boolean addAsStoreDiscountPolicy) throws Exception {
+        ResponseT<Integer> response = systemService.createAllStoreDiscountPolicy(memberUserName,storeName,discountPercentage,addAsStoreDiscountPolicy);
+        if (response.ErrorOccurred){
+            throw new Exception(response.errorMessage);
+        }
+        return response.getValue();
+    }
+
+    @Override
+    public Integer createAllStoreDiscountPolicyWithConstraint(String memberUserName, String storeName, int discountPercentage, Integer bagConstraintId, boolean addAsStoreDiscountPolicy) throws Exception {
+        ResponseT<Integer> response = systemService.createAllStoreDiscountPolicyWithConstraint(memberUserName,storeName,discountPercentage,bagConstraintId,addAsStoreDiscountPolicy);
+        if (response.ErrorOccurred){
+            throw new Exception(response.errorMessage);
+        }
+        return response.getValue();
+    }
+
+    @Override
+    public Integer createAdditionDiscountPolicy(String memberUserName, String storeName, Integer firstDiscountPolicyId, Integer secondDiscountPolicyId, boolean addAsStoreDiscountPolicy) throws Exception {
+        ResponseT<Integer> response = systemService.createAdditionDiscountPolicy(memberUserName,storeName,firstDiscountPolicyId,secondDiscountPolicyId,addAsStoreDiscountPolicy);
+        if (response.ErrorOccurred){
+            throw new Exception(response.errorMessage);
+        }
+        return response.getValue();
+    }
+
+    @Override
+    public Integer createAdditionDiscountPolicyWithConstraint(String memberUserName, String storeName, Integer firstDiscountPolicyId, Integer secondDiscountPolicyId, Integer bagConstraintId, boolean addAsStoreDiscountPolicy) throws Exception {
+        ResponseT<Integer> response = systemService.createAdditionDiscountPolicyWithConstraint(memberUserName,storeName,firstDiscountPolicyId,secondDiscountPolicyId,bagConstraintId,addAsStoreDiscountPolicy);
+        if (response.ErrorOccurred){
+            throw new Exception(response.errorMessage);
+        }
+        return response.getValue();
+    }
+
+    @Override
+    public Integer createMaxValDiscountPolicy(String memberUserName, String storeName, Integer firstDiscountPolicyId, Integer secondDiscountPolicyId, boolean addAsStoreDiscountPolicy) throws Exception {
+        ResponseT<Integer> response = systemService.createMaxValDiscountPolicy(memberUserName,storeName,firstDiscountPolicyId,secondDiscountPolicyId,addAsStoreDiscountPolicy);
+        if (response.ErrorOccurred){
+            throw new Exception(response.errorMessage);
+        }
+        return response.getValue();
+    }
+
+    @Override
+    public Integer createMaxValDiscountPolicyWithConstraint(String memberUserName, String storeName, Integer firstDiscountPolicyId, Integer secondDiscountPolicyId, Integer bagConstraintId, boolean addAsStoreDiscountPolicy) throws Exception {
+        ResponseT<Integer> response = systemService.createMaxValDiscountPolicyWithConstraint(memberUserName,storeName,firstDiscountPolicyId,secondDiscountPolicyId,bagConstraintId,addAsStoreDiscountPolicy);
+        if (response.ErrorOccurred){
+            throw new Exception(response.errorMessage);
+        }
+        return response.getValue();
+    }
+
+    @Override
+    public Boolean addAsStoreDiscountPolicy(String memberUserName, String storeName, Integer discountPolicyId) throws Exception {
+        ResponseT<Boolean> response = systemService.addAsStoreDiscountPolicy(memberUserName,storeName,discountPolicyId);
+        if (response.ErrorOccurred){
+            throw new Exception(response.errorMessage);
+        }
+        return response.getValue();
+    }
+
+    @Override
+    public Boolean removeFromStoreDiscountPolicies(String memberUserName, String storeName, Integer discountPolicyId) throws Exception {
+        ResponseT<Boolean> response = systemService.removeFromStoreDiscountPolicies(memberUserName,storeName,discountPolicyId);
+        if (response.ErrorOccurred){
+            throw new Exception(response.errorMessage);
+        }
+        return response.getValue();
+    }
+
+    @Override
+    public List<String> getAllCreatedDiscountPolicies(String memberUserName, String storeName) throws Exception {
+        ResponseT<List<String>> response = systemService.getAllCreatedDiscountPolicies(memberUserName,storeName);
+        if (response.ErrorOccurred){
+            throw new Exception(response.errorMessage);
+        }
+        return response.getValue();
+    }
+
+    @Override
+    public List<String> getAllStoreDiscountPolicies(String memberUserName, String storeName) throws Exception {
+        ResponseT<List<String>> response = systemService.getAllStoreDiscountPolicies(memberUserName,storeName);
+        if (response.ErrorOccurred){
+            throw new Exception(response.errorMessage);
+        }
+        return response.getValue();
+    }
+
+    @Override
     public Boolean AppointMemberAsSystemManager(String managerName, String otherMemberName) throws Exception {
         ResponseT<Boolean> response = systemService.AppointMemberAsSystemManager(managerName,otherMemberName);
         if (response.ErrorOccurred){
@@ -667,6 +853,123 @@ public class RealBridge implements Bridge{
     @Override
     public Set<String> getAllSystemManagers(String managerName) throws Exception {
         ResponseT<Set<String>> response = systemService.getAllSystemManagers(managerName);
+        if (response.ErrorOccurred){
+            throw new Exception(response.errorMessage);
+        }
+        return response.getValue();
+    }
+
+    @Override
+    public Double getCartPriceBeforeDiscount(String memberUserName) throws Exception {
+        ResponseT<Double> response = systemService.getCartPriceBeforeDiscount(memberUserName);
+        if (response.ErrorOccurred){
+            throw new Exception(response.errorMessage);
+        }
+        return response.getValue();
+    }
+
+    @Override
+    public Double getCartPriceAfterDiscount(String memberUserName) throws Exception {
+        ResponseT<Double> response = systemService.getCartPriceAfterDiscount(memberUserName);
+        if (response.ErrorOccurred){
+            throw new Exception(response.errorMessage);
+        }
+        return response.getValue();
+    }
+
+
+
+
+    @Override
+    //return 1=storeFounder, 2=storeOwner, 3=storeManager, -1= noRule
+    public Integer getRuleForStore(String storeName, String memberName) throws Exception {
+        ResponseT<Integer> response = systemService.getRuleForStore(storeName,memberName);
+        if (response.ErrorOccurred){
+            throw new Exception(response.errorMessage);
+        }
+        return response.getValue();
+    }
+
+
+
+
+
+    @Override
+    public boolean updateManagerPermissionsForStore(String ownerUserName, String storeName, String managerUserName, List<Integer> newPermissions) throws Exception {
+        ResponseT<Boolean> response = systemService.updateManagerPermissionsForStore(ownerUserName, storeName, managerUserName, newPermissions);
+        if (response.ErrorOccurred){
+            throw new Exception(response.errorMessage);
+        }
+        return response.getValue();
+    }
+
+    @Override
+    public List<Integer> getManagerPermissionsForStore(String ownerUserName, String storeName, String managerUserName) throws Exception {
+        ResponseT<List<Integer>> response = systemService.getManagerPermissionsForStore(ownerUserName, storeName, managerUserName);
+        if (response.ErrorOccurred){
+            throw new Exception(response.errorMessage);
+        }
+        return response.getValue();
+    }
+
+    public void takeDownSystemManagerAppointment(String storeName, String appointedMember) {
+        systemService.takeDownSystemManagerAppointment(storeName, appointedMember);
+    }
+
+    public Map<String, List<String>> getStoreInfo(String userName, String storeName) throws Exception {
+        ResponseT<StoreDTO> response = systemService.getStoreInfo(userName, storeName);
+        if (response.ErrorOccurred){
+            throw new Exception(response.errorMessage);
+        }
+        Map details = new HashMap();
+        List store= new ArrayList();
+        store.add(response.value.storeName);
+        List founder = new ArrayList();
+        founder.add(response.value.founderName);
+        details.put("storeName",store);
+        details.put("founderName", founder);
+        details.put("ownersNames", response.value.ownersNames);
+        details.put("managersNames", response.value.managersNames);
+        return details;
+    }
+
+    public void send(String member1Name, String message) throws Exception {
+        systemService.send(member1Name, message);
+    }
+
+    public List<String> getLiveMessages(String memberUserName) throws Exception {
+        ResponseT<List<String>> response= systemService.getLiveMessages(memberUserName);
+        if (response.ErrorOccurred){
+            throw new Exception(response.errorMessage);
+        }
+        return response.getValue();
+    }
+
+    public List<String> getAppendingMessages(String memberUserName) {
+        return systemService.getAppendingMessages(memberUserName);
+    }
+
+    @Override
+    public ProductDTO getProductInfoFromStore(String userName, String storeName, String productName)throws Exception{
+        ResponseT<ProductDTO> response = systemService.getProductInfoFromStore(userName, storeName, productName);
+        if (response.ErrorOccurred){
+            throw new Exception(response.errorMessage);
+        }
+        return response.getValue();
+    }
+
+    @Override
+    public List<DealDTO> getStoreDeals(String memberUserName, String storeName) throws Exception {
+        ResponseT<List<DealDTO>> response = systemService.getStoreDeals(memberUserName, storeName);
+        if (response.ErrorOccurred){
+            throw new Exception(response.errorMessage);
+        }
+        return response.getValue();
+    }
+
+    @Override
+    public List<DealDTO> getMemberDeals(String memberUserName, String otherMemberUserName) throws Exception {
+        ResponseT<List<DealDTO>> response = systemService.getMemberDeals(memberUserName, otherMemberUserName);
         if (response.ErrorOccurred){
             throw new Exception(response.errorMessage);
         }

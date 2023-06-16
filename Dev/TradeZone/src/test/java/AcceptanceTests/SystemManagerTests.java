@@ -16,6 +16,10 @@ public class SystemManagerTests {
     String memberPass2 = "member2Pass";
     String memberName3 = "member3";
     String memberPass3 = "member3Pass";
+
+    String memberName4 = "member4";
+
+    String memberPass4 = "member4Pass";
     private ProxyBridge proxy= new ProxyBridge(new RealBridge());
 
     @BeforeEach
@@ -31,6 +35,8 @@ public class SystemManagerTests {
         proxy.register(user,memberName2,memberPass2);
         user = proxy.enterMarket();
         proxy.register(user,memberName3,memberPass3);
+        user = proxy.enterMarket();
+        proxy.register(user,memberName4,memberPass4);
     }
 
     @AfterEach
@@ -150,6 +156,8 @@ public class SystemManagerTests {
         }
     }
 
+    //REQ 6.2
+
     @Test
     public void remove_member_success(){
         try{
@@ -157,6 +165,93 @@ public class SystemManagerTests {
             Assertions.assertEquals(managerName,proxy.login(user,managerName,managerPass));
             Assertions.assertTrue(proxy.removeMemberBySystemManager(managerName,memberName3));
             Assertions.assertFalse(proxy.getAllMembers().contains(memberName3));
+        }catch (Exception e){
+            Assertions.fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void remove_member_without_being_system_manager_failure(){
+        try{
+            Exception exception = Assertions.assertThrows(Exception.class ,() -> proxy.removeMemberBySystemManager("not a system manager", memberName));
+        }catch (Exception e){
+            Assertions.fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void remove_unavailable_member_by_system_manager_failure(){
+        try{
+            user = proxy.enterMarket();
+            Assertions.assertEquals(managerName,proxy.login(user,managerName,managerPass));
+            Exception exception = Assertions.assertThrows(Exception.class ,() -> proxy.removeMemberBySystemManager(managerName, "unavailable_member"));
+
+        }catch (Exception e){
+            Assertions.fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void remove_store_founder_by_system_manager_failure(){
+        try{
+            user = proxy.enterMarket();
+            Assertions.assertEquals(managerName,proxy.login(user,managerName,managerPass));
+            user = proxy.enterMarket();
+            Assertions.assertEquals(memberName2,proxy.login(user,memberName2,memberPass2));
+            Assertions.assertEquals("member2store2",proxy.createStore(memberName2,"member2store2"));
+            Assertions.assertThrows(Exception.class,()->proxy.removeMemberBySystemManager(managerName,memberName2));
+        }catch (Exception e){
+            Assertions.fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void remove_store_owner_by_system_manager_failure(){
+        try{
+            user = proxy.enterMarket();
+            Assertions.assertEquals(managerName,proxy.login(user,managerName,managerPass));
+            user = proxy.enterMarket();
+            Assertions.assertEquals(memberName2,proxy.login(user,memberName2,memberPass2));
+            Assertions.assertEquals("member2store2",proxy.createStore(memberName2,"member2store2"));
+            Assertions.assertTrue(proxy.appointOtherMemberAsStoreOwner(memberName2, "member2store2", memberName3));
+            Assertions.assertThrows(Exception.class,()->proxy.removeMemberBySystemManager(managerName,memberName3));
+        }catch (Exception e){
+            Assertions.fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void remove_store_manager_by_system_manager_failure(){
+        try{
+            user = proxy.enterMarket();
+            Assertions.assertEquals(managerName,proxy.login(user,managerName,managerPass));
+            user = proxy.enterMarket();
+            Assertions.assertEquals(memberName2,proxy.login(user,memberName2,memberPass2));
+            Assertions.assertEquals("member2store2",proxy.createStore(memberName2,"member2store2"));
+            Assertions.assertTrue(proxy.appointOtherMemberAsStoreManager(memberName2, "member2store2", memberName3));
+            Assertions.assertThrows(Exception.class,()->proxy.removeMemberBySystemManager(managerName,memberName3));
+        }catch (Exception e){
+            Assertions.fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void remove_member_by_system_manager_without_being_logged_in_failure(){
+        try{
+            user = proxy.enterMarket();
+            Exception exception = Assertions.assertThrows(Exception.class ,() -> proxy.removeMemberBySystemManager(managerName, memberName2));
+        }catch (Exception e){
+            Assertions.fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void remove_system_manager_by_another_system_manager_failure(){
+        try{
+            user = proxy.enterMarket();
+            Assertions.assertEquals(managerName,proxy.login(user,managerName,managerPass));
+            Assertions.assertTrue(proxy.AppointMemberAsSystemManager(managerName, memberName2));
+            Exception exception = Assertions.assertThrows(Exception.class ,() -> proxy.removeMemberBySystemManager(managerName, memberName2));
         }catch (Exception e){
             Assertions.fail(e.getMessage());
         }

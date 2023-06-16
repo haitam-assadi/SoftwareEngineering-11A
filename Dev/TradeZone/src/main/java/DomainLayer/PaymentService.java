@@ -26,7 +26,7 @@ public class PaymentService extends ExternalService{
         action_params.put("ccv",ccv);
         action_params.put("id",id);
 
-        String serviceAnswer = sendPostRequest(action_params, serviceResTimeInMin).strip();
+        String serviceAnswer = sendPostRequest(action_params, serviceResTimeInSeconds).strip();
 
         if(!isNumeric(serviceAnswer))
             throw new Exception("transaction has failed");
@@ -78,7 +78,7 @@ public class PaymentService extends ExternalService{
         action_params.put("action_type","cancel_pay");
         action_params.put("transaction_id",Integer.toString(transactionId));
 
-        String serviceAnswer = sendPostRequest(action_params, serviceResTimeInMin).strip();
+        String serviceAnswer = sendPostRequest(action_params, serviceResTimeInSeconds).strip();
 
         if(!isNumeric(serviceAnswer))
             throw new Exception("canceling transaction has failed");

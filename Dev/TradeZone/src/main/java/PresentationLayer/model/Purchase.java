@@ -2,8 +2,9 @@ package PresentationLayer.model;
 
 public class Purchase {
     String cardNumber;
-    String month;
-    String year;
+//    String month;
+//    String year;
+    String expiration;
     String holder;
     String cvv;
     String id;
@@ -21,20 +22,20 @@ public class Purchase {
         this.cardNumber = cardNumber;
     }
 
-    public String getMonth() {
-        return month;
+    public String getExpiration() {
+        return expiration;
     }
 
-    public void setMonth(String month) {
-        this.month = month;
+    public void setExpiration(String expiration) {
+        this.expiration = expiration;
+    }
+
+    public String getMonth() {
+        return expiration.split("-")[1];
     }
 
     public String getYear() {
-        return year;
-    }
-
-    public void setYear(String year) {
-        this.year = year;
+        return expiration.split("-")[0];
     }
 
     public String getHolder() {

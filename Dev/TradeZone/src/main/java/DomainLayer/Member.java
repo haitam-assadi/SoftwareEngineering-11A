@@ -1,10 +1,12 @@
 package DomainLayer;
 
+import DTO.DealDTO;
 import DTO.MemberDTO;
 import DTO.StoreDTO;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
+import java.io.IOException;
 enum RoleEnum {
     StoreOwner,
     StoreFounder,
@@ -21,6 +23,8 @@ public class Member extends User{
     private List<String> pendingMessages;
 
     private boolean isOnline;
+
+    private List<String> liveMessages;
 
 
     public void setSystemManager(SystemManager systemManager) {
@@ -40,6 +44,7 @@ public class Member extends User{
         systemManager = null;
         pendingMessages = new ArrayList<>();
         isOnline = false;
+        liveMessages = new ArrayList<>();
     }
 
 
@@ -48,12 +53,17 @@ public class Member extends User{
         return password;
     }
 
-    public MemberDTO getMemberDTO(String jobTitle) {
-        return new MemberDTO(this.userName, jobTitle);
+    public MemberDTO getMemberDTO() throws Exception {
+        List<DealDTO> dealDTOList = new LinkedList<>();
+        for (Deal deal : userDeals){
+            dealDTOList.add(deal.getDealDTO());
+        }
+        return new MemberDTO(this.userName, myStores(),dealDTOList);
     }
     public boolean appointOtherMemberAsStoreOwner(Store store, Member otherMember) throws Exception {
         AbstractStoreOwner owner = null;
         String storeName = store.getStoreName();
+
         if(roles.containsKey(RoleEnum.StoreFounder) && roles.get(RoleEnum.StoreFounder).haveStore(storeName))
             owner = (StoreFounder)roles.get(RoleEnum.StoreFounder);
         else if (roles.containsKey(RoleEnum.StoreOwner) && roles.get(RoleEnum.StoreOwner).haveStore(storeName))
@@ -61,7 +71,14 @@ public class Member extends User{
 
         if(owner == null) throw new Exception(""+getUserName()+" is not owner for "+storeName);
         else{
-            owner.appointOtherMemberAsStoreOwner(store,otherMember);
+            if(store.isAlreadyStoreOwner(otherMember.getUserName()))
+                throw new Exception("member "+otherMember.getUserName()+" is already store owner");
+            if(store.isAlreadyStoreManager(otherMember.getUserName()))
+                throw new Exception("member "+otherMember.getUserName()+" is already store manager");
+            if(store.isContractExistsForNewOwner(otherMember.getUserName()))
+                throw new Exception("member "+otherMember.getUserName()+" already have a contract for this store ownership");
+
+            store.createContractForNewOwner(owner, otherMember);
             return true;
         }
     }
@@ -69,6 +86,8 @@ public class Member extends User{
     public boolean appointMemberAsStoreOwner(Store store, AbstractStoreOwner myBoss) throws Exception {
         if(store.isAlreadyStoreOwner(getUserName()))
             throw new Exception("member"+getUserName()+" is already store owner");
+        if(store.isAlreadyStoreManager(getUserName()))
+            throw new Exception("member"+getUserName()+" is already store manager");
         StoreOwner storeOwner =  new StoreOwner(this);
         roles.putIfAbsent(RoleEnum.StoreOwner,storeOwner);
         subscribeOwnerForNotifications(store.getStoreName());
@@ -77,6 +96,7 @@ public class Member extends User{
         store.appointMemberAsStoreOwner(storeOwnerRole);
         return true;
     }
+
 
     public StoreOwner getStoreOwner(){
         StoreOwner storeOwnerRole =  (StoreOwner) roles.get(RoleEnum.StoreOwner);
@@ -101,6 +121,22 @@ public class Member extends User{
         if(owner == null) throw new Exception(""+getUserName()+" is not owner for "+storeName);
         else{
             owner.appointOtherMemberAsStoreManager(store,otherMember);
+            return true;
+        }
+    }
+
+
+    public boolean removeOwnerByHisAppointer(Store store, Member otherMember) throws Exception {
+        AbstractStoreOwner owner = null;
+        String storeName = store.getStoreName();
+        if(roles.containsKey(RoleEnum.StoreFounder) && roles.get(RoleEnum.StoreFounder).haveStore(storeName))
+            owner = (StoreFounder)roles.get(RoleEnum.StoreFounder);
+        else if (roles.containsKey(RoleEnum.StoreOwner) && roles.get(RoleEnum.StoreOwner).haveStore(storeName))
+            owner = (StoreOwner)roles.get(RoleEnum.StoreOwner);
+
+        if(owner == null) throw new Exception(""+getUserName()+" is not owner for "+storeName);
+        else{
+            owner.removeOwnerByHisAppointer(store,otherMember);
             return true;
         }
     }
@@ -135,7 +171,7 @@ public class Member extends User{
         return true;
     }
 
-    public Map<String, List<StoreDTO>> myStores() {
+    public Map<String, List<StoreDTO>> myStores() throws Exception {
         Map<String,List<StoreDTO>> memberStores = new ConcurrentHashMap<>();
 
         if(roles.containsKey(RoleEnum.StoreFounder)){
@@ -185,23 +221,6 @@ public class Member extends User{
         }
     }
 
-    public boolean removeOwnerByHisAppointer(Store store, Member otherMember) throws Exception {
-        AbstractStoreOwner owner = null;
-        StoreOwner otherOwner = null;
-        String storeName = store.getStoreName();
-        if(roles.containsKey(RoleEnum.StoreFounder) && roles.get(RoleEnum.StoreFounder).haveStore(storeName))
-            owner = (StoreFounder)roles.get(RoleEnum.StoreFounder);
-        else if (roles.containsKey(RoleEnum.StoreOwner) && roles.get(RoleEnum.StoreOwner).haveStore(storeName))
-            owner = (StoreOwner)roles.get(RoleEnum.StoreOwner);
-        if(owner == null) throw new Exception(""+getUserName()+" is not owner for "+storeName);
-        otherOwner = otherMember.getStoreOwner();
-        if(otherOwner == null) throw new Exception(""+otherOwner.getUserName()+" is not owner");
-        else{
-            owner.removeOwnerByHisAppointer(store,otherMember,otherOwner);
-            return true;
-        }
-    }
-
     public void assertIsOwnerForTheStore(Store store) throws Exception {
         AbstractStoreOwner owner = null;
         String storeName = store.getStoreName();
@@ -223,24 +242,25 @@ public class Member extends User{
     }
 
 
-    public void send(String msg){
+    public void send(String msg) throws IOException {
         if(isOnline){
             NotificationService.getInstance().send(userName,msg);
+            liveMessages.add(msg);
         }else{
             pendingMessages.add(msg);
         }
     }
 
-    public void Login() {
+    public void Login() throws IOException {
         isOnline = true;
-        if(!pendingMessages.isEmpty()){
-            StringBuilder msg = new StringBuilder("Attention: you got " + pendingMessages.size() + " messages:\n");
-            for(String str: pendingMessages){
-                msg.append("   - ").append(str);
-            }
-            pendingMessages.clear();
-            NotificationService.getInstance().send(userName, msg.toString());
-        }
+//        if(!pendingMessages.isEmpty()){
+//            StringBuilder msg = new StringBuilder("Attention: you got " + pendingMessages.size() + " messages:\n");
+//            for(String str: pendingMessages){
+//                msg.append("   - ").append(str);
+//            }
+//            pendingMessages.clear();
+//            NotificationService.getInstance().send(userName, msg.toString());
+//        }
     }
 
     public void Logout() {
@@ -254,6 +274,7 @@ public class Member extends User{
 
     public void addCart(Cart cart) {
         this.cart = cart;
+        cart.setUser(this);
     }
 
     public void assertHaveNoRule() throws Exception {
@@ -262,6 +283,40 @@ public class Member extends User{
         }
     }
 
+
+    //FOR ACCTEST OF STORE MANAGER
+    public void takeDownSystemManagerAppointment(){
+        this.roles.remove(RoleEnum.StoreManager);
+    }
+
+    public List<String> checkForAppendingMessages() throws IOException {
+        List<String> messages = new ArrayList<>();
+        if(!pendingMessages.isEmpty()){
+            StringBuilder msg = new StringBuilder("Attention: you got " + pendingMessages.size() + " new messages:\n");
+            for(String str: pendingMessages){
+                msg.append("   - ").append(str);
+            }
+            String message = msg.toString();
+            messages.add(message);
+            pendingMessages.clear();
+        }
+        return messages;
+    }
+
+    public List<String> getLiveMessages(){
+        return this.liveMessages;
+    }
+
+    public void clearMessages() {
+        liveMessages.clear();
+        pendingMessages.clear();
+    }
+
+    //FOR ACC TEST:
+
+    public List<String> getAppendingMessages(){
+        return this.pendingMessages;
+    }
 
 
 

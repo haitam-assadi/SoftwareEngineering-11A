@@ -15,24 +15,26 @@
     </header>
 
     <main>
-        <form class="container" action="purchase" method="post">
+        <div th:replace="fragments/alert :: alert(${alert})"></div>
+
+        <form th:if="${!done}" class="container" action="purchase" method="post">
             <div class="row justify-content-center">
-                <div th:replace="fragments/alert :: alert(${alert})"></div>
 
-
-                <div th:if="${!done}" class="col-md-7 col-lg-8">
+<!--                th:if="${!done}"-->
+                <div class="col-md-7 col-lg-8">
                     <div class="row g-3">
+
                         <div class="col-sm-6">
                             <label for="receiverName" class="form-label">Customer Name</label>
-                            <input type="text" class="form-control" id="receiverName" name="receiverName">
-<!--                            <div class="invalid-feedback">-->
+                            <input required type="text" class="form-control" id="receiverName" name="receiverName">
+<!--                            <div class="invalid-tooltip">-->
 <!--                                Valid name is required.-->
 <!--                            </div>-->
                         </div>
 
                         <div class="col-sm-6">
                             <label for="shipmentAddress" class="form-label">Shipment Address</label>
-                            <input type="text" class="form-control" id="shipmentAddress" name="shipmentAddress">
+                            <input required type="text" class="form-control" id="shipmentAddress" name="shipmentAddress">
 <!--                            <div class="invalid-feedback">-->
 <!--                                Valid shipment address is required.-->
 <!--                            </div>-->
@@ -40,7 +42,7 @@
 
                         <div class="col-sm-3">
                             <label for="shipmentCountry" class="form-label">Country</label>
-                            <input type="text" class="form-control" id="shipmentCountry" name="shipmentCountry">
+                            <input required type="text" class="form-control" id="shipmentCountry" name="shipmentCountry">
 <!--                            <div class="invalid-feedback">-->
 <!--                                Valid country is required.-->
 <!--                            </div>-->
@@ -48,7 +50,7 @@
 
                         <div class="col-sm-3">
                             <label for="shipmentCity" class="form-label">City</label>
-                            <input type="text" class="form-control" id="shipmentCity" name="shipmentCity">
+                            <input required type="text" class="form-control" id="shipmentCity" name="shipmentCity">
 <!--                            <div class="invalid-feedback">-->
 <!--                                Valid city is required.-->
 <!--                            </div>-->
@@ -56,7 +58,7 @@
 
                         <div class="col-md-3">
                             <label for="zipCode" class="form-label">Zip code</label>
-                            <input type="text" class="form-control" id="zipCode" name="zipCode">
+                            <input required type="number" class="form-control" id="zipCode" name="zipCode" min="0">
 <!--                            <div class="invalid-feedback">-->
 <!--                                Zip code required.-->
 <!--                            </div>-->
@@ -68,7 +70,7 @@
                     <div class="row gy-3">
                         <div class="col-md-6">
                             <label for="cardNumber" class="form-label">Credit Card Number</label>
-                            <input type="text" class="form-control" id="cardNumber" value="" name="cardNumber">
+                            <input required type="number" class="form-control" id="cardNumber" name="cardNumber" min="0">
 <!--                            <div class="invalid-feedback">-->
 <!--                                Credit card number is required-->
 <!--                            </div>-->
@@ -76,32 +78,38 @@
 
                         <div class="col-md-6">
                             <label for="holder" class="form-label">Credit Card Holder</label>
-                            <input type="text" class="form-control" id="holder" name="holder">
+                            <input required type="text" class="form-control" id="holder" name="holder">
                             <!--                    <small class="text-body-secondary">Full name as displayed on card</small>-->
 <!--                            <div class="invalid-feedback">-->
 <!--                                Card holder name is required-->
 <!--                            </div>-->
                         </div>
 
-                        <div class="col-md-2">
-                            <label for="month" class="form-label">Month</label>
-                            <input type="text" class="form-control" id="month" name="month">
-<!--                            <div class="invalid-feedback">-->
-<!--                                Expiration date required-->
-<!--                            </div>-->
-                        </div>
+<!--                        <div class="col-md-2">-->
+<!--                            <label for="month" class="form-label">Month</label>-->
+<!--                            <input required type="number" class="form-control" id="month" name="month" placeholder="MM" min="1" max="12" maxlength="2">-->
+<!--&lt;!&ndash;                            <div class="invalid-feedback">&ndash;&gt;-->
+<!--&lt;!&ndash;                                Expiration date required&ndash;&gt;-->
+<!--&lt;!&ndash;                            </div>&ndash;&gt;-->
+<!--                        </div>-->
 
-                        <div class="col-md-2">
-                            <label for="year" class="form-label">Year</label>
-                            <input type="text" class="form-control" id="year" name="year">
-<!--                            <div class="invalid-feedback">-->
-<!--                                Expiration date required-->
-<!--                            </div>-->
+<!--                        <div class="col-md-2">-->
+<!--                            <label for="year" class="form-label">Year</label>-->
+<!--                            <input required type="number" class="form-control" id="year" name="year" placeholder="YYYY" min="2023" maxlength="4">-->
+<!--&lt;!&ndash;                            <div class="invalid-feedback">&ndash;&gt;-->
+<!--&lt;!&ndash;                                Expiration date required&ndash;&gt;-->
+<!--&lt;!&ndash;                            </div>&ndash;&gt;-->
+<!--                        </div>-->
+
+                        <div class="col-md-4">
+                            <label for="expiration" class="form-label">Expiration</label>
+                            <input required type="month" class="form-control" id="expiration" name="expiration">
                         </div>
 
                         <div class="col-md-2">
                             <label for="cvv" class="form-label">CVV</label>
-                            <input type="text" class="form-control" id="cvv" name="cvv">
+<!--                            size="3"-->
+                            <input required type="number" class="form-control" id="cvv" name="cvv" min="0">
 <!--                            <div class="invalid-feedback">-->
 <!--                                CVV required-->
 <!--                            </div>-->
@@ -109,14 +117,13 @@
 
                         <div class="col-md-6">
                             <label for="id" class="form-label">ID</label>
-                            <input type="text" class="form-control" id="id" name="id">
+                            <input required type="number" class="form-control" id="id" name="id" min="0">
 <!--                            <div class="invalid-feedback">-->
 <!--                                ID is required-->
 <!--                            </div>-->
                         </div>
                     </div>
                 </div>
-
             </div>
             <!--                    <div class="my-3">-->
             <!--                        <div class="form-check">-->
@@ -133,11 +140,17 @@
             <!--                        </div>-->
             <!--                    </div>-->
 
-        </form>
+            <div class="row container justify-content-center text-center align-items-center my-5">
+                <div class="col-4 row">
+                    <h4 class="col-auto card-title pricing-card-title">Total Price:</h4>
+                    <h4 th:if="${!controller.cartHasDisc()}" class="col-auto card-title pricing-card-title" th:text="${controller.cartTotalPrice + ' $'}"></h4>
+                    <h4 th:if="${controller.cartHasDisc()}" class="col-auto">
+                        <s class="card-title pricing-card-title" th:text="${controller.cartTotalPrice}"></s>
+                    </h4>
+                    <h4 th:if="${controller.cartHasDisc()}" class="col-auto card-title pricing-card-title" style="color:red" th:text="${controller.cartDiscountTotalPrice} + ' $'"></h4>
 
-        <form th:if="${!done}" action="purchase" method="post">
-            <div class="row container justify-content-center text-center align-items-center mt-5">
-                <h4 class="col-3 card-title pricing-card-title" th:text="${'Total Price: ' + controller.cartTotalPrice + ' $'}"></h4>
+                </div>
+<!--                <h4 class="col-3 card-title pricing-card-title" th:text="${'Total Price: ' + controller.cartTotalPrice + ' $'}"></h4>-->
                 <button type="submit" class="col-2 btn bt-lg btn-info">Continue to checkout</button>
             </div>
         </form >

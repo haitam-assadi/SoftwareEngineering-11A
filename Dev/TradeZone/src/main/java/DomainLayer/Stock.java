@@ -98,22 +98,23 @@ public class Stock {
         return true;
     }
 
-    public synchronized List<ProductDTO> getProductsInfo(){
+    public synchronized Map<ProductDTO, Integer> getProductsInfoAmount() throws Exception {
         Collection<ConcurrentHashMap<Product,Integer>> currentStockProducts = stockProducts.values();
-        List<ProductDTO> productsInfo = new ArrayList<>();
-        for(ConcurrentHashMap<Product,Integer> curr_hash_map: currentStockProducts)
-            productsInfo.add(curr_hash_map.keys().nextElement().getProductInfo());
-
-        return productsInfo;
+        Map<ProductDTO, Integer> productsInfoAmount = new LinkedHashMap<>();
+        for(ConcurrentHashMap<Product,Integer> curr_hash_map: currentStockProducts) {
+            Product product = curr_hash_map.keys().nextElement();
+            ProductDTO productDTO = curr_hash_map.keys().nextElement().getProductInfo(store.getProductDiscountPolicies(product.getName()));
+            productsInfoAmount.put(productDTO, curr_hash_map.get(product));
+        }
+        return productsInfoAmount;
     }
 
-    public synchronized ProductDTO getProductInfo(String productName) throws Exception {
-        //TODO: do we allow return info about products with amount == 0 ?????
+    public synchronized ProductDTO getProductInfo(String productName, List<String> productDiscountPolicies) throws Exception {
         if(!containsProduct(productName))
             throw new Exception(""+productName+"product does not exist in this store!");
 
         productName = productName.strip().toLowerCase();
-        return stockProducts.get(productName).keys().nextElement().getProductInfo();
+        return stockProducts.get(productName).keys().nextElement().getProductInfo(productDiscountPolicies);
     }
 
     public synchronized Product getProduct(String productName) throws Exception {
@@ -173,7 +174,6 @@ public class Stock {
         return true;
     }
 
-
     public synchronized List<ProductDTO> getProductsInfoByCategory(String categoryName) throws Exception {
 
         //TODO: do we allow return info about products with amount == 0 ?????
@@ -182,7 +182,31 @@ public class Stock {
 
         categoryName = categoryName.strip().toLowerCase();
 
-        return stockCategories.get(categoryName).getProductsInfo();
+        List<Product> productList =  stockCategories.get(categoryName).getProducts();
+        List<ProductDTO> productDTOList = new ArrayList<>();
+        for(Product product: productList)
+            productDTOList.add(getProductInfo(product.getName(), store.getProductDiscountPolicies(product.getName())));
+
+        return productDTOList;
+
+    }
+
+    public synchronized boolean containsKeyWord(String keyword) throws Exception {
+        if(keyword == null || keyword.isBlank())
+            throw new Exception("key word  is null or empty!");
+        return true;
+    }
+
+
+    public synchronized List<ProductDTO> getProductInfoFromMarketByKeyword(String keyword) throws Exception {
+        keyword = keyword.strip().toLowerCase();
+        List<ProductDTO> filteredProductsByKeyWord = new LinkedList<>();
+        for(String productName : stockProducts.keySet()){
+            if(productName.contains(keyword)){
+                filteredProductsByKeyWord.add(getProductInfo(productName, store.getProductDiscountPolicies(productName)));
+            }
+        }
+        return filteredProductsByKeyWord;
 
     }
 

@@ -44,7 +44,7 @@ class CartTest {
         //addToCart(Store store, String productName, Integer amount)
         Mockito.when(store.getStoreName()).thenReturn("Tnuva");
         Mockito.when(store.getProductWithAmount("milk 3%", 5)).thenReturn(product);
-        Mockito.when(product.getProductInfo()).thenReturn(productDto);
+        Mockito.when(product.getProductInfo(Mockito.anyList())).thenReturn(productDto);
         assertTrue(cart.addToCart(store, "milk 3%", 5));
         assertEquals(1, cart.getCartContent().size());
     }
@@ -54,7 +54,7 @@ class CartTest {
         Mockito.when(store.getStoreName()).thenReturn("Tnuva");
         Mockito.when(store.getProductWithAmount("milk 3%", 5)).thenReturn(product);
         Mockito.when(store.getProductWithAmount("milk 3%", 30)).thenReturn(product);
-        Mockito.when(product.getProductInfo()).thenReturn(productDto);
+        Mockito.when(product.getProductInfo(Mockito.anyList())).thenReturn(productDto);
         cart.addToCart(store, "milk 3%", 5);
         assertTrue(cart.changeProductAmountInCart(store, "milk 3%", 30));
         assertEquals(1, cart.getCartContent().size());
@@ -72,7 +72,7 @@ class CartTest {
         Mockito.when(store.getStoreName()).thenReturn("Tnuva");
         Mockito.when(store.getProductWithAmount("milk 3%", 5)).thenReturn(product);
         Mockito.when(store.getProductWithAmount("milk 3%", 30)).thenReturn(product);
-        Mockito.when(product.getProductInfo()).thenReturn(productDto);
+        Mockito.when(product.getProductInfo(Mockito.anyList())).thenReturn(productDto);
         cart.addToCart(store, "milk 3%", 5);
         assertTrue(cart.removeFromCart(store, "milk 3%"));
         assertEquals(0, cart.getCartContent().size());
@@ -90,15 +90,15 @@ class CartTest {
         double price = 25;
         Mockito.when(store.getStoreName()).thenReturn("Tnuva");
         Mockito.when(store.getProductWithAmount("milk 3%", 5)).thenReturn(product);
-        Mockito.when(product.getProductInfo()).thenReturn(productDto);
+        Mockito.when(product.getProductInfo(Mockito.anyList())).thenReturn(productDto);
         //totalBagPrice += product.getProductPrice(curr.get(product));
         Mockito.when(product.getProductPrice(5)).thenReturn(price);
         cart.addToCart(store, "milk 3%", 5);
-        assertEquals(price, cart.getCartPrice());
+        assertEquals(price, cart.getCartPriceAfterDiscount());
     }
 
     @Test
     void get_empty_cart_price_success() throws Exception {
-        assertEquals(0, cart.getCartPrice());
+        assertEquals(0, cart.getCartPriceAfterDiscount());
     }
 }

@@ -58,23 +58,43 @@
                         <h7 class="col" th:text="${product.price} + ' $ per unit'"></h7>
                     </div>
                     <div class="row mb-2">
+<!--                        <p class="col" th:text="${'Description: ' + product.description}"></p>-->
+<!--                        <h4 class="col my-0 fw-normal" th:text="${'Price: ' + product.totalPrice} + ' $'"></h4>-->
+
                         <p class="col" th:text="${'Description: ' + product.description}"></p>
-                        <h4 class="col my-0 fw-normal" th:text="${'Price: ' + product.totalPrice} + ' $'"></h4>
+                        <div class="col">
+                            <div class="row">
+                                <h4 class="col-auto fw-normal">Price: </h4>
+                                <h4 th:if="${!bag.hasDiscount(product.name)}" class="col-auto fw-normal" th:text="${bag.pTotalPrice(product.name)} + ' $'"></h4>
+                                <h4 th:if="${bag.hasDiscount(product.name)}" class="col-auto">
+                                    <s class="fw-normal" th:text="${bag.pTotalPrice(product.name)} + ' $'"></s>
+                                </h4>
+                                <h4 th:if="${bag.hasDiscount(product.name)}" class="col-auto fw-normal" style="color:red" th:text="${bag.pTotalDiscountPrice(product.name)} + ' $'"></h4>
+                            </div>
+                        </div>
 
+<!--                        <h4 th:if="${bag.hasDiscount(product.name)}" class="col">-->
+<!--                            <s th:text="${'Price: ' + bag.pTotalPrice(product.name)} + ' $'"></s>-->
+<!--                            <h4 style="color:red" th:text="${bag.pTotalDiscountPrice(product.name)} + ' $'"></h4>-->
+<!--                        </h4>-->
 
-<!--                        <div class="col form-floating">-->
-<!--                            <h4><input type="text" readonly class="form-control-plaintext" style="padding-left:0" id="price" th:value="${'Price: ' + product.totalPrice} + ' $'"></h4>-->
-<!--                            <h6><label for="price" th:text="${product.price} + ' $ per unit'"></label></h6>-->
-<!--                        </div>-->
-<!--                        <h4 class="col my-0 fw-normal mb-2" th:text="${'Price: ' + product.price} + ' $'"></h4>-->
-<!--                        <h4 class="col my-0 fw-normal mb-2" th:text="${'Total price: ' + product.totalPrice} + ' $'"></h4>-->
+<!--                        <h4 th:if="${bag.hasDiscount(product.name)}" class="col my-0 fw-normal" style="color:red" th:text="${bag.pTotalDiscountPrice(product.name)} + ' $'"></h4>-->
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <div th:if="!${bags.isEmpty}" class="row container justify-content-center text-center align-items-center mb-5">
-        <h4 class="col-3 card-title pricing-card-title" th:text="${'Total Price: ' + controller.cartTotalPrice + ' $'}"></h4>
+        <div class="col-4 row">
+            <h4 class="col-auto card-title pricing-card-title">Total Price:</h4>
+            <h4 th:if="${!controller.cartHasDisc()}" class="col-auto card-title pricing-card-title" th:text="${controller.cartTotalPrice + ' $'}"></h4>
+            <h4 th:if="${controller.cartHasDisc()}" class="col-auto">
+                <s class="card-title pricing-card-title" th:text="${controller.cartTotalPrice}"></s>
+            </h4>
+            <h4 th:if="${controller.cartHasDisc()}" class="col-auto card-title pricing-card-title" style="color:red" th:text="${controller.cartDiscountTotalPrice} + ' $'"></h4>
+
+        </div>
+<!--        <h4 class="col-3 card-title pricing-card-title" th:text="${'Total Price: ' + controller.cartTotalPrice + ' $'}"></h4>-->
         <a href="purchase" class="col-3"><button type="submit" class="w-100 btn btn-info">Purchase Cart</button></a>
     </div>
 </main>

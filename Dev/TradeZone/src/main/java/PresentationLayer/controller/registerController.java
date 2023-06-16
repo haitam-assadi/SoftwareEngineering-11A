@@ -2,6 +2,7 @@ package PresentationLayer.controller;
 
 import CommunicationLayer.Server;
 import DTO.ProductDTO;
+import PresentationLayer.model.Alert;
 import PresentationLayer.model.GeneralModel;
 import ServiceLayer.ResponseT;
 import PresentationLayer.model.User;
@@ -19,6 +20,7 @@ import java.util.List;
 public class registerController {
     private Server server = Server.getInstance();
     private GeneralModel controller;
+    private Alert alert = Alert.getInstance();
 
     @GetMapping("/register")
     public String register(HttpServletRequest request, Model model) {
@@ -50,6 +52,8 @@ public class registerController {
         model.addAttribute("name", controller.getName());
         model.addAttribute("products", products);
         model.addAttribute("message", "");
+        alert.setSuccess(true);
+        alert.setMessage("Your registration was successful");
         return "redirect:/";
 //        return "index";
     }

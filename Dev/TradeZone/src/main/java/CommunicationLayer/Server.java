@@ -5,6 +5,7 @@ import DomainLayer.LoggerManager;
 import ServiceLayer.ResponseT;
 import ServiceLayer.SystemService;
 import jdk.jshell.spi.ExecutionControl;
+import PresentationLayer.controller.MyWebSocketHandler;
 
 import java.io.IOException;
 import java.util.*;
@@ -12,6 +13,7 @@ import java.util.*;
 public class Server {
 
     private static Server server = null;
+    private MyWebSocketHandler socket;
     private SystemService service;
     public static Server getInstance(){
         if(server == null){
@@ -22,6 +24,7 @@ public class Server {
 
     private Server(){
         service = new SystemService();
+        socket = MyWebSocketHandler.getInstance();
     }
 
 
@@ -88,13 +91,13 @@ public class Server {
         return service.filterByCategory(userName, productsInfo, categoryName);
     }
 
-    public ResponseT<List<ProductDTO>> filterByProductRate(String userName, List<ProductDTO> productsInfo, Integer productRate){
-        return service.filterByProductRate(userName, productsInfo, productRate);
-    }
-
-    public ResponseT<List<ProductDTO>> filterByStoreRate(String userName, List<ProductDTO> productsInfo, Integer storeRate){
-        return service.filterByStoreRate(userName, productsInfo, storeRate);
-    }
+//    public ResponseT<List<ProductDTO>> filterByProductRate(String userName, List<ProductDTO> productsInfo, Integer productRate){
+//        return service.filterByProductRate(userName, productsInfo, productRate);
+//    }
+//
+//    public ResponseT<List<ProductDTO>> filterByStoreRate(String userName, List<ProductDTO> productsInfo, Integer storeRate){
+//        return service.filterByStoreRate(userName, productsInfo, storeRate);
+//    }
 
     public ResponseT<Boolean> addToCart(String userName, String storeName, String productName, Integer amount){
         return service.addToCart(userName, storeName, productName, amount);
@@ -145,9 +148,11 @@ public class Server {
     }
 
     // TODO: change params
-    public ResponseT<Boolean> changeManagerPermissions(String memberUserName, String storeName, String managerUserName){
-        return service.changeManagerPermissions(memberUserName, storeName, managerUserName);
-    }
+//    public ResponseT<Boolean> changeManagerPermissions(String memberUserName, String storeName, String managerName, List<Integer> permsIDs){
+//        // TODO: call service...
+//        //        return service.changeManagerPermissions(memberUserName, storeName, permsIDs);
+//        return new ResponseT<>(true);
+//    }
 
     public ResponseT<Boolean> closeStore(String memberUserName, String storeName){
         return service.closeStore(memberUserName, storeName);
@@ -307,6 +312,8 @@ public class Server {
 //        return new ResponseT<>(list);
     }
 
+    // ------------------------------------------------------------
+
     public ResponseT<Boolean> hasRole(String userName){
         return service.hasRole(userName);
     }
@@ -334,4 +341,58 @@ public class Server {
     public ResponseT<Boolean> removeMemberBySystemManager(String managerName,String memberName){
         return service.removeMemberBySystemManager(managerName, memberName);
     }
+
+    public ResponseT<MemberDTO> getMemberInfo(String callerMemberName, String returnedMemberName) {
+        return service.getMemberInfo(callerMemberName, returnedMemberName);
+    }
+
+    public void sendMessage(String userName, String message) throws IOException {
+        socket.sendMessage(userName, message);
+    }
+
+    public ResponseT<List<String>> checkForAppendingMessages(String guestName){
+        return service.checkForAppendingMessages(guestName);
+    }
+
+    public ResponseT<List<String>> getLiveMessages(String memberName){
+        return service.getLiveMessages(memberName);
+    }
+
+    public void clearMessages(String name) {
+        service.clearMessages(name);
+    }
+
+    //THIS IS A TEST
+
+    public ResponseT<Double> getCartPriceBeforeDiscount(String memberUserName) {
+        return service.getCartPriceBeforeDiscount(memberUserName);
+    }
+
+    public ResponseT<Double> getCartPriceAfterDiscount(String memberUserName) {
+        return service.getCartPriceAfterDiscount(memberUserName);
+    }
+
+    //return 1=storeFounder, 2=storeOwner, 3=storeManager, -1= noRule
+    public ResponseT<Integer> getRuleForStore(String storeName, String memberName){
+        return service.getRuleForStore(storeName, memberName);
+    }
+
+    public ResponseT<List<String>> getAllPermissions(String ownerUserName, String storeName) {
+        return service.getAllPermissions(ownerUserName, storeName);
+//        String[] perm = {"perm1", "perm2", "perm3", "perm4"};
+//        return perm;
+    }
+
+    public ResponseT<List<Integer>> getManagerPermissionsForStore(String ownerUserName, String storeName, String managerUserName) {
+        return service.getManagerPermissionsForStore(ownerUserName, storeName, managerUserName);
+//        List<Integer> list = new ArrayList<>();
+//        list.add(1);
+//        list.add(3);
+//        return list;
+    }
+
+    public ResponseT<Boolean> updateManagerPermissionsForStore(String ownerUserName, String storeName, String managerUserName, List<Integer> newPermissions){
+        return service.updateManagerPermissionsForStore(ownerUserName, storeName, managerUserName, newPermissions);
+    }
+
 }

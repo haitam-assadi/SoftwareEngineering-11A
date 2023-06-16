@@ -1,10 +1,7 @@
 package ServiceLayer;
 
 import DTO.*;
-import DomainLayer.LoggerManager;
-import DomainLayer.Market;
-import DomainLayer.PaymentService;
-import DomainLayer.ShipmentService;
+import DomainLayer.*;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -81,7 +78,8 @@ public class SystemService {
         market.addNewProductToStock(userName, userFirstStoreName, userFirstStoreProduct4, userFirstStoreCategory2, 70.54, "new product", 100);
         market.addNewProductToStock(userName, userFirstStoreName, userFirstStoreProduct5, userFirstStoreCategory2, 70.54, "new product", 100);
         market.addNewProductToStock(userName, userFirstStoreName, userFirstStoreProduct6, userFirstStoreCategory2, 70.54, "new product", 100);
-
+        market.createProductDiscountPolicy(userName, userFirstStoreName, userFirstStoreProduct1, 30, true);
+        market.createProductDiscountPolicy(userName, userFirstStoreName, userFirstStoreProduct2, 50, true);
 
         market.createStore(userName, userSecStoreName);
         market.addNewProductToStock(userName, userSecStoreName, userSecStoreProduct1, userSecStoreCategory1, 70.54, "new product", 100);
@@ -390,6 +388,38 @@ public class SystemService {
         }
     }
 
+    public ResponseT<Boolean> fillOwnerContract(String memberUserName, String storeName, String newOwnerUserName, Boolean decisions){
+        try{
+             return new ResponseT<>(market.fillOwnerContract(memberUserName, storeName, newOwnerUserName,decisions));
+        }catch(Exception e){
+            return new ResponseT<>("fillOwnerContract: "+e.getMessage());
+        }
+    }
+
+    public ResponseT<List<OwnerContractDTO>> getAlreadyDoneContracts(String memberUserName, String storeName){
+        try{
+            return new ResponseT<>(market.getAlreadyDoneContracts(memberUserName, storeName));
+        }catch(Exception e){
+            return new ResponseT<>("getAlreadyDoneContracts: "+e.getMessage());
+        }
+    }
+
+    public ResponseT<List<OwnerContractDTO>> getMyCreatedContracts(String memberUserName, String storeName){
+        try{
+            return new ResponseT<>(market.getMyCreatedContracts(memberUserName, storeName));
+        }catch(Exception e){
+            return new ResponseT<>("getMyCreatedContracts: "+e.getMessage());
+        }
+    }
+
+    public ResponseT<List<OwnerContractDTO>> getPendingContractsForOwner(String memberUserName, String storeName){
+        try{
+            return new ResponseT<>(market.getPendingContractsForOwner(memberUserName, storeName));
+        }catch(Exception e){
+            return new ResponseT<>("getPendingContractsForOwner: "+e.getMessage());
+        }
+    }
+
     public ResponseT<Boolean> appointOtherMemberAsStoreManager(String memberUserName, String storeName, String newManagerUserName){
         try{
             String loggerMsg ="\nappointOtherMemberAsStoreManager(String memberUserName, String storeName, String newManagerUserName)\n"+
@@ -454,9 +484,9 @@ public class SystemService {
         }
     }
 
-    public ResponseT<List<DealDTO>> getMemberDeals(String systemManagerUserName, String otherMemberUserName){
+    public ResponseT<List<DealDTO>> getMemberDeals(String memberUserName, String otherMemberUserName){
         try{
-            return new ResponseT<>(market.getMemberDeals(systemManagerUserName, otherMemberUserName));
+            return new ResponseT<>(market.getMemberDeals(memberUserName, otherMemberUserName));
         }catch(Exception e){
             return new ResponseT<>("getMemberDeals: "+e.getMessage());
         }
@@ -770,5 +800,104 @@ public class SystemService {
         }
     }
 
+    public ResponseT<MemberDTO> getMemberInfo(String callerMemberName, String returnedMemberName) {
+        try{
+            return new ResponseT<>(market.getMemberInfo(callerMemberName, returnedMemberName));
+        }catch (Exception e){
+            return new ResponseT<>("getMemberInfo: "+e.getMessage());
+        }
+    }
+    public ResponseT<Double> getCartPriceBeforeDiscount(String memberUserName) {
+        try{
+            return new ResponseT<>(market.getCartPriceBeforeDiscount(memberUserName));
+        }catch (Exception e){
+            return new ResponseT<>("getCartPriceBeforeDiscount: "+e.getMessage());
+        }
+    }
 
+    public ResponseT<Double> getCartPriceAfterDiscount(String memberUserName) {
+        try{
+            return new ResponseT<>(market.getCartPriceAfterDiscount(memberUserName));
+        }catch (Exception e){
+            return new ResponseT<>("getCartPriceAfterDiscount: "+e.getMessage());
+        }
+    }
+
+
+
+    //return 1=storeFounder, 2=storeOwner, 3=storeManager, -1= noRule
+    public ResponseT<Integer> getRuleForStore(String storeName, String memberName){
+        try{
+            return new ResponseT<>(market.getRuleForStore(storeName,memberName));
+        }catch (Exception e){
+            return new ResponseT<>("getRuleForStore: "+e.getMessage());
+        }
+
+    }
+
+
+
+    public ResponseT<Boolean> updateManagerPermissionsForStore(String ownerUserName, String storeName, String managerUserName, List<Integer> newPermissions){
+        try{
+            return new ResponseT<>(market.updateManagerPermissionsForStore(ownerUserName, storeName, managerUserName, newPermissions));
+        }catch (Exception e){
+            return new ResponseT<>("updateManagerPermissionsForStore: "+e.getMessage());
+        }
+    }
+
+    public ResponseT<List<Integer>> getManagerPermissionsForStore(String ownerUserName, String storeName, String managerUserName){
+        try{
+            return new ResponseT<>(market.getManagerPermissionsForStore(ownerUserName, storeName, managerUserName));
+        }catch (Exception e){
+            return new ResponseT<>("getManagerPermissionsForStore: "+e.getMessage());
+        }
+    }
+
+    //FOR ACCTEST OF STORE MANAGER
+    public void takeDownSystemManagerAppointment(String storeName, String appointedMember){
+        this.market.takeDownSystemManagerAppointment(storeName, appointedMember);
+    }
+
+    public ResponseT<List<String>> checkForAppendingMessages(String guestName){
+        try{
+            List<String> messages = market.checkForAppendingMessages(guestName);
+            return new ResponseT<>(messages);
+        }catch (Exception e){
+            return new ResponseT<>("checkForAppendingMessages: " + e.getMessage());
+        }
+    }
+    public ResponseT<List<String>> getAllPermissions(String ownerUserName, String storeName) {
+        try{
+            return new ResponseT<>(market.getAllPermissions(ownerUserName, storeName));
+        }catch (Exception e){
+            return new ResponseT<>("getAllPermissions: "+e.getMessage());
+        }
+    }
+
+    public ResponseT<List<String>> getLiveMessages(String memberName){
+        try{
+            List<String> messages = market.getLiveMessages(memberName);
+            return new ResponseT<>(messages);
+        }catch (Exception e){
+            return new ResponseT<>("get live messages: " + e.getMessage());
+        }
+    }
+
+    public ResponseT<Boolean> clearMessages(String name) {
+        try{
+            market.clearMessages(name);
+            return new ResponseT<>(true);
+        }catch (Exception e){
+            return new ResponseT<>("clear messages: " + e.getMessage());
+        }
+
+    }
+
+    public void send(String member1Name, String message) throws IOException {
+        market.send(member1Name, message);
+    }
+
+    public List<String> getAppendingMessages(String memberUserName) {
+        return market.getAppendingMessages(memberUserName);
+    }
 }

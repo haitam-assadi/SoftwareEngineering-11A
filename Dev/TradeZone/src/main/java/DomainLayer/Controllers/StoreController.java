@@ -107,6 +107,19 @@ public class StoreController {
         return productDTOList;
     }
 
+    public List<ProductDTO> getProductInfoFromMarketByKeyword(String keyword) throws Exception {
+        List<ProductDTO> productDTOList = new ArrayList<>();
+        for(Store store: stores.values()) {
+            String storeName = store.getStoreName();
+            //isActiveStore(storeName);
+            if(IsActiveStore(storeName)) {
+                if(store.containsKeyWord(keyword))
+                    productDTOList.addAll(store.getProductInfoFromMarketByKeyword(keyword));
+            }
+        }
+        return productDTOList;
+    }
+
     public Store getStore(String storeName) throws Exception {
         assertIsStore(storeName);
         storeName = storeName.strip().toLowerCase();
@@ -138,6 +151,11 @@ public class StoreController {
         return true;
     }
 
+    public void assertStringIsNotNullOrBlank(String st) throws Exception {
+        if(st==null || st.isBlank())
+            throw new Exception("string is null or empty");
+    }
+
     public void isActiveStore(String storeName) throws Exception {
         storeName=storeName.strip().toLowerCase();
         assertIsStore(storeName);
@@ -163,18 +181,14 @@ public class StoreController {
         return this.stores.get(storeName).getStoreWorkersInfo(memberUserName);
     }
 
-    public List<DealDTO> getStoreDeals(String memberUserName, String storeName) throws Exception {
+    public List<DealDTO> getStoreDeals(String memberUserName, String storeName, boolean isSystemManager) throws Exception {
+        assertStringIsNotNullOrBlank(storeName);
         storeName=storeName.strip().toLowerCase();
-        assertIsStore(storeName);
-        return this.stores.get(storeName).getStoreDeals(memberUserName);
-    }
+        assertStringIsNotNullOrBlank(memberUserName);
+        memberUserName=memberUserName.strip().toLowerCase();
 
-    public List<DealDTO> getMemberDeals(String otherMemberUserName) {
-        List<DealDTO> deals = new ArrayList<DealDTO>();
-        for(Store store : this.stores.values()){
-            deals = store.getMemberDeals(otherMemberUserName, deals);
-        }
-        return deals;
+        assertIsStore(storeName);
+        return this.stores.get(storeName).getStoreDeals(memberUserName,isSystemManager);
     }
 
     public Store createStore(String newStoreName) throws Exception {
@@ -442,5 +456,41 @@ public class StoreController {
         return this.stores.get(storeName).systemManagerCloseStore(storeName);
     }
 
+    public List<ProductDTO> filterByCategory(List<ProductDTO> productsInfo, String categoryName) throws Exception {
+        List<ProductDTO> filteredProducts = new LinkedList<>();
+        categoryName = categoryName.strip().toLowerCase();
+        for (ProductDTO productDTO : productsInfo){
+            if(productDTO.categories.contains(categoryName))
+                filteredProducts.add(productDTO);
+        }
+        return filteredProducts;
+    }
+
+    public List<ProductDTO> filterByPrice(List<ProductDTO> productsInfo,  Integer minPrice, Integer maxPrice) throws Exception {
+        if(maxPrice < minPrice){
+            throw new Exception("the min price is bigger than the max price");
+        }
+        if(minPrice < 0)
+            throw new Exception("the min price is minus");
+        List<ProductDTO> filteredProducts = new LinkedList<>();
+        for (ProductDTO productDTO : productsInfo){
+            if(productDTO.price >= minPrice && productDTO.price <= maxPrice)
+                filteredProducts.add(productDTO);
+        }
+        return filteredProducts;
+    }
+
+    //return 1=storeFounder, 2=storeOwner, 3=storeManager, -1= noRule
+    public int getRuleForStore(String storeName, String memberName) throws Exception {
+        assertIsStore(storeName);
+        storeName = storeName.strip().toLowerCase();
+        Store store = getStore(storeName);
+        return store.getRuleForStore(memberName);
+    }
+
+    public void takeDownSystemManagerAppointment(String storeName, String appointedMember) {
+        Store store = this.stores.get(storeName);
+        store.removeManager(appointedMember);
+    }
 
 }

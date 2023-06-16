@@ -5,11 +5,12 @@
     <title>Workers</title>
 </head>
 <body>
-<div id="workers" th:fragment="workers(store, workers)">
+<div id="workers" th:fragment="workers(myName, store, workers, mRole)">
     <main class="container col-md-10">
+<!--        th:if="${mRole == 1 || mRole == 2}"-->
         <div class="row justify-content-between g-5 mt-3">
             <!--            appoint member-->
-            <div class="col-md-5 order-md-last">
+            <div th:if="${mRole == 1 || mRole == 2}" class="col-md-5 order-md-last">
                 <form action="appointMember" method="post">
                     <div>
                         <!--                    <label for="storeName" class="form-label">Search for stores:</label>-->
@@ -26,7 +27,6 @@
                             <label class="form-check-label" for="appointAsManager">Appoint As Manager</label>
                         </div>
                     </div>
-                    <!--                    TODO: add permissions-->
                     <div class="form-check mb-4">
                         <input class="form-check-input" type="checkbox" value="" id="invalidCheckAppoint" required>
                         <label class="form-check-label" for="invalidCheckAppoint">
@@ -47,7 +47,7 @@
                             <div class="list-group-item">
                                 <div class="row align-items-center">
                                     <h5 class="col" th:text="${worker.name}"></h5>
-                                    <form th:if="${role == 'Owners'}" class="col-auto" action="removeOwner" method="post">
+                                    <form th:if="${myName != worker.name && role == 'Owners' && (mRole == 1 || mRole == 2)}" class="col-auto" action="removeOwner" method="post">
                                         <input type="hidden" name="memberName" th:value="${worker.name}">
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" value="" id="invalidCheckRemove" required>
@@ -58,12 +58,32 @@
                                     </form>
                                 </div>
                                 <div th:if="${role == 'Managers'}">
-                                    <h6>Permissions:</h6>
-<!--                                    TODO: after merge-->
-<!--                                    <div th:each="p : ${worker.permissions}">-->
-<!--                                        -->
-<!--                                    </div>-->
+                                    <h6 style="color:orange">Permissions:</h6>
 
+<!--                                    founder / owner -->
+                                    <form th:if="${mRole == 1 || mRole == 2}" action="changeManagerPermissions" method="post">
+                                        <input type="hidden" name="managerName" th:value="${worker.name}">
+                                        <div th:each="pID : ${worker.permissions.keySet}">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" th:value="${pID}" th:name="'perms'" th:id="${pID}" th:checked="${worker.hasPermission(pID)}">
+                                                <label class="form-check-label" th:for="${pID}">
+                                                    <h6 th:text="${worker.getPermission(pID)}"></h6>
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" id="changePerms" required>
+                                            <label class="form-check-label" for="changePerms">
+                                                <button type="submit" class="btn btn-outline-success">Save</button>
+                                            </label>
+                                        </div>
+                                    </form>
+
+<!--                                    manager-->
+                                    <div th:if="${mRole == 3}" th:each="pID : ${worker.permissions.keySet}">
+                                        <h6 th:if="${worker.hasPermission(pID)}" th:text="${worker.getPermission(pID)}"></h6>
+                                    </div>
                                 </div>
                             </div>
                         </ul>
@@ -71,129 +91,8 @@
 
                 </div>
 
-
-
-<!--                <div class="card mb-4">-->
-<!--                    <div class="card-header">-->
-<!--                        <h5 th:text="${'Founder Name: ' + store.founderName}"></h5>-->
-<!--                    </div>-->
-<!--                </div>-->
-
-<!--                <div class="card mb-4">-->
-<!--                    <div class="card-header">-->
-<!--                        <h5>Owners: </h5>-->
-<!--                    </div>-->
-<!--                    <ul th:each="owner : ${store.ownersNames}" class="list-group list-group-flush">-->
-<!--                        <div class="list-group-item">-->
-<!--                            <div class="row align-items-center">-->
-<!--                                <h4 class="col" th:text="${owner}"></h4>-->
-<!--                                <form class="col-auto" action="" method="post">-->
-<!--                                    <div class="form-check">-->
-<!--                                        <input class="form-check-input" type="checkbox" value="" id="invalidCheckRemove" required>-->
-<!--                                        <label class="form-check-label w-100" for="invalidCheckRemove">-->
-<!--                                            <button type="submit" class="btn btn-outline-danger">Remove</button>-->
-<!--                                        </label>-->
-<!--                                    </div>-->
-<!--                                </form>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </ul>-->
-<!--                </div>-->
-
-<!--                <div class="card mb-4">-->
-<!--                    <div class="card-header">-->
-<!--                        <h5>Managers: </h5>-->
-<!--                    </div>-->
-<!--                    <ul th:each="manager : ${store.managersNames}" class="list-group list-group-flush">-->
-<!--                        <div class="list-group-item">-->
-
-<!--                            <div class="row align-items-center">-->
-<!--                                <h5 class="col" th:text="${manager}"></h5>-->
-<!--                                <h3>Permissions:</h3>-->
-
-
-<!--                                <form class="col-auto" action="" method="post">-->
-<!--                                    <div class="form-check">-->
-<!--                                        <input class="form-check-input" type="checkbox" value="" id="invalidCheckRemove" required>-->
-<!--                                        <label class="form-check-label w-100" for="invalidCheckRemove">-->
-<!--                                            <button type="submit" class="btn btn-outline-danger">Remove</button>-->
-<!--                                        </label>-->
-<!--                                    </div>-->
-<!--                                </form>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </ul>-->
-<!--                </div>-->
-
-
-<!--                <div th:if="${store != null && store.productsInfo != null && !store.productsInfo.empty}" class="row row-cols-1 mb-3">-->
-<!--                    <div class="col" th:each="product : ${store.productsInfo}">-->
-<!--                        <div class="card mb-4 rounded-3 shadow-sm">-->
-<!--                            <div class="card-header py-3 text-center">-->
-<!--                                <div class="row align-items-center">-->
-<!--                                    <h4 class="col my-0 fw-normal" th:text="${product.name}">Name</h4>-->
-<!--                                    <form class="col-auto" action="removeProductFromStock" method="post">-->
-<!--                                        <input type="hidden" name="name" th:value="${product.name}">-->
-<!--                                        <input type="hidden" name="storeName" th:value="${product.storeName}">-->
-<!--                                        <input type="hidden" name="price" th:value="${product.price}">-->
-<!--                                        &lt;!&ndash;                                    // TODO: change amount to product.amount in stock&ndash;&gt;-->
-<!--                                        <input type="hidden" name="amount" value="1">-->
-<!--                                        <div class="row align-items-center">-->
-<!--                                            <div class="col-auto form-check">-->
-<!--                                                <input class="form-check-input" type="checkbox" value="" id="invalidCheckRemove" required>-->
-<!--                                                <label class="form-check-label" for="invalidCheckRemove">-->
-<!--                                                    <button type="submit" class="w-100 btn btn-outline-danger">Remove Product</button>-->
-<!--                                                </label>-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-<!--                                    </form>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                            <div class="card-body">-->
-<!--                                &lt;!&ndash;                        <h5 th:text="${'Store Name: ' + product.storeName}"></h5>&ndash;&gt;-->
-<!--                                <p th:text="${'Description: ' + product.description}"></p>-->
-<!--                                <form action="updateProductPrice" method="post">-->
-<!--                                    <input type="hidden" name="name" th:value="${product.name}">-->
-<!--                                    <input type="hidden" name="storeName" th:value="${product.storeName}">-->
-<!--                                    &lt;!&ndash;                                    // TODO: change amount to product.amount in stock&ndash;&gt;-->
-<!--                                    <input type="hidden" name="amount" value="1">-->
-<!--                                    <div class="row mb-3 align-items-center">-->
-<!--                                        <div class="col-auto">-->
-<!--                                            <h4><label for="price" class="col-form-label">Price:</label></h4>-->
-<!--                                        </div>-->
-<!--                                        <div class="col-auto">-->
-<!--                                            <input type="number" step="any" class="form-control" id="price" style="width:100px" name="price" th:value="${product.price}" min="1" data-siid="si_input_1">-->
-<!--                                        </div>-->
-<!--                                        <div class="col-auto form-check">-->
-<!--                                            <input class="form-check-input" type="checkbox" value="" id="invalidCheckPrice" required>-->
-<!--                                            <label class="form-check-label" for="invalidCheckPrice">-->
-<!--                                                <button type="submit" class="w-100 btn btn-outline-success">Update Price</button>-->
-<!--                                            </label>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </form>-->
-<!--                                &lt;!&ndash;                                <form action="removeProduct" method="post">&ndash;&gt;-->
-<!--                                &lt;!&ndash;                                    <input type="hidden" name="name" th:value="${product.name}">&ndash;&gt;-->
-<!--                                &lt;!&ndash;                                    <input type="hidden" name="storeName" th:value="${product.storeName}">&ndash;&gt;-->
-<!--                                &lt;!&ndash;                                    <input type="hidden" name="price" th:value="${product.price}">&ndash;&gt;-->
-<!--                                &lt;!&ndash;&lt;!&ndash;                                    // TODO: change amount to product.amount in stock&ndash;&gt;&ndash;&gt;-->
-<!--                                &lt;!&ndash;                                    <input type="hidden" name="amount" value="1">&ndash;&gt;-->
-<!--                                &lt;!&ndash;                                    <div class="row mb-3 align-items-center">&ndash;&gt;-->
-<!--                                &lt;!&ndash;                                        <div class="col-auto form-check mb-3">&ndash;&gt;-->
-<!--                                &lt;!&ndash;                                            <input class="form-check-input" type="checkbox" value="" id="invalidCheckRemove" required>&ndash;&gt;-->
-<!--                                &lt;!&ndash;                                            <label class="form-check-label" for="invalidCheckRemove">&ndash;&gt;-->
-<!--                                &lt;!&ndash;                                                <button type="submit" class="w-100 btn btn-outline-danger">Remove Product</button>&ndash;&gt;-->
-<!--                                &lt;!&ndash;                                            </label>&ndash;&gt;-->
-<!--                                &lt;!&ndash;                                        </div>&ndash;&gt;-->
-<!--                                &lt;!&ndash;                                    </div>&ndash;&gt;-->
-<!--                                &lt;!&ndash;                                </form>&ndash;&gt;-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
             </div>
         </div>
-
     </main>
 
 </div>

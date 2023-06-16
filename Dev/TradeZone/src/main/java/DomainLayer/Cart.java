@@ -2,7 +2,6 @@ package DomainLayer;
 
 import DTO.BagDTO;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
@@ -17,8 +16,12 @@ public class Cart {
     }
 
     public boolean addToCart(Store store, String productName, Integer amount) throws Exception {
-        bags.putIfAbsent(store.getStoreName(), new Bag(store));
-        return bags.get(store.getStoreName()).addProduct(productName, amount);
+        if(!store.containsProduct(productName))
+            throw new Exception("the product dose not exist in the store");
+        else {
+            bags.putIfAbsent(store.getStoreName(), new Bag(store));
+            return bags.get(store.getStoreName()).addProduct(productName, amount);
+        }
 //        Bag bag = new Bag(store);
 //        bag.addProduct(productName,amount);
 //        bags.putIfAbsent(store.getStoreName(), bag);
@@ -41,7 +44,7 @@ public class Cart {
         return true;
     }
 
-    public List<BagDTO> getCartContent(){
+    public List<BagDTO> getCartContent() throws Exception {
         List<BagDTO> bagsDTO = new LinkedList<>();
         for(Bag bag: bags.values())
             bagsDTO.add(bag.getBagInfo());
@@ -60,11 +63,25 @@ public class Cart {
         }
     }
 
+    public void validateAllStoresIsActive() throws Exception {
+        for(Bag bag : bags.values()){
+            bag.validateStoreIsActive();
+        }
+    }
 
-    public Double getCartPrice() throws Exception {
+
+    public Double getCartPriceBeforeDiscount() throws Exception {
         Double totalPrice = 0.0;
         for(Bag bag : bags.values())
-            totalPrice += bag.getBagPrice();
+            totalPrice += bag.getBagPriceBeforeDiscount();
+
+        return totalPrice;
+    }
+
+    public Double getCartPriceAfterDiscount() throws Exception {
+        Double totalPrice = 0.0;
+        for(Bag bag : bags.values())
+            totalPrice += bag.getBagPriceAfterDiscount();
 
         return totalPrice;
     }
@@ -81,7 +98,11 @@ public class Cart {
                 throw e;
             }
         }
-        //TODO: create deal for each store before deleting bags
+        for(Bag bag: bags.values()){
+            Deal deal = bag.createDeal(this.cartOwner);
+            this.cartOwner.addDeal(deal);
+        }
+
         bags = new ConcurrentHashMap<>();
         return true;
     }
@@ -91,5 +112,9 @@ public class Cart {
             b.removeAllProducts();
         }
         bags = new ConcurrentHashMap<>();
+    }
+
+    public void setUser(Member member) {
+        this.cartOwner = member;
     }
 }

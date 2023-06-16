@@ -1,8 +1,10 @@
 package DomainLayer;
 
 import DTO.BagDTO;
+import DTO.DealDTO;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public abstract class User {
@@ -52,5 +54,17 @@ public abstract class User {
 
     public List<BagDTO> getCartContent() throws Exception {
         return cart.getCartContent();
+    }
+    public boolean addDeal(Deal deal){
+        this.userDeals.add(deal);
+        return true;
+    }
+
+    public List<DealDTO> getUserDeals() {
+        List<DealDTO> deals = new ArrayList<>();
+        for(Deal deal : this.userDeals)
+            deals.add(deal.getDealDTO());
+
+        return deals;
     }
 }

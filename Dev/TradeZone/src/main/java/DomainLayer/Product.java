@@ -24,6 +24,10 @@ public class Product {
         productCategories.put(category.getCategoryName(), category);
     }
 
+    public Product(String name){
+        this.name = name;
+    }
+
     public String getName() {
         return name;
     }
@@ -33,10 +37,10 @@ public class Product {
     }
 
 
-    public ProductDTO getProductInfo(){
+    public ProductDTO getProductInfo(List<String> productDiscountPolicies){
         List<String> categories = new LinkedList<>();
         categories.addAll(productCategories.keySet());
-        return new ProductDTO(this.name, this.stock.getStoreName(), this.price, this.description,  categories);
+        return new ProductDTO(this.name, this.stock.getStoreName(), this.price, this.description,  categories, productDiscountPolicies);
     }
 
     public Double getPrice() {

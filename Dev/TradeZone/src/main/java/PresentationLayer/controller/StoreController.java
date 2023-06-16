@@ -51,6 +51,12 @@ public class StoreController {
             if(request.getSession().getAttribute("constraints") != null)
                 constraints = (AllConstraints) request.getSession().getAttribute("constraints");
         }
+
+        if(controller.getRole(store.storeName) == -1){
+            alert.setFail(true);
+            alert.setMessage(controller.getName() + " does not have role in " + store.storeName);
+            return "redirect:/myStores";
+        }
         ResponseT<StoreDTO> response = server.getStoreInfo(controller.getName(), storeName);
         if(response.ErrorOccurred){
             alert.setFail(true);
@@ -66,8 +72,11 @@ public class StoreController {
         else {
             store = response.getValue();
             storeName = store.storeName;
-            workers = buildWorkers(store);
+            if(currentPage.equals("workers"))
+                workers = buildWorkers(controller.getName(), store);
         }
+        request.getSession().setAttribute("store", store);
+        request.getSession().setAttribute("workers", workers);
         model.addAttribute("controller", controller);
         model.addAttribute("alert", alert.copy());
         model.addAttribute("store", store);
@@ -138,10 +147,12 @@ public class StoreController {
             if(request.getSession().getAttribute("store") != null)
                 store = (StoreDTO) request.getSession().getAttribute("store");
         }
-        ProductDTO p = getProductFromStore(store, product.getName());
-        ResponseT<Boolean> response;
-        if(p == null)
+        Map<ProductDTO, Integer> pAmount = getProductFromStore(store, product.getName());
+        if(pAmount == null)
             return "redirect:/stock";
+        ProductDTO p = pAmount.keySet().iterator().next();
+        ResponseT<Boolean> response;
+
         if(!product.getDescription().equals(p.description)){
             response = server.updateProductDescription(controller.getName(), store.storeName, product.getName(), product.getDescription());
             if(response.ErrorOccurred){
@@ -158,16 +169,16 @@ public class StoreController {
                 return "redirect:/stock";
             }
         }
-//        if(product.getAmount() != p.amount){ // TODO: uncomment
+        if(product.getAmount() != pAmount.get(p)){
             response = server.updateProductAmount(controller.getName(), store.storeName, product.getName(), product.getAmount());
             if(response.ErrorOccurred){
                 alert.setFail(true);
                 alert.setMessage(response.errorMessage);
                 return "redirect:/stock";
             }
-//        }
+        }
         alert.setSuccess(true);
-        alert.setMessage("Product info updated successfully");
+        alert.setMessage("Product info has been updated successfully");
         return "redirect:/stock";
     }
 
@@ -194,7 +205,7 @@ public class StoreController {
         }
         else {
             alert.setFail(true);
-            alert.setMessage("Product does not removed from stock");
+            alert.setMessage("Product has not been added to stock");
         }
         return "redirect:/stock";
     }
@@ -219,7 +230,7 @@ public class StoreController {
         }
         else {
             alert.setFail(true);
-            alert.setMessage("Product does not removed from stock");
+            alert.setMessage("Product has not been removed from stock");
         }
         return "redirect:/stock";
     }
@@ -282,6 +293,30 @@ public class StoreController {
 
     // changePermissions
     //TODO:
+    @PostMapping("/changeManagerPermissions")
+    public String changeManagerPermissions(HttpServletRequest request, @RequestParam String managerName, @RequestParam(required = false) String[] perms){
+        if(request.getSession().getAttribute("controller") != null){
+            controller = (GeneralModel) request.getSession().getAttribute("controller");
+            if(request.getSession().getAttribute("store") != null)
+                store = (StoreDTO) request.getSession().getAttribute("store");
+        }
+        List<Integer> permsIDs = new ArrayList<>();
+        if(perms != null){
+            for(String id : perms){
+                permsIDs.add(Integer.parseInt(id));
+            }
+        }
+
+        ResponseT<Boolean> response = server.updateManagerPermissionsForStore(controller.getName(), store.storeName, managerName, permsIDs);
+        if(response.ErrorOccurred){
+            alert.setFail(true);
+            alert.setMessage(response.errorMessage);
+            return "redirect:/workers";
+        }
+        alert.setSuccess(true);
+        alert.setMessage(managerName + " permissions are updated successfully");
+        return "redirect:/workers";
+    }
 
 
 //    ------------------------- DEALS -------------------------
@@ -332,12 +367,12 @@ public class StoreController {
             controller = (GeneralModel) request.getSession().getAttribute("controller");
             if(request.getSession().getAttribute("store") != null)
                 store = (StoreDTO) request.getSession().getAttribute("store");
-            if(request.getSession().getAttribute("constraints") != null)
-                constraints = (AllConstraints) request.getSession().getAttribute("constraints");
-            else
-                constraints = new AllConstraints(store.storeName);
+//            if(request.getSession().getAttribute("constraints") != null)
+//                constraints = (AllConstraints) request.getSession().getAttribute("constraints");
+//            else
+//                constraints = new AllConstraints(store.storeName);
         }
-//        constraints = new AllConstraints(store.storeName);
+        constraints = new AllConstraints(store.storeName);
         ResponseT<List<String>> response = server.getAllBagConstraints(controller.getName(), store.storeName);
         if(response.ErrorOccurred){
             alert.setFail(true);
@@ -416,7 +451,7 @@ public class StoreController {
             return "redirect:/bagConstraints";
         }
         alert.setSuccess(true);
-        alert.setMessage("Constraint has been added successfully");
+        alert.setMessage("New constraint has been added successfully to " + constraint.getStoreName());
         return "redirect:/bagConstraints";
     }
 
@@ -455,12 +490,12 @@ public class StoreController {
             controller = (GeneralModel) request.getSession().getAttribute("controller");
             if(request.getSession().getAttribute("store") != null)
                 store = (StoreDTO) request.getSession().getAttribute("store");
-            if(request.getSession().getAttribute("constraints") != null)
-                constraints = (AllConstraints) request.getSession().getAttribute("constraints");
-            else
-                constraints = new AllConstraints(store.storeName);
+//            if(request.getSession().getAttribute("constraints") != null)
+//                constraints = (AllConstraints) request.getSession().getAttribute("constraints");
+//            else
+//                constraints = new AllConstraints(store.storeName);
         }
-//        constraints = new AllConstraints(store.storeName);
+        constraints = new AllConstraints(store.storeName);
         ResponseT<List<String>> response = server.getAllBagConstraints(controller.getName(), store.storeName);
         if(response.ErrorOccurred){
             alert.setFail(true);
@@ -536,7 +571,7 @@ public class StoreController {
             return "redirect:/discountPolicies";
         }
         alert.setSuccess(true);
-        alert.setMessage("Discount policy has been added successfully");
+        alert.setMessage("New Discount policy has been added successfully to " + discount.getStoreName());
         return "redirect:/discountPolicies";
     }
 
@@ -568,7 +603,7 @@ public class StoreController {
         return "redirect:/discountPolicies";
     }
 
-    private Map<String, List<Worker>> buildWorkers(StoreDTO store){
+    private Map<String, List<Worker>> buildWorkers(String ownerName, StoreDTO store){
         Map<String, List<Worker>> workers = new LinkedHashMap<>();
         List<Worker> names = new ArrayList<>();
         names.add(new Worker(store.founderName, "Founder"));
@@ -578,19 +613,38 @@ public class StoreController {
             names.add(new Worker(owner, "Owner"));
         }
         workers.put("Owners", names);
+
+        ResponseT<List<String>> response = server.getAllPermissions(ownerName, store.storeName);
+        if(response.ErrorOccurred){
+            alert.setFail(true);
+            alert.setMessage(response.errorMessage);
+            return new LinkedHashMap<>();
+        }
+        List<String> allPermissions = response.getValue();
+
         names = new ArrayList<>();
         for(String manager : store.managersNames){
-//            permission = server.getManagerPermission(...)
-            names.add(new Worker(manager, "Manager" /*permissions*/));
+            ResponseT<List<Integer>> responseManager = server.getManagerPermissionsForStore(ownerName, store.storeName, manager);
+            if(responseManager.ErrorOccurred){
+                alert.setFail(true);
+                alert.setMessage(responseManager.errorMessage);
+                return new LinkedHashMap<>();
+            }
+            List<Integer> managerPerms = responseManager.getValue();
+            Worker worker = new Worker(manager, "Manager");
+            worker.buildAndSetPermissions(allPermissions, managerPerms);
+            names.add(worker);
         }
         workers.put("Managers", names);
         return workers;
     }
 
-    private ProductDTO getProductFromStore(StoreDTO store, String productName){
-        for(ProductDTO p : store.productsInfo){
+    private Map<ProductDTO, Integer> getProductFromStore(StoreDTO store, String productName){
+        for(ProductDTO p : store.productsInfoAmount.keySet()){
             if(p.name.equals(productName)){
-                return p;
+                Map<ProductDTO, Integer> map = new HashMap<>();
+                map.put(p, store.productsInfoAmount.get(p));
+                return map;
             }
         }
         return null;

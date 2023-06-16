@@ -2,6 +2,7 @@ package PresentationLayer.controller;
 
 import CommunicationLayer.Server;
 import DTO.DealDTO;
+import DTO.MemberDTO;
 import DTO.StoreDTO;
 import PresentationLayer.model.*;
 import PresentationLayer.model.System;
@@ -177,8 +178,28 @@ public class SystemController {
 //        }
 //        List<Deal> deals = GeneralModel.buildDeals(response.getValue());
 
-        List<Deal> deals = delete(); // TODO: delete this line and delete() func
-        member = new Member(memberName, deals);
+
+//        List<Deal> deals = delete(); // TODO: delete this line and delete() func
+//        member = new Member(memberName, deals);
+//        request.getSession().setAttribute("member", member);
+        return "redirect:/allUsers";
+    }
+
+    @PostMapping("/memberInfo")
+    public String getMemberInfo(HttpServletRequest request, @RequestParam String memberName){
+        if(request.getSession().getAttribute("controller") != null){
+            controller = (GeneralModel) request.getSession().getAttribute("controller");
+        }
+        ResponseT<MemberDTO> response = server.getMemberInfo(controller.getName(), memberName);
+        if(response.ErrorOccurred){
+            alert.setFail(true);
+            alert.setMessage(response.errorMessage);
+            return "redirect:/allUsers";
+        }
+        MemberDTO memberDTO = response.getValue();
+        List<Deal> deals = GeneralModel.buildDeals(memberDTO.memberDeals); // TODO: uncomment
+//        List<Deal> deals = delete(); // TODO: delete
+        member = new Member(memberDTO.username, memberDTO.memberStores, deals, !server.isSystemManager(memberName).ErrorOccurred);
         request.getSession().setAttribute("member", member);
         return "redirect:/allUsers";
     }
@@ -192,10 +213,11 @@ public class SystemController {
         if(response.ErrorOccurred){
             alert.setFail(true);
             alert.setMessage(response.errorMessage);
-            return "redirect:/allUsers";
+            return getMemberInfo(request, memberName); // TODO: ???
+//            return "redirect:/allUsers";
         }
         alert.setSuccess(true);
-        alert.setMessage(memberName + " removed");
+        alert.setMessage("Member " + memberName + " is removed from the system");
         return "redirect:/allUsers";
     }
 

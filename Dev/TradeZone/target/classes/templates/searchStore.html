@@ -33,12 +33,12 @@
         <h4 th:if="${store != null}" class="card-title pricing-card-title mb-4" th:text="${'Founder Name: ' + store.founderName}"></h4>
         <h4 th:if="${store != null && !store.isActive}" class="col-auto fw-normal mb-4" style="color:red">Closed</h4>
 
-        <div th:if="${store != null && store.productsInfo != null && store.productsInfo.empty}" class="alert alert-warning text-center" role="alert">
+        <div th:if="${store != null && store.productsInfoAmount != null && store.productsInfoAmount.empty}" class="alert alert-warning text-center" role="alert">
             <h2>No Products In This Store</h2>
         </div>
 
-        <div th:if="${store != null && store.productsInfo != null && !store.productsInfo.empty}" >
-            <div th:replace="fragments/product :: product(${controller}, ${store.productsInfo}, ${store.isActive})"></div>
+        <div th:if="${store != null && store.productsInfoAmount != null && !store.productsInfoAmount.empty}" >
+            <div th:replace="fragments/product :: product(${controller}, ${store.productsInfoAmount.keySet}, ${store.isActive})"></div>
         </div>
 
 

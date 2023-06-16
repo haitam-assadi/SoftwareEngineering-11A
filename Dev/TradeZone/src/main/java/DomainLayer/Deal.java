@@ -3,39 +3,40 @@ package DomainLayer;
 import DTO.DealDTO;
 
 import java.util.HashMap;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class Deal {
 
-    private Store store;
-    private User user;
+    private String storeName;
+    private String userName;
 
     private String date;
 
-    private HashMap<String, Double> products_prices;              //<productName, productPrice>
-
-    private HashMap<String, Integer> products_amount;              //<productName, productAmount>
-
+    private ConcurrentHashMap<String, Double> products_prices;
+    private ConcurrentHashMap<String, Integer> products_amount;
+    private ConcurrentHashMap<String, Double> productPriceMultipleAmount;
+    private ConcurrentHashMap<String, Double> productFinalPriceWithDiscount;
     private double totalPrice;
 
 
-    public Deal(Store store, User user, String date, HashMap<String, Double> products_prices,  HashMap<String,
-            Integer> products_amount, double totalPrice){
-        this.store = store;
-        this.user = user;
+    public Deal(String storeName, String userName, String date, ConcurrentHashMap<String, Double> products_prices,
+                ConcurrentHashMap<String, Integer> products_amount, ConcurrentHashMap<String, Double> productPriceMultipleAmount, ConcurrentHashMap<String, Double> productFinalPriceWithDiscount, double totalPrice){
+        this.storeName = storeName;
+        this.userName = userName;
         this.date = date;
         this.products_prices = products_prices;
         this.products_amount = products_amount;
-        this.totalPrice = totalPrice;
+        this.totalPrice=totalPrice;
+        this.productPriceMultipleAmount=productPriceMultipleAmount;
+        this.productFinalPriceWithDiscount=productFinalPriceWithDiscount;
     }
 
     public DealDTO getDealDTO() {
-        //DealDTO(String storeName, String date, String username, HashMap<String, Double> products_prices,
-        //                   HashMap<String, Integer> products_amount, double totalPrice){
-        return new DealDTO(this.store.getStoreName(), this.date, this.user.userName, this.products_prices, this.products_amount,
-                this.totalPrice);
+        return new DealDTO(this.storeName, this.date, this.userName, this.products_amount, this.products_prices,
+                this.productPriceMultipleAmount, this.productFinalPriceWithDiscount, this.totalPrice);
     }
 
     public String getDealUserName(){
-        return this.user.userName;
+        return this.userName;
     }
 }
