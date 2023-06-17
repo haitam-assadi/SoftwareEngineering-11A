@@ -42,6 +42,14 @@ public class Bag {
         productAmount = new ConcurrentHashMap<>();
         isLoaded = true;
     }
+
+    public Bag(int bagId){
+        this.bagId = bagId;
+        this.storeBag = null;
+        bagContent = new ConcurrentHashMap<>();
+        productAmount = new ConcurrentHashMap<>();
+        isLoaded = false;
+    }
     public Bag(){}
 
     public void setLoaded(boolean b){
