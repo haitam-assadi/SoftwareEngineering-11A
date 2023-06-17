@@ -148,9 +148,11 @@ public class Server {
     }
 
     // TODO: change params
-    public ResponseT<Boolean> changeManagerPermissions(String memberUserName, String storeName, String managerUserName){
-        return service.changeManagerPermissions(memberUserName, storeName, managerUserName);
-    }
+//    public ResponseT<Boolean> changeManagerPermissions(String memberUserName, String storeName, String managerName, List<Integer> permsIDs){
+//        // TODO: call service...
+//        //        return service.changeManagerPermissions(memberUserName, storeName, permsIDs);
+//        return new ResponseT<>(true);
+//    }
 
     public ResponseT<Boolean> closeStore(String memberUserName, String storeName){
         return service.closeStore(memberUserName, storeName);
@@ -361,4 +363,36 @@ public class Server {
     }
 
     //THIS IS A TEST
+
+    public ResponseT<Double> getCartPriceBeforeDiscount(String memberUserName) {
+        return service.getCartPriceBeforeDiscount(memberUserName);
+    }
+
+    public ResponseT<Double> getCartPriceAfterDiscount(String memberUserName) {
+        return service.getCartPriceAfterDiscount(memberUserName);
+    }
+
+    //return 1=storeFounder, 2=storeOwner, 3=storeManager, -1= noRule
+    public ResponseT<Integer> getRuleForStore(String storeName, String memberName){
+        return service.getRuleForStore(storeName, memberName);
+    }
+
+    public ResponseT<List<String>> getAllPermissions(String ownerUserName, String storeName) {
+        return service.getAllPermissions(ownerUserName, storeName);
+//        String[] perm = {"perm1", "perm2", "perm3", "perm4"};
+//        return perm;
+    }
+
+    public ResponseT<List<Integer>> getManagerPermissionsForStore(String ownerUserName, String storeName, String managerUserName) {
+        return service.getManagerPermissionsForStore(ownerUserName, storeName, managerUserName);
+//        List<Integer> list = new ArrayList<>();
+//        list.add(1);
+//        list.add(3);
+//        return list;
+    }
+
+    public ResponseT<Boolean> updateManagerPermissionsForStore(String ownerUserName, String storeName, String managerUserName, List<Integer> newPermissions){
+        return service.updateManagerPermissionsForStore(ownerUserName, storeName, managerUserName, newPermissions);
+    }
+
 }

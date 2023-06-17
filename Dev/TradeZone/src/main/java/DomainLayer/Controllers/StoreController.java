@@ -151,6 +151,11 @@ public class StoreController {
         return true;
     }
 
+    public void assertStringIsNotNullOrBlank(String st) throws Exception {
+        if(st==null || st.isBlank())
+            throw new Exception("string is null or empty");
+    }
+
     public void isActiveStore(String storeName) throws Exception {
         storeName=storeName.strip().toLowerCase();
         assertIsStore(storeName);
@@ -176,18 +181,14 @@ public class StoreController {
         return this.stores.get(storeName).getStoreWorkersInfo(memberUserName);
     }
 
-    public List<DealDTO> getStoreDeals(String memberUserName, String storeName) throws Exception {
+    public List<DealDTO> getStoreDeals(String memberUserName, String storeName, boolean isSystemManager) throws Exception {
+        assertStringIsNotNullOrBlank(storeName);
         storeName=storeName.strip().toLowerCase();
-        assertIsStore(storeName);
-        return this.stores.get(storeName).getStoreDeals(memberUserName);
-    }
+        assertStringIsNotNullOrBlank(memberUserName);
+        memberUserName=memberUserName.strip().toLowerCase();
 
-    public List<DealDTO> getMemberDeals(String otherMemberUserName) {
-        List<DealDTO> deals = new ArrayList<DealDTO>();
-        for(Store store : this.stores.values()){
-            deals = store.getMemberDeals(otherMemberUserName, deals);
-        }
-        return deals;
+        assertIsStore(storeName);
+        return this.stores.get(storeName).getStoreDeals(memberUserName,isSystemManager);
     }
 
     public Store createStore(String newStoreName) throws Exception {

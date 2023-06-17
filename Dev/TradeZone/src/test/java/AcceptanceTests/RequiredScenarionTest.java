@@ -63,6 +63,7 @@ public class RequiredScenarionTest {
 
 
             Assertions.assertTrue(proxy.appointOtherMemberAsStoreOwner(user2,store1Name, user3));
+            Assertions.assertTrue(proxy.fillOwnerContract(user1,store1Name,user3,true));
             Assertions.assertTrue(proxy.addNewProductToStock(user3,store1Name,product3Name,category, 100.0, "desc", 50));
 
             // user3 didn't remove then user 2 is still owner

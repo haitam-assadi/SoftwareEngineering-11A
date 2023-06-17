@@ -49,6 +49,9 @@ public class AdditionDiscountPolicy implements DiscountPolicy{
 
 
     public String toString(){
-        return "("+ firstDiscountPolicy.toString()+") in addition ("+secondDiscountPolicy.toString() +").";
+        String ret =  "("+ firstDiscountPolicy.toString()+") in addition ("+secondDiscountPolicy.toString() +").";
+        if(!bagConstraint.isPositiveBagConstraint())
+            ret = "if ("+bagConstraint.toString()+") then you get "+ret;
+        return ret;
     }
 }

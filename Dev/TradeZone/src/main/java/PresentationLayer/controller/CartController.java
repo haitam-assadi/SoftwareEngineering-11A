@@ -49,7 +49,7 @@ public class CartController {
         return "cart";
     }
 
-    public static List<Bag> buildCart(List<BagDTO> cartDTO){
+    public static List<Bag> buildCart(List<BagDTO> cartDTO) {
         List<Bag> bags = new ArrayList<>();
         for(BagDTO bagDTO : cartDTO){
             List<Product> products = new ArrayList<>();
@@ -58,7 +58,7 @@ public class CartController {
                 Product product = new Product(productDTO.name, productDTO.price, productDTO.description, amount);
                 products.add(product);
             }
-            Bag bag = new Bag(bagDTO.storeBag, products);
+            Bag bag = new Bag(bagDTO.storeBag, products, bagDTO.productPriceMultipleAmount, bagDTO.productFinalPriceWithDiscount);
             bags.add(bag);
         }
         return bags;

@@ -22,6 +22,7 @@ public class GeneralModel {
     private boolean systemManager;
     private String currentPage;
     private double cartTotalPrice;
+    private double cartDiscountTotalPrice;
     private List<Bag> cart;
     private Alert alert;
 
@@ -72,6 +73,8 @@ public class GeneralModel {
     }
 
     public boolean isSystemManager() {
+        ResponseT<Boolean> isSystemManager = server.isSystemManager(this.name);
+        systemManager = (!isSystemManager.ErrorOccurred);
         return systemManager;
     }
 
@@ -88,12 +91,30 @@ public class GeneralModel {
     }
 
     public double getCartTotalPrice() {
-        cartTotalPrice = getCartTotalPrice(cart);
+        ResponseT<Double> response = server.getCartPriceBeforeDiscount(this.name);
+        if(!response.ErrorOccurred){
+            cartTotalPrice = round(response.getValue(), 2);
+        }
+        else cartTotalPrice = -1;
+//        cartTotalPrice = getCartTotalPrice(cart);
         return cartTotalPrice;
     }
 
     public void setCartTotalPrice(double cartTotalPrice) {
         this.cartTotalPrice = cartTotalPrice;
+    }
+
+    public double getCartDiscountTotalPrice() {
+        ResponseT<Double> response = server.getCartPriceAfterDiscount(this.name);
+        if(!response.ErrorOccurred){
+            cartDiscountTotalPrice = round(response.getValue(), 2);
+        }
+        else cartDiscountTotalPrice = -1;
+        return cartDiscountTotalPrice;
+    }
+
+    public void setCartDiscountTotalPrice(double cartDiscountTotalPrice) {
+        this.cartDiscountTotalPrice = cartDiscountTotalPrice;
     }
 
     public List<Bag> getCart() {
@@ -144,6 +165,10 @@ public class GeneralModel {
         return amount;
     }
 
+    public boolean cartHasDisc(){
+        return (getCartTotalPrice() != getCartDiscountTotalPrice());
+    }
+
     private double getCartTotalPrice(List<Bag> bags){
         double total = 0;
         for(Bag b : bags){
@@ -151,6 +176,37 @@ public class GeneralModel {
         }
         total = round(total, 2);
         return total;
+    }
+
+    private List<Integer> getManagerPermissionsForStore(String storeName){
+        ResponseT<List<Integer>> response = server.getManagerPermissionsForStore(this.name, storeName, this.name);
+        if(response.ErrorOccurred){
+            return null;
+        }
+        return response.getValue();
+    }
+
+    //return 1=storeFounder, 2=storeOwner, 3=storeManager, -1= noRule
+    public boolean hasPermission(String storeName, int permId){
+        ResponseT<Integer> response = server.getRuleForStore(storeName, this.name);
+        if(response.ErrorOccurred)
+            return false;
+        int role = response.getValue();
+        if(role == 1 || role == 2)
+            return true;
+        if(role == -1)
+            return false;
+        List<Integer> permissions = getManagerPermissionsForStore(storeName);
+        if(permissions == null)
+            return false;
+        return permissions.contains(permId);
+    }
+
+    public int getRole(String storeName){
+        ResponseT<Integer> response = server.getRuleForStore(storeName, this.name);
+        if(response.ErrorOccurred)
+            return -1;
+        return response.getValue();
     }
 
     public static double round(double value, int places) {

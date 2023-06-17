@@ -1,8 +1,10 @@
 package AcceptanceTests;
 
+import DTO.DealDTO;
+import DTO.OwnerContractDTO;
+import DTO.ProductDTO;
 import DomainLayer.PaymentService;
 import DomainLayer.ShipmentService;
-import ServiceLayer.ResponseT;
 
 import java.util.*;
 
@@ -159,6 +161,38 @@ public class ProxyBridge implements Bridge{
             return realBridge.appointOtherMemberAsStoreOwner(memberUserName, storeName, newOwnerUserName);
         }
         return false;
+    }
+
+    @Override
+    public boolean fillOwnerContract(String memberUserName, String storeName, String newOwnerUserName, Boolean decisions) throws Exception {
+        if(realBridge!=null){
+            return realBridge.fillOwnerContract(memberUserName, storeName, newOwnerUserName, decisions);
+        }
+        return false;
+    }
+
+    @Override
+    public List<OwnerContractDTO> getAlreadyDoneContracts(String memberUserName, String storeName) throws Exception {
+        if(realBridge!=null){
+            return realBridge.getAlreadyDoneContracts(memberUserName, storeName);
+        }
+        return null;
+    }
+
+    @Override
+    public List<OwnerContractDTO> getMyCreatedContracts(String memberUserName, String storeName) throws Exception {
+        if(realBridge!=null){
+            return realBridge.getMyCreatedContracts(memberUserName, storeName);
+        }
+        return null;
+    }
+
+    @Override
+    public List<OwnerContractDTO> getPendingContractsForOwner(String memberUserName, String storeName) throws Exception {
+        if(realBridge!=null){
+            return realBridge.getPendingContractsForOwner(memberUserName, storeName);
+        }
+        return null;
     }
 
     @Override
@@ -697,5 +731,31 @@ public class ProxyBridge implements Bridge{
             return realBridge.getAppendingMessages(memberUserName);
         }
         return null;
+    }
+    @Override
+    public ProductDTO getProductInfoFromStore(String userName, String storeName, String productName) throws Exception{
+        if(realBridge!=null){
+            return realBridge.getProductInfoFromStore(userName, storeName, productName);
+        }
+
+        return null;
+    }
+
+    @Override
+    public List<DealDTO> getStoreDeals(String memberUserName, String storeName) throws Exception {
+        if(realBridge!=null){
+            return realBridge.getStoreDeals(memberUserName, storeName);
+        }
+
+        return new LinkedList<>();
+    }
+
+    @Override
+    public List<DealDTO> getMemberDeals(String memberUserName, String otherMemberUserName) throws Exception {
+        if(realBridge!=null){
+            return realBridge.getMemberDeals(memberUserName, otherMemberUserName);
+        }
+
+        return new LinkedList<>();
     }
 }

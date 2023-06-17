@@ -1,5 +1,6 @@
 package DomainLayer.Controllers;
 
+import DTO.DealDTO;
 import DTO.MemberDTO;
 import DTO.StoreDTO;
 import DomainLayer.*;
@@ -124,9 +125,9 @@ public class UserController {
 
 
     public String login(String guestUserName, String MemberUserName, String password) throws Exception {
-        loginValidateParameters(guestUserName, MemberUserName, password);
         guestUserName = guestUserName.strip().toLowerCase();
         MemberUserName = MemberUserName.strip().toLowerCase();
+        loginValidateParameters(guestUserName, MemberUserName, password);
         Member member = getMember(MemberUserName);
         if(!member.getPassword().equals(Security.Encode(password)))
             throw new Exception("incorrect password!");
@@ -179,6 +180,19 @@ public class UserController {
             return getMember(userName);
 
         throw new Exception("can't getUser: userName "+ userName+" does not exists!");
+    }
+
+    public List<DealDTO> getUserDeals(String memberUserName, String otherMemberuserName , Boolean isSystemManager) throws Exception {
+        otherMemberuserName=otherMemberuserName.strip().toLowerCase();
+        memberUserName=memberUserName.strip().toLowerCase();
+        if(!isSystemManager)
+            if(!memberUserName.equals(otherMemberuserName))
+                throw new Exception(memberUserName + "can not have the member deals");
+        assertStringIsNotNullOrBlank(otherMemberuserName);
+        if(!isGuest(otherMemberuserName))
+            assertIsMember(otherMemberuserName);
+        User user = getUser(otherMemberuserName);
+        return user.getUserDeals();
     }
 
     public void assertIsGuestOrLoggedInMember(String userName) throws Exception {
@@ -243,7 +257,7 @@ public class UserController {
         }
     }
 
-    private boolean isSystemManager(String managerName) throws Exception {
+    public boolean isSystemManager(String managerName) throws Exception {
         assertStringIsNotNullOrBlank(managerName);
 
         managerName = managerName.strip().toLowerCase();
@@ -319,18 +333,6 @@ public class UserController {
         return getMember(memberUserName).myStores();
     }
 
-    public void checkMemberRole(String systemManagerUserName, String otherMemberUserName) throws Exception {
-        if(!this.members.containsKey(systemManagerUserName)){
-            throw new Exception(systemManagerUserName + "has to be a member to get member's deals.");
-        }
-        if(!this.members.containsKey(otherMemberUserName)){
-            throw new Exception(otherMemberUserName + "has to be a member to get his deals.");
-        }
-        if(!this.members.get(systemManagerUserName).containsRole("SystemManager")){
-            throw new Exception(systemManagerUserName + "has to be a system manager to get member's deals.");
-        }
-    }
-
     public String memberLogOut(String memberUserName) throws Exception {
         assertIsMemberLoggedIn(memberUserName);
         loggedInMembers.get(memberUserName).Logout();
@@ -380,10 +382,10 @@ public class UserController {
         return user.getCart().updateStockAmount();
     }
 
-    public boolean removeOwnerByHisAppointer(String appointerUserName, Store store, String ownerUserName) throws Exception {
-        assertIsMemberLoggedIn(appointerUserName); // assert
+    public boolean removeOwnerByHisAppointer(String memberUserName, Store store, String ownerUserName) throws Exception {
+        assertIsMemberLoggedIn(memberUserName); // assert
         assertIsMember(ownerUserName); // assert
-        Member member = getMember(appointerUserName);
+        Member member = getMember(memberUserName);
         Member otherMember = getMember(ownerUserName);
         return member.removeOwnerByHisAppointer(store, otherMember);
     }

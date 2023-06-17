@@ -98,7 +98,11 @@ public class Cart {
                 throw e;
             }
         }
-        //TODO: create deal for each store before deleting bags
+        for(Bag bag: bags.values()){
+            Deal deal = bag.createDeal(this.cartOwner);
+            this.cartOwner.addDeal(deal);
+        }
+
         bags = new ConcurrentHashMap<>();
         return true;
     }
@@ -108,5 +112,9 @@ public class Cart {
             b.removeAllProducts();
         }
         bags = new ConcurrentHashMap<>();
+    }
+
+    public void setUser(Member member) {
+        this.cartOwner = member;
     }
 }

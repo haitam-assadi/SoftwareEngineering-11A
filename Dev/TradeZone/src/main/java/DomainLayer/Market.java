@@ -136,6 +136,7 @@ public class Market {
     public boolean addToCart(String userName, String storeName, String productName, Integer amount) throws Exception {
         userController.assertIsGuestOrLoggedInMember(userName);
         storeController.assertIsStore(storeName);
+        storeController.isActiveStore(storeName);
         User user = userController.getUser(userName);
         return user.addToCart(storeController.getStore(storeName), productName, amount);
     }
@@ -193,8 +194,38 @@ public class Market {
 
     public boolean appointOtherMemberAsStoreOwner(String memberUserName, String storeName, String newOwnerUserName) throws Exception {
         userController.assertIsNotSystemManager(newOwnerUserName);
-        Store store = storeController.getStore(storeName); // TODO: MAYBE WE NEED TO CHECK IF STORE IS ACTIVE
+        Store store = storeController.getStore(storeName);
         return userController.appointOtherMemberAsStoreOwner(memberUserName,store,newOwnerUserName);
+    }
+
+    public boolean removeOwnerByHisAppointer(String memberUserName, String storeName, String ownerUserName) throws Exception {
+        Store store = storeController.getStore(storeName);
+        return userController.removeOwnerByHisAppointer(memberUserName,store,ownerUserName);
+    }
+
+    public boolean fillOwnerContract(String memberUserName, String storeName, String newOwnerUserName, Boolean decisions) throws Exception {
+        userController.assertIsMemberLoggedIn(memberUserName);
+        userController.assertIsMember(newOwnerUserName);
+        Store store = storeController.getStore(storeName);
+        return store.fillOwnerContract(memberUserName, newOwnerUserName, decisions);
+    }
+
+    public List<OwnerContractDTO> getAlreadyDoneContracts(String memberUserName, String storeName) throws Exception {
+        userController.assertIsMemberLoggedIn(memberUserName);
+        Store store = storeController.getStore(storeName);
+        return store.getAlreadyDoneContracts(memberUserName);
+    }
+
+    public List<OwnerContractDTO> getMyCreatedContracts(String memberUserName, String storeName) throws Exception {
+        userController.assertIsMemberLoggedIn(memberUserName);
+        Store store = storeController.getStore(storeName);
+        return store.getMyCreatedContracts(memberUserName);
+    }
+
+    public List<OwnerContractDTO> getPendingContractsForOwner(String memberUserName, String storeName) throws Exception {
+        userController.assertIsMemberLoggedIn(memberUserName);
+        Store store = storeController.getStore(storeName);
+        return store.getPendingContractsForOwner(memberUserName);
     }
 
     public boolean appointOtherMemberAsStoreManager(String memberUserName, String storeName, String newManagerUserName/*,list<Integer> permissions*/) throws Exception {
@@ -250,12 +281,14 @@ public class Market {
 
     public List<DealDTO> getStoreDeals(String memberUserName, String storeName) throws Exception {
         userController.assertIsMemberLoggedIn(memberUserName);
-        return this.storeController.getStoreDeals(memberUserName, storeName);
+        boolean isSystemManager = userController.isSystemManager(memberUserName);
+        return this.storeController.getStoreDeals(memberUserName, storeName, isSystemManager);
     }
 
-    public List<DealDTO> getMemberDeals(String systemManagerUserName, String otherMemberUserName) throws Exception {
-        this.userController.checkMemberRole(systemManagerUserName, otherMemberUserName);
-        return this.storeController.getMemberDeals(otherMemberUserName);
+    public List<DealDTO> getMemberDeals(String memberUserName, String otherMemberUserName) throws Exception {
+        userController.assertIsMemberLoggedIn(memberUserName);
+        boolean isSystemManager = userController.isSystemManager(memberUserName);
+        return this.userController.getUserDeals(memberUserName,otherMemberUserName,isSystemManager);
     }
 
     public boolean purchaseCartByCreditCard(String userName, String cardNumber, String month, String year, String holder, String cvv, String id, String receiverName,String shipmentAddress,String shipmentCity,String shipmentCountry,String zipCode) throws Exception {
@@ -284,18 +317,15 @@ public class Market {
     }
 
     public Double getCartPriceBeforeDiscount(String memberUserName) throws Exception {
-        userController.assertIsMemberLoggedIn(memberUserName);
+//        userController.assertIsMemberLoggedIn(memberUserName);
+        userController.assertIsGuestOrLoggedInMember(memberUserName);
         return userController.getCartPriceBeforeDiscount(memberUserName);
     }
 
     public Double getCartPriceAfterDiscount(String memberUserName) throws Exception {
-        userController.assertIsMemberLoggedIn(memberUserName);
+//        userController.assertIsMemberLoggedIn(memberUserName);
+        userController.assertIsGuestOrLoggedInMember(memberUserName);
         return userController.getCartPriceAfterDiscount(memberUserName);
-    }
-
-    public boolean removeOwnerByHisAppointer(String appointerUserName, String storeName, String ownerUserName ) throws Exception {
-        Store store = storeController.getStore(storeName); // TODO: MAYBE WE NEED TO CHECK IF STORE IS ACTIVE
-        return userController.removeOwnerByHisAppointer(appointerUserName,store,ownerUserName);
     }
 
     public Integer createMaxTimeAtDayProductBagConstraint(String memberUserName, String storeName, String productName, int hour, int minute, boolean addAsStorePaymentPolicy) throws Exception {
