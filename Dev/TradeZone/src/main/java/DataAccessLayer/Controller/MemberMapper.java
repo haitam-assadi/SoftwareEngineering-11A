@@ -76,16 +76,6 @@ public class MemberMapper {
         return systemManagers.get(managerName);
     }
 
-//    public boolean isFounderExists(String founderName,String storeName) throws Exception{
-//        if (founders.containsKey(founderName)) return true;
-//        else{
-//            Optional<StoreFounder> storeFounderD = DALService.storeFounderRepository.findById(new RolesId(founderName,storeName));
-//            if (storeFounderD.isPresent()) return false;
-//            else{
-//                //StoreFounder storeFounder =
-//            }
-//        }
-//    }
     public StoreFounder getStoreFounder(String founderName) throws Exception{
         //todo: check if we need input validation
         assertStringIsNotNullOrBlank(founderName);
@@ -120,18 +110,28 @@ public class MemberMapper {
         return storesManagers.get(managerName);
     }
 
-    public void insertMember(Member member) {
-        membersNamesConcurrentSet.add(member.getUserName());
-        members.put(member.getUserName(),member);
+    public Member getNewMember(String memberName,String password){
+        Member member = new Member(memberName, Security.Encode(password));
+        membersNamesConcurrentSet.add(memberName);
+        members.put(memberName,member);
+        return member;
     }
-    public void insertFounder(StoreFounder storeFounderRole) {
-        founders.put(storeFounderRole.getUserName(),storeFounderRole);
+    public StoreFounder getNewStoreFounder(Member member){
+        StoreFounder storeFounder = new StoreFounder(member);
+        founders.put(storeFounder.getUserName(),storeFounder);
+        return storeFounder;
     }
-    public void insertOwner(StoreOwner storeOwner) {
+
+    public StoreOwner getNewStoreOwner(Member member){
+        StoreOwner storeOwner = new StoreOwner(member);
         owners.put(storeOwner.getUserName(),storeOwner);
+        return storeOwner;
     }
-    public void insertStoreManager(StoreManager storeManager) {
+
+    public StoreManager getNewStoreManager(Member member){
+        StoreManager storeManager = new StoreManager(member);
         storesManagers.put(storeManager.getUserName(),storeManager);
+        return storeManager;
     }
 
 

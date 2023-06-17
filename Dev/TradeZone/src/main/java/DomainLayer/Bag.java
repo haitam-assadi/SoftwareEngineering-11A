@@ -201,7 +201,7 @@ public class Bag {
         }
         Double totalPrice = getBagPriceAfterDiscount();
 
-        Deal deal = new Deal(storeBag,user, LocalDate.now().toString(), products_prices, products_amount, productPriceMultipleAmount, productFinalPriceWithDiscount,totalPrice);
+        Deal deal = new Deal(storeBag.getStoreName(),user.userName, LocalDate.now().toString(), products_prices, products_amount, productPriceMultipleAmount, productFinalPriceWithDiscount,totalPrice);
         storeBag.addDeal(deal);
         return deal;
     }

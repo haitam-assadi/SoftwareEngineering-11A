@@ -43,6 +43,11 @@ public class StoreFounder extends AbstractStoreOwner implements Serializable {
         return Objects.hash(getUserName());
     }
 
+    @Override
+    public void loadRole() throws Exception {
+        loadFounder();
+    }
+
     public void loadFounder() throws Exception {
         if (!isLoaded) {
             if (Market.dbFlag) {
@@ -56,7 +61,7 @@ public class StoreFounder extends AbstractStoreOwner implements Serializable {
                     for (String ownerName : appointedOwnersNames) {
                         StoreOwner storeOwner = MemberMapper.getInstance().getStoreOwner(ownerName);
                         owners.add(storeOwner);
-                        store.addStoreOwner(ownerName, storeOwner);
+                        //store.addStoreOwner(ownerName, storeOwner);
                     }
                     appointedOwners.put(storeName, owners);
                     List<String> appointedManagersNames = DALService.storesManagersRepository.findAllByStoreNameAndBoss(storeName, getUserName());
@@ -64,10 +69,11 @@ public class StoreFounder extends AbstractStoreOwner implements Serializable {
                     for (String managerName : appointedManagersNames) {
                         StoreManager storeManager = MemberMapper.getInstance().getStoreManager(managerName);
                         managers.add(storeManager);
-                        store.addStoreManager(managerName, storeManager);
+                        //store.addStoreManager(managerName, storeManager);
                     }
                     appointedManagers.put(storeName, managers);
                     //todo: chcek if should add the owners and managers to the store
+                    // recheck the notification story
                     NotificationService.getInstance().subscribe(store.getStoreName(), NotificationType.productBought, this.member);
                     NotificationService.getInstance().subscribe(store.getStoreName(), NotificationType.storeClosedBySystemManager, this.member);
                 }

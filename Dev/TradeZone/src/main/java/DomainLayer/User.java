@@ -17,7 +17,10 @@ public abstract class User {
     @JoinColumn(name = "cart_id")
     protected Cart cart;
 
-    @Transient
+    //@Transient
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "user_deals")
+    @Column(name = "deal")
     protected List<Deal> userDeals;
 
     public User(String userName){

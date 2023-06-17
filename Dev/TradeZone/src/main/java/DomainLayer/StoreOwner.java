@@ -73,6 +73,11 @@ public class StoreOwner extends AbstractStoreOwner implements Serializable {
         return true;
     }
 
+    @Override
+    public void loadRole() throws Exception {
+        loadOwner();
+    }
+
     public void loadOwner() throws Exception {
         if (!isLoaded) {
             if (Market.dbFlag) {
@@ -80,13 +85,11 @@ public class StoreOwner extends AbstractStoreOwner implements Serializable {
                 for (String storeName : storesNames) {
                     responsibleForStores.put(storeName, StoreMapper.getInstance().getStore(storeName));
                     Store store = responsibleForStores.get(storeName);
-                    store.addStoreOwner(getUserName(), this);//todo: check
                     List<String> appointedOwnersNames = DALService.storesOwnersRepository.findAllByStoreNameAndBoss(storeName, getUserName());
                     List<StoreOwner> owners = new LinkedList<>();
                     for (String ownerName : appointedOwnersNames) {
                         StoreOwner storeOwner = MemberMapper.getInstance().getStoreOwner(ownerName);
                         owners.add(storeOwner);
-                        store.addStoreOwner(ownerName, storeOwner);
                     }
                     appointedOwners.put(storeName, owners);
                     List<String> appointedManagersNames = DALService.storesManagersRepository.findAllByStoreNameAndBoss(storeName, getUserName());
@@ -94,7 +97,6 @@ public class StoreOwner extends AbstractStoreOwner implements Serializable {
                     for (String managerName : appointedManagersNames) {
                         StoreManager storeManager = MemberMapper.getInstance().getStoreManager(managerName);
                         managers.add(storeManager);
-                        store.addStoreManager(managerName, storeManager);
                     }
                     appointedManagers.put(storeName, managers);
                     Map<String, String> bossTypeAndName = DALService.storesOwnersRepository.findBossById(getUserName(), storeName);
@@ -108,21 +110,20 @@ public class StoreOwner extends AbstractStoreOwner implements Serializable {
                             bossName = bossTypeAndName.get(s);
                         }
                     }
-                    System.out.println(bossName);
-                    System.out.println(bossType);
                     if (bossType.equals(RoleEnum.StoreFounder.toString())) {
                         StoreFounder myBoss = MemberMapper.getInstance().getStoreFounder(bossName);
                         myBossesForStores.put(storeName, myBoss);
-                        if (!store.alreadyHaveFounder()) {
-                            store.setStoreFounder(myBoss);
-                        }
+//                        if (!store.alreadyHaveFounder()) {
+//                            store.setStoreFounder(myBoss);
+//                        }
                     }
                     if (bossType.equals(RoleEnum.StoreOwner.toString())) {
                         StoreOwner myBoss = MemberMapper.getInstance().getStoreOwner(bossName);
                         myBossesForStores.put(bossName, myBoss);
-                        store.addStoreOwner(myBoss.getUserName(), myBoss);
+                        //store.addStoreOwner(myBoss.getUserName(), myBoss);
                     }
                     //todo: chcek if should add the owners and managers to the store
+                    // check the notification ssstory
                     this.member.subscribeOwnerForNotifications(storeName);
                 }
             }

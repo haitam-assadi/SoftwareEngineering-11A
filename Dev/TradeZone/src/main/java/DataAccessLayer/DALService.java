@@ -45,6 +45,8 @@ public class DALService {
     @Autowired
     public static SystemManagerRepository systemManagerRepository;
     @Autowired
+    public static BagConstraintRepository bagConstraintRepository;
+    @Autowired
     public static AllContentBagConstraintRepository allContentBagConstraintRepository;
     @Autowired
     public static BagConstraintAndRepository bagConstraintAndRepository;
@@ -59,6 +61,8 @@ public class DALService {
     @Autowired
     public static ProductBagConstraintRepository productBagConstraintRepository;
     @Autowired
+    public static DiscountPolicyRepository discountPolicyRepository;
+    @Autowired
     public static AdditionDiscountPolicyRepository additionDiscountPolicyRepository;
     @Autowired
     public static AllStoreDiscountPolicyRepository allStoreDiscountPolicyRepository;
@@ -68,6 +72,8 @@ public class DALService {
     public static MaxValDiscountPolicyRepository maxValDiscountPolicyRepository;
     @Autowired
     public static ProductDiscountPolicyRepository productDiscountPolicyRepository;
+    @Autowired
+    public static DealRepository dealRepository;
 
     public DALService(){
         super();
@@ -152,6 +158,13 @@ public class DALService {
     public static void addProduct(Bag bag, Product product) {
         productRepository.save(product);
         bagRepository.save(bag);
+    }
+
+    @Transactional
+    public static void saveDeal(Deal deal, Member member, Store store) {
+        dealRepository.save(deal);
+        storeRepository.save(store);
+        memberRepository.save(member);
     }
 //
 //    @Transactional

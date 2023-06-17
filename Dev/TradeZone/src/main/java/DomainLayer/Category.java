@@ -118,5 +118,4 @@ public class Category {
     //load is ready
     //update is called as transaction and is ready
     //insert new Category is transaction and is ready
-    //TODO: MOSLEM: do we ever delete categories ?
 }

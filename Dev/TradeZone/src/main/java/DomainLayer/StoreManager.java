@@ -95,6 +95,7 @@ public class StoreManager extends Role implements Serializable {
     }
 
     public boolean updateManagerPermissionsForStore(String storeName, List<Integer> newPermissions) throws Exception {
+        //todo: moslem
         if(storeName==null)
             throw new Exception("storeName cant be null");
         if(newPermissions==null)
@@ -104,11 +105,14 @@ public class StoreManager extends Role implements Serializable {
             throw new Exception(this.getUserName()+ " is not Manager for store "+ storeName);
 
         Set<ManagerPermissions> newPermSet = new HashSet<ManagerPermissions>();
-        for(Integer permissionId :newPermissions)
+        for(Integer permissionId :newPermissions) {
             newPermSet.add(getPermissionById(permissionId));
+            managerPermissions.add(getPermissionById(permissionId));
+        }
 
         managedStoresPermissions.put(storeName, newPermSet);
-
+        if (Market.dbFlag)
+            DALService.storesManagersRepository.save(this);
         return true;
     }
 
@@ -125,6 +129,11 @@ public class StoreManager extends Role implements Serializable {
         managedStoresPermissions.get(storeName).add(ManagerPermissions.getStoreDeals);
         managerPermissions.add(ManagerPermissions.getStoreDeals);
         return true;
+    }
+
+    @Override
+    public void loadRole() throws Exception {
+        loadManager();
     }
 
     public void removeStore(String storeName){
@@ -158,10 +167,17 @@ public class StoreManager extends Role implements Serializable {
                 for (String storeName : storesNames) {
                     responsibleForStores.put(storeName, StoreMapper.getInstance().getStore(storeName));
                     Store store = responsibleForStores.get(storeName);
-                    store.addStoreManager(getUserName(), this);
                     Map<String, String> bossTypeAndName = DALService.storesOwnersRepository.findBossById(getUserName(), storeName);
-                    String bossType = bossTypeAndName.keySet().stream().toList().get(0);
-                    String bossName = bossTypeAndName.get(bossType);
+                    String bossType = "";
+                    String bossName = "";
+                    for (String s : bossTypeAndName.keySet()) {
+                        if (s.equals("my_boss_type")) {
+                            bossType = bossTypeAndName.get(s);
+                        }
+                        if (s.equals("my_boss")) {
+                            bossName = bossTypeAndName.get(s);
+                        }
+                    }
                     if (bossType.equals(RoleEnum.StoreFounder.toString())) {
                         StoreFounder myBoss = MemberMapper.getInstance().getStoreFounder(bossName);
                         myBossesForStores.put(storeName, myBoss);
@@ -172,7 +188,6 @@ public class StoreManager extends Role implements Serializable {
                     if (bossType.equals(RoleEnum.StoreOwner.toString())) {
                         StoreOwner myBoss = MemberMapper.getInstance().getStoreOwner(bossName);
                         myBossesForStores.put(bossName, myBoss);
-                        store.addStoreOwner(myBoss.getUserName(), myBoss);
                     }
                     //todo: chcek if should add the owners and managers to the store
                     List<String> managerStorePermissions = DALService.storesManagersRepository.findManagerPermissionsPerStore(getUserName(), storeName);

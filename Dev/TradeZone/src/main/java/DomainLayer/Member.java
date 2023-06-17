@@ -35,7 +35,7 @@ public class Member extends User{
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "pending_messages", joinColumns = @JoinColumn(name = "member_name"))
     @Column(name = "message")
-    private List<String> pendingMessages;
+    private Set<String> pendingMessages;
 
     private boolean isOnline;
 
@@ -71,7 +71,7 @@ public class Member extends User{
         roles = new ConcurrentHashMap<>();
         this.isSystemManager=false;
         systemManager = null;
-        pendingMessages = new ArrayList<>();
+        pendingMessages = new HashSet<>();
         isOnline = false;
         memberRolesFlag = new HashSet<>();
         //isLoaded??
@@ -84,7 +84,7 @@ public class Member extends User{
     public Member(String userName){
         super.userName = userName;
         memberRolesFlag = new HashSet<>();
-        pendingMessages = new ArrayList<>();
+        pendingMessages = new HashSet<>();
         roles = new ConcurrentHashMap<>();
         isLoaded = false;
     }
@@ -129,7 +129,8 @@ public class Member extends User{
             throw new Exception("member"+getUserName()+" is already store owner");
         if(store.isAlreadyStoreManager(getUserName()))
             throw new Exception("member"+getUserName()+" is already store manager");
-        StoreOwner storeOwner =  new StoreOwner(this);
+        StoreOwner storeOwner = MemberMapper.getInstance().getNewStoreOwner(this);
+        //StoreOwner storeOwner =  new StoreOwner(this);
         addRole(RoleEnum.StoreOwner);
         roles.putIfAbsent(RoleEnum.StoreOwner,storeOwner);
         subscribeOwnerForNotifications(store.getStoreName());
@@ -194,8 +195,9 @@ public class Member extends User{
             throw new Exception("member"+getUserName()+" is already store owner");
         if(store.isAlreadyStoreManager(getUserName()))
             throw new Exception("member"+getUserName()+" is already store manager");
+        StoreManager storeManager = MemberMapper.getInstance().getNewStoreManager(this);
         addRole(RoleEnum.StoreManager);
-        roles.putIfAbsent(RoleEnum.StoreManager, new StoreManager(this));
+        roles.putIfAbsent(RoleEnum.StoreManager, storeManager);
         StoreManager storeManagerRole =  (StoreManager) roles.get(RoleEnum.StoreManager);
 
         storeManagerRole.appointMemberAsStoreManager(store,myBoss);
@@ -211,9 +213,9 @@ public class Member extends User{
         if(store.alreadyHaveFounder())
             throw new Exception("store "+store.getStoreName()+" already have a founder");
         addRole(RoleEnum.StoreFounder);
-        roles.putIfAbsent(RoleEnum.StoreFounder, new StoreFounder(this));
+        StoreFounder storeFounder = MemberMapper.getInstance().getNewStoreFounder(this);
+        roles.putIfAbsent(RoleEnum.StoreFounder,storeFounder);
         StoreFounder storeFounderRole =  (StoreFounder) roles.get(RoleEnum.StoreFounder);
-        MemberMapper.getInstance().insertFounder(storeFounderRole);
         storeFounderRole.appointMemberAsStoreFounder(store);
         store.setStoreFounderAtStoreCreation(storeFounderRole);
         NotificationService.getInstance().subscribe(store.getStoreName(),NotificationType.productBought,this);
@@ -346,7 +348,7 @@ public class Member extends User{
         }
     }
 
-    public void loadMember(){
+    public void loadMember() throws Exception {
         if (!isLoaded) {
             if (Market.dbFlag) {
                 Member member = DALService.memberRepository.findById(userName).get();
@@ -355,12 +357,32 @@ public class Member extends User{
                 this.memberRolesFlag = member.memberRolesFlag;
                 this.pendingMessages = member.pendingMessages;
                 this.isOnline = member.isOnline;
-                this.roles = new ConcurrentHashMap<>();//todo: call the roler constructor
-                this.systemManager = null;//todo: call system manager
+                this.roles = new ConcurrentHashMap<>();
+                //this.systemManager = null;//todo: call system manager
+                this.loadRoles();
                 this.cart = member.cart;//todo: load cart lazily
                 this.isLoaded = true;
             }
+        }
+    }
 
+    private void loadRoles() throws Exception {
+        if (isSystemManager){
+            this.systemManager = MemberMapper.getInstance().getSystemManager(userName);
+        }
+        else {
+            if (memberRolesFlag.contains(RoleEnum.StoreFounder)) {
+                StoreFounder storeFounder = MemberMapper.getInstance().getStoreFounder(userName);
+                roles.put(RoleEnum.StoreFounder, storeFounder);
+            }
+            if (memberRolesFlag.contains(RoleEnum.StoreOwner)) {
+                StoreOwner storeOwner = MemberMapper.getInstance().getStoreOwner(userName);
+                roles.put(RoleEnum.StoreOwner, storeOwner);
+            }
+            if (memberRolesFlag.contains(RoleEnum.StoreManager)) {
+                StoreManager storeManager = MemberMapper.getInstance().getStoreManager(userName);
+                roles.put(RoleEnum.StoreManager, storeManager)
+            }
         }
     }
 

@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 @MappedSuperclass
-public class AbstractStoreOwner extends Role{
+public abstract class AbstractStoreOwner extends Role{
 
     @Transient
     protected ConcurrentHashMap<String, List<StoreOwner>> appointedOwners;

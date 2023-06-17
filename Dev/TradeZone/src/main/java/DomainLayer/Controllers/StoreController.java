@@ -9,6 +9,7 @@ import DataAccessLayer.DALService;
 import DomainLayer.BagConstraints.BagConstraint;
 import DomainLayer.Category;
 import DomainLayer.DiscountPolicies.*;
+import DomainLayer.Market;
 import DomainLayer.Product;
 import DomainLayer.Store;
 
@@ -88,54 +89,55 @@ public class StoreController {
 
     public List<ProductDTO> getProductInfoFromMarketByName(String productName) throws Exception {
         List<ProductDTO> productDTOList = new ArrayList<>();
-        for (Store store:StoreMapper.getInstance().getStoresByProductKeyWord(productName)){
-            if (IsActiveStore(store.getStoreName())){
-                productDTOList.add(store.getProductInfo(productName));
+        List<Store> stores = new LinkedList<>();
+        if (Market.dbFlag)
+            stores = StoreMapper.getInstance().getStoresByProductKeyWord(productName);
+        else{
+            stores = this.stores.values().stream().toList();
+        }
+        for(Store store: stores) {
+            String storeName = store.getStoreName();
+            if(IsActiveStore(storeName)) {
+                if (store.containsProduct(productName))
+                    productDTOList.add(store.getProductInfo(productName));
             }
         }
-//        for(Store store: stores.values()) {
-//            String storeName = store.getStoreName();
-//            //isActiveStore(storeName);
-//            if(IsActiveStore(storeName)) {
-//                if (store.containsProduct(productName))
-//                    productDTOList.add(store.getProductInfo(productName));
-//            }
-//        }
         return productDTOList;
     }
 
     public List<ProductDTO> getProductInfoFromMarketByCategory(String categoryName) throws Exception {
         List<ProductDTO> productDTOList = new ArrayList<>();
-        for (Store store:StoreMapper.getInstance().getStoresByCategoryName(categoryName).stream().toList()){
-            if (IsActiveStore(store.getStoreName())){
-                productDTOList.addAll(store.getProductsInfoByCategory(categoryName));
+        List<Store> stores = new LinkedList<>();
+        if (Market.dbFlag)
+            stores = StoreMapper.getInstance().getStoresByCategoryName(categoryName);
+        else{
+            stores = this.stores.values().stream().toList();
+        }
+        for(Store store: stores) {
+            String storeName = store.getStoreName();
+            if(IsActiveStore(storeName)) {
+                if (store.containsCategory(categoryName))
+                    productDTOList.addAll(store.getProductsInfoByCategory(categoryName));
             }
         }
-//        for(Store store: stores.values()) {
-//            String storeName = store.getStoreName();
-//            //isActiveStore(storeName);
-//            if(IsActiveStore(storeName)) {
-//                if (store.containsCategory(categoryName))
-//                    productDTOList.addAll(store.getProductsInfoByCategory(categoryName));
-//            }
-//        }
         return productDTOList;
     }
 
     public List<ProductDTO> getProductInfoFromMarketByKeyword(String keyword) throws Exception {
         List<ProductDTO> productDTOList = new ArrayList<>();
-        for (Store store:StoreMapper.getInstance().getStoresByProductKeyWord(keyword)){
-            if (IsActiveStore(store.getStoreName())){
-                productDTOList.addAll(store.getProductInfoFromMarketByKeyword(keyword));
+        List<Store> stores = new LinkedList<>();
+        if (Market.dbFlag)
+            stores = StoreMapper.getInstance().getStoresByProductKeyWord(keyword);
+        else{
+            stores = this.stores.values().stream().toList();
+        }
+        for(Store store: stores) {
+            String storeName = store.getStoreName();
+            if(IsActiveStore(storeName)) {
+                if (store.containsKeyWord(keyword))
+                    productDTOList.addAll(store.getProductInfoFromMarketByKeyword(keyword));
             }
         }
-//        for(Store store: stores.values()) {
-//            String storeName = store.getStoreName();
-//            if(IsActiveStore(storeName)) {
-//                //if(store.containsKeyWord(keyword))
-//                    productDTOList.addAll(store.getProductInfoFromMarketByKeyword(keyword));
-//            }
-//        }
         return productDTOList;
     }
 
@@ -466,7 +468,7 @@ public class StoreController {
         return now.format(formatter);
     }
 
-    public boolean hasRole(String memberUserName){
+    public boolean hasRole(String memberUserName) throws Exception {
         for(Store store : stores.values()){
             return store.hasRole(memberUserName);
         }

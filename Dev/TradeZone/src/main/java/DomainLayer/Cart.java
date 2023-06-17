@@ -142,6 +142,9 @@ public class Cart {
         for(Bag bag: bags.values()){
             Deal deal = bag.createDeal(this.cartOwner);
             this.cartOwner.addDeal(deal);
+            //todo : should make sure that cartOwner = memberCart
+            if (Market.dbFlag)
+                DALService.saveDeal(deal,memberCart,bag.getStoreBag());
         }
 
         bags = new ConcurrentHashMap<>();

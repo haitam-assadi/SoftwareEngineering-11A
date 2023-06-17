@@ -138,4 +138,6 @@ public abstract class Role {
         myBossesForStores = new ConcurrentHashMap<>();
         responsibleForStores.remove(storeName);
     }
+
+    public abstract void loadRole() throws Exception;
 }

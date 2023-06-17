@@ -75,7 +75,6 @@ public class Product {
     }
 
     public void setDescription(String newProductDescription) {
-        //TODO: MOSLEM:update is added , do we need load before ? so we dont overwrite other fields
         loadProduct();
         this.description = newProductDescription;
         updateProduct();
@@ -95,7 +94,6 @@ public class Product {
     }
 
     public void setPrice(Double newPrice) {
-        //TODO: MOSLEM:update is added , do we need load before ? so we dont overwrite other fields
         loadProduct();
         this.price = newPrice;
         updateProduct();
@@ -110,8 +108,7 @@ public class Product {
             productCategories.remove(category.getName());
             updateProductCategoryTransaction(category);
         }
-        //TODO: MOSLEM: recheck with moslem , no specific reason needs only to check category.removeProduct always called properly
-        //TODO: MOSLEM: ask moslem, can we replace updateProductCategoryTransaction to get a list of categories, and call it here
+
         return true;
     }
 

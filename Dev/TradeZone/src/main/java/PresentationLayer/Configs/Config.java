@@ -28,6 +28,7 @@ public class Config {
                                   CartRepository cartRepository,
                                   StoreFounderRepository storeFounderRepository,
                                   SystemManagerRepository systemManagerRepository,
+                                  BagConstraintRepository bagConstraintRepository,
                                   AllContentBagConstraintRepository allContentBagConstraintRepository,
                                   BagConstraintAndRepository bagConstraintAndRepository,
                                   BagConstraintOnlyIfRepository bagConstraintOnlyIfRepository,
@@ -35,11 +36,13 @@ public class Config {
                                   CategoryBagConstraintRepository categoryBagConstraintRepository,
                                   PositiveBagConstraintRepository positiveBagConstraintRepository,
                                   ProductBagConstraintRepository productBagConstraintRepository,
+                                  DiscountPolicyRepository discountPolicyRepository,
                                   AdditionDiscountPolicyRepository additionDiscountPolicyRepository,
                                   AllStoreDiscountPolicyRepository allStoreDiscountPolicyRepository,
                                   CategoryDiscountPolicyRepository categoryDiscountPolicyRepository,
                                   MaxValDiscountPolicyRepository maxValDiscountPolicyRepository,
-                                  ProductDiscountPolicyRepository productDiscountPolicyRepository) {
+                                  ProductDiscountPolicyRepository productDiscountPolicyRepository,
+                                  DealRepository dealRepository) {
         return (args) -> {
             System.out.println("member config");
             DALService.memberRepository=memberRepository;
@@ -64,6 +67,8 @@ public class Config {
             System.out.println(storeFounderRepository);
             DALService.systemManagerRepository = systemManagerRepository;
             System.out.println(systemManagerRepository);
+            DALService.bagConstraintRepository = bagConstraintRepository;
+            System.out.println(bagConstraintRepository);
             DALService.allContentBagConstraintRepository = allContentBagConstraintRepository;
             System.out.println(allContentBagConstraintRepository);
             DALService.bagConstraintAndRepository = bagConstraintAndRepository;
@@ -78,6 +83,8 @@ public class Config {
             System.out.println(positiveBagConstraintRepository);
             DALService.productBagConstraintRepository = productBagConstraintRepository;
             System.out.println(productBagConstraintRepository);
+            DALService.discountPolicyRepository = discountPolicyRepository;
+            System.out.println(discountPolicyRepository);
             DALService.additionDiscountPolicyRepository = additionDiscountPolicyRepository;
             System.out.println(additionDiscountPolicyRepository);
             DALService.allStoreDiscountPolicyRepository = allStoreDiscountPolicyRepository;
@@ -88,6 +95,8 @@ public class Config {
             System.out.println(maxValDiscountPolicyRepository);
             DALService.productDiscountPolicyRepository = productDiscountPolicyRepository;
             System.out.println(productDiscountPolicyRepository);
+            DALService.dealRepository = dealRepository;
+            System.out.println(dealRepository);
         };
     }
 

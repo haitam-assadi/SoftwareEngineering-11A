@@ -30,6 +30,10 @@ public abstract class BagConstraint {
     public BagConstraint(){
     }
 
+    public BagConstrainsId getBagConstrainsId() {
+        return bagConstrainsId;
+    }
+
     public boolean isPositiveBagConstraint(){
         return false;
     }

@@ -5,7 +5,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
 @TestInstance(value = TestInstance.Lifecycle.PER_CLASS)
-@SpringBootTest(classes = SpringbootHtmlApplication.class)
+//@SpringBootTest(classes = SpringbootHtmlApplication.class)
 public class SystemManagerTests {
 
     String managerName;

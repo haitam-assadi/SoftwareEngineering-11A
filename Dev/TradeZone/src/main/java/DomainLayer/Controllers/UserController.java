@@ -41,7 +41,7 @@ public class UserController {
     public String firstManagerInitializer() throws Exception {
         String user = "systemmanager1";
         if(!isMember(user)) {
-            Member member = new Member(user, Security.Encode("systemmanager1Pass"));
+            Member member = MemberMapper.getInstance().getNewMember(user,"systemmanager1Pass");
             membersNamesConcurrentSet.add(user);
             members.put(user, member);
             SystemManager systemManager = new SystemManager(member);
@@ -82,12 +82,11 @@ public class UserController {
     public boolean register(String guestUserName, String newMemberUserName, String password) throws Exception {
         registerValidateParameters(guestUserName, newMemberUserName, password);
         newMemberUserName = newMemberUserName.strip().toLowerCase();
-        Member member = new Member(newMemberUserName, Security.Encode(password));
-        members.put(newMemberUserName, member);
+        Member member = MemberMapper.getInstance().getNewMember(newMemberUserName,password);
+        members.put(newMemberUserName,member);
         member.defineNotifications(newMemberUserName);
         membersNamesConcurrentSet.add(newMemberUserName);
         if (Market.dbFlag) {
-            MemberMapper.getInstance().insertMember(member);
             DALService.saveMember(member, member.getCart());
         }
         member.getCart().setMemberCart(member);

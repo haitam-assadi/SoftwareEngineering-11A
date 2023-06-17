@@ -85,7 +85,7 @@ public class Stock {
 
     @Transactional
     public synchronized boolean addNewProductToStock(String nameProduct,String category, Double price, String description, Integer amount) throws Exception {
-        //TODO: MOSLEM: maybe we need to load all stock ? or else update will save nulls ?
+        loadStock();
         assertDoesNotContainProduct(nameProduct);
         assertStringIsNotNullOrBlank(category);
         assertStringIsNotNullOrBlank(description);
@@ -96,8 +96,6 @@ public class Stock {
         if(!containsCategory(category)) {
             productCategory = StoreMapper.getInstance().getNewCategory(category, getStoreName());
             stockCategories.put(category,productCategory);
-
-            //TODO: MOSLEM: do we need to save here ? we save in the end also.
             if (Market.dbFlag)
                 DALService.saveCategory(this,productCategory);
         }
@@ -113,42 +111,6 @@ public class Stock {
         return true;
     }
 
-
-
-    /*
-
-    //TODO: MOSLEM: check diff between this addNewProductToStock and addNewProductToStock
-
-     @Transactional
-    public synchronized boolean addNewProductToStock(String nameProduct,String category, Double price, String description, Integer amount) throws Exception {
-        assertDoesNotContainProduct(nameProduct);
-        assertStringIsNotNullOrBlank(category);
-        assertStringIsNotNullOrBlank(description);
-        nameProduct=nameProduct.strip().toLowerCase();
-        category = category.strip().toLowerCase();
-
-        Category productCategory;
-        if(!containsCategory(category)) {
-            productCategory = new Category(category, getStoreName());
-            StoreMapper.getInstance().insertCategory(new CategoryId(category,getStoreName()),productCategory);
-            if (Market.dbFlag)
-                DALService.categoryRepository.save(productCategory);
-            stockCategories.put(category,productCategory);
-            if (Market.dbFlag)
-                DALService.stockRepository.save(this);
-        }
-        productCategory = stockCategories.get(category);
-        Product product = StoreMapper.getInstance().getNewProduct(nameProduct,stockName,productCategory,price,description);
-        productCategory.putProductInCategory(product);
-        ConcurrentHashMap<Product,Integer> productAmount = new ConcurrentHashMap<Product, Integer>();
-        this.productAmount.put(product,amount);
-        productAmount.put(product,amount);
-        stockProducts.put(nameProduct,productAmount);
-        if (Market.dbFlag)
-            DALService.saveProduct(this,productCategory,product);
-        return true;
-    }
-     */
 
     public synchronized boolean removeProductFromStock(String productName) throws Exception {
         assertContainsProduct(productName);
@@ -175,6 +137,7 @@ public class Stock {
         if (!containsProduct(productName)){
             throw new Exception("can't update product amount : productName "+ productName+" is not in the stock!");
         }
+        loadStock();
         productName = productName.strip().toLowerCase();
         Product product = stockProducts.get(productName).keys().nextElement();
 
@@ -185,8 +148,6 @@ public class Stock {
         if (currentProductAmount == newAmount){
             throw new Exception("the amount of the product equals to the new amount");
         }
-
-        //TODO: MOSLEM: maybe we need to load stock first , or else other field will be overwritten
         if (Market.dbFlag)
             DALService.stockRepository.save(this);
         return true;
@@ -226,7 +187,6 @@ public class Stock {
     }
 
     public synchronized Product getProduct(String productName) throws Exception {
-        //TODO: do we allow return info about products with amount == 0 ?????
         if(!containsProduct(productName))
             throw new Exception(""+productName+"product does not exist in this store!");
 
@@ -253,7 +213,7 @@ public class Stock {
             currentProductAmount = loadProductAmount(product);
 
         if( currentProductAmount < amount)
-            throw new Exception(""+productName+" have only "+ currentProductAmount +" amount in stock!");//todo: need to send another msg without telling the amount of the product in the store
+            throw new Exception(" you choose amount of "+productName+" with more than what we have in the stock!");
 
         if(amount < 0)
             throw new Exception("The amount must be positive, it can't be " + amount);
@@ -267,8 +227,6 @@ public class Stock {
         productName = productName.strip().toLowerCase();
         if(stockProducts.containsKey(productName))
             return true;
-
-        //TODO: MOSLEM:  needs repair
         Product product = StoreMapper.getInstance().getProduct(new ProductId(productName,stockName));
         if (product == null)
             return false;
@@ -283,14 +241,15 @@ public class Stock {
     public synchronized boolean containsCategory(String categoryName) throws Exception {
         assertStringIsNotNullOrBlank(categoryName);
         categoryName = categoryName.strip().toLowerCase();
-        if(!stockCategories.containsKey(categoryName))
-            return true;
-
-        Category category = StoreMapper.getInstance().getCategory(new CategoryId(categoryName,stockName));
-        if (category == null)
-            return false;
-
-        stockCategories.put(categoryName,category);
+        if(!stockCategories.containsKey(categoryName)) {
+            Category category = StoreMapper.getInstance().getCategory(new CategoryId(categoryName, stockName));
+            if (category == null)
+                return false;
+            else {
+                stockCategories.put(categoryName, category);
+                return true;
+            }
+        }
         return true;
     }
 
@@ -374,6 +333,7 @@ public class Stock {
             int stockAmount = stockProducts.get(productName).get(product);
             int bagAmount = bagContent.get(productName).get(product);
             stockProducts.get(productName).put(product, stockAmount-bagAmount);
+            productAmount.put(product,stockAmount - bagAmount);
             if(counter == 0){
                 counter = 6;
                 msg += "]\n";
@@ -384,7 +344,8 @@ public class Stock {
         if(counter!=0) msg+="]";
         msg+= " from the store: " + store.getStoreName();
         NotificationService.getInstance().notify(store.getStoreName(),msg,NotificationType.productBought);
-        //TODO: MOSLEM: update in data base
+        if (Market.dbFlag)
+            DALService.stockRepository.save(this);
         return true;
     }
     public synchronized boolean replaceBagAmountToStock(ConcurrentHashMap<String, ConcurrentHashMap<Product,Integer>> bagContent) throws Exception {
@@ -395,9 +356,11 @@ public class Stock {
                 int stockAmount = stockProducts.get(productName).get(product);
                 int bagAmount = bagContent.get(productName).get(product);
                 stockProducts.get(productName).put(product, stockAmount+bagAmount);
+                productAmount.put(product,stockAmount+bagAmount);
             }
         }
-        //TODO: MOSLEM: update in data base, maybe we need to load stock first ..
+        if (Market.dbFlag)
+            DALService.stockRepository.save(this);
         return true;
     }
 
@@ -416,7 +379,6 @@ public class Stock {
     }
 
     public void defineStockProductsMap() {
-        //TODO: MOSLEM: no usage, delete or check if needs loadstock
         stockProducts = new ConcurrentHashMap<>();
         for (Product p: productAmount.keySet()){
             ConcurrentHashMap<Product,Integer> product_amount = new ConcurrentHashMap<>();
@@ -451,6 +413,7 @@ public class Stock {
             this.stockCategories.put(categoryName, currCategory);
         }
         //TODO: MOSLEM: maybe we should also make categories and prodcuts point to each other..
+        // low priority
         this.isLoaded = true;
     }
 
@@ -467,6 +430,5 @@ public class Stock {
 
     //Load is ready
     //insert new stock called as transaction and is ready
-    //update is called to update (new products, new category , new amounts) some updates missed, search for TODOS in this file
-    //TODO: MOSLEM: do we ever delete stock ?
+    //update is called to update (new products, new category , new amounts)
 }
