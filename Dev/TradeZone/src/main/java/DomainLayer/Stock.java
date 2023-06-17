@@ -47,8 +47,9 @@ public class Stock {
         productAmount = new ConcurrentHashMap<>();
         isLoaded = true;
     }
-    public Stock(String stockName,boolean isLoaded){
-        this.stockName = stockName;
+    public Stock(Store store,boolean isLoaded){
+        this.store =  store;
+        this.stockName = store.getStoreName();
         stockProducts =new ConcurrentHashMap<>();
         stockCategories = new ConcurrentHashMap<>();
         productAmount = new ConcurrentHashMap<>();
@@ -58,8 +59,8 @@ public class Stock {
     public Stock(){}
 
     public void loadStock() throws Exception {
-        if (!isLoaded){
-            StoreMapper.getInstance().getStock(stockName);
+        if (!isLoaded & Market.dbFlag){
+            StoreMapper.getInstance().loadStock(stockName);
             isLoaded = true;
         }
     }
@@ -84,12 +85,48 @@ public class Stock {
 
     @Transactional
     public synchronized boolean addNewProductToStock(String nameProduct,String category, Double price, String description, Integer amount) throws Exception {
+        //TODO: MOSLEM: maybe we need to load all stock ? or else update will save nulls ?
         assertDoesNotContainProduct(nameProduct);
         assertStringIsNotNullOrBlank(category);
         assertStringIsNotNullOrBlank(description);
-
         nameProduct=nameProduct.strip().toLowerCase();
         category = category.strip().toLowerCase();
+
+        Category productCategory;
+        if(!containsCategory(category)) {
+            productCategory = StoreMapper.getInstance().getNewCategory(category, getStoreName());
+            stockCategories.put(category,productCategory);
+
+            //TODO: MOSLEM: do we need to save here ? we save in the end also.
+            if (Market.dbFlag)
+                DALService.saveCategory(this,productCategory);
+        }
+        productCategory = stockCategories.get(category);
+        Product product = StoreMapper.getInstance().getNewProduct(nameProduct,stockName,productCategory,price,description);
+        productCategory.putProductInCategory(product);
+        ConcurrentHashMap<Product,Integer> productAmount = new ConcurrentHashMap<Product, Integer>();
+        this.productAmount.put(product,amount);
+        productAmount.put(product,amount);
+        stockProducts.put(nameProduct,productAmount);
+        if (Market.dbFlag)
+            DALService.saveProduct(this,productCategory,product);
+        return true;
+    }
+
+
+
+    /*
+
+    //TODO: MOSLEM: check diff between this addNewProductToStock and addNewProductToStock
+
+     @Transactional
+    public synchronized boolean addNewProductToStock(String nameProduct,String category, Double price, String description, Integer amount) throws Exception {
+        assertDoesNotContainProduct(nameProduct);
+        assertStringIsNotNullOrBlank(category);
+        assertStringIsNotNullOrBlank(description);
+        nameProduct=nameProduct.strip().toLowerCase();
+        category = category.strip().toLowerCase();
+
         Category productCategory;
         if(!containsCategory(category)) {
             productCategory = new Category(category, getStoreName());
@@ -101,8 +138,7 @@ public class Stock {
                 DALService.stockRepository.save(this);
         }
         productCategory = stockCategories.get(category);
-        Product product = new Product(nameProduct,stockName,productCategory,price,description);
-        StoreMapper.getInstance().insertProduct(new ProductId(nameProduct,stockName),product);
+        Product product = StoreMapper.getInstance().getNewProduct(nameProduct,stockName,productCategory,price,description);
         productCategory.putProductInCategory(product);
         ConcurrentHashMap<Product,Integer> productAmount = new ConcurrentHashMap<Product, Integer>();
         this.productAmount.put(product,amount);
@@ -112,6 +148,7 @@ public class Stock {
             DALService.saveProduct(this,productCategory,product);
         return true;
     }
+     */
 
     public synchronized boolean removeProductFromStock(String productName) throws Exception {
         assertContainsProduct(productName);
@@ -120,16 +157,11 @@ public class Stock {
         product.removeFromAllCategories();
         stockProducts.remove(productName);
         productAmount.remove(product);
-        StoreMapper.getInstance().removeProduct(new ProductId(productName,stockName));
-        if (Market.dbFlag)
-            DALService.removeProduct(product,this);
+        StoreMapper.getInstance().removeProduct(product, this);
         return true;
     }
 
     public synchronized boolean updateProductDescription(String productName, String newProductDescription) throws Exception {
-//        productName = productName.strip().toLowerCase();
-//        if(!stockProducts.containsKey(productName))
-//            throw new Exception("can't remove product from stock : productName "+ productName+" is not in the stock!");
         if (!containsProduct(productName)){
             throw new Exception("can't update product description : productName "+ productName+" is not in the stock!");
         }
@@ -140,28 +172,21 @@ public class Stock {
     }
 
     public synchronized boolean updateProductAmount(String productName, int newAmount) throws Exception {
-        //productName = productName.strip().toLowerCase();
-//        if(!stockProducts.containsKey(productName))
-//            throw new Exception("can't remove product from stock : productName "+ productName+" is not in the stock!");
         if (!containsProduct(productName)){
             throw new Exception("can't update product amount : productName "+ productName+" is not in the stock!");
         }
         productName = productName.strip().toLowerCase();
         Product product = stockProducts.get(productName).keys().nextElement();
-        Integer currentProductAmount = ((Integer)stockProducts.get(productName).values().toArray()[0]);
-        if (currentProductAmount == -1)
-            currentProductAmount = StoreMapper.getInstance().updateProductAmountInStock(productName,stockName);
 
-//        if(stockProducts.get(productName).get(product) == newAmount)
-//            throw new Exception("the amount of the product equals to the new amount");
+        Integer currentProductAmount = stockProducts.get(productName).get(product);
+        if (currentProductAmount == -1)
+            currentProductAmount = loadProductAmount(product);
+
         if (currentProductAmount == newAmount){
             throw new Exception("the amount of the product equals to the new amount");
         }
-        stockProducts.remove(productName);
-        ConcurrentHashMap<Product,Integer> productAmount = new ConcurrentHashMap<Product, Integer>();
-        this.productAmount.put(product,newAmount);
-        productAmount.put(product,newAmount);
-        stockProducts.put(productName,productAmount);
+
+        //TODO: MOSLEM: maybe we need to load stock first , or else other field will be overwritten
         if (Market.dbFlag)
             DALService.stockRepository.save(this);
         return true;
@@ -169,15 +194,12 @@ public class Stock {
 
 
     public synchronized boolean updateProductPrice(String productName, Double newPrice) throws Exception {
-//        productName = productName.strip().toLowerCase();
-//        if(!stockProducts.containsKey(productName))
-//            throw new Exception("can't remove product from stock : productName "+ productName+" is not in the stock!");
         if (!containsProduct(productName)){
             throw new Exception("can't update product price : productName "+ productName+" is not in the stock!");
         }
         productName = productName.strip().toLowerCase();
         Product product = stockProducts.get(productName).keys().nextElement();
-        if(Objects.equals(product.getPrice(), newPrice))
+        if(product.getPrice().equals(newPrice))
             throw new Exception("the price of the product equals to the new price");
         product.setPrice(newPrice);
         return true;
@@ -220,16 +242,15 @@ public class Stock {
     }
 
     public synchronized Product getProductWithAmount(String productName, Integer amount) throws Exception {
-
-        productName = productName.strip().toLowerCase();
-
-        //TODO: do we allow return info about products with amount == 0 ?????
         if(!containsProduct(productName))
             throw new Exception(""+productName+" product does not exist in this store!");
+
+        productName = productName.strip().toLowerCase();
+        Product product= stockProducts.get(productName).keys().nextElement();
         //the convince is that if the product amount in stock is -1 then the actual amount should be loaded:
-        Integer currentProductAmount = ((Integer)stockProducts.get(productName).values().toArray()[0]);
+        Integer currentProductAmount = stockProducts.get(productName).get(product);
         if (currentProductAmount == -1)
-            currentProductAmount = StoreMapper.getInstance().updateProductAmountInStock(productName,stockName);
+            currentProductAmount = loadProductAmount(product);
 
         if( currentProductAmount < amount)
             throw new Exception(""+productName+" have only "+ currentProductAmount +" amount in stock!");//todo: need to send another msg without telling the amount of the product in the store
@@ -242,48 +263,38 @@ public class Stock {
     }
 
     public synchronized boolean containsProduct(String productName) throws Exception {
-        if(productName == null || productName.isBlank())
-            throw new Exception("productName is null or empty!");
-
+        assertStringIsNotNullOrBlank(productName);
         productName = productName.strip().toLowerCase();
-        if(!stockProducts.containsKey(productName)) {
-            //todo: needs repair
-            Product product = StoreMapper.getInstance().getProduct(new ProductId(productName,stockName));
-            //Product product = StoreMapper.getInstance().getProductWithoutLoading(new ProductId(productName,stockName));
-            if (product == null){
-                return false;
-            }else{
-                ConcurrentHashMap<Product,Integer> product_amount = new ConcurrentHashMap<>();
-                product_amount.put(product,-1);
-                stockProducts.put(productName,product_amount);
-                productAmount.put(product,-1);
-                return true;
-            }
-        }
+        if(stockProducts.containsKey(productName))
+            return true;
+
+        //TODO: MOSLEM:  needs repair
+        Product product = StoreMapper.getInstance().getProduct(new ProductId(productName,stockName));
+        if (product == null)
+            return false;
+
+        ConcurrentHashMap<Product,Integer> product_amount = new ConcurrentHashMap<>();
+        product_amount.put(product,-1);
+        stockProducts.put(productName,product_amount);
+        productAmount.put(product,-1);
         return true;
     }
 
     public synchronized boolean containsCategory(String categoryName) throws Exception {
-        if(categoryName == null || categoryName.isBlank())
-            throw new Exception("categoryName is null or empty!");
-
+        assertStringIsNotNullOrBlank(categoryName);
         categoryName = categoryName.strip().toLowerCase();
-        if(!stockCategories.containsKey(categoryName)) {
-            Category category = StoreMapper.getInstance().getCategory(new CategoryId(categoryName,stockName));
-            if (category == null){
-                return false;
-            }else{
-                stockCategories.put(categoryName,category);
-                return true;
-            }
-        }
+        if(!stockCategories.containsKey(categoryName))
+            return true;
 
+        Category category = StoreMapper.getInstance().getCategory(new CategoryId(categoryName,stockName));
+        if (category == null)
+            return false;
+
+        stockCategories.put(categoryName,category);
         return true;
     }
 
     public synchronized List<ProductDTO> getProductsInfoByCategory(String categoryName) throws Exception {
-
-        //TODO: do we allow return info about products with amount == 0 ?????
         if(!containsCategory(categoryName))
             throw new Exception(""+categoryName+"category does not exist in this store!");
 
@@ -295,7 +306,6 @@ public class Stock {
             productDTOList.add(getProductInfo(product.getName(), store.getProductDiscountPolicies(product.getName())));
 
         return productDTOList;
-
     }
 
     public synchronized boolean containsKeyWord(String keyword) throws Exception {
@@ -306,9 +316,10 @@ public class Stock {
 
 
     public synchronized List<ProductDTO> getProductInfoFromMarketByKeyword(String keyword) throws Exception {
+        loadStock();
         containsKeyWord(keyword);
         keyword = keyword.strip().toLowerCase();
-        loadStock();
+
         List<ProductDTO> filteredProductsByKeyWord = new LinkedList<>();
         for(String productName : stockProducts.keySet()){
             if(productName.contains(keyword)){
@@ -321,20 +332,24 @@ public class Stock {
 
     //Currently added for tests:
     public synchronized void addToStockProducts(String productName, Product product, int amount){
+        // no need to use database , this is for tests only
         ConcurrentHashMap<Product,Integer> hash = new ConcurrentHashMap<Product, Integer>();
         hash.put(product, amount);
         this.stockProducts.put(productName, hash);
     }
 
     public synchronized void addToStockCategory(String categoryName, Category category){
+        // no need to use database , this is for tests only
         this.stockCategories.put(categoryName, category);
     }
 
     public synchronized int getCategoriesSize(){
+        // no need to use database , this is for tests only
         return this.stockCategories.size();
     }
 
     public synchronized int getProductAmount(String productName, Product product){
+        // no need to use database , this is for tests only
         return this.stockProducts.get(productName).get(product);
     }
     public String getStoreName(){
@@ -343,9 +358,9 @@ public class Stock {
 
 
     public synchronized boolean removeBagAmountFromStock(ConcurrentHashMap<String, ConcurrentHashMap<Product,Integer>> bagContent) throws Exception {
-
+        loadStock();
         for(String productName: bagContent.keySet()){
-            if(!stockProducts.containsKey(productName))
+            if(!containsProduct(productName))
                 throw new Exception(productName +" product was removed stock");
             Product product = bagContent.get(productName).keys().nextElement();
             int stockAmount = stockProducts.get(productName).get(product);
@@ -369,9 +384,11 @@ public class Stock {
         if(counter!=0) msg+="]";
         msg+= " from the store: " + store.getStoreName();
         NotificationService.getInstance().notify(store.getStoreName(),msg,NotificationType.productBought);
+        //TODO: MOSLEM: update in data base
         return true;
     }
     public synchronized boolean replaceBagAmountToStock(ConcurrentHashMap<String, ConcurrentHashMap<Product,Integer>> bagContent) throws Exception {
+        loadStock();
         for(String productName: bagContent.keySet()){
             if(stockProducts.containsKey(productName)){
                 Product product = bagContent.get(productName).keys().nextElement();
@@ -380,24 +397,26 @@ public class Stock {
                 stockProducts.get(productName).put(product, stockAmount+bagAmount);
             }
         }
+        //TODO: MOSLEM: update in data base, maybe we need to load stock first ..
         return true;
     }
 
 
     public Integer getProductAmount(String productName) throws Exception {
-        productName = productName.strip().toLowerCase();
-
-        //TODO: do we allow return info about products with amount == 0 ?????
         if(!containsProduct(productName))
             throw new Exception(""+productName+" product does not exist in this store!");
-        Integer currentProductAmount = ((Integer)stockProducts.get(productName).values().toArray()[0]);
+
+        productName = productName.strip().toLowerCase();
+        Product product = stockProducts.get(productName).keys().nextElement();
+        Integer currentProductAmount = stockProducts.get(productName).get(product);
         if (currentProductAmount == -1)
-            currentProductAmount = StoreMapper.getInstance().updateProductAmountInStock(productName,stockName);
+            currentProductAmount = loadProductAmount(product);
+
         return currentProductAmount;
-        //return  ((Integer)stockProducts.get(productName).values().toArray()[0]);
     }
 
     public void defineStockProductsMap() {
+        //TODO: MOSLEM: no usage, delete or check if needs loadstock
         stockProducts = new ConcurrentHashMap<>();
         for (Product p: productAmount.keySet()){
             ConcurrentHashMap<Product,Integer> product_amount = new ConcurrentHashMap<>();
@@ -414,21 +433,40 @@ public class Stock {
         return stockCategories;
     }
 
-    public void updateStock(Stock stock) {
-        this.stockName = stock.stockName;
-        this.stockProducts = new ConcurrentHashMap<>();
-        this.productAmount = stock.productAmount;
-        this.stockCategories = stock.stockCategories;
-        for (Product product: productAmount.keySet()){
+    public void updateStock(Stock dalStock) throws Exception {
+        for (Product dalProduct: dalStock.productAmount.keySet()){
+            ProductId currProductId = new ProductId(dalProduct.getName(),getStoreName());
+            Product realProduct = StoreMapper.getInstance().getProduct(currProductId);
+            Integer realProductAmount = dalStock.productAmount.get(dalProduct);
+
+            this.productAmount.put(realProduct,realProductAmount);
             ConcurrentHashMap<Product,Integer> product_amount = new ConcurrentHashMap<>();
-            product_amount.put(product,productAmount.get(product));
-            stockProducts.put(product.getName(),product_amount);
+            product_amount.put(realProduct, realProductAmount);
+            this.stockProducts.put(realProduct.getName(),product_amount);
+
         }
+
+        for (String categoryName: dalStock.stockCategories.keySet()){
+            Category currCategory  = StoreMapper.getInstance().getCategory(new CategoryId(categoryName,getStoreName()));
+            this.stockCategories.put(categoryName, currCategory);
+        }
+        //TODO: MOSLEM: maybe we should also make categories and prodcuts point to each other..
         this.isLoaded = true;
     }
 
-    public void setProductAmountAfterLoadingAmount(Product product,String productName,int amount){
+    public Integer loadProductAmount(Product product) throws Exception {
+        Integer amount=-1;
+        if(Market.dbFlag)
+            amount = DALService.stockRepository.getProductAmount(stockName,product.getName());
+        if (amount == -1)
+            throw new Exception("loadProductAmount was called although Market.dbFlag is false");
         productAmount.put(product,amount);
-        stockProducts.get(productName).put(product,amount);
+        stockProducts.get(product.getName()).put(product,amount);
+        return amount;
     }
+
+    //Load is ready
+    //insert new stock called as transaction and is ready
+    //update is called to update (new products, new category , new amounts) some updates missed, search for TODOS in this file
+    //TODO: MOSLEM: do we ever delete stock ?
 }

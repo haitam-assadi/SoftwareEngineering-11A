@@ -100,6 +100,12 @@ public class DALService {
     }
 
     @Transactional
+    public static void saveCategory(Stock stock,Category category){
+        categoryRepository.save(category);
+        stockRepository.save(stock);
+    }
+
+    @Transactional
     public static void removeProductCategory(Product product, Category category) {
         productRepository.save(product);
         categoryRepository.save(category);

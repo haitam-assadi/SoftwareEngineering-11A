@@ -217,7 +217,7 @@ public class StoreController {
         assertIsNotStore(newStoreName);
 
         newStoreName = newStoreName.strip().toLowerCase();
-        Store newStore = new Store(newStoreName);
+        Store newStore = StoreMapper.getInstance().getNewStore(newStoreName);
         stores.put(newStoreName,newStore);
         storesNamesConcurrentSet.add(newStoreName);
         //StoreMapper.getInstance().insertStore(newStoreName,newStore);

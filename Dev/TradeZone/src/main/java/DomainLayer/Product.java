@@ -50,8 +50,6 @@ public class Product {
         }
     }
 
-
-
     public Product(String name,String storeName,Category category, Double price,String description){
         this.name = name;
         this.storeName=storeName;
@@ -60,6 +58,7 @@ public class Product {
         productCategories=new ConcurrentHashMap<>();
         productCategories.put(category.getCategoryName(), category);
         productLoaded = true;
+        // insert product is called as transaction in its only usage
     }
 
     public Product(){}
@@ -71,30 +70,15 @@ public class Product {
         productCategories = new ConcurrentHashMap<>();
     }
 
-    public void loadProduct(){
-        if (!productLoaded){
-            if (Market.dbFlag) {
-                Optional<Product> product = DALService.productRepository.findById(new ProductId(name, storeName));
-                if (product.isPresent()) {
-                    this.name = product.get().name;
-                    this.storeName = product.get().storeName;
-                    this.price = product.get().getPrice();
-                    this.description = product.get().description;
-                    this.productCategories = product.get().productCategories;
-                    setProductCategories();
-                }
-            }
-        }
-    }
-
     public String getName() {
         return name;
     }
 
     public void setDescription(String newProductDescription) {
+        //TODO: MOSLEM:update is added , do we need load before ? so we dont overwrite other fields
+        loadProduct();
         this.description = newProductDescription;
-        if (Market.dbFlag)
-            DALService.productRepository.save(this);
+        updateProduct();
     }
 
 
@@ -106,30 +90,66 @@ public class Product {
     }
 
     public Double getPrice() {
+        loadProduct();
         return price;
     }
 
     public void setPrice(Double newPrice) {
+        //TODO: MOSLEM:update is added , do we need load before ? so we dont overwrite other fields
+        loadProduct();
         this.price = newPrice;
-        if (Market.dbFlag)
-            DALService.productRepository.save(this);
+        updateProduct();
+
     }
+
+
     public boolean removeFromAllCategories() throws Exception {
+        loadProduct();
         for(Category category: productCategories.values()) {
             category.removeProduct(getName());
             productCategories.remove(category.getName());
-            if (Market.dbFlag)
-                DALService.removeProductCategory(this,category);
+            updateProductCategoryTransaction(category);
         }
+        //TODO: MOSLEM: recheck with moslem , no specific reason needs only to check category.removeProduct always called properly
+        //TODO: MOSLEM: ask moslem, can we replace updateProductCategoryTransaction to get a list of categories, and call it here
         return true;
     }
 
 
     public Double getProductPrice(int amount) throws Exception {
+        loadProduct();
         return price*amount;
     }
 
     public boolean haveCategory(Category category){
+        loadProduct();
         return productCategories.values().contains(category);
     }
+
+
+    private void updateProduct(){
+        if (Market.dbFlag)
+            DALService.productRepository.save(this);
+    }
+    private void updateProductCategoryTransaction(Category category){
+        if (Market.dbFlag)
+            DALService.removeProductCategory(this,category);
+    }
+
+    private void loadProduct(){
+        if (!productLoaded && Market.dbFlag){
+            Optional<Product> product = DALService.productRepository.findById(new ProductId(name, storeName));
+            if (product.isPresent()) {
+                this.name = product.get().name;
+                this.storeName = product.get().storeName;
+                this.price = product.get().getPrice();
+                this.description = product.get().description;
+                this.productCategories = product.get().productCategories;
+                setProductCategories();
+            }
+        }
+    }
+    //remove product is transaction in StoreMapper and is ready
+    //insert new product is transaction and is ready
+    //load is ready
 }

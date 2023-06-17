@@ -98,7 +98,7 @@ public class Store {
     }
     public Store(String storeName,boolean isLoaded) {
         this.storeName = storeName;
-        stock = new Stock(storeName,isLoaded);
+        stock = new Stock(this,isLoaded);
         isActive = true;
         storeFounder = null;
         storeOwners = new ConcurrentHashMap<>();
@@ -120,9 +120,6 @@ public class Store {
 
     public Store(){}
 
-    public void setLoaded(boolean loaded){
-        isLoaded = loaded;
-    }
 
     public void setStoreFounderAtStoreCreation(StoreFounder storeFounder) throws Exception {
         if(this.alreadyHaveFounder()){
@@ -140,6 +137,7 @@ public class Store {
     }
 
     public boolean isOwnerOrFounder(String memberUserName) throws Exception {
+        //TODO: MOSLEM: load all store from data base, or get this info only
         assertStringIsNotNullOrBlank(memberUserName);
         memberUserName = memberUserName.strip().toLowerCase();
         if(!storeFounder.getUserName().equals(memberUserName) && !storeOwners.containsKey(memberUserName))
@@ -149,6 +147,7 @@ public class Store {
     }
 
     public boolean isManager(String memberUserName) throws Exception {
+        //TODO: MOSLEM: load all store from data base, or get this info only
         assertStringIsNotNullOrBlank(memberUserName);
         memberUserName = memberUserName.strip().toLowerCase();
         if(!storeManagers.containsKey(memberUserName))
@@ -198,7 +197,6 @@ public class Store {
         if(description.length()>300)
             throw new Exception("the description of the product is too long");
 
-
         return stock.addNewProductToStock(nameProduct,category,price,description,amount);
     }
 
@@ -213,8 +211,7 @@ public class Store {
             throw new Exception("the Description of the product cannot be null");
         if(newProductDescription.length()>300)
             throw new Exception("the Description of the product is too long");
-        if(!storeFounder.getUserName().equals(memberUserName) && !storeOwners.containsKey(memberUserName))
-            throw new Exception("can't add new product to stock : userName "+ memberUserName +" is not an owner to the store");
+
         return stock.updateProductDescription(productName,newProductDescription);
     }
 
@@ -222,8 +219,6 @@ public class Store {
         assertIsOwnerOrFounderOrAuthorizedManager(memberUserName, ManagerPermissions.manageStock);
         if(newAmount < 0)
             throw new Exception("the amount of the product cannot be negative");
-        if(!storeFounder.getUserName().equals(memberUserName) && !storeOwners.containsKey(memberUserName))
-            throw new Exception("can't add new product to stock : userName "+ memberUserName +" is not an owner to the store");
         return stock.updateProductAmount(productName,newAmount);
     }
 
@@ -231,13 +226,10 @@ public class Store {
         assertIsOwnerOrFounderOrAuthorizedManager(memberUserName, ManagerPermissions.manageStock);
         if(newPrice <= 0)
             throw new Exception("the price of the product cannot be negative");
-        if(!storeFounder.getUserName().equals(memberUserName) && !storeOwners.containsKey(memberUserName))
-            throw new Exception("can't add new product to stock : userName "+ memberUserName +" is not an owner to the store");
         return stock.updateProductPrice(productName,newPrice);
     }
 
     public StoreDTO getStoreInfo() throws Exception {
-        //todo: need load store owners and managers and founders
         loadStore();
         List<String> ownersNames = this.storeOwners.values().stream().map(Role::getUserName).toList();
         List<String> managersNames = this.storeManagers.values().stream().map(Role::getUserName).toList();
@@ -249,6 +241,7 @@ public class Store {
     }
 
     public List<String> getProductDiscountPolicies(String productName) throws Exception {
+        //TODO: MOSLEM: load all store or relevant fields
         assertStringIsNotNullOrBlank(productName);
         stock.assertContainsProduct(productName);
         productName=productName.strip().toLowerCase();
@@ -294,6 +287,8 @@ public class Store {
     }
 
     public boolean isAlreadyStoreOwner(String memberUserName){
+        //TODO: MOSLEM: load all store from data base, or get this info only -> storeFounder,storeOwners
+
         if(storeFounder.getUserName().equals(memberUserName))
             return true;
 
@@ -304,41 +299,33 @@ public class Store {
     }
 
     public boolean isAlreadyStoreManager(String memberUserName) {
+        //TODO: MOSLEM: load all store from data base, or get this info only -> storeManagers
         return storeManagers.keySet().contains(memberUserName);
     }
 
     public boolean appointMemberAsStoreOwner(StoreOwner storeOwner) throws Exception {
+        //TODO: MOSLEM: load all store from data base, or get this info only -> storeOwners
         if(storeOwners.containsKey(storeOwner.getUserName()))
             throw new Exception(""+storeOwner.getUserName()+" is already owner for this store");
         storeOwners.put(storeOwner.getUserName(), storeOwner);
+
+        //TODO: MOSLEM: is save done as transcation in "usage" ???? i didnt understand the code
         return true;
     }
 
     public boolean appointMemberAsStoreManager(StoreManager storeManager) throws Exception {
+        //TODO: MOSLEM: load all store from data base, or get this info only -> storeManagers
         if(storeManagers.containsKey(storeManager.getUserName()))
             throw new Exception(""+storeManager.getUserName()+" is already manager for this store");
         storeManagers.put(storeManager.getUserName(), storeManager);
+        //TODO: MOSLEM: is save done as transcation in "usage" ???? i didnt understand the code
         return true;
-    }
-
-    public boolean loadAppointMemberAsStoreOwner(StoreOwner storeOwner) throws Exception {
-        storeOwners.put(storeOwner.getUserName(), storeOwner);
-        return true;
-    }
-
-    public boolean addPermissionForStoreManager(String ownerUserName, String managerUserName, Integer permissionId) throws Exception {
-        assertIsOwnerOrFounder(ownerUserName);
-        assertIsManager(managerUserName);
-        managerUserName = managerUserName.strip().toLowerCase();
-        StoreManager storeManager = storeManagers.get(managerUserName);
-        if(!storeManager.isMyBossForStore(getStoreName(), ownerUserName))
-            throw new Exception(ownerUserName+ " is not a boss for "+managerUserName+" in store "+getStoreName());
-
-        return storeManager.addPermissionForStore(getStoreName(),permissionId);
     }
 
 
     public boolean updateManagerPermissionsForStore(String ownerUserName, String managerUserName, List<Integer> newPermissions) throws Exception {
+        //TODO: MOSLEM: load all store from data base, or get this info only -> storeManagers
+        //TODO: MOSLEM: where we do update ?
         assertIsOwnerOrFounder(ownerUserName);
         assertIsManager(managerUserName);
         managerUserName = managerUserName.strip().toLowerCase();
@@ -351,6 +338,7 @@ public class Store {
 
 
     public List<Integer> getManagerPermissionsForStore(String ownerUserName, String managerUserName) throws Exception {
+        //TODO: MOSLEM: load all store from data base, or get this info only -> storeManagers
         assertStringIsNotNullOrBlank(ownerUserName);
         assertStringIsNotNullOrBlank(managerUserName);
         ownerUserName = ownerUserName.strip().toLowerCase();
@@ -373,6 +361,7 @@ public class Store {
     }
 
     public boolean isActive() {
+        //TODO: MOSLEM: load all store from data base, or get this info only
         return isActive;
     }
 
@@ -384,22 +373,11 @@ public class Store {
         return stock;
     }
 
-    public StoreFounder getStoreFounder() {
-        return storeFounder;
-    }
-
-    public Map<String, StoreOwner> getStoreOwners() {
-        return storeOwners;
-    }
-
-    public Map<String, StoreManager> getStoreManagers() {
-        return storeManagers;
-    }
-
-
-
 
     public boolean closeStore(String memberUserName) throws Exception {
+        //TODO: MOSLEM: load all store from data base, or get this info only
+
+
         if(memberUserName.equals(this.storeFounder.getUserName())){
             this.isActive = false;
             String msg = "store: " + storeName + " has been closed by " + memberUserName + " at " + java.time.LocalTime.now();
@@ -408,10 +386,14 @@ public class Store {
                 DALService.storeRepository.save(this);
             return true;
         }
+
+        //TODO: MOSLEM: update relevant data
         throw new Exception(memberUserName + "is not the founder of the store");
     }
 
     public List<MemberDTO> getStoreWorkersInfo(String memberUserName) throws Exception {
+        //TODO: MOSLEM: load all store from data base, or get this info only
+
         assertIsOwnerOrFounderOrAuthorizedManager(memberUserName, ManagerPermissions.getWorkersInfo);
         List<MemberDTO> members = new ArrayList<MemberDTO>();
         members.add(this.storeFounder.getMemberDTO());
@@ -425,6 +407,8 @@ public class Store {
     }
 
     public List<DealDTO> getStoreDeals(String memberUserName, boolean isSystemManager) throws Exception {
+        //TODO: MOSLEM: load all store from data base, or get this info only
+
         if(!isSystemManager)
             assertIsOwnerOrFounderOrAuthorizedManager(memberUserName, ManagerPermissions.getStoreDeals);
         List<DealDTO> deals = new ArrayList<DealDTO>();
@@ -436,6 +420,8 @@ public class Store {
 
     //Currently added for testing
     public void addDeal(Deal deal){
+
+        //TODO: MOSLEM: update here
         this.storeDeals.add(deal);
     }
 
@@ -452,6 +438,7 @@ public class Store {
     }
 
     public void validateStorePolicy(ConcurrentHashMap<String, ConcurrentHashMap<Product,Integer>> bagContent) throws Exception {
+        //TODO: MOSLEM: load data
         for(BagConstraint bagConstraint : storePaymentPolicies.values())
             if(!bagConstraint.checkConstraint(bagContent))
                 throw new Exception("Bag does not follow store: "+storeName+" payment policy: "+bagConstraint.toString());
@@ -461,13 +448,7 @@ public class Store {
 
 
     public Double getDiscountForBag(ConcurrentHashMap<String, ConcurrentHashMap<Product,Integer>> bagContent) throws Exception {
-//        Double totalBagDiscount = 0.0;
-//        for(DiscountPolicy discountPolicy : storeDiscountPolicies.values()){
-//            totalBagDiscount+= discountPolicy.calculateDiscount(bagContent);
-//        }
-//        return totalBagDiscount;
-
-        // should calculate the same value
+        //TODO: MOSLEM: load data
         Double totalBagDiscount = 0.0;
         for(DiscountPolicy discountPolicy : storeDiscountPolicies.values()){
             for(String productName: bagContent.keySet())
@@ -477,6 +458,7 @@ public class Store {
     }
 
     public Double getDiscountForProductInBag(ConcurrentHashMap<String, ConcurrentHashMap<Product,Integer>> bagContent, String productName) throws Exception {
+        //TODO: MOSLEM: load data
         assertStringIsNotNullOrBlank(productName);
         stock.assertContainsProduct(productName);
         productName=productName.strip().toLowerCase();
@@ -491,6 +473,7 @@ public class Store {
 
 
     public void removeManager(String userName) {
+        //TODO: MOSLEM: load data and UPDATE
         storeManagers.remove(userName);
     }
 
@@ -501,8 +484,6 @@ public class Store {
     public boolean replaceBagAmountToStock(ConcurrentHashMap<String, ConcurrentHashMap<Product,Integer>> bagContent) throws Exception {
         return stock.replaceBagAmountToStock(bagContent);
     }
-
-
 
 
     public Integer createProductDiscountPolicy(String memberUserName, String productName,  int discountPercentage, boolean addAsStoreDiscountPolicy) throws Exception {
@@ -604,7 +585,6 @@ public class Store {
 
         return currentDisPolIdCounter;
     }
-
 
     public Integer createAllStoreDiscountPolicy(String memberUserName,int discountPercentage, boolean addAsStoreDiscountPolicy) throws Exception {
         assertIsOwnerOrFounderOrAuthorizedManager(memberUserName, ManagerPermissions.manageStoreDiscountPolicies);
@@ -886,8 +866,6 @@ public class Store {
         return currentBagConstraintsIdCounter;
     }
 
-
-
     //CategoryBagConstraint
     public Integer createMaxTimeAtDayCategoryBagConstraint(String memberUserName, String categoryName, int hour, int minute, boolean addAsStorePaymentPolicy) throws Exception {
         assertIsOwnerOrFounderOrAuthorizedManager(memberUserName, ManagerPermissions.manageStorePaymentPolicies);
@@ -1120,6 +1098,7 @@ public class Store {
     }
 
     public boolean systemManagerCloseStore(String managerName) {
+
         storeFounder.removeStore(storeName);
         for (StoreOwner storeOwner: storeOwners.values()){
             storeOwner.removeStore(storeName);
@@ -1156,35 +1135,30 @@ public class Store {
     }
 
     public void loadStore() throws Exception {
-        if (!isLoaded) {
-            if (Market.dbFlag) {
-                Optional<Store> storeD = DALService.storeRepository.findById(storeName);
-                if (storeD.isPresent()) {
-                    Store store = storeD.get();
-                    //String founderName
-                    this.isActive = store.isActive;
-                    String founderName = DALService.storeFounderRepository.findFounderNameByStoreName(storeName);
-                    this.storeFounder = MemberMapper.getInstance().getStoreFounder(founderName);
-                    //todo: check founder.add resposiple for stores?
-                    this.storeFounder.responsibleForStores.put(storeName, this);
-                    List<String> ownersNames = DALService.storesOwnersRepository.findOwnersNamesByStoreName(storeName);
-                    for (String ownerName : ownersNames) {
-                        StoreOwner storeOwner = MemberMapper.getInstance().getStoreOwner(ownerName);
-                        storeOwners.put(ownerName, storeOwner);
-                        //todo: check owner.add resposiple for stores?
-                        storeOwner.responsibleForStores.put(storeName, this);
-                    }
-                    List<String> managersNames = DALService.storesManagersRepository.findManagersNamesByStoreName(storeName);
-                    for (String managerName : managersNames) {
-                        StoreManager storeManager = MemberMapper.getInstance().getStoreManager(managerName);
-                        storeManagers.put(managerName, storeManager);
-                        //todo: check add manager.resposipleforstores?
-                        storeManager.responsibleForStores.put(storeName, this);
-                    }
-                }
-            }
-            isLoaded = true;
+        if (isLoaded || !Market.dbFlag)
+            return;
+
+        Optional<Store> storeD = DALService.storeRepository.findById(storeName);
+        if (!storeD.isPresent())
+            throw new Exception("store does not exist " + storeName);
+
+        Store store = storeD.get();
+        this.isActive = store.isActive;
+        String founderName = DALService.storeFounderRepository.findFounderNameByStoreName(storeName);
+        this.storeFounder = MemberMapper.getInstance().getStoreFounder(founderName);
+        List<String> ownersNames = DALService.storesOwnersRepository.findOwnersNamesByStoreName(storeName);
+        for (String ownerName : ownersNames) {
+            StoreOwner storeOwner = MemberMapper.getInstance().getStoreOwner(ownerName);
+            storeOwners.put(ownerName, storeOwner);
         }
+        List<String> managersNames = DALService.storesManagersRepository.findManagersNamesByStoreName(storeName);
+        for (String managerName : managersNames) {
+            StoreManager storeManager = MemberMapper.getInstance().getStoreManager(managerName);
+            storeManagers.put(managerName, storeManager);
+        }
+        //TODO: MOSLEM: we need to load storeDeals, 3 fields DiscountPolicies , 3 fields PaymentPolicies, 2 fields contracts
+        isLoaded = true;
+
     }
 
     public void addStoreOwner(String ownerName,StoreOwner storeOwner){

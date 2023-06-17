@@ -61,24 +61,6 @@ public class StoreManager extends Role implements Serializable {
         return true;
     }
 
-    public boolean addPermissionForStore(String storeName, Integer permissionId) throws Exception {
-        if(storeName==null)
-            throw new Exception("storeName cant be null");
-        storeName = storeName.strip().toLowerCase();
-        if(! managedStoresPermissions.containsKey(storeName))
-            throw new Exception(this.getUserName()+ " is not Manager for store "+ storeName);
-        //for
-        ManagerPermissions permission = getPermissionById(permissionId);
-
-        //remove if
-        if(managedStoresPermissions.get(storeName).contains(permission))
-            throw new Exception(this.getUserName()+ " already have permission to "+permission.toString() +" for store "+ storeName);
-
-        managedStoresPermissions.get(storeName).add(permission);
-        managerPermissions.add(permission);
-        return true;
-    }
-
     public ManagerPermissions getPermissionById(Integer permissionId) throws Exception {
         if(permissionId == null)
             throw new Exception("permission Id cant be null");

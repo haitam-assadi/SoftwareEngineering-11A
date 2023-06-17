@@ -88,7 +88,8 @@ public class StoreMapper {
     public boolean isProductExists(ProductId productId){
         if (products.containsKey(productId)){
             return true;
-        }else{
+        }else if(Market.dbFlag){
+
             Optional<Product> product = DALService.productRepository.findById(productId);
             if (product.isEmpty()){
                 return false;
@@ -97,7 +98,7 @@ public class StoreMapper {
                 products.put(productId,product.get());
                 return true;
             }
-        }
+        }else return false;
     }
 
     public Product getProduct(ProductId productId) throws Exception {
@@ -127,7 +128,7 @@ public class StoreMapper {
     public boolean isCategoryExists(CategoryId categoryId){
         if (categories.containsKey(categoryId)){
             return true;
-        }else{
+        }else if(Market.dbFlag){
             Optional<Category> category = DALService.categoryRepository.findById(categoryId);
             if (category.isEmpty()){
                 return false;
@@ -136,7 +137,7 @@ public class StoreMapper {
                 categories.put(categoryId,category.get());
                 return true;
             }
-        }
+        }else return false;
     }
 
     public Category getCategory(CategoryId categoryId) throws Exception {
@@ -148,50 +149,37 @@ public class StoreMapper {
         }
     }
 
-    public Stock getStock(String stockName) throws Exception {
+    public void loadStock(String stockName) throws Exception {
         assertStringIsNotNullOrBlank(stockName);
         stockName = stockName.toLowerCase().strip();
-        if (!storesNamesConcurrentSet.contains(stockName)){
-            throw new Exception("store does not exist! " + stockName);
-        }
         Optional<Stock> stockD = DALService.stockRepository.findById(stockName);
-        if (stockD.isPresent()){
-            Stock stock = stockD.get();
-            for (Product product: stock.getProductAmount().keySet()){
-                ProductId productId = new ProductId(product.getName(), stockName);
-                if (!products.containsKey(productId)){
-                    //todo: check what happen in product.productCategories
-                    product.setProductCategories();
-                    products.put(productId,product);
-                }
-            }
-            for (Category category: stock.getStockCategories().values()){
-                CategoryId categoryId = new CategoryId(category.getCategoryName(), stockName);
-                if (!categories.containsKey(categoryId)){
-                    category.setCategoryProducts();
-                    categories.put(categoryId, category);
-                }
-            }
-            //todo: we can make the categories and products appoint to other.
-            Store store = stores.get(stockName);
-            store.getStock().updateStock(stock);
-            return store.getStock();
-        }else{
+        if (!stockD.isPresent())
             throw new Exception("store does not exist! " + stockName);
+
+        Stock dalStock = stockD.get();
+        for (Product product: dalStock.getProductAmount().keySet()){
+            ProductId productId = new ProductId(product.getName(), stockName);
+            if (!products.containsKey(productId)){
+                product.setProductCategories();
+                products.put(productId,product);
+            }
         }
+        for (Category category: dalStock.getStockCategories().values()){
+            CategoryId categoryId = new CategoryId(category.getCategoryName(), stockName);
+            if (!categories.containsKey(categoryId)){
+                category.setCategoryProducts();
+                categories.put(categoryId, category);
+            }
+        }
+        Stock BL_Stock = getStore(stockName).getStock();
+        BL_Stock.updateStock(dalStock);
+
     }
 
-    public int updateProductAmountInStock(String productName,String stockName){
-        //used in Stock.getProductWithAmount after we check that the product exists abd set the amount with -1
-        int amount = DALService.stockRepository.getProductAmount(stockName,productName);
-        stores.get(stockName).getStock().setProductAmountAfterLoadingAmount(products.get(new ProductId(productName,stockName)),productName,amount);
-        return amount;
-    }
+    /*
+    //TODO: MOSLEM: replaced with getNewProduct getNewStore ...
+    //TODO: MOSLEM: reason: for example before aster creating new store, and before calling insert, someone called StoreMapper.getStore
 
-    public void insertStore(String newStoreName, Store newStore) {
-        storesNamesConcurrentSet.add(newStoreName);
-        stores.put(newStoreName,newStore);
-    }
     public void insertProduct(ProductId productId,Product product){
         //used only in run time, when adding new product to market
         products.put(productId,product);
@@ -200,8 +188,33 @@ public class StoreMapper {
         //used only in run time, when adding new category to market
         categories.put(categoryId,category);
     }
+    public void insertStore(String newStoreName, Store newStore) {
+        storesNamesConcurrentSet.add(newStoreName);
+        stores.put(newStoreName,newStore);
+    }
+*/
 
-    public void removeProduct(ProductId productId) {
-        products.remove(productId);
+    public Store getNewStore(String newStoreName){
+        Store newStore = new Store(newStoreName);
+        storesNamesConcurrentSet.add(newStoreName);
+        stores.put(newStoreName,newStore);
+        return newStore;
+    }
+
+    public Category getNewCategory(String categoryName, String storeName){
+        Category category = new Category(categoryName,storeName);
+        categories.put(new CategoryId(categoryName,storeName),category);
+        return category;
+    }
+
+    public Product getNewProduct(String name,String storeName,Category category, Double price,String description){
+        Product product = new Product(name,storeName,category,price,description);
+        products.put(new ProductId(name,storeName),product);
+        return product;
+    }
+    public void removeProduct(Product product, Stock stock) {
+        products.remove(new ProductId(product.getName(), stock.getStoreName()));
+        if (Market.dbFlag)
+            DALService.removeProduct(product,stock);
     }
 }

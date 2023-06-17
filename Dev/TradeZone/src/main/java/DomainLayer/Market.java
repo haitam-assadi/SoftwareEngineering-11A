@@ -240,13 +240,6 @@ public class Market {
         return userController.appointOtherMemberAsStoreManager(memberUserName,store,newManagerUserName);
     }
 
-    public boolean addPermissionForStoreManager(String ownerUserName, String storeName, String managerUserName, Integer permissionId) throws Exception {
-        userController.assertIsMemberLoggedIn(ownerUserName);
-        userController.assertIsMember(managerUserName);
-        Store store = storeController.getStore(storeName);
-        return store.addPermissionForStoreManager(ownerUserName, managerUserName, permissionId);
-    }
-
     public boolean updateManagerPermissionsForStore(String ownerUserName, String storeName, String managerUserName, List<Integer> newPermissions) throws Exception {
         userController.assertIsMemberLoggedIn(ownerUserName);
         userController.assertIsMember(managerUserName);

@@ -216,7 +216,6 @@ public class Member extends User{
         MemberMapper.getInstance().insertFounder(storeFounderRole);
         storeFounderRole.appointMemberAsStoreFounder(store);
         store.setStoreFounderAtStoreCreation(storeFounderRole);
-        StoreMapper.getInstance().insertStore(store.getStoreName(),store);
         NotificationService.getInstance().subscribe(store.getStoreName(),NotificationType.productBought,this);
         NotificationService.getInstance().subscribe(store.getStoreName(),NotificationType.storeClosedBySystemManager,this);
 
