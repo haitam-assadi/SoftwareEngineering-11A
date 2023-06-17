@@ -274,14 +274,12 @@ public class Store {
         ownerUserName = ownerUserName.strip().toLowerCase();
         managerUserName = managerUserName.strip().toLowerCase();
 
-        if(!ownerUserName.equals(managerUserName))
-            assertIsOwnerOrFounder(ownerUserName);
-
         assertIsManager(managerUserName);
+        isManager(ownerUserName);
         managerUserName = managerUserName.strip().toLowerCase();
         StoreManager storeManager = storeManagers.get(managerUserName);
-        if(!ownerUserName.equals(managerUserName) && !storeManager.isMyBossForStore(getStoreName(), ownerUserName))
-            throw new Exception(ownerUserName+ " is not a boss for "+managerUserName+" in store "+getStoreName());
+        if(!ownerUserName.equals(managerUserName) && !isOwnerOrFounder(ownerUserName) && !isManager(ownerUserName))
+            throw new Exception(ownerUserName+ " cannot get the manager permission for the store");
 
         return storeManager.getManagerPermissionsForStore(getStoreName());
     }
@@ -1055,6 +1053,11 @@ public class Store {
 
         OwnerContract ownerContract = new OwnerContract(triggerOwner, newOwner,this, storeOwnersDecisions);
         newOwnersContracts.put(newOwner.getUserName(),ownerContract);
+
+        for (String storeOwnerNameToDes: storeOwnersDecisions.keySet()){
+            String msg = triggerOwner.getUserName() + "want to appoint" + newOwner.getUserName() + ",please confirm the appointment";
+            NotificationService.getInstance().notifyMember(storeOwnerNameToDes,msg,NotificationType.fillAppointContract);
+        }
         return true;
     }
 
@@ -1078,6 +1081,9 @@ public class Store {
             newOwnersContracts.remove(newOwnerUserName);
             alreadyDoneContracts.add(ownerContract);
         }
+
+        String msg = memberUserName + "is fill to the contract for" + newOwnerUserName;
+        NotificationService.getInstance().notifyMember(ownerContract.getTriggerOwnerName(),msg,NotificationType.decisionForContract);
         return true;
     }
 

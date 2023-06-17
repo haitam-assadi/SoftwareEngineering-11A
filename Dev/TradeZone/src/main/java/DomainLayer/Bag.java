@@ -151,7 +151,10 @@ public class Bag {
         for(String productName: products_prices.keySet()){
             Double discountValue = storeBag.getDiscountForProductInBag(this.bagContent, productName);
             productPriceMultipleAmount.put(productName, products_prices.get(productName)*products_amount.get(productName));
-            productFinalPriceWithDiscount.put(productName, productPriceMultipleAmount.get(productName)-discountValue);
+            Double priceWithDiscount = productPriceMultipleAmount.get(productName)-discountValue;
+            if(priceWithDiscount < 0.0)
+                priceWithDiscount = 0.0;
+            productFinalPriceWithDiscount.put(productName, priceWithDiscount);
         }
         Double totalPrice = getBagPriceAfterDiscount();
 
