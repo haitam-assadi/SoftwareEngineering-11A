@@ -1,6 +1,7 @@
 package PresentationLayer.controller;
 
 import CommunicationLayer.Server;
+import DTO.DealDTO;
 import DTO.ProductDTO;
 import DTO.StoreDTO;
 import PresentationLayer.model.*;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 @Controller
 public class StoreController {
@@ -52,7 +54,7 @@ public class StoreController {
                 constraints = (AllConstraints) request.getSession().getAttribute("constraints");
         }
 
-        if(controller.getRole(store.storeName) == -1){
+        if(controller.getRole(store.storeName) == -1) {
             alert.setFail(true);
             alert.setMessage(controller.getName() + " does not have role in " + store.storeName);
             return "redirect:/myStores";
@@ -72,6 +74,8 @@ public class StoreController {
         else {
             store = response.getValue();
             storeName = store.storeName;
+            if(!checkPermissionPage(controller, store.storeName, currentPage))
+                currentPage = "stock";
             if(currentPage.equals("workers"))
                 workers = buildWorkers(controller.getName(), store);
         }
@@ -91,7 +95,6 @@ public class StoreController {
 
 
     @PostMapping("/store")
-//    @ModelAttribute Store store1
     public String showStore(HttpServletRequest request, @RequestParam String storeName){
         if(request.getSession().getAttribute("controller") != null){
             controller = (GeneralModel) request.getSession().getAttribute("controller");
@@ -239,6 +242,13 @@ public class StoreController {
     @GetMapping("/workers")
     public String getWorkers(HttpServletRequest request){
 //        workers = buildWorkers(store);
+        if(request.getSession().getAttribute("controller") != null){
+            controller = (GeneralModel) request.getSession().getAttribute("controller");
+            if(request.getSession().getAttribute("store") != null)
+                store = (StoreDTO) request.getSession().getAttribute("store");
+        }
+        if(!controller.hasPermission(store.storeName, 3))
+            return "redirect:/stock";
         currentPage = "workers";
         request.getSession().setAttribute("currentPage", currentPage);
         return "redirect:/store";
@@ -327,21 +337,25 @@ public class StoreController {
             if(request.getSession().getAttribute("store") != null)
                 store = (StoreDTO) request.getSession().getAttribute("store");
         }
-        String referer = request.getHeader("referer");
+
+        if(!controller.hasPermission(store.storeName, 1))
+            return "redirect:/stock";
+
+//        String referer = request.getHeader("referer");
 //        TODO: uncomment
-//        ResponseT<List<DealDTO>> response = server.getStoreDeals(controller.getName(), store.storeName);
-//        if(response.ErrorOccurred){
-//            alert.setFail(true);
-//            alert.setMessage(response.errorMessage);
-//            return "redirect:/store";
-//        }
-//        deals = buildDeals(response.getValue());
-        deals = delete(); // TODO: delete this line + delete() func
+        ResponseT<List<DealDTO>> response = server.getStoreDeals(controller.getName(), store.storeName);
+        if(response.ErrorOccurred){
+            alert.setFail(true);
+            alert.setMessage(response.errorMessage);
+            return "redirect:/store";
+        }
+        deals = GeneralModel.buildDeals(response.getValue());
+//        deals = delete(); // TODO: delete this line + delete() func
         currentPage = "deals";
         request.getSession().setAttribute("deals", deals);
         request.getSession().setAttribute("currentPage", currentPage);
-        return "redirect:" + referer;
-//        return "redirect:/store";
+//        return "redirect:" + referer;
+        return "redirect:/store";
     }
 
     private List<Deal> delete(){
@@ -351,11 +365,15 @@ public class StoreController {
         amount_price.add(0, 5.0);
         amount_price.add(1, 35.0);
         products.put("product1", amount_price);
-        deals1.add(new Deal(store.storeName, "24/5/23", controller.getName(), products, 100));
+        Map<String, Double> productPriceMultipleAmount = new LinkedHashMap<>();
+        Map<String, Double> productFinalPriceWithDiscount = new LinkedHashMap<>();
+        productPriceMultipleAmount.put("product1", 5*35.0);
+        productFinalPriceWithDiscount.put("product1", 20.0);
+        deals1.add(new Deal(store.storeName, "24/5/23", controller.getName(), products, 100, productPriceMultipleAmount, productFinalPriceWithDiscount));
         products.put("product2", amount_price);
         products.put("product3", amount_price);
-        deals1.add(new Deal(store.storeName, "24/6/23", controller.getName(), products, 200));
-        deals1.add(new Deal(store.storeName, "24/7/23", controller.getName(), products, 300));
+        deals1.add(new Deal(store.storeName, "24/6/23", controller.getName(), products, 200, productPriceMultipleAmount, productFinalPriceWithDiscount));
+        deals1.add(new Deal(store.storeName, "24/7/23", controller.getName(), products, 300, productPriceMultipleAmount, productFinalPriceWithDiscount));
 
         return deals1;
     }
@@ -372,6 +390,10 @@ public class StoreController {
 //            else
 //                constraints = new AllConstraints(store.storeName);
         }
+
+        if(!controller.hasPermission(store.storeName, 5))
+            return "redirect:/stock";
+
         constraints = new AllConstraints(store.storeName);
         ResponseT<List<String>> response = server.getAllBagConstraints(controller.getName(), store.storeName);
         if(response.ErrorOccurred){
@@ -495,6 +517,10 @@ public class StoreController {
 //            else
 //                constraints = new AllConstraints(store.storeName);
         }
+
+        if(!controller.hasPermission(store.storeName, 4))
+            return "redirect:/stock";
+
         constraints = new AllConstraints(store.storeName);
         ResponseT<List<String>> response = server.getAllBagConstraints(controller.getName(), store.storeName);
         if(response.ErrorOccurred){
@@ -603,6 +629,8 @@ public class StoreController {
         return "redirect:/discountPolicies";
     }
 
+    //    ------------------------- PRIVATE METHODS -------------------------
+
     private Map<String, List<Worker>> buildWorkers(String ownerName, StoreDTO store){
         Map<String, List<Worker>> workers = new LinkedHashMap<>();
         List<Worker> names = new ArrayList<>();
@@ -648,6 +676,19 @@ public class StoreController {
             }
         }
         return null;
+    }
+
+    private boolean checkPermissionPage(GeneralModel controller, String storeName, String currentPage) {
+        if(currentPage.equals("workers") && !controller.hasPermission(storeName, 3))
+            return false;
+        else if(currentPage.equals("deals") && !controller.hasPermission(storeName, 1))
+            return false;
+        else if(currentPage.equals("bagConstraints") && !controller.hasPermission(storeName, 5))
+            return false;
+        else if(currentPage.equals("discountPolicies") && !controller.hasPermission(storeName, 4))
+            return false;
+        else
+            return true;
     }
 
 }
