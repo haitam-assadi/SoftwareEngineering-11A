@@ -1,10 +1,7 @@
 package UnitTests;
 
 import DomainLayer.*;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.*;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
@@ -53,14 +50,14 @@ class MemberTest {
     }
 
     @Test
-    void appoint_other_member_as_owner_called_by_founder_not_for_the_given_store_fail() {
+    void appoint_other_member_as_owner_called_by_founder_not_for_the_given_store_fail() throws Exception {
         Mockito.when(store.getStoreName()).thenReturn("myStore");
         member.addRole(member.getRoleEnum("StoreFounder"), role);
         assertThrows(Exception.class,
                 () -> {member.appointOtherMemberAsStoreOwner(store, anotherMember);});
     }
     @Test
-    void appoint_other_member_as_owner_called_by_owner_not_for_the_given_store_fail() {
+    void appoint_other_member_as_owner_called_by_owner_not_for_the_given_store_fail() throws Exception {
         Mockito.when(store.getStoreName()).thenReturn("myStore");
         member.addRole(member.getRoleEnum("StoreOwner"), role);
         assertThrows(Exception.class,
@@ -102,13 +99,23 @@ class MemberTest {
     */
     @Test
     void contains_role_success() {
-        member.addRole(member.getRoleEnum("StoreOwner"), role);
-        assertTrue(member.containsRole("StoreOwner"));
+        try {
+            member.addRole(member.getRoleEnum("StoreOwner"), role);
+            assertTrue(member.containsRole("StoreOwner"));
+        }catch (Exception e){
+            Assertions.fail(e.getMessage());
+        }
+
     }
 
     @Test
     void contains_role_fail() {
-        assertFalse(member.containsRole("StoreOwner"));
+        try {
+            assertFalse(member.containsRole("StoreOwner"));
+        }catch (Exception e){
+            Assertions.fail(e.getMessage());
+        }
+
     }
 
     /*
@@ -128,7 +135,7 @@ class MemberTest {
     }
 
     @Test
-    void appoint_other_member_as_manager_called_by_store_founder_not_for_the_given_store_fail() {
+    void appoint_other_member_as_manager_called_by_store_founder_not_for_the_given_store_fail() throws Exception {
         Mockito.when(store.getStoreName()).thenReturn("myStore");
         member.addRole(member.getRoleEnum("StoreFounder"), role);
         assertThrows(Exception.class,
@@ -136,7 +143,7 @@ class MemberTest {
     }
 
     @Test
-    void appoint_other_member_as_manager_called_by_store_owner_not_for_the_given_store_fail() {
+    void appoint_other_member_as_manager_called_by_store_owner_not_for_the_given_store_fail() throws Exception {
         Mockito.when(store.getStoreName()).thenReturn("myStore");
         member.addRole(member.getRoleEnum("StoreOwner"), role);
         assertThrows(Exception.class,

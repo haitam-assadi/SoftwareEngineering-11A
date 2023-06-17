@@ -32,21 +32,29 @@ public class Cart {
     })
     @Column(name = "bag")
     private Map<String, Bag> bags;
+
+    @Transient
+    private boolean isLoaded;
     public Cart(User cartOwner){
         this.cartOwner = cartOwner;
         bags = new ConcurrentHashMap<>();
+        isLoaded = true;
     }
     public Cart(){}
 
-    public Cart(Member cartOwner){
-        this.memberCart = cartOwner;
-    }
+
+//    public Cart(Member cartOwner){
+//        this.memberCart = cartOwner;
+//    }
 
     public void setMemberCart(Member memberCart) {
         this.cartOwner = memberCart;
         this.memberCart = memberCart;
     }
 
+    public void setLoaded(boolean b){
+        this.isLoaded = b;
+    }
 
 
     public boolean addToCart(Store store, String productName, Integer amount,boolean member) throws Exception {
@@ -75,12 +83,12 @@ public class Cart {
     public boolean removeFromCart(Store store, String productName,boolean member) throws Exception {
         if(!bags.containsKey(store.getStoreName()))
             throw new Exception("bag does not contain "+productName+" product");
-        if(!bags.get(store.getStoreName()).removeProduct(productName)){
+        if(!bags.get(store.getStoreName()).removeProduct(productName,member)){
             Bag bag = bags.get(store.getStoreName());
             bags.remove(store.getStoreName());
             if (member)
                 if (Market.dbFlag)
-                    DALService.modifyAndRemoveBag(this,bag);
+                    DALService.RemoveBag(this,bag);
         }
         return true;
     }
@@ -151,7 +159,7 @@ public class Cart {
         return true;
     }
 
-    public void removeAllCart() {
+    public void removeAllCart() throws Exception{
         for (Bag b: bags.values()){
             bags.remove(b.getStoreBag().getStoreName());
             if (Market.dbFlag)

@@ -44,11 +44,14 @@ public class UserController {
             Member member = MemberMapper.getInstance().getNewMember(user,"systemmanager1Pass");
             membersNamesConcurrentSet.add(user);
             members.put(user, member);
+            if (Market.dbFlag){
+                DALService.saveMember(member, member.getCart());
+            }
             SystemManager systemManager = new SystemManager(member);
             member.setSystemManager(systemManager);
             systemManagers.put(user, systemManager);
             if (Market.dbFlag) {
-                DALService.saveMember(member, member.getCart());
+               // DALService.saveMember(member, member.getCart());
                 DALService.systemManagerRepository.save(systemManager);
             }
         }
@@ -156,8 +159,6 @@ public class UserController {
         loggedInMembers.put(MemberUserName, member);
         guests.remove(guestUserName);
         member.Login();
-        if (Market.dbFlag)
-            DALService.memberRepository.save(member);
         return MemberUserName;
     }
 
@@ -383,8 +384,6 @@ public class UserController {
         member.Logout();
         loggedInMembers.remove(memberUserName);
         String newGuest = loginAsGuest();
-        if (Market.dbFlag)
-            DALService.memberRepository.save(member);
         return newGuest;
     }
 
@@ -393,8 +392,6 @@ public class UserController {
         Member member = getMember(memberUserName);
         member.Logout();
         loggedInMembers.remove(memberUserName);
-        if (Market.dbFlag)
-            DALService.memberRepository.save(member);
         return true;
     }
 
@@ -481,6 +478,7 @@ public class UserController {
     }
 
     public boolean removeMemberBySystemManager(String managerName, String memberName) throws Exception {
+        //todo: remove from data base
         memberName = memberName.toLowerCase();
         SystemManager systemManager = getSystemManager(managerName);
         assertIsMemberLoggedIn(managerName);

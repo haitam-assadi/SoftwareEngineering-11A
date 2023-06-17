@@ -1,5 +1,6 @@
 package DomainLayer;
 
+import DataAccessLayer.CompositeKeys.RolesId;
 import DataAccessLayer.Controller.MemberMapper;
 import DataAccessLayer.Controller.StoreMapper;
 import DataAccessLayer.DALService;
@@ -7,6 +8,7 @@ import DataAccessLayer.DALService;
 import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+import javax.transaction.Transactional;
 import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
@@ -40,7 +42,9 @@ public class StoreOwner extends AbstractStoreOwner implements Serializable {
         return Objects.hash(getUserName());
     }
 
+    @Transactional
     public boolean removeMemberAsStoreOwner(Store store, AbstractStoreOwner myBoss) throws Exception {
+        loadRole();
         String storeName = store.getStoreName();
         if(!store.isAlreadyStoreOwner(getUserName()))
             throw new Exception("member "+getUserName()+" is not store owner for store " + storeName);
@@ -69,7 +73,8 @@ public class StoreOwner extends AbstractStoreOwner implements Serializable {
                 storeManager.removeMemberAsStoreManager(store,this);
             appointedManagers.remove(storeName);
         }
-
+        if (Market.dbFlag)
+            DALService.storesOwnersRepository.deleteById(new RolesId(getUserName(),storeName));
         return true;
     }
 

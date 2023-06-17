@@ -66,18 +66,24 @@ public class NotificationService {
         ConcurrentHashMap<NotificationType, LinkedList<Member>> type_memberList = storeRulesNotificator.get(storeName);
         if(type_memberList.containsKey(notificationType)) {
             LinkedList<Member> members = type_memberList.get(notificationType);
-            members.forEach(member -> member.send(msg));
+            members.forEach(member -> {
+                try {
+                    member.send(msg);
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            });
         }
     }
 
-    public void notifyMember(String userName,String msg,NotificationType notificationType){
+    public void notifyMember(String userName,String msg,NotificationType notificationType) throws Exception{
         ConcurrentHashMap<NotificationType, Member> type_member = memberNotificator.get(userName);
         if(type_member.containsKey(notificationType)) {
             type_member.get(notificationType).send(msg);
         }
     }
 
-    public void notifySingle(String storeName,String user,String msg,NotificationType notificationType){
+    public void notifySingle(String storeName,String user,String msg,NotificationType notificationType) throws Exception{
         ConcurrentHashMap<NotificationType, LinkedList<Member>> type_memberList = storeRulesNotificator.get(storeName);
         if(type_memberList.containsKey(notificationType)) {
             LinkedList<Member> members = type_memberList.get(notificationType);
@@ -90,7 +96,7 @@ public class NotificationService {
             }
         }
     }
-    public void send(String userName,String msg){
+    public void send(String userName,String msg) throws Exception{
 
     }
 

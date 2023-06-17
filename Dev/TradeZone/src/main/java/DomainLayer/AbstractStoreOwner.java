@@ -25,6 +25,7 @@ public abstract class AbstractStoreOwner extends Role{
 
 
     public boolean appointOtherMemberAsStoreOwner(Store store, Member otherMember) throws Exception {
+        loadRole();
         String storeName = store.getStoreName();
         otherMember.appointMemberAsStoreOwner(store, this);
         appointedOwners.putIfAbsent(storeName, new ArrayList<>());
@@ -33,6 +34,7 @@ public abstract class AbstractStoreOwner extends Role{
     }
 
     public boolean appointOtherMemberAsStoreManager(Store store, Member otherMember) throws Exception {
+        loadRole();
         String storeName = store.getStoreName();
         otherMember.appointMemberAsStoreManager(store, this);
         appointedManagers.putIfAbsent(storeName, new ArrayList<>());
@@ -42,6 +44,7 @@ public abstract class AbstractStoreOwner extends Role{
 
 
     public void removeOwnerByHisAppointer(Store store, Member otherMember) throws Exception {
+        loadRole();
         String storeName = store.getStoreName();
         if(!appointedOwners.containsKey(storeName))
             throw new Exception(getUserName() + "is not owner for store "+storeName);
@@ -81,11 +84,13 @@ public abstract class AbstractStoreOwner extends Role{
         appointedManagers = new ConcurrentHashMap<>();
     }
 
-    public ConcurrentHashMap<String, List<StoreOwner>> getAppointedOwners() {
+    public ConcurrentHashMap<String, List<StoreOwner>> getAppointedOwners() throws Exception {
+        loadRole();
         return appointedOwners;
     }
 
-    public ConcurrentHashMap<String, List<StoreManager>> getAppointedManagers() {
+    public ConcurrentHashMap<String, List<StoreManager>> getAppointedManagers() throws Exception {
+        loadRole();
         return appointedManagers;
     }
 }

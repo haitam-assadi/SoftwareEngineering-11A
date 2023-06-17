@@ -50,7 +50,6 @@ public class MemberMapper {
         assertStringIsNotNullOrBlank(memberName);
         memberName = memberName.toLowerCase().strip();
         if (!membersNamesConcurrentSet.contains(memberName)){
-            //throw new Exception("member does not exist! " + memberName);
             return null;
         }
         if (!members.containsKey(memberName)){

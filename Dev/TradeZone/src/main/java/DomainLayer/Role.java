@@ -32,7 +32,8 @@ public abstract class Role {
     @Transient
     protected boolean isLoaded;
 
-    public ConcurrentHashMap<String, Store> getResponsibleForStores() {
+    public ConcurrentHashMap<String, Store> getResponsibleForStores() throws Exception {
+        loadRole();
         return responsibleForStores;
     }
 
@@ -40,6 +41,7 @@ public abstract class Role {
         this.member = member;
         myBossesForStores = new ConcurrentHashMap<>();
         responsibleForStores = new ConcurrentHashMap<>();
+        isLoaded = true;
     }
     public Role() {
     }
@@ -71,6 +73,7 @@ public abstract class Role {
 
         storeName=storeName.strip().toLowerCase();
         memberName=memberName.strip().toLowerCase();
+        loadRole();
         if(!responsibleForStores.containsKey(storeName))
             throw new Exception(getUserName()+" is not a owner/manager for store "+ storeName);
 
@@ -82,6 +85,7 @@ public abstract class Role {
 
 
     public boolean appointMemberAsStoreOwner(Store store, AbstractStoreOwner myBoss) throws Exception {
+        loadRole();
         String storeName = store.getStoreName();
         if(responsibleForStores.containsKey(storeName))
             throw new Exception(""+getUserName()+" is already owner for this store");
@@ -92,14 +96,15 @@ public abstract class Role {
         return true;
     }
 
-    public boolean loadAppointMemberAsStoreOwner(Store store, AbstractStoreOwner myBoss) throws Exception {
-        String storeName = store.getStoreName();
-        responsibleForStores.put(storeName, store);
-        myBossesForStores.put(storeName, myBoss);
-        return true;
-    }
+//    public boolean loadAppointMemberAsStoreOwner(Store store, AbstractStoreOwner myBoss) throws Exception {
+//        String storeName = store.getStoreName();
+//        responsibleForStores.put(storeName, store);
+//        myBossesForStores.put(storeName, myBoss);
+//        return true;
+//    }
 
     public boolean appointMemberAsStoreFounder(Store store) throws Exception {
+        loadRole();
         String storeName = store.getStoreName();
         if(responsibleForStores.containsKey(storeName))
             throw new Exception(""+getUserName()+" is already founder for this store");
@@ -109,13 +114,15 @@ public abstract class Role {
     }
 
 
-    public boolean haveStore(String storeName){
+    public boolean haveStore(String storeName) throws Exception {
+        loadRole();
         // check if null or empty
         storeName = storeName.strip().toLowerCase();
         return responsibleForStores.containsKey(storeName);
     }
 
     public boolean appointMemberAsStoreManager(Store store, AbstractStoreOwner myBoss) throws Exception {
+        loadRole();
         String storeName = store.getStoreName();
         if(responsibleForStores.containsKey(storeName))
             throw new Exception(""+getUserName()+" is already manager or owner for this store");

@@ -50,18 +50,15 @@ public class Member extends User{
 
 
 
-    public void setSystemManager(SystemManager systemManager) {
+    public void setSystemManager(SystemManager systemManager) throws Exception {
+        loadMember();
         this.systemManager = systemManager;
         isSystemManager = true;
+        DALService.memberRepository.save(this);
     }
 
     public SystemManager checkIsSystemManager() throws Exception {
-        if (isSystemManager){
-            if (systemManager==null){
-                //todo:check if we should load appointedSystemManagers
-                this.systemManager = MemberMapper.getInstance().getSystemManager(userName);
-            }
-        }
+        loadMember();
         return systemManager;
     }
 
@@ -74,7 +71,7 @@ public class Member extends User{
         pendingMessages = new HashSet<>();
         isOnline = false;
         memberRolesFlag = new HashSet<>();
-        //isLoaded??
+        isLoaded = true;
     }
 
     public Member(){
@@ -91,11 +88,13 @@ public class Member extends User{
 
 
 
-    public String getPassword() {
+    public String getPassword() throws Exception {
+        loadMember();
         return password;
     }
 
     public MemberDTO getMemberDTO() throws Exception {
+        loadMember();
         List<DealDTO> dealDTOList = new LinkedList<>();
         for (Deal deal : userDeals){
             dealDTOList.add(deal.getDealDTO());
@@ -103,6 +102,7 @@ public class Member extends User{
         return new MemberDTO(this.userName, myStores(),dealDTOList);
     }
     public boolean appointOtherMemberAsStoreOwner(Store store, Member otherMember) throws Exception {
+        loadMember();
         AbstractStoreOwner owner = null;
         String storeName = store.getStoreName();
         if(roles.containsKey(RoleEnum.StoreFounder) && roles.get(RoleEnum.StoreFounder).haveStore(storeName))
@@ -125,12 +125,12 @@ public class Member extends User{
     }
 
     public boolean appointMemberAsStoreOwner(Store store, AbstractStoreOwner myBoss) throws Exception {
+        loadMember();
         if(store.isAlreadyStoreOwner(getUserName()))
             throw new Exception("member"+getUserName()+" is already store owner");
         if(store.isAlreadyStoreManager(getUserName()))
             throw new Exception("member"+getUserName()+" is already store manager");
         StoreOwner storeOwner = MemberMapper.getInstance().getNewStoreOwner(this);
-        //StoreOwner storeOwner =  new StoreOwner(this);
         addRole(RoleEnum.StoreOwner);
         roles.putIfAbsent(RoleEnum.StoreOwner,storeOwner);
         subscribeOwnerForNotifications(store.getStoreName());
@@ -145,13 +145,14 @@ public class Member extends User{
     }
 
 
-    public StoreOwner getStoreOwner(){
+    public StoreOwner getStoreOwner() throws Exception {
         loadMember();
         StoreOwner storeOwnerRole =  (StoreOwner) roles.get(RoleEnum.StoreOwner);
         return storeOwnerRole;
     }
 
-    public boolean containsRole(String roleTitle) {
+    public boolean containsRole(String roleTitle) throws Exception {
+        loadMember();
         for(RoleEnum role : this.roles.keySet()){
             if(role.toString().equals(roleTitle))
                 return true;
@@ -159,6 +160,7 @@ public class Member extends User{
         return false;
     }
     public boolean appointOtherMemberAsStoreManager(Store store, Member otherMember) throws Exception {
+        loadMember();
         AbstractStoreOwner owner = null;
         String storeName = store.getStoreName();
         if(roles.containsKey(RoleEnum.StoreFounder) && roles.get(RoleEnum.StoreFounder).haveStore(storeName))
@@ -175,6 +177,7 @@ public class Member extends User{
 
 
     public boolean removeOwnerByHisAppointer(Store store, Member otherMember) throws Exception {
+        loadMember();
         AbstractStoreOwner owner = null;
         String storeName = store.getStoreName();
         if(roles.containsKey(RoleEnum.StoreFounder) && roles.get(RoleEnum.StoreFounder).haveStore(storeName))
@@ -191,6 +194,7 @@ public class Member extends User{
 
 
     public boolean appointMemberAsStoreManager(Store store, AbstractStoreOwner myBoss) throws Exception {
+        loadMember();
         if(store.isAlreadyStoreOwner(getUserName()))
             throw new Exception("member"+getUserName()+" is already store owner");
         if(store.isAlreadyStoreManager(getUserName()))
@@ -206,10 +210,12 @@ public class Member extends User{
         storeManagerRole.setBoss(myBoss.member,myBoss.getRoleType());
         if (Market.dbFlag)
             DALService.saveStoreManager(storeManagerRole,store,this);
+            //todo: check insert to manager_permission table
         return true;
     }
 
     public StoreFounder appointMemberAsStoreFounder(Store store) throws Exception {
+        loadMember();
         if(store.alreadyHaveFounder())
             throw new Exception("store "+store.getStoreName()+" already have a founder");
         addRole(RoleEnum.StoreFounder);
@@ -221,11 +227,11 @@ public class Member extends User{
         NotificationService.getInstance().subscribe(store.getStoreName(),NotificationType.productBought,this);
         NotificationService.getInstance().subscribe(store.getStoreName(),NotificationType.storeClosedBySystemManager,this);
 
-        //todo: add the permissions
         return storeFounderRole;
     }
 
     public Map<String, List<StoreDTO>> myStores() throws Exception {
+        loadMember();
         Map<String,List<StoreDTO>> memberStores = new ConcurrentHashMap<>();
         if(roles.containsKey(RoleEnum.StoreFounder)){
             Role role = roles.get(RoleEnum.StoreFounder);
@@ -254,13 +260,14 @@ public class Member extends User{
         return memberStores;
     }
 
-    public StoreManager getStoreManager(){
+    public StoreManager getStoreManager() throws Exception {
+        loadMember();
         StoreManager storeManagerRole =  (StoreManager) roles.get(RoleEnum.StoreManager);
         return storeManagerRole;
     }
 
     //Currently added for testing
-    public void addRole(RoleEnum roleEnum, Role role){
+    public void addRole(RoleEnum roleEnum, Role role) throws Exception {
         this.roles.put(roleEnum, role);
     }
 
@@ -275,6 +282,7 @@ public class Member extends User{
     }
 
     public void assertIsOwnerForTheStore(Store store) throws Exception {
+        loadMember();
         AbstractStoreOwner owner = null;
         String storeName = store.getStoreName();
         if(roles.containsKey(RoleEnum.StoreFounder) && roles.get(RoleEnum.StoreFounder).haveStore(storeName))
@@ -295,15 +303,18 @@ public class Member extends User{
     }
 
 
-    public void send(String msg){
+    public void send(String msg) throws Exception {
+        loadMember();
         if(isOnline){
             NotificationService.getInstance().send(userName,msg);
         }else{
             pendingMessages.add(msg);
+            DALService.memberRepository.save(this);
         }
     }
 
-    public void Login() {
+    public void Login() throws Exception {
+        loadMember();
         isOnline = true;
         if(!pendingMessages.isEmpty()){
             StringBuilder msg = new StringBuilder("Attention: you got " + pendingMessages.size() + " messages:\n");
@@ -313,10 +324,15 @@ public class Member extends User{
             pendingMessages.clear();
             NotificationService.getInstance().send(userName, msg.toString());
         }
+        if (Market.dbFlag)
+            DALService.memberRepository.save(this);
     }
 
-    public void Logout() {
+    public void Logout() throws Exception {
+        loadMember();
         isOnline= false;
+        if (Market.dbFlag)
+            DALService.memberRepository.save(this);
     }
 
     public void defineNotifications(String newMemberUserName) {
@@ -325,6 +341,7 @@ public class Member extends User{
     }
 
     public void addCart(Cart cart) throws Exception {
+        //loadMember();
         for (Bag bag: cart.getBags().values()){
             for (Product product: bag.getProductAmount().keySet()) {
                 this.addToCart(bag.getStoreBag(), product.getName(),bag.getProductAmount().get(product),true);
@@ -337,12 +354,14 @@ public class Member extends User{
     }
 
     public void assertHaveNoRule() throws Exception {
+        loadMember();
         if(!roles.isEmpty()){
             throw new Exception(getUserName() + " have a role in a store");
         }
     }
 
-    private void addRole(RoleEnum roleEnum){
+    private void addRole(RoleEnum roleEnum) throws Exception {
+        loadMember();
         if (!roles.containsKey(roleEnum)){
             memberRolesFlag.add(roleEnum);
         }
@@ -354,13 +373,14 @@ public class Member extends User{
                 Member member = DALService.memberRepository.findById(userName).get();
                 this.password = member.password;
                 this.isSystemManager = member.isSystemManager;
-                this.memberRolesFlag = member.memberRolesFlag;
+                this.memberRolesFlag = member.memberRolesFlag; //todo: check that member.memberRolesFlag is enumerated values
                 this.pendingMessages = member.pendingMessages;
                 this.isOnline = member.isOnline;
                 this.roles = new ConcurrentHashMap<>();
-                //this.systemManager = null;//todo: call system manager
                 this.loadRoles();
-                this.cart = member.cart;//todo: load cart lazily
+                this.cart = new Cart(member);
+                this.cart.setLoaded(false);
+                this.cart.setMemberCart(this);
                 this.isLoaded = true;
             }
         }
@@ -381,7 +401,7 @@ public class Member extends User{
             }
             if (memberRolesFlag.contains(RoleEnum.StoreManager)) {
                 StoreManager storeManager = MemberMapper.getInstance().getStoreManager(userName);
-                roles.put(RoleEnum.StoreManager, storeManager)
+                roles.put(RoleEnum.StoreManager, storeManager);
             }
         }
     }
@@ -389,7 +409,8 @@ public class Member extends User{
 
 
     @Transactional
-    public void removeCart(){
+    public void removeCart() throws Exception {
+        loadMember();
         cart.removeAllCart();
         Cart membercart = cart;
         cart = null;

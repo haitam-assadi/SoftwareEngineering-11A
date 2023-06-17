@@ -1,5 +1,6 @@
 package DomainLayer;
 
+import DataAccessLayer.CompositeKeys.RolesId;
 import DataAccessLayer.Controller.MemberMapper;
 import DataAccessLayer.Controller.StoreMapper;
 import DataAccessLayer.DALService;
@@ -50,6 +51,7 @@ public class StoreManager extends Role implements Serializable {
     }
 
     public boolean hasPermissionForStore(String storeName, ManagerPermissions permission) throws Exception {
+        loadRole();
         if(storeName==null)
             throw new Exception("storeName cant be null");
         storeName = storeName.strip().toLowerCase();
@@ -95,7 +97,7 @@ public class StoreManager extends Role implements Serializable {
     }
 
     public boolean updateManagerPermissionsForStore(String storeName, List<Integer> newPermissions) throws Exception {
-        //todo: moslem
+        loadRole();
         if(storeName==null)
             throw new Exception("storeName cant be null");
         if(newPermissions==null)
@@ -117,6 +119,7 @@ public class StoreManager extends Role implements Serializable {
     }
 
     public boolean appointMemberAsStoreManager(Store store, AbstractStoreOwner myBoss) throws Exception {
+        loadRole();
         super.appointMemberAsStoreManager(store,myBoss);
         String storeName= store.getStoreName();
         if(storeName==null)
@@ -142,6 +145,7 @@ public class StoreManager extends Role implements Serializable {
     }
 
     public boolean removeMemberAsStoreManager(Store store, AbstractStoreOwner myBoss) throws Exception {
+        loadRole();
         String storeName = store.getStoreName();
         if(!store.isAlreadyStoreManager(getUserName()))
             throw new Exception("member "+getUserName()+" is not store Manager for store " + storeName);
@@ -156,7 +160,9 @@ public class StoreManager extends Role implements Serializable {
         myBossesForStores.remove(storeName);
         responsibleForStores.remove(storeName);
         managedStoresPermissions.remove(storeName);
-
+        if (Market.dbFlag)
+            DALService.storesManagersRepository.deleteById(new RolesId(getUserName(),storeName));
+            //todo: check that permissions deleted
         return true;
     }
 

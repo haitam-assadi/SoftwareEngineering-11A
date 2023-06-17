@@ -3,11 +3,12 @@ package DomainLayer;
 import DTO.BagDTO;
 import DTO.DealDTO;
 import DTO.ProductDTO;
+import DataAccessLayer.CompositeKeys.ProductId;
+import DataAccessLayer.Controller.StoreMapper;
 import DataAccessLayer.DALService;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -33,14 +34,22 @@ public class Bag {
     })
     @Column(name = "amount")
     private Map<Product,Integer> productAmount;
+
+    private boolean isLoaded;
     public Bag(Store storeBag) {
         this.storeBag = storeBag;
         bagContent = new ConcurrentHashMap<>();
         productAmount = new ConcurrentHashMap<>();
+        isLoaded = true;
     }
     public Bag(){}
 
+    public void setLoaded(boolean b){
+        isLoaded = b;
+    }
+
     public boolean addProduct(String productName, Integer amount,boolean member) throws Exception {
+        loadBag();
         productName = productName.strip().toLowerCase();
         if(bagContent.containsKey(productName))
             throw new Exception("bag already contains "+productName+" product");
@@ -53,11 +62,13 @@ public class Bag {
         productAmount.put(product,amount);
         if (member)
             if (Market.dbFlag)
-                DALService.addProduct(this,product);
+                DALService.bagRepository.save(this);
+                //DALService.addProduct(this,product);
         return true;
     }
 
     public boolean changeProductAmount(String productName, Integer newAmount,boolean member) throws Exception {
+        loadBag();
         productName = productName.strip().toLowerCase();
         if(! bagContent.containsKey(productName))
             throw new Exception("bag does not contain "+productName+" product");
@@ -70,16 +81,21 @@ public class Bag {
         return true;
     }
 
-    public boolean removeProduct(String productName) throws Exception {
+    public boolean removeProduct(String productName,boolean member) throws Exception {
+        loadBag();
         productName = productName.strip().toLowerCase();
         if(! bagContent.containsKey(productName))
             throw new Exception("bag does not contain "+productName+" product");
         this.productAmount.remove(findProductbyName(productName));
         //DALService.bagRepository.save(this);
         bagContent.remove(productName);
+        if (member)
+            if (Market.dbFlag)
+                DALService.bagRepository.save(this);
         return bagContent.isEmpty()? false:true;
     }
-    private Product findProductbyName(String productName){
+    private Product findProductbyName(String productName) throws Exception {
+        loadBag();
         for (Product product: productAmount.keySet()){
             if (product.getName().equals(productName))
                 return product;
@@ -87,10 +103,12 @@ public class Bag {
         return null;
     }
 
-    public Store getStoreBag() {
+    public Store getStoreBag() throws Exception {
+        loadBag();
         return storeBag;
     }
-    public ConcurrentHashMap<String,Integer> getProductWithAmount(){
+    public ConcurrentHashMap<String,Integer> getProductWithAmount() throws Exception {
+        loadBag();
         List<String> productsNameBag =  bagContent.keySet().stream().toList();
         ConcurrentHashMap<String,Integer> productNameAmount = new ConcurrentHashMap<>();
         for (int i=0;i<productsNameBag.size();i++){
@@ -102,6 +120,7 @@ public class Bag {
         return productNameAmount;
     }
     public BagDTO getBagInfo() throws Exception {
+        loadBag();
         ConcurrentHashMap<ProductDTO, Integer> bagContent = new ConcurrentHashMap<>();
         for (ConcurrentHashMap<Product,Integer> curr: this.bagContent.values()) {
             Product currProduct = curr.keys().nextElement();
@@ -122,10 +141,12 @@ public class Bag {
     }
 
     public void validateStorePolicy(String userName) throws Exception {
+        loadBag();
         storeBag.validateStorePolicy(bagContent);
     }
 
     public void validateAllProductsAmounts() throws Exception {
+        loadBag();
         for(ConcurrentHashMap<Product,Integer> prodct_amount : bagContent.values()){
             for (Product p : prodct_amount.keySet()){
                 storeBag.getProductWithAmount(p.getName(),prodct_amount.get(p));
@@ -135,6 +156,7 @@ public class Bag {
 
 
     public void validateStoreIsActive() throws Exception {
+        loadBag();
         if(!storeBag.isActive()){
             List<String> productsNamesList = bagContent.keySet().stream().toList();
             throw new Exception("store "+storeBag.getStoreName()+" is not active, you can't purchase these products "
@@ -143,6 +165,7 @@ public class Bag {
     }
 
     public Double getBagPriceBeforeDiscount() throws Exception {
+        loadBag();
         Double totalBagPrice = 0.0;
         for (ConcurrentHashMap<Product,Integer> curr: this.bagContent.values()) {
             Product product = curr.keys().nextElement();
@@ -152,6 +175,7 @@ public class Bag {
     }
 
     public Double getBagPriceAfterDiscount() throws Exception {
+        loadBag();
         Double totalBagPrice = 0.0;
         for (ConcurrentHashMap<Product,Integer> curr: this.bagContent.values()) {
             Product product = curr.keys().nextElement();
@@ -163,14 +187,17 @@ public class Bag {
 
 
     public boolean removeBagAmountFromStock() throws Exception {
+        loadBag();
         return storeBag.removeBagAmountFromStock(bagContent);
     }
 
     public boolean replaceBagAmountToStock() throws Exception {
+        loadBag();
         return storeBag.replaceBagAmountToStock(bagContent);
     }
 
-    public void removeAllProducts() {
+    public void removeAllProducts() throws Exception {
+        loadBag();
         bagContent = new ConcurrentHashMap<>();
         productAmount = new ConcurrentHashMap<>();
         if (Market.dbFlag) {
@@ -179,10 +206,12 @@ public class Bag {
         }
     }
 
-    public Map<Product, Integer> getProductAmount() {
+    public Map<Product, Integer> getProductAmount() throws Exception {
+        loadBag();
         return productAmount;
     }
     public Deal createDeal(User user) throws Exception {
+        loadBag();
         ConcurrentHashMap<String, Double> products_prices = new ConcurrentHashMap<>();
         ConcurrentHashMap<String, Integer> products_amount = new ConcurrentHashMap<>();
         ConcurrentHashMap<String, Double> productPriceMultipleAmount = new ConcurrentHashMap<>();
@@ -204,5 +233,24 @@ public class Bag {
         Deal deal = new Deal(storeBag.getStoreName(),user.userName, LocalDate.now().toString(), products_prices, products_amount, productPriceMultipleAmount, productFinalPriceWithDiscount,totalPrice);
         storeBag.addDeal(deal);
         return deal;
+    }
+
+
+    public void loadBag() throws Exception {
+        if (isLoaded || !Market.dbFlag) return;
+        String storeName = DALService.bagRepository.findStoreNameById(bagId);
+        Store store = StoreMapper.getInstance().getStore(storeName);
+        this.storeBag = store;
+        Map<String,Integer> productAmount = DALService.bagRepository.findProductAmountById(bagId);
+        //todo: check and assure that the return
+        for (String productName: productAmount.keySet()){
+            ConcurrentHashMap<Product,Integer> product_Amount = new ConcurrentHashMap<>();
+            Product product = StoreMapper.getInstance().getProduct(new ProductId(productName,storeName));
+            int amount = productAmount.get(productName);
+            product_Amount.put(product,amount);
+            bagContent.put(productName,product_Amount);
+            this.productAmount.put(product,amount);
+        }
+        isLoaded = true;
     }
 }

@@ -148,8 +148,7 @@ public class DALService {
         DALService.cartRepository.save(cart);
     }
     @Transactional
-    public static void modifyAndRemoveBag(Cart cart, Bag bag) {
-        DALService.bagRepository.save(bag);
+    public static void RemoveBag(Cart cart, Bag bag) {
         DALService.cartRepository.save(cart);
         DALService.bagRepository.delete(bag);
     }
