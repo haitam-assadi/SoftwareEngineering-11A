@@ -68,7 +68,7 @@ public class OwnerContract {
 
             String msg = "you now owner for store" + store.getStoreName();
             NotificationService.getInstance().notifyMember(memberUserName,msg,NotificationType.ownerDone);
-            
+
         }
         return true;
     }
