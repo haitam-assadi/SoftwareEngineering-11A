@@ -65,8 +65,8 @@
                                         <input type="hidden" name="managerName" th:value="${worker.name}">
                                         <div th:each="pID : ${worker.permissions.keySet}">
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" th:value="${pID}" th:name="'perms'" th:id="${pID}" th:checked="${worker.hasPermission(pID)}">
-                                                <label class="form-check-label" th:for="${pID}">
+                                                <input class="form-check-input" type="checkbox" th:value="${pID}" th:name="'perms'" th:id="${worker.name + pID}" th:checked="${worker.hasPermission(pID)}">
+                                                <label class="form-check-label" th:for="${worker.name + pID}">
                                                     <h6 th:text="${worker.getPermission(pID)}"></h6>
                                                 </label>
                                             </div>
