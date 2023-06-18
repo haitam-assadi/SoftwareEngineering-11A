@@ -1057,7 +1057,7 @@ public class Store {
         newOwnersContracts.put(newOwner.getUserName(),ownerContract);
 
         for (String storeOwnerNameToDes: storeOwnersDecisions.keySet()){
-            String msg = triggerOwner.getUserName() + " want to appoint " + newOwner.getUserName() + " ,please confirm the appointment";
+            String msg = triggerOwner.getUserName() + " want to appoint " + newOwner.getUserName() + " for store "+ storeName +" ,please confirm the appointment";
             NotificationService.getInstance().notify(storeName,msg,NotificationType.fillAppointContract);
         }
         return true;
@@ -1085,7 +1085,7 @@ public class Store {
         }
 
         String msg = memberUserName + " is fill to the contract for " + newOwnerUserName;
-        NotificationService.getInstance().notify(storeName,msg,NotificationType.decisionForContract);
+        NotificationService.getInstance().notifyMember(ownerContract.getTriggerOwnerName(),msg,NotificationType.decisionForContract);
         return true;
     }
 

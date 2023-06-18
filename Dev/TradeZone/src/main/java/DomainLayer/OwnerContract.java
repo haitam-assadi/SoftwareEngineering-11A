@@ -66,8 +66,8 @@ public class OwnerContract {
             contractStatus = "all owners have accepted this contract and it is done";
             contractIsDone = true;
 
-            String msg = "you now owner for store" + store.getStoreName();
-            NotificationService.getInstance().notify(store.getStoreName(),msg,NotificationType.ownerDone);
+            String msg = "you now owner for store " + store.getStoreName();
+            NotificationService.getInstance().notifyMember(newOwner.userName,msg,NotificationType.ownerDone);
 
         }
         return true;
