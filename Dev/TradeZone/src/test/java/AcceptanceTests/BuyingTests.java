@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Map;
 
 @TestInstance(value = TestInstance.Lifecycle.PER_CLASS)
-//@SpringBootTest(classes = SpringbootHtmlApplication.class)
 public class BuyingTests {
     private ProxyBridge proxy;
     private String user;

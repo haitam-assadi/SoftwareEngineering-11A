@@ -36,7 +36,8 @@ public class StoreMapper {
     }
 
     public void loadAllStoresNames() {
-        storesNamesConcurrentSet = DALService.storeRepository.getAllStoresNames();
+        if (Market.dbFlag)
+            storesNamesConcurrentSet = DALService.storeRepository.getAllStoresNames();
     }
 
     public Store getStore(String storeName) throws Exception {
@@ -145,7 +146,6 @@ public class StoreMapper {
             return categories.get(categoryId);
         }else{
             return null;
-//            throw new Exception("category: " + categoryId.getCategoryName() + " does not found");
         }
     }
 

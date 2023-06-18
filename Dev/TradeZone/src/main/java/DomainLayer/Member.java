@@ -54,7 +54,8 @@ public class Member extends User{
         loadMember();
         this.systemManager = systemManager;
         isSystemManager = true;
-        DALService.memberRepository.save(this);
+        if (Market.dbFlag)
+            DALService.memberRepository.save(this);
     }
 
     public SystemManager checkIsSystemManager() throws Exception {
