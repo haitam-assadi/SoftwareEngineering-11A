@@ -1048,6 +1048,8 @@ public class Store {
 
         if(storeOwnersDecisions.keySet().size() == 0 ){
             triggerOwner.appointOtherMemberAsStoreOwner(this,newOwner);
+            String msg = "you appointed as store owner for store : " + storeName;
+            NotificationService.getInstance().notify(storeName,msg,NotificationType.ownerDone);
             return true;
         }
 
@@ -1055,8 +1057,8 @@ public class Store {
         newOwnersContracts.put(newOwner.getUserName(),ownerContract);
 
         for (String storeOwnerNameToDes: storeOwnersDecisions.keySet()){
-            String msg = triggerOwner.getUserName() + "want to appoint" + newOwner.getUserName() + ",please confirm the appointment";
-            NotificationService.getInstance().notifyMember(storeOwnerNameToDes,msg,NotificationType.fillAppointContract);
+            String msg = triggerOwner.getUserName() + " want to appoint " + newOwner.getUserName() + " ,please confirm the appointment";
+            NotificationService.getInstance().notify(storeName,msg,NotificationType.fillAppointContract);
         }
         return true;
     }
@@ -1082,8 +1084,8 @@ public class Store {
             alreadyDoneContracts.add(ownerContract);
         }
 
-        String msg = memberUserName + "is fill to the contract for" + newOwnerUserName;
-        NotificationService.getInstance().notifyMember(ownerContract.getTriggerOwnerName(),msg,NotificationType.decisionForContract);
+        String msg = memberUserName + " is fill to the contract for " + newOwnerUserName;
+        NotificationService.getInstance().notify(storeName,msg,NotificationType.decisionForContract);
         return true;
     }
 

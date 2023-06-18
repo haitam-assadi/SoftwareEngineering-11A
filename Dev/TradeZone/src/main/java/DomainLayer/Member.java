@@ -242,7 +242,7 @@ public class Member extends User{
         NotificationService.getInstance().subscribe(storeName,NotificationType.decisionForContract,this);
         NotificationService.getInstance().subscribe(storeName,NotificationType.fillAppointContract,this);
         NotificationService.getInstance().subscribe(storeName,NotificationType.ownerDone,this);
-        
+
     }
 
 

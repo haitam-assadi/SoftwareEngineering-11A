@@ -5929,3 +5929,6 @@ fail in login: baraa is already logged in
 יוני 17, 2023 9:52:39 אחה״צ DomainLayer.LoggerManager sendErrorLog
 WARNING: 
 fail in login: baraa is already logged in
+יוני 18, 2023 11:55:28 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: member baraa is already store owner
