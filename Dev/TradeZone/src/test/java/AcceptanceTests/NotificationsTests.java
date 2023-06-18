@@ -61,7 +61,7 @@ public class NotificationsTests {
             Assertions.assertEquals(userName2, proxy.login(user2, userName2, pass2));
             Assertions.assertTrue(proxy.appointOtherMemberAsStoreOwner(userName1, storeName2, userName2));
             Assertions.assertTrue(proxy.closeStore(userName1, storeName2));
-            Assertions.assertEquals(1, proxy.getLiveMessages(userName2).size());
+            Assertions.assertEquals(2, proxy.getLiveMessages(userName2).size());
             proxy.memberLogOut(userName1);
             proxy.memberLogOut(userName2);
         }catch (Exception e){
@@ -80,7 +80,7 @@ public class NotificationsTests {
             Assertions.assertTrue(proxy.register(user2, userName2, pass2));
             Assertions.assertTrue(proxy.appointOtherMemberAsStoreOwner(userName1, storeName, userName2));
             Assertions.assertTrue(proxy.closeStore(userName1, storeName));
-            Assertions.assertEquals(1, proxy.getAppendingMessages(userName2).size());
+            Assertions.assertEquals(2, proxy.getAppendingMessages(userName2).size());
             proxy.memberLogOut(userName1);
         }catch (Exception e){
             Assertions.fail(e.getMessage());

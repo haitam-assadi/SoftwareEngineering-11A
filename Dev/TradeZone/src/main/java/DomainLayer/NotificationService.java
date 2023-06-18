@@ -13,7 +13,10 @@ enum  NotificationType{
     productBought,
     subscriptionRemoved,
     requestNotification,
-    RemovedFromOwningStore
+    RemovedFromOwningStore,
+    fillAppointContract,
+    ownerDone,
+    decisionForContract
 
 }
 public class NotificationService {

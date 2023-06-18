@@ -65,6 +65,10 @@ public class OwnerContract {
             triggerOwner.appointOtherMemberAsStoreOwner(store,newOwner);
             contractStatus = "all owners have accepted this contract and it is done";
             contractIsDone = true;
+
+            String msg = "you now owner for store " + store.getStoreName();
+            NotificationService.getInstance().notifyMember(newOwner.userName,msg,NotificationType.ownerDone);
+
         }
         return true;
     }
