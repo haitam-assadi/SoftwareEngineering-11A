@@ -26,7 +26,7 @@ public class IndexController {
 	Alert alert = Alert.getInstance();
 
 	@GetMapping("/")
-	public String index(HttpServletRequest request, Model model) throws Exception {
+	public String index(HttpServletRequest request, Model model) {
 		String referer = request.getHeader("referer");
 		controller = new GeneralModel();
 		products = null;

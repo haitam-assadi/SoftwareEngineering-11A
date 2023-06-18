@@ -59,7 +59,7 @@
         <a th:if="!${controller.logged}" th:classappend="${currentPage == 'register' ? 'active color:#d106f0' : ''}" class="nav-link py-2 link-body-emphasis text-decoration-none" href="register">Register</a>
         <a th:if="!${controller.logged}" th:classappend="${currentPage == 'login' ? 'active color:#d106f0' : ''}" class="nav-link py-2 link-body-emphasis text-decoration-none" href="login">Login</a>
         <a th:if="${controller.logged}" th:classappend="${currentPage == 'logout' ? 'active color:#d106f0' : ''}" class="nav-link py-2 link-body-emphasis text-decoration-none" href="logout">Logout</a>
-        <div th:if="${controller.checkForLiveMessages}" class="dropdown">
+        <div th:if="${controller.logged && controller.checkForLiveMessages}" class="dropdown">
           <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
             Messages
             <div id="notificationBadge"  th:classappend="${controller.hasMessages ? 'd-inline' : 'd-none'}">
