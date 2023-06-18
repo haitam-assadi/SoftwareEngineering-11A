@@ -72,8 +72,9 @@ public class NotificationsTests {
             Assertions.assertTrue(market.register(user2, userName2, pass2));
             Assertions.assertEquals(userName2, market.login(user2, userName2, pass2));
             Assertions.assertTrue(market.appointOtherMemberAsStoreOwner(userName1, storeName, userName2));
-            Assertions.assertTrue(market.closeStore(userName1, storeName));
             Assertions.assertEquals(1, market.getLiveMessages(userName2).size());
+            Assertions.assertTrue(market.closeStore(userName1, storeName));
+            Assertions.assertEquals(2, market.getLiveMessages(userName2).size());
         }catch (Exception e){
             Assertions.fail(e.getMessage());
         }
@@ -90,7 +91,7 @@ public class NotificationsTests {
             Assertions.assertTrue(market.register(user2, userName2, pass2));
             Assertions.assertTrue(market.appointOtherMemberAsStoreOwner(userName1, storeName, userName2));
             Assertions.assertTrue(market.closeStore(userName1, storeName));
-            Assertions.assertEquals(1, market.getAppendingMessages(userName2).size());
+            Assertions.assertEquals(2, market.getAppendingMessages(userName2).size());
         }catch (Exception e){
             Assertions.fail(e.getMessage());
         }
