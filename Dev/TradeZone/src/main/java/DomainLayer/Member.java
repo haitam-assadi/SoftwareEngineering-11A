@@ -239,6 +239,10 @@ public class Member extends User{
         NotificationService.getInstance().subscribe(storeName,NotificationType.RemovedFromOwningStore,this);
         NotificationService.getInstance().subscribe(storeName,NotificationType.storeOpenedAfterClose,this);
         NotificationService.getInstance().subscribe(storeName,NotificationType.storeClosedBySystemManager,this);
+        NotificationService.getInstance().subscribe(storeName,NotificationType.decisionForContract,this);
+        NotificationService.getInstance().subscribe(storeName,NotificationType.fillAppointContract,this);
+        NotificationService.getInstance().subscribe(storeName,NotificationType.ownerDone,this);
+
     }
 
 
