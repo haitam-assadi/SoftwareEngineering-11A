@@ -4,10 +4,7 @@ import DataAccessLayer.CompositeKeys.RolesId;
 import DataAccessLayer.DALService;
 import DomainLayer.*;
 
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 
@@ -44,7 +41,20 @@ public class MemberMapper {
     }
 
     public void loadAllMembersNames() {
-        membersNamesConcurrentSet = DALService.memberRepository.getAllMemberNames();
+        if (Market.dbFlag)
+            membersNamesConcurrentSet = DALService.memberRepository.getAllMemberNames();
+    }
+
+    public void loadAllSystemManagers() throws Exception {
+        if (!Market.dbFlag) return;
+        List<SystemManager> managers =  DALService.systemManagerRepository.findAll();
+        //todo: check if this load the member also
+        for (SystemManager systemManager: managers){
+            Member member = getMember(systemManager.getUserName());
+            members.put(systemManager.getUserName(),member);
+            systemManager.setMember(member);
+            systemManagers.put(systemManager.getUserName(),systemManager);
+        }
     }
     public Member getMember(String memberName) throws Exception {
         assertStringIsNotNullOrBlank(memberName);
@@ -63,16 +73,16 @@ public class MemberMapper {
             throw new Exception("string is null or empty");
     }
 
-    public SystemManager getSystemManager(String managerName) throws Exception{
-        //todo: check if we need input validation
+    public boolean checkIsSystemManager(String managerName) throws Exception{
         assertStringIsNotNullOrBlank(managerName);
         managerName = managerName.toLowerCase().strip();
-        if (!systemManagers.containsKey(managerName)){
-            systemManagers.put(managerName,new SystemManager(getMember(managerName)));
-            SystemManager systemManager = systemManagers.get(managerName);
-            systemManager.setIsloaded(false);
-        }
-        return systemManagers.get(managerName);
+        return systemManagers.containsKey(managerName);
+    }
+
+    public SystemManager getSystemManager(String managerName) throws Exception{
+        if (checkIsSystemManager(managerName))
+            return systemManagers.get(managerName);
+        else return null;
     }
 
     public StoreFounder getStoreFounder(String founderName) throws Exception{
@@ -133,13 +143,10 @@ public class MemberMapper {
         return storeManager;
     }
 
+    public SystemManager getNewSystemManager(Member member){
+        SystemManager systemManager = new SystemManager(member);
+        systemManagers.put(member.getUserName(),systemManager);
+        return systemManager;
+    }
 
-
-
-//    public SystemManager getSystemManager(String managerName,Member manager){
-//        if (!systemManagers.containsKey(managerName)){
-//            systemManagers.put(managerName,DALService.systemManagerRepository.findByMember(manager));
-//        }
-//        return systemManagers.get(managerName);
-//    }
 }

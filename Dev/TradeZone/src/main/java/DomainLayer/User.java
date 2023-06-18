@@ -36,39 +36,41 @@ public abstract class User {
 
 
 
-    public Cart getCart() {
+    public Cart getCart() throws Exception {
+        loadUser();
         return cart;
     }
 
-    public Cart setCart(Cart cart) {
-        return this.cart;
+    public abstract void loadUser() throws Exception;
+
+    public boolean addToCart(Store store, String productName, Integer amount) throws Exception {
+        loadUser();
+        return cart.addToCart(store,productName,amount);
     }
 
-
-
-
-    public boolean addToCart(Store store, String productName, Integer amount, boolean member) throws Exception {
-        return cart.addToCart(store,productName,amount,member);
+    public boolean changeProductAmountInCart(Store store, String productName, Integer newAmount) throws Exception {
+        loadUser();
+        return cart.changeProductAmountInCart(store,productName,newAmount);
     }
 
-    public boolean changeProductAmountInCart(Store store, String productName, Integer newAmount, boolean member) throws Exception {
-        return cart.changeProductAmountInCart(store,productName,newAmount,member);
-    }
-
-    public boolean removeFromCart(Store store, String productName, boolean member) throws Exception {
-        return cart.removeFromCart(store,productName,member);
+    public boolean removeFromCart(Store store, String productName) throws Exception {
+        loadUser();
+        return cart.removeFromCart(store,productName);
     }
 
 
     public List<BagDTO> getCartContent() throws Exception {
+        loadUser();
         return cart.getCartContent();
     }
-    public boolean addDeal(Deal deal){
+    public boolean addDeal(Deal deal) throws Exception {
+        loadUser();
         this.userDeals.add(deal);
         return true;
     }
 
-    public List<DealDTO> getUserDeals() {
+    public List<DealDTO> getUserDeals() throws Exception {
+        loadUser();
         List<DealDTO> deals = new ArrayList<>();
         for(Deal deal : this.userDeals)
             deals.add(deal.getDealDTO());

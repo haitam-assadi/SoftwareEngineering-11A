@@ -78,6 +78,11 @@ public class Member extends User{
         super();
     }
 
+    @Override
+    public void loadUser() throws Exception {
+        loadMember();
+    }
+
     public Member(String userName){
         super.userName = userName;
         memberRolesFlag = new HashSet<>();
@@ -344,7 +349,7 @@ public class Member extends User{
         //loadMember();
         for (Bag bag: cart.getBags().values()){
             for (Product product: bag.getProductAmount().keySet()) {
-                this.addToCart(bag.getStoreBag(), product.getName(),bag.getProductAmount().get(product),true);
+                this.addToCart(bag.getStoreBag(), product.getName(),bag.getProductAmount().get(product));
             }
         }
     }

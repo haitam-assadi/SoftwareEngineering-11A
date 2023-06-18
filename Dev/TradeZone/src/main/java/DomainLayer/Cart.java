@@ -8,6 +8,7 @@ import javax.transaction.Transactional;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Entity
@@ -61,37 +62,35 @@ public class Cart {
     }
 
 
-    public boolean addToCart(Store store, String productName, Integer amount,boolean member) throws Exception {
+    public boolean addToCart(Store store, String productName, Integer amount) throws Exception {
         loadCart();
         if(!store.containsProduct(productName))
             throw new Exception("the product dose not exist in the store");
         else {
-            bags.putIfAbsent(store.getStoreName(), new Bag(store));
-            if (member)
-                if (Market.dbFlag)
+            bags.putIfAbsent(store.getStoreName(), new Bag(store,isPersistence));
+                if (Market.dbFlag && isPersistence)
                     DALService.modifyBag(this, bags.get(store.getStoreName()));
-            return bags.get(store.getStoreName()).addProduct(productName, amount, member);
+            return bags.get(store.getStoreName()).addProduct(productName, amount);
         }
     }
 
-    public boolean changeProductAmountInCart(Store store, String productName, Integer newAmount,boolean member) throws Exception {
+    public boolean changeProductAmountInCart(Store store, String productName, Integer newAmount) throws Exception {
         loadCart();
         if(!bags.containsKey(store.getStoreName()))
             throw new Exception("bag does not contain "+productName+" product");
 
-        return bags.get(store.getStoreName()).changeProductAmount(productName, newAmount,member);
+        return bags.get(store.getStoreName()).changeProductAmount(productName, newAmount);
     }
 
-    public boolean removeFromCart(Store store, String productName,boolean member) throws Exception {
+    public boolean removeFromCart(Store store, String productName) throws Exception {
         loadCart();
         if(!bags.containsKey(store.getStoreName()))
             throw new Exception("bag does not contain "+productName+" product");
-        if(!bags.get(store.getStoreName()).removeProduct(productName,member)){
+        if(!bags.get(store.getStoreName()).removeProduct(productName)){
             Bag bag = bags.get(store.getStoreName());
             bags.remove(store.getStoreName());
-            if (member)
-                if (Market.dbFlag)
-                    DALService.RemoveBag(this,bag);
+            if (Market.dbFlag && isPersistence)
+                DALService.RemoveBag(this,bag);
         }
         return true;
     }
@@ -161,7 +160,7 @@ public class Cart {
             Deal deal = bag.createDeal(this.cartOwner);
             this.cartOwner.addDeal(deal);
             //todo : should make sure that cartOwner = memberCart
-            if (Market.dbFlag) //todo: check if should check is persistence here
+            if (Market.dbFlag && isPersistence) //todo: check if should check is persistence here
                 DALService.saveDeal(deal,memberCart,bag.getStoreBag());
         }
         bags = new ConcurrentHashMap<>();
@@ -175,7 +174,7 @@ public class Cart {
         loadCart();
         for (Bag b: bags.values().stream().toList()){
             bags.remove(b.getStoreBag().getStoreName());
-            if (Market.dbFlag)
+            if (Market.dbFlag && isPersistence)
                 DALService.cartRepository.save(this);
             b.removeAllProducts();
         }
@@ -190,13 +189,12 @@ public class Cart {
     public void loadCart(){
         if (isLoaded|| !isPersistence ||!Market.dbFlag) return;
         this.cartId = DALService.cartRepository.findIdByMember(memberCart.userName);
-        Map<String,Integer> storeBags_bagsId = DALService.cartRepository.findStoresNamesAndBagsId(cartId);
-        //todo: make sure that storeBags_bagsId{storeName,bagId}
-        for (String storeName: storeBags_bagsId.keySet()){
-            bags.put(storeName,new Bag(storeBags_bagsId.get(storeName)));
+        List<Object[]> storeBags_bagsId = DALService.cartRepository.findStoreNameAndBagIdByCartId(cartId);
+        for (Object[] objects: storeBags_bagsId){
+            int bag_id = (Integer) objects[0];
+            String storeName = (String) objects[1];
+            bags.put(storeName,new Bag(bag_id));
         }
         isLoaded = true;
     }
-
-    //todo: moslem check bag dont do saving if it is not persistence
 }

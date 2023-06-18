@@ -4,6 +4,7 @@ import DomainLayer.Cart;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import java.util.List;
 import java.util.Map;
 
 public interface CartRepository extends JpaRepository<Cart,Integer> {
@@ -15,6 +16,6 @@ public interface CartRepository extends JpaRepository<Cart,Integer> {
     public int findIdByMember(String memberName);
     //todo: check the build in query
 
-    @Query(value = "SELECT bag_key, bags_bag_id FROM cart_bags WHERE cart_id = ?",nativeQuery = true)
-    public Map<String,Integer> findStoresNamesAndBagsId(int id);
+    @Query(value = "SELECT bags_bag_id, bags_key from cart_bags WHERE cart_id = ?",nativeQuery = true)
+    List<Object[]> findStoreNameAndBagIdByCartId(int cartId);
 }

@@ -141,19 +141,19 @@ public class Market {
         storeController.assertIsStore(storeName);
         storeController.isActiveStore(storeName);
         User user = userController.getUser(userName);
-        return user.addToCart(storeController.getStore(storeName), productName, amount,userController.isMember(userName));
+        return user.addToCart(storeController.getStore(storeName), productName, amount);
     }
     public boolean removeFromCart(String userName, String storeName, String productName) throws Exception {
         userController.assertIsGuestOrLoggedInMember(userName);
         storeController.assertIsStore(storeName);
         User user = userController.getUser(userName);
-        return user.removeFromCart(storeController.getStore(storeName), productName,userController.isMember(userName));
+        return user.removeFromCart(storeController.getStore(storeName), productName);
     }
     public boolean changeProductAmountInCart(String userName, String storeName, String productName, Integer newAmount) throws Exception {
         userController.assertIsGuestOrLoggedInMember(userName);
         storeController.assertIsStore(storeName);
         User user = userController.getUser(userName);
-        return user.changeProductAmountInCart(storeController.getStore(storeName), productName, newAmount,userController.isMember(userName));
+        return user.changeProductAmountInCart(storeController.getStore(storeName), productName, newAmount);
     }
     public List<BagDTO> getCartContent(String userName) throws Exception {
         userController.assertIsGuestOrLoggedInMember(userName);
@@ -505,15 +505,12 @@ public class Market {
         return storeController.getRuleForStore(storeName,memberName);
     }
 
-    public void loadData() {
-        //if (Market.dataBaseFlag) {
+    public void loadData() throws Exception {
         if (Market.dbFlag) {
             MemberMapper.getInstance().loadAllMembersNames();
+            MemberMapper.getInstance().loadAllSystemManagers();
             StoreMapper.getInstance().loadAllStoresNames();
         }
-//            userController.loadAllMembersNames();
-//            storeController.loadAllStoresNames();
-        //}
     }
 
 }

@@ -47,7 +47,7 @@ public class UserController {
             if (Market.dbFlag){
                 DALService.saveMember(member, member.getCart());
             }
-            SystemManager systemManager = new SystemManager(member);
+            SystemManager systemManager = MemberMapper.getInstance().getNewSystemManager(member);
             member.setSystemManager(systemManager);
             systemManagers.put(user, systemManager);
             if (Market.dbFlag) {
@@ -180,20 +180,7 @@ public class UserController {
         userName = userName.strip().toLowerCase();
         if(!members.containsKey(userName)) {
             // TODO: read from database AND add to members hashmap
-//            Optional<Member> memberD = DALService.memberRepository.findById(userName);
-//            if (memberD.isPresent()){
-//                Member member = memberD.get();
-//                if (member.checkIsSystemManager()){
-//                    SystemManager systemManager = DALService.systemManagerRepository.findByMember(member);
-//                    member.setSystemManager(systemManager);
-//                    systemManagers.put(userName,systemManager);
-//                }else{
-//                    member.declareRoles();
-//                }
-//                members.put(userName,member);
-//            }else{
                 throw new Exception(userName + " does not exist!");
-            //}
         }
         return members.get(userName);
     }
@@ -300,8 +287,9 @@ public class UserController {
     public boolean isSystemManager(String managerName) throws Exception {
         assertStringIsNotNullOrBlank(managerName);
         managerName = managerName.strip().toLowerCase();
-        MemberMapper.getInstance().getSystemManager(managerName);
-        return systemManagers.containsKey(managerName);
+        return MemberMapper.getInstance().checkIsSystemManager(managerName);
+        //MemberMapper.getInstance().getSystemManager(managerName);
+        //return systemManagers.containsKey(managerName);
     }
 
     public void assertIsMember(String memberUserName) throws Exception {
@@ -351,6 +339,7 @@ public class UserController {
         if (Market.dbFlag) {
             DALService.memberRepository.save(otherMember);
             DALService.systemManagerRepository.save(newManager);
+            DALService.systemManagerRepository.save(manager);
         }
         return true;
     }
@@ -462,13 +451,6 @@ public class UserController {
         }catch (Exception e){
             return false;
         }
-    }
-
-
-        private String nowTime(){
-        LocalDateTime now = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        return now.format(formatter);
     }
 
     public Set<String> getAllSystemManagers(String managerName) throws Exception {

@@ -1,10 +1,13 @@
 package DomainLayer;
 
+import DataAccessLayer.Controller.MemberMapper;
 import DataAccessLayer.DALService;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "SystemManager")
@@ -17,15 +20,15 @@ public class SystemManager{
     @JoinColumn(name = "manager_name")
     private Member member;
 
-    @Transient
-    private List<String> appointedSystemManagers;
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "appointedSystemManagers", joinColumns = @JoinColumn(name = "id"))
+    @Column(name = "appointedManager")
+    private Set<String> appointedSystemManagers;
 
-    @Transient
-    private boolean isLoaded;
 
     public SystemManager(Member member){
         this.member = member;
-        appointedSystemManagers = new LinkedList<>();
+        appointedSystemManagers = new HashSet<>();
     }
 
 
@@ -33,25 +36,16 @@ public class SystemManager{
     public String getUserName(){
         return member.getUserName();
     }
+    public void setMember(Member member) {
+        this.member = member;
+    }
 
     public SystemManager AppointMemberAsSystemManager(Member otherMember) {
-        SystemManager systemManager = new SystemManager(otherMember);
+        SystemManager systemManager = MemberMapper.getInstance().getNewSystemManager(otherMember);
         appointedSystemManagers.add(otherMember.getUserName());
         return systemManager;
     }
 
-    public void setIsloaded(boolean b) {
-        isLoaded = b;
-    }
 
-    public void loadSystemManager(){
-        if (!isLoaded) {
-            if (Market.dbFlag) {
-                SystemManager systemManager = DALService.systemManagerRepository.findByMember(member);
-                this.appointedSystemManagers = systemManager.appointedSystemManagers;
-            }
-            isLoaded = true;
-        }
 
-    }
 }
