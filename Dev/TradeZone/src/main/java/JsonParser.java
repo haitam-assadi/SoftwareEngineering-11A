@@ -51,7 +51,7 @@ public class JsonParser {
     }
 
     public static void main(String[] args) {
-        String strJson = getJSONFromFile("Dev/TradeZone/JsonFiles/configurationFile.json");
+        String strJson = getJSONFromFile("Dev/TradeZone/JsonFiles/externalSystemsData.json");
         ObjectMapper objectMapper = new ObjectMapper();
         try {
             // Parse the JSON string
