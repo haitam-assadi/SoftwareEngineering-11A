@@ -105,7 +105,7 @@ public class UserController {
 
        // userName = userName.strip().toLowerCase();
 
-        if(userName.length() < 4)
+        if(userName.length() < 2)
             return false;
 
         if(userName.contains(" "))

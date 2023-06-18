@@ -1,0 +1,24 @@
+{
+    "register" : [
+                                  ["u1", "user1pass"],
+                                  ["u2", "user2pass"],
+                                  ["u3", "user3pass"]
+    ],
+
+    "login" : [
+                                  ["u1", "user1pass"]
+    ],
+
+    "create_store" : [
+                                  ["u1", "s1"]
+    ],
+
+    "appoint_as_store_owner" : [
+                                  ["u1", "s1", "u2"],
+                                  ["u1", "s1", "u3"]
+    ],
+
+    "logout" : [
+                                  ["u1"]
+    ]
+}

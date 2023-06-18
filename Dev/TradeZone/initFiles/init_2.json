@@ -1,0 +1,42 @@
+{
+    "system_manager" : [
+                                          ["u1", "u1userpass"]
+    ],
+
+    "register" : [
+                                          ["u2", "u2userpass"],
+                                          ["u3", "u3userpass"],
+                                          ["u4", "u4userpass"],
+                                          ["u5", "u5userpass"],
+                                          ["u6", "u6userpass"]
+    ],
+
+    "login" : [
+                                          ["u2", "u2userpass"]
+    ],
+
+    "create_store" : [
+                                          ["u2", "s1"]
+    ],
+
+    "add_product" :  [
+                                          ["u2", "s1", "Bamba", "s1category1", 30, "new product", 20]
+    ],
+
+    "appoint_as_store_manager" : [
+                                          ["u2", "s1", "u3"]
+    ],
+
+    "add_permissions" : [
+                                          ["u2", "s1", "u3", [2]]
+    ],
+
+    "appoint_as_store_owner" : [
+                                          ["u2", "s1", "u4"],
+                                          ["u2", "s1", "u5"]
+    ],
+
+    "logout" : [
+                                          ["u2"]
+    ]
+}
