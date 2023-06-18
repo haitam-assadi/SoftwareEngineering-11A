@@ -122,8 +122,7 @@
                     </div>
                 </form>
 
-<!--                th:if="${product.productDiscountPolicies != null && !product.productDiscountPolicies.isEmpty}"-->
-                <div>
+                <div th:if="${product.productDiscountPolicies != null && !product.productDiscountPolicies.isEmpty}">
 <!--                    <button class="btn btn-danger" type="button" data-toggle="collapse" th:data-target="'#collapse-' + ${product.id}" aria-expanded="false" aria-controls="collapseExample">-->
 
 <!--                    </button>-->
@@ -131,7 +130,7 @@
                     <p class="card">
 <!--                        collapseDiscount-->
                         <a class="btn btn-danger" data-bs-toggle="collapse" th:href="'#' + ${product}" role="button" aria-expanded="false" aria-controls="${product}">
-                            Discounts && Constraints
+                            Discounts & Constraints
                         </a>
                     </p>
                     <div class="collapse card card-body" th:id="${product}">
@@ -140,6 +139,7 @@
                         </div>
 
 <!--                        TODO: th:each const : product.constrains...-->
+<!--                        TODO: if we add constraints, modify the th:if in the div-->
                     </div>
                 </div>
             </div>
