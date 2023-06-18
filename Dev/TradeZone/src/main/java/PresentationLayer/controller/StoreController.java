@@ -2,6 +2,7 @@ package PresentationLayer.controller;
 
 import CommunicationLayer.Server;
 import DTO.DealDTO;
+import DTO.OwnerContractDTO;
 import DTO.ProductDTO;
 import DTO.StoreDTO;
 import PresentationLayer.model.*;
@@ -29,6 +30,7 @@ public class StoreController {
     Map<String, List<Worker>> workers;
     List<Deal> deals;
     AllConstraints constraints;
+    OwnerContracts ownerContracts;
     String currentPage = "stock";
     Alert alert = Alert.getInstance();
 
@@ -38,6 +40,7 @@ public class StoreController {
         workers = null;
         deals = null;
         constraints = null;
+        ownerContracts = null;
         if(request.getSession().getAttribute("controller") != null){
             controller = (GeneralModel) request.getSession().getAttribute("controller");
             if(request.getSession().getAttribute("currentPage") != null)
@@ -52,6 +55,8 @@ public class StoreController {
                 deals = (List<Deal>) request.getSession().getAttribute("deals");
             if(request.getSession().getAttribute("constraints") != null)
                 constraints = (AllConstraints) request.getSession().getAttribute("constraints");
+            if(request.getSession().getAttribute("ownerContracts") != null)
+                ownerContracts = (OwnerContracts) request.getSession().getAttribute("ownerContracts");
         }
 
         if(controller.getRole(store.storeName) == -1) {
@@ -81,6 +86,7 @@ public class StoreController {
         }
         request.getSession().setAttribute("store", store);
         request.getSession().setAttribute("workers", workers);
+
         model.addAttribute("controller", controller);
         model.addAttribute("alert", alert.copy());
         model.addAttribute("store", store);
@@ -88,6 +94,7 @@ public class StoreController {
         model.addAttribute("currentPage", currentPage);
         model.addAttribute("deals", deals);
         model.addAttribute("constraints", constraints);
+        model.addAttribute("ownerContracts", ownerContracts);
         alert.reset();
 //        currentPage = "stock"; // ???
         return "storeTemplates/store";
@@ -262,14 +269,17 @@ public class StoreController {
                 store = (StoreDTO) request.getSession().getAttribute("store");
         }
         String appointedAs;
+        String msg;
         ResponseT<Boolean> response;
         if(appoint.getAppointAs().equals("appointAsOwner")){
             appointedAs = "Store Owner";
             response = server.appointOtherMemberAsStoreOwner(controller.getName(), store.storeName, appoint.getMemberName());
+            msg = "Your request to appoint " + appoint.getMemberName() + " has been successfully received";
         }
         else { // appointAsManager
             appointedAs = "Store Manager";
             response = server.appointOtherMemberAsStoreManager(controller.getName(), store.storeName, appoint.getMemberName());
+            msg = appoint.getMemberName() + " is appointed as " + appointedAs;
         }
         if(response.ErrorOccurred){
             alert.setFail(true);
@@ -278,7 +288,7 @@ public class StoreController {
         }
 //        workers = buildWorkers(store);
         alert.setSuccess(true);
-        alert.setMessage(appoint.getMemberName() + " is appointed as " + appointedAs);
+        alert.setMessage(msg);
         return "redirect:/workers";
     }
 
@@ -628,6 +638,84 @@ public class StoreController {
         alert.setMessage("Constraint has " + msg + " successfully");
         return "redirect:/discountPolicies";
     }
+
+    //    ------------------------- MY CONTRACTS -------------------------
+
+    @GetMapping("/myContracts")
+    public String getMyContracts(HttpServletRequest request){
+        if(request.getSession().getAttribute("controller") != null){
+            controller = (GeneralModel) request.getSession().getAttribute("controller");
+            if(request.getSession().getAttribute("store") != null)
+                store = (StoreDTO) request.getSession().getAttribute("store");
+        }
+        ownerContracts = new OwnerContracts(controller.getName(), store.storeName);
+        ResponseT<List<OwnerContractDTO>> response = server.getMyCreatedContracts(controller.getName(), store.storeName);
+        if(response.ErrorOccurred){
+            alert.setFail(true);
+            alert.setMessage(response.errorMessage);
+            return "redirect:/store";
+        }
+        ownerContracts.setInProgressContracts(response.getValue());
+
+        response = server.getAlreadyDoneContracts(controller.getName(), store.storeName);
+        if(response.ErrorOccurred){
+            alert.setFail(true);
+            alert.setMessage(response.errorMessage);
+            return "redirect:/store";
+        }
+        ownerContracts.setDoneContracts(response.getValue());
+        currentPage = "myContracts";
+
+        request.getSession().setAttribute("ownerContracts", ownerContracts);
+        request.getSession().setAttribute("currentPage", currentPage);
+        return "redirect:/store";
+    }
+
+
+    //    ------------------------- OTHER CONTRACTS -------------------------
+
+    @GetMapping("/otherContracts")
+    public String getOtherContracts(HttpServletRequest request){
+        if(request.getSession().getAttribute("controller") != null){
+            controller = (GeneralModel) request.getSession().getAttribute("controller");
+            if(request.getSession().getAttribute("store") != null)
+                store = (StoreDTO) request.getSession().getAttribute("store");
+        }
+        ownerContracts = new OwnerContracts(controller.getName(), store.storeName);
+        ResponseT<List<OwnerContractDTO>> response = server.getPendingContractsForOwner(controller.getName(), store.storeName);
+        if(response.ErrorOccurred){
+            alert.setFail(true);
+            alert.setMessage(response.errorMessage);
+            return "redirect:/store";
+        }
+        ownerContracts.setPendingContracts(response.getValue());
+        currentPage = "otherContracts";
+
+        request.getSession().setAttribute("ownerContracts", ownerContracts);
+        request.getSession().setAttribute("currentPage", currentPage);
+        return "redirect:/store";
+    }
+
+
+    @PostMapping("/fillContract")
+    public String fillOwnerContract(HttpServletRequest request, @RequestParam String storeName,
+                                    @RequestParam String newOwner, @RequestParam boolean decision){
+        if(request.getSession().getAttribute("controller") != null){
+            controller = (GeneralModel) request.getSession().getAttribute("controller");
+            if(request.getSession().getAttribute("store") != null)
+                store = (StoreDTO) request.getSession().getAttribute("store");
+        }
+        ResponseT<Boolean> response = server.fillOwnerContract(controller.getName(), storeName, newOwner, decision);
+        if(response.ErrorOccurred){
+            alert.setFail(true);
+            alert.setMessage(response.errorMessage);
+            return "redirect:/otherContracts";
+        }
+        alert.setSuccess(true);
+        alert.setMessage("Your decision has been received !");
+        return "redirect:/otherContracts";
+    }
+
 
     //    ------------------------- PRIVATE METHODS -------------------------
 

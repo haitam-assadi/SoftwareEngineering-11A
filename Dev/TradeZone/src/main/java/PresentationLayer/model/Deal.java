@@ -24,7 +24,7 @@ public class Deal {
         this.date = date;
         this.userName = username;
         this.products = products;
-        this.totalPrice = totalPrice;
+        this.totalPrice = GeneralModel.round(totalPrice, 2);
         this.productPriceMultipleAmount = productPriceMultipleAmount;
         this.productFinalPriceWithDiscount = productFinalPriceWithDiscount;
     }

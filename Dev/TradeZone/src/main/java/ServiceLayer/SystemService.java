@@ -78,6 +78,7 @@ public class SystemService {
         market.addNewProductToStock(userName, userFirstStoreName, userFirstStoreProduct4, userFirstStoreCategory2, 70.54, "new product", 100);
         market.addNewProductToStock(userName, userFirstStoreName, userFirstStoreProduct5, userFirstStoreCategory2, 70.54, "new product", 100);
         market.addNewProductToStock(userName, userFirstStoreName, userFirstStoreProduct6, userFirstStoreCategory2, 70.54, "new product", 100);
+
         market.createProductDiscountPolicy(userName, userFirstStoreName, userFirstStoreProduct1, 30, true);
         market.createProductDiscountPolicy(userName, userFirstStoreName, userFirstStoreProduct2, 50, true);
 
@@ -96,7 +97,11 @@ public class SystemService {
         market.register(guest2, "baraa", "Bb12345678");
         String guest3 = market.enterMarket();
         market.register(guest3, "alaa", "Bb12345678");
+        market.register(market.enterMarket(), "ahmad", "Bb12345678");
 //        market.login(guest2, "baraa", "Bb12345678");
+        market.appointOtherMemberAsStoreOwner(userName, userFirstStoreName, "baraa");
+        market.appointOtherMemberAsStoreOwner(userName, userFirstStoreName, "alaa");
+        market.appointOtherMemberAsStoreOwner(userName, userFirstStoreName, "ahmad");
 
         String exitGuest = market.memberLogOut(userName);
         market.exitMarket(exitGuest);
