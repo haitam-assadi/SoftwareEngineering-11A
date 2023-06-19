@@ -74,9 +74,13 @@ public class Store {
     @CollectionTable(name = "storePaymentPolicies")
     @Column(name = "BagConstraint")
     private Map<Integer,BagConstraint> storePaymentPolicies;
-    @Transient
-    private ConcurrentHashMap<String, OwnerContract> newOwnersContracts;
-    @Transient
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "newOwnersContracts")
+    @Column(name = "OwnerContract")
+    private Map<String, OwnerContract> newOwnersContracts;
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "alreadyDoneContracts")
+    @Column(name = "OwnerContract")
     private List<OwnerContract> alreadyDoneContracts;
 
     @Transient

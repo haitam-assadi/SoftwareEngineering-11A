@@ -42,6 +42,8 @@ public class OwnerContract {
 
     private boolean contractIsDone;
 
+    private boolean isLoaded;
+
     public OwnerContract(AbstractStoreOwner triggerOwner, Member newOwner, Store store, ConcurrentHashMap<String, Boolean> storeOwnersDecisions){
         this.triggerOwner=triggerOwner;
         this.triggerOwnerName = triggerOwner.getUserName();
@@ -52,9 +54,11 @@ public class OwnerContract {
         this.contractIsDone= false;
         contractStatus = "in progress";
         declinedOwner = "";
+        isLoaded = true;
     }
 
     public OwnerContract(){}
+
 
 
     public boolean fillOwnerContract(String memberUserName, Boolean decisions) throws Exception {
@@ -148,6 +152,11 @@ public class OwnerContract {
         declinedOwner = userName;
         contractStatus = "owner "+userName +" has been removed before accepting, contract is rejected.";
         contractIsDone = true;
+    }
+
+    public void loadContract(){
+        if (isLoaded || !Market.dbFlag) return;
+
     }
 
 
