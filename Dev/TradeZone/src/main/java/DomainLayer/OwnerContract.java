@@ -12,6 +12,10 @@ import java.util.concurrent.ConcurrentHashMap;
 @Table
 public class OwnerContract {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    int contractId;
+
     @Transient
     private AbstractStoreOwner triggerOwner;
 
@@ -49,6 +53,8 @@ public class OwnerContract {
         contractStatus = "in progress";
         declinedOwner = "";
     }
+
+    public OwnerContract(){}
 
 
     public boolean fillOwnerContract(String memberUserName, Boolean decisions) throws Exception {

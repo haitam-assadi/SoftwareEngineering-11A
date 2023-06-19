@@ -1444,6 +1444,7 @@ public class Store {
             String msg = triggerOwner.getUserName() + " want to appoint " + newOwner.getUserName() + " for store "+ storeName +" ,please confirm the appointment";
             NotificationService.getInstance().notify(storeName,msg,NotificationType.fillAppointContract);
         }
+        DALService.saveContract(this,ownerContract);
         return true;
     }
 
@@ -1470,6 +1471,7 @@ public class Store {
 
         String msg = memberUserName + " is fill to the contract for " + newOwnerUserName;
         NotificationService.getInstance().notifyMember(ownerContract.getTriggerOwnerName(),msg,NotificationType.decisionForContract);
+        DALService.saveContract(this,ownerContract);
         return true;
     }
 
@@ -1516,14 +1518,18 @@ public class Store {
         storeOwners.remove(userName);
 
         for(OwnerContract ownerContract: this.alreadyDoneContracts.stream().toList()){
-            if(ownerContract.getTriggerOwnerName().equals(userName))
+            if(ownerContract.getTriggerOwnerName().equals(userName)) {
                 alreadyDoneContracts.remove(ownerContract);
+                DALService.deleteContract(this,ownerContract);
+            }
         }
 
         for(String otherUserName: this.newOwnersContracts.keySet().stream().toList()){
             OwnerContract ownerContract = newOwnersContracts.get(otherUserName);
-            if(ownerContract.getTriggerOwnerName().equals(userName))
+            if(ownerContract.getTriggerOwnerName().equals(userName)) {
                 newOwnersContracts.remove(otherUserName);
+                DALService.deleteContract(this,ownerContract);
+            }
         }
 
         for(String otherUserName: this.newOwnersContracts.keySet().stream().toList()){
@@ -1532,13 +1538,13 @@ public class Store {
                 ownerContract.involvedOwnerIsRemoved(userName);
                 newOwnersContracts.remove(otherUserName);
                 alreadyDoneContracts.add(ownerContract);
+                DALService.saveContract(this,ownerContract);
             }
         }
     }
 
     //todo: do:
     // 1- contracts
-    // 2- discounts and constraints
     // 3- deals
     // 4- todos
 
