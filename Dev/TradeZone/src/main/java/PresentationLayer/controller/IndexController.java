@@ -9,8 +9,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
+import java.lang.System;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +20,7 @@ import java.util.List;
 public class IndexController {
 	private static boolean isMarketInit = false;
 	private Server server = Server.getInstance();
+	static String guestName;
 	GeneralModel controller;
 	List<ProductDTO> products; // = new ArrayList<>()
 	Alert alert = Alert.getInstance();
@@ -52,10 +55,18 @@ public class IndexController {
 			request.getSession().setAttribute("controller",controller);
 			request.getSession().setAttribute("products",null);
 		}
+		if(referer != null && referer.contentEquals("http://localhost:8080/login")){
+			controller.checkForAppendingMessages();
+		}
+		guestName = controller.getName();
 		model.addAttribute("controller", controller);
 		model.addAttribute("alert", alert.copy());
 		model.addAttribute("products", products);
 		alert.reset();
+//		controller.checkForLiveMessages();
+//		List<String> messages = controller.getMessages();
+//		model.addAttribute("hasMessages", controller.hasMessages());
+//		model.addAttribute("messages", messages);
 //		products = null; // TODO: ???
 		return "index";
 	}
@@ -116,7 +127,7 @@ public class IndexController {
 
 	@PostMapping("/filter")
 	public String filter(HttpServletRequest request, @ModelAttribute Filter filter){
-		products = null; // new List???
+		products = new ArrayList<>(); // TODO: null ???
 		if(request.getSession().getAttribute("controller") != null){
 			controller = (GeneralModel) request.getSession().getAttribute("controller");
 			if(request.getSession().getAttribute("products") != null)
@@ -184,5 +195,17 @@ public class IndexController {
 	public String error(@ModelAttribute User user, Model model) {
 		model.addAttribute("message", "Page not found");
 		return "error";
+	}
+
+	@PostMapping("/clear")
+	public String clearNotifications(HttpServletRequest request, @RequestParam String name){
+		String referer = request.getHeader("referer");
+		if(request.getSession().getAttribute("controller") != null){
+			controller = (GeneralModel) request.getSession().getAttribute("controller");
+		}
+		controller.clearMessages();
+		server.clearMessages(controller.getName());
+		request.getSession().setAttribute("controller", controller);
+		return "redirect:" + referer;
 	}
 }

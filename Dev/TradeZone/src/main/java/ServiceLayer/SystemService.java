@@ -4,8 +4,11 @@ import DTO.*;
 import DataAccessLayer.Controller.MemberMapper;
 import DataAccessLayer.Controller.StoreMapper;
 import DomainLayer.*;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.io.IOException;
+import java.io.*;
+import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.LinkedList;
@@ -18,13 +21,22 @@ public class SystemService {
     private Market market;
     private boolean dbFlag;
 
+
     public SystemService(boolean dbFlag){
+//        JsonNode data = connectToExternalSystems();
+//        String dataBaseUrl = data.get("dataBaseUrl").asText();
+//        boolean dataBaseFlag = data.get("dataBaseLoadFlag").asBoolean();
+//        String paymentUrl = data.get( "paymentServiceUrl").asText();
+//        String shipmentUrl = data.get("shipmenServiceUrl").asText();
         this.dbFlag = dbFlag;
         market = new Market(dbFlag);
         if (!dbFlag){
             MemberMapper.initMapper();
             StoreMapper.initMapper();
         }
+//        PaymentService payment = new PaymentService(paymentUrl);
+//        market.setPaymentService(payment);
+
     }
 
     public ResponseT<String> initializeMarket(){
@@ -32,6 +44,7 @@ public class SystemService {
         try{
             market.loadData();
             String manager = market.firstManagerInitializer();
+//            market.initMarketParsing();
             createMemberWithTwoStore("user1");
             return new ResponseT<>(manager,true);
 
@@ -88,6 +101,8 @@ public class SystemService {
         market.addNewProductToStock(userName, userFirstStoreName, userFirstStoreProduct5, userFirstStoreCategory2, 70.54, "new product", 100);
         market.addNewProductToStock(userName, userFirstStoreName, userFirstStoreProduct6, userFirstStoreCategory2, 70.54, "new product", 100);
 
+        market.createProductDiscountPolicy(userName, userFirstStoreName, userFirstStoreProduct1, 30, true);
+        market.createProductDiscountPolicy(userName, userFirstStoreName, userFirstStoreProduct2, 50, true);
 
         market.createStore(userName, userSecStoreName);
         market.addNewProductToStock(userName, userSecStoreName, userSecStoreProduct1, userSecStoreCategory1, 70.54, "new product", 100);
@@ -104,7 +119,11 @@ public class SystemService {
         market.register(guest2, "baraa", "Bb12345678");
         String guest3 = market.enterMarket();
         market.register(guest3, "alaa", "Bb12345678");
+        market.register(market.enterMarket(), "ahmad", "Bb12345678");
 //        market.login(guest2, "baraa", "Bb12345678");
+        market.appointOtherMemberAsStoreOwner(userName, userFirstStoreName, "baraa");
+        market.appointOtherMemberAsStoreOwner(userName, userFirstStoreName, "alaa");
+        market.appointOtherMemberAsStoreOwner(userName, userFirstStoreName, "ahmad");
 
         String exitGuest = market.memberLogOut(userName);
         market.exitMarket(exitGuest);
@@ -492,9 +511,9 @@ public class SystemService {
         }
     }
 
-    public ResponseT<List<DealDTO>> getMemberDeals(String systemManagerUserName, String otherMemberUserName){
+    public ResponseT<List<DealDTO>> getMemberDeals(String memberUserName, String otherMemberUserName){
         try{
-            return new ResponseT<>(market.getMemberDeals(systemManagerUserName, otherMemberUserName));
+            return new ResponseT<>(market.getMemberDeals(memberUserName, otherMemberUserName));
         }catch(Exception e){
             return new ResponseT<>("getMemberDeals: "+e.getMessage());
         }
@@ -861,5 +880,109 @@ public class SystemService {
         }
     }
 
+    //FOR ACCTEST OF STORE MANAGER
+    public void takeDownSystemManagerAppointment(String storeName, String appointedMember) throws Exception {
+        this.market.takeDownSystemManagerAppointment(storeName, appointedMember);
+    }
 
+    public ResponseT<List<String>> checkForAppendingMessages(String guestName){
+        try{
+            List<String> messages = market.checkForAppendingMessages(guestName);
+            return new ResponseT<>(messages);
+        }catch (Exception e){
+            return new ResponseT<>("checkForAppendingMessages: " + e.getMessage());
+        }
+    }
+    public ResponseT<List<String>> getAllPermissions(String ownerUserName, String storeName) {
+        try{
+            return new ResponseT<>(market.getAllPermissions(ownerUserName, storeName));
+        }catch (Exception e){
+            return new ResponseT<>("getAllPermissions: "+e.getMessage());
+        }
+    }
+
+    public ResponseT<List<String>> getLiveMessages(String memberName){
+        try{
+            List<String> messages = market.getLiveMessages(memberName);
+            return new ResponseT<>(messages);
+        }catch (Exception e){
+            return new ResponseT<>("get live messages: " + e.getMessage());
+        }
+    }
+
+    public ResponseT<Boolean> clearMessages(String name) {
+        try{
+            market.clearMessages(name);
+            return new ResponseT<>(true);
+        }catch (Exception e){
+            return new ResponseT<>("clear messages: " + e.getMessage());
+        }
+
+    }
+
+    public void send(String member1Name, String message) throws Exception {
+        market.send(member1Name, message);
+    }
+
+    public Set<String> getAppendingMessages(String memberUserName) {
+        return market.getAppendingMessages(memberUserName);
+    }
+
+    private String getJSONFromFile(String filename) {
+        String jsonText = "";
+        try {
+            BufferedReader bufferedReader =
+                    new BufferedReader(new FileReader(filename));
+
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                jsonText += line + "\n";
+            }
+            bufferedReader.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return jsonText;
+    }
+
+    //WE MAY USE IT TO CONNECT TO A REMOTE DB
+
+    private String getJSONFromURL(String strUrl) {
+        String jsonText = "";
+
+        try {
+            URL url = new URL(strUrl);
+            InputStream is = url.openStream();
+
+            BufferedReader bufferedReader =
+                    new BufferedReader(new InputStreamReader(is));
+
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                jsonText += line + "\n";
+            }
+
+            is.close();
+            bufferedReader.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+        return jsonText;
+    }
+
+    private JsonNode connectToExternalSystems(){
+        String strJson = getJSONFromFile("Dev/TradeZone/JsonFiles/externalSystemsData.json");
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            // Parse the JSON string
+            JsonNode jsonNode = objectMapper.readTree(strJson);
+            return jsonNode;
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
 }

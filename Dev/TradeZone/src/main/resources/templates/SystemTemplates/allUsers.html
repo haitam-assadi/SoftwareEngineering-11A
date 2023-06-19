@@ -38,19 +38,23 @@
                         <div class="list-group-item">
                             <div class="row align-items-center">
                                 <h5 class="col fw-normal" th:text="${mName}"></h5>
-                                <form th:if="${mName != name}" class="col-auto" action="memberDeals" method="post">
+                                <form class="col-auto" action="memberInfo" method="post">
                                     <input type="hidden" name="memberName" th:value="${mName}">
-                                    <button type="submit" class="btn btn-outline-success">Deals</button>
+                                    <button type="submit" class="btn btn-outline-success">Info</button>
                                 </form>
-                                <form th:if="${mName != name}" class="col-auto" action="removeMember" method="post">
-                                    <input type="hidden" name="memberName" th:value="${mName}">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="invalidCheckRemove" required>
-                                        <label class="form-check-label w-100" for="invalidCheckRemove">
-                                            <button type="submit" class="btn btn-outline-danger">Remove</button>
-                                        </label>
-                                    </div>
-                                </form>
+<!--                                <form th:if="${mName != name}" class="col-auto" action="memberDeals" method="post">-->
+<!--                                    <input type="hidden" name="memberName" th:value="${mName}">-->
+<!--                                    <button type="submit" class="btn btn-outline-success">Deals</button>-->
+<!--                                </form>-->
+<!--                                <form th:if="${mName != name}" class="col-auto" action="removeMember" method="post">-->
+<!--                                    <input type="hidden" name="memberName" th:value="${mName}">-->
+<!--                                    <div class="form-check">-->
+<!--                                        <input class="form-check-input" type="checkbox" value="" id="invalidCheckRemove" required>-->
+<!--                                        <label class="form-check-label w-100" for="invalidCheckRemove">-->
+<!--                                            <button type="submit" class="btn btn-outline-danger">Remove</button>-->
+<!--                                        </label>-->
+<!--                                    </div>-->
+<!--                                </form>-->
                             </div>
                         </div>
                     </ul>
@@ -67,19 +71,24 @@
                         <div class="list-group-item">
                             <div class="row align-items-center">
                                 <h5 class="col fw-normal" th:text="${mName}"></h5>
-                                <form th:if="${mName != name}" class="col-auto" action="memberDeals" method="post">
+                                <form class="col-auto" action="memberInfo" method="post">
                                     <input type="hidden" name="memberName" th:value="${mName}">
-                                    <button type="submit" class="btn btn-outline-success">Deals</button>
+                                    <button type="submit" class="btn btn-outline-success">Info</button>
                                 </form>
-                                <form th:if="${mName != name}" class="col-auto" action="removeMember" method="post">
-                                    <input type="hidden" name="memberName" th:value="${mName}">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="invalidCheckRemove2" required>
-                                        <label class="form-check-label w-100" for="invalidCheckRemove2">
-                                            <button type="submit" class="btn btn-outline-danger">Remove</button>
-                                        </label>
-                                    </div>
-                                </form>
+
+<!--                                <form th:if="${mName != name}" class="col-auto" action="memberDeals" method="post">-->
+<!--                                    <input type="hidden" name="memberName" th:value="${mName}">-->
+<!--                                    <button type="submit" class="btn btn-outline-success">Deals</button>-->
+<!--                                </form>-->
+<!--                                <form th:if="${mName != name}" class="col-auto" action="removeMember" method="post">-->
+<!--                                    <input type="hidden" name="memberName" th:value="${mName}">-->
+<!--                                    <div class="form-check">-->
+<!--                                        <input class="form-check-input" type="checkbox" value="" id="invalidCheckRemove2" required>-->
+<!--                                        <label class="form-check-label w-100" for="invalidCheckRemove2">-->
+<!--                                            <button type="submit" class="btn btn-outline-danger">Remove</button>-->
+<!--                                        </label>-->
+<!--                                    </div>-->
+<!--                                </form>-->
                             </div>
                         </div>
                     </ul>
@@ -88,8 +97,9 @@
         </div>
 
         <div th:if="${member != null}">
-            <h4 th:text="${member.memberName}" class="text-center mb-4"></h4>
-            <div th:replace="storeTemplates/deals :: deals(deals=${member.deals})"></div>
+            <div th:replace="SystemTemplates/memberInfo :: memberInfo(name=${name}, member=${member})"></div>
+<!--            <h4 th:text="${member.memberName}" class="text-center mb-4"></h4>-->
+<!--            <div th:replace="storeTemplates/deals :: deals(deals=${member.deals})"></div>-->
         </div>
 
     </main>

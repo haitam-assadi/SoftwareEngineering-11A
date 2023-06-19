@@ -140,6 +140,9 @@ public class Cart {
         for(Bag bag : bags.values())
             totalPrice += bag.getBagPriceAfterDiscount();
 
+        if(totalPrice < 0.0)
+            totalPrice = 0.0;
+
         return totalPrice;
     }
 
@@ -196,5 +199,9 @@ public class Cart {
             bags.put(storeName,new Bag(bag_id));
         }
         isLoaded = true;
+    }
+
+    public void setUser(Member member) {
+        this.cartOwner = member;
     }
 }

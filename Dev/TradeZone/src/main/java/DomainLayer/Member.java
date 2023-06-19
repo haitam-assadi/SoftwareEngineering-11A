@@ -12,6 +12,7 @@ import javax.persistence.*;
 import javax.transaction.Transactional;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
+import java.io.IOException;
 enum RoleEnum {
     StoreOwner,
     StoreFounder,
@@ -38,6 +39,8 @@ public class Member extends User{
     private Set<String> pendingMessages;
 
     private boolean isOnline;
+    @Transient
+    private List<String> liveMessages;
 
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "member_roles", joinColumns = @JoinColumn(name = "member_name"))
@@ -72,6 +75,7 @@ public class Member extends User{
         pendingMessages = new HashSet<>();
         isOnline = false;
         memberRolesFlag = new HashSet<>();
+        liveMessages = new ArrayList<>();
         isLoaded = true;
     }
 
@@ -140,6 +144,7 @@ public class Member extends User{
         addRole(RoleEnum.StoreOwner);
         roles.putIfAbsent(RoleEnum.StoreOwner,storeOwner);
         subscribeOwnerForNotifications(store.getStoreName());
+        subscribeMemberForNotifications(userName);
         StoreOwner storeOwnerRole =  (StoreOwner) roles.get(RoleEnum.StoreOwner);
         storeOwnerRole.appointMemberAsStoreOwner(store,myBoss);
         store.appointMemberAsStoreOwner(storeOwnerRole);
@@ -232,6 +237,9 @@ public class Member extends User{
         store.setStoreFounderAtStoreCreation(storeFounderRole);
         NotificationService.getInstance().subscribe(store.getStoreName(),NotificationType.productBought,this);
         NotificationService.getInstance().subscribe(store.getStoreName(),NotificationType.storeClosedBySystemManager,this);
+        NotificationService.getInstance().subscribeMember(storeFounderRole.getUserName(),NotificationType.decisionForContract,this);
+        NotificationService.getInstance().subscribeMember(storeFounderRole.getUserName(),NotificationType.fillAppointContract,this);
+        NotificationService.getInstance().subscribeMember(storeFounderRole.getUserName(),NotificationType.ownerDone,this);
 
         return storeFounderRole;
     }
@@ -306,6 +314,17 @@ public class Member extends User{
         NotificationService.getInstance().subscribe(storeName,NotificationType.RemovedFromOwningStore,this);
         NotificationService.getInstance().subscribe(storeName,NotificationType.storeOpenedAfterClose,this);
         NotificationService.getInstance().subscribe(storeName,NotificationType.storeClosedBySystemManager,this);
+        NotificationService.getInstance().subscribe(storeName,NotificationType.decisionForContract,this);
+        NotificationService.getInstance().subscribe(storeName,NotificationType.fillAppointContract,this);
+        NotificationService.getInstance().subscribe(storeName,NotificationType.ownerDone,this);
+
+    }
+
+    private void subscribeMemberForNotifications(String memberUserName) {
+        NotificationService.getInstance().subscribeMember(memberUserName,NotificationType.decisionForContract,this);
+        NotificationService.getInstance().subscribeMember(memberUserName,NotificationType.fillAppointContract,this);
+        NotificationService.getInstance().subscribeMember(memberUserName,NotificationType.ownerDone,this);
+
     }
 
 
@@ -313,23 +332,25 @@ public class Member extends User{
         loadMember();
         if(isOnline){
             NotificationService.getInstance().send(userName,msg);
+            liveMessages.add(msg);
         }else{
             pendingMessages.add(msg);
-            DALService.memberRepository.save(this);
+            if(Market.dbFlag)
+                DALService.memberRepository.save(this);
         }
     }
 
     public void Login() throws Exception {
         loadMember();
         isOnline = true;
-        if(!pendingMessages.isEmpty()){
-            StringBuilder msg = new StringBuilder("Attention: you got " + pendingMessages.size() + " messages:\n");
-            for(String str: pendingMessages){
-                msg.append("   - ").append(str);
-            }
-            pendingMessages.clear();
-            NotificationService.getInstance().send(userName, msg.toString());
-        }
+//        if(!pendingMessages.isEmpty()){
+//            StringBuilder msg = new StringBuilder("Attention: you got " + pendingMessages.size() + " messages:\n");
+//            for(String str: pendingMessages){
+//                msg.append("   - ").append(str);
+//            }
+//            pendingMessages.clear();
+//            NotificationService.getInstance().send(userName, msg.toString());
+//        }
         if (Market.dbFlag)
             DALService.memberRepository.save(this);
     }
@@ -346,6 +367,10 @@ public class Member extends User{
         NotificationService.getInstance().subscribeMember(newMemberUserName,NotificationType.subscriptionRemoved,this);
     }
 
+//    public void addCart(Cart cart) {
+//        this.cart = cart;
+//        cart.setUser(this);
+//    }
     public void addCart(Cart cart) throws Exception {
         //loadMember();
         for (Bag bag: cart.getBags().values()){
@@ -429,6 +454,40 @@ public class Member extends User{
     }
 
 
+
+    //FOR ACCTEST OF STORE MANAGER
+    public void takeDownSystemManagerAppointment(){
+        this.roles.remove(RoleEnum.StoreManager);
+    }
+
+    public List<String> checkForAppendingMessages() throws IOException {
+        List<String> messages = new ArrayList<>();
+        if(!pendingMessages.isEmpty()){
+            StringBuilder msg = new StringBuilder("Attention: you got " + pendingMessages.size() + " new messages:\n");
+            for(String str: pendingMessages){
+                msg.append("   - ").append(str);
+            }
+            String message = msg.toString();
+            messages.add(message);
+            pendingMessages.clear();
+        }
+        return messages;
+    }
+
+    public List<String> getLiveMessages(){
+        return this.liveMessages;
+    }
+
+    public void clearMessages() {
+        liveMessages.clear();
+        pendingMessages.clear();
+    }
+
+    //FOR ACC TEST:
+
+    public Set<String> getAppendingMessages(){
+        return this.pendingMessages;
+    }
 
 
 

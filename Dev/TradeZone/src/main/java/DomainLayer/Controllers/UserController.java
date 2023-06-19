@@ -8,6 +8,7 @@ import DataAccessLayer.DALService;
 import DomainLayer.*;
 
 import javax.transaction.Transactional;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -123,16 +124,18 @@ public class UserController {
     public boolean isValidUserName(String userName) throws Exception {
         assertStringIsNotNullOrBlank(userName);
 
-        userName = userName.strip().toLowerCase();
+       // userName = userName.strip().toLowerCase();
 
-        if(!Character.isAlphabetic(userName.charAt(0)))
-            return false;
-
-        if(userName.length() < 4)
+        if(userName.length() < 2)
             return false;
 
         if(userName.contains(" "))
             return false;
+
+        for(int i=0;i<userName.length();i++){
+            if(!Character.isAlphabetic(userName.charAt(i)) && !Character.isDigit(userName.charAt(i)))
+                return false;
+        }
 
         return true;
 
@@ -145,9 +148,9 @@ public class UserController {
 
 
     public String login(String guestUserName, String MemberUserName, String password) throws Exception {
-        loginValidateParameters(guestUserName, MemberUserName, password);
         guestUserName = guestUserName.strip().toLowerCase();
         MemberUserName = MemberUserName.strip().toLowerCase();
+        loginValidateParameters(guestUserName, MemberUserName, password);
         Member member = getMember(MemberUserName);
         member.loadMember();
         SystemManager systemManager = member.checkIsSystemManager();
@@ -207,12 +210,16 @@ public class UserController {
         throw new Exception("can't getUser: userName "+ userName+" does not exists!");
     }
 
-    public List<DealDTO> getUserDeals(String userName) throws Exception {
-        assertStringIsNotNullOrBlank(userName);
-        userName=userName.strip().toLowerCase();
-        if(!isGuest(userName))
-            assertIsMember(userName);
-        User user = getUser(userName);
+    public List<DealDTO> getUserDeals(String memberUserName, String otherMemberuserName , Boolean isSystemManager) throws Exception {
+        otherMemberuserName=otherMemberuserName.strip().toLowerCase();
+        memberUserName=memberUserName.strip().toLowerCase();
+        if(!isSystemManager)
+            if(!memberUserName.equals(otherMemberuserName))
+                throw new Exception(memberUserName + "can not have the member deals");
+        assertStringIsNotNullOrBlank(otherMemberuserName);
+        if(!isGuest(otherMemberuserName))
+            assertIsMember(otherMemberuserName);
+        User user = getUser(otherMemberuserName);
         return user.getUserDeals();
     }
 
@@ -496,4 +503,23 @@ public class UserController {
 //        assertIsSystemManager(managerName);
 //        return systemManagers.get(managerName);
 //    }
+
+
+    public void takeDownSystemManagerAppointment(String appointedMember) {
+        Member member = this.members.get(appointedMember);
+        member.takeDownSystemManagerAppointment();
+    }
+
+    //FOR ACC TEST:
+    public void send(String userName1, String message) throws Exception {
+        Member member = this.members.get(userName1);
+        member.send(message);
+    }
+
+    //FOR ACC TEST:
+
+    public Set<String> getAppendingMessages(String userName1) {
+        Member member = this.members.get(userName1);
+        return member.getAppendingMessages();
+    }
 }

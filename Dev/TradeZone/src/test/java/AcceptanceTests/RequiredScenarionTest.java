@@ -15,9 +15,9 @@ public class RequiredScenarionTest {
     private String guest2UserName;
     private String guest3UserName;
 
-    private String user1 = "req_user1";
-    private String user2 = "req_user2";
-    private String user3 = "req_user3";
+    private String user1 = "requser1";
+    private String user2 = "requser2";
+    private String user3 = "requser3";
     private String password = "Aa12345678";
 
 
@@ -63,6 +63,7 @@ public class RequiredScenarionTest {
 
 
             Assertions.assertTrue(proxy.appointOtherMemberAsStoreOwner(user2,store1Name, user3));
+            Assertions.assertTrue(proxy.fillOwnerContract(user1,store1Name,user3,true));
             Assertions.assertTrue(proxy.addNewProductToStock(user3,store1Name,product3Name,category, 100.0, "desc", 50));
 
             // user3 didn't remove then user 2 is still owner

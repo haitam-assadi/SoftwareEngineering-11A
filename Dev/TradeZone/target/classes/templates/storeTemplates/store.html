@@ -17,29 +17,38 @@
         <nav class="nav nav-pills nav-fill d-flex justify-content-end mt-2 mb-3">
 <!--            aria-current="page"-->
             <a th:classappend="${currentPage == 'stock' ? 'active' : ''}" class="nav-link" href="stock">Stock</a>
-            <a th:classappend="${currentPage == 'workers' ? 'active' : ''}" class="nav-link" href="workers">Workers</a>
-            <a th:classappend="${currentPage == 'deals' ? 'active' : ''}" class="nav-link" href="deals">Deals</a>
-            <a th:classappend="${currentPage == 'bagConstraints' ? 'active' : ''}" class="nav-link" href="bagConstraints">Bag Constraints</a>
-            <a th:classappend="${currentPage == 'discountPolicies' ? 'active' : ''}" class="nav-link" href="discountPolicies">Discount Policies</a>
+            <a th:if="${controller.hasPermission(store.storeName, 3)}" th:classappend="${currentPage == 'workers' ? 'active' : ''}" class="nav-link" href="workers">Workers</a>
+            <a th:if="${controller.hasPermission(store.storeName, 1)}" th:classappend="${currentPage == 'deals' ? 'active' : ''}" class="nav-link" href="deals">Deals</a>
+            <a th:if="${controller.hasPermission(store.storeName, 5)}" th:classappend="${currentPage == 'bagConstraints' ? 'active' : ''}" class="nav-link" href="bagConstraints">Bag Constraints</a>
+            <a th:if="${controller.hasPermission(store.storeName, 4)}" th:classappend="${currentPage == 'discountPolicies' ? 'active' : ''}" class="nav-link" href="discountPolicies">Discount Policies</a>
+            <a th:if="${controller.getRole(store.storeName) != 3}" th:classappend="${currentPage == 'myContracts' ? 'active' : ''}" class="nav-link" href="myContracts">My Contracts</a>
+            <a th:if="${controller.getRole(store.storeName) != 3}" th:classappend="${currentPage == 'otherContracts' ? 'active' : ''}" class="nav-link" href="otherContracts">Unsigned Contracts</a>
         </nav>
-    <div class="row justify-content-end">
-        <h3 th:if="${store != null}" class="col-9 card-title pricing-card-title mb-3 text-center" th:text="${store.storeName}"></h3>
-        <form th:if="${store.isActive}" class="col-auto" action="closeStore" method="post">
-            <div class="form-check mb-3">
-                <input class="form-check-input" type="checkbox" value="" id="invalidCheckClose" required>
-                <label class="form-check-label w-100" for="invalidCheckClose">
-                    <button type="submit" class="btn btn-outline-danger">Close Store</button>
-                </label>
-            </div>
-        </form>
+<!--    justify-content-end-->
+    <div class="row">
+        <div class="col"></div>
+<!--        col-9-->
+        <h3 th:if="${store != null}" class="col-auto card-title pricing-card-title mb-3 text-center" th:text="${store.storeName}"></h3>
+        <div class="col d-flex justify-content-end">
+<!--            class="col-auto"-->
+            <form th:if="${store.isActive && controller.getRole(store.storeName) == 1}" action="closeStore" method="post">
+                <div class="form-check mb-3">
+                    <input class="form-check-input" type="checkbox" value="" id="invalidCheckClose" required>
+                    <label class="form-check-label w-100" for="invalidCheckClose">
+                        <button type="submit" class="btn btn-outline-danger">Close Store</button>
+                    </label>
+                </div>
+            </form>
+        </div>
+
 
 <!--        <form th:if="${!store.isActive}" class="col-auto" action="store" method="post">-->
-            <div th:if="${!store.isActive}" class="col-auto form-check mb-3">
-                <input class="form-check-input" type="checkbox" value="" id="invalidCheckOpen" required>
-                <label class="form-check-label w-100" for="invalidCheckOpen">
-                    <button type="submit" class="btn btn-outline-success">Open Store</button>
-                </label>
-            </div>
+<!--            <div th:if="${!store.isActive}" class="col-auto form-check mb-3">-->
+<!--                <input disabled class="form-check-input" type="checkbox" value="" id="invalidCheckOpen" required>-->
+<!--                <label class="form-check-label w-100" for="invalidCheckOpen">-->
+<!--                    <button disabled type="submit" class="btn btn-outline-success">Open Store</button>-->
+<!--                </label>-->
+<!--            </div>-->
 <!--        </form>-->
     </div>
     <h4 th:if="${store != null && store.isActive}" class="fw-normal mb-3 text-center" style="color:#13ca13">Open</h4>
@@ -48,14 +57,13 @@
 
     <div th:replace="fragments/alert :: alert(${alert})"></div>
 
-<!--    <main>-->
         <div th:if="${currentPage == 'stock'}">
-            <div th:replace="storeTemplates/stock :: stock(store=${store})"></div>
+            <div th:replace="storeTemplates/stock :: stock(store=${store}, hasPerm=${controller.hasPermission(store.storeName, 2)})"></div>
         </div>
         <div th:if="${currentPage == 'workers'}">
-            <div th:replace="storeTemplates/workers :: workers(store=${store}, workers=${workers})"></div>
+            <div th:replace="storeTemplates/workers :: workers(myName=${controller.name}, store=${store}, workers=${workers}, mRole=${controller.getRole(store.storeName)})"></div>
         </div>
-        <div th:if="${currentPage == 'deals'}">
+        <div class="container col-md-8 mt-3" th:if="${currentPage == 'deals'}">
             <div th:replace="storeTemplates/deals :: deals(deals=${deals})"></div>
         </div>
         <div th:if="${currentPage == 'bagConstraints'}">
@@ -64,7 +72,12 @@
         <div th:if="${currentPage == 'discountPolicies'}">
             <div th:replace="storeTemplates/discountPolicies :: discountPolicies(constraints=${constraints})"></div>
         </div>
-<!--    </main>-->
+        <div th:if="${currentPage == 'myContracts'}">
+            <div th:replace="storeTemplates/myContracts :: myContracts(contracts=${ownerContracts})"></div>
+        </div>
+        <div th:if="${currentPage == 'otherContracts'}">
+            <div th:replace="storeTemplates/otherContracts :: otherContracts(contracts=${ownerContracts})"></div>
+        </div>
 </div>
 </body>
 </html>

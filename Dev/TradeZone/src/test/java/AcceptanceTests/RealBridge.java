@@ -911,9 +911,64 @@ public class RealBridge implements Bridge{
         return response.getValue();
     }
 
+    public void takeDownSystemManagerAppointment(String storeName, String appointedMember) throws Exception {
+        systemService.takeDownSystemManagerAppointment(storeName, appointedMember);
+    }
+
+    public Map<String, List<String>> getStoreInfo(String userName, String storeName) throws Exception {
+        ResponseT<StoreDTO> response = systemService.getStoreInfo(userName, storeName);
+        if (response.ErrorOccurred){
+            throw new Exception(response.errorMessage);
+        }
+        Map details = new HashMap();
+        List store= new ArrayList();
+        store.add(response.value.storeName);
+        List founder = new ArrayList();
+        founder.add(response.value.founderName);
+        details.put("storeName",store);
+        details.put("founderName", founder);
+        details.put("ownersNames", response.value.ownersNames);
+        details.put("managersNames", response.value.managersNames);
+        return details;
+    }
+
+    public void send(String member1Name, String message) throws Exception {
+        systemService.send(member1Name, message);
+    }
+
+    public List<String> getLiveMessages(String memberUserName) throws Exception {
+        ResponseT<List<String>> response= systemService.getLiveMessages(memberUserName);
+        if (response.ErrorOccurred){
+            throw new Exception(response.errorMessage);
+        }
+        return response.getValue();
+    }
+
+    public Set<String> getAppendingMessages(String memberUserName) {
+        return systemService.getAppendingMessages(memberUserName);
+    }
+
     @Override
     public ProductDTO getProductInfoFromStore(String userName, String storeName, String productName)throws Exception{
         ResponseT<ProductDTO> response = systemService.getProductInfoFromStore(userName, storeName, productName);
+        if (response.ErrorOccurred){
+            throw new Exception(response.errorMessage);
+        }
+        return response.getValue();
+    }
+
+    @Override
+    public List<DealDTO> getStoreDeals(String memberUserName, String storeName) throws Exception {
+        ResponseT<List<DealDTO>> response = systemService.getStoreDeals(memberUserName, storeName);
+        if (response.ErrorOccurred){
+            throw new Exception(response.errorMessage);
+        }
+        return response.getValue();
+    }
+
+    @Override
+    public List<DealDTO> getMemberDeals(String memberUserName, String otherMemberUserName) throws Exception {
+        ResponseT<List<DealDTO>> response = systemService.getMemberDeals(memberUserName, otherMemberUserName);
         if (response.ErrorOccurred){
             throw new Exception(response.errorMessage);
         }

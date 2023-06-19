@@ -13,8 +13,10 @@ import DomainLayer.BagConstraints.*;
 import DomainLayer.DiscountPolicies.*;
 
 import javax.persistence.*;
+import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
+import java.io.IOException;
 
 
 @Entity
@@ -238,6 +240,7 @@ public class Store {
         if(description.length()>300)
             throw new Exception("the description of the product is too long");
 
+
         return stock.addNewProductToStock(nameProduct,category,price,description,amount);
     }
 
@@ -378,14 +381,13 @@ public class Store {
         ownerUserName = ownerUserName.strip().toLowerCase();
         managerUserName = managerUserName.strip().toLowerCase();
 
-        if(!ownerUserName.equals(managerUserName))
-            assertIsOwnerOrFounder(ownerUserName);
-
         assertIsManager(managerUserName);
+        isManager(ownerUserName);
         managerUserName = managerUserName.strip().toLowerCase();
         StoreManager storeManager = storeManagers.get(managerUserName);
-        if(!ownerUserName.equals(managerUserName) && !storeManager.isMyBossForStore(getStoreName(), ownerUserName))
-            throw new Exception(ownerUserName+ " is not a boss for "+managerUserName+" in store "+getStoreName());
+        if(!ownerUserName.equals(managerUserName) && !isOwnerOrFounder(ownerUserName) && !isManager(ownerUserName))
+            throw new Exception(ownerUserName+ " cannot get the manager permission for the store");
+
         return storeManager.getManagerPermissionsForStore(getStoreName());
     }
 
@@ -405,6 +407,20 @@ public class Store {
     public Stock getStock() {
         return stock;
     }
+
+    public StoreFounder getStoreFounder() {
+        return storeFounder;
+    }
+
+    public Map<String, StoreOwner> getStoreOwners() {
+        return storeOwners;
+    }
+
+    public Map<String, StoreManager> getStoreManagers() {
+        return storeManagers;
+    }
+
+
 
 
     public boolean closeStore(String memberUserName) throws Exception {
@@ -514,7 +530,6 @@ public class Store {
         loadStoreManagers();
         //TODO: MOSLEM: update S manager
         storeManagers.remove(userName);
-
     }
 
     public boolean removeBagAmountFromStock(ConcurrentHashMap<String, ConcurrentHashMap<Product,Integer>> bagContent) throws Exception {
@@ -569,6 +584,7 @@ public class Store {
         if (Market.dbFlag)
             DALService.productDiscountPolicyRepository.save(productDiscountPolicy);
         this.discountPoliciesIdCounter++;
+
         if(addAsStoreDiscountPolicy)
             storeDiscountPolicies.put(currentDisPolIdCounter, productDiscountPolicy);
 
@@ -1212,6 +1228,8 @@ public class Store {
 
     }
 
+
+
     public void loadStoreOwners() throws Exception{
         if (ownersLoaded || !Market.dbFlag)
             return;
@@ -1249,6 +1267,9 @@ public class Store {
         this.bagConstraintsIdCounter = maxId;
         createdBagConstraintsLoaded = true;
     }
+
+
+
 
     public void loadCreatedDiscountPolicies(){
         if (createdDiscountPoliciesLoaded || !Market.dbFlag)
@@ -1314,11 +1335,18 @@ public class Store {
 
         if(storeOwnersDecisions.keySet().size() == 0 ){
             triggerOwner.appointOtherMemberAsStoreOwner(this,newOwner);
+            String msg = "you appointed as store owner for store : " + storeName;
+            NotificationService.getInstance().notify(storeName,msg,NotificationType.ownerDone);
             return true;
         }
 
         OwnerContract ownerContract = new OwnerContract(triggerOwner, newOwner,this, storeOwnersDecisions);
         newOwnersContracts.put(newOwner.getUserName(),ownerContract);
+
+        for (String storeOwnerNameToDes: storeOwnersDecisions.keySet()){
+            String msg = triggerOwner.getUserName() + " want to appoint " + newOwner.getUserName() + " for store "+ storeName +" ,please confirm the appointment";
+            NotificationService.getInstance().notify(storeName,msg,NotificationType.fillAppointContract);
+        }
         return true;
     }
 
@@ -1342,6 +1370,9 @@ public class Store {
             newOwnersContracts.remove(newOwnerUserName);
             alreadyDoneContracts.add(ownerContract);
         }
+
+        String msg = memberUserName + " is fill to the contract for " + newOwnerUserName;
+        NotificationService.getInstance().notifyMember(ownerContract.getTriggerOwnerName(),msg,NotificationType.decisionForContract);
         return true;
     }
 

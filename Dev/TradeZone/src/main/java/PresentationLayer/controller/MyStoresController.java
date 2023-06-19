@@ -24,11 +24,16 @@ public class MyStoresController {
     Alert alert = Alert.getInstance();
 
     @GetMapping("/myStores")
-    public String myStores(HttpServletRequest request, Model model) {
+    public String myStores(HttpServletRequest request, Model model){
         myStores = null; // or new ... ???
         if(request.getSession().getAttribute("controller") != null){
             controller = (GeneralModel) request.getSession().getAttribute("controller");
 //            myStores = (Map<String, List<StoreDTO>>) request.getSession().getAttribute("myStores");
+        }
+        if(controller.isSystemManager()){
+//            alert.setFail(true);
+//            alert.setMessage(""); // TODO: add msg ???
+            return "redirect:/";
         }
         ResponseT<Map<String,List<StoreDTO>>> response  = server.myStores(controller.getName());
         if(response.ErrorOccurred){

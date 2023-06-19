@@ -514,4 +514,9 @@ public class StoreController {
         return store.getRuleForStore(memberName);
     }
 
+    public void takeDownSystemManagerAppointment(String storeName, String appointedMember) throws Exception {
+        Store store = this.stores.get(storeName);
+        store.removeManager(appointedMember);
+    }
+
 }

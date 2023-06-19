@@ -32,9 +32,12 @@
             </div>
         </div>
 
-        <div th:if="${store != null}">
-            <h4 th:text="${store.storeName}" class="text-center mb-4"></h4>
-            <div th:replace="storeTemplates/deals :: deals(deals=${store.deals})"></div>
+        <div th:if="${store != null}" class="row">
+            <a class="col-2" href="allStores"> <-- Back</a>
+            <h4 th:text="${store.storeName}" class="col-8 text-center mb-4"></h4>
+            <div class="container col-md-8 mt-3">
+                <div th:replace="storeTemplates/deals :: deals(deals=${store.deals})"></div>
+            </div>
         </div>
     </main>
 </div>

@@ -2,6 +2,7 @@ package PresentationLayer.controller;
 
 import CommunicationLayer.Server;
 import DTO.DealDTO;
+import DTO.MemberDTO;
 import DTO.StoreDTO;
 import PresentationLayer.model.*;
 import PresentationLayer.model.System;
@@ -115,25 +116,25 @@ public class SystemController {
     @PostMapping("/storeDeals")
     public String getStoreDeals(HttpServletRequest request, @RequestParam String storeName){
         // TODO: uncomment all lines
-//        if(request.getSession().getAttribute("controller") != null){
-//            controller = (GeneralModel) request.getSession().getAttribute("controller");
-//        }
-//        ResponseT<List<DealDTO>> response = server.getStoreDeals(controller.getName(), storeName);
-//        if(response.ErrorOccurred){
-//            alert.setFail(true);
-//            alert.setMessage(response.errorMessage);
-//            return "redirect:/system";
-//        }
-//        List<Deal> deals = GeneralModel.buildDeals(response.getValue());
-//        ResponseT<StoreDTO> response1 = server.getStoreInfo(controller.getName(), storeName);
-//        if(response1.ErrorOccurred){
-//            alert.setFail(true);
-//            alert.setMessage(response1.errorMessage);
-//            return "redirect:/system";
-//        }
+        if(request.getSession().getAttribute("controller") != null){
+            controller = (GeneralModel) request.getSession().getAttribute("controller");
+        }
+        ResponseT<List<DealDTO>> response = server.getStoreDeals(controller.getName(), storeName);
+        if(response.ErrorOccurred){
+            alert.setFail(true);
+            alert.setMessage(response.errorMessage);
+            return "redirect:/system";
+        }
+        List<Deal> deals = GeneralModel.buildDeals(response.getValue());
+        ResponseT<StoreDTO> response1 = server.getStoreInfo(controller.getName(), storeName);
+        if(response1.ErrorOccurred){
+            alert.setFail(true);
+            alert.setMessage(response1.errorMessage);
+            return "redirect:/system";
+        }
 
-        List<Deal> deals = delete(); // TODO: delete this line and delete() func
-        store = new Store(storeName, true, deals); // TODO: response1.getValue().isActive ???
+//        List<Deal> deals = delete(); // TODO: delete this line and delete() func
+        store = new Store(storeName, response1.getValue().isActive, deals); // TODO: response1.getValue().isActive ???
         request.getSession().setAttribute("storeModel", store);
         return "redirect:/system";
     }
@@ -146,12 +147,16 @@ public class SystemController {
         amount_price.add(0, 5.0);
         amount_price.add(1, 35.0);
         products.put("product1", amount_price);
-        deals1.add(new Deal("store 1", "24/5/23", controller.getName(), products, 100));
+        Map<String, Double> productPriceMultipleAmount = new LinkedHashMap<>();
+        Map<String, Double> productFinalPriceWithDiscount = new LinkedHashMap<>();
+        productPriceMultipleAmount.put("product1", 5*35.0);
+        productFinalPriceWithDiscount.put("product1", 20.0);
+        deals1.add(new Deal("store 1", "24/5/23", controller.getName(), products, 100, productPriceMultipleAmount, productFinalPriceWithDiscount));
         products = new HashMap<>();
         products.put("product2", amount_price);
         products.put("product3", amount_price);
-        deals1.add(new Deal("store 1", "24/6/23", "manager 2", products, 200));
-        deals1.add(new Deal("store 1", "24/7/23", "manager 3", products, 300));
+        deals1.add(new Deal("store 1", "24/6/23", "manager 2", products, 200, productPriceMultipleAmount, productFinalPriceWithDiscount));
+        deals1.add(new Deal("store 1", "24/7/23", "manager 3", products, 300, productPriceMultipleAmount, productFinalPriceWithDiscount));
 
         return deals1;
     }
@@ -177,8 +182,28 @@ public class SystemController {
 //        }
 //        List<Deal> deals = GeneralModel.buildDeals(response.getValue());
 
-        List<Deal> deals = delete(); // TODO: delete this line and delete() func
-        member = new Member(memberName, deals);
+
+//        List<Deal> deals = delete(); // TODO: delete this line and delete() func
+//        member = new Member(memberName, deals);
+//        request.getSession().setAttribute("member", member);
+        return "redirect:/allUsers";
+    }
+
+    @PostMapping("/memberInfo")
+    public String getMemberInfo(HttpServletRequest request, @RequestParam String memberName){
+        if(request.getSession().getAttribute("controller") != null){
+            controller = (GeneralModel) request.getSession().getAttribute("controller");
+        }
+        ResponseT<MemberDTO> response = server.getMemberInfo(controller.getName(), memberName);
+        if(response.ErrorOccurred){
+            alert.setFail(true);
+            alert.setMessage(response.errorMessage);
+            return "redirect:/allUsers";
+        }
+        MemberDTO memberDTO = response.getValue();
+        List<Deal> deals = GeneralModel.buildDeals(memberDTO.memberDeals); // TODO: uncomment
+//        List<Deal> deals = delete(); // TODO: delete
+        member = new Member(memberDTO.username, memberDTO.memberStores, deals, !server.isSystemManager(memberName).ErrorOccurred);
         request.getSession().setAttribute("member", member);
         return "redirect:/allUsers";
     }
@@ -192,10 +217,11 @@ public class SystemController {
         if(response.ErrorOccurred){
             alert.setFail(true);
             alert.setMessage(response.errorMessage);
-            return "redirect:/allUsers";
+            return getMemberInfo(request, memberName); // TODO: ???
+//            return "redirect:/allUsers";
         }
         alert.setSuccess(true);
-        alert.setMessage(memberName + " removed");
+        alert.setMessage("Member " + memberName + " is removed from the system");
         return "redirect:/allUsers";
     }
 

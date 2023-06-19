@@ -3,6 +3,8 @@ package DomainLayer;
 
 import java.util.LinkedList;
 import java.util.concurrent.ConcurrentHashMap;
+import CommunicationLayer.Server;
+import java.io.IOException;
 
 enum  NotificationType{
     storeClosed,
@@ -11,7 +13,10 @@ enum  NotificationType{
     productBought,
     subscriptionRemoved,
     requestNotification,
-    RemovedFromOwningStore
+    RemovedFromOwningStore,
+    fillAppointContract,
+    ownerDone,
+    decisionForContract
 
 }
 public class NotificationService {
@@ -40,6 +45,12 @@ public class NotificationService {
                 type_memberList.get(notificationType).add(member);
                 storeRulesNotificator.put(storeName,type_memberList);
             }
+            else{
+                LinkedList<Member> members = new LinkedList<>();
+                members.add(member);
+                type_memberList.put(notificationType,members);
+                storeRulesNotificator.put(storeName,type_memberList);
+            }
         }else{
             LinkedList<Member> members = new LinkedList<>();
             members.add(member);
@@ -62,17 +73,13 @@ public class NotificationService {
         }
     }
 
-    public void notify(String storeName,String msg,NotificationType notificationType){
+    public void notify(String storeName,String msg,NotificationType notificationType) throws Exception {
         ConcurrentHashMap<NotificationType, LinkedList<Member>> type_memberList = storeRulesNotificator.get(storeName);
         if(type_memberList.containsKey(notificationType)) {
             LinkedList<Member> members = type_memberList.get(notificationType);
-            members.forEach(member -> {
-                try {
-                    member.send(msg);
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-            });
+            for(Member member : members){
+                member.send(msg);
+            }
         }
     }
 

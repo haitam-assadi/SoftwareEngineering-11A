@@ -16,6 +16,33 @@
   </style>
 </head>
 <body>
+<script>
+	const socket = new WebSocket('ws://localhost:8080/websocket');
+
+	socket.onopen = function() {
+	  console.log('WebSocket connection established.');
+	};
+
+	socket.onmessage = function(event) {
+	  	 const message = event.data;
+ 		 appendMessageToList(message);
+ 		 document.getElementById("notificationBadge").classList.remove("d-none");
+ 		 document.getElementById("clearButton").classList.remove("d-none");
+	};
+
+	socket.onclose = function(event) {
+	  console.log('WebSocket connection closed: ', event);
+	};
+
+	function appendMessageToList(message) {
+	  const messageList = document.getElementById('message-list');
+	  const listItem = document.createElement('li');
+	  listItem.textContent = message;
+	  messageList.appendChild(listItem);
+	}
+
+
+</script>
   <header>
     <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
       <a class="d-flex align-items-center link-body-emphasis text-decoration-none">
@@ -27,11 +54,34 @@
         <a th:classappend="${currentPage == 'index' ? 'active color:#d106f0' : ''}" class="nav-link py-2 link-body-emphasis text-decoration-none" href="/">Home Page</a>
         <a th:classappend="${currentPage == 'searchStore' ? 'active color:#d106f0' : ''}" class="nav-link py-2 link-body-emphasis text-decoration-none" href="searchStore">Search for stores</a>
         <a th:if="${controller.logged && !controller.systemManager}" th:classappend="${currentPage == 'myStores' ? 'active color:#d106f0' : ''}" class="nav-link py-2 link-body-emphasis text-decoration-none" href="myStores">My stores</a>
-        <a th:if="${controller.systemManager}" th:classappend="${currentPage == 'system' ? 'active color:#d106f0' : ''}" class="nav-link py-2 link-body-emphasis text-decoration-none" href="system">System Manager</a>
+        <a th:if="${controller.systemManager}" th:classappend="${currentPage == 'system' ? 'active color:#d106f0' : ''}" class="nav-link py-2 link-body-emphasis text-decoration-none" href="system">System</a>
         <a th:classappend="${currentPage == 'cart'} ? 'active color-important' : ''" class="nav-link py-2 link-body-emphasis text-decoration-none" href="cart">Cart</a>
         <a th:if="!${controller.logged}" th:classappend="${currentPage == 'register' ? 'active color:#d106f0' : ''}" class="nav-link py-2 link-body-emphasis text-decoration-none" href="register">Register</a>
         <a th:if="!${controller.logged}" th:classappend="${currentPage == 'login' ? 'active color:#d106f0' : ''}" class="nav-link py-2 link-body-emphasis text-decoration-none" href="login">Login</a>
         <a th:if="${controller.logged}" th:classappend="${currentPage == 'logout' ? 'active color:#d106f0' : ''}" class="nav-link py-2 link-body-emphasis text-decoration-none" href="logout">Logout</a>
+        <div th:if="${controller.logged && controller.checkForLiveMessages}" class="dropdown">
+          <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Messages
+            <div id="notificationBadge"  th:classappend="${controller.hasMessages ? 'd-inline' : 'd-none'}">
+              <span  class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
+                <span class="visually-hidden">New alerts</span>
+              </span>
+            </div>
+          </button>
+          <ul  class="dropdown-menu" style="width: 400px">
+            <ul id="message-list">
+              <span th:each="message: ${controller.getMessages}">
+              <li th:text="${message}"> message</li><br>
+            </span>
+            </ul>
+            <div>
+              <form action="clear" method="post">
+                <input th:value="${controller.name}" type="hidden" name="name">
+                <br><button type="submit" class="btn btn-secondary">clear</button>
+              </form>
+            </div>
+          </ul>
+        </div>
       </nav>
     </div>
   </header>
