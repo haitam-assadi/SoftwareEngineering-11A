@@ -77,6 +77,14 @@ public class DALService {
 
     @Autowired
     public static OwnerContractRepository ownerContractRepository;
+
+    @Autowired
+    public static StoreRulesRepository storeRulesRepository;
+    @Autowired
+    public static RolerNotificatorRepository rolerNotificatorRepository;
+
+    @Autowired
+    public static MemberNotificatorRepository memberNotificatorRepository;
     public DALService(){
         super();
     }
@@ -181,6 +189,7 @@ public class DALService {
         storeRepository.save(store);
         ownerContractRepository.delete(ownerContract);
     }
+
 
 //
 //    @Transactional

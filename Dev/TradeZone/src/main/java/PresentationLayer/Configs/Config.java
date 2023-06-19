@@ -43,7 +43,10 @@ public class Config {
                                   MaxValDiscountPolicyRepository maxValDiscountPolicyRepository,
                                   ProductDiscountPolicyRepository productDiscountPolicyRepository,
                                   DealRepository dealRepository,
-                                  OwnerContractRepository ownerContractRepository) {
+                                  OwnerContractRepository ownerContractRepository,
+                                  StoreRulesRepository storeRulesRepository,
+                                  MemberNotificatorRepository memberNotificatorRepository,
+                                  RolerNotificatorRepository rolerNotificatorRepository) {
         return (args) -> {
             System.out.println("member config");
             DALService.memberRepository=memberRepository;
@@ -100,6 +103,12 @@ public class Config {
             System.out.println(dealRepository);
             DALService.ownerContractRepository = ownerContractRepository;
             System.out.println(ownerContractRepository);
+            DALService.storeRulesRepository = storeRulesRepository;
+            System.out.println(storeRulesRepository);
+            DALService.memberNotificatorRepository = memberNotificatorRepository;
+            System.out.println(memberNotificatorRepository);
+            DALService.rolerNotificatorRepository = rolerNotificatorRepository;
+            System.out.println(rolerNotificatorRepository);
         };
     }
 

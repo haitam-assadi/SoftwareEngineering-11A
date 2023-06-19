@@ -1,6 +1,7 @@
 package DomainLayer;
 
 import DTO.OwnerContractDTO;
+import DataAccessLayer.Controller.MemberMapper;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -42,6 +43,7 @@ public class OwnerContract {
 
     private boolean contractIsDone;
 
+    @Transient
     private boolean isLoaded;
 
     public OwnerContract(AbstractStoreOwner triggerOwner, Member newOwner, Store store, ConcurrentHashMap<String, Boolean> storeOwnersDecisions){
@@ -66,7 +68,7 @@ public class OwnerContract {
             throw new Exception("decision can't be null");
         assertStringIsNotNullOrBlank(memberUserName);
         memberUserName = memberUserName.strip().toLowerCase();
-
+        loadContract();
         if(contractIsDone)
             throw new Exception("you cant fill done contracts");
 
@@ -114,8 +116,8 @@ public class OwnerContract {
             throw new Exception("string is null or empty");
     }
 
-    public String getTriggerOwnerName(){
-        return triggerOwner.getUserName();
+    public String getTriggerOwnerName() {
+        return triggerOwnerName;
     }
 
 
@@ -133,7 +135,7 @@ public class OwnerContract {
         if (!declinedOwner.equals(""))
             pendingOwners.remove(declinedOwner);
 
-        return new OwnerContractDTO(triggerOwner.getUserName(), newOwner.getUserName(), store.getStoreName(),
+        return new OwnerContractDTO(triggerOwnerName, newOwner.getUserName(), store.getStoreName(),
                 contractStatus, alreadyAcceptedOwners, pendingOwners, contractIsDone);
     }
 
@@ -154,9 +156,15 @@ public class OwnerContract {
         contractIsDone = true;
     }
 
-    public void loadContract(){
+    public void loadContract() throws Exception {
         if (isLoaded || !Market.dbFlag) return;
-
+        if (triggerOwnerType.equals(RoleEnum.StoreFounder)){
+            triggerOwner = MemberMapper.getInstance().getStoreFounder(triggerOwnerName);
+        }
+        if (triggerOwnerType.equals(RoleEnum.StoreOwner)){
+            triggerOwner = MemberMapper.getInstance().getStoreOwner(triggerOwnerName);
+        }
+        isLoaded = true;
     }
 
 
