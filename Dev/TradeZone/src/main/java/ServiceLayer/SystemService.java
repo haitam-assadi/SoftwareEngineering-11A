@@ -985,4 +985,13 @@ public class SystemService {
             return null;
         }
     }
+    public ResponseT<Boolean> loadData(){
+        try{
+            market.loadData();
+            return new ResponseT<>(true);
+        }catch(Exception e){
+            return new ResponseT<>("loadData: "+e.getMessage());
+        }
+    }
+
 }
