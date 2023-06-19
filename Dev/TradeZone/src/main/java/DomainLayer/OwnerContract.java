@@ -2,16 +2,35 @@ package DomainLayer;
 
 import DTO.OwnerContractDTO;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+@Entity
+@Table
 public class OwnerContract {
 
+    @Transient
     private AbstractStoreOwner triggerOwner;
+
+    private String triggerOwnerName;
+    @Enumerated(value = EnumType.STRING)
+    private RoleEnum triggerOwnerType;
+
+    @OneToOne
+    @JoinColumn(name = "newOwnerName")
     private Member newOwner;
-    private ConcurrentHashMap<String, Boolean> storeOwnersDecisions;
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "storeOwnersDecisions")
+    @Column(name = "otherOwner")
+    private Map<String, Boolean> storeOwnersDecisions;
     private String declinedOwner;
+
+    @OneToOne
+    @JoinColumn(name = "storeName")
     private Store store;
 
 
@@ -21,6 +40,8 @@ public class OwnerContract {
 
     public OwnerContract(AbstractStoreOwner triggerOwner, Member newOwner, Store store, ConcurrentHashMap<String, Boolean> storeOwnersDecisions){
         this.triggerOwner=triggerOwner;
+        this.triggerOwnerName = triggerOwner.getUserName();
+        this.triggerOwnerType = triggerOwner.myRole;
         this.newOwner=newOwner;
         this.store = store;
         this.storeOwnersDecisions = storeOwnersDecisions;

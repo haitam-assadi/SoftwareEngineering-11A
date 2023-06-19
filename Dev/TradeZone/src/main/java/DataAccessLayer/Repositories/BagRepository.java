@@ -12,6 +12,6 @@ public interface BagRepository extends JpaRepository<Bag,Integer> {
     public String findStoreNameById(int id);
     //todo: check the build in query
 
-    @Query(value = "SELECT product_name, amount FROM bag WHERE bag_id = ?",nativeQuery = true)
-    public Map<String,Integer> findProductAmountById(int id);
+    @Query(value = "SELECT product_name, amount FROM bag_products WHERE bag_id = ?",nativeQuery = true)
+    public List<Object[]> findProductAmountById(int id);
 }

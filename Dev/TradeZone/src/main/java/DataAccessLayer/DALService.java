@@ -165,6 +165,7 @@ public class DALService {
         storeRepository.save(store);
         memberRepository.save(member);
     }
+
 //
 //    @Transactional
 //    public static DTOStore updateActive(String storeName){

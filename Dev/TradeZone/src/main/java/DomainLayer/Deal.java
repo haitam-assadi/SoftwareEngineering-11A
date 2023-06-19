@@ -7,15 +7,12 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 @Entity
 @Table
-//@IdClass(DealId.class)
 public class Deal {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-  //  @Id
     private String storeName;
-    //@Id
     private String userName;
 
     private String date;

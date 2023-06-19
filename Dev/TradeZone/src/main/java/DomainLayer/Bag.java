@@ -253,12 +253,13 @@ public class Bag {
         String storeName = DALService.bagRepository.findStoreNameById(bagId);
         Store store = StoreMapper.getInstance().getStore(storeName);
         this.storeBag = store;
-        Map<String,Integer> productAmount = DALService.bagRepository.findProductAmountById(bagId);
+        List<Object[]> productAmount = DALService.bagRepository.findProductAmountById(bagId);
         //todo: check and assure that the return
-        for (String productName: productAmount.keySet()){
+        for (Object[] objects: productAmount){
+            String productName =(String) objects[0];
+            int amount = (Integer)objects[1];
             ConcurrentHashMap<Product,Integer> product_Amount = new ConcurrentHashMap<>();
             Product product = StoreMapper.getInstance().getProduct(new ProductId(productName,storeName));
-            int amount = productAmount.get(productName);
             product_Amount.put(product,amount);
             bagContent.put(productName,product_Amount);
             this.productAmount.put(product,amount);
