@@ -1,11 +1,5 @@
 ## Group Members:
- Ahmad Essa
-
- Haitham Al Salih
-
- Moslem Asaad 
-
- Baraa Mahameed
+ Ahmad Essa , Haitham Al Salih , Moslem Asaad , Baraa Mahameed,
 
  Adel Watted
 
@@ -50,4 +44,7 @@ The project can be tested by running test package that contains two kinds of tes
 
 2. Acceptance tests : 
 Acceptance tests, also known as user acceptance tests or UAT, are conducted to determine whether a system meets the requirements and expectations of its end users or stakeholders. These tests are typically performed towards the end of the development cycle and focus on evaluating the system's overall usability, functionality, and compliance with the desired specifications. Acceptance tests aim to ensure that the software is ready for deployment and can be effectively used by its intended audience.
+
+![TradeZone](https://github.com/haitam-assadi/SoftwareEngineering-11A/blob/version_2_master/TradeZone.png)
+
 
