@@ -1,36 +1,104 @@
 package DomainLayer;
 
+import DTO.DealDTO;
+import DTO.MemberDTO;
+import DTO.ProductDTO;
+import DTO.StoreDTO;
+import DataAccessLayer.CompositeKeys.BagConstrainsId;
+import DataAccessLayer.CompositeKeys.DiscountPolicyId;
+import DataAccessLayer.Controller.MemberMapper;
+import DataAccessLayer.DALService;
 import DTO.*;
 import DomainLayer.BagConstraints.*;
 import DomainLayer.DiscountPolicies.*;
 
+import javax.persistence.*;
 import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.io.IOException;
 
 
+@Entity
 public class Store {
 
+    @Id
     private String storeName;
+
+    @OneToOne
+    @JoinColumn(name = "stockName")
     private Stock stock;
     private boolean isActive;
+
+    @Transient
     private StoreFounder storeFounder;
-    private ConcurrentHashMap<String, StoreOwner> storeOwners;
-    private ConcurrentHashMap<String, StoreManager> storeManagers;
+
+//    @ElementCollection(fetch = FetchType.EAGER)
+//    @CollectionTable(name = "store_owners", joinColumns = @JoinColumn(name = "store_name"))
+//    @MapKeyJoinColumns({
+//            @MapKeyJoinColumn(name = "member_name", referencedColumnName = "memberName"),
+//            @MapKeyJoinColumn(name = "store_name", referencedColumnName = "storeName")
+//    })
+//    @Column(name = "owner")
+    @Transient
+    private Map<String, StoreOwner> storeOwners;
+
+
+//    @ElementCollection(fetch = FetchType.EAGER)
+//    @CollectionTable(name = "store_managers", joinColumns = @JoinColumn(name = "store_name"))
+//    @MapKeyJoinColumns({
+//            @MapKeyJoinColumn(name = "member_name", referencedColumnName = "memberName"),
+//            @MapKeyJoinColumn(name = "store_name", referencedColumnName = "storeName")
+//    })
+//    @Column(name = "manager")
+    @Transient
+    private Map<String, StoreManager> storeManagers;
 
     //TODO:: maybe need to make it Concurrent
+    //@Transient
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "store_deals")
+    @Column(name = "deal")
     private List<Deal> storeDeals;
+    @Transient
     private ConcurrentHashMap<Integer,BagConstraint> createdBagConstraints;
+    @Transient
     private Integer bagConstraintsIdCounter;
-
+    @Transient
     private ConcurrentHashMap<Integer,DiscountPolicy> createdDiscountPolicies;
-    private Integer discountPoliciesIdCounter;
+    @Transient
+    Integer discountPoliciesIdCounter;
+    @Transient
     private ConcurrentHashMap<Integer,DiscountPolicy> storeDiscountPolicies;
+    @Transient
     private ConcurrentHashMap<Integer,BagConstraint> storePaymentPolicies;
-
+    @Transient
     private ConcurrentHashMap<String, OwnerContract> newOwnersContracts;
+    //todo: ask if we need table for OwnerContract
+    @Transient
     private List<OwnerContract> alreadyDoneContracts;
+
+    @Transient
+    private boolean isLoaded;
+
+    @Transient
+    private boolean founderLoaded;
+
+    @Transient
+    private boolean ownersLoaded;
+    @Transient
+    private boolean managersLoaded;
+    @Transient
+    private boolean createdBagConstraintsLoaded;
+    @Transient
+    private boolean isActiveLoaded;
+    @Transient
+    private boolean createdDiscountPoliciesLoaded;
+
+    @Transient
+    private boolean storeDiscountPoliciesLoaded;
+    @Transient
+    private boolean storePaymentPoliciesLoaded;
 
     public Store(String storeName) {
         this.storeName = storeName;
@@ -51,11 +119,57 @@ public class Store {
 
         this.newOwnersContracts = new ConcurrentHashMap<>();
         this.alreadyDoneContracts = new ArrayList<>();
+        isLoaded = true;
+        founderLoaded = true;
+        ownersLoaded = true;
+        managersLoaded = true;
+        isActiveLoaded = true;
+        createdBagConstraintsLoaded = true;
+        createdDiscountPoliciesLoaded = true;
+        storeDiscountPoliciesLoaded = true;
+        storePaymentPoliciesLoaded = true;
     }
+    public Store(String storeName,boolean isLoaded) {
+        this.storeName = storeName;
+        stock = new Stock(this,isLoaded);
+        isActive = true;
+        storeFounder = null;
+        storeOwners = new ConcurrentHashMap<>();
+        storeManagers = new ConcurrentHashMap<>();
+        storeDeals = new ArrayList<>();
+
+        storeDiscountPolicies = new ConcurrentHashMap<>();
+        createdDiscountPolicies = new ConcurrentHashMap<>();
+        discountPoliciesIdCounter=1;
+
+        storePaymentPolicies = new ConcurrentHashMap<>();
+        createdBagConstraints = new ConcurrentHashMap<>();
+        bagConstraintsIdCounter =1;
+        this.newOwnersContracts = new ConcurrentHashMap<>();
+        this.alreadyDoneContracts = new ArrayList<>();
+
+        this.isLoaded = isLoaded;
+        this.founderLoaded = isLoaded;
+        this.ownersLoaded = isLoaded;
+        this.managersLoaded = isLoaded;
+        isActiveLoaded = isLoaded;
+        createdBagConstraintsLoaded = isLoaded;
+        createdDiscountPoliciesLoaded = isLoaded;
+        storeDiscountPoliciesLoaded = isLoaded;
+        storePaymentPoliciesLoaded = isLoaded;
+    }
+
+    public Store(){}
+
+
     public void setStoreFounderAtStoreCreation(StoreFounder storeFounder) throws Exception {
         if(this.alreadyHaveFounder()){
             throw new Exception("store already have a founder");
         }
+        this.storeFounder = storeFounder;
+    }
+
+    public void setStoreFounder(StoreFounder storeFounder){
         this.storeFounder = storeFounder;
     }
 
@@ -64,6 +178,8 @@ public class Store {
     }
 
     public boolean isOwnerOrFounder(String memberUserName) throws Exception {
+        loadStoreFounder();
+        loadStoreOwners();
         assertStringIsNotNullOrBlank(memberUserName);
         memberUserName = memberUserName.strip().toLowerCase();
         if(!storeFounder.getUserName().equals(memberUserName) && !storeOwners.containsKey(memberUserName))
@@ -73,6 +189,7 @@ public class Store {
     }
 
     public boolean isManager(String memberUserName) throws Exception {
+        loadStoreManagers();
         assertStringIsNotNullOrBlank(memberUserName);
         memberUserName = memberUserName.strip().toLowerCase();
         if(!storeManagers.containsKey(memberUserName))
@@ -95,6 +212,7 @@ public class Store {
             return;
 
         if(isManager(memberUserName)){
+            //todo: should load manager in assertHasPermissionForStore?
             storeManagers.get(memberUserName).assertHasPermissionForStore(storeName,permission);
         }
         else{
@@ -137,8 +255,7 @@ public class Store {
             throw new Exception("the Description of the product cannot be null");
         if(newProductDescription.length()>300)
             throw new Exception("the Description of the product is too long");
-        if(!storeFounder.getUserName().equals(memberUserName) && !storeOwners.containsKey(memberUserName))
-            throw new Exception("can't add new product to stock : userName "+ memberUserName +" is not an owner to the store");
+
         return stock.updateProductDescription(productName,newProductDescription);
     }
 
@@ -146,8 +263,6 @@ public class Store {
         assertIsOwnerOrFounderOrAuthorizedManager(memberUserName, ManagerPermissions.manageStock);
         if(newAmount < 0)
             throw new Exception("the amount of the product cannot be negative");
-        if(!storeFounder.getUserName().equals(memberUserName) && !storeOwners.containsKey(memberUserName))
-            throw new Exception("can't add new product to stock : userName "+ memberUserName +" is not an owner to the store");
         return stock.updateProductAmount(productName,newAmount);
     }
 
@@ -155,12 +270,11 @@ public class Store {
         assertIsOwnerOrFounderOrAuthorizedManager(memberUserName, ManagerPermissions.manageStock);
         if(newPrice <= 0)
             throw new Exception("the price of the product cannot be negative");
-        if(!storeFounder.getUserName().equals(memberUserName) && !storeOwners.containsKey(memberUserName))
-            throw new Exception("can't add new product to stock : userName "+ memberUserName +" is not an owner to the store");
         return stock.updateProductPrice(productName,newPrice);
     }
 
     public StoreDTO getStoreInfo() throws Exception {
+        loadStore();
         List<String> ownersNames = this.storeOwners.values().stream().map(Role::getUserName).toList();
         List<String> managersNames = this.storeManagers.values().stream().map(Role::getUserName).toList();
         return new StoreDTO(storeName, storeFounder.getUserName(), ownersNames, managersNames, stock.getProductsInfoAmount(),isActive);
@@ -171,6 +285,7 @@ public class Store {
     }
 
     public List<String> getProductDiscountPolicies(String productName) throws Exception {
+        //TODO: MOSLEM: load all store or relevant fields
         assertStringIsNotNullOrBlank(productName);
         stock.assertContainsProduct(productName);
         productName=productName.strip().toLowerCase();
@@ -215,21 +330,24 @@ public class Store {
         return stock.containsKeyWord(keyword);
     }
 
-    public boolean isAlreadyStoreOwner(String memberUserName){
+    public boolean isAlreadyStoreOwner(String memberUserName) throws Exception {
+        loadStoreFounder();
         if(storeFounder.getUserName().equals(memberUserName))
             return true;
-
-        else if (storeOwners.keySet().contains(memberUserName))
+        loadStoreOwners();
+        if (storeOwners.keySet().contains(memberUserName))
             return true;
 
-        else return false;
+        return false;
     }
 
-    public boolean isAlreadyStoreManager(String memberUserName) {
+    public boolean isAlreadyStoreManager(String memberUserName) throws Exception {
+        loadStoreManagers();
         return storeManagers.keySet().contains(memberUserName);
     }
 
     public boolean appointMemberAsStoreOwner(StoreOwner storeOwner) throws Exception {
+        loadStoreOwners();
         if(storeOwners.containsKey(storeOwner.getUserName()))
             throw new Exception(""+storeOwner.getUserName()+" is already owner for this store");
         storeOwners.put(storeOwner.getUserName(), storeOwner);
@@ -237,22 +355,11 @@ public class Store {
     }
 
     public boolean appointMemberAsStoreManager(StoreManager storeManager) throws Exception {
+        loadStoreManagers();
         if(storeManagers.containsKey(storeManager.getUserName()))
             throw new Exception(""+storeManager.getUserName()+" is already manager for this store");
         storeManagers.put(storeManager.getUserName(), storeManager);
         return true;
-    }
-
-
-    public boolean addPermissionForStoreManager(String ownerUserName, String managerUserName, Integer permissionId) throws Exception {
-        assertIsOwnerOrFounder(ownerUserName);
-        assertIsManager(managerUserName);
-        managerUserName = managerUserName.strip().toLowerCase();
-        StoreManager storeManager = storeManagers.get(managerUserName);
-        if(!storeManager.isMyBossForStore(getStoreName(), ownerUserName))
-            throw new Exception(ownerUserName+ " is not a boss for "+managerUserName+" in store "+getStoreName());
-
-        return storeManager.addPermissionForStore(getStoreName(),permissionId);
     }
 
 
@@ -289,6 +396,7 @@ public class Store {
     }
 
     public boolean isActive() {
+        loadIsActive();
         return isActive;
     }
 
@@ -304,11 +412,11 @@ public class Store {
         return storeFounder;
     }
 
-    public ConcurrentHashMap<String, StoreOwner> getStoreOwners() {
+    public Map<String, StoreOwner> getStoreOwners() {
         return storeOwners;
     }
 
-    public ConcurrentHashMap<String, StoreManager> getStoreManagers() {
+    public Map<String, StoreManager> getStoreManagers() {
         return storeManagers;
     }
 
@@ -316,16 +424,24 @@ public class Store {
 
 
     public boolean closeStore(String memberUserName) throws Exception {
+        loadIsActive();
+        if (!isActive) throw new Exception("the store " + storeName + " already closed!");
+        loadStoreFounder();
         if(memberUserName.equals(this.storeFounder.getUserName())){
             this.isActive = false;
             String msg = "store: " + storeName + " has been closed by " + memberUserName + " at " + java.time.LocalTime.now();
             NotificationService.getInstance().notify(storeName,msg,NotificationType.storeClosed);
+            if (Market.dbFlag)
+                DALService.storeRepository.save(this);
             return true;
         }
         throw new Exception(memberUserName + "is not the founder of the store");
     }
 
     public List<MemberDTO> getStoreWorkersInfo(String memberUserName) throws Exception {
+        loadStoreFounder();
+        loadStoreOwners();
+        loadStoreManagers();
         assertIsOwnerOrFounderOrAuthorizedManager(memberUserName, ManagerPermissions.getWorkersInfo);
         List<MemberDTO> members = new ArrayList<MemberDTO>();
         members.add(this.storeFounder.getMemberDTO());
@@ -339,6 +455,8 @@ public class Store {
     }
 
     public List<DealDTO> getStoreDeals(String memberUserName, boolean isSystemManager) throws Exception {
+        //TODO: MOSLEM: load all store from data base, or get this info only
+        // now i dont have deal table so wait
         if(!isSystemManager)
             assertIsOwnerOrFounderOrAuthorizedManager(memberUserName, ManagerPermissions.getStoreDeals);
         List<DealDTO> deals = new ArrayList<DealDTO>();
@@ -350,6 +468,10 @@ public class Store {
 
     //Currently added for testing
     public void addDeal(Deal deal){
+
+        //TODO: MOSLEM: update here
+        // i do in cart.updatstockamount its transaction
+        // i can make it here but should discuss if add store deals table in user and store list<deal>
         this.storeDeals.add(deal);
     }
 
@@ -366,6 +488,8 @@ public class Store {
     }
 
     public void validateStorePolicy(ConcurrentHashMap<String, ConcurrentHashMap<Product,Integer>> bagContent) throws Exception {
+        //TODO: MOSLEM: load data
+        // i dont understand this
         for(BagConstraint bagConstraint : storePaymentPolicies.values())
             if(!bagConstraint.checkConstraint(bagContent))
                 throw new Exception("Bag does not follow store: "+storeName+" payment policy: "+bagConstraint.toString());
@@ -375,13 +499,8 @@ public class Store {
 
 
     public Double getDiscountForBag(ConcurrentHashMap<String, ConcurrentHashMap<Product,Integer>> bagContent) throws Exception {
-//        Double totalBagDiscount = 0.0;
-//        for(DiscountPolicy discountPolicy : storeDiscountPolicies.values()){
-//            totalBagDiscount+= discountPolicy.calculateDiscount(bagContent);
-//        }
-//        return totalBagDiscount;
-
-        // should calculate the same value
+        //TODO: MOSLEM: load data
+        // i dont understand this
         Double totalBagDiscount = 0.0;
         for(DiscountPolicy discountPolicy : storeDiscountPolicies.values()){
             for(String productName: bagContent.keySet())
@@ -391,6 +510,9 @@ public class Store {
     }
 
     public Double getDiscountForProductInBag(ConcurrentHashMap<String, ConcurrentHashMap<Product,Integer>> bagContent, String productName) throws Exception {
+        //TODO: MOSLEM: load data
+        // i dont understand this
+
         assertStringIsNotNullOrBlank(productName);
         stock.assertContainsProduct(productName);
         productName=productName.strip().toLowerCase();
@@ -404,7 +526,9 @@ public class Store {
 
 
 
-    public void removeManager(String userName) {
+    public void removeManager(String userName) throws Exception {
+        loadStoreManagers();
+        //TODO: MOSLEM: update S manager
         storeManagers.remove(userName);
     }
 
@@ -415,8 +539,6 @@ public class Store {
     public boolean replaceBagAmountToStock(ConcurrentHashMap<String, ConcurrentHashMap<Product,Integer>> bagContent) throws Exception {
         return stock.replaceBagAmountToStock(bagContent);
     }
-
-
 
 
     public Integer createProductDiscountPolicy(String memberUserName, String productName,  int discountPercentage, boolean addAsStoreDiscountPolicy) throws Exception {
@@ -430,8 +552,10 @@ public class Store {
         ProductDiscountPolicy productDiscountPolicy = new ProductDiscountPolicy(product,discountPercentage);
         int currentDisPolIdCounter =this.discountPoliciesIdCounter;
         createdDiscountPolicies.put(currentDisPolIdCounter, productDiscountPolicy);
+        productDiscountPolicy.setDiscountPolicyId(new DiscountPolicyId(currentDisPolIdCounter,storeName));
+        if (Market.dbFlag)
+            DALService.productDiscountPolicyRepository.save(productDiscountPolicy);
         this.discountPoliciesIdCounter++;
-
         if(addAsStoreDiscountPolicy)
             storeDiscountPolicies.put(currentDisPolIdCounter, productDiscountPolicy);
 
@@ -456,6 +580,9 @@ public class Store {
         ProductDiscountPolicy productDiscountPolicy = new ProductDiscountPolicy(product,discountPercentage, bagConstraint);
         int currentDisPolIdCounter =this.discountPoliciesIdCounter;
         createdDiscountPolicies.put(currentDisPolIdCounter, productDiscountPolicy);
+        productDiscountPolicy.setDiscountPolicyId(new DiscountPolicyId(currentDisPolIdCounter,storeName));
+        if (Market.dbFlag)
+            DALService.productDiscountPolicyRepository.save(productDiscountPolicy);
         this.discountPoliciesIdCounter++;
 
         if(addAsStoreDiscountPolicy)
@@ -475,6 +602,9 @@ public class Store {
         CategoryDiscountPolicy categoryDiscountPolicy = new CategoryDiscountPolicy(category,discountPercentage);
         int currentDisPolIdCounter =this.discountPoliciesIdCounter;
         createdDiscountPolicies.put(currentDisPolIdCounter, categoryDiscountPolicy);
+        categoryDiscountPolicy.setDiscountPolicyId(new DiscountPolicyId(currentDisPolIdCounter,storeName));
+        if (Market.dbFlag)
+            DALService.categoryDiscountPolicyRepository.save(categoryDiscountPolicy);
         this.discountPoliciesIdCounter++;
 
         if(addAsStoreDiscountPolicy)
@@ -501,6 +631,9 @@ public class Store {
         CategoryDiscountPolicy categoryDiscountPolicy = new CategoryDiscountPolicy(category,discountPercentage, bagConstraint);
         int currentDisPolIdCounter =this.discountPoliciesIdCounter;
         createdDiscountPolicies.put(currentDisPolIdCounter, categoryDiscountPolicy);
+        categoryDiscountPolicy.setDiscountPolicyId(new DiscountPolicyId(currentDisPolIdCounter,storeName));
+        if (Market.dbFlag)
+            DALService.categoryDiscountPolicyRepository.save(categoryDiscountPolicy);
         this.discountPoliciesIdCounter++;
 
         if(addAsStoreDiscountPolicy)
@@ -508,7 +641,6 @@ public class Store {
 
         return currentDisPolIdCounter;
     }
-
 
     public Integer createAllStoreDiscountPolicy(String memberUserName,int discountPercentage, boolean addAsStoreDiscountPolicy) throws Exception {
         assertIsOwnerOrFounderOrAuthorizedManager(memberUserName, ManagerPermissions.manageStoreDiscountPolicies);
@@ -519,6 +651,9 @@ public class Store {
         AllStoreDiscountPolicy allStoreDiscountPolicy = new AllStoreDiscountPolicy(discountPercentage);
         int currentDisPolIdCounter =this.discountPoliciesIdCounter;
         createdDiscountPolicies.put(currentDisPolIdCounter, allStoreDiscountPolicy);
+        allStoreDiscountPolicy.setDiscountPolicyId(new DiscountPolicyId(currentDisPolIdCounter,storeName));
+        if (Market.dbFlag)
+            DALService.allStoreDiscountPolicyRepository.save(allStoreDiscountPolicy);
         this.discountPoliciesIdCounter++;
 
         if(addAsStoreDiscountPolicy)
@@ -543,6 +678,9 @@ public class Store {
         AllStoreDiscountPolicy allStoreDiscountPolicy = new AllStoreDiscountPolicy(discountPercentage, bagConstraint);
         int currentDisPolIdCounter =this.discountPoliciesIdCounter;
         createdDiscountPolicies.put(currentDisPolIdCounter, allStoreDiscountPolicy);
+        allStoreDiscountPolicy.setDiscountPolicyId(new DiscountPolicyId(currentDisPolIdCounter,storeName));
+        if (Market.dbFlag)
+            DALService.allStoreDiscountPolicyRepository.save(allStoreDiscountPolicy);
         this.discountPoliciesIdCounter++;
 
         if(addAsStoreDiscountPolicy)
@@ -568,6 +706,9 @@ public class Store {
         AdditionDiscountPolicy additionDiscountPolicy = new AdditionDiscountPolicy(firstDiscountPolicy, secondDiscountPolicy);
         int currentDisPolIdCounter =this.discountPoliciesIdCounter;
         createdDiscountPolicies.put(currentDisPolIdCounter, additionDiscountPolicy);
+        additionDiscountPolicy.setDiscountPolicyId(new DiscountPolicyId(currentDisPolIdCounter,storeName));
+        if (Market.dbFlag)
+            DALService.additionDiscountPolicyRepository.save(additionDiscountPolicy);
         this.discountPoliciesIdCounter++;
         if(addAsStoreDiscountPolicy)
             storeDiscountPolicies.put(currentDisPolIdCounter, additionDiscountPolicy);
@@ -600,6 +741,9 @@ public class Store {
         AdditionDiscountPolicy additionDiscountPolicy = new AdditionDiscountPolicy(firstDiscountPolicy, secondDiscountPolicy, bagConstraint);
         int currentDisPolIdCounter =this.discountPoliciesIdCounter;
         createdDiscountPolicies.put(currentDisPolIdCounter, additionDiscountPolicy);
+        additionDiscountPolicy.setDiscountPolicyId(new DiscountPolicyId(currentDisPolIdCounter,storeName));
+        if (Market.dbFlag)
+            DALService.additionDiscountPolicyRepository.save(additionDiscountPolicy);
         this.discountPoliciesIdCounter++;
         if(addAsStoreDiscountPolicy)
             storeDiscountPolicies.put(currentDisPolIdCounter, additionDiscountPolicy);
@@ -624,6 +768,9 @@ public class Store {
         MaxValDiscountPolicy maxValDiscountPolicy = new MaxValDiscountPolicy(firstDiscountPolicy, secondDiscountPolicy);
         int currentDisPolIdCounter =this.discountPoliciesIdCounter;
         createdDiscountPolicies.put(currentDisPolIdCounter, maxValDiscountPolicy);
+        maxValDiscountPolicy.setDiscountPolicyId(new DiscountPolicyId(currentDisPolIdCounter,storeName));
+        if (Market.dbFlag)
+            DALService.maxValDiscountPolicyRepository.save(maxValDiscountPolicy);
         this.discountPoliciesIdCounter++;
         if(addAsStoreDiscountPolicy)
             storeDiscountPolicies.put(currentDisPolIdCounter, maxValDiscountPolicy);
@@ -656,6 +803,9 @@ public class Store {
         MaxValDiscountPolicy maxValDiscountPolicy = new MaxValDiscountPolicy(firstDiscountPolicy, secondDiscountPolicy, bagConstraint);
         int currentDisPolIdCounter =this.discountPoliciesIdCounter;
         createdDiscountPolicies.put(currentDisPolIdCounter, maxValDiscountPolicy);
+        maxValDiscountPolicy.setDiscountPolicyId(new DiscountPolicyId(currentDisPolIdCounter,storeName));
+        if (Market.dbFlag)
+            DALService.maxValDiscountPolicyRepository.save(maxValDiscountPolicy);
         this.discountPoliciesIdCounter++;
         if(addAsStoreDiscountPolicy)
             storeDiscountPolicies.put(currentDisPolIdCounter, maxValDiscountPolicy);
@@ -734,6 +884,9 @@ public class Store {
         ProductBagConstraint productBagConstraint = new ProductBagConstraint(product, hour,minute);
         int currentBagConstraintsIdCounter =this.bagConstraintsIdCounter;
         createdBagConstraints.put(currentBagConstraintsIdCounter, productBagConstraint);
+        productBagConstraint.setBagConstrainsId(new BagConstrainsId(currentBagConstraintsIdCounter,storeName));
+        if (Market.dbFlag)
+            DALService.productBagConstraintRepository.save(productBagConstraint);
         this.bagConstraintsIdCounter++;
         if(addAsStorePaymentPolicy)
             storePaymentPolicies.put(currentBagConstraintsIdCounter, productBagConstraint);
@@ -759,14 +912,15 @@ public class Store {
         ProductBagConstraint productBagConstraint = new ProductBagConstraint(product, fromYear,fromMonth,fromDay, toYear,toMonth,toDay);
         int currentBagConstraintsIdCounter =this.bagConstraintsIdCounter;
         createdBagConstraints.put(currentBagConstraintsIdCounter, productBagConstraint);
+        productBagConstraint.setBagConstrainsId(new BagConstrainsId(currentBagConstraintsIdCounter,storeName));
+        if (Market.dbFlag)
+            DALService.productBagConstraintRepository.save(productBagConstraint);
         this.bagConstraintsIdCounter++;
         if(addAsStorePaymentPolicy)
             storePaymentPolicies.put(currentBagConstraintsIdCounter, productBagConstraint);
 
         return currentBagConstraintsIdCounter;
     }
-
-
 
     //CategoryBagConstraint
     public Integer createMaxTimeAtDayCategoryBagConstraint(String memberUserName, String categoryName, int hour, int minute, boolean addAsStorePaymentPolicy) throws Exception {
@@ -784,6 +938,9 @@ public class Store {
         CategoryBagConstraint categoryBagConstraint = new CategoryBagConstraint(category, hour,minute);
         int currentBagConstraintsIdCounter =this.bagConstraintsIdCounter;
         createdBagConstraints.put(currentBagConstraintsIdCounter, categoryBagConstraint);
+        categoryBagConstraint.setBagConstrainsId(new BagConstrainsId(bagConstraintsIdCounter,storeName));
+        if (Market.dbFlag)
+            DALService.categoryBagConstraintRepository.save(categoryBagConstraint);
         this.bagConstraintsIdCounter++;
         if(addAsStorePaymentPolicy)
             storePaymentPolicies.put(currentBagConstraintsIdCounter, categoryBagConstraint);
@@ -803,13 +960,13 @@ public class Store {
 
         if(fromDay<1 || fromDay>31 ||  toDay<1 || toDay>31)
             throw new Exception("day can't be less than 1 or more than 31");
-
-
-
         Category category = stock.getCategory(categoryName);
         CategoryBagConstraint categoryBagConstraint = new CategoryBagConstraint(category, fromYear,fromMonth,fromDay, toYear,toMonth,toDay);
         int currentBagConstraintsIdCounter =this.bagConstraintsIdCounter;
         createdBagConstraints.put(currentBagConstraintsIdCounter, categoryBagConstraint);
+        categoryBagConstraint.setBagConstrainsId(new BagConstrainsId(bagConstraintsIdCounter,storeName));
+        if (Market.dbFlag)
+            DALService.categoryBagConstraintRepository.save(categoryBagConstraint);
         this.bagConstraintsIdCounter++;
         if(addAsStorePaymentPolicy)
             storePaymentPolicies.put(currentBagConstraintsIdCounter, categoryBagConstraint);
@@ -834,6 +991,9 @@ public class Store {
         AllContentBagConstraint allContentBagConstraint = new AllContentBagConstraint(product, amountLimit, "MaxProductAmount");
         int currentBagConstraintsIdCounter =this.bagConstraintsIdCounter;
         createdBagConstraints.put(currentBagConstraintsIdCounter, allContentBagConstraint);
+        allContentBagConstraint.setBagConstrainsId(new BagConstrainsId(currentBagConstraintsIdCounter,storeName));
+        if (Market.dbFlag)
+            DALService.allContentBagConstraintRepository.save(allContentBagConstraint);
         this.bagConstraintsIdCounter++;
         if(addAsStorePaymentPolicy)
             storePaymentPolicies.put(currentBagConstraintsIdCounter, allContentBagConstraint);
@@ -852,6 +1012,9 @@ public class Store {
         AllContentBagConstraint allContentBagConstraint = new AllContentBagConstraint(product, amountLimit, "MinProductAmount");
         int currentBagConstraintsIdCounter =this.bagConstraintsIdCounter;
         createdBagConstraints.put(currentBagConstraintsIdCounter, allContentBagConstraint);
+        allContentBagConstraint.setBagConstrainsId(new BagConstrainsId(currentBagConstraintsIdCounter,storeName));
+        if (Market.dbFlag)
+            DALService.allContentBagConstraintRepository.save(allContentBagConstraint);
         this.bagConstraintsIdCounter++;
         if(addAsStorePaymentPolicy)
             storePaymentPolicies.put(currentBagConstraintsIdCounter, allContentBagConstraint);
@@ -876,6 +1039,9 @@ public class Store {
         BagConstraintAnd bagConstraintAnd = new BagConstraintAnd(firstBagConstraint, secondBagConstraint);
         int currentBagConstraintsIdCounter =this.bagConstraintsIdCounter;
         createdBagConstraints.put(currentBagConstraintsIdCounter, bagConstraintAnd);
+        bagConstraintAnd.setBagConstrainsId(new BagConstrainsId(currentBagConstraintsIdCounter,storeName));
+        if (Market.dbFlag)
+            DALService.bagConstraintAndRepository.save(bagConstraintAnd);
         this.bagConstraintsIdCounter++;
         if(addAsStorePaymentPolicy)
             storePaymentPolicies.put(currentBagConstraintsIdCounter, bagConstraintAnd);
@@ -899,6 +1065,9 @@ public class Store {
         BagConstraintOr bagConstraintOr = new BagConstraintOr(firstBagConstraint, secondBagConstraint);
         int currentBagConstraintsIdCounter =this.bagConstraintsIdCounter;
         createdBagConstraints.put(currentBagConstraintsIdCounter, bagConstraintOr);
+        bagConstraintOr.setBagConstrainsId(new BagConstrainsId(currentBagConstraintsIdCounter,storeName));
+        if (Market.dbFlag)
+            DALService.bagConstraintOrRepository.save(bagConstraintOr);
         this.bagConstraintsIdCounter++;
         if(addAsStorePaymentPolicy)
             storePaymentPolicies.put(currentBagConstraintsIdCounter, bagConstraintOr);
@@ -923,6 +1092,9 @@ public class Store {
         BagConstraintOnlyIf bagConstraintOnlyIf = new BagConstraintOnlyIf(firstBagConstraint, secondBagConstraint);
         int currentBagConstraintsIdCounter =this.bagConstraintsIdCounter;
         createdBagConstraints.put(currentBagConstraintsIdCounter, bagConstraintOnlyIf);
+        bagConstraintOnlyIf.setBagConstrainsId(new BagConstrainsId(currentBagConstraintsIdCounter,storeName));
+        if (Market.dbFlag)
+            DALService.bagConstraintOnlyIfRepository.save(bagConstraintOnlyIf);
         this.bagConstraintsIdCounter++;
         if(addAsStorePaymentPolicy)
             storePaymentPolicies.put(currentBagConstraintsIdCounter, bagConstraintOnlyIf);
@@ -970,6 +1142,8 @@ public class Store {
     }
 
     public List<String> getAllBagConstraints(String memberUserName) throws Exception {
+        // moslem complete from here start
+        loadCreatedBagConstraints();
         List<String> allBagConstraints = new LinkedList<>();
         for(Integer bagConstraintId : createdBagConstraints.keySet().stream().toList().stream().sorted().toList())
             allBagConstraints.add(bagConstraintId+". "+ createdBagConstraints.get(bagConstraintId).toString());
@@ -977,11 +1151,43 @@ public class Store {
         return allBagConstraints;
     }
 
-    public boolean hasRole(String memberUserName){
-        return storeFounder.getUserName().equals(memberUserName) || storeOwners.containsKey(memberUserName) || storeManagers.containsKey(memberUserName);
+    public List<Integer> getCreatedBagConstIds(){
+        loadCreatedBagConstraints();
+        return createdBagConstraints.keySet().stream().toList();
     }
 
-    public boolean systemManagerCloseStore(String managerName) throws IOException {
+    public List<Integer> getStoreBagConstIds(){
+        //todo: ask ahmad
+        return storePaymentPolicies.keySet().stream().toList();
+    }
+
+
+    public List<Integer> getCreatedDiscountPoliciesIds(){
+        loadCreatedDiscountPolicies();
+        return createdDiscountPolicies.keySet().stream().toList();
+    }
+
+    public List<Integer> getStoreDiscountPoliciesIds(){
+        //todo: ask ahmad
+        return storeDiscountPolicies.keySet().stream().toList();
+    }
+
+    /********************* end of disncounts and constraints *****************************/
+
+    public boolean hasRole(String memberUserName) throws Exception {
+        //new implementation
+        loadStoreFounder();
+        if (storeFounder.getUserName().equals(memberUserName)) return true;
+        loadStoreOwners();
+        if (storeOwners.containsKey(memberUserName)) return true;
+        loadStoreManagers();
+        if (storeManagers.containsKey(memberUserName)) return true;
+        return false;
+    }
+
+    //this function is not required in v4 so don't look at it
+    public boolean systemManagerCloseStore(String managerName) throws Exception {
+
         storeFounder.removeStore(storeName);
         for (StoreOwner storeOwner: storeOwners.values()){
             storeOwner.removeStore(storeName);
@@ -1000,27 +1206,106 @@ public class Store {
         return true;
     }
 
-    public List<Integer> getCreatedBagConstIds(){
-        return createdBagConstraints.keySet().stream().toList();
+
+    public void loadStore() throws Exception {
+        if (isLoaded || !Market.dbFlag)
+            return;
+        loadIsActive();
+        loadStoreFounder();
+        loadStoreOwners();
+        loadStoreManagers();
+        loadCreatedBagConstraints();
+        loadCreatedDiscountPolicies();
+        //TODO: MOSLEM: we need to load storeDeals, 3 fields DiscountPolicies , 3 fields PaymentPolicies, 2 fields contracts
+        isLoaded = true;
+    }
+    public void loadStoreFounder() throws Exception {
+        if (founderLoaded || !Market.dbFlag)
+            return;
+        String founderName = DALService.storeFounderRepository.findFounderNameByStoreName(storeName);
+        this.storeFounder = MemberMapper.getInstance().getStoreFounder(founderName);
+        founderLoaded = true;
+
     }
 
-    public List<Integer> getStoreBagConstIds(){
-        return storePaymentPolicies.keySet().stream().toList();
+
+
+    public void loadStoreOwners() throws Exception{
+        if (ownersLoaded || !Market.dbFlag)
+            return;
+        List<String> ownersNames = DALService.storesOwnersRepository.findOwnersNamesByStoreName(storeName);
+        for (String ownerName : ownersNames) {
+            StoreOwner storeOwner = MemberMapper.getInstance().getStoreOwner(ownerName);
+            storeOwners.put(ownerName, storeOwner);
+        }
+        ownersLoaded = true;
+    }
+
+    public void loadStoreManagers() throws Exception{
+        if (managersLoaded || !Market.dbFlag)
+            return;
+        List<String> managersNames = DALService.storesManagersRepository.findManagersNamesByStoreName(storeName);
+        for (String managerName : managersNames) {
+            StoreManager storeManager = MemberMapper.getInstance().getStoreManager(managerName);
+            storeManagers.put(managerName, storeManager);
+        }
+        managersLoaded = true;
+    }
+
+    public void loadCreatedBagConstraints(){
+        if (createdBagConstraintsLoaded || !Market.dbFlag)
+            return;
+        List<BagConstraint> bagConstraints = DALService.bagConstraintRepository.findAllByBagConstrainsIdStoreName(storeName);
+        int maxId = 0;
+        for (BagConstraint bagConstraint: bagConstraints){
+            int id = bagConstraint.getBagConstrainsId().getId();
+            createdBagConstraints.put(id,bagConstraint);
+            if (maxId < id){
+                maxId = id;
+            }
+        }
+        this.bagConstraintsIdCounter = maxId;
+        createdBagConstraintsLoaded = true;
     }
 
 
-    public List<Integer> getCreatedDiscountPoliciesIds(){
-        return createdDiscountPolicies.keySet().stream().toList();
+
+
+    public void loadCreatedDiscountPolicies(){
+        if (createdDiscountPoliciesLoaded || !Market.dbFlag)
+            return;
+        List<DiscountPolicy> discountPolicies = DALService.discountPolicyRepository.findAllByDiscountPolicyIdStoreName(storeName);
+        int maxId = 0;
+        for (DiscountPolicy discountPolicy: discountPolicies){
+            int id = discountPolicy.getDiscountPolicyId().getId();
+            createdDiscountPolicies.put(id,discountPolicy);
+            if (maxId < id){
+                maxId = id;
+            }
+        }
+        this.discountPoliciesIdCounter = maxId;
+        createdDiscountPoliciesLoaded = true;
     }
 
-    public List<Integer> getStoreDiscountPoliciesIds(){
-        return storeDiscountPolicies.keySet().stream().toList();
+    private void loadIsActive(){
+        if (!isLoaded && Market.dbFlag)
+            this.isActive = DALService.storeRepository.findIsActiveById(storeName);
     }
 
-
+//    public void addStoreOwner(String ownerName,StoreOwner storeOwner){
+//        if(!storeOwners.containsKey(ownerName))
+//            storeOwners.put(ownerName,storeOwner);
+//    }
+//    public void addStoreManager(String managerName,StoreManager storeManager){
+//        if(!storeManagers.containsKey(managerName))
+//            storeManagers.put(managerName,storeManager);
+//    }
 
     //return 1=storeFounder, 2=storeOwner, 3=storeManager, -1= noRule
     public int getRuleForStore(String memberName) throws Exception {
+        loadStoreFounder();
+        loadStoreOwners();
+        loadStoreManagers();
         memberName = memberName.strip().toLowerCase();
         return
                 storeFounder.getUserName().equals(memberName) ? 1
@@ -1037,6 +1322,8 @@ public class Store {
 
 
     public boolean createContractForNewOwner(AbstractStoreOwner triggerOwner, Member newOwner) throws Exception {
+        loadStoreFounder();
+        loadStoreOwners();
         ConcurrentHashMap<String, Boolean> storeOwnersDecisions = new ConcurrentHashMap<>();
         if(!storeFounder.getUserName().equals(triggerOwner.getUserName()))
             storeOwnersDecisions.put(storeFounder.getUserName(),false);
@@ -1127,6 +1414,8 @@ public class Store {
     }
 
     public void removeOwner(String userName) throws Exception {
+        loadStoreOwners();
+        //todo: moslem (ana moslem) update stor owners
         storeOwners.remove(userName);
 
         for(OwnerContract ownerContract: this.alreadyDoneContracts.stream().toList()){
@@ -1150,5 +1439,10 @@ public class Store {
         }
     }
 
+    //todo: do:
+    // 1- contracts
+    // 2- discounts and constraints
+    // 3- deals
+    // 4- todos
 
 }

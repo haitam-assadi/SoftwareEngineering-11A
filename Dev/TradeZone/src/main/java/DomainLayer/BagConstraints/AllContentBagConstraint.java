@@ -3,14 +3,29 @@ package DomainLayer.BagConstraints;
 import DomainLayer.Product;
 import DomainLayer.User;
 
+import javax.persistence.*;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class AllContentBagConstraint implements BagConstraint {
+@Entity
+@Table
+@PrimaryKeyJoinColumns({
+        @PrimaryKeyJoinColumn(name = "id", referencedColumnName = "id"),
+        @PrimaryKeyJoinColumn(name = "storeName", referencedColumnName = "storeName")
+})
+public class AllContentBagConstraint extends BagConstraint {
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "type")
     BagConstraintType cartPPType;
+    @OneToOne
+    @JoinColumns({
+            @JoinColumn(name = "productName", referencedColumnName = "productName"),
+            @JoinColumn(name = "productStoreName", referencedColumnName = "storeName")
+    })
     Product product;
     int amountLimit;
 
+    public AllContentBagConstraint(){}
     public AllContentBagConstraint(Product product, int amountLimit, String cartPPType){
         this.product=product;
         this.amountLimit = amountLimit;

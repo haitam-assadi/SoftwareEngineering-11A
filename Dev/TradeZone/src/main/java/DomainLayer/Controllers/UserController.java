@@ -3,13 +3,17 @@ package DomainLayer.Controllers;
 import DTO.DealDTO;
 import DTO.MemberDTO;
 import DTO.StoreDTO;
+import DataAccessLayer.Controller.MemberMapper;
+import DataAccessLayer.DALService;
 import DomainLayer.*;
 
+import javax.transaction.Transactional;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -35,14 +39,23 @@ public class UserController {
         systemManagers = new ConcurrentHashMap<>();
     }
 
-    public String firstManagerInitializer() {
+    public String firstManagerInitializer() throws Exception {
         String user = "systemmanager1";
-        Member member = new Member(user,Security.Encode("systemmanager1Pass"));
-        membersNamesConcurrentSet.add(user);
-        members.put(user,member);
-        SystemManager systemManager = new SystemManager(member);
-        member.setSystemManager(systemManager);
-        systemManagers.put(user,systemManager);
+        if(!isMember(user)) {
+            Member member = MemberMapper.getInstance().getNewMember(user,"systemmanager1Pass");
+            membersNamesConcurrentSet.add(user);
+            members.put(user, member);
+            if (Market.dbFlag){
+                DALService.saveMember(member, member.getCart());
+            }
+            SystemManager systemManager = MemberMapper.getInstance().getNewSystemManager(member);
+            member.setSystemManager(systemManager);
+            systemManagers.put(user, systemManager);
+            if (Market.dbFlag) {
+               // DALService.saveMember(member, member.getCart());
+                DALService.systemManagerRepository.save(systemManager);
+            }
+        }
         return user;
     }
 
@@ -60,8 +73,11 @@ public class UserController {
     public boolean exitMarket(String userName) throws Exception {
         assertIsGuestOrLoggedInMember(userName);
         userName = userName.strip().toLowerCase();
-        if(isGuest(userName))
+        if(isGuest(userName)) {
             guests.remove(userName);
+            if (Market.dbFlag)
+                DALService.cartRepository.deleteGuest();
+        }
         else
             loggedInMemberExitMarket(userName);
 
@@ -70,12 +86,17 @@ public class UserController {
     public boolean register(String guestUserName, String newMemberUserName, String password) throws Exception {
         registerValidateParameters(guestUserName, newMemberUserName, password);
         newMemberUserName = newMemberUserName.strip().toLowerCase();
-        Member member = new Member(newMemberUserName, Security.Encode(password));
-        member.addCart(guests.get(guestUserName).getCart());
-        members.put(newMemberUserName, member);
+        Member member = MemberMapper.getInstance().getNewMember(newMemberUserName,password);
+        members.put(newMemberUserName,member);
         member.defineNotifications(newMemberUserName);
         membersNamesConcurrentSet.add(newMemberUserName);
-        //TODO: add user to database
+        if (Market.dbFlag) {
+            DALService.saveMember(member, member.getCart());
+        }
+        member.getCart().setMemberCart(member);
+        if (Market.dbFlag)
+            DALService.cartRepository.save(member.getCart());
+        member.addCart(guests.get(guestUserName).getCart());
         return true;
     }
 
@@ -131,6 +152,11 @@ public class UserController {
         MemberUserName = MemberUserName.strip().toLowerCase();
         loginValidateParameters(guestUserName, MemberUserName, password);
         Member member = getMember(MemberUserName);
+        member.loadMember();
+        SystemManager systemManager = member.checkIsSystemManager();
+        if (systemManager !=null){
+            systemManagers.put(MemberUserName,systemManager);
+        }
         if(!member.getPassword().equals(Security.Encode(password)))
             throw new Exception("incorrect password!");
         loggedInMembers.put(MemberUserName, member);
@@ -155,10 +181,10 @@ public class UserController {
         assertIsMember(userName);
 
         userName = userName.strip().toLowerCase();
-        if(!members.containsKey(userName))
+        if(!members.containsKey(userName)) {
             // TODO: read from database AND add to members hashmap
-            throw new Exception("user needs to be read from database");
-
+                throw new Exception(userName + " does not exist!");
+        }
         return members.get(userName);
     }
 
@@ -233,8 +259,14 @@ public class UserController {
         assertStringIsNotNullOrBlank(memberUserName);
 
         memberUserName = memberUserName.strip().toLowerCase();
-        if(!membersNamesConcurrentSet.contains(memberUserName))
-            return false;
+        if(!membersNamesConcurrentSet.contains(memberUserName)){
+            Member member = MemberMapper.getInstance().getMember(memberUserName);
+            if (member == null)
+                return false;
+            membersNamesConcurrentSet.add(memberUserName);
+            members.put(memberUserName,member);//check this
+            return true;
+        }
 
         return true;
     }
@@ -261,9 +293,10 @@ public class UserController {
 
     public boolean isSystemManager(String managerName) throws Exception {
         assertStringIsNotNullOrBlank(managerName);
-
         managerName = managerName.strip().toLowerCase();
-        return systemManagers.containsKey(managerName);
+        return MemberMapper.getInstance().checkIsSystemManager(managerName);
+        //MemberMapper.getInstance().getSystemManager(managerName);
+        //return systemManagers.containsKey(managerName);
     }
 
     public void assertIsMember(String memberUserName) throws Exception {
@@ -298,6 +331,7 @@ public class UserController {
 
 
 
+    @Transactional
     public Boolean AppointMemberAsSystemManager(String managerName, String otherMemberName) throws Exception {
         assertIsSystemManager(managerName);
         assertIsMemberLoggedIn(managerName);
@@ -309,6 +343,11 @@ public class UserController {
         SystemManager newManager = manager.AppointMemberAsSystemManager(otherMember);
         otherMember.setSystemManager(newManager);
         systemManagers.put(otherMemberName,newManager);
+        if (Market.dbFlag) {
+            DALService.memberRepository.save(otherMember);
+            DALService.systemManagerRepository.save(newManager);
+            DALService.systemManagerRepository.save(manager);
+        }
         return true;
     }
 
@@ -337,7 +376,8 @@ public class UserController {
 
     public String memberLogOut(String memberUserName) throws Exception {
         assertIsMemberLoggedIn(memberUserName);
-        loggedInMembers.get(memberUserName).Logout();
+        Member member = loggedInMembers.get(memberUserName);
+        member.Logout();
         loggedInMembers.remove(memberUserName);
         String newGuest = loginAsGuest();
         return newGuest;
@@ -345,6 +385,8 @@ public class UserController {
 
     public boolean loggedInMemberExitMarket(String memberUserName) throws Exception {
         assertIsMemberLoggedIn(memberUserName);
+        Member member = getMember(memberUserName);
+        member.Logout();
         loggedInMembers.remove(memberUserName);
         return true;
     }
@@ -418,13 +460,6 @@ public class UserController {
         }
     }
 
-
-        private String nowTime(){
-        LocalDateTime now = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        return now.format(formatter);
-    }
-
     public Set<String> getAllSystemManagers(String managerName) throws Exception {
         assertIsSystemManager(managerName);
         assertIsMemberLoggedIn(managerName);
@@ -432,6 +467,7 @@ public class UserController {
     }
 
     public boolean removeMemberBySystemManager(String managerName, String memberName) throws Exception {
+        //todo: remove from data base
         memberName = memberName.toLowerCase();
         SystemManager systemManager = getSystemManager(managerName);
         assertIsMemberLoggedIn(managerName);
@@ -475,14 +511,14 @@ public class UserController {
     }
 
     //FOR ACC TEST:
-    public void send(String userName1, String message) throws IOException {
+    public void send(String userName1, String message) throws Exception {
         Member member = this.members.get(userName1);
         member.send(message);
     }
 
     //FOR ACC TEST:
 
-    public List<String> getAppendingMessages(String userName1) {
+    public Set<String> getAppendingMessages(String userName1) {
         Member member = this.members.get(userName1);
         return member.getAppendingMessages();
     }

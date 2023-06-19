@@ -698,7 +698,7 @@ public class ProxyBridge implements Bridge{
     }
 
     //FOR ACCTEST OF STORE MANAGER
-    public boolean takeDownSystemManagerAppointment(String storeName, String appointedMember){
+    public boolean takeDownSystemManagerAppointment(String storeName, String appointedMember) throws Exception {
         if(realBridge!=null){
             realBridge.takeDownSystemManagerAppointment(storeName, appointedMember);
             return true;
@@ -726,7 +726,7 @@ public class ProxyBridge implements Bridge{
         return null;
     }
 
-    public List<String> getAppendingMessages(String memberUserName) {
+    public Set<String> getAppendingMessages(String memberUserName) {
         if(realBridge!=null){
             return realBridge.getAppendingMessages(memberUserName);
         }

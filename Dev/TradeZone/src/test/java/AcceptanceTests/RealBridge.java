@@ -15,9 +15,8 @@ import java.util.concurrent.ConcurrentHashMap;
 public class RealBridge implements Bridge{
     private SystemService systemService; //TODO: = new or getinstance()
 
-
     public RealBridge(){
-        systemService = new SystemService();
+        systemService = new SystemService(false);
     }
 
     @Override
@@ -912,7 +911,7 @@ public class RealBridge implements Bridge{
         return response.getValue();
     }
 
-    public void takeDownSystemManagerAppointment(String storeName, String appointedMember) {
+    public void takeDownSystemManagerAppointment(String storeName, String appointedMember) throws Exception {
         systemService.takeDownSystemManagerAppointment(storeName, appointedMember);
     }
 
@@ -945,7 +944,7 @@ public class RealBridge implements Bridge{
         return response.getValue();
     }
 
-    public List<String> getAppendingMessages(String memberUserName) {
+    public Set<String> getAppendingMessages(String memberUserName) {
         return systemService.getAppendingMessages(memberUserName);
     }
 

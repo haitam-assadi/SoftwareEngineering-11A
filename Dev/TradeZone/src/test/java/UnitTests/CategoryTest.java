@@ -32,12 +32,12 @@ class CategoryTest {
     @BeforeAll
     public void setUp(){
         MockitoAnnotations.openMocks(this);
-        category = new Category("milk", stock);
+        category = new Category("milk", stock.getStoreName());
     }
 
     @BeforeEach
     public void beforeEachTest(){
-        category = new Category("milk", stock);
+        category = new Category("milk", stock.getStoreName());
     }
 
 

@@ -27,12 +27,12 @@ class BagTest {
     @BeforeAll
     public void setUp(){
         MockitoAnnotations.openMocks(this);
-        bag = new Bag(storeBag);
+        bag = new Bag(storeBag,false);
     }
 
     @BeforeEach
     public void beforeEachTest(){
-        bag = new Bag(storeBag);
+        bag = new Bag(storeBag,false);
     }
 
     /*

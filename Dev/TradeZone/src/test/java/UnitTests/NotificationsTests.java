@@ -29,7 +29,7 @@ public class NotificationsTests {
     @BeforeEach
     public void setUp() {
         MockitoAnnotations.openMocks(this);
-        market = new Market();
+        market = new Market(false);
     }
 
     @Test
@@ -55,7 +55,7 @@ public class NotificationsTests {
             String message = "New message sent";
             market.send(userName1, message);
             Assertions.assertEquals(1, market.getAppendingMessages(userName1).size());
-            Assertions.assertEquals(message, market.getAppendingMessages(userName1).get(0));
+            Assertions.assertEquals(message, market.getAppendingMessages(userName1).stream().toList().get(0));
         }catch (Exception e){
             Assertions.fail(e.getMessage());
         }

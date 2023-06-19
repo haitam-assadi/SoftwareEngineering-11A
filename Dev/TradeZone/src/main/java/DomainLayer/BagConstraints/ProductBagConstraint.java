@@ -3,16 +3,30 @@ package DomainLayer.BagConstraints;
 import DomainLayer.Product;
 import DomainLayer.User;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.concurrent.ConcurrentHashMap;
 
 import java.time.LocalTime;
 
+@Entity
+@Table
+@PrimaryKeyJoinColumns({
+        @PrimaryKeyJoinColumn(name = "id", referencedColumnName = "id"),
+        @PrimaryKeyJoinColumn(name = "storeName", referencedColumnName = "storeName")
+})
+public class ProductBagConstraint extends BagConstraint {
 
-public class ProductBagConstraint implements BagConstraint {
 
-
+    @Enumerated(EnumType.STRING)
+    @Column(name = "type")
     BagConstraintType productPPType;
+
+    @OneToOne
+    @JoinColumns({
+            @JoinColumn(name = "productName", referencedColumnName = "productName"),
+            @JoinColumn(name = "productStoreName", referencedColumnName = "storeName")
+    })
     Product product;
 
     //MaxTimeAtDay:
@@ -27,6 +41,7 @@ public class ProductBagConstraint implements BagConstraint {
     //MinimumAge:
     int minAge;
 
+    public ProductBagConstraint(){}
     public ProductBagConstraint(Product product, int hour, int minute){
         this.product=product;
         this.productPPType = BagConstraintType.MaxTimeAtDay;

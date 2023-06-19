@@ -6,4 +6,9 @@ public class Guest extends User{
         super(userName);
     }
 
+    @Override
+    public void loadUser() throws Exception {
+        return;
+    }
+
 }

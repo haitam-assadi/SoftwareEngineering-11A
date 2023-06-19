@@ -44,7 +44,7 @@ public class NotificationsTests {
             String message = "New message sent";
             proxy.send(userName1, message);
             Assertions.assertEquals(1, proxy.getAppendingMessages(userName1).size());
-            Assertions.assertEquals(message, proxy.getAppendingMessages(userName1).get(0));
+            Assertions.assertEquals(message, proxy.getAppendingMessages(userName1).stream().toList().get(0));
         }catch (Exception e){
             Assertions.fail(e.getMessage());
         }

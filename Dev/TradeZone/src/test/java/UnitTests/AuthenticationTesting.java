@@ -25,7 +25,7 @@ public class AuthenticationTesting {
     @BeforeEach
     public void setUp(){
         MockitoAnnotations.openMocks(this);
-        market = new Market();
+        market = new Market(false);
         user1 = market.enterMarket();
     }
 

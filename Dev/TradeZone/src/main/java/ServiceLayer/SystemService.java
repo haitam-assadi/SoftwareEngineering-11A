@@ -1,6 +1,8 @@
 package ServiceLayer;
 
 import DTO.*;
+import DataAccessLayer.Controller.MemberMapper;
+import DataAccessLayer.Controller.StoreMapper;
 import DomainLayer.*;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -17,15 +19,21 @@ import java.util.Set;
 public class SystemService {
 
     private Market market;
+    private boolean dbFlag;
 
 
-    public SystemService(){
+    public SystemService(boolean dbFlag){
 //        JsonNode data = connectToExternalSystems();
 //        String dataBaseUrl = data.get("dataBaseUrl").asText();
 //        boolean dataBaseFlag = data.get("dataBaseLoadFlag").asBoolean();
 //        String paymentUrl = data.get( "paymentServiceUrl").asText();
 //        String shipmentUrl = data.get("shipmenServiceUrl").asText();
-        market = new Market();
+        this.dbFlag = dbFlag;
+        market = new Market(dbFlag);
+        if (!dbFlag){
+            MemberMapper.initMapper();
+            StoreMapper.initMapper();
+        }
 //        PaymentService payment = new PaymentService(paymentUrl);
 //        market.setPaymentService(payment);
 
@@ -34,6 +42,7 @@ public class SystemService {
     public ResponseT<String> initializeMarket(){
 
         try{
+            market.loadData();
             String manager = market.firstManagerInitializer();
 //            market.initMarketParsing();
             createMemberWithTwoStore("user1");
@@ -872,7 +881,7 @@ public class SystemService {
     }
 
     //FOR ACCTEST OF STORE MANAGER
-    public void takeDownSystemManagerAppointment(String storeName, String appointedMember){
+    public void takeDownSystemManagerAppointment(String storeName, String appointedMember) throws Exception {
         this.market.takeDownSystemManagerAppointment(storeName, appointedMember);
     }
 
@@ -911,11 +920,11 @@ public class SystemService {
 
     }
 
-    public void send(String member1Name, String message) throws IOException {
+    public void send(String member1Name, String message) throws Exception {
         market.send(member1Name, message);
     }
 
-    public List<String> getAppendingMessages(String memberUserName) {
+    public Set<String> getAppendingMessages(String memberUserName) {
         return market.getAppendingMessages(memberUserName);
     }
 

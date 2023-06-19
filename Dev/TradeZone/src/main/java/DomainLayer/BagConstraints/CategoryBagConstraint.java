@@ -4,13 +4,29 @@ import DomainLayer.Category;
 import DomainLayer.Product;
 import DomainLayer.User;
 
+import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.concurrent.ConcurrentHashMap;
 import java.time.LocalTime;
 
-public class CategoryBagConstraint implements BagConstraint {
+@Entity
+@Table
+@PrimaryKeyJoinColumns({
+        @PrimaryKeyJoinColumn(name = "id", referencedColumnName = "id"),
+        @PrimaryKeyJoinColumn(name = "storeName", referencedColumnName = "storeName")
+})
+public class CategoryBagConstraint extends BagConstraint implements Serializable {
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "categoryPPType")
     BagConstraintType categoryPPType;
+
+    @OneToOne
+    @JoinColumns({
+            @JoinColumn(name = "categoryName", referencedColumnName = "categoryName"),
+            @JoinColumn(name = "categoryStoreName", referencedColumnName = "storeName")
+    })
     Category category;
 
     //MaxTimeAtDay:
@@ -25,7 +41,7 @@ public class CategoryBagConstraint implements BagConstraint {
     //MinimumAge:
     int minAge;
 
-
+    public CategoryBagConstraint(){}
     public CategoryBagConstraint(Category category, int hour, int minute){
         this.category=category;
         this.categoryPPType = BagConstraintType.MaxTimeAtDay;

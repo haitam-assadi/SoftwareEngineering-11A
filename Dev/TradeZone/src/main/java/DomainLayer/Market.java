@@ -1,6 +1,9 @@
 package DomainLayer;
 
 import DTO.*;
+import DataAccessLayer.Controller.MemberMapper;
+import DataAccessLayer.Controller.StoreMapper;
+import DataAccessLayer.DALService;
 import DomainLayer.Controllers.StoreController;
 import DomainLayer.Controllers.UserController;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -19,7 +22,9 @@ public class Market {
     PaymentService paymentService;
     ShipmentService shipmentService;
 
-    public Market(){
+    public static boolean dbFlag;
+    public Market(boolean dbFlag){
+        Market.dbFlag = dbFlag;
         this.userController = new UserController();
         this.storeController = new StoreController();
         paymentService = new PaymentService("https://php-server-try.000webhostapp.com/");
@@ -35,7 +40,7 @@ public class Market {
     //TODO: closeStore req is not implemented as it should be , i(Ahmad) didn't pay attention to close stores handling..
 
 
-    public String firstManagerInitializer() {
+    public String firstManagerInitializer() throws Exception {
         return userController.firstManagerInitializer();
     }
 
@@ -164,7 +169,10 @@ public class Market {
         userController.assertIsMemberLoggedIn(memberUserName);
         Member member = userController.getMember(memberUserName);
         Store store = storeController.createStore(newStoreName);
-        member.appointMemberAsStoreFounder(store);
+        StoreFounder newFounder = member.appointMemberAsStoreFounder(store);
+        if (Market.dbFlag) {
+            DALService.saveStore(store, newFounder, member);
+        }
         return store.getStoreInfo();
     }
     public boolean addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount) throws Exception {
@@ -234,13 +242,6 @@ public class Market {
         userController.assertIsNotSystemManager(newManagerUserName);
         Store store = storeController.getStore(storeName); // TODO: MAYBE WE NEED TO CHECK IF STORE IS ACTIVE
         return userController.appointOtherMemberAsStoreManager(memberUserName,store,newManagerUserName);
-    }
-
-    public boolean addPermissionForStoreManager(String ownerUserName, String storeName, String managerUserName, Integer permissionId) throws Exception {
-        userController.assertIsMemberLoggedIn(ownerUserName);
-        userController.assertIsMember(managerUserName);
-        Store store = storeController.getStore(storeName);
-        return store.addPermissionForStoreManager(ownerUserName, managerUserName, permissionId);
     }
 
     public boolean updateManagerPermissionsForStore(String ownerUserName, String storeName, String managerUserName, List<Integer> newPermissions) throws Exception {
@@ -511,7 +512,7 @@ public class Market {
     }
 
 
-    public void takeDownSystemManagerAppointment(String storeName, String appointedMember) {
+    public void takeDownSystemManagerAppointment(String storeName, String appointedMember) throws Exception {
         userController.takeDownSystemManagerAppointment(appointedMember);
         storeController.takeDownSystemManagerAppointment(storeName, appointedMember);
     }
@@ -546,11 +547,11 @@ public class Market {
 
     //FOR ACC TEST:
 
-    public void send(String userName1, String message) throws IOException {
+    public void send(String userName1, String message) throws Exception {
         userController.send(userName1, message);
     }
 
-    public List<String> getAppendingMessages(String userName1) {
+    public Set<String> getAppendingMessages(String userName1) {
         return userController.getAppendingMessages(userName1);
     }
 
@@ -708,6 +709,14 @@ public class Market {
             e.printStackTrace();
         } catch (Exception e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    public void loadData() throws Exception {
+        if (Market.dbFlag) {
+            MemberMapper.getInstance().loadAllMembersNames();
+            MemberMapper.getInstance().loadAllSystemManagers();
+            StoreMapper.getInstance().loadAllStoresNames();
         }
     }
 

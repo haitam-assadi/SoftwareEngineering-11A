@@ -4,9 +4,12 @@ import DTO.DealDTO;
 import DTO.MemberDTO;
 import DTO.ProductDTO;
 import DTO.StoreDTO;
+import DataAccessLayer.Controller.StoreMapper;
+import DataAccessLayer.DALService;
 import DomainLayer.BagConstraints.BagConstraint;
 import DomainLayer.Category;
 import DomainLayer.DiscountPolicies.*;
+import DomainLayer.Market;
 import DomainLayer.Product;
 import DomainLayer.Store;
 
@@ -15,13 +18,16 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class StoreController {
     private ConcurrentHashMap<String, Store> stores;
+    private Set<String> storesNamesConcurrentSet;
 
     public StoreController() {
         stores = new ConcurrentHashMap<>();
+        storesNamesConcurrentSet = ConcurrentHashMap.newKeySet();
     }
 
     //TODO: isStore() method currentlu checking if storeName exists in hashmap, this does not work with lazyLoad
@@ -83,9 +89,14 @@ public class StoreController {
 
     public List<ProductDTO> getProductInfoFromMarketByName(String productName) throws Exception {
         List<ProductDTO> productDTOList = new ArrayList<>();
-        for(Store store: stores.values()) {
+        List<Store> stores = new LinkedList<>();
+        if (Market.dbFlag)
+            stores = StoreMapper.getInstance().getStoresByProductKeyWord(productName);
+        else{
+            stores = this.stores.values().stream().toList();
+        }
+        for(Store store: stores) {
             String storeName = store.getStoreName();
-            //isActiveStore(storeName);
             if(IsActiveStore(storeName)) {
                 if (store.containsProduct(productName))
                     productDTOList.add(store.getProductInfo(productName));
@@ -96,9 +107,14 @@ public class StoreController {
 
     public List<ProductDTO> getProductInfoFromMarketByCategory(String categoryName) throws Exception {
         List<ProductDTO> productDTOList = new ArrayList<>();
-        for(Store store: stores.values()) {
+        List<Store> stores = new LinkedList<>();
+        if (Market.dbFlag)
+            stores = StoreMapper.getInstance().getStoresByCategoryName(categoryName);
+        else{
+            stores = this.stores.values().stream().toList();
+        }
+        for(Store store: stores) {
             String storeName = store.getStoreName();
-            //isActiveStore(storeName);
             if(IsActiveStore(storeName)) {
                 if (store.containsCategory(categoryName))
                     productDTOList.addAll(store.getProductsInfoByCategory(categoryName));
@@ -109,11 +125,16 @@ public class StoreController {
 
     public List<ProductDTO> getProductInfoFromMarketByKeyword(String keyword) throws Exception {
         List<ProductDTO> productDTOList = new ArrayList<>();
-        for(Store store: stores.values()) {
+        List<Store> stores = new LinkedList<>();
+        if (Market.dbFlag)
+            stores = StoreMapper.getInstance().getStoresByProductKeyWord(keyword);
+        else{
+            stores = this.stores.values().stream().toList();
+        }
+        for(Store store: stores) {
             String storeName = store.getStoreName();
-            //isActiveStore(storeName);
             if(IsActiveStore(storeName)) {
-                if(store.containsKeyWord(keyword))
+                if (store.containsKeyWord(keyword))
                     productDTOList.addAll(store.getProductInfoFromMarketByKeyword(keyword));
             }
         }
@@ -144,10 +165,13 @@ public class StoreController {
         if(storeName==null || storeName.isBlank())
             throw new Exception("store name is null or empty");
         storeName = storeName.strip().toLowerCase();
-
-        if(!stores.containsKey(storeName)) // TODO for Lazy load , maybe we need to change to set of names
-            return false;
-
+        // TODO for Lazy load , maybe we need to change to set of names
+        if(!stores.containsKey(storeName)){
+            Store store = StoreMapper.getInstance().getStore(storeName);
+            if (store == null) return false;
+            stores.put(storeName,store);
+            return true;
+        }
         return true;
     }
 
@@ -195,8 +219,10 @@ public class StoreController {
         assertIsNotStore(newStoreName);
 
         newStoreName = newStoreName.strip().toLowerCase();
-        Store newStore = new Store(newStoreName);
+        Store newStore = StoreMapper.getInstance().getNewStore(newStoreName);
         stores.put(newStoreName,newStore);
+        storesNamesConcurrentSet.add(newStoreName);
+        //StoreMapper.getInstance().insertStore(newStoreName,newStore);
         return newStore;
     }
 
@@ -442,7 +468,7 @@ public class StoreController {
         return now.format(formatter);
     }
 
-    public boolean hasRole(String memberUserName){
+    public boolean hasRole(String memberUserName) throws Exception {
         for(Store store : stores.values()){
             return store.hasRole(memberUserName);
         }
@@ -488,7 +514,7 @@ public class StoreController {
         return store.getRuleForStore(memberName);
     }
 
-    public void takeDownSystemManagerAppointment(String storeName, String appointedMember) {
+    public void takeDownSystemManagerAppointment(String storeName, String appointedMember) throws Exception {
         Store store = this.stores.get(storeName);
         store.removeManager(appointedMember);
     }
