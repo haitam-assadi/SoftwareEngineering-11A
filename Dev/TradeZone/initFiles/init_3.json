@@ -1,28 +1,32 @@
 {
+  "loaded" : [
+                                      [false]
+  ],
+
   "system_manager" : [
-                                      ["U1", "u1userpass"]
+                                      ["u1", "u1pass"]
   ],
 
   "register" : [
-                                      ["U2", "u2userpass"],
-                                      ["U3", "u3userpass"],
-                                      ["U4", "u4userpass"],
-                                      ["U5", "u5userpass"]
+                                      ["u2", "u2pass"],
+                                      ["u3", "u3pass"],
+                                      ["u4", "u4pass"],
+                                      ["u5", "u5pass"]
   ],
 
   "login" : [
-                                      ["U2", "u2userpass"]
+                                      ["u2", "u2pass"]
   ],
 
   "create_store" : [
-                                      ["U2", "S"]
+                                      ["u2", "S"]
   ],
 
   "add_product" :  [
-                                      ["U2", "S", "Apple", "Scategory1", 20, "new product", 10]
+                                      ["u2", "S", "Apple", "Scategory1", 20, "new product", 10]
   ],
 
   "logout":         [
-                                      ["U2"]
+                                      ["u2"]
   ]
 }

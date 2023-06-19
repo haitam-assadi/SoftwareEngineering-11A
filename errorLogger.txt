@@ -49,3 +49,6 @@ fail in login: incorrect password!
 May 09, 2023 10:51:30 AM DomainLayer.LoggerManager sendErrorLog
 WARNING: 
 fail in getting store info: store: user1_first_store___ does not exists!
+Jun 19, 2023 2:00:03 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: incorrect password!

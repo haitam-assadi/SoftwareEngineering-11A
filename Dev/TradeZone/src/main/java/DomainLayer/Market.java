@@ -571,17 +571,39 @@ public class Market {
         return jsonText;
     }
 
-    public void initMarketParsing(){
+    private String createSystemManager(String userName, String password){
+        Member member = new Member(userName,Security.Encode(password));
+        userController.addSystemManager(userName, member);
+        SystemManager systemManager = new SystemManager(member);
+        member.setSystemManager(systemManager);
+        userController.putSystemManager(userName, systemManager);
+        return userName;
+    }
+
+    public void initMarketParsing(int file_num){
         HashMap memberName_guesName = new HashMap();
-        String strJson = getJSONFromFile("Dev/TradeZone/initFiles/init_1.json");
+        String path = "Dev/TradeZone/initFiles/init_" + file_num + ".json";
+        boolean isLoaded = false;
+        String strJson = getJSONFromFile(path);
         ObjectMapper objectMapper = new ObjectMapper();
         try{
             JsonNode jsonNode = objectMapper.readTree(strJson);
             Iterator keys = jsonNode.fieldNames();
-            while(keys.hasNext()){
+            while(keys.hasNext() && !isLoaded){
                 String current = (String) keys.next();
                 ArrayNode arrayNode;
                 switch(current) {
+                    case "loaded":
+                        arrayNode = (ArrayNode) jsonNode.get("loaded");
+                        System.out.println("arrayNode: " + arrayNode);
+                        for(JsonNode node: arrayNode){
+                            System.out.println("node: " + node);
+                            if(node.isArray()){
+                                isLoaded = node.get(0).asBoolean();
+                                
+                            }
+                        }
+                        break;
                     case "register":
                         String guest = "";
                         arrayNode = (ArrayNode) jsonNode.get("register");
@@ -647,6 +669,16 @@ public class Market {
                         }
                         break;
                     case "system_manager":
+                        arrayNode = (ArrayNode) jsonNode.get("system_manager");
+                        System.out.println("arrayNode: " + arrayNode);
+                        for(JsonNode node: arrayNode){
+                            System.out.println("node: " + node);
+                            if(node.isArray()){
+                                String user_name = node.get(0).asText();
+                                String user_pass = node.get(1).asText();
+                                createSystemManager(user_name, user_pass);
+                            }
+                        }
                         break;
                     case "add_product":
                         arrayNode = (ArrayNode) jsonNode.get("add_product");

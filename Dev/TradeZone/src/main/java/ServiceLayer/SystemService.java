@@ -17,13 +17,13 @@ import java.util.Set;
 public class SystemService {
 
     private Market market;
-
+    private final int files_number = 3;
 
     public SystemService(){
 //        JsonNode data = connectToExternalSystems();
 //        String dataBaseUrl = data.get("dataBaseUrl").asText();
 //        boolean dataBaseFlag = data.get("dataBaseLoadFlag").asBoolean();
-//        String paymentUrl = data.get( "paymentServiceUrl").asText();
+//        String paymentUrl = data.get("paymentServiceUrl").asText();
 //        String shipmentUrl = data.get("shipmenServiceUrl").asText();
         market = new Market();
 //        PaymentService payment = new PaymentService(paymentUrl);
@@ -35,8 +35,13 @@ public class SystemService {
 
         try{
             String manager = market.firstManagerInitializer();
-//            market.initMarketParsing();
-            createMemberWithTwoStore("user1");
+            int index = 1;
+            boolean isParsed = false;
+            while(index <= files_number && !isParsed){
+                isParsed =market.initMarketParsing(index);
+                index++;
+            }
+//            createMemberWithTwoStore("user1");
             return new ResponseT<>(manager,true);
 
         }catch (Exception e){
