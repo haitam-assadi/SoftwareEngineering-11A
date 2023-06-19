@@ -2,11 +2,7 @@
 
 
 ## Group Members:
- Ahmad Essa , Haitham Al Salih , Moslem Asaad , Baraa Mahameed,
-
- Adel Watted
-
- Moamen Mawasi
+ Ahmad Essa , Haitham Al Salih , Moslem Asaad , Baraa Mahameed, Adel Watted, Moamen Mawasi
  
 
 # Trading System
