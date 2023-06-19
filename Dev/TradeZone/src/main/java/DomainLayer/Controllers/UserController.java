@@ -108,7 +108,7 @@ public class UserController {
         if(!Character.isAlphabetic(userName.charAt(0)))
             return false;
 
-        if(userName.length() < 4)
+        if(userName.length() < 2)
             return false;
 
         if(userName.contains(" "))

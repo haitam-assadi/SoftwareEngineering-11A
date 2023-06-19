@@ -3,13 +3,15 @@ package DomainLayer;
 import DTO.*;
 import DomainLayer.Controllers.StoreController;
 import DomainLayer.Controllers.UserController;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
 import jdk.jshell.spi.ExecutionControl;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class Market {
     UserController userController;
@@ -551,4 +553,162 @@ public class Market {
     public List<String> getAppendingMessages(String userName1) {
         return userController.getAppendingMessages(userName1);
     }
+
+    private String getJSONFromFile(String filename) {
+        String jsonText = "";
+        try {
+            BufferedReader bufferedReader =
+                    new BufferedReader(new FileReader(filename));
+
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                jsonText += line + "\n";
+            }
+            bufferedReader.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return jsonText;
+    }
+
+    public void initMarketParsing(){
+        HashMap memberName_guesName = new HashMap();
+        String strJson = getJSONFromFile("Dev/TradeZone/initFiles/init_1.json");
+        ObjectMapper objectMapper = new ObjectMapper();
+        try{
+            JsonNode jsonNode = objectMapper.readTree(strJson);
+            Iterator keys = jsonNode.fieldNames();
+            while(keys.hasNext()){
+                String current = (String) keys.next();
+                ArrayNode arrayNode;
+                switch(current) {
+                    case "register":
+                        String guest = "";
+                        arrayNode = (ArrayNode) jsonNode.get("register");
+                        System.out.println("arrayNode: " + arrayNode);
+                        for(JsonNode node: arrayNode){
+                            System.out.println("node: " + node);
+                            if(node.isArray()){
+                                guest = enterMarket();
+                                String member_name = node.get(0).asText();
+                                String member_pass = node.get(1).asText();
+                                memberName_guesName.put(member_name, guest);
+                                register(guest, member_name, member_pass);
+                            }
+                        }
+                        break;
+                    case "login":
+                        arrayNode = (ArrayNode) jsonNode.get("login");
+                        System.out.println("arrayNode: " + arrayNode);
+                        for(JsonNode node: arrayNode){
+                            System.out.println("node: " + node);
+                            if(node.isArray()){
+                                String member_name = node.get(0).asText();
+                                String member_pass = node.get(1).asText();
+                                String guest_name = (String) memberName_guesName.get(member_name);
+                                login(guest_name, member_name, member_pass);
+                            }
+                        }
+                        break;
+                    case "create_store":
+                        arrayNode = (ArrayNode) jsonNode.get("create_store");
+                        System.out.println("arrayNode: " + arrayNode);
+                        for(JsonNode node: arrayNode){
+                            System.out.println("node: " + node);
+                            if(node.isArray()){
+                                String member_name = node.get(0).asText();
+                                String store_name = node.get(1).asText();
+                                createStore(member_name, store_name);
+                            }
+                        }
+                        break;
+                    case "appoint_as_store_owner":
+                        arrayNode = (ArrayNode) jsonNode.get("appoint_as_store_owner");
+                        System.out.println("arrayNode: " + arrayNode);
+                        for(JsonNode node: arrayNode){
+                            System.out.println("node: " + node);
+                            if(node.isArray()){
+                                String owner_name = node.get(0).asText();
+                                String store_name = node.get(1).asText();
+                                String new_owner_name = node.get(2).asText();
+                                appointOtherMemberAsStoreOwner(owner_name, store_name, new_owner_name);
+                            }
+                        }
+                        break;
+                    case "logout":
+                        arrayNode = (ArrayNode) jsonNode.get("logout");
+                        System.out.println("arrayNode: " + arrayNode);
+                        for(JsonNode node: arrayNode){
+                            System.out.println("node: " + node);
+                            if(node.isArray()){
+                                String member_name = node.get(0).asText();
+                                memberLogOut(member_name);
+                            }
+                        }
+                        break;
+                    case "system_manager":
+                        break;
+                    case "add_product":
+                        arrayNode = (ArrayNode) jsonNode.get("add_product");
+                        System.out.println("arrayNode: " + arrayNode);
+                        for(JsonNode node: arrayNode){
+                            System.out.println("node: " + node);
+                            if(node.isArray()){
+                                String member_name = node.get(0).asText();
+                                String store_name = node.get(1).asText();
+                                String product_name = node.get(2).asText();
+                                String category_name = node.get(3).asText();
+                                Double price = node.get(4).asDouble();
+                                String description = node.get(5).asText();
+                                int amount = node.get(6).asInt();
+                                addNewProductToStock(member_name, store_name, product_name, category_name, price, description, amount);
+                            }
+                        }
+                        break;
+                    case "appoint_as_store_manager":
+                        arrayNode = (ArrayNode) jsonNode.get("appoint_as_store_manager");
+                        System.out.println("arrayNode: " + arrayNode);
+                        for(JsonNode node: arrayNode){
+                            System.out.println("node: " + node);
+                            if(node.isArray()){
+                                String member_name = node.get(0).asText();
+                                String store_name = node.get(1).asText();
+                                String new_manager_name = node.get(2).asText();
+                                appointOtherMemberAsStoreManager(member_name, store_name, new_manager_name);                            }
+                        }
+                        break;
+                    case "add_permissions":
+                        //    public boolean updateManagerPermissionsForStore(String ownerUserName, String storeName,
+                        //    String managerUserName, List<Integer> newPermissions) throws Exception {
+                        arrayNode = (ArrayNode) jsonNode.get("add_permissions");
+                        System.out.println("arrayNode: " + arrayNode);
+                        for(JsonNode node: arrayNode){
+                            System.out.println("node: " + node);
+                            if(node.isArray()){
+                                String member_name = node.get(0).asText();
+                                String store_name = node.get(1).asText();
+                                String manager_name = node.get(2).asText();
+                                ArrayList<Integer> permissions = new ArrayList<Integer>();
+                                if(node.get(3).isArray()){
+                                    Iterator iter  = node.get(3).iterator();
+                                    while(iter.hasNext()){
+                                        JsonNode curr = (JsonNode) iter.next();
+                                        permissions.add(curr.intValue());
+                                    }
+                                }
+                                updateManagerPermissionsForStore(member_name, store_name, manager_name, permissions);
+                            }
+                        }
+                        break;
+                    default:
+                        System.out.println("Tag is not supported");
+                }
+            }
+        }catch (IOException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }

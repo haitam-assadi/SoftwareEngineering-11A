@@ -18,19 +18,24 @@ public class SystemService {
 
     private Market market;
 
+
     public SystemService(){
-        JsonNode data = connectToExternalSystems();
-        String dataBaseUrl = data.get("dataBaseUrl").asText();
-        boolean dataBaseFlag = data.get("dataBaseLoadFlag").asBoolean();
-        String paymentUrl = data.get( "paymentServiceUrl").asText();
-        String shipmentUrl = data.get( "shipmenServiceUrl").asText();
+//        JsonNode data = connectToExternalSystems();
+//        String dataBaseUrl = data.get("dataBaseUrl").asText();
+//        boolean dataBaseFlag = data.get("dataBaseLoadFlag").asBoolean();
+//        String paymentUrl = data.get( "paymentServiceUrl").asText();
+//        String shipmentUrl = data.get("shipmenServiceUrl").asText();
         market = new Market();
+//        PaymentService payment = new PaymentService(paymentUrl);
+//        market.setPaymentService(payment);
+
     }
 
     public ResponseT<String> initializeMarket(){
 
         try{
             String manager = market.firstManagerInitializer();
+//            market.initMarketParsing();
             createMemberWithTwoStore("user1");
             return new ResponseT<>(manager,true);
 
@@ -960,15 +965,6 @@ public class SystemService {
             // Parse the JSON string
             JsonNode jsonNode = objectMapper.readTree(strJson);
             return jsonNode;
-            // Retrieve the data
-//            String data = jsonNode.get("dataBaseUrl").asText();
-//            int port = jsonNode.get("port").asInt();
-//            String credit = jsonNode.get("creditCardUrl").asText();
-//
-//            // Print the retrieved data
-//            System.out.println("dataBaseUrl: " + data);
-//            System.out.println("port: " + port);
-//            System.out.println("creditCardUrl: " + credit);
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println(e.getMessage());

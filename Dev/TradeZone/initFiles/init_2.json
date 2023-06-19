@@ -20,7 +20,7 @@
     ],
 
     "add_product" :  [
-                                          ["u2", "s1", "Bamba", "s1category1", 30, "new product", "20"]
+                                          ["u2", "s1", "Bamba", "s1category1", 30, "new product", 20]
     ],
 
     "appoint_as_store_manager" : [
@@ -28,11 +28,15 @@
     ],
 
     "add_permissions" : [
-                                          []
+                                          ["u2", "s1", "u3", [2]]
     ],
 
     "appoint_as_store_owner" : [
                                           ["u2", "s1", "u4"],
                                           ["u2", "s1", "u5"]
+    ],
+
+    "logout" : [
+                                          ["u2"]
     ]
 }
