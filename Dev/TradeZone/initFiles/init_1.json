@@ -1,14 +1,12 @@
 {
-    "loaded" : false,
-
     "register" : [
-                                  ["u1", "u1pass"],
-                                  ["u2", "u2pass"],
-                                  ["u3", "u3pass"]
+                                  ["u1", "u1pass123"],
+                                  ["u2", "u2pass123"],
+                                  ["u3", "u3pass123"]
     ],
 
     "login" : [
-                                  ["u1", "u1pass"]
+                                  ["u1", "u1pass123"]
     ],
 
     "create_store" : [

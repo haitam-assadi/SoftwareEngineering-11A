@@ -7,10 +7,9 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import jdk.jshell.spi.ExecutionControl;
+import net.minidev.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
 
 public class Market {
@@ -571,6 +570,24 @@ public class Market {
         return jsonText;
     }
 
+    private void updateLoadStatusToJSONFile(String path, boolean status) throws Exception {
+        JSONObject json = new JSONObject();
+        try {
+            boolean[][] arr = new boolean[1][1];
+            arr[0] = new boolean[1];
+            arr[0][0] = status;
+            json.put("loaded", arr);
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
+
+        try (PrintWriter out = new PrintWriter(new FileWriter(path))) {
+            out.write(json.toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     private String createSystemManager(String userName, String password){
         Member member = new Member(userName,Security.Encode(password));
         userController.addSystemManager(userName, member);
@@ -580,9 +597,10 @@ public class Market {
         return userName;
     }
 
-    public void initMarketParsing(int file_num){
+    public void initMarketParsing(){
         HashMap memberName_guesName = new HashMap();
-        String path = "Dev/TradeZone/initFiles/init_" + file_num + ".json";
+        String path = "Dev/TradeZone/initFiles/init_1.json";
+        String updatedData = "";
         boolean isLoaded = false;
         String strJson = getJSONFromFile(path);
         ObjectMapper objectMapper = new ObjectMapper();
@@ -600,7 +618,6 @@ public class Market {
                             System.out.println("node: " + node);
                             if(node.isArray()){
                                 isLoaded = node.get(0).asBoolean();
-                                
                             }
                         }
                         break;
@@ -736,11 +753,8 @@ public class Market {
                         System.out.println("Tag is not supported");
                 }
             }
-        }catch (IOException e) {
-            e.printStackTrace();
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException(e.getMessage());
         }
     }
-
 }

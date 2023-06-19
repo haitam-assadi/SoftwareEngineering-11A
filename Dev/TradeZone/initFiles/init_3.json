@@ -1,21 +1,17 @@
 {
-  "loaded" : [
-                                      [false]
-  ],
-
   "system_manager" : [
-                                      ["u1", "u1pass"]
+                                      ["u1", "u1pass123"]
   ],
 
   "register" : [
-                                      ["u2", "u2pass"],
-                                      ["u3", "u3pass"],
-                                      ["u4", "u4pass"],
-                                      ["u5", "u5pass"]
+                                      ["u2", "u2pass123"],
+                                      ["u3", "u3pass123"],
+                                      ["u4", "u4pass123"],
+                                      ["u5", "u5pass123"]
   ],
 
   "login" : [
-                                      ["u2", "u2pass"]
+                                      ["u2", "u2pass123"]
   ],
 
   "create_store" : [

@@ -37,10 +37,7 @@ public class SystemService {
             String manager = market.firstManagerInitializer();
             int index = 1;
             boolean isParsed = false;
-            while(index <= files_number && !isParsed){
-                isParsed =market.initMarketParsing(index);
-                index++;
-            }
+            market.initMarketParsing();
 //            createMemberWithTwoStore("user1");
             return new ResponseT<>(manager,true);
 
