@@ -227,7 +227,8 @@ public class GeneralModel {
                 amount_price.add(1, dealDTO.products_prices.get(productName));
                 products.put(productName, amount_price);
             }
-            Deal deal = new Deal(dealDTO.storeName, dealDTO.date, dealDTO.username, products, dealDTO.totalPrice);
+            Deal deal = new Deal(dealDTO.storeName, dealDTO.date, dealDTO.username, products,
+                    dealDTO.totalPrice, dealDTO.productPriceMultipleAmount, dealDTO.productFinalPriceWithDiscount);
             deals.add(deal);
         }
         return deals;

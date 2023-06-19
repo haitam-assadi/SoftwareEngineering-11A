@@ -220,8 +220,231 @@ public class DealTests {
             Assertions.assertEquals(storeDeals.get(1).productFinalPriceWithDiscount.get("iphone 14"),3500*2);
 
             Assertions.assertEquals(member1Deals.get(0).productPriceMultipleAmount.get("iphone 14"),3500*4);
-            Assertions.assertEquals(member2Deals.get(0).productPriceMultipleAmount.get("iphone 14"),3500*2
-            );
+            Assertions.assertEquals(member2Deals.get(0).productPriceMultipleAmount.get("iphone 14"),3500*2);
+            Assertions.assertEquals(storeDeals.get(0).productPriceMultipleAmount.get("iphone 14"),3500*4);
+            Assertions.assertEquals(storeDeals.get(1).productPriceMultipleAmount.get("iphone 14"),3500*2);
+
+            Assertions.assertEquals(member1Deals.get(0).date,storeDeals.get(0).date);
+            Assertions.assertEquals(member2Deals.get(0).date,storeDeals.get(0).date);
+        }catch (Exception e){
+            Assertions.fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void purchase_with_deal_for_lot_of_members_and_stores_with_amount_success(){
+        try{
+            proxy.addToCart(member1_name, storeName1, "iphone 14",4);
+            proxy.addToCart(member2_name,storeName2,"iphone 14",2);
+
+            Assertions.assertTrue(proxy.purchaseCartByCreditCard(member1_name,member1_cardNumber,member1_month,member1_year,member1_holder,member1_cvv,member1_id,member1_receiverName,member1_shipmentAddress,member1_shipmentCity,member1_shipmentCountry,member1_zipCode));
+            Assertions.assertTrue(proxy.purchaseCartByCreditCard(member2_name,member1_cardNumber,member1_month,member1_year,member1_holder,member1_cvv,member1_id,member1_receiverName,member1_shipmentAddress,member1_shipmentCity,member1_shipmentCountry,member1_zipCode));
+
+
+            Assertions.assertTrue(proxy.getCartContent(member1_name).isEmpty());
+            Assertions.assertTrue(proxy.getCartContent(member2_name).isEmpty());
+
+            Assertions.assertFalse(proxy.getStoreDeals(store_founder,storeName1).isEmpty());
+            Assertions.assertFalse(proxy.getStoreDeals(store_founder,storeName2).isEmpty());
+            Assertions.assertFalse(proxy.getMemberDeals(member1_name,member1_name).isEmpty());
+            Assertions.assertFalse(proxy.getMemberDeals(member2_name,member2_name).isEmpty());
+
+            Assertions.assertEquals(proxy.getMemberDeals(member1_name,member1_name).get(0).totalPrice,proxy.getStoreDeals(store_founder,storeName1).get(0).totalPrice);
+            Assertions.assertEquals(proxy.getMemberDeals(member2_name,member2_name).get(0).totalPrice,proxy.getStoreDeals(store_founder,storeName2).get(0).totalPrice);
+
+            List<DealDTO> member1Deals = proxy.getMemberDeals(member1_name,member1_name);
+            List<DealDTO> member2Deals = proxy.getMemberDeals(member2_name,member2_name);
+            List<DealDTO> store1Deals = proxy.getStoreDeals(store_founder,storeName1);
+            List<DealDTO> store2Deals = proxy.getStoreDeals(store_founder,storeName2);
+
+            Assertions.assertEquals(member1Deals.get(0).products_amount.get("iphone 14"),4);
+            Assertions.assertEquals(member2Deals.get(0).products_amount.get("iphone 14"),2);
+            Assertions.assertEquals(store1Deals.get(0).products_amount.get("iphone 14"),4);
+            Assertions.assertEquals(store2Deals.get(0).products_amount.get("iphone 14"),2);
+
+            Assertions.assertEquals(member1Deals.get(0).products_prices.get("iphone 14"),3000.0);
+            Assertions.assertEquals(member2Deals.get(0).products_prices.get("iphone 14"),3500.0);
+            Assertions.assertEquals(store1Deals.get(0).products_prices.get("iphone 14"),3000.0);
+            Assertions.assertEquals(store2Deals.get(0).products_prices.get("iphone 14"),3500.0);
+
+            Assertions.assertEquals(member1Deals.get(0).productFinalPriceWithDiscount.get("iphone 14"),3000*4);
+            Assertions.assertEquals(member2Deals.get(0).productFinalPriceWithDiscount.get("iphone 14"),3500*2);
+            Assertions.assertEquals(store1Deals.get(0).productFinalPriceWithDiscount.get("iphone 14"),3000*4);
+            Assertions.assertEquals(store2Deals.get(0).productFinalPriceWithDiscount.get("iphone 14"),3500*2);
+
+            Assertions.assertEquals(member1Deals.get(0).productPriceMultipleAmount.get("iphone 14"),3000*4);
+            Assertions.assertEquals(member2Deals.get(0).productPriceMultipleAmount.get("iphone 14"),3500*2);
+            Assertions.assertEquals(store1Deals.get(0).productPriceMultipleAmount.get("iphone 14"),3000*4);
+            Assertions.assertEquals(store2Deals.get(0).productPriceMultipleAmount.get("iphone 14"),3500*2);
+
+            Assertions.assertEquals(member1Deals.get(0).date,store1Deals.get(0).date);
+            Assertions.assertEquals(member2Deals.get(0).date,store2Deals.get(0).date);
+        }catch (Exception e){
+            Assertions.fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void purchase_with_deal_discount_success(){
+        try{
+            proxy.createProductDiscountPolicy(store_founder,storeName2,"iphone 14",20,true);
+            Assertions.assertFalse(proxy.getAllStoreDiscountPolicies(store_founder,storeName2).isEmpty());
+
+
+
+            proxy.addToCart(member1_name, storeName2, "iphone 14",4);
+            proxy.addToCart(member2_name,storeName2,"iphone 14",2);
+
+            Assertions.assertTrue(proxy.purchaseCartByCreditCard(member1_name,member1_cardNumber,member1_month,member1_year,member1_holder,member1_cvv,member1_id,member1_receiverName,member1_shipmentAddress,member1_shipmentCity,member1_shipmentCountry,member1_zipCode));
+            Assertions.assertTrue(proxy.purchaseCartByCreditCard(member2_name,member1_cardNumber,member1_month,member1_year,member1_holder,member1_cvv,member1_id,member1_receiverName,member1_shipmentAddress,member1_shipmentCity,member1_shipmentCountry,member1_zipCode));
+
+
+            Assertions.assertTrue(proxy.getCartContent(member1_name).isEmpty());
+            Assertions.assertTrue(proxy.getCartContent(member2_name).isEmpty());
+
+            Assertions.assertFalse(proxy.getStoreDeals(store_founder,storeName2).isEmpty());
+            Assertions.assertFalse(proxy.getMemberDeals(member1_name,member1_name).isEmpty());
+            Assertions.assertFalse(proxy.getMemberDeals(member2_name,member2_name).isEmpty());
+
+            Assertions.assertEquals(proxy.getMemberDeals(member1_name,member1_name).get(0).totalPrice,proxy.getStoreDeals(store_founder,storeName2).get(0).totalPrice);
+            List<DealDTO> member1Deals = proxy.getMemberDeals(member1_name,member1_name);
+            List<DealDTO> member2Deals = proxy.getMemberDeals(member2_name,member2_name);
+            List<DealDTO> storeDeals = proxy.getStoreDeals(store_founder,storeName2);
+
+            Assertions.assertEquals(member1Deals.get(0).products_amount.get("iphone 14"),4);
+            Assertions.assertEquals(member2Deals.get(0).products_amount.get("iphone 14"),2);
+            Assertions.assertEquals(storeDeals.get(0).products_amount.get("iphone 14"),4);
+            Assertions.assertEquals(storeDeals.get(1).products_amount.get("iphone 14"),2);
+
+            Assertions.assertEquals(member1Deals.get(0).products_prices.get("iphone 14"),3500.0);
+            Assertions.assertEquals(member2Deals.get(0).products_prices.get("iphone 14"),3500.0);
+            Assertions.assertEquals(storeDeals.get(0).products_prices.get("iphone 14"),3500.0);
+            Assertions.assertEquals(storeDeals.get(1).products_prices.get("iphone 14"),3500.0);
+
+            Assertions.assertEquals(member1Deals.get(0).productFinalPriceWithDiscount.get("iphone 14"),(3500-(3500*0.2))*4);
+            Assertions.assertEquals(member2Deals.get(0).productFinalPriceWithDiscount.get("iphone 14"),(3500-(3500*0.2))*2);
+            Assertions.assertEquals(storeDeals.get(0).productFinalPriceWithDiscount.get("iphone 14"),(3500-(3500*0.2))*4);
+            Assertions.assertEquals(storeDeals.get(1).productFinalPriceWithDiscount.get("iphone 14"),(3500-(3500*0.2))*2);
+
+            Assertions.assertEquals(member1Deals.get(0).productPriceMultipleAmount.get("iphone 14"),3500*4);
+            Assertions.assertEquals(member2Deals.get(0).productPriceMultipleAmount.get("iphone 14"),3500*2);
+            Assertions.assertEquals(storeDeals.get(0).productPriceMultipleAmount.get("iphone 14"),3500*4);
+            Assertions.assertEquals(storeDeals.get(1).productPriceMultipleAmount.get("iphone 14"),3500*2);
+
+            Assertions.assertEquals(member1Deals.get(0).date,storeDeals.get(0).date);
+            Assertions.assertEquals(member2Deals.get(0).date,storeDeals.get(0).date);
+        }catch (Exception e){
+            Assertions.fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void purchase_with_deal_for_lot_of_members_and_stores_with_amount_with_discount_success(){
+        try{
+            proxy.createProductDiscountPolicy(store_founder,storeName2,"iphone 14",20,true);
+            Assertions.assertFalse(proxy.getAllStoreDiscountPolicies(store_founder,storeName2).isEmpty());
+
+
+            proxy.addToCart(member1_name, storeName1, "iphone 14",4);
+            proxy.addToCart(member2_name,storeName2,"iphone 14",2);
+
+            Assertions.assertTrue(proxy.purchaseCartByCreditCard(member1_name,member1_cardNumber,member1_month,member1_year,member1_holder,member1_cvv,member1_id,member1_receiverName,member1_shipmentAddress,member1_shipmentCity,member1_shipmentCountry,member1_zipCode));
+            Assertions.assertTrue(proxy.purchaseCartByCreditCard(member2_name,member1_cardNumber,member1_month,member1_year,member1_holder,member1_cvv,member1_id,member1_receiverName,member1_shipmentAddress,member1_shipmentCity,member1_shipmentCountry,member1_zipCode));
+
+
+            Assertions.assertTrue(proxy.getCartContent(member1_name).isEmpty());
+            Assertions.assertTrue(proxy.getCartContent(member2_name).isEmpty());
+
+            Assertions.assertFalse(proxy.getStoreDeals(store_founder,storeName1).isEmpty());
+            Assertions.assertFalse(proxy.getStoreDeals(store_founder,storeName2).isEmpty());
+            Assertions.assertFalse(proxy.getMemberDeals(member1_name,member1_name).isEmpty());
+            Assertions.assertFalse(proxy.getMemberDeals(member2_name,member2_name).isEmpty());
+
+            Assertions.assertEquals(proxy.getMemberDeals(member1_name,member1_name).get(0).totalPrice,proxy.getStoreDeals(store_founder,storeName1).get(0).totalPrice);
+            Assertions.assertEquals(proxy.getMemberDeals(member2_name,member2_name).get(0).totalPrice,proxy.getStoreDeals(store_founder,storeName2).get(0).totalPrice);
+
+            List<DealDTO> member1Deals = proxy.getMemberDeals(member1_name,member1_name);
+            List<DealDTO> member2Deals = proxy.getMemberDeals(member2_name,member2_name);
+            List<DealDTO> store1Deals = proxy.getStoreDeals(store_founder,storeName1);
+            List<DealDTO> store2Deals = proxy.getStoreDeals(store_founder,storeName2);
+
+            Assertions.assertEquals(member1Deals.get(0).products_amount.get("iphone 14"),4);
+            Assertions.assertEquals(member2Deals.get(0).products_amount.get("iphone 14"),2);
+            Assertions.assertEquals(store1Deals.get(0).products_amount.get("iphone 14"),4);
+            Assertions.assertEquals(store2Deals.get(0).products_amount.get("iphone 14"),2);
+
+            Assertions.assertEquals(member1Deals.get(0).products_prices.get("iphone 14"),3000.0);
+            Assertions.assertEquals(member2Deals.get(0).products_prices.get("iphone 14"),3500.0);
+            Assertions.assertEquals(store1Deals.get(0).products_prices.get("iphone 14"),3000.0);
+            Assertions.assertEquals(store2Deals.get(0).products_prices.get("iphone 14"),3500.0);
+
+            Assertions.assertEquals(member1Deals.get(0).productFinalPriceWithDiscount.get("iphone 14"),3000*4);
+            Assertions.assertEquals(member2Deals.get(0).productFinalPriceWithDiscount.get("iphone 14"),(3500-(3500*0.2))*2);
+            Assertions.assertEquals(store1Deals.get(0).productFinalPriceWithDiscount.get("iphone 14"),3000*4);
+            Assertions.assertEquals(store2Deals.get(0).productFinalPriceWithDiscount.get("iphone 14"),(3500-(3500*0.2))*2);
+
+            Assertions.assertEquals(member1Deals.get(0).productPriceMultipleAmount.get("iphone 14"),3000*4);
+            Assertions.assertEquals(member2Deals.get(0).productPriceMultipleAmount.get("iphone 14"),3500*2);
+            Assertions.assertEquals(store1Deals.get(0).productPriceMultipleAmount.get("iphone 14"),3000*4);
+            Assertions.assertEquals(store2Deals.get(0).productPriceMultipleAmount.get("iphone 14"),3500*2);
+
+            Assertions.assertEquals(member1Deals.get(0).date,store1Deals.get(0).date);
+            Assertions.assertEquals(member2Deals.get(0).date,store2Deals.get(0).date);
+        }catch (Exception e){
+            Assertions.fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void purchase_with_deal_discount_make_price_minus_success(){
+        try{
+            Integer discount1 = proxy.createProductDiscountPolicy(store_founder,storeName2,"iphone 14",40,false);
+            Assertions.assertTrue(proxy.getAllStoreDiscountPolicies(store_founder,storeName2).isEmpty());
+
+            Integer discount2 =  proxy.createProductDiscountPolicy(store_founder,storeName2,"iphone 14",70,false);
+            Assertions.assertTrue(proxy.getAllStoreDiscountPolicies(store_founder,storeName2).isEmpty());
+
+            proxy.createAdditionDiscountPolicy(store_founder,storeName2,discount1, discount2,true);
+            Assertions.assertFalse(proxy.getAllStoreDiscountPolicies(store_founder,storeName2).isEmpty());
+
+
+
+            proxy.addToCart(member1_name, storeName2, "iphone 14",4);
+            proxy.addToCart(member2_name,storeName2,"iphone 14",2);
+
+            Assertions.assertTrue(proxy.purchaseCartByCreditCard(member1_name,member1_cardNumber,member1_month,member1_year,member1_holder,member1_cvv,member1_id,member1_receiverName,member1_shipmentAddress,member1_shipmentCity,member1_shipmentCountry,member1_zipCode));
+            Assertions.assertTrue(proxy.purchaseCartByCreditCard(member2_name,member1_cardNumber,member1_month,member1_year,member1_holder,member1_cvv,member1_id,member1_receiverName,member1_shipmentAddress,member1_shipmentCity,member1_shipmentCountry,member1_zipCode));
+
+
+            Assertions.assertTrue(proxy.getCartContent(member1_name).isEmpty());
+            Assertions.assertTrue(proxy.getCartContent(member2_name).isEmpty());
+
+            Assertions.assertFalse(proxy.getStoreDeals(store_founder,storeName2).isEmpty());
+            Assertions.assertFalse(proxy.getMemberDeals(member1_name,member1_name).isEmpty());
+            Assertions.assertFalse(proxy.getMemberDeals(member2_name,member2_name).isEmpty());
+
+            Assertions.assertEquals(proxy.getMemberDeals(member1_name,member1_name).get(0).totalPrice,proxy.getStoreDeals(store_founder,storeName2).get(0).totalPrice);
+            List<DealDTO> member1Deals = proxy.getMemberDeals(member1_name,member1_name);
+            List<DealDTO> member2Deals = proxy.getMemberDeals(member2_name,member2_name);
+            List<DealDTO> storeDeals = proxy.getStoreDeals(store_founder,storeName2);
+
+            Assertions.assertEquals(member1Deals.get(0).products_amount.get("iphone 14"),4);
+            Assertions.assertEquals(member2Deals.get(0).products_amount.get("iphone 14"),2);
+            Assertions.assertEquals(storeDeals.get(0).products_amount.get("iphone 14"),4);
+            Assertions.assertEquals(storeDeals.get(1).products_amount.get("iphone 14"),2);
+
+            Assertions.assertEquals(member1Deals.get(0).products_prices.get("iphone 14"),3500.0);
+            Assertions.assertEquals(member2Deals.get(0).products_prices.get("iphone 14"),3500.0);
+            Assertions.assertEquals(storeDeals.get(0).products_prices.get("iphone 14"),3500.0);
+            Assertions.assertEquals(storeDeals.get(1).products_prices.get("iphone 14"),3500.0);
+
+            Assertions.assertEquals(member1Deals.get(0).productFinalPriceWithDiscount.get("iphone 14"),0.0);
+            Assertions.assertEquals(member2Deals.get(0).productFinalPriceWithDiscount.get("iphone 14"),0.0);
+            Assertions.assertEquals(storeDeals.get(0).productFinalPriceWithDiscount.get("iphone 14"),0.0);
+            Assertions.assertEquals(storeDeals.get(1).productFinalPriceWithDiscount.get("iphone 14"),0.0);
+
+            Assertions.assertEquals(member1Deals.get(0).productPriceMultipleAmount.get("iphone 14"),3500*4);
+            Assertions.assertEquals(member2Deals.get(0).productPriceMultipleAmount.get("iphone 14"),3500*2);
             Assertions.assertEquals(storeDeals.get(0).productPriceMultipleAmount.get("iphone 14"),3500*4);
             Assertions.assertEquals(storeDeals.get(1).productPriceMultipleAmount.get("iphone 14"),3500*2);
 

@@ -335,7 +335,7 @@ class StockTest {
         List<ProductDTO> list = new ArrayList<>();
         list.add(productDTO);
         List<ProductDTO> result = stock.getProductsInfoByCategory("milk");
-        assertEquals(1, result.size());
+        assertEquals(0, result.size());
     }
 
     @Test

@@ -167,7 +167,7 @@ public class GuestTests {
             Assertions.assertTrue(productInfoByCategory.values().stream().toList().get(0).contains(storeProduct2));
             Assertions.assertTrue(productInfoByCategory.values().stream().toList().get(0).contains(storeProduct3));
             Assertions.assertFalse(productInfoByCategory.values().stream().toList().get(0).contains("this_should_not_be_a_product_name"));
-            Assertions.assertTrue(proxy.register(guestUserName, "newMemberUserNameForTest_rgas1", "ValidPassword1"));
+            Assertions.assertTrue(proxy.register(guestUserName, "newMemberUserNameForTestrgas1", "ValidPassword1"));
             Assertions.assertTrue(proxy.addToCart(guestUserName,StoreName, storeProduct1, 3));
             Assertions.assertTrue(proxy.addToCart(guestUserName,StoreName, storeProduct2, 5));
             //TODO: add get cart content assertions
@@ -184,7 +184,7 @@ public class GuestTests {
         try {
             String guestUserName = proxy.enterMarket();
             String temp_guest;
-            String memberUserName = "user_test1";
+            String memberUserName = "usertest1";
             String password = "ValidPassword1";
             String StoreName = "user1_first_store";
             String storeProduct1= "user1_first_store_product1";
@@ -235,7 +235,7 @@ public class GuestTests {
         try {
             String guestUserName = proxy.enterMarket();
             String temp_guest;
-            String memberUserName = "user_test2";
+            String memberUserName = "usertest2";
             String password = "ValidPassword1";
             String StoreName = "user1_first_store";
             String storeProduct1= "user1_first_store_product1";
@@ -323,7 +323,7 @@ public class GuestTests {
         try {
             String guestUserName = proxy.enterMarket();
             String temp_guest;
-            String memberUserName = "user_test3";
+            String memberUserName = "usertest3";
             String password = "ValidPassword3";
             String StoreName = "user1_first_store";
             String storeProduct1= "user1_first_store_product1";

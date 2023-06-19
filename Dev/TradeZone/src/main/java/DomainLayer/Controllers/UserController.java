@@ -103,16 +103,18 @@ public class UserController {
     public boolean isValidUserName(String userName) throws Exception {
         assertStringIsNotNullOrBlank(userName);
 
-        userName = userName.strip().toLowerCase();
-
-        if(!Character.isAlphabetic(userName.charAt(0)))
-            return false;
+       // userName = userName.strip().toLowerCase();
 
         if(userName.length() < 2)
             return false;
 
         if(userName.contains(" "))
             return false;
+
+        for(int i=0;i<userName.length();i++){
+            if(!Character.isAlphabetic(userName.charAt(i)) && !Character.isDigit(userName.charAt(i)))
+                return false;
+        }
 
         return true;
 

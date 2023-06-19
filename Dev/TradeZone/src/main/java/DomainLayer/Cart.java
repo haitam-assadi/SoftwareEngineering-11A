@@ -83,6 +83,9 @@ public class Cart {
         for(Bag bag : bags.values())
             totalPrice += bag.getBagPriceAfterDiscount();
 
+        if(totalPrice < 0.0)
+            totalPrice = 0.0;
+
         return totalPrice;
     }
 

@@ -41,6 +41,10 @@ public class AbstractStoreOwner extends Role{
             throw new Exception(getUserName()+ " is not boss for "+otherMember.getUserName()+" in store "+storeName);
         otherMember.getStoreOwner().removeMemberAsStoreOwner(store, this);
         appointedOwners.get(storeName).remove(otherMember.getStoreOwner());
+
+        String msg = getUserName() + " remove your appointed to owner";
+        NotificationService.getInstance().notify(storeName,msg,NotificationType.RemovedFromOwningStore);
+
     }
 
     public Boolean isOwnerInChainAppointed(Store store, Member otherMember){

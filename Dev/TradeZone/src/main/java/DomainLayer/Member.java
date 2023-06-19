@@ -91,6 +91,7 @@ public class Member extends User{
         StoreOwner storeOwner =  new StoreOwner(this);
         roles.putIfAbsent(RoleEnum.StoreOwner,storeOwner);
         subscribeOwnerForNotifications(store.getStoreName());
+        subscribeMemberForNotifications(userName);
         StoreOwner storeOwnerRole =  (StoreOwner) roles.get(RoleEnum.StoreOwner);
         storeOwnerRole.appointMemberAsStoreOwner(store,myBoss);
         store.appointMemberAsStoreOwner(storeOwnerRole);
@@ -166,6 +167,9 @@ public class Member extends User{
         store.setStoreFounderAtStoreCreation(storeFounderRole);
         NotificationService.getInstance().subscribe(store.getStoreName(),NotificationType.productBought,this);
         NotificationService.getInstance().subscribe(store.getStoreName(),NotificationType.storeClosedBySystemManager,this);
+        NotificationService.getInstance().subscribeMember(storeFounderRole.getUserName(),NotificationType.decisionForContract,this);
+        NotificationService.getInstance().subscribeMember(storeFounderRole.getUserName(),NotificationType.fillAppointContract,this);
+        NotificationService.getInstance().subscribeMember(storeFounderRole.getUserName(),NotificationType.ownerDone,this);
 
         //todo: add the permissions
         return true;
@@ -239,6 +243,17 @@ public class Member extends User{
         NotificationService.getInstance().subscribe(storeName,NotificationType.RemovedFromOwningStore,this);
         NotificationService.getInstance().subscribe(storeName,NotificationType.storeOpenedAfterClose,this);
         NotificationService.getInstance().subscribe(storeName,NotificationType.storeClosedBySystemManager,this);
+        NotificationService.getInstance().subscribe(storeName,NotificationType.decisionForContract,this);
+        NotificationService.getInstance().subscribe(storeName,NotificationType.fillAppointContract,this);
+        NotificationService.getInstance().subscribe(storeName,NotificationType.ownerDone,this);
+
+    }
+
+    private void subscribeMemberForNotifications(String memberUserName) {
+        NotificationService.getInstance().subscribeMember(memberUserName,NotificationType.decisionForContract,this);
+        NotificationService.getInstance().subscribeMember(memberUserName,NotificationType.fillAppointContract,this);
+        NotificationService.getInstance().subscribeMember(memberUserName,NotificationType.ownerDone,this);
+
     }
 
 

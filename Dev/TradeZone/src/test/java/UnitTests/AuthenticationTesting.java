@@ -96,7 +96,7 @@ public class AuthenticationTesting {
             String user2 = market.enterMarket();
             String space_name = " ";
             assertThrows(Exception.class,
-                    () -> {Assertions.assertTrue(market.register(user1, "     " + newUserName1, newUserPass1));});
+                    () -> {Assertions.assertTrue(market.register(user2, "     " + newUserName1, newUserPass1));});
             assertThrows(Exception.class,
                     () -> {Assertions.assertTrue(market.register(user2, space_name, newUserPass2));});
         }catch (Exception e){
@@ -117,7 +117,7 @@ public class AuthenticationTesting {
     @Test
     public void register_user_with_short_user_name_failure(){
         try{
-            String short_name = "usr";
+            String short_name = "us";
             assertThrows(Exception.class,
                     () -> {Assertions.assertTrue(market.register(user1, short_name, newUserPass1));});
         }catch (Exception e){
