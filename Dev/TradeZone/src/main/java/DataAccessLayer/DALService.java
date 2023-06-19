@@ -75,6 +75,8 @@ public class DALService {
     @Autowired
     public static DealRepository dealRepository;
 
+    @Autowired
+    public static OwnerContractRepository ownerContractRepository;
     public DALService(){
         super();
     }
@@ -164,6 +166,20 @@ public class DALService {
         dealRepository.save(deal);
         storeRepository.save(store);
         memberRepository.save(member);
+    }
+
+    @Transactional
+    public static void saveContract(Store store,OwnerContract ownerContract){
+        if (!Market.dbFlag) return;
+        ownerContractRepository.save(ownerContract);
+        storeRepository.save(store);
+    }
+
+    @Transactional
+    public static void deleteContract(Store store,OwnerContract ownerContract){
+        if (!Market.dbFlag) return;
+        storeRepository.save(store);
+        ownerContractRepository.delete(ownerContract);
     }
 
 //

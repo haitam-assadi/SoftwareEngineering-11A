@@ -42,7 +42,8 @@ public class Config {
                                   CategoryDiscountPolicyRepository categoryDiscountPolicyRepository,
                                   MaxValDiscountPolicyRepository maxValDiscountPolicyRepository,
                                   ProductDiscountPolicyRepository productDiscountPolicyRepository,
-                                  DealRepository dealRepository) {
+                                  DealRepository dealRepository,
+                                  OwnerContractRepository ownerContractRepository) {
         return (args) -> {
             System.out.println("member config");
             DALService.memberRepository=memberRepository;
@@ -97,6 +98,8 @@ public class Config {
             System.out.println(productDiscountPolicyRepository);
             DALService.dealRepository = dealRepository;
             System.out.println(dealRepository);
+            DALService.ownerContractRepository = ownerContractRepository;
+            System.out.println(ownerContractRepository);
         };
     }
 
