@@ -19,4 +19,10 @@ public interface StoreRepository extends JpaRepository<Store,String> {
 
     @Query(value = "SELECT store_discount_policies_key FROM store_discount_policies WHERE store_store_name = ?",nativeQuery = true)
     public List<Integer> findDiscountPolicyIdByStoreName(String storeName);
+
+    @Query(value = "SELECT already_done_contracts_contract_id FROM already_done_contracts WHERE store_store_name = ?",nativeQuery = true)
+    public List<Integer> findAlreadyContractsIdByStoreName(String storeName);
+
+    @Query(value = "SELECT new_owners_contracts_contract_id FROM new_owners_contracts WHERE store_store_name = ?",nativeQuery = true)
+    public List<Integer> findNewOwnersContractsIdByStoreName(String storeName);
 }

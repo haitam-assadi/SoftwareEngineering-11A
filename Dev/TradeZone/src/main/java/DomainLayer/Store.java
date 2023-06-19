@@ -105,6 +105,9 @@ public class Store {
     @Transient
     private boolean storePaymentPoliciesLoaded;
 
+    @Transient
+    private boolean isContractsLaoded;
+
     public Store(String storeName) {
         this.storeName = storeName;
         stock = new Stock(this);
@@ -133,6 +136,7 @@ public class Store {
         createdDiscountPoliciesLoaded = true;
         storeDiscountPoliciesLoaded = true;
         storePaymentPoliciesLoaded = true;
+        isContractsLaoded = true;
     }
     public Store(String storeName,boolean isLoaded) {
         this.storeName = storeName;
@@ -162,6 +166,7 @@ public class Store {
         createdDiscountPoliciesLoaded = isLoaded;
         storeDiscountPoliciesLoaded = isLoaded;
         storePaymentPoliciesLoaded = isLoaded;
+        isContractsLaoded = isLoaded;
     }
 
     public Store(){}
@@ -1386,6 +1391,23 @@ public class Store {
         storeDiscountPoliciesLoaded = true;
     }
 
+    public void loadContracts(){
+        if (isContractsLaoded || Market.dbFlag)
+            return;
+        List<OwnerContract> ownerContracts = DALService.ownerContractRepository.findByStore(this);
+        List<Integer> newOwnersContractsIds = DALService.storeRepository.findNewOwnersContractsIdByStoreName(storeName);
+        List<Integer> alreadyDoneContractsIds = DALService.storeRepository.findAlreadyContractsIdByStoreName(storeName);
+        for (OwnerContract ownerContract: ownerContracts){
+            if (newOwnersContractsIds.contains(ownerContract.contractId)){
+                newOwnersContracts.put(storeName,ownerContract);
+            }
+            if (alreadyDoneContractsIds.contains(ownerContract.contractId)){
+                alreadyDoneContracts.add(ownerContract);
+            }
+        }
+        isContractsLaoded = true;
+    }
+
 
 
     private void loadIsActive(){
@@ -1416,6 +1438,7 @@ public class Store {
     }
 
     public boolean isContractExistsForNewOwner(String newOwnerName) throws Exception {
+        loadContracts();
         assertStringIsNotNullOrBlank(newOwnerName);
         newOwnerName = newOwnerName.strip().toLowerCase();
         return newOwnersContracts.containsKey(newOwnerName);
@@ -1425,6 +1448,7 @@ public class Store {
     public boolean createContractForNewOwner(AbstractStoreOwner triggerOwner, Member newOwner) throws Exception {
         loadStoreFounder();
         loadStoreOwners();
+        loadContracts();
         ConcurrentHashMap<String, Boolean> storeOwnersDecisions = new ConcurrentHashMap<>();
         if(!storeFounder.getUserName().equals(triggerOwner.getUserName()))
             storeOwnersDecisions.put(storeFounder.getUserName(),false);
@@ -1465,7 +1489,7 @@ public class Store {
         if(!isContractExistsForNewOwner(newOwnerUserName))
             throw new Exception("member "+ newOwnerUserName +" does not have ownership contract for store "+getStoreName());
 
-
+        loadContracts();
         OwnerContract ownerContract = newOwnersContracts.get(newOwnerUserName);
         ownerContract.fillOwnerContract(memberUserName,decisions);
         if (ownerContract.getContractIsDone()){
@@ -1482,6 +1506,7 @@ public class Store {
 
     public List<OwnerContractDTO> getAlreadyDoneContracts(String memberUserName) throws Exception {
         assertIsOwnerOrFounder(memberUserName);
+        loadContracts();
         memberUserName=memberUserName.strip().toLowerCase();
         List<OwnerContractDTO> ownerContracts = new ArrayList<>();
         for(OwnerContract ownerContract: this.alreadyDoneContracts){
@@ -1494,6 +1519,7 @@ public class Store {
 
     public List<OwnerContractDTO> getMyCreatedContracts(String memberUserName) throws Exception {
         assertIsOwnerOrFounder(memberUserName);
+        loadContracts();
         memberUserName=memberUserName.strip().toLowerCase();
         List<OwnerContractDTO> ownerContracts = new ArrayList<>();
         for(OwnerContract ownerContract: this.newOwnersContracts.values()){
@@ -1506,6 +1532,7 @@ public class Store {
 
     public List<OwnerContractDTO> getPendingContractsForOwner(String memberUserName) throws Exception {
         assertIsOwnerOrFounder(memberUserName);
+        loadContracts();
         memberUserName=memberUserName.strip().toLowerCase();
         List<OwnerContractDTO> ownerPendingContracts = new ArrayList<>();
         for(OwnerContract ownerContract: this.newOwnersContracts.values()){
@@ -1518,6 +1545,7 @@ public class Store {
 
     public void removeOwner(String userName) throws Exception {
         loadStoreOwners();
+        loadContracts();
         //todo: moslem (ana moslem) update stor owners
         storeOwners.remove(userName);
 
@@ -1548,7 +1576,6 @@ public class Store {
     }
 
     //todo: do:
-    // 1- contracts
     // 3- deals
     // 4- todos
 
