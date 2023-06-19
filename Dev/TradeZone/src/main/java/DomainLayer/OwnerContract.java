@@ -2,16 +2,39 @@ package DomainLayer;
 
 import DTO.OwnerContractDTO;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+@Entity
+@Table
 public class OwnerContract {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    int contractId;
+
+    @Transient
     private AbstractStoreOwner triggerOwner;
+
+    private String triggerOwnerName;
+    @Enumerated(value = EnumType.STRING)
+    private RoleEnum triggerOwnerType;
+
+    @OneToOne
+    @JoinColumn(name = "newOwnerName")
     private Member newOwner;
-    private ConcurrentHashMap<String, Boolean> storeOwnersDecisions;
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "storeOwnersDecisions")
+    @Column(name = "otherOwner")
+    private Map<String, Boolean> storeOwnersDecisions;
     private String declinedOwner;
+
+    @OneToOne
+    @JoinColumn(name = "storeName")
     private Store store;
 
 
@@ -19,15 +42,23 @@ public class OwnerContract {
 
     private boolean contractIsDone;
 
+    private boolean isLoaded;
+
     public OwnerContract(AbstractStoreOwner triggerOwner, Member newOwner, Store store, ConcurrentHashMap<String, Boolean> storeOwnersDecisions){
         this.triggerOwner=triggerOwner;
+        this.triggerOwnerName = triggerOwner.getUserName();
+        this.triggerOwnerType = triggerOwner.myRole;
         this.newOwner=newOwner;
         this.store = store;
         this.storeOwnersDecisions = storeOwnersDecisions;
         this.contractIsDone= false;
         contractStatus = "in progress";
         declinedOwner = "";
+        isLoaded = true;
     }
+
+    public OwnerContract(){}
+
 
 
     public boolean fillOwnerContract(String memberUserName, Boolean decisions) throws Exception {
@@ -121,6 +152,11 @@ public class OwnerContract {
         declinedOwner = userName;
         contractStatus = "owner "+userName +" has been removed before accepting, contract is rejected.";
         contractIsDone = true;
+    }
+
+    public void loadContract(){
+        if (isLoaded || !Market.dbFlag) return;
+
     }
 
 
