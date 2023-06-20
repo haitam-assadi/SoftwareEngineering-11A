@@ -402,6 +402,7 @@ public class Member extends User{
         if (!isLoaded) {
             if (Market.dbFlag) {
                 Member member = DALService.memberRepository.findById(userName).get();
+                member.setLoaded(true);
                 this.password = member.password;
                 this.isSystemManager = member.isSystemManager;
                 this.memberRolesFlag = member.memberRolesFlag; //todo: check that member.memberRolesFlag is enumerated values
@@ -409,7 +410,8 @@ public class Member extends User{
                 this.isOnline = member.isOnline;
                 this.roles = new ConcurrentHashMap<>();
                 this.loadRoles();
-                this.cart = new Cart(member);
+                this.cart = member.getCart();
+                        //new Cart(member);
                 this.cart.setLoaded(false);
                 this.cart.setMemberCart(this);
                 this.isLoaded = true;
@@ -489,7 +491,9 @@ public class Member extends User{
         return this.pendingMessages;
     }
 
-
+    public void setLoaded(boolean loaded) {
+        isLoaded = loaded;
+    }
 
 
 /*
