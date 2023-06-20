@@ -6223,3 +6223,78 @@ fail in adding product to stock: stock does already contains this product produc
 Jun 19, 2023 7:11:44 PM DomainLayer.LoggerManager sendErrorLog
 WARNING: 
 fail in adding product to stock: stock does already contains this product product3_store2
+יוני 19, 2023 10:54:52 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: member1name is already a member
+יוני 19, 2023 10:54:52 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: member2name is already a member
+יוני 19, 2023 10:54:53 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: userName member3name does not exists!
+יוני 19, 2023 10:55:12 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in creating store: store: store1 is already store
+יוני 19, 2023 10:55:12 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in creating store: store: store1b is already store
+יוני 19, 2023 10:55:12 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in creating store: store: store2 is already store
+יוני 19, 2023 10:55:12 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in creating store: store: store2b is already store
+יוני 19, 2023 10:55:12 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in creating store: store: store3 is already store
+יוני 19, 2023 10:55:12 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: member1name is not a founder/owner or an authorized manager
+יוני 19, 2023 10:55:12 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: member3name is not a founder/owner or an authorized manager
+יוני 19, 2023 10:55:12 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: member1name is not a founder/owner or an authorized manager
+יוני 19, 2023 10:55:12 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: member3name is not a founder/owner or an authorized manager
+יוני 19, 2023 10:55:12 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: member2name is not a founder/owner or an authorized manager
+יוני 19, 2023 10:55:12 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: member3name is not a founder/owner or an authorized manager
+יוני 19, 2023 10:55:12 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: member2name is not a founder/owner or an authorized manager
+יוני 19, 2023 10:55:12 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: member3name is not a founder/owner or an authorized manager
+יוני 19, 2023 10:55:32 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: stock does already contains this product product1_store1
+יוני 19, 2023 10:55:32 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: stock does already contains this product product2_store1
+יוני 19, 2023 10:55:32 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: stock does already contains this product product1_store1b
+יוני 19, 2023 10:55:32 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: stock does already contains this product product2_store1b
+יוני 19, 2023 10:55:32 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: stock does already contains this product product1_store2
+יוני 19, 2023 10:55:32 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: stock does already contains this product product2_store2
+יוני 19, 2023 10:55:32 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: stock does already contains this product product3_store2
+יוני 20, 2023 1:46:36 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: userName member1name does not exists!
+יוני 20, 2023 1:55:32 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: org.hibernate.TransientPropertyValueException: object references an unsaved transient instance - save the transient instance before flushing : DomainLayer.Member.cart -> DomainLayer.Cart; nested exception is java.lang.IllegalStateException: org.hibernate.TransientPropertyValueException: object references an unsaved transient instance - save the transient instance before flushing : DomainLayer.Member.cart -> DomainLayer.Cart
