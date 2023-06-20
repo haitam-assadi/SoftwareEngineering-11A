@@ -50,6 +50,7 @@ public class AllStoreDiscountPolicyTests {
 
     @BeforeEach
     public void setUp() throws Exception {
+        Market.dbFlag = false;
         MockitoAnnotations.openMocks(this);
         member = new Member("member1","member1Pass");
         store = new Store("store1");
