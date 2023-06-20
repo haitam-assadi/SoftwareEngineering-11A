@@ -401,6 +401,7 @@ public class Member extends User{
     public void loadMember() throws Exception {
         if (!isLoaded) {
             if (Market.dbFlag) {
+                liveMessages = new LinkedList<>();
                 Member member = DALService.memberRepository.findById(userName).get();
                 member.setLoaded(true);
                 this.password = member.password;

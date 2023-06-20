@@ -358,6 +358,7 @@ public class Store {
 
     public boolean appointMemberAsStoreOwner(StoreOwner storeOwner) throws Exception {
         loadStoreOwners();
+        System.out.println("here!!!!");
         if(storeOwners.containsKey(storeOwner.getUserName()))
             throw new Exception(""+storeOwner.getUserName()+" is already owner for this store");
         storeOwners.put(storeOwner.getUserName(), storeOwner);
@@ -1316,9 +1317,12 @@ public class Store {
 
 
     public void loadStoreOwners() throws Exception{
+        System.out.println("llla");
+        System.out.println(ownersLoaded);
         if (ownersLoaded || !Market.dbFlag)
             return;
         List<String> ownersNames = DALService.storesOwnersRepository.findOwnersNamesByStoreName(storeName);
+        storeOwners = new ConcurrentHashMap<>();
         for (String ownerName : ownersNames) {
             StoreOwner storeOwner = MemberMapper.getInstance().getStoreOwner(ownerName);
             storeOwners.put(ownerName, storeOwner);
@@ -1329,6 +1333,7 @@ public class Store {
     public void loadStoreManagers() throws Exception{
         if (managersLoaded || !Market.dbFlag)
             return;
+        storeManagers = new ConcurrentHashMap<>();
         List<String> managersNames = DALService.storesManagersRepository.findManagersNamesByStoreName(storeName);
         for (String managerName : managersNames) {
             StoreManager storeManager = MemberMapper.getInstance().getStoreManager(managerName);
@@ -1392,14 +1397,14 @@ public class Store {
     }
 
     public void loadContracts(){
-        if (isContractsLaoded || Market.dbFlag)
+        if (isContractsLaoded || !Market.dbFlag)
             return;
         List<OwnerContract> ownerContracts = DALService.ownerContractRepository.findByStore(this);
         List<Integer> newOwnersContractsIds = DALService.storeRepository.findNewOwnersContractsIdByStoreName(storeName);
         List<Integer> alreadyDoneContractsIds = DALService.storeRepository.findAlreadyContractsIdByStoreName(storeName);
         for (OwnerContract ownerContract: ownerContracts){
             if (newOwnersContractsIds.contains(ownerContract.contractId)){
-                newOwnersContracts.put(storeName,ownerContract);
+                newOwnersContracts.put(ownerContract.getNewOwner().getUserName(),ownerContract);
             }
             if (alreadyDoneContractsIds.contains(ownerContract.contractId)){
                 alreadyDoneContracts.add(ownerContract);
@@ -1488,10 +1493,11 @@ public class Store {
             throw new Exception("member "+ newOwnerUserName +" is already owner for store "+getStoreName());
         if(!isContractExistsForNewOwner(newOwnerUserName))
             throw new Exception("member "+ newOwnerUserName +" does not have ownership contract for store "+getStoreName());
-
         loadContracts();
         OwnerContract ownerContract = newOwnersContracts.get(newOwnerUserName);
+        System.out.println("asdnklasmdlasd");
         ownerContract.fillOwnerContract(memberUserName,decisions);
+        System.out.println("asdnklasmdlasd");
         if (ownerContract.getContractIsDone()){
             newOwnersContracts.remove(newOwnerUserName);
             alreadyDoneContracts.add(ownerContract);

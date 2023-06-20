@@ -167,5 +167,7 @@ public class OwnerContract {
         isLoaded = true;
     }
 
-
+    public Member getNewOwner() {
+        return newOwner;
+    }
 }

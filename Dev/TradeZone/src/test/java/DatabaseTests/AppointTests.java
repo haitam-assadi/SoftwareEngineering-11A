@@ -104,44 +104,44 @@ public class AppointTests {
 
             System.out.println("x;xl,;mlknlkjn");
 
-            Assertions.assertFalse(proxy.getMyCreatedContracts(member1Name,store1Name).isEmpty());
+            //Assertions.assertFalse(proxy.getMyCreatedContracts(member1Name,store1Name).isEmpty());
 
-//            Assertions.assertFalse(proxy.getStoreOwnersNames(member1Name,store1Name).isEmpty());
-//            Assertions.assertEquals(proxy.getStoreOwnersNames(member1Name,store1Name).size(),1);
-//            Assertions.assertTrue(proxy.getStoreOwnersNames(member1Name, store1Name).contains(member2Name));
-//
-//            List<OwnerContractDTO> ownerContractDTOS =  proxy.getMyCreatedContracts(member1Name,store1Name);
-//            Assertions.assertFalse(ownerContractDTOS.isEmpty());
-//            Assertions.assertTrue(ownerContractDTOS.size()==1);
-//            OwnerContractDTO ownerContractDTO = ownerContractDTOS.get(0);
-//            Assertions.assertTrue(ownerContractDTO.triggerOwner.equals(member1Name));
-//            Assertions.assertTrue(ownerContractDTO.newOwner.equals(member3Name));
-//            Assertions.assertTrue(ownerContractDTO.storeName.equals(store1Name));
-//            Assertions.assertTrue(ownerContractDTO.alreadyAcceptedOwners.size()==0);
-//            Assertions.assertTrue(ownerContractDTO.pendingOwners.size()==1);
-//            Assertions.assertTrue(ownerContractDTO.pendingOwners.contains(member2Name));
-//            Assertions.assertFalse(ownerContractDTO.isContractDone);
-//            Assertions.assertTrue(ownerContractDTO.contractStatus.equals("in progress"));
-//
-//            Assertions.assertTrue(proxy.fillOwnerContract(member2Name,store1Name,member3Name,true));
-//
-//            initSystemServiceAndLoadDataAndLogIn();
-//
-//            ownerContractDTOS =  proxy.getMyCreatedContracts(member1Name,store1Name);
-//            Assertions.assertTrue(ownerContractDTOS.size()==0);
-//            ownerContractDTOS =  proxy.getAlreadyDoneContracts(member1Name,store1Name);
-//            Assertions.assertTrue(ownerContractDTOS.size()==1);
-//            ownerContractDTO = ownerContractDTOS.get(0);
-//            Assertions.assertTrue(ownerContractDTO.alreadyAcceptedOwners.size()==1);
-//            Assertions.assertTrue(ownerContractDTO.alreadyAcceptedOwners.contains(member2Name));
-//            Assertions.assertTrue(ownerContractDTO.pendingOwners.size()==0);
-//            Assertions.assertTrue(ownerContractDTO.isContractDone);
-//            Assertions.assertTrue(ownerContractDTO.contractStatus.equals("all owners have accepted this contract and it is done"));
-//
-//            Assertions.assertTrue(proxy.getStoreOwnersNames(member1Name, store1Name).contains(member3Name));
-//
-//
-//
+            Assertions.assertFalse(proxy.getStoreOwnersNames(member1Name,store1Name).isEmpty());
+            Assertions.assertEquals(proxy.getStoreOwnersNames(member1Name,store1Name).size(),1);
+            Assertions.assertTrue(proxy.getStoreOwnersNames(member1Name, store1Name).contains(member2Name));
+
+            List<OwnerContractDTO> ownerContractDTOS =  proxy.getMyCreatedContracts(member1Name,store1Name);
+            Assertions.assertFalse(ownerContractDTOS.isEmpty());
+            Assertions.assertTrue(ownerContractDTOS.size()==1);
+            OwnerContractDTO ownerContractDTO = ownerContractDTOS.get(0);
+            Assertions.assertTrue(ownerContractDTO.triggerOwner.equals(member1Name));
+            Assertions.assertTrue(ownerContractDTO.newOwner.equals(member3Name));
+            Assertions.assertTrue(ownerContractDTO.storeName.equals(store1Name));
+            Assertions.assertTrue(ownerContractDTO.alreadyAcceptedOwners.size()==0);
+            Assertions.assertTrue(ownerContractDTO.pendingOwners.size()==1);
+            Assertions.assertTrue(ownerContractDTO.pendingOwners.contains(member2Name));
+            Assertions.assertFalse(ownerContractDTO.isContractDone);
+            Assertions.assertTrue(ownerContractDTO.contractStatus.equals("in progress"));
+
+            Assertions.assertTrue(proxy.fillOwnerContract(member2Name,store1Name,member3Name,true));
+
+            initSystemServiceAndLoadDataAndLogIn();
+
+            ownerContractDTOS =  proxy.getMyCreatedContracts(member1Name,store1Name);
+            Assertions.assertTrue(ownerContractDTOS.size()==0);
+            ownerContractDTOS =  proxy.getAlreadyDoneContracts(member1Name,store1Name);
+            Assertions.assertTrue(ownerContractDTOS.size()==1);
+            ownerContractDTO = ownerContractDTOS.get(0);
+            Assertions.assertTrue(ownerContractDTO.alreadyAcceptedOwners.size()==1);
+            Assertions.assertTrue(ownerContractDTO.alreadyAcceptedOwners.contains(member2Name));
+            Assertions.assertTrue(ownerContractDTO.pendingOwners.size()==0);
+            Assertions.assertTrue(ownerContractDTO.isContractDone);
+            Assertions.assertTrue(ownerContractDTO.contractStatus.equals("all owners have accepted this contract and it is done"));
+
+            Assertions.assertTrue(proxy.getStoreOwnersNames(member1Name, store1Name).contains(member3Name));
+
+
+
 
 
 

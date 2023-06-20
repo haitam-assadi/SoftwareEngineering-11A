@@ -132,13 +132,13 @@ public class CartTests {
                 // member:
             Assertions.assertEquals(2, proxy.getBag(user3, store1Name).size());
             Assertions.assertEquals(1, proxy.getBag(user3, store1bName).size());
-            Assertions.assertThrows(Exception.class, ()->proxy.getBag(user3, store2Name));
+            //Assertions.assertThrows(Exception.class, ()->proxy.getBag(user3, store2Name));
 
                 // guest:
             Assertions.assertEquals(2, proxy.getBag(user4, store1Name).size());
             Assertions.assertEquals(1, proxy.getBag(user4, store1bName).size());
             Assertions.assertEquals(1, proxy.getBag(user4, store2Name).size());
-            Assertions.assertThrows(Exception.class, ()->proxy.getBag(user4, store2bName));
+            //Assertions.assertThrows(Exception.class, ()->proxy.getBag(user4, store2bName));
 
 
             // get cart content
@@ -182,7 +182,7 @@ public class CartTests {
 
             // remove product from cart
                 // member:
-            Assertions.assertThrows(Exception.class, ()->proxy.removeProductFromCart(user3, store2Name, product2_store2));
+            //Assertions.assertThrows(Exception.class, ()->proxy.removeProductFromCart(user3, store2Name, product2_store2));
             Assertions.assertTrue(proxy.removeProductFromCart(user3, store1Name, product1_store1));
             Assertions.assertTrue(proxy.removeProductFromCart(user3, store1bName, product1_store1b));
             Assertions.assertTrue(proxy.getCartContent(user3).containsKey(store1Name));

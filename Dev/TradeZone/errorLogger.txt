@@ -6472,3 +6472,387 @@ fail in adding product to cart: store2b is not Active!
 יוני 20, 2023 2:38:55 לפנה״צ DomainLayer.LoggerManager sendErrorLog
 WARNING: 
 fail in adding product to cart: the product dose not exist in the store
+יוני 20, 2023 8:18:11 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: bag already contains product1_store1 product
+יוני 20, 2023 8:18:11 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart:  you choose amount of product1_store2 with more than what we have in the stock!
+יוני 20, 2023 8:18:11 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: The amount must be positive, it can't be -1
+יוני 20, 2023 8:18:11 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 20, 2023 8:18:11 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 20, 2023 8:18:11 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: store2b is not Active!
+יוני 20, 2023 8:18:11 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 20, 2023 8:18:12 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: bag already contains product1_store1 product
+יוני 20, 2023 8:18:12 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart:  you choose amount of product1_store2 with more than what we have in the stock!
+יוני 20, 2023 8:18:12 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: The amount must be positive, it can't be -1
+יוני 20, 2023 8:18:12 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 20, 2023 8:18:12 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 20, 2023 8:18:12 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: store2b is not Active!
+יוני 20, 2023 8:18:12 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 20, 2023 8:20:44 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: member1name is already a member
+יוני 20, 2023 8:21:35 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: member1name is already a member
+יוני 20, 2023 8:22:11 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: bag already contains product1_store1 product
+יוני 20, 2023 8:22:11 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart:  you choose amount of product1_store2 with more than what we have in the stock!
+יוני 20, 2023 8:22:11 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: The amount must be positive, it can't be -1
+יוני 20, 2023 8:22:11 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 20, 2023 8:22:11 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 20, 2023 8:22:11 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: store2b is not Active!
+יוני 20, 2023 8:22:11 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 20, 2023 8:22:11 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: bag already contains product1_store1 product
+יוני 20, 2023 8:22:11 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart:  you choose amount of product1_store2 with more than what we have in the stock!
+יוני 20, 2023 8:22:11 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: The amount must be positive, it can't be -1
+יוני 20, 2023 8:22:11 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 20, 2023 8:22:11 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 20, 2023 8:22:11 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: store2b is not Active!
+יוני 20, 2023 8:22:11 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 20, 2023 8:24:50 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: bag already contains product1_store1 product
+יוני 20, 2023 8:24:51 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart:  you choose amount of product1_store2 with more than what we have in the stock!
+יוני 20, 2023 8:24:53 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: The amount must be positive, it can't be -1
+יוני 20, 2023 8:24:54 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 20, 2023 8:24:55 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 20, 2023 8:24:56 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: store2b is not Active!
+יוני 20, 2023 8:24:57 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 20, 2023 8:25:03 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: bag already contains product1_store1 product
+יוני 20, 2023 8:25:04 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart:  you choose amount of product1_store2 with more than what we have in the stock!
+יוני 20, 2023 8:25:05 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: The amount must be positive, it can't be -1
+יוני 20, 2023 8:25:05 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 20, 2023 8:25:06 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 20, 2023 8:25:07 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: store2b is not Active!
+יוני 20, 2023 8:25:07 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 20, 2023 8:29:30 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: bag already contains product1_store1 product
+יוני 20, 2023 8:29:31 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart:  you choose amount of product1_store2 with more than what we have in the stock!
+יוני 20, 2023 8:29:36 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: The amount must be positive, it can't be -1
+יוני 20, 2023 8:29:37 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 20, 2023 8:29:43 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 20, 2023 8:29:44 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: store2b is not Active!
+יוני 20, 2023 8:29:44 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 20, 2023 8:29:49 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: bag already contains product1_store1 product
+יוני 20, 2023 8:29:50 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart:  you choose amount of product1_store2 with more than what we have in the stock!
+יוני 20, 2023 8:29:51 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: The amount must be positive, it can't be -1
+יוני 20, 2023 8:29:51 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 20, 2023 8:29:52 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 20, 2023 8:29:52 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: store2b is not Active!
+יוני 20, 2023 8:29:53 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 20, 2023 8:31:26 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: bag already contains product1_store1 product
+יוני 20, 2023 8:31:30 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart:  you choose amount of product1_store2 with more than what we have in the stock!
+יוני 20, 2023 8:31:31 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: The amount must be positive, it can't be -1
+יוני 20, 2023 8:31:33 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 20, 2023 8:31:34 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 20, 2023 8:31:35 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: store2b is not Active!
+יוני 20, 2023 8:31:36 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 20, 2023 8:31:48 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: bag already contains product1_store1 product
+יוני 20, 2023 8:31:51 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart:  you choose amount of product1_store2 with more than what we have in the stock!
+יוני 20, 2023 8:31:52 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: The amount must be positive, it can't be -1
+יוני 20, 2023 8:31:56 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 20, 2023 8:31:57 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 20, 2023 8:31:58 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: store2b is not Active!
+יוני 20, 2023 8:31:59 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 20, 2023 8:36:15 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: bag already contains product1_store1 product
+יוני 20, 2023 8:36:15 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart:  you choose amount of product1_store2 with more than what we have in the stock!
+יוני 20, 2023 8:36:15 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: The amount must be positive, it can't be -1
+יוני 20, 2023 8:36:15 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 20, 2023 8:36:15 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 20, 2023 8:36:15 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: store2b is not Active!
+יוני 20, 2023 8:36:15 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 20, 2023 8:36:15 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: bag already contains product1_store1 product
+יוני 20, 2023 8:36:15 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart:  you choose amount of product1_store2 with more than what we have in the stock!
+יוני 20, 2023 8:36:15 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: The amount must be positive, it can't be -1
+יוני 20, 2023 8:36:15 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 20, 2023 8:36:15 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 20, 2023 8:36:15 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: store2b is not Active!
+יוני 20, 2023 8:36:15 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 20, 2023 8:37:38 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: bag already contains product1_store1 product
+יוני 20, 2023 8:37:38 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart:  you choose amount of product1_store2 with more than what we have in the stock!
+יוני 20, 2023 8:37:38 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: The amount must be positive, it can't be -1
+יוני 20, 2023 8:37:38 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 20, 2023 8:37:38 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 20, 2023 8:37:38 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: store2b is not Active!
+יוני 20, 2023 8:37:38 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 20, 2023 8:37:38 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: bag already contains product1_store1 product
+יוני 20, 2023 8:37:38 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart:  you choose amount of product1_store2 with more than what we have in the stock!
+יוני 20, 2023 8:37:38 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: The amount must be positive, it can't be -1
+יוני 20, 2023 8:37:38 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 20, 2023 8:37:38 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 20, 2023 8:37:38 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: store2b is not Active!
+יוני 20, 2023 8:37:38 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 20, 2023 8:38:34 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: bag already contains product1_store1 product
+יוני 20, 2023 8:38:34 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart:  you choose amount of product1_store2 with more than what we have in the stock!
+יוני 20, 2023 8:38:34 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: The amount must be positive, it can't be -1
+יוני 20, 2023 8:38:34 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 20, 2023 8:38:34 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 20, 2023 8:38:34 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: store2b is not Active!
+יוני 20, 2023 8:38:34 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 20, 2023 8:38:34 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: bag already contains product1_store1 product
+יוני 20, 2023 8:38:34 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart:  you choose amount of product1_store2 with more than what we have in the stock!
+יוני 20, 2023 8:38:34 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: The amount must be positive, it can't be -1
+יוני 20, 2023 8:38:34 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 20, 2023 8:38:34 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 20, 2023 8:38:34 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: store2b is not Active!
+יוני 20, 2023 8:38:34 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 20, 2023 8:39:39 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: bag already contains product1_store1 product
+יוני 20, 2023 8:39:39 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart:  you choose amount of product1_store2 with more than what we have in the stock!
+יוני 20, 2023 8:39:39 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: The amount must be positive, it can't be -1
+יוני 20, 2023 8:39:39 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 20, 2023 8:39:39 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 20, 2023 8:39:39 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: store2b is not Active!
+יוני 20, 2023 8:39:39 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 20, 2023 8:39:39 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: bag already contains product1_store1 product
+יוני 20, 2023 8:39:39 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart:  you choose amount of product1_store2 with more than what we have in the stock!
+יוני 20, 2023 8:39:39 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: The amount must be positive, it can't be -1
+יוני 20, 2023 8:39:39 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 20, 2023 8:39:39 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 20, 2023 8:39:39 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: store2b is not Active!
+יוני 20, 2023 8:39:39 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
