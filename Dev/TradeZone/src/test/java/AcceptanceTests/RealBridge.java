@@ -16,7 +16,7 @@ public class RealBridge implements Bridge{
     private SystemService systemService; //TODO: = new or getinstance()
 
     public RealBridge(){
-        systemService = new SystemService("externalSystemsFiles/externalSystemsData.json");
+        systemService = new SystemService(false, "externalSystemsFiles/externalSystemsData.json");
     }
 
     @Override

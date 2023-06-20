@@ -26,9 +26,9 @@ public class SystemService {
 
     private String configFilePath;
 
-    public SystemService(String configFilePath){
+    public SystemService(boolean flag, String configFilePath){
         this.configFilePath = configFilePath;
-        market = new Market();
+        market = new Market(flag);
         JsonNode data = connectToExternalSystems();
         String dataBaseUrl = data.get("dataBaseUrl").asText();
         dbFlag = data.get("dataBaseLoadFlag").asBoolean();

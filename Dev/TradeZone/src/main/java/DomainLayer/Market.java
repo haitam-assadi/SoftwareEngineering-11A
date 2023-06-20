@@ -22,8 +22,8 @@ public class Market {
     ShipmentService shipmentService;
 
     public static boolean dbFlag;
-    public Market(){
-        dbFlag = false;
+    public Market(boolean flag){
+        dbFlag = flag;
         this.userController = new UserController();
         this.storeController = new StoreController();
 //        paymentService = new PaymentService("https://php-server-try.000webhostapp.com/");
