@@ -17,8 +17,9 @@ public class RolerNotificator {
     private String memberName;
 
     public RolerNotificator(){}
-    public RolerNotificator(StoreRules storeRules){
+    public RolerNotificator(StoreRules storeRules,String memberName){
         this.storeRules = storeRules;
+        this.memberName = memberName;
     }
 
     public int getId() {
