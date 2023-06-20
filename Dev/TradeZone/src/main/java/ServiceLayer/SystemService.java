@@ -81,15 +81,15 @@ public class SystemService {
         try{
             //FOR TESTING DELETE AFTER THAT:
             market.loadData();
-            if(dbFlag){
-                market.loadData();
-            }
+//            if(dbFlag){
+//                market.loadData();
+//            }
             String manager = market.firstManagerInitializer();
             if(fileLoadFlag){
                 //clear DB
                 market.initMarketParsing();
             }
-            createMemberWithTwoStore("user1");
+//            createMemberWithTwoStore("user1");
             return new ResponseT<>(manager,true);
 
         }catch (Exception e){
