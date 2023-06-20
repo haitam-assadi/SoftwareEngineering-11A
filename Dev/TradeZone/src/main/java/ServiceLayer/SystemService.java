@@ -30,10 +30,10 @@ public class SystemService {
 //        String shipmentUrl = data.get("shipmenServiceUrl").asText();
         this.dbFlag = dbFlag;
         market = new Market(dbFlag);
-        //if (!dbFlag){
+      //  if (!dbFlag){
             MemberMapper.initMapper();
             StoreMapper.initMapper();
-        //}
+      //  }
 //        PaymentService payment = new PaymentService(paymentUrl);
 //        market.setPaymentService(payment);
 
