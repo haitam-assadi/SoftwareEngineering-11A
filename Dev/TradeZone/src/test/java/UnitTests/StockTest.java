@@ -1,10 +1,10 @@
 package UnitTests;
 
 import DTO.ProductDTO;
-import DomainLayer.Category;
-import DomainLayer.Product;
-import DomainLayer.Stock;
-import DomainLayer.Store;
+import DataAccessLayer.Controller.MemberMapper;
+import DataAccessLayer.Controller.StoreMapper;
+import DomainLayer.*;
+import PresentationLayer.SpringbootHtmlApplication;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,12 +12,14 @@ import org.junit.jupiter.api.TestInstance;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 @TestInstance(value = TestInstance.Lifecycle.PER_CLASS)
+@SpringBootTest(classes = SpringbootHtmlApplication.class)
 class StockTest {
     private Stock stock;
 
@@ -31,6 +33,9 @@ class StockTest {
     ProductDTO productDTO;
     @BeforeAll
     public void setUp(){
+        Market.dbFlag = false;
+        StoreMapper.initMapper();
+        MemberMapper.initMapper();
         MockitoAnnotations.openMocks(this);
         Store store = null; //TODO mock store
         stock = new Stock(store);
@@ -38,6 +43,9 @@ class StockTest {
 
     @BeforeEach
     public void beforeEachTest(){
+        Market.dbFlag = false;
+        StoreMapper.initMapper();
+        MemberMapper.initMapper();
         Store store = null; //TODO mock store
         stock = new Stock(store);
     }

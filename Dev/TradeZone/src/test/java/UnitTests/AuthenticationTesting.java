@@ -1,14 +1,19 @@
 package UnitTests;
 
+import DataAccessLayer.Controller.MemberMapper;
+import DataAccessLayer.Controller.StoreMapper;
 import DomainLayer.Cart;
 import DomainLayer.Market;
+import PresentationLayer.SpringbootHtmlApplication;
 import org.junit.jupiter.api.*;
 import org.mockito.MockitoAnnotations;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @TestInstance(value = TestInstance.Lifecycle.PER_CLASS)
+@SpringBootTest(classes = SpringbootHtmlApplication.class)
 public class AuthenticationTesting {
     private Market market;
 
@@ -26,6 +31,9 @@ public class AuthenticationTesting {
     public void setUp(){
         MockitoAnnotations.openMocks(this);
         market = new Market(false);
+        Market.dbFlag = false;
+        StoreMapper.initMapper();
+        MemberMapper.initMapper();
         user1 = market.enterMarket();
     }
 

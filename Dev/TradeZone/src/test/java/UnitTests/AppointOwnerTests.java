@@ -2,14 +2,19 @@ package UnitTests;
 
 import DTO.DealDTO;
 import DTO.OwnerContractDTO;
+import DataAccessLayer.Controller.MemberMapper;
+import DataAccessLayer.Controller.StoreMapper;
 import DomainLayer.*;
+import PresentationLayer.SpringbootHtmlApplication;
 import org.junit.jupiter.api.*;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
 
 @TestInstance(value = TestInstance.Lifecycle.PER_CLASS)
+@SpringBootTest(classes = SpringbootHtmlApplication.class)
 public class AppointOwnerTests {
         private Store store;
 
@@ -39,6 +44,9 @@ public class AppointOwnerTests {
 
         @BeforeAll
         public void setUp() throws Exception {
+            Market.dbFlag = false;
+            StoreMapper.initMapper();
+            MemberMapper.initMapper();
             MockitoAnnotations.openMocks(this);
             member1name = new Member("member1","member1Pass");
             member2name = new Member("member2","member2Pass");
@@ -52,6 +60,9 @@ public class AppointOwnerTests {
 
         @BeforeEach
         public void beforeEachTest() throws Exception {
+            Market.dbFlag = false;
+            StoreMapper.initMapper();
+            MemberMapper.initMapper();
             MockitoAnnotations.openMocks(this);
             member1name = new Member("member1","member1Pass");
             member2name = new Member("member2","member2Pass");

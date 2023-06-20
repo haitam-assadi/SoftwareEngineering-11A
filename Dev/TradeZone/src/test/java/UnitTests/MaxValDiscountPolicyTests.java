@@ -1,6 +1,8 @@
 package UnitTests;
 
 
+import DataAccessLayer.Controller.MemberMapper;
+import DataAccessLayer.Controller.StoreMapper;
 import DomainLayer.*;
 import DomainLayer.BagConstraints.BagConstraintAnd;
 import DomainLayer.BagConstraints.BagConstraintOr;
@@ -8,6 +10,7 @@ import DomainLayer.BagConstraints.CategoryBagConstraint;
 import DomainLayer.BagConstraints.ProductBagConstraint;
 import DomainLayer.DiscountPolicies.DiscountPolicy;
 import DomainLayer.DiscountPolicies.MaxValDiscountPolicy;
+import PresentationLayer.SpringbootHtmlApplication;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -18,9 +21,11 @@ import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalTime;
 import java.util.concurrent.ConcurrentHashMap;
+@SpringBootTest(classes = SpringbootHtmlApplication.class)
 public class MaxValDiscountPolicyTests {
 
 
@@ -52,6 +57,9 @@ public class MaxValDiscountPolicyTests {
 
     @BeforeEach
     public void setUp() throws Exception {
+        Market.dbFlag = false;
+        StoreMapper.initMapper();
+        MemberMapper.initMapper();
         MockitoAnnotations.openMocks(this);
         member = new Member("member1","member1Pass");
         store = new Store("store1");

@@ -1,17 +1,22 @@
 package UnitTests;
 
+import DataAccessLayer.Controller.MemberMapper;
+import DataAccessLayer.Controller.StoreMapper;
 import DomainLayer.Market;
 import DomainLayer.Member;
+import PresentationLayer.SpringbootHtmlApplication;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.mockito.MockitoAnnotations;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @TestInstance(value = TestInstance.Lifecycle.PER_CLASS)
+@SpringBootTest(classes = SpringbootHtmlApplication.class)
 public class NotificationsTests {
 
     private String userName1 = "username1";
@@ -28,6 +33,9 @@ public class NotificationsTests {
 
     @BeforeEach
     public void setUp() {
+        Market.dbFlag = false;
+        StoreMapper.initMapper();
+        MemberMapper.initMapper();
         MockitoAnnotations.openMocks(this);
         market = new Market(false);
     }

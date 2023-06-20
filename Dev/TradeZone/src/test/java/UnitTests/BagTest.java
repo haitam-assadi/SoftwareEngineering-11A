@@ -1,9 +1,9 @@
 package UnitTests;
 
-import DomainLayer.Bag;
-import DomainLayer.Product;
-import DomainLayer.Stock;
-import DomainLayer.Store;
+import DataAccessLayer.Controller.MemberMapper;
+import DataAccessLayer.Controller.StoreMapper;
+import DomainLayer.*;
+import PresentationLayer.SpringbootHtmlApplication;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,9 +11,11 @@ import org.junit.jupiter.api.TestInstance;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.junit.jupiter.api.Assertions.*;
 @TestInstance(value = TestInstance.Lifecycle.PER_CLASS)
+@SpringBootTest(classes = SpringbootHtmlApplication.class)
 class BagTest {
 
     private Bag bag;
@@ -26,12 +28,18 @@ class BagTest {
 
     @BeforeAll
     public void setUp(){
+        Market.dbFlag = false;
+        StoreMapper.initMapper();
+        MemberMapper.initMapper();
         MockitoAnnotations.openMocks(this);
         bag = new Bag(storeBag,false);
     }
 
     @BeforeEach
     public void beforeEachTest(){
+        Market.dbFlag = false;
+        StoreMapper.initMapper();
+        MemberMapper.initMapper();
         bag = new Bag(storeBag,false);
     }
 

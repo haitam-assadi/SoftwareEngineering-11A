@@ -1,13 +1,18 @@
 package UnitTests;
 
+import DataAccessLayer.Controller.MemberMapper;
+import DataAccessLayer.Controller.StoreMapper;
 import DomainLayer.*;
+import PresentationLayer.SpringbootHtmlApplication;
 import org.junit.jupiter.api.*;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.junit.jupiter.api.Assertions.*;
 @TestInstance(value = TestInstance.Lifecycle.PER_CLASS)
+@SpringBootTest(classes = SpringbootHtmlApplication.class)
 class MemberTest {
 
     private Member member;
@@ -25,12 +30,18 @@ class MemberTest {
 
     @BeforeAll
     public void setUp(){
+        Market.dbFlag = false;
+        StoreMapper.initMapper();
+        MemberMapper.initMapper();
         MockitoAnnotations.openMocks(this);
         member = new Member("Adel", "12345");
     }
 
     @BeforeEach
     public void beforeEachTest(){
+        Market.dbFlag = false;
+        StoreMapper.initMapper();
+        MemberMapper.initMapper();
         member = new Member("Adel", "12345");
     }
 

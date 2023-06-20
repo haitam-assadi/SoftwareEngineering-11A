@@ -1,7 +1,10 @@
 package UnitTests;
 
 import DTO.ProductDTO;
+import DataAccessLayer.Controller.MemberMapper;
+import DataAccessLayer.Controller.StoreMapper;
 import DomainLayer.*;
+import PresentationLayer.SpringbootHtmlApplication;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -9,9 +12,11 @@ import org.junit.jupiter.api.TestInstance;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.junit.jupiter.api.Assertions.*;
 @TestInstance(value = TestInstance.Lifecycle.PER_CLASS)
+@SpringBootTest(classes = SpringbootHtmlApplication.class)
 class CartTest {
 
     private Cart cart;
@@ -30,12 +35,18 @@ class CartTest {
 
     @BeforeAll
     public void setUp(){
+        Market.dbFlag = false;
+        StoreMapper.initMapper();
+        MemberMapper.initMapper();
         MockitoAnnotations.openMocks(this);
         cart = new Cart(cartOwner);
     }
 
     @BeforeEach
     public void beforeEachTest(){
+        Market.dbFlag = false;
+        StoreMapper.initMapper();
+        MemberMapper.initMapper();
         cart = new Cart(cartOwner);
     }
 
