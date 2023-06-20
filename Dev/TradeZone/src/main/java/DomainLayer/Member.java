@@ -308,7 +308,7 @@ public class Member extends User{
 
 
 
-    public void subscribeOwnerForNotifications(String storeName) {
+    public void subscribeOwnerForNotifications(String storeName) throws Exception {
         NotificationService.getInstance().subscribe(storeName,NotificationType.storeClosed,this);
         NotificationService.getInstance().subscribe(storeName,NotificationType.productBought,this);
         NotificationService.getInstance().subscribe(storeName,NotificationType.RemovedFromOwningStore,this);
@@ -320,7 +320,7 @@ public class Member extends User{
 
     }
 
-    private void subscribeMemberForNotifications(String memberUserName) {
+    private void subscribeMemberForNotifications(String memberUserName) throws Exception {
         NotificationService.getInstance().subscribeMember(memberUserName,NotificationType.decisionForContract,this);
         NotificationService.getInstance().subscribeMember(memberUserName,NotificationType.fillAppointContract,this);
         NotificationService.getInstance().subscribeMember(memberUserName,NotificationType.ownerDone,this);
@@ -362,7 +362,7 @@ public class Member extends User{
             DALService.memberRepository.save(this);
     }
 
-    public void defineNotifications(String newMemberUserName) {
+    public void defineNotifications(String newMemberUserName) throws Exception {
         NotificationService.getInstance().subscribeMember(newMemberUserName,NotificationType.requestNotification,this);
         NotificationService.getInstance().subscribeMember(newMemberUserName,NotificationType.subscriptionRemoved,this);
     }
