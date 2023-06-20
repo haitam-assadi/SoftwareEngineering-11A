@@ -58,3 +58,1577 @@ getStoreInfo(String userName, String storeName)
 in 2023-06-19 22:15:34 the user user1 wants to get information about the store user1_second_store- getStoreInfo(user1, user1_second_store)
 יוני 19, 2023 10:15:34 אחה״צ DomainLayer.LoggerManager sendEventLog
 INFO: in 2023-06-19 22:15:34 the user user1 got information about the store user1_second_store
+יוני 19, 2023 10:36:27 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-19 22:36:27 the user guest_0 wants to make registeration register(guest_0, member1name,Aa12345678)
+יוני 19, 2023 10:36:29 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-19 22:36:29 a new member joined .
+- Memer name: member1name
+
+יוני 19, 2023 10:36:29 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-19 22:36:29 the user guest_1 wants to make registeration register(guest_1, member2name,Bb129271346)
+יוני 19, 2023 10:36:30 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-19 22:36:30 a new member joined .
+- Memer name: member2name
+
+יוני 19, 2023 10:36:30 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-19 22:36:30 the user guest_0 wants to make registeration register(guest_0, member1name,Aa12345678)
+יוני 19, 2023 10:36:30 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-19 22:36:30 the user guest_1 wants to make registeration register(guest_1, member2name,Bb129271346)
+יוני 19, 2023 10:36:30 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-19 22:36:30 the user guest_0 wants to make login login(guest_0, member1name,Aa12345678)
+יוני 19, 2023 10:36:31 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-19 22:36:31 a new member Logged in .
+- Memer name: member1name
+
+יוני 19, 2023 10:36:31 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-19 22:36:31 the user guest_1 wants to make login login(guest_1, member2name,Bb129271346)
+יוני 19, 2023 10:36:32 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-19 22:36:32 a new member Logged in .
+- Memer name: member2name
+
+יוני 19, 2023 10:36:32 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-19 22:36:32 the user guest_2 wants to make login login(guest_2, member3name,kK129B71346)
+יוני 19, 2023 10:36:32 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-19 22:36:32 the user guest_2 wants to make registeration register(guest_2, member3name,kK129B71346)
+יוני 19, 2023 10:36:33 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-19 22:36:33 a new member joined .
+- Memer name: member3name
+
+יוני 19, 2023 10:36:33 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-19 22:36:33 the user guest_2 wants to make login login(guest_2, member3name,kK129B71346)
+יוני 19, 2023 10:36:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-19 22:36:34 a new member Logged in .
+- Memer name: member3name
+
+יוני 19, 2023 10:36:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-19 22:36:34 the user guest_0 wants to make login login(guest_0, member1name,Aa12345678)
+יוני 19, 2023 10:36:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-19 22:36:34 a new member Logged in .
+- Memer name: member1name
+
+יוני 19, 2023 10:36:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-19 22:36:34 the user guest_1 wants to make login login(guest_1, member2name,Bb129271346)
+יוני 19, 2023 10:36:35 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-19 22:36:35 a new member Logged in .
+- Memer name: member2name
+
+יוני 19, 2023 10:36:35 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-19 22:36:35 the user guest_2 wants to make login login(guest_2, member3name,kK129B71346)
+יוני 19, 2023 10:36:35 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-19 22:36:35 a new member Logged in .
+- Memer name: member3name
+
+יוני 19, 2023 10:36:35 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+createStore(String memberUserName, String newStoreName)
+in 2023-06-19 22:36:35 the member member1name tries to create store  - createStore(member1name, store1)
+יוני 19, 2023 10:36:37 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+createStore(String memberUserName, String newStoreName)
+in 2023-06-19 22:36:37 the member member1name tries to create store  - createStore(member1name, store1b)
+יוני 19, 2023 10:36:39 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+createStore(String memberUserName, String newStoreName)
+in 2023-06-19 22:36:39 the member member2name tries to create store  - createStore(member2name, store2)
+יוני 19, 2023 10:36:41 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+createStore(String memberUserName, String newStoreName)
+in 2023-06-19 22:36:41 the member member2name tries to create store  - createStore(member2name, store2b)
+יוני 19, 2023 10:36:42 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+createStore(String memberUserName, String newStoreName)
+in 2023-06-19 22:36:42 the member member3name tries to create store  - createStore(member3name, store3)
+יוני 19, 2023 10:36:44 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-19 22:36:44 the user guest_0 wants to make login login(guest_0, member1name,Aa12345678)
+יוני 19, 2023 10:36:45 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-19 22:36:45 a new member Logged in .
+- Memer name: member1name
+
+יוני 19, 2023 10:36:45 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-19 22:36:45 the user guest_1 wants to make login login(guest_1, member2name,Bb129271346)
+יוני 19, 2023 10:36:45 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-19 22:36:45 a new member Logged in .
+- Memer name: member2name
+
+יוני 19, 2023 10:36:45 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-19 22:36:45 the user guest_2 wants to make login login(guest_2, member3name,kK129B71346)
+יוני 19, 2023 10:36:46 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-19 22:36:46 a new member Logged in .
+- Memer name: member3name
+
+יוני 19, 2023 10:36:46 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+createStore(String memberUserName, String newStoreName)
+in 2023-06-19 22:36:46 the member member1name tries to create store  - createStore(member1name, store1)
+יוני 19, 2023 10:36:46 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+createStore(String memberUserName, String newStoreName)
+in 2023-06-19 22:36:46 the member member1name tries to create store  - createStore(member1name, store1b)
+יוני 19, 2023 10:36:46 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+createStore(String memberUserName, String newStoreName)
+in 2023-06-19 22:36:46 the member member2name tries to create store  - createStore(member2name, store2)
+יוני 19, 2023 10:36:46 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+createStore(String memberUserName, String newStoreName)
+in 2023-06-19 22:36:46 the member member2name tries to create store  - createStore(member2name, store2b)
+יוני 19, 2023 10:36:46 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+createStore(String memberUserName, String newStoreName)
+in 2023-06-19 22:36:46 the member member3name tries to create store  - createStore(member3name, store3)
+יוני 19, 2023 10:36:46 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-19 22:36:46 the member member1name tries to add product to store  - addNewProductToStock(member1name, store2, product1_store2, category_store2, 157.5, description, 300)
+יוני 19, 2023 10:36:46 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-19 22:36:46 the member member3name tries to add product to store  - addNewProductToStock(member3name, store2, product1_store2, category_store2, 157.5, description, 300)
+יוני 19, 2023 10:36:46 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-19 22:36:46 the member member1name tries to add product to store  - addNewProductToStock(member1name, store2b, product1_store2, category_store2, 157.5, description, 300)
+יוני 19, 2023 10:36:46 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-19 22:36:46 the member member3name tries to add product to store  - addNewProductToStock(member3name, store2b, product1_store2, category_store2, 157.5, description, 300)
+יוני 19, 2023 10:36:46 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-19 22:36:46 the member member2name tries to add product to store  - addNewProductToStock(member2name, store1, product1_store2, category_store2, 157.5, description, 300)
+יוני 19, 2023 10:36:46 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-19 22:36:46 the member member3name tries to add product to store  - addNewProductToStock(member3name, store1, product1_store2, category_store2, 157.5, description, 300)
+יוני 19, 2023 10:36:46 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-19 22:36:46 the member member2name tries to add product to store  - addNewProductToStock(member2name, store1b, product1_store2, category_store2, 157.5, description, 300)
+יוני 19, 2023 10:36:46 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-19 22:36:46 the member member3name tries to add product to store  - addNewProductToStock(member3name, store1b, product1_store2, category_store2, 157.5, description, 300)
+יוני 19, 2023 10:36:46 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-19 22:36:46 the user member1name wants to get information about the store store1- getStoreInfo(member1name, store1)
+יוני 19, 2023 10:36:46 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-19 22:36:46 the user member1name got information about the store store1
+יוני 19, 2023 10:36:46 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-19 22:36:46 the user member2name wants to get information about the store store2- getStoreInfo(member2name, store2)
+יוני 19, 2023 10:36:46 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-19 22:36:46 the user member2name got information about the store store2
+יוני 19, 2023 10:36:46 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-19 22:36:46 the member member1name tries to add product to store  - addNewProductToStock(member1name, store1, product1_store1, category1_product1_store1, 111.1, description_product1_store1, 100)
+יוני 19, 2023 10:36:48 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-19 22:36:48 the member member1name tries to add product to store  - addNewProductToStock(member1name, store1, product2_store1, category2_product2_store1, 222.2, description, 200)
+יוני 19, 2023 10:36:51 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-19 22:36:51 the member member1name tries to add product to store  - addNewProductToStock(member1name, store1b, product1_store1b, category_store1b, 333.3, description_product1_store1b, 300)
+יוני 19, 2023 10:36:53 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-19 22:36:53 the member member1name tries to add product to store  - addNewProductToStock(member1name, store1b, product2_store1b, category_store1b, 444.4, description, 400)
+יוני 19, 2023 10:36:55 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-19 22:36:55 the member member2name tries to add product to store  - addNewProductToStock(member2name, store2, product1_store2, category_store2, 555.5, description_product1_store2, 500)
+יוני 19, 2023 10:36:57 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-19 22:36:57 the member member2name tries to add product to store  - addNewProductToStock(member2name, store2, product2_store2, category_store2, 666.6, description, 600)
+יוני 19, 2023 10:36:58 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-19 22:36:58 the member member2name tries to add product to store  - addNewProductToStock(member2name, store2, product3_store2, category_store2, 777.7, description, 700)
+יוני 19, 2023 10:37:01 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-19 22:37:01 the user guest_0 wants to make login login(guest_0, member1name,Aa12345678)
+יוני 19, 2023 10:37:01 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-19 22:37:01 a new member Logged in .
+- Memer name: member1name
+
+יוני 19, 2023 10:37:01 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-19 22:37:01 the user guest_1 wants to make login login(guest_1, member2name,Bb129271346)
+יוני 19, 2023 10:37:02 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-19 22:37:02 a new member Logged in .
+- Memer name: member2name
+
+יוני 19, 2023 10:37:02 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-19 22:37:02 the user guest_2 wants to make login login(guest_2, member3name,kK129B71346)
+יוני 19, 2023 10:37:02 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-19 22:37:02 a new member Logged in .
+- Memer name: member3name
+
+יוני 19, 2023 10:37:02 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-19 22:37:02 the member member1name tries to add product to store  - addNewProductToStock(member1name, store1, product1_store1, category1_product1_store1, 111.1, description, 100)
+יוני 19, 2023 10:37:02 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-19 22:37:02 the member member1name tries to add product to store  - addNewProductToStock(member1name, store1, product2_store1, category2_product2_store1, 222.2, description, 200)
+יוני 19, 2023 10:37:02 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-19 22:37:02 the member member1name tries to add product to store  - addNewProductToStock(member1name, store1b, product1_store1b, category_store1b, 333.3, description, 300)
+יוני 19, 2023 10:37:02 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-19 22:37:02 the member member1name tries to add product to store  - addNewProductToStock(member1name, store1b, product2_store1b, category_store1b, 444.4, description, 400)
+יוני 19, 2023 10:37:02 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-19 22:37:02 the member member2name tries to add product to store  - addNewProductToStock(member2name, store2, product1_store2, category_store2, 555.5, description, 500)
+יוני 19, 2023 10:37:02 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-19 22:37:02 the member member2name tries to add product to store  - addNewProductToStock(member2name, store2, product2_store2, category_store2, 666.6, description, 600)
+יוני 19, 2023 10:37:02 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-19 22:37:02 the member member2name tries to add product to store  - addNewProductToStock(member2name, store2, product3_store2, category_store2, 777.7, description, 700)
+יוני 19, 2023 10:37:02 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-19 22:37:02 the user member1name wants to get information about the store store1- getStoreInfo(member1name, store1)
+יוני 19, 2023 10:37:02 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-19 22:37:02 the user member1name got information about the store store1
+יוני 19, 2023 10:37:02 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-19 22:37:02 the user member1name wants to get information about the store store1- getStoreInfo(member1name, store1)
+יוני 19, 2023 10:37:02 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-19 22:37:02 the user member1name got information about the store store1
+יוני 19, 2023 10:37:02 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-19 22:37:02 the user member1name wants to get information about the store store1b- getStoreInfo(member1name, store1b)
+יוני 19, 2023 10:37:02 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-19 22:37:02 the user member1name got information about the store store1b
+יוני 19, 2023 10:37:02 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-19 22:37:02 the user member1name wants to get information about the store store1b- getStoreInfo(member1name, store1b)
+יוני 19, 2023 10:37:02 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-19 22:37:02 the user member1name got information about the store store1b
+יוני 19, 2023 10:37:02 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-19 22:37:02 the user member2name wants to get information about the store store2- getStoreInfo(member2name, store2)
+יוני 19, 2023 10:37:02 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-19 22:37:02 the user member2name got information about the store store2
+יוני 19, 2023 10:37:02 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-19 22:37:02 the user member2name wants to get information about the store store2- getStoreInfo(member2name, store2)
+יוני 19, 2023 10:37:02 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-19 22:37:02 the user member2name got information about the store store2
+יוני 19, 2023 10:37:02 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-19 22:37:02 the user member2name wants to get information about the store store2- getStoreInfo(member2name, store2)
+יוני 19, 2023 10:37:02 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-19 22:37:02 the user member2name got information about the store store2
+יוני 19, 2023 10:37:02 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromStore(String userName, String storeName, String productName)
+in 2023-06-19 22:37:02 the user guest_3 wants to get information about product product1_store1 in the store store1- getProductInfoFromStore(guest_3, store1)
+יוני 19, 2023 10:37:02 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-19 22:37:02 the user member1name wants to get information about the store store1- getStoreInfo(member1name, store1)
+יוני 19, 2023 10:37:02 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-19 22:37:02 the user member1name got information about the store store1
+יוני 19, 2023 10:37:02 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromMarketByCategory(String userName, String categoryName)
+in 2023-06-19 22:37:02 the user guest_3 wants to get information about products in market by category {product1_store1} - getProductInfoFromMarketByCategory(guest_3, product1_store1)
+יוני 19, 2023 10:37:03 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-19 22:37:03 the user guest_0 wants to make login login(guest_0, member1name,Aa12345678)
+יוני 19, 2023 10:37:03 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-19 22:37:03 a new member Logged in .
+- Memer name: member1name
+
+יוני 19, 2023 10:37:03 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-19 22:37:03 the user guest_1 wants to make login login(guest_1, member2name,Bb129271346)
+יוני 19, 2023 10:37:04 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-19 22:37:04 a new member Logged in .
+- Memer name: member2name
+
+יוני 19, 2023 10:37:04 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-19 22:37:04 the user guest_2 wants to make login login(guest_2, member3name,kK129B71346)
+יוני 19, 2023 10:37:04 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-19 22:37:04 a new member Logged in .
+- Memer name: member3name
+
+יוני 19, 2023 10:37:04 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromStore(String userName, String storeName, String productName)
+in 2023-06-19 22:37:04 the user guest_3 wants to get information about product product1_store2 in the store store2- getProductInfoFromStore(guest_3, store2)
+יוני 19, 2023 10:37:04 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getStoreInfo(String userName, String storeName)
+in 2023-06-19 22:37:04 the user member2name wants to get information about the store store2- getStoreInfo(member2name, store2)
+יוני 19, 2023 10:37:04 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-19 22:37:04 the user member2name got information about the store store2
+יוני 19, 2023 10:37:05 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-19 22:37:05 the user guest_0 wants to make login login(guest_0, member1name,Aa12345678)
+יוני 19, 2023 10:37:05 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-19 22:37:05 a new member Logged in .
+- Memer name: member1name
+
+יוני 19, 2023 10:37:05 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-19 22:37:05 the user guest_1 wants to make login login(guest_1, member2name,Bb129271346)
+יוני 19, 2023 10:37:06 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-19 22:37:06 a new member Logged in .
+- Memer name: member2name
+
+יוני 19, 2023 10:37:06 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-19 22:37:06 the user guest_2 wants to make login login(guest_2, member3name,kK129B71346)
+יוני 19, 2023 10:37:06 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-19 22:37:06 a new member Logged in .
+- Memer name: member3name
+
+יוני 19, 2023 10:37:06 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getProductInfoFromStore(String userName, String storeName, String productName)
+in 2023-06-19 22:37:06 the user guest_3 wants to get information about product in market my nameproduct1_store1b- getProductInfoFromMarketByName(guest_3, product1_store1b)
+יוני 19, 2023 11:42:33 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-19 23:42:33 the user guest_0 wants to make registeration register(guest_0, member1name,Aa12345678)
+יוני 19, 2023 11:42:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-19 23:42:34 a new member joined .
+- Memer name: member1name
+
+יוני 19, 2023 11:42:34 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-19 23:42:34 the user guest_1 wants to make registeration register(guest_1, member2name,Bb129271346)
+יוני 19, 2023 11:42:35 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-19 23:42:35 a new member joined .
+- Memer name: member2name
+
+יוני 19, 2023 11:42:35 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-19 23:42:35 the user guest_2 wants to make registeration register(guest_2, member3name,kK129B71346)
+יוני 19, 2023 11:42:37 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-19 23:42:37 a new member joined .
+- Memer name: member3name
+
+יוני 19, 2023 11:42:37 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-19 23:42:37 the user guest_0 wants to make login login(guest_0, member1name,Aa12345678)
+יוני 19, 2023 11:42:37 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-19 23:42:37 a new member Logged in .
+- Memer name: member1name
+
+יוני 19, 2023 11:42:37 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-19 23:42:37 the user guest_1 wants to make login login(guest_1, member2name,Bb129271346)
+יוני 19, 2023 11:42:38 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-19 23:42:38 a new member Logged in .
+- Memer name: member2name
+
+יוני 19, 2023 11:42:38 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-19 23:42:38 the user guest_2 wants to make login login(guest_2, member3name,kK129B71346)
+יוני 19, 2023 11:42:38 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-19 23:42:38 a new member Logged in .
+- Memer name: member3name
+
+יוני 19, 2023 11:42:38 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+createStore(String memberUserName, String newStoreName)
+in 2023-06-19 23:42:38 the member member1name tries to create store  - createStore(member1name, store1)
+יוני 19, 2023 11:42:40 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+createStore(String memberUserName, String newStoreName)
+in 2023-06-19 23:42:40 the member member1name tries to create store  - createStore(member1name, store1b)
+יוני 19, 2023 11:42:42 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+createStore(String memberUserName, String newStoreName)
+in 2023-06-19 23:42:42 the member member2name tries to create store  - createStore(member2name, store2)
+יוני 19, 2023 11:42:44 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-19 23:42:44 the member member1name tries to add product to store  - addNewProductToStock(member1name, store1, product1_store1, category1_product1_store1, 111.1, description_product1_store1, 100)
+יוני 19, 2023 11:42:46 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-19 23:42:46 the member member1name tries to add product to store  - addNewProductToStock(member1name, store1, product2_store1, category2_product2_store1, 222.2, description, 200)
+יוני 19, 2023 11:42:48 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-19 23:42:48 the member member1name tries to add product to store  - addNewProductToStock(member1name, store1b, product1_store1b, category_store1b, 333.3, description_product1_store1b, 300)
+יוני 19, 2023 11:42:51 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-19 23:42:51 the member member1name tries to add product to store  - addNewProductToStock(member1name, store1b, product2_store1b, category_store1b, 444.4, description, 400)
+יוני 19, 2023 11:42:52 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-19 23:42:52 the member member2name tries to add product to store  - addNewProductToStock(member2name, store2, product1_store2, category_store2, 555.5, description_product1_store2, 500)
+יוני 19, 2023 11:42:55 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-19 23:42:55 the member member2name tries to add product to store  - addNewProductToStock(member2name, store2, product2_store2, category_store2, 666.6, description, 600)
+יוני 19, 2023 11:42:56 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-19 23:42:56 the member member2name tries to add product to store  - addNewProductToStock(member2name, store2, product3_store2, category_store2, 777.7, description, 700)
+יוני 19, 2023 11:42:58 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-19 23:42:58 the user member3name tries to add product to his cart  - addToCart(member3name, store1, product1_store1, 20)
+יוני 19, 2023 11:45:42 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-19 23:45:42 the user guest_0 wants to make registeration register(guest_0, member1name,Aa12345678)
+יוני 19, 2023 11:45:43 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-19 23:45:43 a new member joined .
+- Memer name: member1name
+
+יוני 19, 2023 11:45:43 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-19 23:45:43 the user guest_1 wants to make registeration register(guest_1, member2name,Bb129271346)
+יוני 19, 2023 11:45:44 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-19 23:45:44 a new member joined .
+- Memer name: member2name
+
+יוני 19, 2023 11:45:44 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-19 23:45:44 the user guest_2 wants to make registeration register(guest_2, member3name,kK129B71346)
+יוני 19, 2023 11:45:46 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-19 23:45:46 a new member joined .
+- Memer name: member3name
+
+יוני 19, 2023 11:45:46 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-19 23:45:46 the user guest_0 wants to make login login(guest_0, member1name,Aa12345678)
+יוני 19, 2023 11:45:46 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-19 23:45:46 a new member Logged in .
+- Memer name: member1name
+
+יוני 19, 2023 11:45:46 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-19 23:45:46 the user guest_1 wants to make login login(guest_1, member2name,Bb129271346)
+יוני 19, 2023 11:45:47 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-19 23:45:47 a new member Logged in .
+- Memer name: member2name
+
+יוני 19, 2023 11:45:47 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-19 23:45:47 the user guest_2 wants to make login login(guest_2, member3name,kK129B71346)
+יוני 19, 2023 11:45:47 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-19 23:45:47 a new member Logged in .
+- Memer name: member3name
+
+יוני 19, 2023 11:45:47 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+createStore(String memberUserName, String newStoreName)
+in 2023-06-19 23:45:47 the member member1name tries to create store  - createStore(member1name, store1)
+יוני 19, 2023 11:45:49 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+createStore(String memberUserName, String newStoreName)
+in 2023-06-19 23:45:49 the member member1name tries to create store  - createStore(member1name, store1b)
+יוני 19, 2023 11:45:51 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+createStore(String memberUserName, String newStoreName)
+in 2023-06-19 23:45:51 the member member2name tries to create store  - createStore(member2name, store2)
+יוני 19, 2023 11:45:53 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-19 23:45:53 the member member1name tries to add product to store  - addNewProductToStock(member1name, store1, product1_store1, category1_product1_store1, 111.1, description_product1_store1, 100)
+יוני 19, 2023 11:45:55 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-19 23:45:55 the member member1name tries to add product to store  - addNewProductToStock(member1name, store1, product2_store1, category2_product2_store1, 222.2, description, 200)
+יוני 19, 2023 11:45:57 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-19 23:45:57 the member member1name tries to add product to store  - addNewProductToStock(member1name, store1b, product1_store1b, category_store1b, 333.3, description_product1_store1b, 300)
+יוני 19, 2023 11:46:00 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-19 23:46:00 the member member1name tries to add product to store  - addNewProductToStock(member1name, store1b, product2_store1b, category_store1b, 444.4, description, 400)
+יוני 19, 2023 11:46:01 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-19 23:46:01 the member member2name tries to add product to store  - addNewProductToStock(member2name, store2, product1_store2, category_store2, 555.5, description_product1_store2, 500)
+יוני 19, 2023 11:46:03 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-19 23:46:03 the member member2name tries to add product to store  - addNewProductToStock(member2name, store2, product2_store2, category_store2, 666.6, description, 600)
+יוני 19, 2023 11:46:05 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-19 23:46:05 the member member2name tries to add product to store  - addNewProductToStock(member2name, store2, product3_store2, category_store2, 777.7, description, 700)
+יוני 19, 2023 11:46:07 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-19 23:46:07 the user member3name tries to add product to his cart  - addToCart(member3name, store1, product1_store1, 20)
+יוני 19, 2023 11:46:10 אחה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-19 23:46:10 the user guest_0 wants to make registeration register(guest_0, member1name,Aa12345678)
+יוני 20, 2023 12:19:59 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-20 00:19:59 the user guest_0 wants to make registeration register(guest_0, member1name,Aa12345678)
+יוני 20, 2023 12:20:01 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-20 00:20:01 a new member joined .
+- Memer name: member1name
+
+יוני 20, 2023 12:20:01 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-20 00:20:01 the user guest_1 wants to make registeration register(guest_1, member2name,Bb129271346)
+יוני 20, 2023 12:20:02 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-20 00:20:02 a new member joined .
+- Memer name: member2name
+
+יוני 20, 2023 12:20:02 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-20 00:20:02 the user guest_2 wants to make registeration register(guest_2, member3name,kK129B71346)
+יוני 20, 2023 12:20:04 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-20 00:20:04 a new member joined .
+- Memer name: member3name
+
+יוני 20, 2023 12:20:04 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-20 00:20:04 the user guest_0 wants to make login login(guest_0, member1name,Aa12345678)
+יוני 20, 2023 12:20:04 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-20 00:20:04 a new member Logged in .
+- Memer name: member1name
+
+יוני 20, 2023 12:20:04 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-20 00:20:04 the user guest_1 wants to make login login(guest_1, member2name,Bb129271346)
+יוני 20, 2023 12:20:05 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-20 00:20:05 a new member Logged in .
+- Memer name: member2name
+
+יוני 20, 2023 12:20:05 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-20 00:20:05 the user guest_2 wants to make login login(guest_2, member3name,kK129B71346)
+יוני 20, 2023 12:20:06 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-20 00:20:06 a new member Logged in .
+- Memer name: member3name
+
+יוני 20, 2023 12:20:06 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+createStore(String memberUserName, String newStoreName)
+in 2023-06-20 00:20:06 the member member1name tries to create store  - createStore(member1name, store1)
+יוני 20, 2023 12:20:07 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+createStore(String memberUserName, String newStoreName)
+in 2023-06-20 00:20:07 the member member1name tries to create store  - createStore(member1name, store1b)
+יוני 20, 2023 12:20:09 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+createStore(String memberUserName, String newStoreName)
+in 2023-06-20 00:20:09 the member member2name tries to create store  - createStore(member2name, store2)
+יוני 20, 2023 12:20:11 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-20 00:20:11 the member member1name tries to add product to store  - addNewProductToStock(member1name, store1, product1_store1, category1_product1_store1, 111.1, description_product1_store1, 100)
+יוני 20, 2023 12:20:13 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-20 00:20:13 the member member1name tries to add product to store  - addNewProductToStock(member1name, store1, product2_store1, category2_product2_store1, 222.2, description, 200)
+יוני 20, 2023 12:20:16 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-20 00:20:16 the member member1name tries to add product to store  - addNewProductToStock(member1name, store1b, product1_store1b, category_store1b, 333.3, description_product1_store1b, 300)
+יוני 20, 2023 12:20:18 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-20 00:20:18 the member member1name tries to add product to store  - addNewProductToStock(member1name, store1b, product2_store1b, category_store1b, 444.4, description, 400)
+יוני 20, 2023 12:20:20 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-20 00:20:20 the member member2name tries to add product to store  - addNewProductToStock(member2name, store2, product1_store2, category_store2, 555.5, description_product1_store2, 500)
+יוני 20, 2023 12:20:22 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-20 00:20:22 the member member2name tries to add product to store  - addNewProductToStock(member2name, store2, product2_store2, category_store2, 666.6, description, 600)
+יוני 20, 2023 12:20:24 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-20 00:20:24 the member member2name tries to add product to store  - addNewProductToStock(member2name, store2, product3_store2, category_store2, 777.7, description, 700)
+יוני 20, 2023 12:20:25 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 00:20:25 the user member3name tries to add product to his cart  - addToCart(member3name, store1, product1_store1, 10)
+יוני 20, 2023 12:20:29 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 00:20:29 the user member3name tries to add product to his cart  - addToCart(member3name, store1, product2_store1, 20)
+יוני 20, 2023 12:20:33 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 00:20:33 the user member3name tries to add product to his cart  - addToCart(member3name, store1b, product1_store1b, 30)
+יוני 20, 2023 12:20:37 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 00:20:37 the user member3name tries to add product to his cart  - addToCart(member3name, store1, product1_store1, 10)
+יוני 20, 2023 12:20:41 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 00:20:41 the user member3name tries to add product to his cart  - addToCart(member3name, store2, product1_store2, 1000)
+יוני 20, 2023 12:20:44 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 00:20:44 the user member3name tries to add product to his cart  - addToCart(member3name, store2, product1_store2, -1)
+יוני 20, 2023 12:20:49 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 00:20:49 the user member3name tries to add product to his cart  - addToCart(member3name, store1, product1_store2, 10)
+יוני 20, 2023 12:20:49 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 00:20:49 the user member3name tries to add product to his cart  - addToCart(member3name, store2, product2_store1b, 10)
+יוני 20, 2023 12:58:05 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-20 00:58:05 the user guest_0 wants to make registeration register(guest_0, member1name,Aa12345678)
+יוני 20, 2023 12:58:06 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-20 00:58:06 a new member joined .
+- Memer name: member1name
+
+יוני 20, 2023 12:58:06 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-20 00:58:06 the user guest_1 wants to make registeration register(guest_1, member2name,Bb129271346)
+יוני 20, 2023 12:58:08 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-20 00:58:08 a new member joined .
+- Memer name: member2name
+
+יוני 20, 2023 12:58:08 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-20 00:58:08 the user guest_2 wants to make registeration register(guest_2, member3name,kK129B71346)
+יוני 20, 2023 12:58:09 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-20 00:58:09 a new member joined .
+- Memer name: member3name
+
+יוני 20, 2023 12:58:09 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-20 00:58:09 the user guest_0 wants to make login login(guest_0, member1name,Aa12345678)
+יוני 20, 2023 12:58:10 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-20 00:58:10 a new member Logged in .
+- Memer name: member1name
+
+יוני 20, 2023 12:58:10 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-20 00:58:10 the user guest_1 wants to make login login(guest_1, member2name,Bb129271346)
+יוני 20, 2023 12:58:10 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-20 00:58:10 a new member Logged in .
+- Memer name: member2name
+
+יוני 20, 2023 12:58:10 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-20 00:58:10 the user guest_2 wants to make login login(guest_2, member3name,kK129B71346)
+יוני 20, 2023 12:58:11 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-20 00:58:11 a new member Logged in .
+- Memer name: member3name
+
+יוני 20, 2023 12:58:11 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+createStore(String memberUserName, String newStoreName)
+in 2023-06-20 00:58:11 the member member1name tries to create store  - createStore(member1name, store1)
+יוני 20, 2023 12:58:13 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+createStore(String memberUserName, String newStoreName)
+in 2023-06-20 00:58:13 the member member1name tries to create store  - createStore(member1name, store1b)
+יוני 20, 2023 12:58:14 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+createStore(String memberUserName, String newStoreName)
+in 2023-06-20 00:58:14 the member member2name tries to create store  - createStore(member2name, store2)
+יוני 20, 2023 12:58:16 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+createStore(String memberUserName, String newStoreName)
+in 2023-06-20 00:58:16 the member member2name tries to create store  - createStore(member2name, store2b)
+יוני 20, 2023 12:58:18 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-20 00:58:18 the member member1name tries to add product to store  - addNewProductToStock(member1name, store1, product1_store1, category1_product1_store1, 111.1, description_product1_store1, 100)
+יוני 20, 2023 12:58:20 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-20 00:58:20 the member member1name tries to add product to store  - addNewProductToStock(member1name, store1, product2_store1, category2_product2_store1, 222.2, description, 200)
+יוני 20, 2023 12:58:22 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-20 00:58:22 the member member1name tries to add product to store  - addNewProductToStock(member1name, store1b, product1_store1b, category_store1b, 333.3, description_product1_store1b, 300)
+יוני 20, 2023 12:58:25 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-20 00:58:25 the member member1name tries to add product to store  - addNewProductToStock(member1name, store1b, product2_store1b, category_store1b, 444.4, description, 400)
+יוני 20, 2023 12:58:26 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-20 00:58:26 the member member2name tries to add product to store  - addNewProductToStock(member2name, store2, product1_store2, category_store2, 555.5, description_product1_store2, 500)
+יוני 20, 2023 12:58:29 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-20 00:58:29 the member member2name tries to add product to store  - addNewProductToStock(member2name, store2, product2_store2, category_store2, 666.6, description, 600)
+יוני 20, 2023 12:58:30 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-20 00:58:30 the member member2name tries to add product to store  - addNewProductToStock(member2name, store2, product3_store2, category_store2, 777.7, description, 700)
+יוני 20, 2023 12:58:32 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-20 00:58:32 the member member2name tries to add product to store  - addNewProductToStock(member2name, store2b, product3_store2, category_store2, 777.7, description, 700)
+יוני 20, 2023 12:58:34 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+closeStore(String memberUserName, String storeName)
+in 2023-06-20 00:58:34 the member member2name tries close store  - closeStore(member2name, store2b)
+יוני 20, 2023 12:58:36 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-20 00:58:36 the user guest_0 wants to make login login(guest_0, member1name,Aa12345678)
+יוני 20, 2023 12:58:36 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-20 00:58:36 a new member Logged in .
+- Memer name: member1name
+
+יוני 20, 2023 12:58:36 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-20 00:58:36 the user guest_1 wants to make login login(guest_1, member2name,Bb129271346)
+יוני 20, 2023 12:58:37 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-20 00:58:37 a new member Logged in .
+- Memer name: member2name
+
+יוני 20, 2023 12:58:37 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-20 00:58:37 the user guest_2 wants to make login login(guest_2, member3name,kK129B71346)
+יוני 20, 2023 12:58:37 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-20 00:58:37 a new member Logged in .
+- Memer name: member3name
+
+יוני 20, 2023 12:58:37 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 00:58:37 the user member3name tries to add product to his cart  - addToCart(member3name, store1, product1_store1, 10)
+יוני 20, 2023 12:58:41 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 00:58:41 the user member3name tries to add product to his cart  - addToCart(member3name, store1, product2_store1, 20)
+יוני 20, 2023 12:58:45 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 00:58:45 the user member3name tries to add product to his cart  - addToCart(member3name, store1b, product1_store1b, 30)
+יוני 20, 2023 12:58:49 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 00:58:49 the user member3name tries to add product to his cart  - addToCart(member3name, store1, product1_store1, 10)
+יוני 20, 2023 12:58:52 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 00:58:52 the user member3name tries to add product to his cart  - addToCart(member3name, store2, product1_store2, 1000)
+יוני 20, 2023 12:58:56 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 00:58:56 the user member3name tries to add product to his cart  - addToCart(member3name, store2, product1_store2, -1)
+יוני 20, 2023 12:59:00 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 00:59:00 the user member3name tries to add product to his cart  - addToCart(member3name, store1, product1_store2, 10)
+יוני 20, 2023 12:59:00 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 00:59:00 the user member3name tries to add product to his cart  - addToCart(member3name, store2, product2_store1b, 10)
+יוני 20, 2023 12:59:01 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 00:59:01 the user member3name tries to add product to his cart  - addToCart(member3name, store2b, product3_store2, 10)
+יוני 20, 2023 12:59:01 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 00:59:01 the user guest_3 tries to add product to his cart  - addToCart(guest_3, store1, product1_store1, 10)
+יוני 20, 2023 12:59:01 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 00:59:01 the user guest_3 tries to add product to his cart  - addToCart(guest_3, store1, product2_store1, 20)
+יוני 20, 2023 12:59:01 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 00:59:01 the user guest_3 tries to add product to his cart  - addToCart(guest_3, store1b, product1_store1b, 30)
+יוני 20, 2023 12:59:01 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 00:59:01 the user guest_3 tries to add product to his cart  - addToCart(guest_3, store1, product1_store1, 10)
+יוני 20, 2023 12:59:01 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 00:59:01 the user guest_3 tries to add product to his cart  - addToCart(guest_3, store2, product1_store2, 1000)
+יוני 20, 2023 12:59:01 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 00:59:01 the user guest_3 tries to add product to his cart  - addToCart(guest_3, store2, product1_store2, -1)
+יוני 20, 2023 12:59:01 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 00:59:01 the user guest_3 tries to add product to his cart  - addToCart(guest_3, store1, product1_store2, 10)
+יוני 20, 2023 12:59:01 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 00:59:01 the user guest_3 tries to add product to his cart  - addToCart(guest_3, store2, product2_store1b, 10)
+יוני 20, 2023 12:59:01 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 00:59:01 the user guest_3 tries to add product to his cart  - addToCart(guest_3, store2b, product3_store2, 10)
+יוני 20, 2023 2:23:46 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-20 02:23:46 the user guest_0 wants to make registeration register(guest_0, member1name,Aa12345678)
+יוני 20, 2023 2:23:48 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-20 02:23:48 a new member joined .
+- Memer name: member1name
+
+יוני 20, 2023 2:23:48 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-20 02:23:48 the user guest_1 wants to make registeration register(guest_1, member2name,Bb129271346)
+יוני 20, 2023 2:23:49 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-20 02:23:49 a new member joined .
+- Memer name: member2name
+
+יוני 20, 2023 2:23:49 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-20 02:23:49 the user guest_2 wants to make registeration register(guest_2, member3name,kK129B71346)
+יוני 20, 2023 2:23:51 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-20 02:23:51 a new member joined .
+- Memer name: member3name
+
+יוני 20, 2023 2:23:51 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-20 02:23:51 the user guest_0 wants to make login login(guest_0, member1name,Aa12345678)
+יוני 20, 2023 2:23:51 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-20 02:23:51 a new member Logged in .
+- Memer name: member1name
+
+יוני 20, 2023 2:23:51 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-20 02:23:51 the user guest_1 wants to make login login(guest_1, member2name,Bb129271346)
+יוני 20, 2023 2:23:52 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-20 02:23:52 a new member Logged in .
+- Memer name: member2name
+
+יוני 20, 2023 2:23:52 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-20 02:23:52 the user guest_2 wants to make login login(guest_2, member3name,kK129B71346)
+יוני 20, 2023 2:23:52 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-20 02:23:52 a new member Logged in .
+- Memer name: member3name
+
+יוני 20, 2023 2:23:52 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+createStore(String memberUserName, String newStoreName)
+in 2023-06-20 02:23:52 the member member1name tries to create store  - createStore(member1name, store1)
+יוני 20, 2023 2:23:54 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+createStore(String memberUserName, String newStoreName)
+in 2023-06-20 02:23:54 the member member1name tries to create store  - createStore(member1name, store1b)
+יוני 20, 2023 2:23:56 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+createStore(String memberUserName, String newStoreName)
+in 2023-06-20 02:23:56 the member member2name tries to create store  - createStore(member2name, store2)
+יוני 20, 2023 2:23:58 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+createStore(String memberUserName, String newStoreName)
+in 2023-06-20 02:23:58 the member member2name tries to create store  - createStore(member2name, store2b)
+יוני 20, 2023 2:24:00 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-20 02:24:00 the member member1name tries to add product to store  - addNewProductToStock(member1name, store1, product1_store1, category1_product1_store1, 111.1, description_product1_store1, 100)
+יוני 20, 2023 2:24:02 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-20 02:24:02 the member member1name tries to add product to store  - addNewProductToStock(member1name, store1, product2_store1, category2_product2_store1, 222.2, description, 200)
+יוני 20, 2023 2:24:04 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-20 02:24:04 the member member1name tries to add product to store  - addNewProductToStock(member1name, store1b, product1_store1b, category_store1b, 333.3, description_product1_store1b, 300)
+יוני 20, 2023 2:24:07 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-20 02:24:07 the member member1name tries to add product to store  - addNewProductToStock(member1name, store1b, product2_store1b, category_store1b, 444.4, description, 400)
+יוני 20, 2023 2:24:08 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-20 02:24:08 the member member2name tries to add product to store  - addNewProductToStock(member2name, store2, product1_store2, category_store2, 555.5, description_product1_store2, 500)
+יוני 20, 2023 2:24:10 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-20 02:24:10 the member member2name tries to add product to store  - addNewProductToStock(member2name, store2, product2_store2, category_store2, 666.6, description, 600)
+יוני 20, 2023 2:24:12 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-20 02:24:12 the member member2name tries to add product to store  - addNewProductToStock(member2name, store2, product3_store2, category_store2, 777.7, description, 700)
+יוני 20, 2023 2:24:14 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-20 02:24:14 the member member2name tries to add product to store  - addNewProductToStock(member2name, store2b, product3_store2, category_store2, 777.7, description, 700)
+יוני 20, 2023 2:24:16 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+closeStore(String memberUserName, String storeName)
+in 2023-06-20 02:24:16 the member member2name tries close store  - closeStore(member2name, store2b)
+יוני 20, 2023 2:24:17 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+removeProductFromStock(String memberUserName, String storeName, String productName)
+in 2023-06-20 02:24:17 the member member2name tries to remove product from store  - removeProductFromStock(member2name, store2, product3_store2)
+יוני 20, 2023 2:24:20 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-20 02:24:20 the user guest_0 wants to make login login(guest_0, member1name,Aa12345678)
+יוני 20, 2023 2:24:20 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-20 02:24:20 a new member Logged in .
+- Memer name: member1name
+
+יוני 20, 2023 2:24:20 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-20 02:24:20 the user guest_1 wants to make login login(guest_1, member2name,Bb129271346)
+יוני 20, 2023 2:24:21 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-20 02:24:21 a new member Logged in .
+- Memer name: member2name
+
+יוני 20, 2023 2:24:21 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-20 02:24:21 the user guest_2 wants to make login login(guest_2, member3name,kK129B71346)
+יוני 20, 2023 2:24:21 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-20 02:24:21 a new member Logged in .
+- Memer name: member3name
+
+יוני 20, 2023 2:24:21 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 02:24:21 the user member3name tries to add product to his cart  - addToCart(member3name, store1, product1_store1, 10)
+יוני 20, 2023 2:24:25 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 02:24:25 the user member3name tries to add product to his cart  - addToCart(member3name, store1, product2_store1, 20)
+יוני 20, 2023 2:24:29 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 02:24:29 the user member3name tries to add product to his cart  - addToCart(member3name, store1b, product1_store1b, 30)
+יוני 20, 2023 2:24:33 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 02:24:33 the user member3name tries to add product to his cart  - addToCart(member3name, store1, product1_store1, 10)
+יוני 20, 2023 2:24:37 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 02:24:37 the user member3name tries to add product to his cart  - addToCart(member3name, store2, product1_store2, 1000)
+יוני 20, 2023 2:24:40 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 02:24:40 the user member3name tries to add product to his cart  - addToCart(member3name, store2, product1_store2, -1)
+יוני 20, 2023 2:24:44 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 02:24:44 the user member3name tries to add product to his cart  - addToCart(member3name, store1, product1_store2, 10)
+יוני 20, 2023 2:24:45 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 02:24:45 the user member3name tries to add product to his cart  - addToCart(member3name, store2, product2_store1b, 10)
+יוני 20, 2023 2:24:45 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 02:24:45 the user member3name tries to add product to his cart  - addToCart(member3name, store2b, product3_store2, 10)
+יוני 20, 2023 2:24:45 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 02:24:45 the user member3name tries to add product to his cart  - addToCart(member3name, store2, product3_store2, 15)
+יוני 20, 2023 2:24:45 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 02:24:45 the user guest_3 tries to add product to his cart  - addToCart(guest_3, store1, product1_store1, 11)
+יוני 20, 2023 2:24:45 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 02:24:45 the user guest_3 tries to add product to his cart  - addToCart(guest_3, store1, product2_store1, 22)
+יוני 20, 2023 2:24:45 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 02:24:45 the user guest_3 tries to add product to his cart  - addToCart(guest_3, store1b, product1_store1b, 33)
+יוני 20, 2023 2:24:45 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 02:24:45 the user guest_3 tries to add product to his cart  - addToCart(guest_3, store2, product2_store2, 4)
+יוני 20, 2023 2:24:45 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 02:24:45 the user guest_3 tries to add product to his cart  - addToCart(guest_3, store1, product1_store1, 10)
+יוני 20, 2023 2:24:45 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 02:24:45 the user guest_3 tries to add product to his cart  - addToCart(guest_3, store2, product1_store2, 1000)
+יוני 20, 2023 2:24:45 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 02:24:45 the user guest_3 tries to add product to his cart  - addToCart(guest_3, store2, product1_store2, -1)
+יוני 20, 2023 2:24:45 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 02:24:45 the user guest_3 tries to add product to his cart  - addToCart(guest_3, store1, product1_store2, 10)
+יוני 20, 2023 2:24:45 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 02:24:45 the user guest_3 tries to add product to his cart  - addToCart(guest_3, store2, product2_store1b, 10)
+יוני 20, 2023 2:24:45 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 02:24:45 the user guest_3 tries to add product to his cart  - addToCart(guest_3, store2b, product3_store2, 10)
+יוני 20, 2023 2:24:45 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 02:24:45 the user guest_3 tries to add product to his cart  - addToCart(guest_3, store2, product3_store2, 15)
+יוני 20, 2023 2:24:45 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-20 02:24:45 the user member3name tries to get his cart content  - getCartContent(member3name)
+יוני 20, 2023 2:26:55 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-20 02:26:55 the user guest_0 wants to make registeration register(guest_0, member1name,Aa12345678)
+יוני 20, 2023 2:26:57 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-20 02:26:57 a new member joined .
+- Memer name: member1name
+
+יוני 20, 2023 2:26:57 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-20 02:26:57 the user guest_1 wants to make registeration register(guest_1, member2name,Bb129271346)
+יוני 20, 2023 2:26:58 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-20 02:26:58 a new member joined .
+- Memer name: member2name
+
+יוני 20, 2023 2:26:58 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-20 02:26:58 the user guest_2 wants to make registeration register(guest_2, member3name,kK129B71346)
+יוני 20, 2023 2:26:59 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-20 02:26:59 a new member joined .
+- Memer name: member3name
+
+יוני 20, 2023 2:26:59 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-20 02:26:59 the user guest_0 wants to make login login(guest_0, member1name,Aa12345678)
+יוני 20, 2023 2:27:00 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-20 02:27:00 a new member Logged in .
+- Memer name: member1name
+
+יוני 20, 2023 2:27:00 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-20 02:27:00 the user guest_1 wants to make login login(guest_1, member2name,Bb129271346)
+יוני 20, 2023 2:27:01 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-20 02:27:01 a new member Logged in .
+- Memer name: member2name
+
+יוני 20, 2023 2:27:01 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-20 02:27:01 the user guest_2 wants to make login login(guest_2, member3name,kK129B71346)
+יוני 20, 2023 2:27:01 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-20 02:27:01 a new member Logged in .
+- Memer name: member3name
+
+יוני 20, 2023 2:27:01 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+createStore(String memberUserName, String newStoreName)
+in 2023-06-20 02:27:01 the member member1name tries to create store  - createStore(member1name, store1)
+יוני 20, 2023 2:27:03 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+createStore(String memberUserName, String newStoreName)
+in 2023-06-20 02:27:03 the member member1name tries to create store  - createStore(member1name, store1b)
+יוני 20, 2023 2:27:05 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+createStore(String memberUserName, String newStoreName)
+in 2023-06-20 02:27:05 the member member2name tries to create store  - createStore(member2name, store2)
+יוני 20, 2023 2:27:07 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+createStore(String memberUserName, String newStoreName)
+in 2023-06-20 02:27:07 the member member2name tries to create store  - createStore(member2name, store2b)
+יוני 20, 2023 2:27:08 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-20 02:27:08 the member member1name tries to add product to store  - addNewProductToStock(member1name, store1, product1_store1, category1_product1_store1, 111.1, description_product1_store1, 100)
+יוני 20, 2023 2:27:11 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-20 02:27:11 the member member1name tries to add product to store  - addNewProductToStock(member1name, store1, product2_store1, category2_product2_store1, 222.2, description, 200)
+יוני 20, 2023 2:27:13 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-20 02:27:13 the member member1name tries to add product to store  - addNewProductToStock(member1name, store1b, product1_store1b, category_store1b, 333.3, description_product1_store1b, 300)
+יוני 20, 2023 2:27:15 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-20 02:27:15 the member member1name tries to add product to store  - addNewProductToStock(member1name, store1b, product2_store1b, category_store1b, 444.4, description, 400)
+יוני 20, 2023 2:27:17 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-20 02:27:17 the member member2name tries to add product to store  - addNewProductToStock(member2name, store2, product1_store2, category_store2, 555.5, description_product1_store2, 500)
+יוני 20, 2023 2:27:19 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-20 02:27:19 the member member2name tries to add product to store  - addNewProductToStock(member2name, store2, product2_store2, category_store2, 666.6, description, 600)
+יוני 20, 2023 2:27:21 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-20 02:27:21 the member member2name tries to add product to store  - addNewProductToStock(member2name, store2, product3_store2, category_store2, 777.7, description, 700)
+יוני 20, 2023 2:27:23 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-20 02:27:23 the member member2name tries to add product to store  - addNewProductToStock(member2name, store2b, product3_store2, category_store2, 777.7, description, 700)
+יוני 20, 2023 2:27:25 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+closeStore(String memberUserName, String storeName)
+in 2023-06-20 02:27:25 the member member2name tries close store  - closeStore(member2name, store2b)
+יוני 20, 2023 2:27:26 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+removeProductFromStock(String memberUserName, String storeName, String productName)
+in 2023-06-20 02:27:26 the member member2name tries to remove product from store  - removeProductFromStock(member2name, store2, product3_store2)
+יוני 20, 2023 2:27:28 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-20 02:27:28 the user guest_0 wants to make login login(guest_0, member1name,Aa12345678)
+יוני 20, 2023 2:27:29 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-20 02:27:29 a new member Logged in .
+- Memer name: member1name
+
+יוני 20, 2023 2:27:29 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-20 02:27:29 the user guest_1 wants to make login login(guest_1, member2name,Bb129271346)
+יוני 20, 2023 2:27:29 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-20 02:27:29 a new member Logged in .
+- Memer name: member2name
+
+יוני 20, 2023 2:27:29 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-20 02:27:29 the user guest_2 wants to make login login(guest_2, member3name,kK129B71346)
+יוני 20, 2023 2:27:30 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-20 02:27:30 a new member Logged in .
+- Memer name: member3name
+
+יוני 20, 2023 2:27:30 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 02:27:30 the user member3name tries to add product to his cart  - addToCart(member3name, store1, product1_store1, 10)
+יוני 20, 2023 2:27:33 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 02:27:33 the user member3name tries to add product to his cart  - addToCart(member3name, store1, product2_store1, 20)
+יוני 20, 2023 2:27:37 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 02:27:37 the user member3name tries to add product to his cart  - addToCart(member3name, store1b, product1_store1b, 30)
+יוני 20, 2023 2:27:42 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 02:27:42 the user member3name tries to add product to his cart  - addToCart(member3name, store1, product1_store1, 10)
+יוני 20, 2023 2:27:45 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 02:27:45 the user member3name tries to add product to his cart  - addToCart(member3name, store2, product1_store2, 1000)
+יוני 20, 2023 2:27:49 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 02:27:49 the user member3name tries to add product to his cart  - addToCart(member3name, store2, product1_store2, -1)
+יוני 20, 2023 2:27:53 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 02:27:53 the user member3name tries to add product to his cart  - addToCart(member3name, store1, product1_store2, 10)
+יוני 20, 2023 2:27:53 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 02:27:53 the user member3name tries to add product to his cart  - addToCart(member3name, store2, product2_store1b, 10)
+יוני 20, 2023 2:27:53 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 02:27:53 the user member3name tries to add product to his cart  - addToCart(member3name, store2b, product3_store2, 10)
+יוני 20, 2023 2:27:53 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 02:27:53 the user member3name tries to add product to his cart  - addToCart(member3name, store2, product3_store2, 15)
+יוני 20, 2023 2:27:53 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 02:27:53 the user guest_3 tries to add product to his cart  - addToCart(guest_3, store1, product1_store1, 11)
+יוני 20, 2023 2:27:53 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 02:27:53 the user guest_3 tries to add product to his cart  - addToCart(guest_3, store1, product2_store1, 22)
+יוני 20, 2023 2:27:53 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 02:27:53 the user guest_3 tries to add product to his cart  - addToCart(guest_3, store1b, product1_store1b, 33)
+יוני 20, 2023 2:27:53 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 02:27:53 the user guest_3 tries to add product to his cart  - addToCart(guest_3, store2, product2_store2, 4)
+יוני 20, 2023 2:27:53 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 02:27:53 the user guest_3 tries to add product to his cart  - addToCart(guest_3, store1, product1_store1, 10)
+יוני 20, 2023 2:27:53 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 02:27:53 the user guest_3 tries to add product to his cart  - addToCart(guest_3, store2, product1_store2, 1000)
+יוני 20, 2023 2:27:53 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 02:27:53 the user guest_3 tries to add product to his cart  - addToCart(guest_3, store2, product1_store2, -1)
+יוני 20, 2023 2:27:53 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 02:27:53 the user guest_3 tries to add product to his cart  - addToCart(guest_3, store1, product1_store2, 10)
+יוני 20, 2023 2:27:54 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 02:27:54 the user guest_3 tries to add product to his cart  - addToCart(guest_3, store2, product2_store1b, 10)
+יוני 20, 2023 2:27:54 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 02:27:54 the user guest_3 tries to add product to his cart  - addToCart(guest_3, store2b, product3_store2, 10)
+יוני 20, 2023 2:27:54 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 02:27:54 the user guest_3 tries to add product to his cart  - addToCart(guest_3, store2, product3_store2, 15)
+יוני 20, 2023 2:27:54 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-20 02:27:54 the user member3name tries to get his cart content  - getCartContent(member3name)
+יוני 20, 2023 2:27:54 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-20 02:27:54 the user member3name tries to get his cart content  - getCartContent(member3name)
+יוני 20, 2023 2:27:54 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-20 02:27:54 the user member3name tries to get his cart content  - getCartContent(member3name)
+יוני 20, 2023 2:37:58 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-20 02:37:58 the user guest_0 wants to make registeration register(guest_0, member1name,Aa12345678)
+יוני 20, 2023 2:38:00 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-20 02:38:00 a new member joined .
+- Memer name: member1name
+
+יוני 20, 2023 2:38:00 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-20 02:38:00 the user guest_1 wants to make registeration register(guest_1, member2name,Bb129271346)
+יוני 20, 2023 2:38:01 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-20 02:38:01 a new member joined .
+- Memer name: member2name
+
+יוני 20, 2023 2:38:01 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+register(String guestUserName, String newMemberUserName, String password)
+in 2023-06-20 02:38:01 the user guest_2 wants to make registeration register(guest_2, member3name,kK129B71346)
+יוני 20, 2023 2:38:02 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-20 02:38:02 a new member joined .
+- Memer name: member3name
+
+יוני 20, 2023 2:38:02 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-20 02:38:02 the user guest_0 wants to make login login(guest_0, member1name,Aa12345678)
+יוני 20, 2023 2:38:03 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-20 02:38:03 a new member Logged in .
+- Memer name: member1name
+
+יוני 20, 2023 2:38:03 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-20 02:38:03 the user guest_1 wants to make login login(guest_1, member2name,Bb129271346)
+יוני 20, 2023 2:38:04 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-20 02:38:04 a new member Logged in .
+- Memer name: member2name
+
+יוני 20, 2023 2:38:04 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-20 02:38:04 the user guest_2 wants to make login login(guest_2, member3name,kK129B71346)
+יוני 20, 2023 2:38:04 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-20 02:38:04 a new member Logged in .
+- Memer name: member3name
+
+יוני 20, 2023 2:38:04 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+createStore(String memberUserName, String newStoreName)
+in 2023-06-20 02:38:04 the member member1name tries to create store  - createStore(member1name, store1)
+יוני 20, 2023 2:38:06 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+createStore(String memberUserName, String newStoreName)
+in 2023-06-20 02:38:06 the member member1name tries to create store  - createStore(member1name, store1b)
+יוני 20, 2023 2:38:08 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+createStore(String memberUserName, String newStoreName)
+in 2023-06-20 02:38:08 the member member2name tries to create store  - createStore(member2name, store2)
+יוני 20, 2023 2:38:10 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+createStore(String memberUserName, String newStoreName)
+in 2023-06-20 02:38:10 the member member2name tries to create store  - createStore(member2name, store2b)
+יוני 20, 2023 2:38:11 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-20 02:38:11 the member member1name tries to add product to store  - addNewProductToStock(member1name, store1, product1_store1, category1_product1_store1, 111.1, description_product1_store1, 100)
+יוני 20, 2023 2:38:13 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-20 02:38:13 the member member1name tries to add product to store  - addNewProductToStock(member1name, store1, product2_store1, category2_product2_store1, 222.2, description, 200)
+יוני 20, 2023 2:38:16 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-20 02:38:16 the member member1name tries to add product to store  - addNewProductToStock(member1name, store1b, product1_store1b, category_store1b, 333.3, description_product1_store1b, 300)
+יוני 20, 2023 2:38:18 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-20 02:38:18 the member member1name tries to add product to store  - addNewProductToStock(member1name, store1b, product2_store1b, category_store1b, 444.4, description, 400)
+יוני 20, 2023 2:38:20 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-20 02:38:20 the member member2name tries to add product to store  - addNewProductToStock(member2name, store2, product1_store2, category_store2, 555.5, description_product1_store2, 500)
+יוני 20, 2023 2:38:22 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-20 02:38:22 the member member2name tries to add product to store  - addNewProductToStock(member2name, store2, product2_store2, category_store2, 666.6, description, 600)
+יוני 20, 2023 2:38:24 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-20 02:38:24 the member member2name tries to add product to store  - addNewProductToStock(member2name, store2, product3_store2, category_store2, 777.7, description, 700)
+יוני 20, 2023 2:38:25 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+ addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount)
+in 2023-06-20 02:38:25 the member member2name tries to add product to store  - addNewProductToStock(member2name, store2b, product3_store2, category_store2, 777.7, description, 700)
+יוני 20, 2023 2:38:28 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+closeStore(String memberUserName, String storeName)
+in 2023-06-20 02:38:28 the member member2name tries close store  - closeStore(member2name, store2b)
+יוני 20, 2023 2:38:29 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+removeProductFromStock(String memberUserName, String storeName, String productName)
+in 2023-06-20 02:38:29 the member member2name tries to remove product from store  - removeProductFromStock(member2name, store2, product3_store2)
+יוני 20, 2023 2:38:31 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-20 02:38:31 the user guest_0 wants to make login login(guest_0, member1name,Aa12345678)
+יוני 20, 2023 2:38:31 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-20 02:38:31 a new member Logged in .
+- Memer name: member1name
+
+יוני 20, 2023 2:38:31 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-20 02:38:31 the user guest_1 wants to make login login(guest_1, member2name,Bb129271346)
+יוני 20, 2023 2:38:32 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-20 02:38:32 a new member Logged in .
+- Memer name: member2name
+
+יוני 20, 2023 2:38:32 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+login(String guestUserName, String MemberUserName, String password)
+in 2023-06-20 02:38:32 the user guest_2 wants to make login login(guest_2, member3name,kK129B71346)
+יוני 20, 2023 2:38:32 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: in 2023-06-20 02:38:32 a new member Logged in .
+- Memer name: member3name
+
+יוני 20, 2023 2:38:32 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 02:38:32 the user member3name tries to add product to his cart  - addToCart(member3name, store1, product1_store1, 10)
+יוני 20, 2023 2:38:36 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 02:38:36 the user member3name tries to add product to his cart  - addToCart(member3name, store1, product2_store1, 20)
+יוני 20, 2023 2:38:40 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 02:38:40 the user member3name tries to add product to his cart  - addToCart(member3name, store1b, product1_store1b, 30)
+יוני 20, 2023 2:38:43 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 02:38:43 the user member3name tries to add product to his cart  - addToCart(member3name, store1, product1_store1, 10)
+יוני 20, 2023 2:38:47 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 02:38:47 the user member3name tries to add product to his cart  - addToCart(member3name, store2, product1_store2, 1000)
+יוני 20, 2023 2:38:50 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 02:38:50 the user member3name tries to add product to his cart  - addToCart(member3name, store2, product1_store2, -1)
+יוני 20, 2023 2:38:55 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 02:38:55 the user member3name tries to add product to his cart  - addToCart(member3name, store1, product1_store2, 10)
+יוני 20, 2023 2:38:55 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 02:38:55 the user member3name tries to add product to his cart  - addToCart(member3name, store2, product2_store1b, 10)
+יוני 20, 2023 2:38:55 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 02:38:55 the user member3name tries to add product to his cart  - addToCart(member3name, store2b, product3_store2, 10)
+יוני 20, 2023 2:38:55 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 02:38:55 the user member3name tries to add product to his cart  - addToCart(member3name, store2, product3_store2, 15)
+יוני 20, 2023 2:38:55 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 02:38:55 the user guest_3 tries to add product to his cart  - addToCart(guest_3, store1, product1_store1, 11)
+יוני 20, 2023 2:38:55 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 02:38:55 the user guest_3 tries to add product to his cart  - addToCart(guest_3, store1, product2_store1, 22)
+יוני 20, 2023 2:38:55 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 02:38:55 the user guest_3 tries to add product to his cart  - addToCart(guest_3, store1b, product1_store1b, 33)
+יוני 20, 2023 2:38:55 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 02:38:55 the user guest_3 tries to add product to his cart  - addToCart(guest_3, store2, product2_store2, 4)
+יוני 20, 2023 2:38:55 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 02:38:55 the user guest_3 tries to add product to his cart  - addToCart(guest_3, store1, product1_store1, 10)
+יוני 20, 2023 2:38:55 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 02:38:55 the user guest_3 tries to add product to his cart  - addToCart(guest_3, store2, product1_store2, 1000)
+יוני 20, 2023 2:38:55 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 02:38:55 the user guest_3 tries to add product to his cart  - addToCart(guest_3, store2, product1_store2, -1)
+יוני 20, 2023 2:38:55 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 02:38:55 the user guest_3 tries to add product to his cart  - addToCart(guest_3, store1, product1_store2, 10)
+יוני 20, 2023 2:38:55 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 02:38:55 the user guest_3 tries to add product to his cart  - addToCart(guest_3, store2, product2_store1b, 10)
+יוני 20, 2023 2:38:55 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 02:38:55 the user guest_3 tries to add product to his cart  - addToCart(guest_3, store2b, product3_store2, 10)
+יוני 20, 2023 2:38:55 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+addToCart(String userName, String storeName, String productName, Integer amount)
+in 2023-06-20 02:38:55 the user guest_3 tries to add product to his cart  - addToCart(guest_3, store2, product3_store2, 15)
+יוני 20, 2023 2:38:55 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-20 02:38:55 the user member3name tries to get his cart content  - getCartContent(member3name)
+יוני 20, 2023 2:38:55 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-20 02:38:55 the user member3name tries to get his cart content  - getCartContent(member3name)
+יוני 20, 2023 2:38:55 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-20 02:38:55 the user guest_3 tries to get his cart content  - getCartContent(guest_3)
+יוני 20, 2023 2:38:55 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-20 02:38:55 the user guest_3 tries to get his cart content  - getCartContent(guest_3)
+יוני 20, 2023 2:38:55 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-20 02:38:55 the user guest_3 tries to get his cart content  - getCartContent(guest_3)
+יוני 20, 2023 2:38:55 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-20 02:38:55 the user member1name tries to get his cart content  - getCartContent(member1name)
+יוני 20, 2023 2:38:55 לפנה״צ DomainLayer.LoggerManager sendEventLog
+INFO: 
+getCartContent(String userName)
+in 2023-06-20 02:38:55 the user member3name tries to get his cart content  - getCartContent(member3name)
