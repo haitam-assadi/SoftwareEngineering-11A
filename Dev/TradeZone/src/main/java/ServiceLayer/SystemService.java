@@ -16,35 +16,79 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import static DomainLayer.Market.dbFlag;
+
 public class SystemService {
 
     private Market market;
-    private boolean dbFlag;
 
+    private boolean fileLoadFlag;
 
-    public SystemService(boolean dbFlag){
-//        JsonNode data = connectToExternalSystems();
-//        String dataBaseUrl = data.get("dataBaseUrl").asText();
-//        boolean dataBaseFlag = data.get("dataBaseLoadFlag").asBoolean();
-//        String paymentUrl = data.get( "paymentServiceUrl").asText();
-//        String shipmentUrl = data.get("shipmenServiceUrl").asText();
-        this.dbFlag = dbFlag;
-        market = new Market(dbFlag);
+    private String configFilePath;
+
+    public SystemService(String configFilePath){
+        this.configFilePath = configFilePath;
+        market = new Market();
+        JsonNode data = connectToExternalSystems();
+        String dataBaseUrl = data.get("dataBaseUrl").asText();
+        dbFlag = data.get("dataBaseLoadFlag").asBoolean();
+        String paymentUrl = data.get("paymentServiceUrl").asText();
+        String shipmentUrl = data.get("shipmenServiceUrl").asText();
+        fileLoadFlag = data.get("jsonFileLoadFlag").asBoolean();
+        PaymentService payment = new PaymentService(paymentUrl);
+        market.setPaymentService(payment);
+        ShipmentService shipmentService = new ShipmentService(shipmentUrl);
+        market.setShipmentService(shipmentService);
         if (!dbFlag){
             MemberMapper.initMapper();
             StoreMapper.initMapper();
         }
-//        PaymentService payment = new PaymentService(paymentUrl);
-//        market.setPaymentService(payment);
+    }
 
+//    private String getJSONFromFile(String filename) {
+//        String jsonText = "";
+//        try {
+//            BufferedReader bufferedReader =
+//                    new BufferedReader(new FileReader(filename));
+//
+//            String line;
+//            while ((line = bufferedReader.readLine()) != null) {
+//                jsonText += line + "\n";
+//            }
+//            bufferedReader.close();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        return jsonText;
+//    }
+
+    private JsonNode connectToExternalSystems(){
+        String strJson = market.getJSONFromFile(configFilePath);
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            // Parse the JSON string
+            JsonNode jsonNode = objectMapper.readTree(strJson);
+            return jsonNode;
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+            return null;
+        }
     }
 
     public ResponseT<String> initializeMarket(){
 
         try{
+            //FOR TESTING DELETE AFTER THAT:
             market.loadData();
+            if(dbFlag){
+                market.loadData();
+            }
             String manager = market.firstManagerInitializer();
-//            market.initMarketParsing();
+            if(fileLoadFlag){
+                //clear DB
+                market.initMarketParsing();
+            }
             createMemberWithTwoStore("user1");
             return new ResponseT<>(manager,true);
 
@@ -928,23 +972,6 @@ public class SystemService {
         return market.getAppendingMessages(memberUserName);
     }
 
-    private String getJSONFromFile(String filename) {
-        String jsonText = "";
-        try {
-            BufferedReader bufferedReader =
-                    new BufferedReader(new FileReader(filename));
-
-            String line;
-            while ((line = bufferedReader.readLine()) != null) {
-                jsonText += line + "\n";
-            }
-            bufferedReader.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return jsonText;
-    }
-
     //WE MAY USE IT TO CONNECT TO A REMOTE DB
 
     private String getJSONFromURL(String strUrl) {
@@ -970,19 +997,5 @@ public class SystemService {
 
 
         return jsonText;
-    }
-
-    private JsonNode connectToExternalSystems(){
-        String strJson = getJSONFromFile("Dev/TradeZone/JsonFiles/externalSystemsData.json");
-        ObjectMapper objectMapper = new ObjectMapper();
-        try {
-            // Parse the JSON string
-            JsonNode jsonNode = objectMapper.readTree(strJson);
-            return jsonNode;
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println(e.getMessage());
-            return null;
-        }
     }
 }
