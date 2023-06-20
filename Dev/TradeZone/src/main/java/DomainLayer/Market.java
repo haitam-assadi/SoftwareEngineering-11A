@@ -21,8 +21,8 @@ public class Market {
     public Market(){
         this.userController = new UserController();
         this.storeController = new StoreController();
-        paymentService = new PaymentService("https://php-server-try.000webhostapp.com/");
-        shipmentService = new ShipmentService("https://php-server-try.000webhostapp.com/");
+//        paymentService = new PaymentService("https://php-server-try.000webhostapp.com/");
+//        shipmentService = new ShipmentService("https://php-server-try.000webhostapp.com/");
     }
     public void setPaymentService(PaymentService paymentService){
         this.paymentService=paymentService;
@@ -553,12 +553,10 @@ public class Market {
         return userController.getAppendingMessages(userName1);
     }
 
-    private String getJSONFromFile(String filename) {
+    public String getJSONFromFile(String filename) {
         String jsonText = "";
         try {
-            BufferedReader bufferedReader =
-                    new BufferedReader(new FileReader(filename));
-
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(filename));
             String line;
             while ((line = bufferedReader.readLine()) != null) {
                 jsonText += line + "\n";
