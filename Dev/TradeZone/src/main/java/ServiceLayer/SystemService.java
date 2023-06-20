@@ -21,30 +21,57 @@ public class SystemService {
     private Market market;
     private boolean dbFlag;
 
+    private boolean dataBaseLoadFlag;
 
-    public SystemService(boolean dbFlag){
-//        JsonNode data = connectToExternalSystems();
-//        String dataBaseUrl = data.get("dataBaseUrl").asText();
-//        boolean dataBaseFlag = data.get("dataBaseLoadFlag").asBoolean();
-//        String paymentUrl = data.get( "paymentServiceUrl").asText();
-//        String shipmentUrl = data.get("shipmenServiceUrl").asText();
+    private boolean fileLoadFlag;
+
+    private String configFilePath;
+
+    public SystemService(boolean dbFlag, String configFilePath){
+        this.configFilePath = configFilePath;
+        JsonNode data = connectToExternalSystems();
+        String dataBaseUrl = data.get("dataBaseUrl").asText();
+        dataBaseLoadFlag = data.get("dataBaseLoadFlag").asBoolean();
+        String paymentUrl = data.get("paymentServiceUrl").asText();
+        String shipmentUrl = data.get("shipmenServiceUrl").asText();
+        fileLoadFlag = data.get("jsonFileLoadFlag").asBoolean();
         this.dbFlag = dbFlag;
         market = new Market(dbFlag);
         if (!dbFlag){
             MemberMapper.initMapper();
             StoreMapper.initMapper();
         }
-//        PaymentService payment = new PaymentService(paymentUrl);
-//        market.setPaymentService(payment);
+        PaymentService payment = new PaymentService(paymentUrl);
+        market.setPaymentService(payment);
+        ShipmentService shipmentService = new ShipmentService(shipmentUrl);
+        market.setShipmentService(shipmentService);
+    }
 
+    private JsonNode connectToExternalSystems(){
+        String strJson = market.getJSONFromFile(configFilePath);
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            // Parse the JSON string
+            JsonNode jsonNode = objectMapper.readTree(strJson);
+            return jsonNode;
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+            return null;
+        }
     }
 
     public ResponseT<String> initializeMarket(){
-
         try{
             market.loadData();
+//            if(dataBaseLoadFlag){
+//
+//            }
             String manager = market.firstManagerInitializer();
-//            market.initMarketParsing();
+//            if(fileLoadFlag){
+//                //clear DB
+//                market.initMarketParsing();
+//            }
             createMemberWithTwoStore("user1");
             return new ResponseT<>(manager,true);
 
@@ -970,19 +997,5 @@ public class SystemService {
 
 
         return jsonText;
-    }
-
-    private JsonNode connectToExternalSystems(){
-        String strJson = getJSONFromFile("Dev/TradeZone/JsonFiles/externalSystemsData.json");
-        ObjectMapper objectMapper = new ObjectMapper();
-        try {
-            // Parse the JSON string
-            JsonNode jsonNode = objectMapper.readTree(strJson);
-            return jsonNode;
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println(e.getMessage());
-            return null;
-        }
     }
 }
