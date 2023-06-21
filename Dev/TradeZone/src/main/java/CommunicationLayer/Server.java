@@ -23,7 +23,7 @@ public class Server {
     }
 
     private Server(){
-        service = new SystemService(false);
+        service = new SystemService(true);
         socket = MyWebSocketHandler.getInstance();
     }
 

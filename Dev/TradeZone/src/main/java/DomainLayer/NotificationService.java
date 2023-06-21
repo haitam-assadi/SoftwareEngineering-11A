@@ -53,30 +53,30 @@ public class NotificationService {
             if(type_memberList.containsKey(notificationType)){
                 type_memberList.get(notificationType).add(member);
                 storeRulesNotificator.put(storeName,type_memberList);
-                if (Market.dbFlag)
-                    DALService.rolerNotificatorRepository.save(new RolerNotificator(new StoreRules(storeName,notificationType),member.getUserName()));
+//                if (Market.dbFlag)
+//                    DALService.rolerNotificatorRepository.save(new RolerNotificator(new StoreRules(storeName,notificationType),member.getUserName()));
             }
             else{
                 LinkedList<Member> members = new LinkedList<>();
                 members.add(member);
                 type_memberList.put(notificationType,members);
                 storeRulesNotificator.put(storeName,type_memberList);
-                if (Market.dbFlag) {
-                    StoreRules storeRules = new StoreRules(storeName, notificationType);
-                    DALService.storeRulesRepository.save(storeRules);
-                    DALService.rolerNotificatorRepository.save(new RolerNotificator(storeRules,member.getUserName()));
-                }
+//                if (Market.dbFlag) {
+//                    StoreRules storeRules = new StoreRules(storeName, notificationType);
+//                    DALService.storeRulesRepository.save(storeRules);
+//                    DALService.rolerNotificatorRepository.save(new RolerNotificator(storeRules,member.getUserName()));
+//                }
             }
         }else{
             LinkedList<Member> members = new LinkedList<>();
             members.add(member);
             type_memberList.put(notificationType,members);
             storeRulesNotificator.put(storeName,type_memberList);
-            if (Market.dbFlag) {
-                StoreRules storeRules = new StoreRules(storeName, notificationType);
-                DALService.storeRulesRepository.save(storeRules);
-                DALService.rolerNotificatorRepository.save(new RolerNotificator(storeRules,member.getUserName()));
-            }
+//            if (Market.dbFlag) {
+//                StoreRules storeRules = new StoreRules(storeName, notificationType);
+//                DALService.storeRulesRepository.save(storeRules);
+//                DALService.rolerNotificatorRepository.save(new RolerNotificator(storeRules,member.getUserName()));
+//            }
         }
     }
 
@@ -100,6 +100,7 @@ public class NotificationService {
     }
 
     public void notify(String storeName,String msg,NotificationType notificationType) throws Exception {
+        loadStoreRulesNotificator();
         ConcurrentHashMap<NotificationType, LinkedList<Member>> type_memberList = storeRulesNotificator.get(storeName);
         if(type_memberList.containsKey(notificationType)) {
             LinkedList<Member> members = type_memberList.get(notificationType);
@@ -110,6 +111,7 @@ public class NotificationService {
     }
 
     public void notifyMember(String userName,String msg,NotificationType notificationType) throws Exception{
+        loadMemberNotificator();
         ConcurrentHashMap<NotificationType, Member> type_member = memberNotificator.get(userName);
         if(type_member.containsKey(notificationType)) {
             type_member.get(notificationType).send(msg);
@@ -174,6 +176,7 @@ public class NotificationService {
     }
 
     public void loadStoreRulesNotificator() throws Exception{
+        if (!Market.dbFlag) return;
         List<StoreRules> storeRules = DALService.storeRulesRepository.findAll();
         List<RolerNotificator> rolerNotificators = DALService.rolerNotificatorRepository.findAll();
         for (StoreRules storeRule: storeRules){

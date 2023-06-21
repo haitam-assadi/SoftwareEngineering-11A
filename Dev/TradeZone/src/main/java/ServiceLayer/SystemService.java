@@ -45,7 +45,7 @@ public class SystemService {
             market.loadData();
             String manager = market.firstManagerInitializer();
 //            market.initMarketParsing();
-            createMemberWithTwoStore("user1");
+            //createMemberWithTwoStore("user1");
             return new ResponseT<>(manager,true);
 
         }catch (Exception e){
