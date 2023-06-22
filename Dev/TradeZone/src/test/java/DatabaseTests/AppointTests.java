@@ -93,6 +93,7 @@ public class AppointTests {
 
             proxy.appointOtherMemberAsStoreOwner(member1Name,store1Name,member2Name);
 
+            logOutMembers();
             initSystemServiceAndLoadDataAndLogIn();
 
             Assertions.assertFalse(proxy.getStoreOwnersNames(member1Name,store1Name).isEmpty());
@@ -100,9 +101,9 @@ public class AppointTests {
 
             proxy.appointOtherMemberAsStoreOwner(member1Name,store1Name,member3Name);
 
+            logOutMembers();
             initSystemServiceAndLoadDataAndLogIn();
 
-            System.out.println("x;xl,;mlknlkjn");
 
             //Assertions.assertFalse(proxy.getMyCreatedContracts(member1Name,store1Name).isEmpty());
 
@@ -125,6 +126,7 @@ public class AppointTests {
 
             Assertions.assertTrue(proxy.fillOwnerContract(member2Name,store1Name,member3Name,true));
 
+            logOutMembers();
             initSystemServiceAndLoadDataAndLogIn();
 
             ownerContractDTOS =  proxy.getMyCreatedContracts(member1Name,store1Name);
@@ -154,7 +156,11 @@ public class AppointTests {
         }
     }
 
-
+    private void logOutMembers()throws Exception{
+        proxy.memberLogOut(member1Name);
+        proxy.memberLogOut(member2Name);
+        proxy.memberLogOut(member3Name);
+    }
     private void initSystemServiceAndLoadDataAndLogIn() throws Exception {
         proxy= new ProxyBridge(new RealBridge());
         proxy.loadData();

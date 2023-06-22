@@ -85,12 +85,15 @@ public class MemberTests {
             user2 = proxy.login(user2, member2Name, member2Password);
 
             // TODO: isOnline is not loaded or it is loaded but we dont updated logged in members map
+            // FIXED!! but not the best thing , but its quit enough and works.
+
             Assertions.assertTrue(user1.equals(member1Name));
             Assertions.assertTrue(user2.equals(member2Name));
             Assertions.assertThrows(Exception.class, ()->proxy.login(user3,member3Name,member3Password));
             proxy.register(user3, member3Name, member3Password);
             user3 =proxy.login(user3, member3Name, member3Password);
 
+            logOutMembers();
             initSystemServiceAndLoadDataAndLogIn();
 
             ////// create stores
@@ -103,12 +106,17 @@ public class MemberTests {
 
 
 
-
+            logOutMembers();
             initSystemServiceAndLoadDataAndLogIn();
 
-            System.out.println("dsfkhjsdf");
             //TODO: proxy.getAllStoresNames() didnt return all stores names, it did return used stores only
-
+            // FIXED!!
+            List<String> storeNames = proxy.getAllStoresNames();
+            Assertions.assertTrue(storeNames.contains(store1Name));
+            Assertions.assertTrue(storeNames.contains(store2Name));
+            Assertions.assertTrue(storeNames.contains(store3Name));
+            Assertions.assertTrue(storeNames.contains(store1bName));
+            Assertions.assertTrue(storeNames.contains(store2bName));
 
             Assertions.assertThrows(Exception.class, ()->proxy.createStore(member1Name, store1Name));
             Assertions.assertThrows(Exception.class, ()->proxy.createStore(member1Name, store1bName));
@@ -157,7 +165,7 @@ public class MemberTests {
             proxy.addNewProductToStock(member2Name, store2Name, product2_store2, category_store2, 666.6, "description", 600);
             proxy.addNewProductToStock(member2Name, store2Name, product3_store2, category_store2, 777.7, "description", 700);
 
-
+            logOutMembers();
             initSystemServiceAndLoadDataAndLogIn();
             Assertions.assertThrows(Exception.class, ()->proxy.addNewProductToStock(member1Name, store1Name, product1_store1, category1_product1_store1, 111.1, "description", 100));
             Assertions.assertThrows(Exception.class, ()->proxy.addNewProductToStock(member1Name, store1Name, product2_store1, category2_product2_store1, 222.2, "description", 200));
@@ -198,11 +206,23 @@ public class MemberTests {
             Assertions.assertTrue(productDTO.price.equals(111.1));
             Assertions.assertTrue(productDTO.categories.contains(category1_product1_store1));
 
-            List<ProductDTO> map =  proxy.getProductInfoFromMarketByCategory(user4, product1_store1);
+            List<ProductDTO> map =  proxy.getProductInfoFromMarketByCategory(user4, category_store2);
             System.out.println("dsfdfg");
             System.out.println(map.size());
+            for (ProductDTO productDTO1: map){
+                if(productDTO1.name.equals(product1_store2)){
+                    Assertions.assertEquals(productDTO1.name, product1_store2);
+                }
+                else if(productDTO1.name.equals(product2_store2)){
+                    Assertions.assertEquals(productDTO1.name, product2_store2);
+                } else if(productDTO1.name.equals(product3_store2)){
+                    Assertions.assertEquals(productDTO1.name, product3_store2);
+                }
+                else Assertions.fail("mistake");
+            }
             //TODO: getProductInfoFromMarketByCategory didnt return any product
             // after fixing we need to check it and check get product by keyword
+            logOutMembers();
             initSystemServiceAndLoadDataAndLogIn();
 
 
@@ -226,9 +246,16 @@ public class MemberTests {
             Assertions.assertTrue(member2Name_productDTO2.price.equals(555.5));
             Assertions.assertTrue(member2Name_productDTO2.categories.contains(category_store2));
 
+            logOutMembers();
             initSystemServiceAndLoadDataAndLogIn();
             proxy.getProductInfoFromMarketByName(user4,product1_store1b);
+            Assertions.assertTrue(proxy.closeStore(member1Name,store1Name));
+            Assertions.assertFalse(proxy.getStoreInfo(member1Name, store1Name).isActive);
 
+            logOutMembers();
+            initSystemServiceAndLoadDataAndLogIn();
+            Assertions.assertThrows(Exception.class,()->proxy.closeStore(member1Name,store1Name));
+            Assertions.assertFalse(proxy.getStoreInfo(member1Name, store1Name).isActive);
 
 
 
@@ -238,6 +265,11 @@ public class MemberTests {
     }
 
 
+    private void logOutMembers()throws Exception{
+        proxy.memberLogOut(member1Name);
+        proxy.memberLogOut(member2Name);
+        proxy.memberLogOut(member3Name);
+    }
     private void initSystemServiceAndLoadDataAndLogIn() throws Exception {
         proxy= new ProxyBridge(new RealBridge());
         proxy.loadData();

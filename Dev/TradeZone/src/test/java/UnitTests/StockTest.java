@@ -37,7 +37,7 @@ class StockTest {
         StoreMapper.initMapper();
         MemberMapper.initMapper();
         MockitoAnnotations.openMocks(this);
-        Store store = null; //TODO mock store
+        Store store = new Store("store1"); //TODO mock store
         stock = new Stock(store);
     }
 
@@ -46,7 +46,7 @@ class StockTest {
         Market.dbFlag = false;
         StoreMapper.initMapper();
         MemberMapper.initMapper();
-        Store store = null; //TODO mock store
+        Store store = new Store("store1"); //TODO mock store
         stock = new Stock(store);
     }
 
@@ -129,10 +129,9 @@ class StockTest {
 
     @Test
     void update_product_amount_success() throws Exception {
-        stock.addToStockCategory("milk", category);
-        stock.addToStockProducts("milk 3%", product, 10);
-        stock.updateProductAmount("milk 3%", 20);
-        assertEquals(20, stock.getProductAmount("milk 3%", product));
+        stock.addNewProductToStock("milk 3%","milk",10.0,"description",10);
+        stock.updateProductAmount("milk 3%",50);
+        assertEquals(50,stock.getProductAmount("milk 3%"));
     }
 
     @Test

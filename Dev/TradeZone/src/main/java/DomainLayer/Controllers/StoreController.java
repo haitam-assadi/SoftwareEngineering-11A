@@ -227,7 +227,14 @@ public class StoreController {
     }
 
 
-    public List<String> getAllStoresNames(){
+    public List<String> getAllStoresNames() throws Exception {
+        List<String> names = StoreMapper.getInstance().getAllStoresNames();
+        for (String storeName: names){
+            if (!storesNamesConcurrentSet.contains(storeName)){
+                storesNamesConcurrentSet.add(storeName);
+                stores.putIfAbsent(storeName,StoreMapper.getInstance().getStore(storeName));
+            }
+        }
         return stores.keySet().stream().toList();
     }
 

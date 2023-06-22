@@ -1314,11 +1314,7 @@ public class Store {
 
     }
 
-
-
     public void loadStoreOwners() throws Exception{
-        System.out.println("llla");
-        System.out.println(ownersLoaded);
         if (ownersLoaded || !Market.dbFlag)
             return;
         List<String> ownersNames = DALService.storesOwnersRepository.findOwnersNamesByStoreName(storeName);

@@ -233,10 +233,26 @@ public class UserController {
         return guests.keySet().stream().toList();
     }
 
-    public List<String> getAllMambers(){
+    public List<String> getAllMambers() throws Exception {
+        List<String> membersNames = MemberMapper.getInstance().getMembersNames();
+        for (String memberName: membersNames){
+            if (!membersNamesConcurrentSet.contains(memberName)){
+                membersNamesConcurrentSet.add(memberName);
+                members.putIfAbsent(memberName,MemberMapper.getInstance().getMember(memberName));
+            }
+        }
         return membersNamesConcurrentSet.stream().toList();
     }
-    public List<String> getAllLoggedInMembers(){
+    public List<String> getAllLoggedInMembers() throws Exception {
+        for (String memberName: MemberMapper.getInstance().getOnlineMembers().stream().toList()){
+            if (!membersNamesConcurrentSet.contains(memberName)){
+                membersNamesConcurrentSet.add(memberName);
+                members.putIfAbsent(memberName,MemberMapper.getInstance().getMember(memberName));
+            }
+            if (!loggedInMembers.containsKey(memberName)){
+                loggedInMembers.put(memberName,MemberMapper.getInstance().getMember(memberName));
+            }
+        }
         return loggedInMembers.keySet().stream().toList();
     }
 
@@ -312,7 +328,8 @@ public class UserController {
     public boolean isMemberLoggedIn(String memberUserName) throws Exception {
         assertIsMember(memberUserName);
         memberUserName = memberUserName.strip().toLowerCase();
-
+        getAllLoggedInMembers();
+        //todo: maybe should get just the relevant user
         if(!loggedInMembers.containsKey(memberUserName))
             return false;
 
@@ -379,6 +396,7 @@ public class UserController {
         Member member = loggedInMembers.get(memberUserName);
         member.Logout();
         loggedInMembers.remove(memberUserName);
+        MemberMapper.getInstance().removeOnlineMember(memberUserName);
         String newGuest = loginAsGuest();
         return newGuest;
     }
@@ -478,8 +496,10 @@ public class UserController {
         member.removeCart();
         members.remove(memberName);
         membersNamesConcurrentSet.remove(memberName);
+        MemberMapper.getInstance().removeMember(memberName);
         if(loggedInMembers.containsKey(memberName)){
             loggedInMembers.remove(memberName);
+            MemberMapper.getInstance().removeOnlineMember(memberName);
         }
         NotificationService.getInstance().unsubscribeMember(memberName);
         return true;

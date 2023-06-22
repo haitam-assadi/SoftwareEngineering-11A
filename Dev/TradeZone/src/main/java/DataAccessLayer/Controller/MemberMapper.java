@@ -17,6 +17,8 @@ public class MemberMapper {
     private Map<String, StoreManager> storesManagers;
     private Set<String> membersNamesConcurrentSet;
 
+    private Set<String> onlineMembers;
+
     private static MemberMapper instance = null;
 
     public static MemberMapper initMapper(){
@@ -26,6 +28,7 @@ public class MemberMapper {
 
     private MemberMapper(){
         members = new ConcurrentHashMap<>();
+        onlineMembers = new HashSet<>();
         systemManagers = new ConcurrentHashMap<>();
         founders = new ConcurrentHashMap<>();
         owners = new ConcurrentHashMap<>();
@@ -55,6 +58,13 @@ public class MemberMapper {
             systemManager.setMember(member);
             systemManagers.put(systemManager.getUserName(),systemManager);
         }
+    }
+
+    public void loadAllOnlineMembersNames(){
+        if (Market.dbFlag){
+            onlineMembers = DALService.memberRepository.getAllOnlineMembersNames();
+        }
+
     }
     public Member getMember(String memberName) throws Exception {
         assertStringIsNotNullOrBlank(memberName);
@@ -149,4 +159,20 @@ public class MemberMapper {
         return systemManager;
     }
 
+    public List<String> getMembersNames(){
+        return membersNamesConcurrentSet.stream().toList();
+    }
+
+    public Set<String> getOnlineMembers() {
+        return onlineMembers;
+    }
+
+    public void removeOnlineMember(String memberUserName) {
+        onlineMembers.remove(memberUserName);
+    }
+
+    public void removeMember(String memberName) {
+        membersNamesConcurrentSet.remove(memberName);
+        members.remove(memberName);
+    }
 }

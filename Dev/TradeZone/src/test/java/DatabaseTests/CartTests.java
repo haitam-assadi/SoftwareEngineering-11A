@@ -96,6 +96,8 @@ public class CartTests {
         try {
             proxy.closeStore(member2Name, store2bName);
             proxy.removeProductFromStock(member2Name, store2Name, product3_store2);
+
+            logOutMembers();
             initSystemServiceAndLoadDataAndLogIn();
 
             // member: add to cart
@@ -226,7 +228,11 @@ public class CartTests {
         }
     }
 
-
+    private void logOutMembers()throws Exception{
+        proxy.memberLogOut(member1Name);
+        proxy.memberLogOut(member2Name);
+        proxy.memberLogOut(member3Name);
+    }
     private void initSystemServiceAndLoadDataAndLogIn() throws Exception {
         proxy= new ProxyBridge(new RealBridge());
         proxy.loadData();

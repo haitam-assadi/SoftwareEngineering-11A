@@ -148,6 +148,8 @@ public class Stock {
         if (currentProductAmount == newAmount){
             throw new Exception("the amount of the product equals to the new amount");
         }
+        stockProducts.get(productName).put(product,newAmount);
+        productAmount.put(product,newAmount);
         if (Market.dbFlag)
             DALService.stockRepository.save(this);
         return true;

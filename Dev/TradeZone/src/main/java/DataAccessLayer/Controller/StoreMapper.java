@@ -217,4 +217,8 @@ public class StoreMapper {
         if (Market.dbFlag)
             DALService.removeProduct(product,stock);
     }
+
+    public List<String> getAllStoresNames(){
+        return storesNamesConcurrentSet.stream().toList();
+    }
 }

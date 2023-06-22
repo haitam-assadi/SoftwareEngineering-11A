@@ -57,13 +57,13 @@ public class Market {
         return userController.getAllGuests();
     }
 
-    public List<String> getAllMembers(){
+    public List<String> getAllMembers() throws Exception {
         return userController.getAllMambers();
     }
-    public List<String> getAllLoggedInMembers(){
+    public List<String> getAllLoggedInMembers() throws Exception {
         return userController.getAllLoggedInMembers();
     }
-    public List<String> getAllStoresNames(){ // TODO: add to market and service
+    public List<String> getAllStoresNames() throws Exception { // TODO: add to market and service
         return storeController.getAllStoresNames();
     }
 
@@ -716,6 +716,7 @@ public class Market {
         if (Market.dbFlag) {
             MemberMapper.getInstance().loadAllMembersNames();
             MemberMapper.getInstance().loadAllSystemManagers();
+            MemberMapper.getInstance().loadAllOnlineMembersNames();
             StoreMapper.getInstance().loadAllStoresNames();
         }
     }
