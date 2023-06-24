@@ -383,6 +383,10 @@ public class ProxyBridge implements Bridge{
         return -1;
     }
 
+    public void createMemberWithTwoStore(String userName) throws Exception {
+        realBridge.createMemberWithTwoStore(userName);
+    }
+
     @Override
     public Map<String, List<String>> getCartContent(String userName) throws Exception {
         if(realBridge!=null){

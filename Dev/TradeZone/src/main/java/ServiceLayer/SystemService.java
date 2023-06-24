@@ -67,7 +67,6 @@ public class SystemService {
             if(this.fileLoadFlag){
                 market.initMarketParsing();
             }
-            createMemberWithTwoStore("user1");
             return new ResponseT<>(manager,true);
 
         }catch (Exception e){
@@ -83,7 +82,7 @@ public class SystemService {
         market.setShipmentService(shipmentService);
     }
 
-    private void createMemberWithTwoStore(String userName) throws Exception {
+    public void createMemberWithTwoStore(String userName) throws Exception {
         String guestUserName = market.enterMarket();
         String userPassword = "Aa12345678";
 

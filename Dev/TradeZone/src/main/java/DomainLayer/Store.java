@@ -358,7 +358,6 @@ public class Store {
 
     public boolean appointMemberAsStoreOwner(StoreOwner storeOwner) throws Exception {
         loadStoreOwners();
-        System.out.println("here!!!!");
         if(storeOwners.containsKey(storeOwner.getUserName()))
             throw new Exception(""+storeOwner.getUserName()+" is already owner for this store");
         storeOwners.put(storeOwner.getUserName(), storeOwner);

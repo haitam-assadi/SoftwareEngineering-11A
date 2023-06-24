@@ -57,7 +57,9 @@ public class PurchasingTests {
     public void setUp() throws Exception {
         MockitoAnnotations.openMocks(this);
         proxy = new ProxyBridge(new RealBridge());
-        if (proxy.initializeMarket().isEmpty()) {
+        String st =proxy.initializeMarket();
+        proxy.createMemberWithTwoStore("user1");
+        if (st.isEmpty()) {
             throw new Exception("");
         }
 
@@ -131,8 +133,9 @@ public class PurchasingTests {
     @Test
     public void purchase_cart_success_with_real_external_connections(){
         try{
-            paymentService = new PaymentService("https://php-server-try.000webhostapp.com/");
-            shipmentService = new ShipmentService("https://php-server-try.000webhostapp.com/");
+
+            paymentService = new PaymentService("https://external-systems.000webhostapp.com/");
+            shipmentService = new ShipmentService("https://external-systems.000webhostapp.com/");
             proxy.setPaymentService(this.paymentService);
             proxy.setShipmentService(this.shipmentService);
 
