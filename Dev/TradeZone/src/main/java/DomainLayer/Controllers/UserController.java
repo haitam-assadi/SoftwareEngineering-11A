@@ -542,4 +542,13 @@ public class UserController {
         Member member = this.members.get(userName1);
         return member.getAppendingMessages();
     }
+
+    public void addSystemManager(String user, Member member){
+        membersNamesConcurrentSet.add(user);
+        members.put(user,member);
+    }
+
+    public void putSystemManager(String user, SystemManager systemManager){
+        systemManagers.put(user,systemManager);
+    }
 }
