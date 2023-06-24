@@ -18,6 +18,7 @@ public class RandomScenarios {
         proxy = new ProxyBridge(new RealBridge());
         try {
             proxy.initializeMarket();
+            proxy.createMemberWithTwoStore("user1");
 
         }catch (Exception e){
             System.out.println(e);

@@ -1,6 +1,7 @@
 package AcceptanceTests;
 
 import DTO.*;
+import DomainLayer.Market;
 import DomainLayer.PaymentService;
 import DomainLayer.ShipmentService;
 import ServiceLayer.ResponseT;
@@ -17,6 +18,7 @@ public class RealBridge implements Bridge{
 
     public RealBridge(){
         systemService = new SystemService("externalSystemsFiles/externalSystemsData.json");
+        Market.dbFlag=false;
     }
 
     @Override
@@ -27,6 +29,11 @@ public class RealBridge implements Bridge{
         }
         return response.getValue();
     }
+
+    public void createMemberWithTwoStore(String userName) throws Exception {
+        systemService.createMemberWithTwoStore(userName);
+    }
+
 
     @Override
     public String enterMarket() throws Exception { // Done

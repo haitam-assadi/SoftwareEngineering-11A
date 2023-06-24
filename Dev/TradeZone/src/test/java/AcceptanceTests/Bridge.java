@@ -196,4 +196,5 @@ public interface Bridge {
     List<DealDTO> getStoreDeals(String memberUserName, String storeName) throws Exception;
 
     List<DealDTO> getMemberDeals(String memberUserName, String otherMemberUserName) throws Exception;
+    void createMemberWithTwoStore(String userName) throws Exception;
 }
