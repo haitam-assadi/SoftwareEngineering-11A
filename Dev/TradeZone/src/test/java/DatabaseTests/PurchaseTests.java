@@ -11,11 +11,14 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest(classes = SpringbootHtmlApplication.class)
 public class PurchaseTests {
     private ProxyBridge proxy= new ProxyBridge(new RealBridge());
+    private String user0;
     private String user1;
     private String user2;
     private String user3;
     private String user4;
 
+    String systemManagerName = "systemmanager1";
+    String systemManagerPassword = "systemmanager1Pass";
     String member1Name = "member1name";
     String member1Password = "Aa12345678";
     String member2Name = "member2name";
@@ -36,8 +39,9 @@ public class PurchaseTests {
     public void setUp() throws Exception {
         System.out.println("setup");
         proxy= new ProxyBridge(new RealBridge());
-        proxy.loadData();
-//        proxy.initializeMarket();
+//        proxy.loadData();
+        proxy.initializeMarket();
+        user0 = proxy.enterMarket(); // system manager
         user1 = proxy.enterMarket(); // founder
         user2 = proxy.enterMarket(); // member
         user3 = proxy.enterMarket(); // guest
@@ -47,6 +51,7 @@ public class PurchaseTests {
         proxy.register(user2, member2Name, member2Password);
 //        proxy.register(user3, member3Name, member3Password);
 
+        user0 = proxy.login(user0, systemManagerName, systemManagerPassword);
         user1 = proxy.login(user1, member1Name, member1Password);
         user2 = proxy.login(user2, member2Name, member2Password);
 //        user3 = proxy.login(user3, member3Name, member3Password);
@@ -90,6 +95,13 @@ public class PurchaseTests {
 
             Assertions.assertEquals(30, proxy.getProductAmount(store1Name, product1_store1));
 
+                // check store deals:
+            Assertions.assertEquals(1, proxy.getStoreDeals(user1, store1Name).size());
+            Assertions.assertEquals(2, proxy.getStoreDeals(user1, store2Name).size());
+
+                // check member deals:
+            Assertions.assertEquals(3, proxy.getMemberDeals(systemManagerName, user2).size());
+
             // guest:
             proxy.addToCart(user3, store1Name, product1_store1, 10);
             proxy.addToCart(user3, store2Name, product1_store2, 20);
@@ -115,6 +127,9 @@ public class PurchaseTests {
 
             Assertions.assertEquals(50, proxy.getProductAmount(store2Name, product1_store2));
 
+                // check store deals:
+            Assertions.assertEquals(2, proxy.getStoreDeals(user1, store1Name).size());
+            Assertions.assertEquals(4, proxy.getStoreDeals(user1, store2Name).size());
 
         } catch (Exception e){
             Assertions.fail(e.getMessage());
@@ -122,6 +137,7 @@ public class PurchaseTests {
     }
 
     private void logOutMembers()throws Exception{
+        proxy.memberLogOut(systemManagerName);
         proxy.memberLogOut(member1Name);
         proxy.memberLogOut(member2Name);
 //        proxy.memberLogOut(member3Name);
@@ -129,9 +145,11 @@ public class PurchaseTests {
     private void initSystemServiceAndLoadDataAndLogIn() throws Exception {
         proxy= new ProxyBridge(new RealBridge());
         proxy.loadData();
+        user0 = proxy.enterMarket();
         user1 = proxy.enterMarket();
         user2 = proxy.enterMarket();
 //        user3 = proxy.enterMarket();
+        user0 = proxy.login(user0, systemManagerName, systemManagerPassword);
         user1 = proxy.login(user1, member1Name, member1Password);
         user2 = proxy.login(user2, member2Name, member2Password);
 //        user3 = proxy.login(user3, member3Name, member3Password);
