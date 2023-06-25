@@ -84,4 +84,16 @@ public class ProductDiscountPolicy extends DiscountPolicy{
 
         return ret;
     }
+
+    public int getDiscountPercentage() {
+        return discountPercentage;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public BagConstraint getBagConstraint() {
+        return bagConstraint;
+    }
 }

@@ -564,7 +564,7 @@ public class Store {
         createdDiscountPolicies.put(currentDisPolIdCounter, productDiscountPolicy);
         productDiscountPolicy.setDiscountPolicyId(new DiscountPolicyId(currentDisPolIdCounter,storeName));
         if (Market.dbFlag)
-            DALService.productDiscountPolicyRepository.save(productDiscountPolicy);
+            DALService.saveDiscountPolicyWithPositiveConstraint((PositiveBagConstraint) productDiscountPolicy.getBagConstraint(),productDiscountPolicy);
         this.discountPoliciesIdCounter++;
         if(addAsStoreDiscountPolicy) {
             loadStoreDiscountPolicies();
@@ -901,7 +901,7 @@ public class Store {
 
     public List<String> getAllStoreDiscountPolicies(String memberUserName) throws Exception {
         assertIsOwnerOrFounderOrAuthorizedManager(memberUserName, ManagerPermissions.manageStoreDiscountPolicies);
-        loadCreatedDiscountPolicies();
+        loadStoreDiscountPolicies();
         List<String> allStoreDiscountPolicies = new LinkedList<>();
         for(Integer discountPolicyId : storeDiscountPolicies.keySet().stream().toList().stream().sorted().toList())
             allStoreDiscountPolicies.add(discountPolicyId+". "+ storeDiscountPolicies.get(discountPolicyId).toString());
