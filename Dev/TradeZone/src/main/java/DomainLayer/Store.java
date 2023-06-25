@@ -6,6 +6,7 @@ import DTO.ProductDTO;
 import DTO.StoreDTO;
 import DataAccessLayer.CompositeKeys.BagConstrainsId;
 import DataAccessLayer.CompositeKeys.DiscountPolicyId;
+import DataAccessLayer.Controller.DealMapper;
 import DataAccessLayer.Controller.MemberMapper;
 import DataAccessLayer.DALService;
 import DTO.*;
@@ -108,6 +109,9 @@ public class Store {
     @Transient
     private boolean isContractsLaoded;
 
+    @Transient
+    private boolean storeDealsLoaded;
+
     public Store(String storeName) {
         this.storeName = storeName;
         stock = new Stock(this);
@@ -137,6 +141,7 @@ public class Store {
         storeDiscountPoliciesLoaded = true;
         storePaymentPoliciesLoaded = true;
         isContractsLaoded = true;
+        storeDealsLoaded = true;
     }
     public Store(String storeName,boolean isLoaded) {
         this.storeName = storeName;
@@ -167,6 +172,7 @@ public class Store {
         storeDiscountPoliciesLoaded = isLoaded;
         storePaymentPoliciesLoaded = isLoaded;
         isContractsLaoded = isLoaded;
+        storeDealsLoaded = isLoaded;
     }
 
     public Store(){}
@@ -468,10 +474,9 @@ public class Store {
     }
 
     public List<DealDTO> getStoreDeals(String memberUserName, boolean isSystemManager) throws Exception {
-        //TODO: MOSLEM: load all store from data base, or get this info only
-        // now i dont have deal table so wait
         if(!isSystemManager)
             assertIsOwnerOrFounderOrAuthorizedManager(memberUserName, ManagerPermissions.getStoreDeals);
+        loadStoreDeals();
         List<DealDTO> deals = new ArrayList<DealDTO>();
         for(Deal deal : this.storeDeals){
             deals.add(deal.getDealDTO());
@@ -481,10 +486,7 @@ public class Store {
 
     //Currently added for testing
     public void addDeal(Deal deal){
-
-        //TODO: MOSLEM: update here
-        // i do in cart.updatstockamount its transaction
-        // i can make it here but should discuss if add store deals table in user and store list<deal>
+        loadStoreDeals();
         this.storeDeals.add(deal);
     }
 
@@ -1301,7 +1303,8 @@ public class Store {
         loadCreatedDiscountPolicies();
         loadStorePaymentPolicies();
         loadStoreDiscountPolicies();
-        //TODO: MOSLEM: we need to load storeDeals, 2 fields contracts
+        loadStoreDeals();
+        //TODO: MOSLEM:, 2 fields contracts
         isLoaded = true;
     }
     public void loadStoreFounder() throws Exception {
@@ -1406,6 +1409,17 @@ public class Store {
             }
         }
         isContractsLaoded = true;
+    }
+
+    public void loadStoreDeals(){
+        if (storeDealsLoaded || !Market.dbFlag) return;
+        List<Long> dealsIds = DALService.storeRepository.findStoreDealsIdsByStoreName(storeName);
+        List<Deal> deals = new LinkedList<>();
+        for (long id: dealsIds){
+            deals.add(DealMapper.getInstance().getDeal(id));
+        }
+        this.storeDeals = deals;
+        storeDealsLoaded = true;
     }
 
 

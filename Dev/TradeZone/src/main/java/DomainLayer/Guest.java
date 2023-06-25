@@ -11,4 +11,9 @@ public class Guest extends User{
         return;
     }
 
+    @Override
+    public void loadDeals() {
+        return;
+    }
+
 }

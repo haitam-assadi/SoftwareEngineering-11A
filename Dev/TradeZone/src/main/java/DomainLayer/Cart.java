@@ -1,6 +1,7 @@
 package DomainLayer;
 
 import DTO.BagDTO;
+import DataAccessLayer.Controller.DealMapper;
 import DataAccessLayer.DALService;
 
 import javax.persistence.*;
@@ -165,6 +166,9 @@ public class Cart {
             //todo : should make sure that cartOwner = memberCart
             if (Market.dbFlag && isPersistence) //todo: check if should check is persistence here
                 DALService.saveDeal(deal,memberCart,bag.getStoreBag());
+            if (Market.dbFlag && !isPersistence)
+                DALService.saveDealForStore(deal,bag.getStoreBag());
+            DealMapper.getInstance().insertDeal(deal);
         }
         bags = new ConcurrentHashMap<>();
         if (isPersistence && Market.dbFlag){

@@ -23,6 +23,8 @@ public abstract class User {
     @Column(name = "deal")
     protected List<Deal> userDeals;
 
+
+
     public User(String userName){
         this.userName = userName;
         this.cart = new Cart(this);
@@ -65,16 +67,19 @@ public abstract class User {
     }
     public boolean addDeal(Deal deal) throws Exception {
         loadUser();
+        loadDeals();
         this.userDeals.add(deal);
         return true;
     }
 
     public List<DealDTO> getUserDeals() throws Exception {
         loadUser();
+        loadDeals();
         List<DealDTO> deals = new ArrayList<>();
         for(Deal deal : this.userDeals)
             deals.add(deal.getDealDTO());
 
         return deals;
     }
+     public abstract void loadDeals();
 }
