@@ -150,9 +150,9 @@ public class ProxyBridge implements Bridge {
     }
 
     @Override
-    public int getProductAmount(String storeName, String s) throws Exception {
+    public int getProductAmount(String userName,String storeName, String s) throws Exception {
         if(realBridge!=null){
-            return realBridge.getProductAmount(storeName, s);
+            return realBridge.getProductAmount(userName,storeName, s);
         }
         return -1;
     }

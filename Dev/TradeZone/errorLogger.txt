@@ -8614,3 +8614,33 @@ fail in purchasing: No default constructor for entity:  : DomainLayer.Deal; nest
 יוני 25, 2023 2:15:47 אחה״צ DomainLayer.LoggerManager sendErrorLog
 WARNING: 
 fail in purchasing: Cannot invoke "java.util.List.add(Object)" because "this.userDeals" is null
+יוני 25, 2023 4:06:50 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Cannot invoke "java.util.List.add(Object)" because "this.userDeals" is null
+יוני 25, 2023 4:07:44 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Cannot invoke "java.util.List.add(Object)" because "this.userDeals" is null
+יוני 25, 2023 4:11:27 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Cannot invoke "java.util.List.add(Object)" because "this.userDeals" is null
+יוני 25, 2023 4:13:11 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Cannot invoke "java.util.List.add(Object)" because "this.userDeals" is null
+יוני 25, 2023 4:15:51 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Cannot invoke "java.util.List.add(Object)" because "this.userDeals" is null
+יוני 25, 2023 4:56:39 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: No default constructor for entity:  : DomainLayer.Deal; nested exception is org.hibernate.InstantiationException: No default constructor for entity:  : DomainLayer.Deal
+יוני 25, 2023 5:35:03 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: userName guest_3 does not exists!
+יוני 25, 2023 5:36:11 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: null
+יוני 25, 2023 5:46:40 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: null
+יוני 25, 2023 5:56:56 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: null

@@ -54,6 +54,8 @@ public class Deal {
         this.productFinalPriceWithDiscount=productFinalPriceWithDiscount;
     }
 
+    public Deal(){}
+
     public DealDTO getDealDTO() {
         return new DealDTO(this.storeName, this.date, this.userName, this.products_amount, this.products_prices,
                 this.productPriceMultipleAmount, this.productFinalPriceWithDiscount, this.totalPrice);
@@ -61,5 +63,9 @@ public class Deal {
 
     public String getDealUserName(){
         return this.userName;
+    }
+
+    public Long getId() {
+        return id;
     }
 }

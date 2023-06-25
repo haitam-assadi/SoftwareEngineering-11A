@@ -155,9 +155,12 @@ public class RealBridge implements Bridge {
     }
 
     @Override
-    public int getProductAmount(String storeName, String productName) { // String userName // TODO: add to market and service
-        // TODO: add amount field to ProductDTO or add a function get product amount to market and service
-        return -1;
+    public int getProductAmount(String userName,String storeName, String productName) throws Exception { // String userName // TODO: add to market and service
+        ResponseT<Integer> response = systemService.getProductAmountInStore(userName,storeName,productName);
+        if (response.ErrorOccurred){
+            throw new Exception(response.errorMessage);
+        }
+        return response.getValue();
     }
 
     @Override

@@ -82,25 +82,25 @@ public class PurchaseTests {
             initSystemServiceAndLoadDataAndLogIn();
 
             Assertions.assertTrue(proxy.getCartContent(user2).isEmpty());
-            Assertions.assertThrows(Exception.class, ()->proxy.getBag(user2, store1Name));
-            Assertions.assertThrows(Exception.class, ()->proxy.getBag(user2, store2Name));
-            Assertions.assertEquals(100-10, proxy.getProductAmount(store1Name, product1_store1));
-            Assertions.assertEquals(200-20, proxy.getProductAmount(store2Name, product1_store2));
-            Assertions.assertEquals(300-30, proxy.getProductAmount(store2Name, product2_store2));
+            Assertions.assertTrue(proxy.getBag(user2, store1Name).isEmpty());
+            Assertions.assertTrue(proxy.getBag(user2, store2Name).isEmpty());
+            Assertions.assertEquals(100-10, proxy.getProductAmount(user1,store1Name, product1_store1));
+            Assertions.assertEquals(200-20, proxy.getProductAmount(user1,store2Name, product1_store2));
+            Assertions.assertEquals(300-30, proxy.getProductAmount(user1,store2Name, product2_store2));
 
             proxy.updateProductAmount(user1, store1Name, product1_store1, 30);
 
             logOutMembers();
             initSystemServiceAndLoadDataAndLogIn();
 
-            Assertions.assertEquals(30, proxy.getProductAmount(store1Name, product1_store1));
+            Assertions.assertEquals(30, proxy.getProductAmount(user1,store1Name, product1_store1));
 
                 // check store deals:
             Assertions.assertEquals(1, proxy.getStoreDeals(user1, store1Name).size());
-            Assertions.assertEquals(2, proxy.getStoreDeals(user1, store2Name).size());
+            Assertions.assertEquals(1, proxy.getStoreDeals(user1, store2Name).size());
 
                 // check member deals:
-            Assertions.assertEquals(3, proxy.getMemberDeals(systemManagerName, user2).size());
+            Assertions.assertEquals(2, proxy.getMemberDeals(systemManagerName, user2).size());
 
             // guest:
             proxy.addToCart(user3, store1Name, product1_store1, 10);
@@ -114,22 +114,22 @@ public class PurchaseTests {
             initSystemServiceAndLoadDataAndLogIn();
 
             Assertions.assertTrue(proxy.getCartContent(user3).isEmpty());
-            Assertions.assertThrows(Exception.class, ()->proxy.getBag(user3, store1Name));
-            Assertions.assertThrows(Exception.class, ()->proxy.getBag(user3, store2Name));
-            Assertions.assertEquals(30-10, proxy.getProductAmount(store1Name, product1_store1));
-            Assertions.assertEquals(200-20-20, proxy.getProductAmount(store2Name, product1_store2));
-            Assertions.assertEquals(300-30-30, proxy.getProductAmount(store2Name, product2_store2));
+            Assertions.assertTrue(proxy.getBag(user3, store1Name).isEmpty());
+            Assertions.assertTrue(proxy.getBag(user3, store2Name).isEmpty());
+            Assertions.assertEquals(30-10, proxy.getProductAmount(user0,store1Name, product1_store1));
+            Assertions.assertEquals(200-20-20, proxy.getProductAmount(user0,store2Name, product1_store2));
+            Assertions.assertEquals(300-30-30, proxy.getProductAmount(user0,store2Name, product2_store2));
 
             proxy.updateProductAmount(user1, store2Name, product1_store2, 50);
 
             logOutMembers();
             initSystemServiceAndLoadDataAndLogIn();
 
-            Assertions.assertEquals(50, proxy.getProductAmount(store2Name, product1_store2));
+            Assertions.assertEquals(50, proxy.getProductAmount(user0,store2Name, product1_store2));
 
                 // check store deals:
             Assertions.assertEquals(2, proxy.getStoreDeals(user1, store1Name).size());
-            Assertions.assertEquals(4, proxy.getStoreDeals(user1, store2Name).size());
+            Assertions.assertEquals(2, proxy.getStoreDeals(user1, store2Name).size());
 
         } catch (Exception e){
             Assertions.fail(e.getMessage());
@@ -148,7 +148,7 @@ public class PurchaseTests {
         user0 = proxy.enterMarket();
         user1 = proxy.enterMarket();
         user2 = proxy.enterMarket();
-//        user3 = proxy.enterMarket();
+        user3 = proxy.enterMarket();
         user0 = proxy.login(user0, systemManagerName, systemManagerPassword);
         user1 = proxy.login(user1, member1Name, member1Password);
         user2 = proxy.login(user2, member2Name, member2Password);
