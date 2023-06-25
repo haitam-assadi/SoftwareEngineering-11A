@@ -1,11 +1,15 @@
 package DataAccessLayer;//package DataAccessLayer;
 
+import DataAccessLayer.CompositeKeys.BagConstrainsId;
 import DataAccessLayer.CompositeKeys.RolesId;
 import DataAccessLayer.Repositories.*;
 import DataAccessLayer.Repositories.BagConstraints.*;
 import DataAccessLayer.Repositories.DiscountPolicies.*;
 import DomainLayer.*;
 import DomainLayer.BagConstraints.AllContentBagConstraint;
+import DomainLayer.BagConstraints.BagConstraint;
+import DomainLayer.BagConstraints.PositiveBagConstraint;
+import DomainLayer.DiscountPolicies.ProductDiscountPolicy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -195,7 +199,12 @@ public class DALService {
         ownerContractRepository.delete(ownerContract);
     }
 
-
+    @Transactional
+    public static void saveDiscountPolicyWithPositiveConstraint(PositiveBagConstraint positiveBagConstraint, ProductDiscountPolicy productDiscountPolicy) {
+        positiveBagConstraint.setBagConstrainsId(new BagConstrainsId(PositiveBagConstraint.pBId," "));
+        DALService.bagConstraintRepository.save(positiveBagConstraint);
+        DALService.productDiscountPolicyRepository.save(productDiscountPolicy);
+    }
 
 
 //

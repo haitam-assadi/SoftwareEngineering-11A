@@ -430,6 +430,7 @@ public class Member extends User{
                 this.roles = new ConcurrentHashMap<>();
                 this.loadRoles();
                 this.cart = member.getCart();
+                //todo: dont forgot to fix this
                         //new Cart(member);
                 this.cart.setLoaded(false);
                 this.cart.setMemberCart(this);
