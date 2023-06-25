@@ -77,11 +77,21 @@ public abstract class Role {
         if(!responsibleForStores.containsKey(storeName))
             throw new Exception(getUserName()+" is not a owner/manager for store "+ storeName);
 
-        if(!myBossesForStores.get(storeName).getUserName().equals(memberName))
+//        if(!myBossesForStores.get(storeName).getUserName().equals(memberName))
+//            return false;
+        if (!isMyAncestor(storeName,memberName))
             return false;
-
         return true;
     }
+
+    public boolean isMyAncestor(String storeName,String memberName) throws Exception {
+        loadRole();
+        if (myRole.equals(RoleEnum.StoreFounder)) return false;
+        AbstractStoreOwner myBoss = myBossesForStores.get(storeName);
+        if (myBoss.getUserName().equals(memberName)) return true;
+        else return myBoss.isMyAncestor(storeName,memberName);
+    }
+
 
 
     public boolean appointMemberAsStoreOwner(Store store, AbstractStoreOwner myBoss) throws Exception {

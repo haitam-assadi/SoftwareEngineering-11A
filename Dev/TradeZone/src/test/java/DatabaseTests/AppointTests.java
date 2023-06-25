@@ -1,6 +1,7 @@
 package DatabaseTests;
 
 import DTO.OwnerContractDTO;
+import DomainLayer.StoreFounder;
 import PresentationLayer.SpringbootHtmlApplication;
 import org.junit.jupiter.api.*;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -174,7 +175,6 @@ public class AppointTests {
 
             logOutMembers();
             initSystemServiceAndLoadDataAndLogIn();
-
             ownerContractDTOS =  proxy.getMyCreatedContracts(member2Name,store1Name);
             Assertions.assertTrue(ownerContractDTOS.size()==0);
             ownerContractDTOS =  proxy.getAlreadyDoneContracts(member2Name,store1Name);
@@ -198,9 +198,9 @@ public class AppointTests {
             logOutMembers();
             initSystemServiceAndLoadDataAndLogIn();
 
-            Assertions.assertEquals(proxy.getStoreOwnersNames(member1Name,store1Name).size(),1);
-            Assertions.assertTrue(proxy.getStoreOwnersNames(member1Name, store1Name).contains(member1Name));
-
+            Assertions.assertEquals(proxy.getStoreOwnersNames(member1Name,store1Name).size(),0);
+            Assertions.assertFalse(proxy.getStoreOwnersNames(member1Name, store1Name).contains(member1Name));
+            Assertions.assertEquals(proxy.getStoreFounderName(member1Name,store1Name),member1Name);
 
             Assertions.assertTrue(proxy.appointOtherMemberAsStoreOwner(member1Name,store1Name,member2Name));
             Assertions.assertTrue(proxy.appointOtherMemberAsStoreManager(member2Name,store1Name,member3Name));
@@ -209,7 +209,7 @@ public class AppointTests {
             initSystemServiceAndLoadDataAndLogIn();
 
             Assertions.assertEquals(proxy.getStoreManagersNames(member1Name,store1Name).size(),1);
-            Assertions.assertTrue(proxy.getStoreManagersNames(member1Name, store1Name).contains(member2Name));
+            Assertions.assertTrue(proxy.getStoreManagersNames(member1Name, store1Name).contains(member3Name));
 
             List<Integer> permissions = proxy.getManagerPermissionsForStore(member1Name,store1Name,member3Name);
 
@@ -229,6 +229,15 @@ public class AppointTests {
             Assertions.assertEquals(permissions.get(0),1);
             Assertions.assertEquals(permissions.get(1),2);
 
+
+            logOutMembers();
+            initSystemServiceAndLoadDataAndLogIn();
+            permissions = proxy.getManagerPermissionsForStore(member1Name,store1Name,member3Name);
+
+            Assertions.assertFalse(permissions.isEmpty());
+            Assertions.assertEquals(permissions.size(),2);
+            Assertions.assertEquals(permissions.get(0),1);
+            Assertions.assertEquals(permissions.get(1),2);
 
         }catch (Exception e){
             Assertions.fail(e.getMessage());
