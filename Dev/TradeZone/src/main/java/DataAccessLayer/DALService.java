@@ -175,6 +175,11 @@ public class DALService {
         storeRepository.save(store);
         memberRepository.save(member);
     }
+    @Transactional
+    public static void saveDealForStore(Deal deal, Store store) {
+        dealRepository.save(deal);
+        storeRepository.save(store);
+    }
 
     @Transactional
     public static void saveContract(Store store,OwnerContract ownerContract){
@@ -189,6 +194,8 @@ public class DALService {
         storeRepository.save(store);
         ownerContractRepository.delete(ownerContract);
     }
+
+
 
 
 //
