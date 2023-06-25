@@ -69,9 +69,9 @@ public abstract class AbstractStoreOwner extends Role{
     }
 
     public Boolean isMyAncestorBoss(Store store, AbstractStoreOwner myBoss){
-        AbstractStoreOwner actualBoss =  myBossesForStores.get(store.getStoreName());
         if(myBossesForStores.isEmpty())
             return false;
+        AbstractStoreOwner actualBoss =  myBossesForStores.get(store.getStoreName());
         if(actualBoss.getUserName().equals(myBoss.getUserName())){
             return true;
         }else {
