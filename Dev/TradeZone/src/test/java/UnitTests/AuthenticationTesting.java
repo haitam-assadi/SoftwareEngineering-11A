@@ -30,7 +30,7 @@ public class AuthenticationTesting {
     @BeforeEach
     public void setUp(){
         MockitoAnnotations.openMocks(this);
-        market = new Market(false);
+        market = new Market();
         Market.dbFlag = false;
         StoreMapper.initMapper();
         MemberMapper.initMapper();

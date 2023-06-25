@@ -37,7 +37,7 @@ public class NotificationsTests {
         StoreMapper.initMapper();
         MemberMapper.initMapper();
         MockitoAnnotations.openMocks(this);
-        market = new Market(false);
+        market = new Market();
     }
 
     @Test

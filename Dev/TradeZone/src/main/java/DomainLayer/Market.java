@@ -10,10 +10,9 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import jdk.jshell.spi.ExecutionControl;
+import net.minidev.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
 
 public class Market {
@@ -23,12 +22,12 @@ public class Market {
     ShipmentService shipmentService;
 
     public static boolean dbFlag;
-    public Market(boolean dbFlag){
-        Market.dbFlag = dbFlag;
+    public Market(){
+        Market.dbFlag = false;                          //DEFAULT
         this.userController = new UserController();
         this.storeController = new StoreController();
-        paymentService = new PaymentService("https://php-server-try.000webhostapp.com/");
-        shipmentService = new ShipmentService("https://php-server-try.000webhostapp.com/");
+//        paymentService = new PaymentService("https://php-server-try.000webhostapp.com/");
+//        shipmentService = new ShipmentService("https://php-server-try.000webhostapp.com/");
     }
     public void setPaymentService(PaymentService paymentService){
         this.paymentService=paymentService;
@@ -555,7 +554,7 @@ public class Market {
         return userController.getAppendingMessages(userName1);
     }
 
-    private String getJSONFromFile(String filename) {
+    public String getJSONFromFile(String filename) {
         String jsonText = "";
         try {
             BufferedReader bufferedReader =
@@ -567,9 +566,37 @@ public class Market {
             }
             bufferedReader.close();
         } catch (Exception e) {
-            e.printStackTrace();
+//            e.printStackTrace();
         }
         return jsonText;
+    }
+
+    //IF WE DECIDE TO IMPROVE SWITCHING BETWEEN INIT FILES     ???
+    private void updateLoadStatusToJSONFile(String path, boolean status) throws Exception {
+        JSONObject json = new JSONObject();
+        try {
+            boolean[][] arr = new boolean[1][1];
+            arr[0] = new boolean[1];
+            arr[0][0] = status;
+            json.put("loaded", arr);
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
+
+        try (PrintWriter out = new PrintWriter(new FileWriter(path))) {
+            out.write(json.toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private String createSystemManager(String userName, String password) throws Exception {
+        Member member = new Member(userName,Security.Encode(password));
+        userController.addSystemManager(userName, member);
+        SystemManager systemManager = new SystemManager(member);
+        member.setSystemManager(systemManager);
+        userController.putSystemManager(userName, systemManager);
+        return userName;
     }
 
     public void initMarketParsing(){
@@ -587,6 +614,7 @@ public class Market {
                         String guest = "";
                         arrayNode = (ArrayNode) jsonNode.get("register");
                         System.out.println("arrayNode: " + arrayNode);
+//                        updatedConfig = updatedConfig + "\"register\" : " + arrayNode + "\n";         ???
                         for(JsonNode node: arrayNode){
                             System.out.println("node: " + node);
                             if(node.isArray()){
@@ -648,6 +676,16 @@ public class Market {
                         }
                         break;
                     case "system_manager":
+                        arrayNode = (ArrayNode) jsonNode.get("system_manager");
+                        System.out.println("arrayNode: " + arrayNode);
+                        for(JsonNode node: arrayNode){
+                            System.out.println("node: " + node);
+                            if(node.isArray()){
+                                String user_name = node.get(0).asText();
+                                String user_pass = node.get(1).asText();
+                                createSystemManager(user_name, user_pass);
+                            }
+                        }
                         break;
                     case "add_product":
                         arrayNode = (ArrayNode) jsonNode.get("add_product");
@@ -702,7 +740,7 @@ public class Market {
                         }
                         break;
                     default:
-                        System.out.println("Tag is not supported");
+                        throw new RuntimeException("init file failed: Tag is not supported");
                 }
             }
         }catch (IOException e) {

@@ -19,24 +19,44 @@ import java.util.Set;
 public class SystemService {
 
     private Market market;
-    private boolean dbFlag;
 
+    private String configFilePath;
 
-    public SystemService(boolean dbFlag){
-//        JsonNode data = connectToExternalSystems();
-//        String dataBaseUrl = data.get("dataBaseUrl").asText();
-//        boolean dataBaseFlag = data.get("dataBaseLoadFlag").asBoolean();
-//        String paymentUrl = data.get( "paymentServiceUrl").asText();
-//        String shipmentUrl = data.get("shipmenServiceUrl").asText();
-        this.dbFlag = dbFlag;
-        market = new Market(dbFlag);
-      //  if (!dbFlag){
-            MemberMapper.initMapper();
-            StoreMapper.initMapper();
-      //  }
-//        PaymentService payment = new PaymentService(paymentUrl);
-//        market.setPaymentService(payment);
+    private boolean fileLoadFlag;
 
+    public SystemService(String configFilePath){
+        this.configFilePath = configFilePath;
+        market = new Market();
+        JsonNode data = connectToExternalSystems();
+        String dataBaseUrl = data.get("dataBaseUrl").asText();
+        boolean dataBaseFlag = data.get("dataBaseLoadFlag").asBoolean();
+        Market.dbFlag = dataBaseFlag;
+        fileLoadFlag = data.get("jsonFileLoadFlag").asBoolean();
+        String paymentUrl = data.get( "paymentServiceUrl").asText();
+        String shipmentUrl = data.get("shipmenServiceUrl").asText();
+        PaymentService payment = new PaymentService(paymentUrl);
+        market.setPaymentService(payment);
+        ShipmentService shipmentService = new ShipmentService(shipmentUrl);
+        market.setShipmentService(shipmentService);
+        MemberMapper.initMapper();
+        StoreMapper.initMapper();
+    }
+
+    private JsonNode connectToExternalSystems(){
+        String strJson = market.getJSONFromFile(configFilePath);
+        if(strJson.equals("")){
+            strJson = market.getJSONFromFile("externalSystemsFiles/externalSystemsData.json");
+        }
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            // Parse the JSON string
+            JsonNode jsonNode = objectMapper.readTree(strJson);
+            return jsonNode;
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+            return null;
+        }
     }
 
     public ResponseT<String> initializeMarket(){
@@ -44,7 +64,9 @@ public class SystemService {
         try{
             market.loadData();
             String manager = market.firstManagerInitializer();
-//            market.initMarketParsing();
+            if(this.fileLoadFlag){
+                market.initMarketParsing();
+            }
             createMemberWithTwoStore("user1");
             return new ResponseT<>(manager,true);
 
@@ -972,19 +994,6 @@ public class SystemService {
         return jsonText;
     }
 
-    private JsonNode connectToExternalSystems(){
-        String strJson = getJSONFromFile("Dev/TradeZone/JsonFiles/externalSystemsData.json");
-        ObjectMapper objectMapper = new ObjectMapper();
-        try {
-            // Parse the JSON string
-            JsonNode jsonNode = objectMapper.readTree(strJson);
-            return jsonNode;
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println(e.getMessage());
-            return null;
-        }
-    }
     public ResponseT<Boolean> loadData(){
         try{
             market.loadData();

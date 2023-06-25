@@ -49,3 +49,6 @@ fail in login: incorrect password!
 May 09, 2023 10:51:30 AM DomainLayer.LoggerManager sendErrorLog
 WARNING: 
 fail in getting store info: store: user1_first_store___ does not exists!
+Jun 24, 2023 8:16:41 PM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: member baraa is already store owner
