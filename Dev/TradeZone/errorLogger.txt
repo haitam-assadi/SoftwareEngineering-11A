@@ -8614,3 +8614,24 @@ fail in remove owner: member3name is founder for this store
 יוני 25, 2023 3:42:20 אחה״צ DomainLayer.LoggerManager sendErrorLog
 WARNING: 
 fail in remove owner: member3name is founder for this store
+יוני 25, 2023 7:16:08 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: member3name is founder for this store
+יוני 25, 2023 7:17:50 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: member3name is founder for this store
+יוני 25, 2023 7:32:08 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: member3name is founder for this store
+יוני 25, 2023 7:35:38 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: member3name is founder for this store
+יוני 25, 2023 7:43:45 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: member3name is founder for this store
+יוני 25, 2023 8:18:32 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: member3name is founder for this store
+יוני 25, 2023 8:29:36 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: member3name is founder for this store

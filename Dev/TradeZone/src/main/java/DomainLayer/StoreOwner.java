@@ -124,7 +124,7 @@ public class StoreOwner extends AbstractStoreOwner implements Serializable {
                     }
                     if (bossType.equals(RoleEnum.StoreOwner.toString())) {
                         StoreOwner myBoss = MemberMapper.getInstance().getStoreOwner(bossName);
-                        myBossesForStores.put(bossName, myBoss);
+                        myBossesForStores.put(storeName, myBoss);
                         //store.addStoreOwner(myBoss.getUserName(), myBoss);
                     }
                     //todo: chcek if should add the owners and managers to the store
