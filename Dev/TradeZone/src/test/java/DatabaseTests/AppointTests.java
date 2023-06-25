@@ -1,17 +1,11 @@
 package DatabaseTests;
 
 import DTO.OwnerContractDTO;
-import DTO.ProductDTO;
-import DTO.StoreDTO;
-import DomainLayer.Store;
 import PresentationLayer.SpringbootHtmlApplication;
-import org.checkerframework.checker.units.qual.A;
 import org.junit.jupiter.api.*;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.lang.ref.PhantomReference;
 import java.util.List;
-import java.util.Map;
 
 @TestInstance(value = TestInstance.Lifecycle.PER_CLASS)
 @SpringBootTest(classes = SpringbootHtmlApplication.class)
@@ -105,7 +99,7 @@ public class AppointTests {
             initSystemServiceAndLoadDataAndLogIn();
 
 
-            //Assertions.assertFalse(proxy.getMyCreatedContracts(member1Name,store1Name).isEmpty());
+            Assertions.assertFalse(proxy.getMyCreatedContracts(member1Name,store1Name).isEmpty());
 
             Assertions.assertFalse(proxy.getStoreOwnersNames(member1Name,store1Name).isEmpty());
             Assertions.assertEquals(proxy.getStoreOwnersNames(member1Name,store1Name).size(),1);
@@ -142,13 +136,98 @@ public class AppointTests {
 
             Assertions.assertTrue(proxy.getStoreOwnersNames(member1Name, store1Name).contains(member3Name));
 
+            proxy.removeOwnerByHisAppointer(member1Name,store1Name,member3Name);
+
+            logOutMembers();
+            initSystemServiceAndLoadDataAndLogIn();
+
+            Assertions.assertTrue(proxy.getStoreOwnersNames(member1Name, store1Name).contains(member2Name));
+            Assertions.assertFalse(proxy.getStoreOwnersNames(member1Name, store1Name).contains(member3Name));
+
+            proxy.appointOtherMemberAsStoreOwner(member2Name,store1Name,member3Name);
+
+            logOutMembers();
+            initSystemServiceAndLoadDataAndLogIn();
+
+            Assertions.assertFalse(proxy.getMyCreatedContracts(member2Name,store1Name).isEmpty());
+
+            Assertions.assertFalse(proxy.getStoreOwnersNames(member2Name,store1Name).isEmpty());
+            Assertions.assertEquals(proxy.getStoreOwnersNames(member2Name,store1Name).size(),1);
+            List<String> owners = proxy.getStoreOwnersNames(member2Name,store1Name);
+            System.out.println(owners.toString());
+            Assertions.assertFalse(proxy.getStoreOwnersNames(member2Name, store1Name).contains(member3Name));
+
+            ownerContractDTOS =  proxy.getMyCreatedContracts(member2Name,store1Name);
+            Assertions.assertFalse(ownerContractDTOS.isEmpty());
+            Assertions.assertTrue(ownerContractDTOS.size()==1);
+            ownerContractDTO = ownerContractDTOS.get(0);
+            Assertions.assertTrue(ownerContractDTO.triggerOwner.equals(member2Name));
+            Assertions.assertTrue(ownerContractDTO.newOwner.equals(member3Name));
+            Assertions.assertTrue(ownerContractDTO.storeName.equals(store1Name));
+            Assertions.assertTrue(ownerContractDTO.alreadyAcceptedOwners.size()==0);
+            Assertions.assertTrue(ownerContractDTO.pendingOwners.size()==1);
+            Assertions.assertTrue(ownerContractDTO.pendingOwners.contains(member1Name));
+            Assertions.assertFalse(ownerContractDTO.isContractDone);
+            Assertions.assertTrue(ownerContractDTO.contractStatus.equals("in progress"));
+
+            Assertions.assertTrue(proxy.fillOwnerContract(member1Name,store1Name,member3Name,true));
+
+            logOutMembers();
+            initSystemServiceAndLoadDataAndLogIn();
+
+            ownerContractDTOS =  proxy.getMyCreatedContracts(member2Name,store1Name);
+            Assertions.assertTrue(ownerContractDTOS.size()==0);
+            ownerContractDTOS =  proxy.getAlreadyDoneContracts(member2Name,store1Name);
+            Assertions.assertTrue(ownerContractDTOS.size()==1);
+            ownerContractDTO = ownerContractDTOS.get(0);
+            Assertions.assertTrue(ownerContractDTO.alreadyAcceptedOwners.size()==1);
+            Assertions.assertTrue(ownerContractDTO.alreadyAcceptedOwners.contains(member1Name));
+            Assertions.assertTrue(ownerContractDTO.pendingOwners.size()==0);
+            Assertions.assertTrue(ownerContractDTO.isContractDone);
+            Assertions.assertTrue(ownerContractDTO.contractStatus.equals("all owners have accepted this contract and it is done"));
+
+            Assertions.assertEquals(proxy.getStoreOwnersNames(member1Name,store1Name).size(),2);
+            Assertions.assertTrue(proxy.getStoreOwnersNames(member1Name, store1Name).contains(member3Name));
+            Assertions.assertTrue(proxy.getStoreOwnersNames(member1Name, store1Name).contains(member2Name));
+
+//            Assertions.assertEquals(proxy.getOwnerAppointer(member2Name,store1Name),member1Name);
+//            Assertions.assertEquals(proxy.getOwnerAppointer(member3Name,store1Name),member2Name);
+            // TODO MEMBER 3 IS NOT FOUNDER FOR STORE
+            Assertions.assertTrue(proxy.removeOwnerByHisAppointer(member1Name,store1Name,member2Name));
+
+            logOutMembers();
+            initSystemServiceAndLoadDataAndLogIn();
+
+            Assertions.assertEquals(proxy.getStoreOwnersNames(member1Name,store1Name).size(),1);
+            Assertions.assertTrue(proxy.getStoreOwnersNames(member1Name, store1Name).contains(member1Name));
 
 
+            Assertions.assertTrue(proxy.appointOtherMemberAsStoreOwner(member1Name,store1Name,member2Name));
+            Assertions.assertTrue(proxy.appointOtherMemberAsStoreManager(member2Name,store1Name,member3Name));
 
+            logOutMembers();
+            initSystemServiceAndLoadDataAndLogIn();
 
+            Assertions.assertEquals(proxy.getStoreManagersNames(member1Name,store1Name).size(),1);
+            Assertions.assertTrue(proxy.getStoreManagersNames(member1Name, store1Name).contains(member2Name));
 
+            List<Integer> permissions = proxy.getManagerPermissionsForStore(member1Name,store1Name,member3Name);
 
+            Assertions.assertFalse(permissions.isEmpty());
+            Assertions.assertEquals(permissions.size(),1);
+            Assertions.assertEquals(permissions.get(0),1);
 
+            permissions.add(2);
+
+            proxy.updateManagerPermissionsForStore(member1Name,store1Name,member3Name,permissions);
+
+            logOutMembers();
+            initSystemServiceAndLoadDataAndLogIn();
+
+            Assertions.assertFalse(permissions.isEmpty());
+            Assertions.assertEquals(permissions.size(),2);
+            Assertions.assertEquals(permissions.get(0),1);
+            Assertions.assertEquals(permissions.get(1),2);
 
 
         }catch (Exception e){
