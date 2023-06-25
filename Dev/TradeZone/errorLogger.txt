@@ -8602,3 +8602,15 @@ fail in remove owner: brain123is not owner for store moslem store
 Jun 24, 2023 11:12:39 PM DomainLayer.LoggerManager sendErrorLog
 WARNING: 
 fail in appointing member as store owner: member harry123 already have a contract for this store ownership
+יוני 25, 2023 2:57:26 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: member3name is founder for this store
+יוני 25, 2023 3:08:35 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: haitam123 is not owner for moslem store
+יוני 25, 2023 3:17:19 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: member3name is founder for this store
+יוני 25, 2023 3:42:20 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: member3name is founder for this store
