@@ -69,9 +69,10 @@ public class Cart {
             throw new Exception("the product dose not exist in the store");
         else {
             bags.putIfAbsent(store.getStoreName(), new Bag(store,isPersistence));
-                if (Market.dbFlag && isPersistence)
-                    DALService.modifyBag(this, bags.get(store.getStoreName()));
-            return bags.get(store.getStoreName()).addProduct(productName, amount);
+            bags.get(store.getStoreName()).addProduct(productName, amount);
+            if (Market.dbFlag && isPersistence)
+                DALService.modifyBag(this, bags.get(store.getStoreName()));
+            return true;
         }
     }
 
@@ -207,5 +208,13 @@ public class Cart {
 
     public void setUser(Member member) {
         this.cartOwner = member;
+    }
+
+    public int getCartId() {
+        return cartId;
+    }
+
+    public void setCartId(int cartId) {
+        this.cartId = cartId;
     }
 }

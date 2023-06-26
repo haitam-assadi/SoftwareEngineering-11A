@@ -74,8 +74,8 @@ public class Bag {
         innerHashMap.put(product,amount);
         bagContent.put(productName,innerHashMap);
         productAmount.put(product,amount);
-        if (Market.dbFlag && isPersistence)
-            DALService.bagRepository.save(this);
+//        if (Market.dbFlag && isPersistence)
+//            DALService.bagRepository.save(this);
         return true;
     }
 

@@ -1,0 +1,2283 @@
+יוני 26, 2023 11:13:50 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: moslem1232234 is already a member
+יוני 26, 2023 11:13:50 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store :moslem storeis closed
+יוני 26, 2023 11:13:50 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store :moslem storeis closed
+יוני 26, 2023 11:13:50 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store manager: memberbrain123 is already store owner
+יוני 26, 2023 11:13:50 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: member brain123 is already store manager
+יוני 26, 2023 11:13:50 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store manager: memberharry123 is already store manager
+יוני 26, 2023 11:13:50 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store manager: memberharry123 is already store manager
+יוני 26, 2023 11:13:50 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in closing the store: brain123is not the founder of the store
+יוני 26, 2023 11:13:50 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in removing product from store: stock does not contain this product iphone 11
+יוני 26, 2023 11:13:50 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: userName unavailable_name does not exists!
+יוני 26, 2023 11:13:50 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: brain123 does not have permission to manageStock for store moslem store
+יוני 26, 2023 11:13:50 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: Cannot invoke "java.util.List.contains(Object)" because the return value of "java.util.concurrent.ConcurrentHashMap.get(Object)" is null
+יוני 26, 2023 11:13:50 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: brain123is not owner for store moslem store
+יוני 26, 2023 11:13:50 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: stock does already contains this product iphone 14
+יוני 26, 2023 11:13:50 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: unavailable_store does not exists!
+יוני 26, 2023 11:13:54 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: bag must contain minimum 5 iphone 14 product
+יוני 26, 2023 11:13:54 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Shipment service error
+יוני 26, 2023 11:13:54 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: store moslem store is not active, you can't purchase these products [iphone 14] .
+יוני 26, 2023 11:13:54 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: store moslem store is not active, you can't purchase these products [iphone 13] .
+יוני 26, 2023 11:13:54 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: (category iphones is not allowed between 2024-06-26 and 2025-06-26 . ONLY IF category iphones is not allowed after 11:12 .)
+יוני 26, 2023 11:13:54 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: product iphone 14 is not allowed after 11:12 .
+יוני 26, 2023 11:13:54 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: category iphones is not allowed between 2022-06-26 and 2025-06-26 .
+יוני 26, 2023 11:13:54 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: bag must contain maximum 5 iphone 14 product
+יוני 26, 2023 11:13:54 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: category iphones is not allowed after 11:12 .
+יוני 26, 2023 11:13:54 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: moslem store is not Active!
+יוני 26, 2023 11:13:54 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing:  you choose amount of gaming mouse 1 with more than what we have in the stock!
+יוני 26, 2023 11:13:54 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Payment service error
+יוני 26, 2023 11:13:54 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: (category iphones is not allowed between 2022-06-26 and 2024-06-26 . AND category iphones is not allowed after 11:12 .)
+יוני 26, 2023 11:13:54 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: ((bag must contain minimum 2 iphone 13 product AND bag must contain minimum 7 iphone 14 product) AND bag must contain minimum 1 gaming chair1 product)
+יוני 26, 2023 11:13:55 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: store moslem store is not active, you can't purchase these products [iphone 14] .
+יוני 26, 2023 11:13:55 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing:  you choose amount of gaming mouse 1 with more than what we have in the stock!
+יוני 26, 2023 11:13:55 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store :moslem storeis closed
+יוני 26, 2023 11:13:55 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: (category iphones is not allowed between 2022-06-26 and 2025-06-26 . OR category iphones is not allowed after 11:12 .)
+יוני 26, 2023 11:13:55 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: product iphone 14 is not allowed between 2022-06-26 and 2024-06-26 .
+יוני 26, 2023 11:13:55 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Payment service error
+יוני 26, 2023 11:13:55 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: store: bad store name does not exists!
+יוני 26, 2023 11:13:55 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: store: bad store name does not exists!
+יוני 26, 2023 11:13:55 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: bag does not contain iphone 15 product
+יוני 26, 2023 11:13:55 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: bag does not contain iphone 15 product
+יוני 26, 2023 11:13:55 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: stock does not contain this product aaa
+יוני 26, 2023 11:13:55 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: stock does not contain this product aaa
+יוני 26, 2023 11:13:55 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: stock does not contain this product aaa
+יוני 26, 2023 11:13:55 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: stock does not contain this product aaa
+יוני 26, 2023 11:13:55 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: store: bad store name does not exists!
+יוני 26, 2023 11:13:55 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: store: bad store name does not exists!
+יוני 26, 2023 11:13:55 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart:  you choose amount of gaming mouse 1 with more than what we have in the stock!
+יוני 26, 2023 11:13:55 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart:  you choose amount of gaming mouse 1 with more than what we have in the stock!
+יוני 26, 2023 11:13:55 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart:  you choose amount of iphone 14 with more than what we have in the stock!
+יוני 26, 2023 11:13:55 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: The amount must be positive, it can't be -10
+יוני 26, 2023 11:13:55 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart:  you choose amount of iphone 14 with more than what we have in the stock!
+יוני 26, 2023 11:13:55 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: The amount must be positive, it can't be -10
+יוני 26, 2023 11:13:55 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove product from cart: bag does not contain iphone product
+יוני 26, 2023 11:13:55 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove product from cart: bag does not contain iphone product
+יוני 26, 2023 11:13:55 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: store: bad store name does not exists!
+יוני 26, 2023 11:13:55 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: store: bad store name does not exists!
+יוני 26, 2023 11:13:55 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: store: bad store name does not exists!
+יוני 26, 2023 11:13:55 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: store: bad store name does not exists!
+יוני 26, 2023 11:13:55 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove product from cart: store: bad store name does not exists!
+יוני 26, 2023 11:13:55 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove product from cart: store: bad store name does not exists!
+יוני 26, 2023 11:13:55 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 26, 2023 11:13:55 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 26, 2023 11:13:55 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 26, 2023 11:13:55 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 26, 2023 11:13:55 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: bad store name does not exists!
+יוני 26, 2023 11:13:55 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: bad store name does not exists!
+יוני 26, 2023 11:13:55 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: bad store name does not exists!
+יוני 26, 2023 11:13:55 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: bad store name does not exists!
+יוני 26, 2023 11:13:55 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: bad store name does not exists!
+יוני 26, 2023 11:13:55 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: bad store name does not exists!
+יוני 26, 2023 11:13:55 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: bag already contains gaming mouse 1 product
+יוני 26, 2023 11:13:55 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: bag already contains gaming mouse 1 product
+יוני 26, 2023 11:13:55 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store manager: member2 is not owner for new store
+יוני 26, 2023 11:13:55 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: requser2 is not a founder/owner or an authorized manager
+יוני 26, 2023 11:13:55 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: requser3 is not a founder/owner or an authorized manager
+יוני 26, 2023 11:13:55 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: requser3is not owner for store store1
+יוני 26, 2023 11:13:55 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: requser2 is not a founder/owner or an authorized manager
+יוני 26, 2023 11:13:55 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: userName obiq does not exists!
+יוני 26, 2023 11:13:55 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in logging out: member1 is not logged in
+יוני 26, 2023 11:13:55 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: string is null or empty
+יוני 26, 2023 11:13:55 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in logging out: member1 is not logged in
+יוני 26, 2023 11:13:55 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as system manager: userName not_member does not exists!
+יוני 26, 2023 11:13:55 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as system manager: userName systemmanager1 is already a system manager!
+יוני 26, 2023 11:13:55 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as system manager: userName member1 is already a system manager!
+יוני 26, 2023 11:13:55 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as system manager: userName member2 is already a system manager!
+יוני 26, 2023 11:13:55 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as system manager: member2 have a role in a store
+יוני 26, 2023 11:13:55 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: userName not_manager does not exists!
+יוני 26, 2023 11:13:55 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: store1 does not exists!
+יוני 26, 2023 11:13:55 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as system manager: userName systemmanager1 is already a system manager!
+יוני 26, 2023 11:13:55 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as system manager: member1 is not logged in
+יוני 26, 2023 11:13:55 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: userName systemmanager1pass does not exists!
+יוני 26, 2023 11:13:55 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: haitam123 is not owner for moslem store
+יוני 26, 2023 11:13:55 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: harry123is not owner for store moslem store
+יוני 26, 2023 11:13:55 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: harry123is not owner for store moslem store
+יוני 26, 2023 11:13:55 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: member brain123 is already store owner
+יוני 26, 2023 11:13:55 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: member moslem123 is already store owner
+יוני 26, 2023 11:13:55 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: member moslem123 is already store owner
+יוני 26, 2023 11:13:55 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: userName koko does not exists!
+יוני 26, 2023 11:13:55 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: member brain123 is already store owner
+יוני 26, 2023 11:13:55 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store manager: memberbrain123 is already store owner
+יוני 26, 2023 11:13:55 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: brain123is not owner for store moslem store
+יוני 26, 2023 11:13:55 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: member harry123 already have a contract for this store ownership
+יוני 26, 2023 11:22:19 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: moslem1232234 is already a member
+יוני 26, 2023 11:22:19 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store :moslem storeis closed
+יוני 26, 2023 11:22:19 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store :moslem storeis closed
+יוני 26, 2023 11:22:19 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store manager: memberbrain123 is already store owner
+יוני 26, 2023 11:22:19 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: member brain123 is already store manager
+יוני 26, 2023 11:22:19 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store manager: memberharry123 is already store manager
+יוני 26, 2023 11:22:19 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store manager: memberharry123 is already store manager
+יוני 26, 2023 11:22:19 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in closing the store: brain123is not the founder of the store
+יוני 26, 2023 11:22:19 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in removing product from store: stock does not contain this product iphone 11
+יוני 26, 2023 11:22:19 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: userName unavailable_name does not exists!
+יוני 26, 2023 11:22:19 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: brain123 does not have permission to manageStock for store moslem store
+יוני 26, 2023 11:22:20 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: Cannot invoke "java.util.List.contains(Object)" because the return value of "java.util.concurrent.ConcurrentHashMap.get(Object)" is null
+יוני 26, 2023 11:22:20 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: brain123is not owner for store moslem store
+יוני 26, 2023 11:22:20 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: stock does already contains this product iphone 14
+יוני 26, 2023 11:22:20 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: unavailable_store does not exists!
+יוני 26, 2023 11:22:24 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: bag must contain minimum 5 iphone 14 product
+יוני 26, 2023 11:22:24 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Shipment service error
+יוני 26, 2023 11:22:24 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: store moslem store is not active, you can't purchase these products [iphone 14] .
+יוני 26, 2023 11:22:24 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: store moslem store is not active, you can't purchase these products [iphone 13] .
+יוני 26, 2023 11:22:24 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: (category iphones is not allowed between 2024-06-26 and 2025-06-26 . ONLY IF category iphones is not allowed after 11:21 .)
+יוני 26, 2023 11:22:24 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: product iphone 14 is not allowed after 11:21 .
+יוני 26, 2023 11:22:24 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: category iphones is not allowed between 2022-06-26 and 2025-06-26 .
+יוני 26, 2023 11:22:24 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: bag must contain maximum 5 iphone 14 product
+יוני 26, 2023 11:22:24 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: category iphones is not allowed after 11:21 .
+יוני 26, 2023 11:22:24 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: moslem store is not Active!
+יוני 26, 2023 11:22:24 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing:  you choose amount of gaming mouse 1 with more than what we have in the stock!
+יוני 26, 2023 11:22:24 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Payment service error
+יוני 26, 2023 11:22:24 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: (category iphones is not allowed between 2022-06-26 and 2024-06-26 . AND category iphones is not allowed after 11:21 .)
+יוני 26, 2023 11:22:24 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: ((bag must contain minimum 2 iphone 13 product AND bag must contain minimum 7 iphone 14 product) AND bag must contain minimum 1 gaming chair1 product)
+יוני 26, 2023 11:22:24 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: store moslem store is not active, you can't purchase these products [iphone 14] .
+יוני 26, 2023 11:22:24 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing:  you choose amount of gaming mouse 1 with more than what we have in the stock!
+יוני 26, 2023 11:22:24 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store :moslem storeis closed
+יוני 26, 2023 11:22:24 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: (category iphones is not allowed between 2022-06-26 and 2025-06-26 . OR category iphones is not allowed after 11:21 .)
+יוני 26, 2023 11:22:24 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: product iphone 14 is not allowed between 2022-06-26 and 2024-06-26 .
+יוני 26, 2023 11:22:24 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Payment service error
+יוני 26, 2023 11:22:24 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: store: bad store name does not exists!
+יוני 26, 2023 11:22:24 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: store: bad store name does not exists!
+יוני 26, 2023 11:22:24 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: bag does not contain iphone 15 product
+יוני 26, 2023 11:22:24 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: bag does not contain iphone 15 product
+יוני 26, 2023 11:22:24 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: stock does not contain this product aaa
+יוני 26, 2023 11:22:24 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: stock does not contain this product aaa
+יוני 26, 2023 11:22:24 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: stock does not contain this product aaa
+יוני 26, 2023 11:22:24 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: stock does not contain this product aaa
+יוני 26, 2023 11:22:24 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: store: bad store name does not exists!
+יוני 26, 2023 11:22:24 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: store: bad store name does not exists!
+יוני 26, 2023 11:22:24 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart:  you choose amount of gaming mouse 1 with more than what we have in the stock!
+יוני 26, 2023 11:22:24 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart:  you choose amount of gaming mouse 1 with more than what we have in the stock!
+יוני 26, 2023 11:22:24 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart:  you choose amount of iphone 14 with more than what we have in the stock!
+יוני 26, 2023 11:22:24 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: The amount must be positive, it can't be -10
+יוני 26, 2023 11:22:24 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart:  you choose amount of iphone 14 with more than what we have in the stock!
+יוני 26, 2023 11:22:24 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: The amount must be positive, it can't be -10
+יוני 26, 2023 11:22:24 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove product from cart: bag does not contain iphone product
+יוני 26, 2023 11:22:24 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove product from cart: bag does not contain iphone product
+יוני 26, 2023 11:22:25 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: store: bad store name does not exists!
+יוני 26, 2023 11:22:25 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: store: bad store name does not exists!
+יוני 26, 2023 11:22:25 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: store: bad store name does not exists!
+יוני 26, 2023 11:22:25 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: store: bad store name does not exists!
+יוני 26, 2023 11:22:25 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove product from cart: store: bad store name does not exists!
+יוני 26, 2023 11:22:25 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove product from cart: store: bad store name does not exists!
+יוני 26, 2023 11:22:25 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 26, 2023 11:22:25 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 26, 2023 11:22:25 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 26, 2023 11:22:25 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 26, 2023 11:22:25 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: bad store name does not exists!
+יוני 26, 2023 11:22:25 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: bad store name does not exists!
+יוני 26, 2023 11:22:25 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: bad store name does not exists!
+יוני 26, 2023 11:22:25 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: bad store name does not exists!
+יוני 26, 2023 11:22:25 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: bad store name does not exists!
+יוני 26, 2023 11:22:25 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: bad store name does not exists!
+יוני 26, 2023 11:22:25 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: bag already contains gaming mouse 1 product
+יוני 26, 2023 11:22:25 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: bag already contains gaming mouse 1 product
+יוני 26, 2023 11:22:25 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store manager: member2 is not owner for new store
+יוני 26, 2023 11:22:25 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: requser2 is not a founder/owner or an authorized manager
+יוני 26, 2023 11:22:25 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: requser3 is not a founder/owner or an authorized manager
+יוני 26, 2023 11:22:25 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: requser3is not owner for store store1
+יוני 26, 2023 11:22:25 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: requser2 is not a founder/owner or an authorized manager
+יוני 26, 2023 11:22:25 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: userName obiq does not exists!
+יוני 26, 2023 11:22:25 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in logging out: member1 is not logged in
+יוני 26, 2023 11:22:25 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: string is null or empty
+יוני 26, 2023 11:22:25 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in logging out: member1 is not logged in
+יוני 26, 2023 11:22:25 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as system manager: userName not_member does not exists!
+יוני 26, 2023 11:22:25 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as system manager: userName systemmanager1 is already a system manager!
+יוני 26, 2023 11:22:25 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as system manager: userName member1 is already a system manager!
+יוני 26, 2023 11:22:25 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as system manager: userName member2 is already a system manager!
+יוני 26, 2023 11:22:25 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as system manager: member2 have a role in a store
+יוני 26, 2023 11:22:25 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: userName not_manager does not exists!
+יוני 26, 2023 11:22:25 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: store1 does not exists!
+יוני 26, 2023 11:22:25 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as system manager: userName systemmanager1 is already a system manager!
+יוני 26, 2023 11:22:25 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as system manager: member1 is not logged in
+יוני 26, 2023 11:22:25 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: userName systemmanager1pass does not exists!
+יוני 26, 2023 11:22:25 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: haitam123 is not owner for moslem store
+יוני 26, 2023 11:22:25 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: harry123is not owner for store moslem store
+יוני 26, 2023 11:22:25 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: harry123is not owner for store moslem store
+יוני 26, 2023 11:22:25 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: member brain123 is already store owner
+יוני 26, 2023 11:22:25 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: member moslem123 is already store owner
+יוני 26, 2023 11:22:25 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: member moslem123 is already store owner
+יוני 26, 2023 11:22:25 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: userName koko does not exists!
+יוני 26, 2023 11:22:25 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: member brain123 is already store owner
+יוני 26, 2023 11:22:25 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store manager: memberbrain123 is already store owner
+יוני 26, 2023 11:22:25 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: brain123is not owner for store moslem store
+יוני 26, 2023 11:22:25 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: member harry123 already have a contract for this store ownership
+יוני 26, 2023 11:24:24 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: member1name is already a member
+יוני 26, 2023 11:24:24 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: member2name is already a member
+יוני 26, 2023 11:24:24 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: userName member3name does not exists!
+יוני 26, 2023 11:24:25 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in creating store: store: store1 is already store
+יוני 26, 2023 11:24:25 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in creating store: store: store1b is already store
+יוני 26, 2023 11:24:25 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in creating store: store: store2 is already store
+יוני 26, 2023 11:24:25 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in creating store: store: store2b is already store
+יוני 26, 2023 11:24:25 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in creating store: store: store3 is already store
+יוני 26, 2023 11:24:25 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: member1name is not a founder/owner or an authorized manager
+יוני 26, 2023 11:24:25 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: member3name is not a founder/owner or an authorized manager
+יוני 26, 2023 11:24:25 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: member1name is not a founder/owner or an authorized manager
+יוני 26, 2023 11:24:25 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: member3name is not a founder/owner or an authorized manager
+יוני 26, 2023 11:24:25 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: member2name is not a founder/owner or an authorized manager
+יוני 26, 2023 11:24:25 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: member3name is not a founder/owner or an authorized manager
+יוני 26, 2023 11:24:25 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: member2name is not a founder/owner or an authorized manager
+יוני 26, 2023 11:24:25 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: member3name is not a founder/owner or an authorized manager
+יוני 26, 2023 11:24:26 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: stock does already contains this product product1_store1
+יוני 26, 2023 11:24:26 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: stock does already contains this product product2_store1
+יוני 26, 2023 11:24:26 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: stock does already contains this product product1_store1b
+יוני 26, 2023 11:24:26 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: stock does already contains this product product2_store1b
+יוני 26, 2023 11:24:26 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: stock does already contains this product product1_store2
+יוני 26, 2023 11:24:26 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: stock does already contains this product product2_store2
+יוני 26, 2023 11:24:26 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: stock does already contains this product product3_store2
+יוני 26, 2023 11:24:27 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in closing the store: the store store1 already closed!
+יוני 26, 2023 11:24:27 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: member1name is already a member
+יוני 26, 2023 11:24:27 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: member1name is already a member
+יוני 26, 2023 11:24:27 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: member1name is already a member
+יוני 26, 2023 11:25:06 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: member1name is already a member
+יוני 26, 2023 11:25:06 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: member2name is already a member
+יוני 26, 2023 11:25:06 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: userName member3name does not exists!
+יוני 26, 2023 11:25:07 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in creating store: store: store1 is already store
+יוני 26, 2023 11:25:07 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in creating store: store: store1b is already store
+יוני 26, 2023 11:25:07 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in creating store: store: store2 is already store
+יוני 26, 2023 11:25:07 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in creating store: store: store2b is already store
+יוני 26, 2023 11:25:07 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in creating store: store: store3 is already store
+יוני 26, 2023 11:25:07 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: member1name is not a founder/owner or an authorized manager
+יוני 26, 2023 11:25:07 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: member3name is not a founder/owner or an authorized manager
+יוני 26, 2023 11:25:07 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: member1name is not a founder/owner or an authorized manager
+יוני 26, 2023 11:25:07 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: member3name is not a founder/owner or an authorized manager
+יוני 26, 2023 11:25:07 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: member2name is not a founder/owner or an authorized manager
+יוני 26, 2023 11:25:07 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: member3name is not a founder/owner or an authorized manager
+יוני 26, 2023 11:25:07 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: member2name is not a founder/owner or an authorized manager
+יוני 26, 2023 11:25:07 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: member3name is not a founder/owner or an authorized manager
+יוני 26, 2023 11:25:08 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: stock does already contains this product product1_store1
+יוני 26, 2023 11:25:08 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: stock does already contains this product product2_store1
+יוני 26, 2023 11:25:08 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: stock does already contains this product product1_store1b
+יוני 26, 2023 11:25:08 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: stock does already contains this product product2_store1b
+יוני 26, 2023 11:25:08 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: stock does already contains this product product1_store2
+יוני 26, 2023 11:25:08 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: stock does already contains this product product2_store2
+יוני 26, 2023 11:25:08 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: stock does already contains this product product3_store2
+יוני 26, 2023 11:25:09 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in closing the store: the store store1 already closed!
+יוני 26, 2023 11:25:37 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: userName member1name does not exists!
+יוני 26, 2023 11:25:37 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: userName member2name does not exists!
+יוני 26, 2023 11:25:37 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: userName member3name does not exists!
+יוני 26, 2023 11:26:10 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: stock does not contain this product product2_store1
+יוני 26, 2023 11:26:10 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: stock does not contain this product product1_store1b
+יוני 26, 2023 11:26:10 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: stock does not contain this product product3_store2
+יוני 26, 2023 11:26:10 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: stock does not contain this product product2_store1
+יוני 26, 2023 11:26:10 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: stock does not contain this product product1_store1b
+יוני 26, 2023 11:26:10 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: stock does not contain this product product3_store2
+יוני 26, 2023 11:26:12 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 26, 2023 11:26:12 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 26, 2023 11:26:12 לפנה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 26, 2023 12:28:15 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting cart content: userName member2name does not exists!
+יוני 26, 2023 12:28:15 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting cart content: userName member2name does not exists!
+יוני 26, 2023 12:28:45 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting cart content: userName member2name does not exists!
+יוני 26, 2023 12:28:45 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting cart content: userName member2name does not exists!
+יוני 26, 2023 12:28:45 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting cart content: userName member3name does not exists!
+יוני 26, 2023 12:28:45 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting cart content: userName member3name does not exists!
+יוני 26, 2023 12:28:45 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting cart content: userName member3name does not exists!
+יוני 26, 2023 12:30:05 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting cart content: userName member2name does not exists!
+יוני 26, 2023 12:30:05 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting cart content: userName member2name does not exists!
+יוני 26, 2023 12:30:05 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting cart content: userName member3name does not exists!
+יוני 26, 2023 12:30:05 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting cart content: userName member3name does not exists!
+יוני 26, 2023 12:30:05 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting cart content: userName member3name does not exists!
+יוני 26, 2023 12:32:17 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting cart content: userName member2name does not exists!
+יוני 26, 2023 12:32:17 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting cart content: userName member2name does not exists!
+יוני 26, 2023 12:32:17 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting cart content: userName member3name does not exists!
+יוני 26, 2023 12:32:17 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting cart content: userName member3name does not exists!
+יוני 26, 2023 12:32:17 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting cart content: userName member3name does not exists!
+יוני 26, 2023 12:47:57 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting cart content: userName member2name does not exists!
+יוני 26, 2023 12:47:57 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting cart content: userName member2name does not exists!
+יוני 26, 2023 12:47:57 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting cart content: userName member3name does not exists!
+יוני 26, 2023 12:47:57 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting cart content: userName member3name does not exists!
+יוני 26, 2023 12:47:57 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting cart content: userName member3name does not exists!
+יוני 26, 2023 12:49:19 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: bag already contains product1_store1 product
+יוני 26, 2023 12:49:19 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart:  you choose amount of product1_store2 with more than what we have in the stock!
+יוני 26, 2023 12:49:19 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: The amount must be positive, it can't be -1
+יוני 26, 2023 12:49:19 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 26, 2023 12:49:19 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 26, 2023 12:49:19 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: store2b is not Active!
+יוני 26, 2023 12:49:19 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 26, 2023 12:49:19 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: userName guest_3 does not exists!
+יוני 26, 2023 12:50:09 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: bag already contains product1_store1 product
+יוני 26, 2023 12:50:09 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart:  you choose amount of product1_store2 with more than what we have in the stock!
+יוני 26, 2023 12:50:09 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: The amount must be positive, it can't be -1
+יוני 26, 2023 12:50:09 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 26, 2023 12:50:09 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 26, 2023 12:50:09 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: store2b is not Active!
+יוני 26, 2023 12:50:09 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 26, 2023 12:50:09 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: userName guest_3 does not exists!
+יוני 26, 2023 12:51:35 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: bag already contains product1_store1 product
+יוני 26, 2023 12:51:36 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart:  you choose amount of product1_store2 with more than what we have in the stock!
+יוני 26, 2023 12:51:37 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: The amount must be positive, it can't be -1
+יוני 26, 2023 12:51:38 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 26, 2023 12:51:38 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 26, 2023 12:51:39 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: store2b is not Active!
+יוני 26, 2023 12:51:39 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 26, 2023 12:51:45 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: userName guest_3 does not exists!
+יוני 26, 2023 12:52:17 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: bag already contains product1_store1 product
+יוני 26, 2023 12:52:17 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart:  you choose amount of product1_store2 with more than what we have in the stock!
+יוני 26, 2023 12:52:17 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: The amount must be positive, it can't be -1
+יוני 26, 2023 12:52:17 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 26, 2023 12:52:17 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 26, 2023 12:52:17 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: store2b is not Active!
+יוני 26, 2023 12:52:17 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 26, 2023 12:52:17 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: bag already contains product1_store1 product
+יוני 26, 2023 12:52:17 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart:  you choose amount of product1_store2 with more than what we have in the stock!
+יוני 26, 2023 12:52:17 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: The amount must be positive, it can't be -1
+יוני 26, 2023 12:52:17 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 26, 2023 12:52:17 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 26, 2023 12:52:17 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: store2b is not Active!
+יוני 26, 2023 12:52:17 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 26, 2023 12:52:17 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart:  you choose amount of product2_store1 with more than what we have in the stock!
+יוני 26, 2023 12:52:17 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: The amount must be positive, it can't be -1000
+יוני 26, 2023 12:52:17 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: bag does not contain product1_store1 product
+יוני 26, 2023 12:52:17 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart:  you choose amount of product2_store1 with more than what we have in the stock!
+יוני 26, 2023 12:52:17 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: The amount must be positive, it can't be -1000
+יוני 26, 2023 12:52:17 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: bag does not contain product1_store1 product
+יוני 26, 2023 12:53:29 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: bag already contains product1_store1 product
+יוני 26, 2023 12:53:29 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart:  you choose amount of product1_store2 with more than what we have in the stock!
+יוני 26, 2023 12:53:29 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: The amount must be positive, it can't be -1
+יוני 26, 2023 12:53:29 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 26, 2023 12:53:29 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 26, 2023 12:53:29 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: store2b is not Active!
+יוני 26, 2023 12:53:29 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 26, 2023 12:53:29 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: bag already contains product1_store1 product
+יוני 26, 2023 12:53:29 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart:  you choose amount of product1_store2 with more than what we have in the stock!
+יוני 26, 2023 12:53:29 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: The amount must be positive, it can't be -1
+יוני 26, 2023 12:53:29 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 26, 2023 12:53:29 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 26, 2023 12:53:29 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: store2b is not Active!
+יוני 26, 2023 12:53:29 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 26, 2023 12:54:47 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: bag already contains product1_store1 product
+יוני 26, 2023 12:54:47 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart:  you choose amount of product1_store2 with more than what we have in the stock!
+יוני 26, 2023 12:54:48 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: The amount must be positive, it can't be -1
+יוני 26, 2023 12:54:48 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 26, 2023 12:54:48 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 26, 2023 12:54:48 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: store2b is not Active!
+יוני 26, 2023 12:54:48 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 26, 2023 12:54:48 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: bag already contains product1_store1 product
+יוני 26, 2023 12:54:48 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart:  you choose amount of product1_store2 with more than what we have in the stock!
+יוני 26, 2023 12:54:48 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: The amount must be positive, it can't be -1
+יוני 26, 2023 12:54:48 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 26, 2023 12:54:48 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 26, 2023 12:54:48 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: store2b is not Active!
+יוני 26, 2023 12:54:48 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 26, 2023 12:55:54 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: bag already contains product1_store1 product
+יוני 26, 2023 12:55:54 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart:  you choose amount of product1_store2 with more than what we have in the stock!
+יוני 26, 2023 12:55:54 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: The amount must be positive, it can't be -1
+יוני 26, 2023 12:55:54 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 26, 2023 12:55:54 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 26, 2023 12:55:54 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: store2b is not Active!
+יוני 26, 2023 12:55:54 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 26, 2023 12:55:55 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: bag already contains product1_store1 product
+יוני 26, 2023 12:55:55 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart:  you choose amount of product1_store2 with more than what we have in the stock!
+יוני 26, 2023 12:55:55 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: The amount must be positive, it can't be -1
+יוני 26, 2023 12:55:55 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 26, 2023 12:55:55 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 26, 2023 12:55:55 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: store2b is not Active!
+יוני 26, 2023 12:55:55 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 26, 2023 12:55:55 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart:  you choose amount of product2_store1 with more than what we have in the stock!
+יוני 26, 2023 12:55:55 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: The amount must be positive, it can't be -1000
+יוני 26, 2023 12:55:55 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: bag does not contain product1_store1 product
+יוני 26, 2023 12:55:55 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart:  you choose amount of product2_store1 with more than what we have in the stock!
+יוני 26, 2023 12:55:55 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: The amount must be positive, it can't be -1000
+יוני 26, 2023 12:55:55 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: bag does not contain product1_store1 product
+יוני 26, 2023 2:02:07 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart:  you choose amount of product1_store1 with more than what we have in the stock!
+יוני 26, 2023 2:04:56 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart:  you choose amount of product1_store1 with more than what we have in the stock!
+יוני 26, 2023 2:04:56 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: bag does not contain product1_store1 product
+יוני 26, 2023 2:04:56 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove product from cart: bag does not contain product1_store1 product
+יוני 26, 2023 2:14:52 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart:  you choose amount of product1_store1 with more than what we have in the stock!
+יוני 26, 2023 2:14:52 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: bag does not contain product1_store1 product
+יוני 26, 2023 2:14:52 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove product from cart: bag does not contain product1_store1 product
+יוני 26, 2023 2:14:53 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: string is null or empty
+יוני 26, 2023 2:16:58 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart:  you choose amount of product1_store1 with more than what we have in the stock!
+יוני 26, 2023 2:16:58 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: bag does not contain product1_store1 product
+יוני 26, 2023 2:16:58 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove product from cart: bag does not contain product1_store1 product
+יוני 26, 2023 2:17:18 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: string is null or empty
+יוני 26, 2023 2:18:54 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart:  you choose amount of product1_store1 with more than what we have in the stock!
+יוני 26, 2023 2:18:54 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: bag does not contain product1_store1 product
+יוני 26, 2023 2:18:54 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove product from cart: bag does not contain product1_store1 product
+יוני 26, 2023 2:20:40 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: string is null or empty
+יוני 26, 2023 2:21:13 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart:  you choose amount of product1_store1 with more than what we have in the stock!
+יוני 26, 2023 2:21:13 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: bag does not contain product1_store1 product
+יוני 26, 2023 2:21:13 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove product from cart: bag does not contain product1_store1 product
+יוני 26, 2023 2:22:34 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: string is null or empty
+יוני 26, 2023 2:25:01 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart:  you choose amount of product1_store1 with more than what we have in the stock!
+יוני 26, 2023 2:25:01 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: bag does not contain product1_store1 product
+יוני 26, 2023 2:25:01 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove product from cart: bag does not contain product1_store1 product
+יוני 26, 2023 2:27:31 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: string is null or empty
+יוני 26, 2023 2:27:56 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart:  you choose amount of product1_store1 with more than what we have in the stock!
+יוני 26, 2023 2:27:56 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: bag does not contain product1_store1 product
+יוני 26, 2023 2:27:56 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove product from cart: bag does not contain product1_store1 product
+יוני 26, 2023 2:32:40 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart:  you choose amount of product1_store1 with more than what we have in the stock!
+יוני 26, 2023 2:32:40 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: bag does not contain product1_store1 product
+יוני 26, 2023 2:32:40 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove product from cart: bag does not contain product1_store1 product
+יוני 26, 2023 2:33:42 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: member1name is already a member
+יוני 26, 2023 2:33:42 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: member2name is already a member
+יוני 26, 2023 2:33:42 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: userName member3name does not exists!
+יוני 26, 2023 2:33:43 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in creating store: store: store1 is already store
+יוני 26, 2023 2:33:43 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in creating store: store: store1b is already store
+יוני 26, 2023 2:33:43 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in creating store: store: store2 is already store
+יוני 26, 2023 2:33:43 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in creating store: store: store2b is already store
+יוני 26, 2023 2:33:43 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in creating store: store: store3 is already store
+יוני 26, 2023 2:33:43 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: member1name is not a founder/owner or an authorized manager
+יוני 26, 2023 2:33:43 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: member3name is not a founder/owner or an authorized manager
+יוני 26, 2023 2:33:43 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: member1name is not a founder/owner or an authorized manager
+יוני 26, 2023 2:33:43 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: member3name is not a founder/owner or an authorized manager
+יוני 26, 2023 2:33:43 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: member2name is not a founder/owner or an authorized manager
+יוני 26, 2023 2:33:43 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: member3name is not a founder/owner or an authorized manager
+יוני 26, 2023 2:33:43 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: member2name is not a founder/owner or an authorized manager
+יוני 26, 2023 2:33:43 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: member3name is not a founder/owner or an authorized manager
+יוני 26, 2023 2:33:44 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: stock does already contains this product product1_store1
+יוני 26, 2023 2:33:44 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: stock does already contains this product product2_store1
+יוני 26, 2023 2:33:44 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: stock does already contains this product product1_store1b
+יוני 26, 2023 2:33:44 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: stock does already contains this product product2_store1b
+יוני 26, 2023 2:33:44 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: stock does already contains this product product1_store2
+יוני 26, 2023 2:33:44 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: stock does already contains this product product2_store2
+יוני 26, 2023 2:33:44 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: stock does already contains this product product3_store2
+יוני 26, 2023 2:33:45 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in closing the store: the store store1 already closed!
+יוני 26, 2023 2:34:19 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: userName member1name does not exists!
+יוני 26, 2023 2:34:19 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: userName member2name does not exists!
+יוני 26, 2023 2:34:19 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: userName member3name does not exists!
+יוני 26, 2023 2:34:53 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: stock does not contain this product product2_store1
+יוני 26, 2023 2:34:53 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: stock does not contain this product product1_store1b
+יוני 26, 2023 2:34:54 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: stock does not contain this product product3_store2
+יוני 26, 2023 2:34:54 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: stock does not contain this product product2_store1
+יוני 26, 2023 2:34:54 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: stock does not contain this product product1_store1b
+יוני 26, 2023 2:34:54 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: stock does not contain this product product3_store2
+יוני 26, 2023 2:34:56 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 26, 2023 2:34:56 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 26, 2023 2:34:56 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 26, 2023 2:35:55 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: transaction has failed
+יוני 26, 2023 2:38:35 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: moslem1232234 is already a member
+יוני 26, 2023 2:38:35 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store :moslem storeis closed
+יוני 26, 2023 2:38:35 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store :moslem storeis closed
+יוני 26, 2023 2:38:35 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store manager: memberbrain123 is already store owner
+יוני 26, 2023 2:38:35 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: member brain123 is already store manager
+יוני 26, 2023 2:38:35 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store manager: memberharry123 is already store manager
+יוני 26, 2023 2:38:36 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store manager: memberharry123 is already store manager
+יוני 26, 2023 2:38:36 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in closing the store: brain123is not the founder of the store
+יוני 26, 2023 2:38:36 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in removing product from store: stock does not contain this product iphone 11
+יוני 26, 2023 2:38:36 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: userName unavailable_name does not exists!
+יוני 26, 2023 2:38:36 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: brain123 does not have permission to manageStock for store moslem store
+יוני 26, 2023 2:38:36 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: Cannot invoke "java.util.List.contains(Object)" because the return value of "java.util.concurrent.ConcurrentHashMap.get(Object)" is null
+יוני 26, 2023 2:38:36 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: brain123is not owner for store moslem store
+יוני 26, 2023 2:38:36 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: stock does already contains this product iphone 14
+יוני 26, 2023 2:38:36 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: unavailable_store does not exists!
+יוני 26, 2023 2:38:40 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: bag must contain minimum 5 iphone 14 product
+יוני 26, 2023 2:38:40 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Shipment service error
+יוני 26, 2023 2:38:40 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: store moslem store is not active, you can't purchase these products [iphone 14] .
+יוני 26, 2023 2:38:40 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: store moslem store is not active, you can't purchase these products [iphone 13] .
+יוני 26, 2023 2:38:40 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: (category iphones is not allowed between 2024-06-26 and 2025-06-26 . ONLY IF category iphones is not allowed after 14:37 .)
+יוני 26, 2023 2:38:40 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: product iphone 14 is not allowed after 14:37 .
+יוני 26, 2023 2:38:40 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: category iphones is not allowed between 2022-06-26 and 2025-06-26 .
+יוני 26, 2023 2:38:40 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: bag must contain maximum 5 iphone 14 product
+יוני 26, 2023 2:38:40 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: category iphones is not allowed after 14:37 .
+יוני 26, 2023 2:38:40 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: moslem store is not Active!
+יוני 26, 2023 2:38:40 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing:  you choose amount of gaming mouse 1 with more than what we have in the stock!
+יוני 26, 2023 2:38:40 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Payment service error
+יוני 26, 2023 2:38:40 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: (category iphones is not allowed between 2022-06-26 and 2024-06-26 . AND category iphones is not allowed after 14:37 .)
+יוני 26, 2023 2:38:40 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: ((bag must contain minimum 2 iphone 13 product AND bag must contain minimum 7 iphone 14 product) AND bag must contain minimum 1 gaming chair1 product)
+יוני 26, 2023 2:38:40 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: store moslem store is not active, you can't purchase these products [iphone 14] .
+יוני 26, 2023 2:38:40 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing:  you choose amount of gaming mouse 1 with more than what we have in the stock!
+יוני 26, 2023 2:38:40 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store :moslem storeis closed
+יוני 26, 2023 2:38:40 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: (category iphones is not allowed between 2022-06-26 and 2025-06-26 . OR category iphones is not allowed after 14:37 .)
+יוני 26, 2023 2:38:40 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: product iphone 14 is not allowed between 2022-06-26 and 2024-06-26 .
+יוני 26, 2023 2:38:40 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Payment service error
+יוני 26, 2023 2:38:40 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: store: bad store name does not exists!
+יוני 26, 2023 2:38:40 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: store: bad store name does not exists!
+יוני 26, 2023 2:38:40 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: bag does not contain iphone 15 product
+יוני 26, 2023 2:38:40 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: bag does not contain iphone 15 product
+יוני 26, 2023 2:38:40 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: stock does not contain this product aaa
+יוני 26, 2023 2:38:40 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: stock does not contain this product aaa
+יוני 26, 2023 2:38:40 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: stock does not contain this product aaa
+יוני 26, 2023 2:38:40 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: stock does not contain this product aaa
+יוני 26, 2023 2:38:40 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: store: bad store name does not exists!
+יוני 26, 2023 2:38:40 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: store: bad store name does not exists!
+יוני 26, 2023 2:38:40 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart:  you choose amount of gaming mouse 1 with more than what we have in the stock!
+יוני 26, 2023 2:38:40 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart:  you choose amount of gaming mouse 1 with more than what we have in the stock!
+יוני 26, 2023 2:38:40 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart:  you choose amount of iphone 14 with more than what we have in the stock!
+יוני 26, 2023 2:38:40 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: The amount must be positive, it can't be -10
+יוני 26, 2023 2:38:40 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart:  you choose amount of iphone 14 with more than what we have in the stock!
+יוני 26, 2023 2:38:40 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: The amount must be positive, it can't be -10
+יוני 26, 2023 2:38:41 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove product from cart: bag does not contain iphone product
+יוני 26, 2023 2:38:41 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove product from cart: bag does not contain iphone product
+יוני 26, 2023 2:38:41 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: store: bad store name does not exists!
+יוני 26, 2023 2:38:41 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: store: bad store name does not exists!
+יוני 26, 2023 2:38:41 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: store: bad store name does not exists!
+יוני 26, 2023 2:38:41 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: store: bad store name does not exists!
+יוני 26, 2023 2:38:41 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove product from cart: store: bad store name does not exists!
+יוני 26, 2023 2:38:41 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove product from cart: store: bad store name does not exists!
+יוני 26, 2023 2:38:41 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 26, 2023 2:38:41 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 26, 2023 2:38:41 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 26, 2023 2:38:41 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 26, 2023 2:38:41 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: bad store name does not exists!
+יוני 26, 2023 2:38:41 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: bad store name does not exists!
+יוני 26, 2023 2:38:41 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: bad store name does not exists!
+יוני 26, 2023 2:38:41 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: bad store name does not exists!
+יוני 26, 2023 2:38:41 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: bad store name does not exists!
+יוני 26, 2023 2:38:41 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: bad store name does not exists!
+יוני 26, 2023 2:38:41 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: bag already contains gaming mouse 1 product
+יוני 26, 2023 2:38:41 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: bag already contains gaming mouse 1 product
+יוני 26, 2023 2:38:41 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store manager: member2 is not owner for new store
+יוני 26, 2023 2:38:41 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: requser2 is not a founder/owner or an authorized manager
+יוני 26, 2023 2:38:41 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: requser3 is not a founder/owner or an authorized manager
+יוני 26, 2023 2:38:41 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: requser3is not owner for store store1
+יוני 26, 2023 2:38:41 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: requser2 is not a founder/owner or an authorized manager
+יוני 26, 2023 2:38:41 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: userName obiq does not exists!
+יוני 26, 2023 2:38:41 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in logging out: member1 is not logged in
+יוני 26, 2023 2:38:41 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: string is null or empty
+יוני 26, 2023 2:38:41 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in logging out: member1 is not logged in
+יוני 26, 2023 2:38:41 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as system manager: userName not_member does not exists!
+יוני 26, 2023 2:38:41 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as system manager: userName systemmanager1 is already a system manager!
+יוני 26, 2023 2:38:41 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as system manager: userName member1 is already a system manager!
+יוני 26, 2023 2:38:41 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as system manager: userName member2 is already a system manager!
+יוני 26, 2023 2:38:41 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as system manager: member2 have a role in a store
+יוני 26, 2023 2:38:41 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: userName not_manager does not exists!
+יוני 26, 2023 2:38:41 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: store1 does not exists!
+יוני 26, 2023 2:38:41 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as system manager: userName systemmanager1 is already a system manager!
+יוני 26, 2023 2:38:41 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as system manager: member1 is not logged in
+יוני 26, 2023 2:38:41 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: userName systemmanager1pass does not exists!
+יוני 26, 2023 2:38:41 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: haitam123 is not owner for moslem store
+יוני 26, 2023 2:38:41 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: harry123is not owner for store moslem store
+יוני 26, 2023 2:38:41 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: harry123is not owner for store moslem store
+יוני 26, 2023 2:38:41 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: member brain123 is already store owner
+יוני 26, 2023 2:38:41 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: member moslem123 is already store owner
+יוני 26, 2023 2:38:41 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: member moslem123 is already store owner
+יוני 26, 2023 2:38:41 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: userName koko does not exists!
+יוני 26, 2023 2:38:41 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: member brain123 is already store owner
+יוני 26, 2023 2:38:41 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store manager: memberbrain123 is already store owner
+יוני 26, 2023 2:38:41 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: brain123is not owner for store moslem store
+יוני 26, 2023 2:38:41 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: member harry123 already have a contract for this store ownership
+יוני 26, 2023 2:39:46 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: moslem1232234 is already a member
+יוני 26, 2023 2:39:46 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store :moslem storeis closed
+יוני 26, 2023 2:39:46 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store :moslem storeis closed
+יוני 26, 2023 2:39:46 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store manager: memberbrain123 is already store owner
+יוני 26, 2023 2:39:46 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: member brain123 is already store manager
+יוני 26, 2023 2:39:46 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store manager: memberharry123 is already store manager
+יוני 26, 2023 2:39:46 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store manager: memberharry123 is already store manager
+יוני 26, 2023 2:39:46 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in closing the store: brain123is not the founder of the store
+יוני 26, 2023 2:39:46 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in removing product from store: stock does not contain this product iphone 11
+יוני 26, 2023 2:39:46 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: userName unavailable_name does not exists!
+יוני 26, 2023 2:39:47 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: brain123 does not have permission to manageStock for store moslem store
+יוני 26, 2023 2:39:47 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: Cannot invoke "java.util.List.contains(Object)" because the return value of "java.util.concurrent.ConcurrentHashMap.get(Object)" is null
+יוני 26, 2023 2:39:47 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: brain123is not owner for store moslem store
+יוני 26, 2023 2:39:47 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: stock does already contains this product iphone 14
+יוני 26, 2023 2:39:47 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: unavailable_store does not exists!
+יוני 26, 2023 2:39:51 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: bag must contain minimum 5 iphone 14 product
+יוני 26, 2023 2:39:51 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Shipment service error
+יוני 26, 2023 2:39:51 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: store moslem store is not active, you can't purchase these products [iphone 14] .
+יוני 26, 2023 2:39:51 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: store moslem store is not active, you can't purchase these products [iphone 13] .
+יוני 26, 2023 2:39:51 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: (category iphones is not allowed between 2024-06-26 and 2025-06-26 . ONLY IF category iphones is not allowed after 14:38 .)
+יוני 26, 2023 2:39:51 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: product iphone 14 is not allowed after 14:38 .
+יוני 26, 2023 2:39:51 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: category iphones is not allowed between 2022-06-26 and 2025-06-26 .
+יוני 26, 2023 2:39:51 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: bag must contain maximum 5 iphone 14 product
+יוני 26, 2023 2:39:51 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: category iphones is not allowed after 14:38 .
+יוני 26, 2023 2:39:51 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: moslem store is not Active!
+יוני 26, 2023 2:39:51 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing:  you choose amount of gaming mouse 1 with more than what we have in the stock!
+יוני 26, 2023 2:39:51 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Payment service error
+יוני 26, 2023 2:39:51 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: (category iphones is not allowed between 2022-06-26 and 2024-06-26 . AND category iphones is not allowed after 14:38 .)
+יוני 26, 2023 2:39:51 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: ((bag must contain minimum 2 iphone 13 product AND bag must contain minimum 7 iphone 14 product) AND bag must contain minimum 1 gaming chair1 product)
+יוני 26, 2023 2:39:51 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: store moslem store is not active, you can't purchase these products [iphone 14] .
+יוני 26, 2023 2:39:51 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing:  you choose amount of gaming mouse 1 with more than what we have in the stock!
+יוני 26, 2023 2:39:51 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store :moslem storeis closed
+יוני 26, 2023 2:39:51 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: (category iphones is not allowed between 2022-06-26 and 2025-06-26 . OR category iphones is not allowed after 14:38 .)
+יוני 26, 2023 2:39:51 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: product iphone 14 is not allowed between 2022-06-26 and 2024-06-26 .
+יוני 26, 2023 2:39:51 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Payment service error
+יוני 26, 2023 2:39:51 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: store: bad store name does not exists!
+יוני 26, 2023 2:39:51 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: store: bad store name does not exists!
+יוני 26, 2023 2:39:51 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: bag does not contain iphone 15 product
+יוני 26, 2023 2:39:51 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: bag does not contain iphone 15 product
+יוני 26, 2023 2:39:51 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: stock does not contain this product aaa
+יוני 26, 2023 2:39:51 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: stock does not contain this product aaa
+יוני 26, 2023 2:39:51 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: stock does not contain this product aaa
+יוני 26, 2023 2:39:51 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: stock does not contain this product aaa
+יוני 26, 2023 2:39:51 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: store: bad store name does not exists!
+יוני 26, 2023 2:39:51 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: store: bad store name does not exists!
+יוני 26, 2023 2:39:51 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart:  you choose amount of gaming mouse 1 with more than what we have in the stock!
+יוני 26, 2023 2:39:51 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart:  you choose amount of gaming mouse 1 with more than what we have in the stock!
+יוני 26, 2023 2:39:51 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart:  you choose amount of iphone 14 with more than what we have in the stock!
+יוני 26, 2023 2:39:51 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: The amount must be positive, it can't be -10
+יוני 26, 2023 2:39:51 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart:  you choose amount of iphone 14 with more than what we have in the stock!
+יוני 26, 2023 2:39:51 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: The amount must be positive, it can't be -10
+יוני 26, 2023 2:39:51 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove product from cart: bag does not contain iphone product
+יוני 26, 2023 2:39:51 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove product from cart: bag does not contain iphone product
+יוני 26, 2023 2:39:51 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: store: bad store name does not exists!
+יוני 26, 2023 2:39:51 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: store: bad store name does not exists!
+יוני 26, 2023 2:39:51 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: store: bad store name does not exists!
+יוני 26, 2023 2:39:51 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: store: bad store name does not exists!
+יוני 26, 2023 2:39:51 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove product from cart: store: bad store name does not exists!
+יוני 26, 2023 2:39:51 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove product from cart: store: bad store name does not exists!
+יוני 26, 2023 2:39:51 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 26, 2023 2:39:51 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 26, 2023 2:39:51 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 26, 2023 2:39:51 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 26, 2023 2:39:51 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: bad store name does not exists!
+יוני 26, 2023 2:39:51 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: bad store name does not exists!
+יוני 26, 2023 2:39:51 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: bad store name does not exists!
+יוני 26, 2023 2:39:51 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: bad store name does not exists!
+יוני 26, 2023 2:39:51 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: bad store name does not exists!
+יוני 26, 2023 2:39:51 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: bad store name does not exists!
+יוני 26, 2023 2:39:51 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: bag already contains gaming mouse 1 product
+יוני 26, 2023 2:39:51 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: bag already contains gaming mouse 1 product
+יוני 26, 2023 2:39:51 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store manager: member2 is not owner for new store
+יוני 26, 2023 2:39:51 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: requser2 is not a founder/owner or an authorized manager
+יוני 26, 2023 2:39:51 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: requser3 is not a founder/owner or an authorized manager
+יוני 26, 2023 2:39:51 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: requser3is not owner for store store1
+יוני 26, 2023 2:39:51 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: requser2 is not a founder/owner or an authorized manager
+יוני 26, 2023 2:39:51 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: userName obiq does not exists!
+יוני 26, 2023 2:39:51 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in logging out: member1 is not logged in
+יוני 26, 2023 2:39:51 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: string is null or empty
+יוני 26, 2023 2:39:52 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in logging out: member1 is not logged in
+יוני 26, 2023 2:39:52 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as system manager: userName not_member does not exists!
+יוני 26, 2023 2:39:52 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as system manager: userName systemmanager1 is already a system manager!
+יוני 26, 2023 2:39:52 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as system manager: userName member1 is already a system manager!
+יוני 26, 2023 2:39:52 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as system manager: userName member2 is already a system manager!
+יוני 26, 2023 2:39:52 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as system manager: member2 have a role in a store
+יוני 26, 2023 2:39:52 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: userName not_manager does not exists!
+יוני 26, 2023 2:39:52 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: store1 does not exists!
+יוני 26, 2023 2:39:52 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as system manager: userName systemmanager1 is already a system manager!
+יוני 26, 2023 2:39:52 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as system manager: member1 is not logged in
+יוני 26, 2023 2:39:52 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: userName systemmanager1pass does not exists!
+יוני 26, 2023 2:39:52 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: haitam123 is not owner for moslem store
+יוני 26, 2023 2:39:52 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: harry123is not owner for store moslem store
+יוני 26, 2023 2:39:52 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: harry123is not owner for store moslem store
+יוני 26, 2023 2:39:52 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: member brain123 is already store owner
+יוני 26, 2023 2:39:52 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: member moslem123 is already store owner
+יוני 26, 2023 2:39:52 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: member moslem123 is already store owner
+יוני 26, 2023 2:39:52 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: userName koko does not exists!
+יוני 26, 2023 2:39:52 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: member brain123 is already store owner
+יוני 26, 2023 2:39:52 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store manager: memberbrain123 is already store owner
+יוני 26, 2023 2:39:52 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: brain123is not owner for store moslem store
+יוני 26, 2023 2:39:52 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: member harry123 already have a contract for this store ownership
+יוני 26, 2023 2:41:31 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart:  you choose amount of product1_store1 with more than what we have in the stock!
+יוני 26, 2023 2:41:31 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: bag does not contain product1_store1 product
+יוני 26, 2023 2:41:31 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove product from cart: bag does not contain product1_store1 product
+יוני 26, 2023 2:42:28 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart:  you choose amount of product1_store1 with more than what we have in the stock!
+יוני 26, 2023 2:42:28 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: bag does not contain product1_store1 product
+יוני 26, 2023 2:42:28 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove product from cart: bag does not contain product1_store1 product
+יוני 26, 2023 2:43:06 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart:  you choose amount of product1_store1 with more than what we have in the stock!
+יוני 26, 2023 2:43:06 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: bag does not contain product1_store1 product
+יוני 26, 2023 2:43:06 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove product from cart: bag does not contain product1_store1 product
+יוני 26, 2023 2:46:49 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart:  you choose amount of product1_store1 with more than what we have in the stock!
+יוני 26, 2023 2:46:49 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: bag does not contain product1_store1 product
+יוני 26, 2023 2:46:49 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove product from cart: bag does not contain product1_store1 product
+יוני 26, 2023 3:31:53 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: moslem1232234 is already a member
+יוני 26, 2023 3:31:54 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store :moslem storeis closed
+יוני 26, 2023 3:31:54 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store :moslem storeis closed
+יוני 26, 2023 3:31:54 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store manager: memberbrain123 is already store owner
+יוני 26, 2023 3:31:54 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: member brain123 is already store manager
+יוני 26, 2023 3:31:54 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store manager: memberharry123 is already store manager
+יוני 26, 2023 3:31:54 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store manager: memberharry123 is already store manager
+יוני 26, 2023 3:31:54 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in closing the store: brain123is not the founder of the store
+יוני 26, 2023 3:31:54 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in removing product from store: stock does not contain this product iphone 11
+יוני 26, 2023 3:31:54 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: userName unavailable_name does not exists!
+יוני 26, 2023 3:31:54 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: brain123 does not have permission to manageStock for store moslem store
+יוני 26, 2023 3:31:54 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: Cannot invoke "java.util.List.contains(Object)" because the return value of "java.util.concurrent.ConcurrentHashMap.get(Object)" is null
+יוני 26, 2023 3:31:54 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: brain123is not owner for store moslem store
+יוני 26, 2023 3:31:54 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: stock does already contains this product iphone 14
+יוני 26, 2023 3:31:54 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: unavailable_store does not exists!
+יוני 26, 2023 3:31:58 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: bag must contain minimum 5 iphone 14 product
+יוני 26, 2023 3:31:58 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Shipment service error
+יוני 26, 2023 3:31:58 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: store moslem store is not active, you can't purchase these products [iphone 14] .
+יוני 26, 2023 3:31:58 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: store moslem store is not active, you can't purchase these products [iphone 13] .
+יוני 26, 2023 3:31:58 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: (category iphones is not allowed between 2024-06-26 and 2025-06-26 . ONLY IF category iphones is not allowed after 15:30 .)
+יוני 26, 2023 3:31:58 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: product iphone 14 is not allowed after 15:30 .
+יוני 26, 2023 3:31:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: category iphones is not allowed between 2022-06-26 and 2025-06-26 .
+יוני 26, 2023 3:31:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: bag must contain maximum 5 iphone 14 product
+יוני 26, 2023 3:31:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: category iphones is not allowed after 15:30 .
+יוני 26, 2023 3:31:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: moslem store is not Active!
+יוני 26, 2023 3:31:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing:  you choose amount of gaming mouse 1 with more than what we have in the stock!
+יוני 26, 2023 3:31:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Payment service error
+יוני 26, 2023 3:31:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: (category iphones is not allowed between 2022-06-26 and 2024-06-26 . AND category iphones is not allowed after 15:30 .)
+יוני 26, 2023 3:31:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: ((bag must contain minimum 2 iphone 13 product AND bag must contain minimum 7 iphone 14 product) AND bag must contain minimum 1 gaming chair1 product)
+יוני 26, 2023 3:31:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: store moslem store is not active, you can't purchase these products [iphone 14] .
+יוני 26, 2023 3:31:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing:  you choose amount of gaming mouse 1 with more than what we have in the stock!
+יוני 26, 2023 3:31:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store :moslem storeis closed
+יוני 26, 2023 3:31:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: (category iphones is not allowed between 2022-06-26 and 2025-06-26 . OR category iphones is not allowed after 15:30 .)
+יוני 26, 2023 3:31:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: moslem store payment policy: product iphone 14 is not allowed between 2022-06-26 and 2024-06-26 .
+יוני 26, 2023 3:31:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Payment service error
+יוני 26, 2023 3:31:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: store: bad store name does not exists!
+יוני 26, 2023 3:31:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: store: bad store name does not exists!
+יוני 26, 2023 3:31:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: bag does not contain iphone 15 product
+יוני 26, 2023 3:31:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: bag does not contain iphone 15 product
+יוני 26, 2023 3:31:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: stock does not contain this product aaa
+יוני 26, 2023 3:31:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: stock does not contain this product aaa
+יוני 26, 2023 3:31:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: stock does not contain this product aaa
+יוני 26, 2023 3:31:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: stock does not contain this product aaa
+יוני 26, 2023 3:31:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: store: bad store name does not exists!
+יוני 26, 2023 3:31:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: store: bad store name does not exists!
+יוני 26, 2023 3:31:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart:  you choose amount of gaming mouse 1 with more than what we have in the stock!
+יוני 26, 2023 3:31:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart:  you choose amount of gaming mouse 1 with more than what we have in the stock!
+יוני 26, 2023 3:31:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart:  you choose amount of iphone 14 with more than what we have in the stock!
+יוני 26, 2023 3:31:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: The amount must be positive, it can't be -10
+יוני 26, 2023 3:31:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart:  you choose amount of iphone 14 with more than what we have in the stock!
+יוני 26, 2023 3:31:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: The amount must be positive, it can't be -10
+יוני 26, 2023 3:31:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove product from cart: bag does not contain iphone product
+יוני 26, 2023 3:31:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove product from cart: bag does not contain iphone product
+יוני 26, 2023 3:31:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: store: bad store name does not exists!
+יוני 26, 2023 3:31:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: store: bad store name does not exists!
+יוני 26, 2023 3:31:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: store: bad store name does not exists!
+יוני 26, 2023 3:31:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting product info: store: bad store name does not exists!
+יוני 26, 2023 3:31:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove product from cart: store: bad store name does not exists!
+יוני 26, 2023 3:31:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove product from cart: store: bad store name does not exists!
+יוני 26, 2023 3:31:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 26, 2023 3:31:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 26, 2023 3:31:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 26, 2023 3:31:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: the product dose not exist in the store
+יוני 26, 2023 3:31:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: bad store name does not exists!
+יוני 26, 2023 3:31:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: bad store name does not exists!
+יוני 26, 2023 3:31:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: bad store name does not exists!
+יוני 26, 2023 3:31:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: bad store name does not exists!
+יוני 26, 2023 3:31:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: bad store name does not exists!
+יוני 26, 2023 3:31:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: bad store name does not exists!
+יוני 26, 2023 3:31:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: bag already contains gaming mouse 1 product
+יוני 26, 2023 3:31:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to cart: bag already contains gaming mouse 1 product
+יוני 26, 2023 3:31:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store manager: member2 is not owner for new store
+יוני 26, 2023 3:31:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: requser2 is not a founder/owner or an authorized manager
+יוני 26, 2023 3:31:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: requser3 is not a founder/owner or an authorized manager
+יוני 26, 2023 3:31:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: requser3is not owner for store store1
+יוני 26, 2023 3:31:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: requser2 is not a founder/owner or an authorized manager
+יוני 26, 2023 3:31:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: userName obiq does not exists!
+יוני 26, 2023 3:31:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in logging out: member1 is not logged in
+יוני 26, 2023 3:31:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: string is null or empty
+יוני 26, 2023 3:31:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in logging out: member1 is not logged in
+יוני 26, 2023 3:31:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as system manager: userName not_member does not exists!
+יוני 26, 2023 3:31:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as system manager: userName systemmanager1 is already a system manager!
+יוני 26, 2023 3:31:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as system manager: userName member1 is already a system manager!
+יוני 26, 2023 3:31:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as system manager: userName member2 is already a system manager!
+יוני 26, 2023 3:31:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as system manager: member2 have a role in a store
+יוני 26, 2023 3:31:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: userName not_manager does not exists!
+יוני 26, 2023 3:31:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in getting store info: store: store1 does not exists!
+יוני 26, 2023 3:31:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as system manager: userName systemmanager1 is already a system manager!
+יוני 26, 2023 3:31:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as system manager: member1 is not logged in
+יוני 26, 2023 3:31:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: userName systemmanager1pass does not exists!
+יוני 26, 2023 3:31:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: haitam123 is not owner for moslem store
+יוני 26, 2023 3:31:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: harry123is not owner for store moslem store
+יוני 26, 2023 3:31:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: harry123is not owner for store moslem store
+יוני 26, 2023 3:31:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: member brain123 is already store owner
+יוני 26, 2023 3:31:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: member moslem123 is already store owner
+יוני 26, 2023 3:31:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: member moslem123 is already store owner
+יוני 26, 2023 3:31:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: userName koko does not exists!
+יוני 26, 2023 3:31:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: member brain123 is already store owner
+יוני 26, 2023 3:31:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store manager: memberbrain123 is already store owner
+יוני 26, 2023 3:31:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: brain123is not owner for store moslem store
+יוני 26, 2023 3:31:59 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: member harry123 already have a contract for this store ownership

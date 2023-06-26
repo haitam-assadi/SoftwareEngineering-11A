@@ -74,8 +74,8 @@ public class StoreFounder extends AbstractStoreOwner implements Serializable {
                     appointedManagers.put(storeName, managers);
                     //todo: chcek if should add the owners and managers to the store
                     // recheck the notification story
-                    NotificationService.getInstance().subscribe(store.getStoreName(), NotificationType.productBought, this.member);
-                    NotificationService.getInstance().subscribe(store.getStoreName(), NotificationType.storeClosedBySystemManager, this.member);
+//                    NotificationService.getInstance().subscribe(store.getStoreName(), NotificationType.productBought, this.member);
+//                    NotificationService.getInstance().subscribe(store.getStoreName(), NotificationType.storeClosedBySystemManager, this.member);
                 }
             }
             isLoaded = true;

@@ -129,7 +129,7 @@ public class StoreOwner extends AbstractStoreOwner implements Serializable {
                     }
                     //todo: chcek if should add the owners and managers to the store
                     // check the notification ssstory
-                    this.member.subscribeOwnerForNotifications(storeName);
+                    //this.member.subscribeOwnerForNotifications(storeName);
                 }
             }
             isLoaded = true;
