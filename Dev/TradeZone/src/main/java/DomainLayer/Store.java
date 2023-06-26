@@ -1377,7 +1377,7 @@ public class Store {
                 maxId = id;
             }
         }
-        this.bagConstraintsIdCounter = maxId;
+        this.bagConstraintsIdCounter = maxId+1;
         createdBagConstraintsLoaded = true;
     }
 
@@ -1434,7 +1434,7 @@ public class Store {
                 maxId = id;
             }
         }
-        this.discountPoliciesIdCounter = maxId;
+        this.discountPoliciesIdCounter = maxId+1;
         createdDiscountPoliciesLoaded = true;
     }
 
