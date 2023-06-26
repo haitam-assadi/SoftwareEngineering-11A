@@ -499,7 +499,7 @@ public class Market {
 
     public MemberDTO getMemberInfo(String callerMemberName, String returnedMemberName) throws Exception {
         userController.assertIsMemberLoggedIn(callerMemberName);
-        userController.isMember(returnedMemberName);
+        userController.assertIsMember(returnedMemberName);
         return userController.getMemberInfo(callerMemberName,returnedMemberName);
     }
 
