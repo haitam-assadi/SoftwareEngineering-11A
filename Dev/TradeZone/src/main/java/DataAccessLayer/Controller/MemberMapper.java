@@ -175,4 +175,8 @@ public class MemberMapper {
         membersNamesConcurrentSet.remove(memberName);
         members.remove(memberName);
     }
+
+    public Map<String, SystemManager> getSystemManagers() {
+        return systemManagers;
+    }
 }
