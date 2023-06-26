@@ -77,4 +77,8 @@ public class AllStoreDiscountPolicy extends DiscountPolicy{
     public BagConstraint getBagConstraint() {
         return bagConstraint;
     }
+
+    public void setBagConstraint(BagConstraint bagConstraint) {
+        this.bagConstraint = bagConstraint;
+    }
 }
