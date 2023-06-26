@@ -742,7 +742,14 @@ public class Market {
                                         permissions.add(curr.intValue());
                                     }
                                 }
-                                updateManagerPermissionsForStore(member_name, store_name, manager_name, permissions);
+
+                                List<Integer> updatedPermissions = getManagerPermissionsForStore(member_name,store_name, manager_name);
+
+                                for(Integer newPer: permissions)
+                                    if(!updatedPermissions.contains(newPer))
+                                        updatedPermissions.add(newPer);
+
+                                updateManagerPermissionsForStore(member_name, store_name, manager_name, updatedPermissions);
                             }
                         }
                         break;
