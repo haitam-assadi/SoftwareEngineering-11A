@@ -10,6 +10,7 @@ public class MemberNotificator {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
+    @Column
     private String memberName;
     @Enumerated(value = EnumType.STRING)
     private NotificationType notificationType;

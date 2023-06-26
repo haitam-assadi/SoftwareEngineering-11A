@@ -113,4 +113,12 @@ public class CategoryBagConstraint extends BagConstraint implements Serializable
         }
         return st;
     }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
 }

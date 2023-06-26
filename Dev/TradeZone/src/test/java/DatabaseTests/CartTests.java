@@ -29,6 +29,9 @@ public class CartTests {
     String member3Name = "member3name";
     String member3Password = "kK129B71346";
 
+    String member4Name = "member4name";
+    String member4Password = "kK129B71346";
+
     String store1Name = "store1";
     String store1bName = "store1b";
 
@@ -114,6 +117,8 @@ public class CartTests {
             Assertions.assertThrows(Exception.class, ()->proxy.addToCart(user3, store2bName, product3_store2, 10)); // closed store
             Assertions.assertThrows(Exception.class, ()->proxy.addToCart(user3, store2Name, product3_store2, 15)); // product has been removed from stock
 
+            logOutMembers();
+            initSystemServiceAndLoadDataAndLogIn();
             // guest: add to cart
                 // success
             Assertions.assertTrue(proxy.addToCart(user4, store1Name, product1_store1, 11));
@@ -129,7 +134,6 @@ public class CartTests {
             Assertions.assertThrows(Exception.class, ()->proxy.addToCart(user4, store2bName, product3_store2, 10)); // closed store
             Assertions.assertThrows(Exception.class, ()->proxy.addToCart(user4, store2Name, product3_store2, 15)); // product has been removed from stock
 
-
             // get bag
                 // member:
             Assertions.assertEquals(2, proxy.getBag(user3, store1Name).size());
@@ -141,7 +145,6 @@ public class CartTests {
             Assertions.assertEquals(1, proxy.getBag(user4, store1bName).size());
             Assertions.assertEquals(1, proxy.getBag(user4, store2Name).size());
             //Assertions.assertThrows(Exception.class, ()->proxy.getBag(user4, store2bName));
-
 
             // get cart content
                 // member:
@@ -171,6 +174,7 @@ public class CartTests {
 
             // get product amount in cart
                 // member:
+
             Assertions.assertEquals(10, proxy.getProductAmountInCart(user3, store1Name, product1_store1));
             Assertions.assertEquals(20, proxy.getProductAmountInCart(user3, store1Name, product2_store1));
             Assertions.assertEquals(30, proxy.getProductAmountInCart(user3, store1bName, product1_store1b));
@@ -185,6 +189,7 @@ public class CartTests {
             // remove product from cart
                 // member:
             //Assertions.assertThrows(Exception.class, ()->proxy.removeProductFromCart(user3, store2Name, product2_store2));
+
             Assertions.assertTrue(proxy.removeProductFromCart(user3, store1Name, product1_store1));
             Assertions.assertTrue(proxy.removeProductFromCart(user3, store1bName, product1_store1b));
             Assertions.assertTrue(proxy.getCartContent(user3).containsKey(store1Name));
@@ -216,7 +221,6 @@ public class CartTests {
             Assertions.assertThrows(Exception.class, ()->proxy.changeProductAmountInCart(user4, store1Name, product2_store1, -1000)); // negative amount
             Assertions.assertThrows(Exception.class, ()->proxy.changeProductAmountInCart(user4, store1Name, product1_store1, 5)); // product has been removed from cart
 
-
             // get cart price before discount
             Assertions.assertEquals(0, proxy.getCartPriceBeforeDiscount(user1)); // empty cart
             Assertions.assertEquals(8888, proxy.getCartPriceBeforeDiscount(user3));
@@ -226,6 +230,60 @@ public class CartTests {
         } catch (Exception e){
             Assertions.fail(e.getMessage());
         }
+    }
+
+    @Test
+    public void cartTest2() throws Exception {
+
+        Assertions.assertTrue(proxy.addToCart(user4, store1Name, product1_store1, 10));
+        Assertions.assertTrue(proxy.addToCart(user4, store1Name, product2_store1, 20));
+        Assertions.assertTrue(proxy.addToCart(user4, store1bName, product1_store1b, 30));
+        Assertions.assertTrue(proxy.register(user4,member4Name,member4Password));
+        Assertions.assertEquals(2,proxy.getCartContent(user4).size());
+        member4Name = proxy.login(user4,member4Name,member4Password);
+        Assertions.assertEquals(2,proxy.getCartContent(member4Name).size());
+
+        logOutMembers2();
+        initSystemServiceAndLoadDataAndLogIn2();
+        Assertions.assertEquals(2,proxy.getCartContent(member4Name).size());
+        Assertions.assertTrue(proxy.addToCart(member4Name, store2Name, product1_store2, 15));
+        Assertions.assertTrue(proxy.changeProductAmountInCart(member4Name,store1Name,product1_store1,20));
+        Assertions.assertEquals(20,proxy.getProductAmountInCart(member4Name,store1Name,product1_store1));
+
+        logOutMembers2();
+        initSystemServiceAndLoadDataAndLogIn2();
+        Assertions.assertEquals(20,proxy.getProductAmountInCart(member4Name,store1Name,product1_store1));
+        Assertions.assertEquals(3,proxy.getCartContent(member4Name).size());
+        Assertions.assertTrue(proxy.updateProductAmount(member1Name,store1Name,product1_store1,70));
+
+        logOutMembers2();
+        initSystemServiceAndLoadDataAndLogIn2();
+        Assertions.assertThrows(Exception.class,()->proxy.changeProductAmountInCart(member4Name,store1Name,product1_store1,75));
+        Assertions.assertEquals(20,proxy.getProductAmountInCart(member4Name,store1Name,product1_store1));
+        Assertions.assertTrue(proxy.removeProductFromCart(member4Name, store1Name, product1_store1));
+        Assertions.assertThrows(Exception.class,()->proxy.changeProductAmountInCart(member4Name,store1Name,product1_store1,75));
+        Assertions.assertThrows(Exception.class,()->proxy.removeProductFromCart(member4Name, store1Name, product1_store1));
+
+        logOutMembers2();
+        initSystemServiceAndLoadDataAndLogIn2();
+        Assertions.assertTrue(proxy.addToCart(member4Name, store1Name, product1_store1, 25));
+        Assertions.assertEquals(1,proxy.createProductDiscountPolicy(member1Name,store1Name,product1_store1,10,true));
+        Assertions.assertEquals(25553.0,proxy.getCartPriceBeforeDiscount(member4Name));
+        Assertions.assertEquals(25275.25,proxy.getCartPriceAfterDiscount(member4Name));
+
+        Assertions.assertTrue(proxy.addToCart(member3Name, store1Name, product1_store1, 25));
+        Assertions.assertTrue(proxy.addToCart(member3Name, store1Name, product2_store1, 20));
+        Assertions.assertTrue(proxy.addToCart(member3Name, store1bName, product1_store1b, 30));
+        Assertions.assertEquals(25553.0,proxy.getCartPriceBeforeDiscount(member4Name));
+        Assertions.assertEquals(25275.25,proxy.getCartPriceAfterDiscount(member4Name));
+        Assertions.assertEquals(20,proxy.getProductAmountInCart(member4Name,store1Name,product2_store1));
+
+        logOutMembers2();
+        initSystemServiceAndLoadDataAndLogIn2();
+        Assertions.assertEquals(25553.0,proxy.getCartPriceBeforeDiscount(member4Name));
+        Assertions.assertEquals(25275.25,proxy.getCartPriceAfterDiscount(member4Name));
+        Assertions.assertEquals(20,proxy.getProductAmountInCart(member4Name,store1Name,product2_store1));
+
     }
 
     private void logOutMembers()throws Exception{
@@ -239,10 +297,29 @@ public class CartTests {
         user1 = proxy.enterMarket();
         user2 = proxy.enterMarket();
         user3 = proxy.enterMarket();
-//        user4 = proxy.enterMarket();
+        user4 = proxy.enterMarket();
         user1 = proxy.login(user1, member1Name, member1Password);
         user2 = proxy.login(user2, member2Name, member2Password);
         user3 = proxy.login(user3, member3Name, member3Password);
+    }
+
+    private void logOutMembers2()throws Exception{
+        proxy.memberLogOut(member1Name);
+        proxy.memberLogOut(member2Name);
+        proxy.memberLogOut(member3Name);
+        proxy.memberLogOut(member4Name);
+    }
+    private void initSystemServiceAndLoadDataAndLogIn2() throws Exception {
+        proxy= new ProxyBridge(new RealBridge());
+        proxy.loadData();
+        user1 = proxy.enterMarket();
+        user2 = proxy.enterMarket();
+        user3 = proxy.enterMarket();
+        user4 = proxy.enterMarket();
+        user1 = proxy.login(user1, member1Name, member1Password);
+        user2 = proxy.login(user2, member2Name, member2Password);
+        user3 = proxy.login(user3, member3Name, member3Password);
+        member4Name = proxy.login(user4,member4Name,member4Password);
     }
 
 }

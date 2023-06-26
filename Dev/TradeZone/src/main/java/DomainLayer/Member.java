@@ -430,9 +430,10 @@ public class Member extends User{
                 this.isOnline = member.isOnline;
                 this.roles = new ConcurrentHashMap<>();
                 this.loadRoles();
-                this.cart = member.getCart();
-                //todo: dont forgot to fix this
-                        //new Cart(member);
+                //this.cart = member.getCart();
+                //new Cart(member);
+                this.cart = new Cart(member);
+                this.cart.setCartId(member.getCart().getCartId());
                 this.cart.setLoaded(false);
                 this.cart.setMemberCart(this);
                 this.isLoaded = true;

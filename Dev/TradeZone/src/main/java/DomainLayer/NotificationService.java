@@ -12,6 +12,7 @@ import DataAccessLayer.DALService;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.transaction.Transactional;
 import java.io.IOException;
 
 enum  NotificationType{
@@ -53,30 +54,30 @@ public class NotificationService {
             if(type_memberList.containsKey(notificationType)){
                 type_memberList.get(notificationType).add(member);
                 storeRulesNotificator.put(storeName,type_memberList);
-//                if (Market.dbFlag)
-//                    DALService.rolerNotificatorRepository.save(new RolerNotificator(new StoreRules(storeName,notificationType),member.getUserName()));
+                if (Market.dbFlag)
+                    DALService.rolerNotificatorRepository.save(new RolerNotificator(new StoreRules(storeName,notificationType),member.getUserName()));
             }
             else{
                 LinkedList<Member> members = new LinkedList<>();
                 members.add(member);
                 type_memberList.put(notificationType,members);
                 storeRulesNotificator.put(storeName,type_memberList);
-//                if (Market.dbFlag) {
-//                    StoreRules storeRules = new StoreRules(storeName, notificationType);
-//                    DALService.storeRulesRepository.save(storeRules);
-//                    DALService.rolerNotificatorRepository.save(new RolerNotificator(storeRules,member.getUserName()));
-//                }
+                if (Market.dbFlag) {
+                    StoreRules storeRules = new StoreRules(storeName, notificationType);
+                    DALService.storeRulesRepository.save(storeRules);
+                    DALService.rolerNotificatorRepository.save(new RolerNotificator(storeRules,member.getUserName()));
+                }
             }
         }else{
             LinkedList<Member> members = new LinkedList<>();
             members.add(member);
             type_memberList.put(notificationType,members);
             storeRulesNotificator.put(storeName,type_memberList);
-//            if (Market.dbFlag) {
-//                StoreRules storeRules = new StoreRules(storeName, notificationType);
-//                DALService.storeRulesRepository.save(storeRules);
-//                DALService.rolerNotificatorRepository.save(new RolerNotificator(storeRules,member.getUserName()));
-//            }
+            if (Market.dbFlag) {
+                StoreRules storeRules = new StoreRules(storeName, notificationType);
+                DALService.storeRulesRepository.save(storeRules);
+                DALService.rolerNotificatorRepository.save(new RolerNotificator(storeRules,member.getUserName()));
+            }
         }
     }
 
@@ -156,6 +157,11 @@ public class NotificationService {
     public void unsubscribeMember(String memberUserName) throws Exception {
         loadMemberNotificator();
         memberNotificator.remove(memberUserName);
+        if (Market.dbFlag) {
+            List<Integer> ids = DALService.memberNotificatorRepository.findIdsByMemberName(memberUserName);
+            for (int id : ids)
+                DALService.memberNotificatorRepository.deleteById(id);
+        }
     }
 
     public void loadNotification() throws Exception {
@@ -193,6 +199,14 @@ public class NotificationService {
             type_member_list.put(storeRule.getNotificationType(),members);
             storeRulesNotificator.put(storeRule.getStoreName(),type_member_list);
         }
+    }
+
+    public ConcurrentHashMap<String, ConcurrentHashMap<NotificationType, LinkedList<Member>>> getStoreRulesNotificator() {
+        return storeRulesNotificator;
+    }
+
+    public ConcurrentHashMap<String, ConcurrentHashMap<NotificationType, Member>> getMemberNotificator() {
+        return memberNotificator;
     }
 
 

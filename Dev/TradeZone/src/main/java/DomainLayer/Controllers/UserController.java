@@ -310,9 +310,12 @@ public class UserController {
     public boolean isSystemManager(String managerName) throws Exception {
         assertStringIsNotNullOrBlank(managerName);
         managerName = managerName.strip().toLowerCase();
-        return MemberMapper.getInstance().checkIsSystemManager(managerName);
-        //MemberMapper.getInstance().getSystemManager(managerName);
-        //return systemManagers.containsKey(managerName);
+        if (!systemManagers.containsKey(managerName)){
+            SystemManager systemManager = MemberMapper.getInstance().getSystemManager(managerName);
+            if (systemManager == null) return false;
+            systemManagers.put(managerName,systemManager);
+        }
+        return systemManagers.containsKey(managerName);
     }
 
     public void assertIsMember(String memberUserName) throws Exception {
@@ -479,13 +482,16 @@ public class UserController {
     }
 
     public Set<String> getAllSystemManagers(String managerName) throws Exception {
+        Map<String,SystemManager> systemManagers = MemberMapper.getInstance().getSystemManagers();
+        for (String name: systemManagers.keySet()){
+            this.systemManagers.putIfAbsent(name,systemManagers.get(name));
+        }
         assertIsSystemManager(managerName);
         assertIsMemberLoggedIn(managerName);
         return systemManagers.keySet();
     }
 
     public boolean removeMemberBySystemManager(String managerName, String memberName) throws Exception {
-        //todo: remove from data base
         memberName = memberName.toLowerCase();
         SystemManager systemManager = getSystemManager(managerName);
         assertIsMemberLoggedIn(managerName);
@@ -494,6 +500,7 @@ public class UserController {
         Member member = getMember(memberName);
         member.assertHaveNoRule();
         member.removeCart();
+        NotificationService.getInstance().unsubscribeMember(memberName);
         members.remove(memberName);
         membersNamesConcurrentSet.remove(memberName);
         MemberMapper.getInstance().removeMember(memberName);
@@ -501,7 +508,6 @@ public class UserController {
             loggedInMembers.remove(memberName);
             MemberMapper.getInstance().removeOnlineMember(memberName);
         }
-        NotificationService.getInstance().unsubscribeMember(memberName);
         return true;
     }
 

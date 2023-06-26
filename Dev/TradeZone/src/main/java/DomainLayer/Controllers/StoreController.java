@@ -169,6 +169,7 @@ public class StoreController {
         if(!stores.containsKey(storeName)){
             Store store = StoreMapper.getInstance().getStore(storeName);
             if (store == null) return false;
+            storesNamesConcurrentSet.add(storeName);
             stores.put(storeName,store);
             return true;
         }

@@ -87,4 +87,20 @@ public class CategoryDiscountPolicy extends DiscountPolicy{
         return ret;
 
     }
+
+    public BagConstraint getBagConstraint() {
+        return bagConstraint;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public void setBagConstraint(BagConstraint bagConstraint) {
+        this.bagConstraint = bagConstraint;
+    }
 }
