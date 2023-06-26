@@ -10,3 +10,30 @@ fail in login: userName alaa does not exists!
 יוני 26, 2023 6:09:22 אחה״צ DomainLayer.LoggerManager sendErrorLog
 WARNING: 
 fail in creating store: store name is null or empty
+יוני 26, 2023 7:18:16 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in creating store: store name is null or empty
+יוני 26, 2023 7:42:53 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: userName aaaa does not exists!
+יוני 26, 2023 9:07:23 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: org.hibernate.TransientPropertyValueException: object references an unsaved transient instance - save the transient instance before flushing : DomainLayer.RolerNotificator.storeRules -> DomainLayer.StoreRules; nested exception is java.lang.IllegalStateException: org.hibernate.TransientPropertyValueException: object references an unsaved transient instance - save the transient instance before flushing : DomainLayer.RolerNotificator.storeRules -> DomainLayer.StoreRules
+יוני 26, 2023 9:11:56 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: org.hibernate.TransientPropertyValueException: object references an unsaved transient instance - save the transient instance before flushing : DomainLayer.RolerNotificator.storeRules -> DomainLayer.StoreRules; nested exception is java.lang.IllegalStateException: org.hibernate.TransientPropertyValueException: object references an unsaved transient instance - save the transient instance before flushing : DomainLayer.RolerNotificator.storeRules -> DomainLayer.StoreRules
+יוני 26, 2023 9:24:00 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: org.hibernate.TransientPropertyValueException: object references an unsaved transient instance - save the transient instance before flushing : DomainLayer.RolerNotificator.storeRules -> DomainLayer.StoreRules; nested exception is java.lang.IllegalStateException: org.hibernate.TransientPropertyValueException: object references an unsaved transient instance - save the transient instance before flushing : DomainLayer.RolerNotificator.storeRules -> DomainLayer.StoreRules
+יוני 26, 2023 9:24:36 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: password must have at least 8 characters, at least one digit and one char
+יוני 26, 2023 9:24:40 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: password must have at least 8 characters, at least one digit and one char
+יוני 26, 2023 11:27:41 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: password must have at least 8 characters, at least one digit and one char
+יוני 26, 2023 11:27:44 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: password must have at least 8 characters, at least one digit and one char

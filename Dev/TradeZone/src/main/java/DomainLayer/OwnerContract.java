@@ -104,7 +104,7 @@ public class OwnerContract {
 
         }
 
-        String msg = memberUserName + " is fill to the contract for " + newOwner;
+        String msg = memberUserName + " is fill to the contract for " + newOwner.userName;
         NotificationService.getInstance().notifyMember(triggerOwnerName,msg,NotificationType.decisionForContract);
         return true;
     }

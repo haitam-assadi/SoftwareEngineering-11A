@@ -1559,16 +1559,14 @@ public class Store {
             throw new Exception("member "+ newOwnerUserName +" does not have ownership contract for store "+getStoreName());
         loadContracts();
         OwnerContract ownerContract = newOwnersContracts.get(newOwnerUserName);
-        System.out.println("asdnklasmdlasd");
         ownerContract.fillOwnerContract(memberUserName,decisions);
-        System.out.println("asdnklasmdlasd");
         if (ownerContract.getContractIsDone()){
             newOwnersContracts.remove(newOwnerUserName);
             alreadyDoneContracts.add(ownerContract);
         }
 
-        String msg = memberUserName + " is fill to the contract for " + newOwnerUserName;
-        NotificationService.getInstance().notifyMember(ownerContract.getTriggerOwnerName(),msg,NotificationType.decisionForContract);
+//        String msg = memberUserName + " is fill to the contract for " + newOwnerUserName;
+//        NotificationService.getInstance().notifyMember(ownerContract.getTriggerOwnerName(),msg,NotificationType.decisionForContract);
         DALService.saveContract(this,ownerContract);
         return true;
     }

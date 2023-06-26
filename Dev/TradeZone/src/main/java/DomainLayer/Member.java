@@ -329,7 +329,7 @@ public class Member extends User{
     public void subscribeOwnerForNotifications(String storeName) throws Exception {
         NotificationService.getInstance().subscribe(storeName,NotificationType.storeClosed,this);
         NotificationService.getInstance().subscribe(storeName,NotificationType.productBought,this);
-        NotificationService.getInstance().subscribe(storeName,NotificationType.RemovedFromOwningStore,this);
+        //NotificationService.getInstance().subscribe(storeName,NotificationType.RemovedFromOwningStore,this);
         NotificationService.getInstance().subscribe(storeName,NotificationType.storeOpenedAfterClose,this);
         NotificationService.getInstance().subscribe(storeName,NotificationType.storeClosedBySystemManager,this);
 
@@ -340,10 +340,10 @@ public class Member extends User{
         NotificationService.getInstance().subscribeMember(memberUserName,NotificationType.fillAppointContract,this);
         NotificationService.getInstance().subscribeMember(memberUserName,NotificationType.ownerDone,this);
         NotificationService.getInstance().subscribeMember(memberUserName,NotificationType.RemovedFromOwningStore,this);
-        NotificationService.getInstance().subscribeMember(memberUserName,NotificationType.storeOpenedAfterClose,this);
-        NotificationService.getInstance().subscribeMember(memberUserName,NotificationType.storeClosedBySystemManager,this);
-        NotificationService.getInstance().subscribeMember(memberUserName,NotificationType.storeClosed,this);
-        NotificationService.getInstance().subscribeMember(memberUserName,NotificationType.productBought,this);
+        //NotificationService.getInstance().subscribeMember(memberUserName,NotificationType.storeOpenedAfterClose,this);
+        //NotificationService.getInstance().subscribeMember(memberUserName,NotificationType.storeClosedBySystemManager,this);
+        //NotificationService.getInstance().subscribeMember(memberUserName,NotificationType.storeClosed,this);
+        //NotificationService.getInstance().subscribeMember(memberUserName,NotificationType.productBought,this);
 
     }
 

@@ -73,6 +73,10 @@ public class StoreOwner extends AbstractStoreOwner implements Serializable {
                 storeManager.removeMemberAsStoreManager(store,this);
             appointedManagers.remove(storeName);
         }
+        String msg = myBoss.getUserName() + " remove your appointed to owner for store " + storeName;
+        NotificationService.getInstance().notifyMember(getUserName(),msg,NotificationType.RemovedFromOwningStore);
+        NotificationService.getInstance().unsubscribeMember(getUserName());
+        NotificationService.getInstance().unsubscribeMemberInStore(getUserName(),storeName);
         if (Market.dbFlag)
             DALService.storesOwnersRepository.deleteById(new RolesId(getUserName(),storeName));
         return true;
