@@ -1,0 +1,12 @@
+יוני 26, 2023 5:20:11 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: userName baraa does not exists!
+יוני 26, 2023 5:20:41 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: incorrect password!
+יוני 26, 2023 5:22:11 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: userName alaa does not exists!
+יוני 26, 2023 6:09:22 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in creating store: store name is null or empty

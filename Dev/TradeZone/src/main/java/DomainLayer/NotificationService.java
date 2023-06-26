@@ -47,7 +47,7 @@ public class NotificationService {
         return instance;
     }
     public void subscribe(String storeName,NotificationType notificationType,Member member) throws Exception {
-        loadStoreRulesNotificator();
+        loadNotification();
         ConcurrentHashMap<NotificationType, LinkedList<Member>> type_memberList = new ConcurrentHashMap<>();
         if(storeRulesNotificator.containsKey(storeName)){
             type_memberList = storeRulesNotificator.get(storeName);
@@ -82,7 +82,7 @@ public class NotificationService {
     }
 
     public void subscribeMember(String newMemberUserName, NotificationType notificationType, Member member) throws Exception {
-        loadMemberNotificator();
+        loadNotification();
         ConcurrentHashMap<NotificationType,Member> type_member = new ConcurrentHashMap<>();
         if(memberNotificator.containsKey(newMemberUserName)){
             type_member = memberNotificator.get(newMemberUserName);
@@ -101,7 +101,7 @@ public class NotificationService {
     }
 
     public void notify(String storeName,String msg,NotificationType notificationType) throws Exception {
-        loadStoreRulesNotificator();
+        loadNotification();
         ConcurrentHashMap<NotificationType, LinkedList<Member>> type_memberList = storeRulesNotificator.get(storeName);
         if(type_memberList.containsKey(notificationType)) {
             LinkedList<Member> members = type_memberList.get(notificationType);
@@ -112,7 +112,7 @@ public class NotificationService {
     }
 
     public void notifyMember(String userName,String msg,NotificationType notificationType) throws Exception{
-        loadMemberNotificator();
+        loadNotification();
         ConcurrentHashMap<NotificationType, Member> type_member = memberNotificator.get(userName);
         if(type_member.containsKey(notificationType)) {
             type_member.get(notificationType).send(msg);
@@ -149,13 +149,13 @@ public class NotificationService {
     }
 
     public void removeAllRulers(String storeName) throws Exception {
-        loadStoreRulesNotificator();
+        loadNotification();
         storeRulesNotificator.remove(storeName);
 
     }
 
     public void unsubscribeMember(String memberUserName) throws Exception {
-        loadMemberNotificator();
+        loadNotification();
         memberNotificator.remove(memberUserName);
         if (Market.dbFlag) {
             List<Integer> ids = DALService.memberNotificatorRepository.findIdsByMemberName(memberUserName);

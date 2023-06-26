@@ -1529,8 +1529,8 @@ public class Store {
 
         if(storeOwnersDecisions.keySet().size() == 0 ){
             triggerOwner.appointOtherMemberAsStoreOwner(this,newOwner);
-            String msg = "you appointed as store owner for store : " + storeName;
-            NotificationService.getInstance().notify(storeName,msg,NotificationType.ownerDone);
+            String msg = " "+ triggerOwner.getUserName() +" appoint you as store owner for store : " + storeName;
+            NotificationService.getInstance().notifyMember(newOwner.userName,msg,NotificationType.ownerDone);
             return true;
         }
 
@@ -1538,8 +1538,8 @@ public class Store {
         newOwnersContracts.put(newOwner.getUserName(),ownerContract);
 
         for (String storeOwnerNameToDes: storeOwnersDecisions.keySet()){
-            String msg = triggerOwner.getUserName() + " want to appoint " + newOwner.getUserName() + " for store "+ storeName +" ,please confirm the appointment";
-            NotificationService.getInstance().notify(storeName,msg,NotificationType.fillAppointContract);
+            String msg = " " + triggerOwner.getUserName() + " want to appoint " + newOwner.getUserName() + " for store "+ storeName +" ,please confirm the appointment";
+            NotificationService.getInstance().notifyMember(storeOwnerNameToDes,msg,NotificationType.fillAppointContract);
         }
         DALService.saveContract(this,ownerContract);
         return true;
