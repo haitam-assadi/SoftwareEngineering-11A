@@ -601,9 +601,9 @@ public class Market {
 
     public void initMarketParsing(){
         HashMap memberName_guesName = new HashMap();
-        String strJson = getJSONFromFile("Dev/TradeZone/initFiles/init_2.json");
+        String strJson = getJSONFromFile("Dev/TradeZone/initFiles/init_1.json");
         if(strJson.equals("")){
-            strJson = getJSONFromFile("initFiles/init_2.json");
+            strJson = getJSONFromFile("initFiles/init_1.json");
         }
         ObjectMapper objectMapper = new ObjectMapper();
         try{

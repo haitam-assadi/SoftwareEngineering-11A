@@ -45,6 +45,10 @@ public class NotificationService {
         isStoreRulesNotificatorLoaded = false;
     }
 
+    public static NotificationService initNotificationService(){
+        instance = new NotificationService();
+        return instance;
+    }
     public static NotificationService getInstance(){
         if(instance == null){
             instance = new NotificationService();
@@ -224,7 +228,7 @@ public class NotificationService {
             if (!storeRulesNotificator.containsKey(storeRule.getStoreName())){
                 storeRulesNotificator.put(storeRule.getStoreName(),new ConcurrentHashMap<>());
             }
-            ConcurrentHashMap<NotificationType, LinkedList<Member>> type_member_list =storeRulesNotificator.get(storeRule.getStoreName());
+
             LinkedList<Member> members = new LinkedList<>();
             for (RolerNotificator rolerNotificator: rolerNotificators){
                 if (rolerNotificator.getStoreRules().id == storeRule.id){

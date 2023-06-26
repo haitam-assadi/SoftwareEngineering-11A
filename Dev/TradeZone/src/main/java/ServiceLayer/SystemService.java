@@ -1,6 +1,7 @@
 package ServiceLayer;
 
 import DTO.*;
+import DataAccessLayer.Controller.DealMapper;
 import DataAccessLayer.Controller.MemberMapper;
 import DataAccessLayer.Controller.StoreMapper;
 import DomainLayer.*;
@@ -38,6 +39,8 @@ public class SystemService {
         market.setShipmentService(shipmentService);
         MemberMapper.initMapper();
         StoreMapper.initMapper();
+        DealMapper.initMapper();
+        NotificationService.initNotificationService();
     }
 
     private JsonNode connectToExternalSystems(){
