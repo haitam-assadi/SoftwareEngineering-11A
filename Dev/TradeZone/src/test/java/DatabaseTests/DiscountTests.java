@@ -117,26 +117,26 @@ public class DiscountTests {
             Assertions.assertEquals(proxy.getCartPriceBeforeDiscount(member1Name),3000.0);
             Assertions.assertEquals(proxy.getCartPriceAfterDiscount(member1Name),3000.0-(3000.0*0.2));
 
-//            Assertions.assertTrue(proxy.purchaseCartByCreditCard(member1Name, "123456789", "7", "2024", user2,
-//                    "123", "123456789", user2, "address", "city", "country", "100200"));
-//
-//            logOutMembers();
-//            initSystemServiceAndLoadDataAndLogIn();
-//
-//            List<DealDTO> dealDTOStore = proxy.getStoreDeals(member1Name,store1Name);
-//            DealDTO dealDTO = dealDTOStore.get(0);
-//            Assertions.assertEquals(dealDTO.productFinalPriceWithDiscount.get(product1_store1),3000.0-(3000.0*0.2));
-//            Assertions.assertEquals(dealDTO.totalPrice,3000.0-(3000.0*0.2));
-//            Assertions.assertEquals(dealDTO.products_prices.get(product1_store1),3000.0-(3000.0*0.2));
-//            Assertions.assertEquals(dealDTO.products_amount.get(product1_store1),100);
-//            Assertions.assertEquals(dealDTO.productPriceMultipleAmount.get(product1_store1),100*(3000.0-(3000.0*0.2)));
-//            Assertions.assertEquals(dealDTO.storeName,store1Name);
-//            Assertions.assertEquals(dealDTO.username,member1Name);
-//
-//            Integer bagConstraint = proxy.createMaxProductAmountAllContentBagConstraint(member1Name,store1Name,product1_store1,200,true);
-//
-//
-//            Assertions.assertEquals(proxy.createProductDiscountPolicyWithConstraint(member1Name,store1Name,product1_store1,20,bagConstraint,true),1);
+            Assertions.assertTrue(proxy.purchaseCartByCreditCard(member1Name, "123456789", "7", "2024", user2,
+                    "123", "123456789", user2, "address", "city", "country", "100200"));
+
+            logOutMembers();
+            initSystemServiceAndLoadDataAndLogIn();
+
+            List<DealDTO> dealDTOStore = proxy.getStoreDeals(member1Name,store1Name);
+            DealDTO dealDTO = dealDTOStore.get(0);
+            Assertions.assertEquals(dealDTO.productFinalPriceWithDiscount.get(product1_store1),3000.0-(3000.0*0.2));
+            Assertions.assertEquals(dealDTO.totalPrice,3000.0-(3000.0*0.2));
+            Assertions.assertEquals(dealDTO.products_prices.get(product1_store1),3000.0);
+            Assertions.assertEquals(dealDTO.products_amount.get(product1_store1),1);
+            Assertions.assertEquals(dealDTO.productPriceMultipleAmount.get(product1_store1),1*(3000.0));
+            Assertions.assertEquals(dealDTO.storeName,store1Name);
+            Assertions.assertEquals(dealDTO.username,member1Name);
+
+            Integer bagConstraint = proxy.createMaxProductAmountAllContentBagConstraint(member1Name,store1Name,product1_store1,200,true);
+
+
+            Assertions.assertEquals(proxy.createProductDiscountPolicyWithConstraint(member1Name,store1Name,product1_store1,20,bagConstraint,true),1);
 
 
 
