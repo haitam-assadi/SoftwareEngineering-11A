@@ -168,7 +168,7 @@ public class Cart {
                 DALService.saveDeal(deal,memberCart,bag.getStoreBag());
             if (Market.dbFlag && !isPersistence)
                 DALService.saveDealForStore(deal,bag.getStoreBag());
-            DealMapper.getInstance().insertDeal(deal);
+            if (Market.dbFlag) DealMapper.getInstance().insertDeal(deal);
         }
         bags = new ConcurrentHashMap<>();
         if (isPersistence && Market.dbFlag){
