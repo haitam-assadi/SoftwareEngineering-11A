@@ -87,4 +87,8 @@ public class CategoryDiscountPolicy extends DiscountPolicy{
         return ret;
 
     }
+
+    public BagConstraint getBagConstraint() {
+        return bagConstraint;
+    }
 }

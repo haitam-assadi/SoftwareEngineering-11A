@@ -9,6 +9,7 @@ import DomainLayer.*;
 import DomainLayer.BagConstraints.AllContentBagConstraint;
 import DomainLayer.BagConstraints.BagConstraint;
 import DomainLayer.BagConstraints.PositiveBagConstraint;
+import DomainLayer.DiscountPolicies.DiscountPolicy;
 import DomainLayer.DiscountPolicies.ProductDiscountPolicy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -200,10 +201,10 @@ public class DALService {
     }
 
     @Transactional
-    public static void saveDiscountPolicyWithPositiveConstraint(PositiveBagConstraint positiveBagConstraint, ProductDiscountPolicy productDiscountPolicy) {
+    public static void saveDiscountPolicyWithPositiveConstraint(PositiveBagConstraint positiveBagConstraint, DiscountPolicy discountPolicy) {
         positiveBagConstraint.setBagConstrainsId(new BagConstrainsId(-1,""));
         DALService.bagConstraintRepository.save(positiveBagConstraint);
-        DALService.productDiscountPolicyRepository.save(productDiscountPolicy);
+        DALService.discountPolicyRepository.save(discountPolicy);
     }
 
 

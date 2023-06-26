@@ -620,7 +620,7 @@ public class Store {
         createdDiscountPolicies.put(currentDisPolIdCounter, categoryDiscountPolicy);
         categoryDiscountPolicy.setDiscountPolicyId(new DiscountPolicyId(currentDisPolIdCounter,storeName));
         if (Market.dbFlag)
-            DALService.categoryDiscountPolicyRepository.save(categoryDiscountPolicy);
+            DALService.saveDiscountPolicyWithPositiveConstraint((PositiveBagConstraint) categoryDiscountPolicy.getBagConstraint(),categoryDiscountPolicy);
         this.discountPoliciesIdCounter++;
 
         if(addAsStoreDiscountPolicy) {
@@ -675,7 +675,7 @@ public class Store {
         createdDiscountPolicies.put(currentDisPolIdCounter, allStoreDiscountPolicy);
         allStoreDiscountPolicy.setDiscountPolicyId(new DiscountPolicyId(currentDisPolIdCounter,storeName));
         if (Market.dbFlag)
-            DALService.allStoreDiscountPolicyRepository.save(allStoreDiscountPolicy);
+            DALService.saveDiscountPolicyWithPositiveConstraint((PositiveBagConstraint) allStoreDiscountPolicy.getBagConstraint(),allStoreDiscountPolicy);
         this.discountPoliciesIdCounter++;
 
         if(addAsStoreDiscountPolicy) {
@@ -804,7 +804,7 @@ public class Store {
         createdDiscountPolicies.put(currentDisPolIdCounter, maxValDiscountPolicy);
         maxValDiscountPolicy.setDiscountPolicyId(new DiscountPolicyId(currentDisPolIdCounter,storeName));
         if (Market.dbFlag)
-            DALService.maxValDiscountPolicyRepository.save(maxValDiscountPolicy);
+            DALService.saveDiscountPolicyWithPositiveConstraint((PositiveBagConstraint) maxValDiscountPolicy.getBagConstraint(),maxValDiscountPolicy);
         this.discountPoliciesIdCounter++;
         if(addAsStoreDiscountPolicy) {
             loadStoreDiscountPolicies();
