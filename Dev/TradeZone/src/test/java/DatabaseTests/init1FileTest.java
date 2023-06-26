@@ -291,9 +291,9 @@ public class init1FileTest {
             Assertions.assertTrue(proxy.getAllOnlineMembers().contains("u3"));
 
             initSystemServiceAndLoadDataAndLogIn();
-            //Assertions.assertTrue(proxy.getPendingContractsForOwner("u1","s1").size()==1);
+            Assertions.assertTrue(proxy.getPendingContractsForOwner("u1","s1").size()==1);
             initSystemServiceAndLoadDataAndLogIn();
-            proxy.removeOwnerByHisAppointer("u2","s1","u3");
+            Assertions.assertThrows(Exception.class, ()-> proxy.removeOwnerByHisAppointer("u2","s1","u3"));
 
             //appointOtherMemberAsStoreOwner
             //removeOwnerByHisAppointer
