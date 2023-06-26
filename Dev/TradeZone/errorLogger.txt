@@ -1,0 +1,36 @@
+יוני 26, 2023 6:59:00 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: userName user1 does not exists!
+יוני 26, 2023 8:12:48 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: store1 payment policy: bag must contain maximum 10 product1_store1 product
+יוני 26, 2023 8:15:40 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: store1 payment policy: bag must contain maximum 10 product1_store1 product
+יוני 26, 2023 8:31:19 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: store1 payment policy: bag must contain maximum 10 product1_store1 product
+יוני 26, 2023 8:33:11 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in changing product amount in cart: bag does not contain product1_store1 product
+יוני 26, 2023 8:41:50 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: store1 payment policy: bag must contain maximum 10 product1_store1 product
+יוני 26, 2023 8:42:33 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: store1 payment policy: bag must contain minimum 5 product1_store1 product
+יוני 26, 2023 8:45:29 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: store1 payment policy: (bag must contain maximum 10 product1_store1 product AND bag must contain minimum 5 product1_store1 product)
+יוני 26, 2023 8:49:12 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: store1 payment policy: bag must contain maximum 10 product1_store1 product
+יוני 26, 2023 8:49:56 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: store1 payment policy: bag must contain minimum 5 product1_store1 product
+יוני 26, 2023 8:52:33 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: Bag does not follow store: store1 payment policy: (bag must contain maximum 10 product1_store1 product AND bag must contain minimum 5 product1_store1 product)
+יוני 26, 2023 8:53:04 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in purchasing: transaction has failed

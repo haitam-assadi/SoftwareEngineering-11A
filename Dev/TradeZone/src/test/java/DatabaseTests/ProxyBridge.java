@@ -522,6 +522,13 @@ public class ProxyBridge implements Bridge {
         return null;
     }
 
+    public List<String> getAllBagConstraints(String memberUserName, String storeName) throws Exception{
+        if(realBridge!=null){
+            return realBridge.getAllBagConstraints(memberUserName,storeName);
+        }
+        return null;
+    }
+
     @Override
     public Integer createProductDiscountPolicy(String memberUserName, String storeName, String productName, int discountPercentage, boolean addAsStoreDiscountPolicy) throws Exception {
         if(realBridge!=null){
