@@ -41,7 +41,7 @@ public class Deal {
     private Map<String, Double> productFinalPriceWithDiscount;
     private double totalPrice;
 
-
+    public Deal(){}
     public Deal(String storeName, String userName, String date, Map<String, Double> products_prices,
                 Map<String, Integer> products_amount, Map<String, Double> productPriceMultipleAmount, Map<String, Double> productFinalPriceWithDiscount, double totalPrice){
         this.storeName = storeName;

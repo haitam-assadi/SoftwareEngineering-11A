@@ -1,5 +1,6 @@
 package DatabaseTests;
 
+import DTO.MemberDTO;
 import DTO.OwnerContractDTO;
 import DTO.ProductDTO;
 import DTO.StoreDTO;
@@ -337,11 +338,11 @@ public class ProxyBridge implements Bridge {
     }
 
     @Override
-    public Map<String, List<String>> getProductInfoFromMarketByKeyword(String userName, String keyword) throws Exception {
+    public List<ProductDTO> getProductInfoFromMarketByKeyword(String userName, String keyword) throws Exception {
         if(realBridge!=null){
             return realBridge.getProductInfoFromMarketByKeyword(userName, keyword);
         }
-        return new HashMap<>();
+        return new ArrayList<>();
     }
 
     @Override
@@ -672,6 +673,31 @@ public class ProxyBridge implements Bridge {
         return 0.0;
     }
 
+    @Override
+    public MemberDTO getMemberInfo(String callerMemberName, String returnedMemberName) throws Exception {
+        if(realBridge!=null){
+            return realBridge.getMemberInfo(callerMemberName, returnedMemberName);
+        }
+        return null;
+    }
+
+
+    @Override
+    public  Boolean systemManagerCloseStore(String managerName, String storeName) throws Exception {
+        if(realBridge!=null){
+            return realBridge.systemManagerCloseStore(managerName, storeName);
+        }
+        return null;
+    }
+
+
+    @Override
+    public Map<String,List<StoreDTO>> myStores(String memberUserName) throws Exception {
+        if(realBridge!=null){
+            return realBridge.myStores(memberUserName);
+        }
+        return null;
+    }
 
 
     @Override
@@ -701,6 +727,14 @@ public class ProxyBridge implements Bridge {
     public ProductDTO getProductInfoFromStore(String userName, String storeName, String productName) throws Exception{
         if(realBridge!=null){
             return realBridge.getProductInfoFromStore(userName, storeName, productName);
+        }
+
+        return null;
+    }
+
+    public Integer getProductAmountInStore(String userName, String storeName, String productName) throws Exception{
+        if(realBridge!=null){
+            return realBridge.getProductAmountInStore(userName, storeName, productName);
         }
 
         return null;

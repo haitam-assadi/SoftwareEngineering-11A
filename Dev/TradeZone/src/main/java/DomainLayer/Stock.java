@@ -113,12 +113,14 @@ public class Stock {
 
 
     public synchronized boolean removeProductFromStock(String productName) throws Exception {
+        loadStock();
         assertContainsProduct(productName);
         productName=productName.strip().toLowerCase();
         Product product = stockProducts.get(productName).keys().nextElement();
         product.removeFromAllCategories();
         stockProducts.remove(productName);
         productAmount.remove(product);
+
         StoreMapper.getInstance().removeProduct(product, this);
         return true;
     }

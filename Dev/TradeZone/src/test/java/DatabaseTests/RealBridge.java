@@ -15,7 +15,7 @@ import java.util.concurrent.ConcurrentHashMap;
 // string  null, int -1, boolean false, LinkedList<?> empty
 
 public class RealBridge implements Bridge {
-    private SystemService systemService;
+    public SystemService systemService;
 
     public RealBridge(){
         systemService = new SystemService("externalSystemsFiles/externalSystemsData.json");
@@ -375,6 +375,34 @@ public class RealBridge implements Bridge {
     }
 
     @Override
+    public MemberDTO getMemberInfo(String callerMemberName, String returnedMemberName) throws Exception {
+        ResponseT<MemberDTO> response = systemService.getMemberInfo(callerMemberName, returnedMemberName);
+        if(response.ErrorOccurred){
+            throw new Exception(response.errorMessage);
+        }
+        return response.getValue();
+    }
+
+    @Override
+    public  Boolean systemManagerCloseStore(String managerName, String storeName) throws Exception {
+        ResponseT<Boolean> response = systemService.systemManagerCloseStore(managerName, storeName);
+        if(response.ErrorOccurred){
+            throw new Exception(response.errorMessage);
+        }
+        return response.getValue();
+    }
+
+
+    @Override
+    public Map<String,List<StoreDTO>> myStores(String memberUserName) throws Exception {
+        ResponseT<Map<String,List<StoreDTO>>> response = systemService.myStores(memberUserName);
+        if(response.ErrorOccurred){
+            throw new Exception(response.errorMessage);
+        }
+        return response.getValue();
+    }
+
+    @Override
     public List<ProductDTO> getProductInfoFromMarketByCategory(String userName, String categoryName) throws Exception { // map <storeName, List<productName>>
         ResponseT<List<ProductDTO>> response = systemService.getProductInfoFromMarketByCategory(userName, categoryName);
         if(response.ErrorOccurred){
@@ -385,24 +413,12 @@ public class RealBridge implements Bridge {
     }
 
     @Override
-    public Map<String, List<String>> getProductInfoFromMarketByKeyword(String userName, String keyword) throws Exception { // map <storeName, List<productName>>
+    public List<ProductDTO> getProductInfoFromMarketByKeyword(String userName, String keyword) throws Exception { // map <storeName, List<productName>>
         ResponseT<List<ProductDTO>> response = systemService.getProductInfoFromMarketByKeyword(userName, keyword);
         if(response.ErrorOccurred){
             throw new Exception(response.errorMessage);
         }
-        Map<String, List<String>> ret = new HashMap<>();
-        for(ProductDTO p : response.getValue()){
-            String storeName = p.storeName;
-            if(ret.containsKey(storeName)){
-                ret.get(storeName).add(p.name);
-            }
-            else{
-                List<String> storeProducts = new LinkedList<>();
-                storeProducts.add(p.name);
-                ret.put(storeName, storeProducts);
-            }
-        }
-        return ret;
+        return response.getValue();
     }
 
     @Override
@@ -910,6 +926,14 @@ public class RealBridge implements Bridge {
 
     public StoreDTO getStoreInfo(String userName, String storeName) throws Exception {
         ResponseT<StoreDTO> response = systemService.getStoreInfo(userName,storeName);
+        if (response.ErrorOccurred){
+            throw new Exception(response.errorMessage);
+        }
+        return response.getValue();
+    }
+
+    public Integer getProductAmountInStore(String userName, String storeName, String productName) throws Exception{
+        ResponseT<Integer> response = systemService.getProductAmountInStore(userName,storeName,productName);
         if (response.ErrorOccurred){
             throw new Exception(response.errorMessage);
         }

@@ -93,6 +93,7 @@ public class Member extends User{
         memberRolesFlag = new HashSet<>();
         pendingMessages = new HashSet<>();
         roles = new ConcurrentHashMap<>();
+        userDeals = new ArrayList<>();
         isLoaded = false;
     }
 

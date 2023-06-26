@@ -1,5 +1,6 @@
 package DatabaseTests;
 
+import DTO.MemberDTO;
 import DTO.OwnerContractDTO;
 import DTO.ProductDTO;
 import DTO.StoreDTO;
@@ -103,13 +104,16 @@ public interface Bridge {
 
     public List<ProductDTO> getProductInfoFromMarketByCategory(String userName, String categoryName) throws Exception; // map <storeName, List<productName>>
 
-    public Map<String, List<String>> getProductInfoFromMarketByKeyword(String userName, String keyword) throws Exception; // map <storeName, List<productName>>
+    public List<ProductDTO> getProductInfoFromMarketByKeyword(String userName, String keyword) throws Exception; // map <storeName, List<productName>>
 
     public Map<String, List<String>> filterByPrice(String userName, Map<String, List<String>> products, int minPrice, int maxPrice) throws Exception; // map <storeName, List<productName>>
 
     public Map<String, List<String>> filterByCategory(String userName, Map<String, List<String>> products, String categoryName) throws Exception; // map <storeName, List<productName>>
 
-
+    Integer getProductAmountInStore(String userName, String storeName, String productName) throws Exception;
+    MemberDTO getMemberInfo(String callerMemberName, String returnedMemberName) throws Exception;
+    Boolean systemManagerCloseStore(String managerName, String storeName) throws Exception;
+    Map<String,List<StoreDTO>> myStores(String memberUserName) throws Exception;
     // II.2.3 + II.2.4
     public boolean addToCart(String userName, String storeName, String productName, Integer amount) throws Exception;
 

@@ -1270,7 +1270,9 @@ public class Store {
 
     //this function is not required in v4 so don't look at it
     public boolean systemManagerCloseStore(String managerName) throws Exception {
-
+        loadStoreFounder();
+        loadStoreOwners();
+        loadStoreManagers();
         storeFounder.removeStore(storeName);
         for (StoreOwner storeOwner: storeOwners.values()){
             storeOwner.removeStore(storeName);

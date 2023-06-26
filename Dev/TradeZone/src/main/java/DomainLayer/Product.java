@@ -139,7 +139,7 @@ public class Product {
             if (product.isPresent()) {
                 this.name = product.get().name;
                 this.storeName = product.get().storeName;
-                this.price = product.get().getPrice();
+                this.price = product.get().price;
                 this.description = product.get().description;
                 this.productCategories = product.get().productCategories;
                 setProductCategories();

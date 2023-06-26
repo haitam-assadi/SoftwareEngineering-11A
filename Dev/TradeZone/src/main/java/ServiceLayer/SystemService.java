@@ -59,6 +59,10 @@ public class SystemService {
         }
     }
 
+    public String firstManagerInitializer() throws Exception {
+        return market.firstManagerInitializer();
+    }
+
     public ResponseT<String> initializeMarket(){
 
         try{
