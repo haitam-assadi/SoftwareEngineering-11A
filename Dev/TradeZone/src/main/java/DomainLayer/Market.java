@@ -601,9 +601,9 @@ public class Market {
 
     public void initMarketParsing(){
         HashMap memberName_guesName = new HashMap();
-        String strJson = getJSONFromFile("Dev/TradeZone/initFiles/init_1.json");
+        String strJson = getJSONFromFile("Dev/TradeZone/initFiles/init_2.json");
         if(strJson.equals("")){
-            strJson = getJSONFromFile("initFiles/init_1.json");
+            strJson = getJSONFromFile("initFiles/init_2.json");
         }
         ObjectMapper objectMapper = new ObjectMapper();
         try{
@@ -686,7 +686,11 @@ public class Market {
                             if(node.isArray()){
                                 String user_name = node.get(0).asText();
                                 String user_pass = node.get(1).asText();
-                                createSystemManager(user_name, user_pass);
+                                String guestName = enterMarket();
+                                register(guestName, user_name, user_pass);
+                                login(guestName, "systemmanager1", "systemmanager1Pass");
+                                AppointMemberAsSystemManager("systemmanager1",user_name);
+                                memberLogOut("systemmanager1");
                             }
                         }
                         break;

@@ -226,6 +226,11 @@ public class init1FileTest {
             proxy.fillOwnerContract("u2","s1","u3",true);
 
             initSystemServiceAndLoadDataAndLogIn();
+            Assertions.assertTrue(proxy.getAllOnlineMembers().contains("u1"));
+            Assertions.assertTrue(proxy.getAllOnlineMembers().contains("u2"));
+            Assertions.assertTrue(proxy.getAllOnlineMembers().contains("u3"));
+
+            initSystemServiceAndLoadDataAndLogIn();
 
             Assertions.assertTrue(proxy.getAlreadyDoneContracts("u1","s1").size()==1);
             Assertions.assertTrue(proxy.getAlreadyDoneContracts("u1","s1").get(0).triggerOwner.equals("u1"));
