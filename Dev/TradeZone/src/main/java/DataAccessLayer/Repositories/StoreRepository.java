@@ -1,5 +1,6 @@
 package DataAccessLayer.Repositories;
 
+import DomainLayer.Deal;
 import DomainLayer.Store;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -25,4 +26,7 @@ public interface StoreRepository extends JpaRepository<Store,String> {
 
     @Query(value = "SELECT new_owners_contracts_contract_id FROM new_owners_contracts WHERE store_store_name = ?",nativeQuery = true)
     public List<Integer> findNewOwnersContractsIdByStoreName(String storeName);
+
+    @Query(value = "SELECT store_deals_id FROM store_deals WHERE store_store_name = ?",nativeQuery = true)
+    public List<Long> findStoreDealsIdsByStoreName(String storeName);
 }

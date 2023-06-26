@@ -1,6 +1,7 @@
 package DatabaseTests;
 
 import DTO.MemberDTO;
+import DTO.DealDTO;
 import DTO.OwnerContractDTO;
 import DTO.ProductDTO;
 import DTO.StoreDTO;
@@ -150,9 +151,9 @@ public class ProxyBridge implements Bridge {
     }
 
     @Override
-    public int getProductAmount(String storeName, String s) throws Exception {
+    public int getProductAmount(String userName,String storeName, String s) throws Exception {
         if(realBridge!=null){
-            return realBridge.getProductAmount(storeName, s);
+            return realBridge.getProductAmount(userName,storeName, s);
         }
         return -1;
     }
@@ -755,5 +756,19 @@ public class ProxyBridge implements Bridge {
             return realBridge.getStoreInfo(userName, storeName);
         }
         return null;
+    }
+
+    public List<DealDTO> getStoreDeals(String memberUserName, String storeName) throws Exception {
+        if(realBridge!=null){
+            return realBridge.getStoreDeals(memberUserName, storeName);
+        }
+        return new ArrayList<>();
+    }
+
+    public List<DealDTO> getMemberDeals(String memberUserName, String otherMemberUserName) throws Exception {
+        if(realBridge!=null){
+            return realBridge.getMemberDeals(memberUserName, otherMemberUserName);
+        }
+        return new ArrayList<>();
     }
 }

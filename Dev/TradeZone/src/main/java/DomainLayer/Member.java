@@ -4,6 +4,7 @@ import DTO.DealDTO;
 import DTO.MemberDTO;
 import DTO.StoreDTO;
 import DataAccessLayer.CompositeKeys.RolesId;
+import DataAccessLayer.Controller.DealMapper;
 import DataAccessLayer.Controller.MemberMapper;
 import DataAccessLayer.Controller.StoreMapper;
 import DataAccessLayer.DALService;
@@ -51,6 +52,8 @@ public class Member extends User{
     @Transient
     private boolean isLoaded;
 
+    @Transient
+    private boolean isDealsLoaded;
 
 
     public void setSystemManager(SystemManager systemManager) throws Exception {
@@ -77,6 +80,7 @@ public class Member extends User{
         memberRolesFlag = new HashSet<>();
         liveMessages = new ArrayList<>();
         isLoaded = true;
+        isDealsLoaded = true;
     }
 
     public Member(){
@@ -88,6 +92,18 @@ public class Member extends User{
         loadMember();
     }
 
+    @Override
+    public void loadDeals() {
+        if (isDealsLoaded ||!Market.dbFlag) return;
+        List<Long> dealsIds = DALService.memberRepository.findMemberDealsIdsByUserName(userName);
+        List<Deal> deals = new LinkedList<>();
+        for (long id: dealsIds){
+            deals.add(DealMapper.getInstance().getDeal(id));
+        }
+        this.userDeals = deals;
+        isDealsLoaded = true;
+    }
+
     public Member(String userName){
         super.userName = userName;
         memberRolesFlag = new HashSet<>();
@@ -95,6 +111,7 @@ public class Member extends User{
         roles = new ConcurrentHashMap<>();
         userDeals = new ArrayList<>();
         isLoaded = false;
+        isDealsLoaded = false;
     }
 
 
@@ -402,6 +419,7 @@ public class Member extends User{
     public void loadMember() throws Exception {
         if (!isLoaded) {
             if (Market.dbFlag) {
+                loadDeals();
                 liveMessages = new LinkedList<>();
                 Member member = DALService.memberRepository.findById(userName).get();
                 member.setLoaded(true);
@@ -413,6 +431,7 @@ public class Member extends User{
                 this.roles = new ConcurrentHashMap<>();
                 this.loadRoles();
                 this.cart = member.getCart();
+                //todo: dont forgot to fix this
                         //new Cart(member);
                 this.cart.setLoaded(false);
                 this.cart.setMemberCart(this);

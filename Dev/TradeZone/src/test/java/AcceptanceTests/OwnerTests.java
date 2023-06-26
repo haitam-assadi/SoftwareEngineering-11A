@@ -336,8 +336,27 @@ public class OwnerTests {
             Assertions.assertTrue(proxy.fillOwnerContract(store_founder,storeName,member_name2,true));
             Assertions.assertTrue(proxy.getStoreOwnersNames(store_founder, storeName).contains(member_name1));
             Assertions.assertTrue(proxy.getStoreOwnersNames(store_founder, storeName).contains(member_name2));
-
             Assertions.assertThrows(Exception.class, () -> proxy.removeOwnerByHisAppointer(member_name3,storeName,member_name2));
+
+        }catch (Exception e){
+            Assertions.fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void remove_owner_that_i_not_owner_for_the_store_and_the_other_owners_success(){
+        try{
+            Assertions.assertTrue(proxy.appointOtherMemberAsStoreOwner(store_founder,storeName,member_name1));
+            Assertions.assertTrue(proxy.getMyCreatedContracts(store_founder,storeName).isEmpty());
+            Assertions.assertTrue(proxy.getStoreOwnersNames(store_founder, storeName).contains(member_name1));
+            Assertions.assertTrue(proxy.appointOtherMemberAsStoreOwner(member_name1,storeName,member_name2));
+            Assertions.assertTrue(proxy.fillOwnerContract(store_founder,storeName,member_name2,true));
+            Assertions.assertTrue(proxy.getStoreOwnersNames(store_founder, storeName).contains(member_name1));
+            Assertions.assertTrue(proxy.getStoreOwnersNames(store_founder, storeName).contains(member_name2));
+
+            Assertions.assertTrue(proxy.removeOwnerByHisAppointer(store_founder,storeName,member_name1));
+            Assertions.assertFalse(proxy.getStoreOwnersNames(store_founder, storeName).contains(member_name1));
+            Assertions.assertFalse(proxy.getStoreOwnersNames(store_founder, storeName).contains(member_name2));
 
         }catch (Exception e){
             Assertions.fail(e.getMessage());

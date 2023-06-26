@@ -62,4 +62,8 @@ public class Deal {
     public String getDealUserName(){
         return this.userName;
     }
+
+    public Long getId() {
+        return id;
+    }
 }

@@ -239,7 +239,7 @@ public class CartTests {
         user1 = proxy.enterMarket();
         user2 = proxy.enterMarket();
         user3 = proxy.enterMarket();
-        user4 = proxy.enterMarket();
+//        user4 = proxy.enterMarket();
         user1 = proxy.login(user1, member1Name, member1Password);
         user2 = proxy.login(user2, member2Name, member2Password);
         user3 = proxy.login(user3, member3Name, member3Password);

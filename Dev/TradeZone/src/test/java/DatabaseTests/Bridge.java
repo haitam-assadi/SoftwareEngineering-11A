@@ -54,7 +54,7 @@ public interface Bridge {
 
     // TODO: add the func to market class or add a field to ProductDTO class
     // maybe we need to add userName parameter
-    int getProductAmount(String storeName, String s) throws Exception; // in stock
+    int getProductAmount(String userName,String storeName, String s) throws Exception; // in stock
 
     //II.4.4
     public boolean appointOtherMemberAsStoreOwner(String memberUserName, String storeName, String newOwnerUserName) throws Exception;

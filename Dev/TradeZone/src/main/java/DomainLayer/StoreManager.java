@@ -107,14 +107,19 @@ public class StoreManager extends Role implements Serializable {
             throw new Exception(this.getUserName()+ " is not Manager for store "+ storeName);
 
         Set<ManagerPermissions> newPermSet = new HashSet<ManagerPermissions>();
+        managerPermissions = new HashSet<>();
         for(Integer permissionId :newPermissions) {
             newPermSet.add(getPermissionById(permissionId));
             managerPermissions.add(getPermissionById(permissionId));
         }
 
         managedStoresPermissions.put(storeName, newPermSet);
-        if (Market.dbFlag)
+        if (Market.dbFlag) {
+            this.setId(new RolesId(getUserName(),storeName));
+            AbstractStoreOwner myBoss = myBossesForStores.get(storeName);
+            this.setBoss(myBoss.member,myBoss.getRoleType());
             DALService.storesManagersRepository.save(this);
+        }
         return true;
     }
 
@@ -179,7 +184,7 @@ public class StoreManager extends Role implements Serializable {
                 for (String storeName : storesNames) {
                     responsibleForStores.put(storeName, StoreMapper.getInstance().getStore(storeName));
                     Store store = responsibleForStores.get(storeName);
-                    Map<String, String> bossTypeAndName = DALService.storesOwnersRepository.findBossById(getUserName(), storeName);
+                    Map<String, String> bossTypeAndName = DALService.storesManagersRepository.findBossById(getUserName(), storeName);
                     String bossType = "";
                     String bossName = "";
                     for (String s : bossTypeAndName.keySet()) {
@@ -199,7 +204,7 @@ public class StoreManager extends Role implements Serializable {
                     }
                     if (bossType.equals(RoleEnum.StoreOwner.toString())) {
                         StoreOwner myBoss = MemberMapper.getInstance().getStoreOwner(bossName);
-                        myBossesForStores.put(bossName, myBoss);
+                        myBossesForStores.put(storeName, myBoss);
                     }
                     //todo: chcek if should add the owners and managers to the store
                     List<String> managerStorePermissions = DALService.storesManagersRepository.findManagerPermissionsPerStore(getUserName(), storeName);
