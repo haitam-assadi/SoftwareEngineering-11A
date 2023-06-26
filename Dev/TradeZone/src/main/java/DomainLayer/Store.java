@@ -736,7 +736,7 @@ public class Store {
         createdDiscountPolicies.put(currentDisPolIdCounter, additionDiscountPolicy);
         additionDiscountPolicy.setDiscountPolicyId(new DiscountPolicyId(currentDisPolIdCounter,storeName));
         if (Market.dbFlag)
-            DALService.additionDiscountPolicyRepository.save(additionDiscountPolicy);
+            DALService.saveDiscountPolicyWithPositiveConstraint((PositiveBagConstraint) additionDiscountPolicy.getBagConstraint(),additionDiscountPolicy);
         this.discountPoliciesIdCounter++;
         if(addAsStoreDiscountPolicy) {
             loadStoreDiscountPolicies();

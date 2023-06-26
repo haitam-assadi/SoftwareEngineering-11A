@@ -201,7 +201,7 @@ public class DALService {
 
     @Transactional
     public static void saveDiscountPolicyWithPositiveConstraint(PositiveBagConstraint positiveBagConstraint, ProductDiscountPolicy productDiscountPolicy) {
-        positiveBagConstraint.setBagConstrainsId(new BagConstrainsId(PositiveBagConstraint.pBId," "));
+        positiveBagConstraint.setBagConstrainsId(new BagConstrainsId(-1,""));
         DALService.bagConstraintRepository.save(positiveBagConstraint);
         DALService.productDiscountPolicyRepository.save(productDiscountPolicy);
     }
