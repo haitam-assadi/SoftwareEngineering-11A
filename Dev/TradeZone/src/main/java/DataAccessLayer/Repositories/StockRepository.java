@@ -9,5 +9,5 @@ import java.util.Set;
 public interface StockRepository extends JpaRepository<Stock,String> {
 
     @Query(value = "SELECT amount FROM stock_products WHERE stock_name = ? AND product_name = ?",nativeQuery = true)
-    public int getProductAmount(String stockName,String productName);
+    public Integer getProductAmount(String stockName,String productName);
 }

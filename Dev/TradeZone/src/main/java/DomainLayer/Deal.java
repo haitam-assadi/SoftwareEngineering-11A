@@ -41,7 +41,7 @@ public class Deal {
     private Map<String, Double> productFinalPriceWithDiscount;
     private double totalPrice;
 
-
+    public Deal(){}
     public Deal(String storeName, String userName, String date, Map<String, Double> products_prices,
                 Map<String, Integer> products_amount, Map<String, Double> productPriceMultipleAmount, Map<String, Double> productFinalPriceWithDiscount, double totalPrice){
         this.storeName = storeName;
@@ -53,8 +53,6 @@ public class Deal {
         this.productPriceMultipleAmount=productPriceMultipleAmount;
         this.productFinalPriceWithDiscount=productFinalPriceWithDiscount;
     }
-
-    public Deal(){}
 
     public DealDTO getDealDTO() {
         return new DealDTO(this.storeName, this.date, this.userName, this.products_amount, this.products_prices,
