@@ -63,9 +63,11 @@ public abstract class AbstractStoreOwner extends Role{
            return true;
         }else {
             for(StoreOwner storeOwner: appointedOwners.get(store.getStoreName()))
-                return storeOwner.isOwnerInChainAppointed(store,otherMember);
+                if(storeOwner.isOwnerInChainAppointed(store,otherMember))
+                    return true;
+
+            return false;
         }
-        return false;
     }
 
     public Boolean isMyAncestorBoss(Store store, AbstractStoreOwner myBoss){

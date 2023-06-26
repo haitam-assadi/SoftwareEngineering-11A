@@ -23,7 +23,7 @@ public class Server {
     }
 
     private Server(){
-        service = new SystemService("Dev/TradeZone/externalSystemsFiles/externalSystemsData.json");
+        service = new SystemService();
         socket = MyWebSocketHandler.getInstance();
     }
 
