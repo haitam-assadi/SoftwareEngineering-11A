@@ -5,9 +5,12 @@ import DTO.MemberDTO;
 import DTO.ProductDTO;
 import DTO.StoreDTO;
 import DataAccessLayer.CompositeKeys.BagConstrainsId;
+import DataAccessLayer.CompositeKeys.CategoryId;
 import DataAccessLayer.CompositeKeys.DiscountPolicyId;
+import DataAccessLayer.CompositeKeys.ProductId;
 import DataAccessLayer.Controller.DealMapper;
 import DataAccessLayer.Controller.MemberMapper;
+import DataAccessLayer.Controller.StoreMapper;
 import DataAccessLayer.DALService;
 import DTO.*;
 import DomainLayer.BagConstraints.*;
@@ -620,7 +623,7 @@ public class Store {
         createdDiscountPolicies.put(currentDisPolIdCounter, categoryDiscountPolicy);
         categoryDiscountPolicy.setDiscountPolicyId(new DiscountPolicyId(currentDisPolIdCounter,storeName));
         if (Market.dbFlag)
-            DALService.categoryDiscountPolicyRepository.save(categoryDiscountPolicy);
+            DALService.saveDiscountPolicyWithPositiveConstraint((PositiveBagConstraint) categoryDiscountPolicy.getBagConstraint(),categoryDiscountPolicy);
         this.discountPoliciesIdCounter++;
 
         if(addAsStoreDiscountPolicy) {
@@ -675,7 +678,7 @@ public class Store {
         createdDiscountPolicies.put(currentDisPolIdCounter, allStoreDiscountPolicy);
         allStoreDiscountPolicy.setDiscountPolicyId(new DiscountPolicyId(currentDisPolIdCounter,storeName));
         if (Market.dbFlag)
-            DALService.allStoreDiscountPolicyRepository.save(allStoreDiscountPolicy);
+            DALService.saveDiscountPolicyWithPositiveConstraint((PositiveBagConstraint) allStoreDiscountPolicy.getBagConstraint(),allStoreDiscountPolicy);
         this.discountPoliciesIdCounter++;
 
         if(addAsStoreDiscountPolicy) {
@@ -736,7 +739,7 @@ public class Store {
         createdDiscountPolicies.put(currentDisPolIdCounter, additionDiscountPolicy);
         additionDiscountPolicy.setDiscountPolicyId(new DiscountPolicyId(currentDisPolIdCounter,storeName));
         if (Market.dbFlag)
-            DALService.additionDiscountPolicyRepository.save(additionDiscountPolicy);
+            DALService.saveDiscountPolicyWithPositiveConstraint((PositiveBagConstraint) additionDiscountPolicy.getBagConstraint(),additionDiscountPolicy);
         this.discountPoliciesIdCounter++;
         if(addAsStoreDiscountPolicy) {
             loadStoreDiscountPolicies();
@@ -804,7 +807,7 @@ public class Store {
         createdDiscountPolicies.put(currentDisPolIdCounter, maxValDiscountPolicy);
         maxValDiscountPolicy.setDiscountPolicyId(new DiscountPolicyId(currentDisPolIdCounter,storeName));
         if (Market.dbFlag)
-            DALService.maxValDiscountPolicyRepository.save(maxValDiscountPolicy);
+            DALService.saveDiscountPolicyWithPositiveConstraint((PositiveBagConstraint) maxValDiscountPolicy.getBagConstraint(),maxValDiscountPolicy);
         this.discountPoliciesIdCounter++;
         if(addAsStoreDiscountPolicy) {
             loadStoreDiscountPolicies();
@@ -1236,23 +1239,23 @@ public class Store {
         return allBagConstraints;
     }
 
-    public List<Integer> getCreatedBagConstIds(){
+    public List<Integer> getCreatedBagConstIds() throws Exception {
         loadCreatedBagConstraints();
         return createdBagConstraints.keySet().stream().toList();
     }
 
-    public List<Integer> getStoreBagConstIds(){
+    public List<Integer> getStoreBagConstIds() throws Exception {
         loadStorePaymentPolicies();
         return storePaymentPolicies.keySet().stream().toList();
     }
 
 
-    public List<Integer> getCreatedDiscountPoliciesIds(){
+    public List<Integer> getCreatedDiscountPoliciesIds() throws Exception {
         loadCreatedDiscountPolicies();
         return createdDiscountPolicies.keySet().stream().toList();
     }
 
-    public List<Integer> getStoreDiscountPoliciesIds(){
+    public List<Integer> getStoreDiscountPoliciesIds() throws Exception {
         loadStoreDiscountPolicies();
         return storeDiscountPolicies.keySet().stream().toList();
     }
@@ -1342,13 +1345,33 @@ public class Store {
         managersLoaded = true;
     }
 
-    public void loadCreatedBagConstraints(){
+    public void loadCreatedBagConstraints() throws Exception {
         if (createdBagConstraintsLoaded || !Market.dbFlag)
             return;
         List<BagConstraint> bagConstraints = DALService.bagConstraintRepository.findAllByBagConstrainsIdStoreName(storeName);
         int maxId = 0;
         for (BagConstraint bagConstraint: bagConstraints){
+
+            if (bagConstraint instanceof ProductBagConstraint){
+                Product product = ((ProductBagConstraint) bagConstraint).getProduct();
+                //todo: maybe should be getProductWithoutLoading
+                ((ProductBagConstraint) bagConstraint).setProduct(StoreMapper.getInstance().getProduct(new ProductId(product.getName(),storeName)));
+            }
+
+            if (bagConstraint instanceof AllContentBagConstraint){
+                Product product = ((AllContentBagConstraint) bagConstraint).getProduct();
+                //todo: maybe should be getProductWithoutLoading
+                ((AllContentBagConstraint) bagConstraint).setProduct(StoreMapper.getInstance().getProduct(new ProductId(product.getName(),storeName)));
+            }
+
+            if (bagConstraint instanceof CategoryBagConstraint){
+                Category category = ((CategoryBagConstraint) bagConstraint).getCategory();
+                //todo: maybe should be getCategoryWithoutLoading
+                ((CategoryBagConstraint) bagConstraint).setCategory(StoreMapper.getInstance().getCategory(new CategoryId(category.getName(),storeName)));
+            }
+
             int id = bagConstraint.getBagConstrainsId().getId();
+            if (id<0) continue;
             createdBagConstraints.put(id,bagConstraint);
             if (maxId < id){
                 maxId = id;
@@ -1358,7 +1381,7 @@ public class Store {
         createdBagConstraintsLoaded = true;
     }
 
-    public void loadStorePaymentPolicies() {
+    public void loadStorePaymentPolicies() throws Exception {
         if (storePaymentPoliciesLoaded || !Market.dbFlag) return;
         loadCreatedBagConstraints();
         List<Integer> storePaymentPoliciesIds = DALService.storeRepository.findPaymentPolicyIdByStoreName(storeName);
@@ -1369,12 +1392,42 @@ public class Store {
     }
 
 
-    public void loadCreatedDiscountPolicies(){
+    public void loadCreatedDiscountPolicies() throws Exception {
         if (createdDiscountPoliciesLoaded || !Market.dbFlag)
             return;
+        loadCreatedBagConstraints();
         List<DiscountPolicy> discountPolicies = DALService.discountPolicyRepository.findAllByDiscountPolicyIdStoreName(storeName);
         int maxId = 0;
         for (DiscountPolicy discountPolicy: discountPolicies){
+
+            if (discountPolicy instanceof ProductDiscountPolicy){
+                BagConstraint bagConstraint = ((ProductDiscountPolicy) discountPolicy).getBagConstraint();
+                int constraintId = bagConstraint.getBagConstrainsId().getId();
+                if (constraintId>0){
+                    ((ProductDiscountPolicy) discountPolicy).setBagConstraint(createdBagConstraints.get(constraintId));
+                }
+                Product product = ((ProductDiscountPolicy) discountPolicy).getProduct();
+                ((ProductDiscountPolicy) discountPolicy).setProduct(StoreMapper.getInstance().getProduct(new ProductId(product.getName(),storeName)));
+            }
+
+            if (discountPolicy instanceof AllStoreDiscountPolicy){
+                BagConstraint bagConstraint = ((AllStoreDiscountPolicy) discountPolicy).getBagConstraint();
+                int constraintId = bagConstraint.getBagConstrainsId().getId();
+                if (constraintId>0){
+                    ((AllStoreDiscountPolicy) discountPolicy).setBagConstraint(createdBagConstraints.get(constraintId));
+                }
+            }
+
+            if (discountPolicy instanceof CategoryDiscountPolicy){
+                BagConstraint bagConstraint = ((CategoryDiscountPolicy) discountPolicy).getBagConstraint();
+                int constraintId = bagConstraint.getBagConstrainsId().getId();
+                if (constraintId>0){
+                    ((CategoryDiscountPolicy) discountPolicy).setBagConstraint(createdBagConstraints.get(constraintId));
+                }
+                Category category = ((CategoryDiscountPolicy) discountPolicy).getCategory();
+                ((CategoryDiscountPolicy) discountPolicy).setCategory(StoreMapper.getInstance().getCategory(new CategoryId(category.getName(),storeName)));
+            }
+
             int id = discountPolicy.getDiscountPolicyId().getId();
             createdDiscountPolicies.put(id,discountPolicy);
             if (maxId < id){
@@ -1385,7 +1438,7 @@ public class Store {
         createdDiscountPoliciesLoaded = true;
     }
 
-    public void loadStoreDiscountPolicies(){
+    public void loadStoreDiscountPolicies() throws Exception {
         if (storeDiscountPoliciesLoaded || !Market.dbFlag)
             return;
         loadCreatedDiscountPolicies();

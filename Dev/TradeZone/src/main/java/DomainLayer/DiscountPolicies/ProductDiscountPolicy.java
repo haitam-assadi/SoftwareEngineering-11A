@@ -96,4 +96,12 @@ public class ProductDiscountPolicy extends DiscountPolicy{
     public BagConstraint getBagConstraint() {
         return bagConstraint;
     }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public void setBagConstraint(BagConstraint bagConstraint) {
+        this.bagConstraint = bagConstraint;
+    }
 }

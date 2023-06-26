@@ -86,4 +86,8 @@ public class MaxValDiscountPolicy extends DiscountPolicy{
             ret = "if ("+bagConstraint.toString()+") then you get "+ret;
         return ret;
     }
+
+    public BagConstraint getBagConstraint() {
+        return bagConstraint;
+    }
 }
