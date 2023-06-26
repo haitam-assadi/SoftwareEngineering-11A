@@ -133,6 +133,7 @@ public class DiscountTests {
             Assertions.assertEquals(dealDTO.storeName,store1Name);
             Assertions.assertEquals(dealDTO.username,member1Name);
 
+            proxy.addToCart(member1Name, store1Name, product1_store1,1);
             proxy.removeProductFromCart(member1Name,store1Name,product1_store1);
 
             proxy.removeFromStoreDiscountPolicies(member1Name,store1Name,1);
@@ -150,7 +151,7 @@ public class DiscountTests {
             logOutMembers();
             initSystemServiceAndLoadDataAndLogIn();
 
-            Assertions.assertEquals(proxy.createProductDiscountPolicyWithConstraint(member1Name,store1Name,product1_store1,20,bagConstraint,true),1);
+            Assertions.assertEquals(proxy.createProductDiscountPolicyWithConstraint(member1Name,store1Name,product1_store1,20,bagConstraint,true),2);
 
             logOutMembers();
             initSystemServiceAndLoadDataAndLogIn();
@@ -166,7 +167,7 @@ public class DiscountTests {
 
             proxy.removeProductFromCart(member1Name,store1Name,product1_store1);
 
-            proxy.removeFromStoreDiscountPolicies(member1Name,store1Name,1);
+            proxy.removeFromStoreDiscountPolicies(member1Name,store1Name,2);
 
             logOutMembers();
             initSystemServiceAndLoadDataAndLogIn();
@@ -175,7 +176,7 @@ public class DiscountTests {
             productDTO = proxy.getProductInfoFromStore(member1Name,store1Name,product1_store1);
             Assertions.assertTrue(productDTO.productDiscountPolicies.size()==0);
 
-            Assertions.assertEquals(proxy.createCategoryDiscountPolicy(member1Name,store1Name,category1_product1_store1,20,true),1);
+            Assertions.assertEquals(proxy.createCategoryDiscountPolicy(member1Name,store1Name,category1_product1_store1,20,true),3);
 
             logOutMembers();
             initSystemServiceAndLoadDataAndLogIn();
@@ -191,7 +192,7 @@ public class DiscountTests {
 
             proxy.removeProductFromCart(member1Name,store1Name,product1_store1);
 
-            proxy.removeFromStoreDiscountPolicies(member1Name,store1Name,1);
+            proxy.removeFromStoreDiscountPolicies(member1Name,store1Name,3);
 
             logOutMembers();
             initSystemServiceAndLoadDataAndLogIn();
@@ -205,7 +206,7 @@ public class DiscountTests {
             logOutMembers();
             initSystemServiceAndLoadDataAndLogIn();
 
-            Assertions.assertEquals(proxy.createCategoryDiscountPolicyWithConstraint(member1Name,store1Name,category1_product1_store1,20,bagConstraint,true),1);
+            Assertions.assertEquals(proxy.createCategoryDiscountPolicyWithConstraint(member1Name,store1Name,category1_product1_store1,20,bagConstraint,true),4);
 
             logOutMembers();
             initSystemServiceAndLoadDataAndLogIn();
@@ -221,7 +222,7 @@ public class DiscountTests {
 
             proxy.removeProductFromCart(member1Name,store1Name,product1_store1);
 
-            proxy.removeFromStoreDiscountPolicies(member1Name,store1Name,1);
+            proxy.removeFromStoreDiscountPolicies(member1Name,store1Name,4);
 
             logOutMembers();
             initSystemServiceAndLoadDataAndLogIn();
@@ -230,7 +231,7 @@ public class DiscountTests {
             productDTO = proxy.getProductInfoFromStore(member1Name,store1Name,product1_store1);
             Assertions.assertTrue(productDTO.productDiscountPolicies.size()==0);
 
-            Assertions.assertEquals(proxy.createAllStoreDiscountPolicy(member1Name,store1Name,20,true),1);
+            Assertions.assertEquals(proxy.createAllStoreDiscountPolicy(member1Name,store1Name,20,true),5);
 
             logOutMembers();
             initSystemServiceAndLoadDataAndLogIn();
@@ -238,7 +239,7 @@ public class DiscountTests {
             Assertions.assertFalse(proxy.getAllStoreDiscountPolicies(member1Name,store1Name).isEmpty());
             productDTO = proxy.getProductInfoFromStore(member1Name,store1Name,product1_store1);
             Assertions.assertTrue(productDTO.productDiscountPolicies.size()==1);
-            Assertions.assertTrue(productDTO.productDiscountPolicies.get(0).contains(product1_store1));
+            Assertions.assertTrue(productDTO.productDiscountPolicies.get(0).contains("20% discount on"));
 
             proxy.addToCart(member1Name, store1Name, product1_store1,1);
             Assertions.assertEquals(proxy.getCartPriceBeforeDiscount(member1Name),3000.0);
@@ -246,7 +247,7 @@ public class DiscountTests {
 
             proxy.removeProductFromCart(member1Name,store1Name,product1_store1);
 
-            proxy.removeFromStoreDiscountPolicies(member1Name,store1Name,1);
+            proxy.removeFromStoreDiscountPolicies(member1Name,store1Name,5);
 
             logOutMembers();
             initSystemServiceAndLoadDataAndLogIn();
@@ -260,7 +261,7 @@ public class DiscountTests {
             logOutMembers();
             initSystemServiceAndLoadDataAndLogIn();
 
-            Assertions.assertEquals(proxy.createAllStoreDiscountPolicyWithConstraint(member1Name,store1Name,20,bagConstraint,true),1);
+            Assertions.assertEquals(proxy.createAllStoreDiscountPolicyWithConstraint(member1Name,store1Name,20,bagConstraint,true),6);
 
             logOutMembers();
             initSystemServiceAndLoadDataAndLogIn();
@@ -268,7 +269,7 @@ public class DiscountTests {
             Assertions.assertFalse(proxy.getAllStoreDiscountPolicies(member1Name,store1Name).isEmpty());
             productDTO = proxy.getProductInfoFromStore(member1Name,store1Name,product1_store1);
             Assertions.assertEquals(productDTO.productDiscountPolicies.size(),1);
-            Assertions.assertTrue(productDTO.productDiscountPolicies.get(0).contains(product1_store1));
+            Assertions.assertTrue(productDTO.productDiscountPolicies.get(0).contains("20% discount on"));
 
             proxy.addToCart(member1Name, store1Name, product1_store1,1);
             Assertions.assertEquals(proxy.getCartPriceBeforeDiscount(member1Name),3000.0);
@@ -276,7 +277,7 @@ public class DiscountTests {
 
             proxy.removeProductFromCart(member1Name,store1Name,product1_store1);
 
-            proxy.removeFromStoreDiscountPolicies(member1Name,store1Name,1);
+            proxy.removeFromStoreDiscountPolicies(member1Name,store1Name,6);
 
             logOutMembers();
             initSystemServiceAndLoadDataAndLogIn();

@@ -587,7 +587,7 @@ public class Store {
 
         if(bagConstraintId == null)
             throw new Exception("Bag constraint id cant be null");
-
+        loadCreatedBagConstraints();
         if(!createdBagConstraints.containsKey(bagConstraintId))
             throw new Exception(bagConstraintId+ " is not bag constraint id");
         loadCreatedDiscountPolicies();
