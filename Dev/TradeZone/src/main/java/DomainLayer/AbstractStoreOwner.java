@@ -53,8 +53,8 @@ public abstract class AbstractStoreOwner extends Role{
         otherMember.getStoreOwner().removeMemberAsStoreOwner(store, this);
         appointedOwners.get(storeName).remove(otherMember.getStoreOwner());
 
-        String msg = getUserName() + " remove your appointed to owner";
-        NotificationService.getInstance().notify(storeName,msg,NotificationType.RemovedFromOwningStore);
+        //String msg = getUserName() + " remove your appointed to owner for store " ;
+        //NotificationService.getInstance().notify(storeName,msg,NotificationType.RemovedFromOwningStore);
 
     }
 
