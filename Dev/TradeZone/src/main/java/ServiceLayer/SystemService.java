@@ -20,12 +20,10 @@ public class SystemService {
 
     private Market market;
 
-    private String configFilePath;
 
     private boolean fileLoadFlag;
 
-    public SystemService(String configFilePath){
-        this.configFilePath = configFilePath;
+    public SystemService(){
         market = new Market();
         JsonNode data = connectToExternalSystems();
         String dataBaseUrl = data.get("dataBaseUrl").asText();
@@ -43,7 +41,7 @@ public class SystemService {
     }
 
     private JsonNode connectToExternalSystems(){
-        String strJson = market.getJSONFromFile(configFilePath);
+        String strJson = market.getJSONFromFile("Dev/TradeZone/externalSystemsFiles/externalSystemsData.json");
         if(strJson.equals("")){
             strJson = market.getJSONFromFile("externalSystemsFiles/externalSystemsData.json");
         }
@@ -77,6 +75,10 @@ public class SystemService {
             return new ResponseT<>(e.getMessage());
         }
 
+    }
+
+    public void initMarketParsing(){
+        market.initMarketParsing();
     }
 
     public void setPaymentService(PaymentService paymentService){

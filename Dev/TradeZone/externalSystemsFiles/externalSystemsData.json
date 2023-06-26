@@ -4,6 +4,6 @@
   "paymentServiceUrl": "https://external-systems.000webhostapp.com/",
   "shipmenServiceUrl": "https://external-systems.000webhostapp.com/",
   "dataBaseLoadFlag": true,
-  "jsonFileLoadFlag": false
+  "jsonFileLoadFlag": true
 }
 

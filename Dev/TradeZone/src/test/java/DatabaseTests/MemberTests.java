@@ -3,13 +3,9 @@ package DatabaseTests;
 import DTO.MemberDTO;
 import DTO.ProductDTO;
 import DTO.StoreDTO;
-import DomainLayer.Store;
 import PresentationLayer.SpringbootHtmlApplication;
-import org.checkerframework.checker.units.qual.A;
 import org.junit.jupiter.api.*;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import java.lang.ref.PhantomReference;
 import java.util.List;
 import java.util.Map;
 
@@ -57,7 +53,6 @@ public class MemberTests {
     String store3Name = "store3";
 
     //systemManagerCloseStore - one bug fixed, but noticed another bug, and comment saying no need for this req
-
     @BeforeEach
     public void setUp() throws Exception {
         System.out.println("setup");
