@@ -935,6 +935,15 @@ public class RealBridge implements Bridge {
         return response.getValue();
     }
 
+
+    public Boolean hasRole(String memberUserName) throws Exception {
+        ResponseT<Boolean> response = systemService.hasRole(memberUserName);
+        if (response.ErrorOccurred){
+            throw new Exception(response.errorMessage);
+        }
+        return response.getValue();
+    }
+
     public List<DealDTO> getStoreDeals(String memberUserName, String storeName) throws Exception {
         ResponseT<List<DealDTO>> response = systemService.getStoreDeals(memberUserName, storeName);
         if (response.ErrorOccurred){
