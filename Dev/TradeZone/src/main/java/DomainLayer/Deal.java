@@ -17,24 +17,24 @@ public class Deal {
 
     private String date;
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "deal_products_prices", joinColumns = @JoinColumn(name = "id"))
     @MapKeyColumn(name = "product_name")
     @Column(name = "price")
     private Map<String, Double> products_prices;
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "deal_products_amount", joinColumns = @JoinColumn(name = "id"))
     @MapKeyColumn(name = "product_name")
     @Column(name = "amount")
     private Map<String, Integer> products_amount;
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "dealProductPriceMultipleAmount",joinColumns = @JoinColumn(name = "id"))
     @MapKeyColumn(name = "product_name")
     @Column(name = "priceMulAmount")
     private Map<String, Double> productPriceMultipleAmount;
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "dealProductFinalPriceWithDiscount", joinColumns = @JoinColumn(name = "id"))
     @MapKeyColumn(name = "product_name")
     @Column(name = "final_price")

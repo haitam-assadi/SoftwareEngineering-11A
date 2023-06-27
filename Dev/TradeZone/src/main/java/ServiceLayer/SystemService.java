@@ -21,26 +21,39 @@ public class SystemService {
 
     private Market market;
 
+    public String paymentUrl ;
+    public String shipmentUrl ;
+
 
     private boolean fileLoadFlag;
 
     public SystemService(){
         market = new Market();
-        JsonNode data = connectToExternalSystems();
-        String dataBaseUrl = data.get("dataBaseUrl").asText();
-        boolean dataBaseFlag = data.get("dataBaseLoadFlag").asBoolean();
-        Market.dbFlag = dataBaseFlag;
-        fileLoadFlag = data.get("jsonFileLoadFlag").asBoolean();
-        String paymentUrl = data.get( "paymentServiceUrl").asText();
-        String shipmentUrl = data.get("shipmenServiceUrl").asText();
-        PaymentService payment = new PaymentService(paymentUrl);
-        market.setPaymentService(payment);
-        ShipmentService shipmentService = new ShipmentService(shipmentUrl);
-        market.setShipmentService(shipmentService);
+    }
+
+    public void initMappers(){
         MemberMapper.initMapper();
         StoreMapper.initMapper();
         DealMapper.initMapper();
         NotificationService.initNotificationService();
+    }
+    public void initConfigFile(boolean isServer){
+        JsonNode data;
+        if(isServer)
+            data = connectToExternalSystems();
+        else
+            data = connectToExternalSystemsAcceptanceTests();
+
+        String dataBaseUrl = data.get("dataBaseUrl").asText();
+        boolean dataBaseFlag = data.get("dataBaseLoadFlag").asBoolean();
+        Market.dbFlag = dataBaseFlag;
+        fileLoadFlag = data.get("jsonFileLoadFlag").asBoolean();
+        paymentUrl = data.get( "paymentServiceUrl").asText();
+        shipmentUrl = data.get("shipmenServiceUrl").asText();
+        PaymentService payment = new PaymentService(paymentUrl);
+        market.setPaymentService(payment);
+        ShipmentService shipmentService = new ShipmentService(shipmentUrl);
+        market.setShipmentService(shipmentService);
     }
 
     private JsonNode connectToExternalSystems(){
@@ -60,13 +73,31 @@ public class SystemService {
         }
     }
 
+    private JsonNode connectToExternalSystemsAcceptanceTests(){
+        String strJson = market.getJSONFromFile("Dev/TradeZone/externalSystemsFiles/externalSystemsDataAcceptanceTests.json");
+        if(strJson.equals("")){
+            strJson = market.getJSONFromFile("externalSystemsFiles/externalSystemsDataAcceptanceTests.json");
+        }
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            // Parse the JSON string
+            JsonNode jsonNode = objectMapper.readTree(strJson);
+            return jsonNode;
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
     public String firstManagerInitializer() throws Exception {
         return market.firstManagerInitializer();
     }
 
-    public ResponseT<String> initializeMarket(){
-
+    public ResponseT<String> initializeMarket(boolean isServer){
         try{
+            initConfigFile(isServer);
+            initMappers();
             market.loadData();
             String manager = market.firstManagerInitializer();
             if(this.fileLoadFlag){

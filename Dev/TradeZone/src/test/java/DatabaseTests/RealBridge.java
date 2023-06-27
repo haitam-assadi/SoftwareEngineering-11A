@@ -19,11 +19,13 @@ public class RealBridge implements Bridge {
 
     public RealBridge(){
         systemService = new SystemService();
+        systemService.initConfigFile(true);
+        systemService.initMappers();
     }
 
     @Override
     public String initializeMarket() throws Exception {
-        ResponseT<String> response = systemService.initializeMarket();
+        ResponseT<String> response = systemService.initializeMarket(true);
         if(response.ErrorOccurred){
             throw new Exception(response.errorMessage);
         }

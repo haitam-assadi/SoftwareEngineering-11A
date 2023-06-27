@@ -134,8 +134,11 @@ public class PurchasingTests {
     public void purchase_cart_success_with_real_external_connections(){
         try{
 
-            paymentService = new PaymentService("https://external-systems.000webhostapp.com/");
-            shipmentService = new ShipmentService("https://external-systems.000webhostapp.com/");
+            String PaymentServiceUrl = proxy.realBridge.systemService.paymentUrl;
+            String ShipmentServiceUrl = proxy.realBridge.systemService.shipmentUrl;
+
+            paymentService = new PaymentService(PaymentServiceUrl);
+            shipmentService = new ShipmentService(ShipmentServiceUrl);
             proxy.setPaymentService(this.paymentService);
             proxy.setShipmentService(this.shipmentService);
 

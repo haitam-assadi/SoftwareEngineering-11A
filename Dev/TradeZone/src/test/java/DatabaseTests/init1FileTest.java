@@ -12,21 +12,20 @@ import java.util.Map;
 @SpringBootTest(classes = SpringbootHtmlApplication.class)
 public class init1FileTest {
 
-    private ProxyBridge proxy= new ProxyBridge(new RealBridge());
+    private ProxyBridge proxy;
 
 
     @BeforeEach
     public void setUp() throws Exception {
         System.out.println("setup");
-        String aaaa = proxy.enterMarket();
         //proxy.realBridge.systemService.firstManagerInitializer();
         //proxy.login(aaaa, "systemmanager1", "systemmanager1Pass");
+        proxy= new ProxyBridge(new RealBridge());
         proxy.realBridge.systemService.initMarketParsing();
     }
     //TODO: data base must be create-drop
     //TODO: config file must be true for both data base flasg and init file flag
     //TODO: loaded file must be init file 1
-
 
     @Test
     public void init1FileTest(){

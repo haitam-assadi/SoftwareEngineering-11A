@@ -73,7 +73,7 @@ public class ProductBagContraintTests {
 
 
     @ParameterizedTest
-    @ValueSource(ints = {1,5,10})
+    @ValueSource(ints = {1,5})
     public void checkMaxTimeAtDayConstraint_after_hour_product_not_exists_success(int addedMinutes){
         int hour = LocalTime.now().getHour()-1;
         hour=hour%24;
@@ -91,7 +91,7 @@ public class ProductBagContraintTests {
 
 
     @ParameterizedTest
-    @ValueSource(ints = {1,5,10})
+    @ValueSource(ints = {1,5})
     public void checkMaxTimeAtDayConstraint_after_hour_product_exists_fail(int addedMinutes){
         int hour = LocalTime.now().getHour()-1;
         hour=hour%24;

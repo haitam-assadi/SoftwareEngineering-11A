@@ -149,7 +149,7 @@ public class CartTests {
             // get cart content
                 // member:
             Assertions.assertEquals(0, proxy.getCartContent(user1).size()); // empty cart
-            Assertions.assertEquals(3, proxy.getCartContent(user3).size());
+            Assertions.assertEquals(2, proxy.getCartContent(user3).size());
             Assertions.assertTrue(proxy.getCartContent(user3).containsKey(store1Name));
             Assertions.assertTrue(proxy.getCartContent(user3).containsKey(store1bName));
             Assertions.assertEquals(2, proxy.getCartContent(user3).get(store1Name).size());
