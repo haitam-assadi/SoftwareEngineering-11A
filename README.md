@@ -7,7 +7,6 @@
 
 # Trading System
 
-
 A trading system (market) is a system that enables a trading infrastructure between sellers and buyers. The system is complex
 From a collection of stores. A store contains identifying details and product inventory, where each product has different characteristics. my users
 The system visits the market for buying, selling, and management purposes. System users play roles
@@ -44,5 +43,5 @@ The project can be tested by running test package that contains two kinds of tes
 2. Acceptance tests : 
 Acceptance tests, also known as user acceptance tests or UAT, are conducted to determine whether a system meets the requirements and expectations of its end users or stakeholders. These tests are typically performed towards the end of the development cycle and focus on evaluating the system's overall usability, functionality, and compliance with the desired specifications. Acceptance tests aim to ensure that the software is ready for deployment and can be effectively used by its intended audience.
 
-
+3. DataBase tests: testing the system with a connection to the data base, it focuses on each senario that could happen in the system and checks the affectivness of the data base and how the hole system interacts with it. 
 
