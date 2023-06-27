@@ -1,9 +1,15 @@
 package ServiceLayer;
 
 import DTO.*;
+import DataAccessLayer.Controller.DealMapper;
+import DataAccessLayer.Controller.MemberMapper;
+import DataAccessLayer.Controller.StoreMapper;
 import DomainLayer.*;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.io.IOException;
+import java.io.*;
+import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.LinkedList;
@@ -15,21 +21,98 @@ public class SystemService {
 
     private Market market;
 
+    public String paymentUrl ;
+    public String shipmentUrl ;
+
+
+    private boolean fileLoadFlag;
+
     public SystemService(){
         market = new Market();
     }
 
-    public ResponseT<String> initializeMarket(){
+    public void initMappers(){
+        MemberMapper.initMapper();
+        StoreMapper.initMapper();
+        DealMapper.initMapper();
+        NotificationService.initNotificationService();
+    }
+    public void initConfigFile(boolean isServer){
+        JsonNode data;
+        if(isServer)
+            data = connectToExternalSystems();
+        else
+            data = connectToExternalSystemsAcceptanceTests();
 
+        String dataBaseUrl = data.get("dataBaseUrl").asText();
+        boolean dataBaseFlag = data.get("dataBaseLoadFlag").asBoolean();
+        Market.dbFlag = dataBaseFlag;
+        fileLoadFlag = data.get("jsonFileLoadFlag").asBoolean();
+        paymentUrl = data.get( "paymentServiceUrl").asText();
+        shipmentUrl = data.get("shipmenServiceUrl").asText();
+        PaymentService payment = new PaymentService(paymentUrl);
+        market.setPaymentService(payment);
+        ShipmentService shipmentService = new ShipmentService(shipmentUrl);
+        market.setShipmentService(shipmentService);
+    }
+
+    private JsonNode connectToExternalSystems(){
+        String strJson = market.getJSONFromFile("Dev/TradeZone/externalSystemsFiles/externalSystemsData.json");
+        if(strJson.equals("")){
+            strJson = market.getJSONFromFile("externalSystemsFiles/externalSystemsData.json");
+        }
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            // Parse the JSON string
+            JsonNode jsonNode = objectMapper.readTree(strJson);
+            return jsonNode;
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
+    private JsonNode connectToExternalSystemsAcceptanceTests(){
+        String strJson = market.getJSONFromFile("Dev/TradeZone/externalSystemsFiles/externalSystemsDataAcceptanceTests.json");
+        if(strJson.equals("")){
+            strJson = market.getJSONFromFile("externalSystemsFiles/externalSystemsDataAcceptanceTests.json");
+        }
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            // Parse the JSON string
+            JsonNode jsonNode = objectMapper.readTree(strJson);
+            return jsonNode;
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
+    public String firstManagerInitializer() throws Exception {
+        return market.firstManagerInitializer();
+    }
+
+    public ResponseT<String> initializeMarket(boolean isServer){
         try{
+            initConfigFile(isServer);
+            initMappers();
+            market.loadData();
             String manager = market.firstManagerInitializer();
-            createMemberWithTwoStore("user1");
+            if(this.fileLoadFlag){
+                market.initMarketParsing();
+            }
             return new ResponseT<>(manager,true);
 
         }catch (Exception e){
             return new ResponseT<>(e.getMessage());
         }
 
+    }
+
+    public void initMarketParsing(){
+        market.initMarketParsing();
     }
 
     public void setPaymentService(PaymentService paymentService){
@@ -39,7 +122,7 @@ public class SystemService {
         market.setShipmentService(shipmentService);
     }
 
-    private void createMemberWithTwoStore(String userName) throws Exception {
+    public void createMemberWithTwoStore(String userName) throws Exception {
         String guestUserName = market.enterMarket();
         String userPassword = "Aa12345678";
 
@@ -78,6 +161,7 @@ public class SystemService {
         market.addNewProductToStock(userName, userFirstStoreName, userFirstStoreProduct4, userFirstStoreCategory2, 70.54, "new product", 100);
         market.addNewProductToStock(userName, userFirstStoreName, userFirstStoreProduct5, userFirstStoreCategory2, 70.54, "new product", 100);
         market.addNewProductToStock(userName, userFirstStoreName, userFirstStoreProduct6, userFirstStoreCategory2, 70.54, "new product", 100);
+
         market.createProductDiscountPolicy(userName, userFirstStoreName, userFirstStoreProduct1, 30, true);
         market.createProductDiscountPolicy(userName, userFirstStoreName, userFirstStoreProduct2, 50, true);
 
@@ -96,7 +180,11 @@ public class SystemService {
         market.register(guest2, "baraa", "Bb12345678");
         String guest3 = market.enterMarket();
         market.register(guest3, "alaa", "Bb12345678");
+        market.register(market.enterMarket(), "ahmad", "Bb12345678");
 //        market.login(guest2, "baraa", "Bb12345678");
+        market.appointOtherMemberAsStoreOwner(userName, userFirstStoreName, "baraa");
+        market.appointOtherMemberAsStoreOwner(userName, userFirstStoreName, "alaa");
+        market.appointOtherMemberAsStoreOwner(userName, userFirstStoreName, "ahmad");
 
         String exitGuest = market.memberLogOut(userName);
         market.exitMarket(exitGuest);
@@ -854,7 +942,7 @@ public class SystemService {
     }
 
     //FOR ACCTEST OF STORE MANAGER
-    public void takeDownSystemManagerAppointment(String storeName, String appointedMember){
+    public void takeDownSystemManagerAppointment(String storeName, String appointedMember) throws Exception {
         this.market.takeDownSystemManagerAppointment(storeName, appointedMember);
     }
 
@@ -893,11 +981,65 @@ public class SystemService {
 
     }
 
-    public void send(String member1Name, String message) throws IOException {
+    public void send(String member1Name, String message) throws Exception {
         market.send(member1Name, message);
     }
 
-    public List<String> getAppendingMessages(String memberUserName) {
+    public Set<String> getAppendingMessages(String memberUserName) {
         return market.getAppendingMessages(memberUserName);
     }
+
+    private String getJSONFromFile(String filename) {
+        String jsonText = "";
+        try {
+            BufferedReader bufferedReader =
+                    new BufferedReader(new FileReader(filename));
+
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                jsonText += line + "\n";
+            }
+            bufferedReader.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return jsonText;
+    }
+
+    //WE MAY USE IT TO CONNECT TO A REMOTE DB
+
+    private String getJSONFromURL(String strUrl) {
+        String jsonText = "";
+
+        try {
+            URL url = new URL(strUrl);
+            InputStream is = url.openStream();
+
+            BufferedReader bufferedReader =
+                    new BufferedReader(new InputStreamReader(is));
+
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                jsonText += line + "\n";
+            }
+
+            is.close();
+            bufferedReader.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+        return jsonText;
+    }
+
+    public ResponseT<Boolean> loadData(){
+        try{
+            market.loadData();
+            return new ResponseT<>(true);
+        }catch(Exception e){
+            return new ResponseT<>("loadData: "+e.getMessage());
+        }
+    }
+
 }

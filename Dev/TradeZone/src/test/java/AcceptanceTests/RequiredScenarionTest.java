@@ -15,9 +15,9 @@ public class RequiredScenarionTest {
     private String guest2UserName;
     private String guest3UserName;
 
-    private String user1 = "req_user1";
-    private String user2 = "req_user2";
-    private String user3 = "req_user3";
+    private String user1 = "requser1";
+    private String user2 = "requser2";
+    private String user3 = "requser3";
     private String password = "Aa12345678";
 
 

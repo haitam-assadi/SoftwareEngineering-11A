@@ -1,10 +1,10 @@
 package UnitTests;
 
 import DTO.ProductDTO;
-import DomainLayer.Bag;
-import DomainLayer.Category;
-import DomainLayer.Product;
-import DomainLayer.Stock;
+import DataAccessLayer.Controller.MemberMapper;
+import DataAccessLayer.Controller.StoreMapper;
+import DomainLayer.*;
+import PresentationLayer.SpringbootHtmlApplication;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,9 +12,11 @@ import org.junit.jupiter.api.TestInstance;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.junit.jupiter.api.Assertions.*;
 @TestInstance(value = TestInstance.Lifecycle.PER_CLASS)
+@SpringBootTest(classes = SpringbootHtmlApplication.class)
 class CategoryTest {
 
     private Category category;
@@ -31,13 +33,19 @@ class CategoryTest {
 
     @BeforeAll
     public void setUp(){
+        Market.dbFlag = false;
+        StoreMapper.initMapper();
+        MemberMapper.initMapper();
         MockitoAnnotations.openMocks(this);
-        category = new Category("milk", stock);
+        category = new Category("milk", stock.getStoreName());
     }
 
     @BeforeEach
     public void beforeEachTest(){
-        category = new Category("milk", stock);
+        Market.dbFlag = false;
+        StoreMapper.initMapper();
+        MemberMapper.initMapper();
+        category = new Category("milk", stock.getStoreName());
     }
 
 

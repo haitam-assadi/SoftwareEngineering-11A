@@ -1,6 +1,7 @@
 package AcceptanceTests;
 
 import DTO.*;
+import DomainLayer.Market;
 import DomainLayer.PaymentService;
 import DomainLayer.ShipmentService;
 import ServiceLayer.ResponseT;
@@ -13,8 +14,7 @@ import java.util.concurrent.ConcurrentHashMap;
 // string  null, int -1, boolean false, LinkedList<?> empty
 
 public class RealBridge implements Bridge{
-    private SystemService systemService; //TODO: = new or getinstance()
-
+    public SystemService systemService; //TODO: = new or getinstance()
 
     public RealBridge(){
         systemService = new SystemService();
@@ -22,12 +22,18 @@ public class RealBridge implements Bridge{
 
     @Override
     public String initializeMarket() throws Exception {
-        ResponseT<String> response = systemService.initializeMarket();
+        ResponseT<String> response = systemService.initializeMarket(false);
+
         if(response.ErrorOccurred){
             throw new Exception(response.errorMessage);
         }
         return response.getValue();
     }
+
+    public void createMemberWithTwoStore(String userName) throws Exception {
+        systemService.createMemberWithTwoStore(userName);
+    }
+
 
     @Override
     public String enterMarket() throws Exception { // Done
@@ -912,7 +918,7 @@ public class RealBridge implements Bridge{
         return response.getValue();
     }
 
-    public void takeDownSystemManagerAppointment(String storeName, String appointedMember) {
+    public void takeDownSystemManagerAppointment(String storeName, String appointedMember) throws Exception {
         systemService.takeDownSystemManagerAppointment(storeName, appointedMember);
     }
 
@@ -945,7 +951,7 @@ public class RealBridge implements Bridge{
         return response.getValue();
     }
 
-    public List<String> getAppendingMessages(String memberUserName) {
+    public Set<String> getAppendingMessages(String memberUserName) {
         return systemService.getAppendingMessages(memberUserName);
     }
 

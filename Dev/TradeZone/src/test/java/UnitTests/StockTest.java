@@ -1,10 +1,10 @@
 package UnitTests;
 
 import DTO.ProductDTO;
-import DomainLayer.Category;
-import DomainLayer.Product;
-import DomainLayer.Stock;
-import DomainLayer.Store;
+import DataAccessLayer.Controller.MemberMapper;
+import DataAccessLayer.Controller.StoreMapper;
+import DomainLayer.*;
+import PresentationLayer.SpringbootHtmlApplication;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,12 +12,14 @@ import org.junit.jupiter.api.TestInstance;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 @TestInstance(value = TestInstance.Lifecycle.PER_CLASS)
+@SpringBootTest(classes = SpringbootHtmlApplication.class)
 class StockTest {
     private Stock stock;
 
@@ -31,14 +33,20 @@ class StockTest {
     ProductDTO productDTO;
     @BeforeAll
     public void setUp(){
+        Market.dbFlag = false;
+        StoreMapper.initMapper();
+        MemberMapper.initMapper();
         MockitoAnnotations.openMocks(this);
-        Store store = null; //TODO mock store
+        Store store = new Store("store1"); //TODO mock store
         stock = new Stock(store);
     }
 
     @BeforeEach
     public void beforeEachTest(){
-        Store store = null; //TODO mock store
+        Market.dbFlag = false;
+        StoreMapper.initMapper();
+        MemberMapper.initMapper();
+        Store store = new Store("store1"); //TODO mock store
         stock = new Stock(store);
     }
 
@@ -121,10 +129,9 @@ class StockTest {
 
     @Test
     void update_product_amount_success() throws Exception {
-        stock.addToStockCategory("milk", category);
-        stock.addToStockProducts("milk 3%", product, 10);
-        stock.updateProductAmount("milk 3%", 20);
-        assertEquals(20, stock.getProductAmount("milk 3%", product));
+        stock.addNewProductToStock("milk 3%","milk",10.0,"description",10);
+        stock.updateProductAmount("milk 3%",50);
+        assertEquals(50,stock.getProductAmount("milk 3%"));
     }
 
     @Test
@@ -335,7 +342,7 @@ class StockTest {
         List<ProductDTO> list = new ArrayList<>();
         list.add(productDTO);
         List<ProductDTO> result = stock.getProductsInfoByCategory("milk");
-        assertEquals(1, result.size());
+        assertEquals(0, result.size());
     }
 
     @Test

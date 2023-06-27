@@ -29,7 +29,7 @@ public class Server {
 
 
     public ResponseT<String> initializeMarket(){
-        return service.initializeMarket();
+        return service.initializeMarket(true);
     }
 
     public ResponseT<String> enterMarket(){
@@ -310,6 +310,24 @@ public class Server {
 //        list.add("2. max 10 milk in bag ");
 //        list.add("3. after 23:00 milk not allowed");
 //        return new ResponseT<>(list);
+    }
+
+    // ---------------------------------    OWNER CONTRACTS  ---------------------------------
+
+    public ResponseT<Boolean> fillOwnerContract(String memberUserName, String storeName, String newOwnerUserName, Boolean decisions){
+        return service.fillOwnerContract(memberUserName, storeName, newOwnerUserName, decisions);
+    }
+
+    public ResponseT<List<OwnerContractDTO>> getAlreadyDoneContracts(String memberUserName, String storeName){
+        return service.getAlreadyDoneContracts(memberUserName, storeName);
+    }
+
+    public ResponseT<List<OwnerContractDTO>> getMyCreatedContracts(String memberUserName, String storeName){
+        return service.getMyCreatedContracts(memberUserName, storeName);
+    }
+
+    public ResponseT<List<OwnerContractDTO>> getPendingContractsForOwner(String memberUserName, String storeName){
+        return service.getPendingContractsForOwner(memberUserName, storeName);
     }
 
     // ------------------------------------------------------------

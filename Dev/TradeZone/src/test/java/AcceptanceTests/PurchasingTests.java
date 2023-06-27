@@ -57,7 +57,9 @@ public class PurchasingTests {
     public void setUp() throws Exception {
         MockitoAnnotations.openMocks(this);
         proxy = new ProxyBridge(new RealBridge());
-        if (proxy.initializeMarket().isEmpty()) {
+        String st =proxy.initializeMarket();
+        proxy.createMemberWithTwoStore("user1");
+        if (st.isEmpty()) {
             throw new Exception("");
         }
 
@@ -131,8 +133,12 @@ public class PurchasingTests {
     @Test
     public void purchase_cart_success_with_real_external_connections(){
         try{
-            paymentService = new PaymentService("https://php-server-try.000webhostapp.com/");
-            shipmentService = new ShipmentService("https://php-server-try.000webhostapp.com/");
+
+            String PaymentServiceUrl = proxy.realBridge.systemService.paymentUrl;
+            String ShipmentServiceUrl = proxy.realBridge.systemService.shipmentUrl;
+
+            paymentService = new PaymentService(PaymentServiceUrl);
+            shipmentService = new ShipmentService(ShipmentServiceUrl);
             proxy.setPaymentService(this.paymentService);
             proxy.setShipmentService(this.shipmentService);
 
@@ -360,7 +366,7 @@ public class PurchasingTests {
     public void purchase_payment_policy_product_time_at_day_success(){
         try{
             proxy.addToCart(member_name, storeName1, "iphone 14",6);
-            proxy.createMaxTimeAtDayProductBagConstraint(store_founder,storeName1,"iphone 14",java.time.LocalTime.now().getHour(),java.time.LocalTime.now().getMinute()+5,true);
+            proxy.createMaxTimeAtDayProductBagConstraint(store_founder,storeName1,"iphone 14",java.time.LocalTime.now().getHour(),java.time.LocalTime.now().getMinute()+1,true);
             Assertions.assertTrue(proxy.purchaseCartByCreditCard(member_name,member1_cardNumber,member1_month,member1_year,member1_holder,member1_cvv,member1_id,member1_receiverName,member1_shipmentAddress,member1_shipmentCity,member1_shipmentCountry,member1_zipCode));
             Assertions.assertTrue(proxy.getCartContent(member_name).isEmpty());
         } catch (Exception e) {
@@ -375,7 +381,7 @@ public class PurchasingTests {
     public void purchase_payment_policy_max_product_time_at_day_fail(){
         try{
             proxy.addToCart(member_name, storeName1, "iphone 14",6);
-            proxy.createMaxTimeAtDayProductBagConstraint(store_founder,storeName1,"iphone 14",java.time.LocalTime.now().getHour(),java.time.LocalTime.now().getMinute()-5,true);
+            proxy.createMaxTimeAtDayProductBagConstraint(store_founder,storeName1,"iphone 14",java.time.LocalTime.now().getHour(),java.time.LocalTime.now().getMinute()-1,true);
             Assertions.assertThrows(Exception.class,()-> proxy.purchaseCartByCreditCard(member_name,member1_cardNumber,member1_month,member1_year,member1_holder,member1_cvv,member1_id,member1_receiverName,member1_shipmentAddress,member1_shipmentCity,member1_shipmentCountry,member1_zipCode));
             Assertions.assertFalse(proxy.getCartContent(member_name).isEmpty());
         } catch (Exception e) {
@@ -421,7 +427,7 @@ public class PurchasingTests {
     public void purchase_payment_policy_max_category_time_at_day_success(){
         try{
             proxy.addToCart(member_name, storeName1, "iphone 14",6);
-            proxy.createMaxTimeAtDayCategoryBagConstraint(store_founder,storeName1,"Iphones",java.time.LocalTime.now().getHour(),java.time.LocalTime.now().getMinute()+5,true);
+            proxy.createMaxTimeAtDayCategoryBagConstraint(store_founder,storeName1,"Iphones",java.time.LocalTime.now().getHour(),java.time.LocalTime.now().getMinute()+1,true);
             Assertions.assertTrue(proxy.purchaseCartByCreditCard(member_name,member1_cardNumber,member1_month,member1_year,member1_holder,member1_cvv,member1_id,member1_receiverName,member1_shipmentAddress,member1_shipmentCity,member1_shipmentCountry,member1_zipCode));
             Assertions.assertTrue(proxy.getCartContent(member_name).isEmpty());
         } catch (Exception e) {
@@ -437,7 +443,7 @@ public class PurchasingTests {
     public void purchase_payment_policy_max_category_time_at_day_fail(){
         try{
             proxy.addToCart(member_name, storeName1, "iphone 14",6);
-            proxy.createMaxTimeAtDayCategoryBagConstraint(store_founder,storeName1,"Iphones",java.time.LocalTime.now().getHour(),java.time.LocalTime.now().getMinute()-5,true);
+            proxy.createMaxTimeAtDayCategoryBagConstraint(store_founder,storeName1,"Iphones",java.time.LocalTime.now().getHour(),java.time.LocalTime.now().getMinute()-1,true);
             Assertions.assertThrows(Exception.class,()-> proxy.purchaseCartByCreditCard(member_name,member1_cardNumber,member1_month,member1_year,member1_holder,member1_cvv,member1_id,member1_receiverName,member1_shipmentAddress,member1_shipmentCity,member1_shipmentCountry,member1_zipCode));
             Assertions.assertFalse(proxy.getCartContent(member_name).isEmpty());
         } catch (Exception e) {
@@ -504,7 +510,7 @@ public class PurchasingTests {
     public void purchase_simple_AND_payment_policy_fail(){
         try{
             Integer paymentPolicy1 = proxy.createRangeOfDaysCategoryBagConstraint(store_founder,storeName1,"Iphones",java.time.LocalDate.now().getYear()-1,java.time.LocalDate.now().getMonthValue(),java.time.LocalDate.now().getDayOfMonth(),java.time.LocalDate.now().getYear()+1,java.time.LocalDate.now().getMonthValue(),java.time.LocalDate.now().getDayOfMonth(),false);
-            Integer paymentPolicy2 = proxy.createMaxTimeAtDayCategoryBagConstraint(store_founder,storeName1,"Iphones",java.time.LocalTime.now().getHour(),java.time.LocalTime.now().getMinute()-5,false);
+            Integer paymentPolicy2 = proxy.createMaxTimeAtDayCategoryBagConstraint(store_founder,storeName1,"Iphones",java.time.LocalTime.now().getHour(),java.time.LocalTime.now().getMinute()-1,false);
             proxy.createAndBagConstraint(store_founder,storeName1,paymentPolicy1,paymentPolicy2,true);
             proxy.addToCart(member_name, storeName1, "iphone 14",6);
             Assertions.assertThrows(Exception.class,()-> proxy.purchaseCartByCreditCard(member_name,member1_cardNumber,member1_month,member1_year,member1_holder,member1_cvv,member1_id,member1_receiverName,member1_shipmentAddress,member1_shipmentCity,member1_shipmentCountry,member1_zipCode));
@@ -565,7 +571,7 @@ public class PurchasingTests {
     public void purchase_OR_payment_policy_success(){
         try{
             Integer paymentPolicy1 = proxy.createRangeOfDaysCategoryBagConstraint(store_founder,storeName1,"Iphones",java.time.LocalDate.now().getYear()+1,java.time.LocalDate.now().getMonthValue(),java.time.LocalDate.now().getDayOfMonth(),java.time.LocalDate.now().getYear()+2,java.time.LocalDate.now().getMonthValue(),java.time.LocalDate.now().getDayOfMonth(),false);
-            Integer paymentPolicy2 = proxy.createMaxTimeAtDayCategoryBagConstraint(store_founder,storeName1,"Iphones",java.time.LocalTime.now().getHour(),java.time.LocalTime.now().getMinute()-5,false);
+            Integer paymentPolicy2 = proxy.createMaxTimeAtDayCategoryBagConstraint(store_founder,storeName1,"Iphones",java.time.LocalTime.now().getHour(),java.time.LocalTime.now().getMinute()-1,false);
             proxy.createOrBagConstraint(store_founder,storeName1,paymentPolicy1,paymentPolicy2,true);
             proxy.addToCart(member_name, storeName1, "iphone 14",6);
             Assertions.assertTrue(proxy.purchaseCartByCreditCard(member_name,member1_cardNumber,member1_month,member1_year,member1_holder,member1_cvv,member1_id,member1_receiverName,member1_shipmentAddress,member1_shipmentCity,member1_shipmentCountry,member1_zipCode));
@@ -582,7 +588,7 @@ public class PurchasingTests {
     public void purchase_OR_payment_policy_fail(){
         try{
             Integer paymentPolicy1 = proxy.createRangeOfDaysCategoryBagConstraint(store_founder,storeName1,"Iphones",java.time.LocalDate.now().getYear()-1,java.time.LocalDate.now().getMonthValue(),java.time.LocalDate.now().getDayOfMonth(),java.time.LocalDate.now().getYear()+2,java.time.LocalDate.now().getMonthValue(),java.time.LocalDate.now().getDayOfMonth(),false);
-            Integer paymentPolicy2 = proxy.createMaxTimeAtDayCategoryBagConstraint(store_founder,storeName1,"Iphones",java.time.LocalTime.now().getHour(),java.time.LocalTime.now().getMinute()-5,false);
+            Integer paymentPolicy2 = proxy.createMaxTimeAtDayCategoryBagConstraint(store_founder,storeName1,"Iphones",java.time.LocalTime.now().getHour(),java.time.LocalTime.now().getMinute()-1,false);
             proxy.createOrBagConstraint(store_founder,storeName1,paymentPolicy1,paymentPolicy2,true);
             proxy.addToCart(member_name, storeName1, "iphone 14",6);
             Assertions.assertThrows(Exception.class,()-> proxy.purchaseCartByCreditCard(member_name,member1_cardNumber,member1_month,member1_year,member1_holder,member1_cvv,member1_id,member1_receiverName,member1_shipmentAddress,member1_shipmentCity,member1_shipmentCountry,member1_zipCode));
@@ -596,7 +602,7 @@ public class PurchasingTests {
     public void purchase_complex_OR_payment_policy_success(){
         try{
             Integer paymentPolicy1 = proxy.createRangeOfDaysCategoryBagConstraint(store_founder,storeName1,"Iphones",java.time.LocalDate.now().getYear()-1,java.time.LocalDate.now().getMonthValue(),java.time.LocalDate.now().getDayOfMonth(),java.time.LocalDate.now().getYear()+2,java.time.LocalDate.now().getMonthValue(),java.time.LocalDate.now().getDayOfMonth(),false);
-            Integer paymentPolicy2 = proxy.createMaxTimeAtDayCategoryBagConstraint(store_founder,storeName1,"Iphones",java.time.LocalTime.now().getHour(),java.time.LocalTime.now().getMinute()-5,false);
+            Integer paymentPolicy2 = proxy.createMaxTimeAtDayCategoryBagConstraint(store_founder,storeName1,"Iphones",java.time.LocalTime.now().getHour(),java.time.LocalTime.now().getMinute()-1,false);
             Integer paymentPolicy3 =proxy.createOrBagConstraint(store_founder,storeName1,paymentPolicy1,paymentPolicy2,false);
             Integer paymentPolicy4 = proxy.createMinProductAmountAllContentBagConstraint(store_founder,storeName1,"iphone 14",2,false);
             proxy.createOrBagConstraint(store_founder,storeName1,paymentPolicy3,paymentPolicy4,true);
@@ -616,7 +622,7 @@ public class PurchasingTests {
     public void purchase_OnlyIf_payment_policy_success(){
         try{
             Integer paymentPolicy1 = proxy.createRangeOfDaysCategoryBagConstraint(store_founder,storeName1,"Iphones",java.time.LocalDate.now().getYear()+1,java.time.LocalDate.now().getMonthValue(),java.time.LocalDate.now().getDayOfMonth(),java.time.LocalDate.now().getYear()+2,java.time.LocalDate.now().getMonthValue(),java.time.LocalDate.now().getDayOfMonth(),false);
-            Integer paymentPolicy2 = proxy.createMaxTimeAtDayCategoryBagConstraint(store_founder,storeName1,"Iphones",java.time.LocalTime.now().getHour(),java.time.LocalTime.now().getMinute()+5,false);
+            Integer paymentPolicy2 = proxy.createMaxTimeAtDayCategoryBagConstraint(store_founder,storeName1,"Iphones",java.time.LocalTime.now().getHour(),java.time.LocalTime.now().getMinute()+1,false);
             proxy.createOnlyIfBagConstraint(store_founder,storeName1,paymentPolicy1,paymentPolicy2,true);
             proxy.addToCart(member_name, storeName1, "iphone 14",6);
             Assertions.assertTrue(proxy.purchaseCartByCreditCard(member_name,member1_cardNumber,member1_month,member1_year,member1_holder,member1_cvv,member1_id,member1_receiverName,member1_shipmentAddress,member1_shipmentCity,member1_shipmentCountry,member1_zipCode));
@@ -633,7 +639,7 @@ public class PurchasingTests {
     public void purchase_OnlyIf_payment_policy_fail(){
         try{
             Integer paymentPolicy1 = proxy.createRangeOfDaysCategoryBagConstraint(store_founder,storeName1,"Iphones",java.time.LocalDate.now().getYear()+1,java.time.LocalDate.now().getMonthValue(),java.time.LocalDate.now().getDayOfMonth(),java.time.LocalDate.now().getYear()+2,java.time.LocalDate.now().getMonthValue(),java.time.LocalDate.now().getDayOfMonth(),false);
-            Integer paymentPolicy2 = proxy.createMaxTimeAtDayCategoryBagConstraint(store_founder,storeName1,"Iphones",java.time.LocalTime.now().getHour(),java.time.LocalTime.now().getMinute()-5,false);
+            Integer paymentPolicy2 = proxy.createMaxTimeAtDayCategoryBagConstraint(store_founder,storeName1,"Iphones",java.time.LocalTime.now().getHour(),java.time.LocalTime.now().getMinute()-1,false);
             proxy.createOnlyIfBagConstraint(store_founder,storeName1,paymentPolicy1,paymentPolicy2,true);
             proxy.addToCart(member_name, storeName1, "iphone 14",6);
             Assertions.assertThrows(Exception.class,()-> proxy.purchaseCartByCreditCard(member_name,member1_cardNumber,member1_month,member1_year,member1_holder,member1_cvv,member1_id,member1_receiverName,member1_shipmentAddress,member1_shipmentCity,member1_shipmentCountry,member1_zipCode));
@@ -645,7 +651,7 @@ public class PurchasingTests {
     @Test
     public void add_Constraint_As_Payment_Policy_Success(){
         try{
-            Integer paymentPolicy1 = proxy.createMaxTimeAtDayCategoryBagConstraint(store_founder,storeName1,"Iphones",java.time.LocalTime.now().getHour() ,java.time.LocalTime.now().getMinute()+5,false);
+            Integer paymentPolicy1 = proxy.createMaxTimeAtDayCategoryBagConstraint(store_founder,storeName1,"Iphones",java.time.LocalTime.now().getHour() ,java.time.LocalTime.now().getMinute()+1,false);
             Assertions.assertTrue(proxy.getAllPaymentPolicies(store_founder,storeName1).isEmpty());
             proxy.addConstraintAsPaymentPolicy(store_founder, storeName1, paymentPolicy1);
             Assertions.assertFalse(proxy.getAllPaymentPolicies(store_founder,storeName1).isEmpty());
@@ -669,7 +675,7 @@ public class PurchasingTests {
     @Test
     public void remove_Constraint_From_Payment_Policies_Success(){
         try{
-            Integer paymentPolicy1 = proxy.createMaxTimeAtDayCategoryBagConstraint(store_founder,storeName1,"Iphones",java.time.LocalTime.now().getHour() ,java.time.LocalTime.now().getMinute()+5,true);
+            Integer paymentPolicy1 = proxy.createMaxTimeAtDayCategoryBagConstraint(store_founder,storeName1,"Iphones",java.time.LocalTime.now().getHour() ,java.time.LocalTime.now().getMinute()+1,true);
             Assertions.assertFalse(proxy.getAllPaymentPolicies(store_founder,storeName1).isEmpty());
             proxy.removeConstraintFromPaymentPolicies(store_founder, storeName1, paymentPolicy1);
             Assertions.assertTrue(proxy.getAllPaymentPolicies(store_founder,storeName1).isEmpty());
@@ -681,7 +687,7 @@ public class PurchasingTests {
     @Test
     public void add_And_remove_Constraint_From_Payment_Policies_Success(){
         try{
-            Integer paymentPolicy1 = proxy.createMaxTimeAtDayCategoryBagConstraint(store_founder,storeName1,"Iphones",java.time.LocalTime.now().getHour() ,java.time.LocalTime.now().getMinute()+5,false);
+            Integer paymentPolicy1 = proxy.createMaxTimeAtDayCategoryBagConstraint(store_founder,storeName1,"Iphones",java.time.LocalTime.now().getHour() ,java.time.LocalTime.now().getMinute()+1,false);
             Assertions.assertTrue(proxy.getAllPaymentPolicies(store_founder,storeName1).isEmpty());
             proxy.addConstraintAsPaymentPolicy(store_founder, storeName1, paymentPolicy1);
             Assertions.assertFalse(proxy.getAllPaymentPolicies(store_founder,storeName1).isEmpty());
@@ -695,7 +701,7 @@ public class PurchasingTests {
     @Test
     public void remove_Constraint_From_Payment_Policies_Fail(){
         try{
-            Integer paymentPolicy1 = proxy.createMaxTimeAtDayCategoryBagConstraint(store_founder,storeName1,"Iphones",java.time.LocalTime.now().getHour() ,java.time.LocalTime.now().getMinute()+5,false);
+            Integer paymentPolicy1 = proxy.createMaxTimeAtDayCategoryBagConstraint(store_founder,storeName1,"Iphones",java.time.LocalTime.now().getHour() ,java.time.LocalTime.now().getMinute()+1,false);
             Assertions.assertTrue(proxy.getAllPaymentPolicies(store_founder,storeName1).isEmpty());
             Assertions.assertThrows(Exception.class,()->proxy.removeConstraintFromPaymentPolicies(store_founder, storeName1, paymentPolicy1));
         } catch (Exception e) {

@@ -1,19 +1,25 @@
 package UnitTests;
 
 import DTO.*;
+import DataAccessLayer.Controller.MemberMapper;
+import DataAccessLayer.Controller.StoreMapper;
 import DomainLayer.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import PresentationLayer.SpringbootHtmlApplication;
 import org.junit.jupiter.api.*;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.springframework.boot.test.context.SpringBootTest;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 @TestInstance(value = TestInstance.Lifecycle.PER_CLASS)
+@SpringBootTest(classes = SpringbootHtmlApplication.class)
 class StoreTest {
 
     private Store store;
@@ -42,6 +48,9 @@ class StoreTest {
 
     @BeforeAll
     public void setUp() throws Exception {
+        Market.dbFlag = false;
+        StoreMapper.initMapper();
+        MemberMapper.initMapper();
         MockitoAnnotations.openMocks(this);
         member1name = new Member("member1","member1Pass");
         member2name = new Member("member2","member2Pass");
@@ -55,6 +64,8 @@ class StoreTest {
     @BeforeEach
     public void beforeEachTest() throws Exception {
         MockitoAnnotations.openMocks(this);
+        StoreMapper.initMapper();
+        MemberMapper.initMapper();
         member1name = new Member("member1","member1Pass");
         member2name = new Member("member2","member2Pass");
         store = new Store("store1");
@@ -350,7 +361,7 @@ class StoreTest {
     }
 
     @Test
-    void is_already_store_owner_called_by_founder_success() {
+    void is_already_store_owner_called_by_founder_success() throws Exception {
         assertTrue(store.isAlreadyStoreOwner(founder.getUserName()));
     }
 
@@ -367,19 +378,19 @@ class StoreTest {
     */
 
     @Test
-    void is_already_store_manager_called_by_manager_success() {
+    void is_already_store_manager_called_by_manager_success() throws Exception {
         StoreManager storeManager = new StoreManager(member2name);
         store.setStoreManager("member2",storeManager);
         assertTrue(store.isAlreadyStoreManager("member2"));
     }
 
     @Test
-    void is_already_store_manager_called_by_owner_fail() {
+    void is_already_store_manager_called_by_owner_fail() throws Exception {
         assertFalse(store.isAlreadyStoreManager(founder.getUserName()));
     }
 
     @Test
-    void is_already_store_manager_without_manager_fail() {
+    void is_already_store_manager_without_manager_fail() throws Exception {
         assertFalse(store.isAlreadyStoreManager(member2name.getUserName()));
     }
 

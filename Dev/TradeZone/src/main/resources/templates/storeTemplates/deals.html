@@ -32,7 +32,8 @@
                                     <tr>
                                         <th scope="col">Product Name</th>
                                         <th scope="col">Amount</th>
-                                        <th scope="col">Price ($)</th>
+                                        <th scope="col">Price(unit) ($)</th>
+                                        <th scope="col">Total Price ($)</th>
                                     </tr>
                                 </thead>
                                 <tbody th:each="pName : ${deal.products.keySet}">
@@ -41,6 +42,11 @@
                                         <td th:text="${pName}"></td>
                                         <td th:text="${deal.products.get(pName).get(0)}"></td>
                                         <td th:text="${deal.products.get(pName).get(1)}"></td>
+                                        <td th:if="${!deal.hasDiscount(pName)}" th:text="${deal.pTotalPrice(pName)}"></td>
+                                        <td th:if="${deal.hasDiscount(pName)}" class="row mx-0">
+                                            <s class="col-auto" th:text="${deal.pTotalPrice(pName)}"></s>
+                                            <div class="col-auto" th:text="${deal.pTotalDiscountPrice(pName)}" style="color:red"></div>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>

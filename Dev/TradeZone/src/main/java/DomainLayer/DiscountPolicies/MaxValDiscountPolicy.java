@@ -4,13 +4,39 @@ import DomainLayer.BagConstraints.BagConstraint;
 import DomainLayer.BagConstraints.PositiveBagConstraint;
 import DomainLayer.Product;
 
+import javax.persistence.*;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class MaxValDiscountPolicy implements DiscountPolicy{
+@Entity
+@Table
+@PrimaryKeyJoinColumns({
+        @PrimaryKeyJoinColumn(name = "id", referencedColumnName = "id"),
+        @PrimaryKeyJoinColumn(name = "storeName", referencedColumnName = "storeName")
+})
+public class MaxValDiscountPolicy extends DiscountPolicy{
 
+    @OneToOne
+    @JoinColumns({
+            @JoinColumn(name = "firstDiscountPolicyId", referencedColumnName = "id"),
+            @JoinColumn(name = "firstDiscountPolicyStoreName", referencedColumnName = "storeName")
+    })
     DiscountPolicy firstDiscountPolicy;
+
+    @OneToOne
+    @JoinColumns({
+            @JoinColumn(name = "secondDiscountPolicyId", referencedColumnName = "id"),
+            @JoinColumn(name = "secondDiscountPolicyStoreName", referencedColumnName = "storeName")
+    })
     DiscountPolicy secondDiscountPolicy;
+
+    @OneToOne
+    @JoinColumns({
+            @JoinColumn(name = "constraintId", referencedColumnName = "id"),
+            @JoinColumn(name = "constraintStoreName", referencedColumnName = "storeName")
+    })
     BagConstraint bagConstraint;
+
+    public MaxValDiscountPolicy(){}
     public MaxValDiscountPolicy(DiscountPolicy firstDiscountPolicy, DiscountPolicy secondDiscountPolicy){
         this.firstDiscountPolicy=firstDiscountPolicy;
         this.secondDiscountPolicy = secondDiscountPolicy;
@@ -59,5 +85,9 @@ public class MaxValDiscountPolicy implements DiscountPolicy{
         if(!bagConstraint.isPositiveBagConstraint())
             ret = "if ("+bagConstraint.toString()+") then you get "+ret;
         return ret;
+    }
+
+    public BagConstraint getBagConstraint() {
+        return bagConstraint;
     }
 }

@@ -1,15 +1,19 @@
 package DomainLayer;
 
 import DTO.*;
+import DataAccessLayer.Controller.MemberMapper;
+import DataAccessLayer.Controller.StoreMapper;
+import DataAccessLayer.DALService;
 import DomainLayer.Controllers.StoreController;
 import DomainLayer.Controllers.UserController;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
 import jdk.jshell.spi.ExecutionControl;
+import net.minidev.json.JSONObject;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.io.*;
+import java.util.*;
 
 public class Market {
     UserController userController;
@@ -17,11 +21,13 @@ public class Market {
     PaymentService paymentService;
     ShipmentService shipmentService;
 
+    public static boolean dbFlag;
     public Market(){
+        Market.dbFlag = false;                          //DEFAULT
         this.userController = new UserController();
         this.storeController = new StoreController();
-        paymentService = new PaymentService("https://php-server-try.000webhostapp.com/");
-        shipmentService = new ShipmentService("https://php-server-try.000webhostapp.com/");
+//        paymentService = new PaymentService("https://php-server-try.000webhostapp.com/");
+//        shipmentService = new ShipmentService("https://php-server-try.000webhostapp.com/");
     }
     public void setPaymentService(PaymentService paymentService){
         this.paymentService=paymentService;
@@ -33,7 +39,7 @@ public class Market {
     //TODO: closeStore req is not implemented as it should be , i(Ahmad) didn't pay attention to close stores handling..
 
 
-    public String firstManagerInitializer() {
+    public String firstManagerInitializer() throws Exception {
         return userController.firstManagerInitializer();
     }
 
@@ -50,13 +56,13 @@ public class Market {
         return userController.getAllGuests();
     }
 
-    public List<String> getAllMembers(){
+    public List<String> getAllMembers() throws Exception {
         return userController.getAllMambers();
     }
-    public List<String> getAllLoggedInMembers(){
+    public List<String> getAllLoggedInMembers() throws Exception {
         return userController.getAllLoggedInMembers();
     }
-    public List<String> getAllStoresNames(){ // TODO: add to market and service
+    public List<String> getAllStoresNames() throws Exception { // TODO: add to market and service
         return storeController.getAllStoresNames();
     }
 
@@ -162,7 +168,10 @@ public class Market {
         userController.assertIsMemberLoggedIn(memberUserName);
         Member member = userController.getMember(memberUserName);
         Store store = storeController.createStore(newStoreName);
-        member.appointMemberAsStoreFounder(store);
+        StoreFounder newFounder = member.appointMemberAsStoreFounder(store);
+        if (Market.dbFlag) {
+            DALService.saveStore(store, newFounder, member);
+        }
         return store.getStoreInfo();
     }
     public boolean addNewProductToStock(String memberUserName, String storeName, String nameProduct,String category, Double price, String description, Integer amount) throws Exception {
@@ -232,13 +241,6 @@ public class Market {
         userController.assertIsNotSystemManager(newManagerUserName);
         Store store = storeController.getStore(storeName); // TODO: MAYBE WE NEED TO CHECK IF STORE IS ACTIVE
         return userController.appointOtherMemberAsStoreManager(memberUserName,store,newManagerUserName);
-    }
-
-    public boolean addPermissionForStoreManager(String ownerUserName, String storeName, String managerUserName, Integer permissionId) throws Exception {
-        userController.assertIsMemberLoggedIn(ownerUserName);
-        userController.assertIsMember(managerUserName);
-        Store store = storeController.getStore(storeName);
-        return store.addPermissionForStoreManager(ownerUserName, managerUserName, permissionId);
     }
 
     public boolean updateManagerPermissionsForStore(String ownerUserName, String storeName, String managerUserName, List<Integer> newPermissions) throws Exception {
@@ -497,7 +499,7 @@ public class Market {
 
     public MemberDTO getMemberInfo(String callerMemberName, String returnedMemberName) throws Exception {
         userController.assertIsMemberLoggedIn(callerMemberName);
-        userController.isMember(returnedMemberName);
+        userController.assertIsMember(returnedMemberName);
         return userController.getMemberInfo(callerMemberName,returnedMemberName);
     }
 
@@ -509,7 +511,7 @@ public class Market {
     }
 
 
-    public void takeDownSystemManagerAppointment(String storeName, String appointedMember) {
+    public void takeDownSystemManagerAppointment(String storeName, String appointedMember) throws Exception {
         userController.takeDownSystemManagerAppointment(appointedMember);
         storeController.takeDownSystemManagerAppointment(storeName, appointedMember);
     }
@@ -544,11 +546,231 @@ public class Market {
 
     //FOR ACC TEST:
 
-    public void send(String userName1, String message) throws IOException {
+    public void send(String userName1, String message) throws Exception {
         userController.send(userName1, message);
     }
 
-    public List<String> getAppendingMessages(String userName1) {
+    public Set<String> getAppendingMessages(String userName1) {
         return userController.getAppendingMessages(userName1);
     }
+
+    public String getJSONFromFile(String filename) {
+        String jsonText = "";
+        try {
+            BufferedReader bufferedReader =
+                    new BufferedReader(new FileReader(filename));
+
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                jsonText += line + "\n";
+            }
+            bufferedReader.close();
+        } catch (Exception e) {
+//            e.printStackTrace();
+        }
+        return jsonText;
+    }
+
+    //IF WE DECIDE TO IMPROVE SWITCHING BETWEEN INIT FILES     ???
+    private void updateLoadStatusToJSONFile(String path, boolean status) throws Exception {
+        JSONObject json = new JSONObject();
+        try {
+            boolean[][] arr = new boolean[1][1];
+            arr[0] = new boolean[1];
+            arr[0][0] = status;
+            json.put("loaded", arr);
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
+
+        try (PrintWriter out = new PrintWriter(new FileWriter(path))) {
+            out.write(json.toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private String createSystemManager(String userName, String password) throws Exception {
+        Member member = new Member(userName,Security.Encode(password));
+        userController.addSystemManager(userName, member);
+        SystemManager systemManager = new SystemManager(member);
+        member.setSystemManager(systemManager);
+        userController.putSystemManager(userName, systemManager);
+        return userName;
+    }
+
+    public void initMarketParsing(){
+        HashMap memberName_guesName = new HashMap();
+        String strJson = getJSONFromFile("Dev/TradeZone/initFiles/init_2.json");
+        if(strJson.equals("")){
+            strJson = getJSONFromFile("initFiles/init_2.json");
+        }
+        ObjectMapper objectMapper = new ObjectMapper();
+        try{
+            JsonNode jsonNode = objectMapper.readTree(strJson);
+            Iterator keys = jsonNode.fieldNames();
+            while(keys.hasNext()){
+                String current = (String) keys.next();
+                ArrayNode arrayNode;
+                switch(current) {
+                    case "register":
+                        String guest = "";
+                        arrayNode = (ArrayNode) jsonNode.get("register");
+                        System.out.println("arrayNode: " + arrayNode);
+//                        updatedConfig = updatedConfig + "\"register\" : " + arrayNode + "\n";         ???
+                        for(JsonNode node: arrayNode){
+                            System.out.println("node: " + node);
+                            if(node.isArray()){
+                                guest = enterMarket();
+                                String member_name = node.get(0).asText();
+                                String member_pass = node.get(1).asText();
+                                memberName_guesName.put(member_name, guest);
+                                register(guest, member_name, member_pass);
+                            }
+                        }
+                        break;
+                    case "login":
+                        arrayNode = (ArrayNode) jsonNode.get("login");
+                        System.out.println("arrayNode: " + arrayNode);
+                        for(JsonNode node: arrayNode){
+                            System.out.println("node: " + node);
+                            if(node.isArray()){
+                                String member_name = node.get(0).asText();
+                                String member_pass = node.get(1).asText();
+                                String guest_name = (String) memberName_guesName.get(member_name);
+                                login(guest_name, member_name, member_pass);
+                            }
+                        }
+                        break;
+                    case "create_store":
+                        arrayNode = (ArrayNode) jsonNode.get("create_store");
+                        System.out.println("arrayNode: " + arrayNode);
+                        for(JsonNode node: arrayNode){
+                            System.out.println("node: " + node);
+                            if(node.isArray()){
+                                String member_name = node.get(0).asText();
+                                String store_name = node.get(1).asText();
+                                createStore(member_name, store_name);
+                            }
+                        }
+                        break;
+                    case "appoint_as_store_owner":
+                        arrayNode = (ArrayNode) jsonNode.get("appoint_as_store_owner");
+                        System.out.println("arrayNode: " + arrayNode);
+                        for(JsonNode node: arrayNode){
+                            System.out.println("node: " + node);
+                            if(node.isArray()){
+                                String owner_name = node.get(0).asText();
+                                String store_name = node.get(1).asText();
+                                String new_owner_name = node.get(2).asText();
+                                appointOtherMemberAsStoreOwner(owner_name, store_name, new_owner_name);
+                            }
+                        }
+                        break;
+                    case "logout":
+                        arrayNode = (ArrayNode) jsonNode.get("logout");
+                        System.out.println("arrayNode: " + arrayNode);
+                        for(JsonNode node: arrayNode){
+                            System.out.println("node: " + node);
+                            if(node.isArray()){
+                                String member_name = node.get(0).asText();
+                                memberLogOut(member_name);
+                            }
+                        }
+                        break;
+                    case "system_manager":
+                        arrayNode = (ArrayNode) jsonNode.get("system_manager");
+                        System.out.println("arrayNode: " + arrayNode);
+                        for(JsonNode node: arrayNode){
+                            System.out.println("node: " + node);
+                            if(node.isArray()){
+                                String user_name = node.get(0).asText();
+                                String user_pass = node.get(1).asText();
+                                String guestName = enterMarket();
+                                register(guestName, user_name, user_pass);
+                                login(guestName, "systemmanager1", "systemmanager1Pass");
+                                AppointMemberAsSystemManager("systemmanager1",user_name);
+                                memberLogOut("systemmanager1");
+                            }
+                        }
+                        break;
+                    case "add_product":
+                        arrayNode = (ArrayNode) jsonNode.get("add_product");
+                        System.out.println("arrayNode: " + arrayNode);
+                        for(JsonNode node: arrayNode){
+                            System.out.println("node: " + node);
+                            if(node.isArray()){
+                                String member_name = node.get(0).asText();
+                                String store_name = node.get(1).asText();
+                                String product_name = node.get(2).asText();
+                                String category_name = node.get(3).asText();
+                                Double price = node.get(4).asDouble();
+                                String description = node.get(5).asText();
+                                int amount = node.get(6).asInt();
+                                addNewProductToStock(member_name, store_name, product_name, category_name, price, description, amount);
+                            }
+                        }
+                        break;
+                    case "appoint_as_store_manager":
+                        arrayNode = (ArrayNode) jsonNode.get("appoint_as_store_manager");
+                        System.out.println("arrayNode: " + arrayNode);
+                        for(JsonNode node: arrayNode){
+                            System.out.println("node: " + node);
+                            if(node.isArray()){
+                                String member_name = node.get(0).asText();
+                                String store_name = node.get(1).asText();
+                                String new_manager_name = node.get(2).asText();
+                                appointOtherMemberAsStoreManager(member_name, store_name, new_manager_name);                            }
+                        }
+                        break;
+                    case "add_permissions":
+                        //    public boolean updateManagerPermissionsForStore(String ownerUserName, String storeName,
+                        //    String managerUserName, List<Integer> newPermissions) throws Exception {
+                        arrayNode = (ArrayNode) jsonNode.get("add_permissions");
+                        System.out.println("arrayNode: " + arrayNode);
+                        for(JsonNode node: arrayNode){
+                            System.out.println("node: " + node);
+                            if(node.isArray()){
+                                String member_name = node.get(0).asText();
+                                String store_name = node.get(1).asText();
+                                String manager_name = node.get(2).asText();
+                                ArrayList<Integer> permissions = new ArrayList<Integer>();
+                                if(node.get(3).isArray()){
+                                    Iterator iter  = node.get(3).iterator();
+                                    while(iter.hasNext()){
+                                        JsonNode curr = (JsonNode) iter.next();
+                                        permissions.add(curr.intValue());
+                                    }
+                                }
+
+                                List<Integer> updatedPermissions = getManagerPermissionsForStore(member_name,store_name, manager_name);
+
+                                for(Integer newPer: permissions)
+                                    if(!updatedPermissions.contains(newPer))
+                                        updatedPermissions.add(newPer);
+
+                                updateManagerPermissionsForStore(member_name, store_name, manager_name, updatedPermissions);
+                            }
+                        }
+                        break;
+                    default:
+                        throw new RuntimeException("init file failed: Tag is not supported");
+                }
+            }
+        }catch (IOException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void loadData() throws Exception {
+        if (Market.dbFlag) {
+            MemberMapper.getInstance().loadAllMembersNames();
+            MemberMapper.getInstance().loadAllSystemManagers();
+            MemberMapper.getInstance().loadAllOnlineMembersNames();
+            StoreMapper.getInstance().loadAllStoresNames();
+        }
+    }
+
 }

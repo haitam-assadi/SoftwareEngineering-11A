@@ -1,26 +1,49 @@
 package DomainLayer;
 
 import DTO.DealDTO;
-
+import javax.persistence.*;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-
+@Entity
+@Table
 public class Deal {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     private String storeName;
     private String userName;
 
     private String date;
 
-    private ConcurrentHashMap<String, Double> products_prices;
-    private ConcurrentHashMap<String, Integer> products_amount;
-    private ConcurrentHashMap<String, Double> productPriceMultipleAmount;
-    private ConcurrentHashMap<String, Double> productFinalPriceWithDiscount;
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "deal_products_prices", joinColumns = @JoinColumn(name = "id"))
+    @MapKeyColumn(name = "product_name")
+    @Column(name = "price")
+    private Map<String, Double> products_prices;
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "deal_products_amount", joinColumns = @JoinColumn(name = "id"))
+    @MapKeyColumn(name = "product_name")
+    @Column(name = "amount")
+    private Map<String, Integer> products_amount;
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "dealProductPriceMultipleAmount",joinColumns = @JoinColumn(name = "id"))
+    @MapKeyColumn(name = "product_name")
+    @Column(name = "priceMulAmount")
+    private Map<String, Double> productPriceMultipleAmount;
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "dealProductFinalPriceWithDiscount", joinColumns = @JoinColumn(name = "id"))
+    @MapKeyColumn(name = "product_name")
+    @Column(name = "final_price")
+    private Map<String, Double> productFinalPriceWithDiscount;
     private double totalPrice;
 
-
-    public Deal(String storeName, String userName, String date, ConcurrentHashMap<String, Double> products_prices,
-                ConcurrentHashMap<String, Integer> products_amount, ConcurrentHashMap<String, Double> productPriceMultipleAmount, ConcurrentHashMap<String, Double> productFinalPriceWithDiscount, double totalPrice){
+    public Deal(){}
+    public Deal(String storeName, String userName, String date, Map<String, Double> products_prices,
+                Map<String, Integer> products_amount, Map<String, Double> productPriceMultipleAmount, Map<String, Double> productFinalPriceWithDiscount, double totalPrice){
         this.storeName = storeName;
         this.userName = userName;
         this.date = date;
@@ -38,5 +61,9 @@ public class Deal {
 
     public String getDealUserName(){
         return this.userName;
+    }
+
+    public Long getId() {
+        return id;
     }
 }

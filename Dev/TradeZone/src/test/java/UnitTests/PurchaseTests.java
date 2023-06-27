@@ -1,8 +1,11 @@
 package UnitTests;
 
+import DataAccessLayer.Controller.MemberMapper;
+import DataAccessLayer.Controller.StoreMapper;
 import DomainLayer.*;
 import DomainLayer.BagConstraints.BagConstraint;
 import DomainLayer.DiscountPolicies.ProductDiscountPolicy;
+import PresentationLayer.SpringbootHtmlApplication;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,11 +13,13 @@ import org.junit.jupiter.api.TestInstance;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 @TestInstance(value = TestInstance.Lifecycle.PER_CLASS)
+@SpringBootTest(classes = SpringbootHtmlApplication.class)
 public class PurchaseTests {
     private Store store;
     private Bag bag;
@@ -33,6 +38,9 @@ public class PurchaseTests {
 
     @BeforeEach
     public void setUp() throws Exception {
+        Market.dbFlag = false;
+        StoreMapper.initMapper();
+        MemberMapper.initMapper();
         MockitoAnnotations.openMocks(this);
         member = new Member("member1","member1Pass");
         store = new Store("store1");

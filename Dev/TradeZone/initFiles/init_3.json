@@ -1,0 +1,28 @@
+{
+  "system_manager" : [
+                                      ["U1", "u1userpass"]
+  ],
+
+  "register" : [
+                                      ["U2", "u2userpass"],
+                                      ["U3", "u3userpass"],
+                                      ["U4", "u4userpass"],
+                                      ["U5", "u5userpass"]
+  ],
+
+  "login" : [
+                                      ["U2", "u2userpass"]
+  ],
+
+  "create_store" : [
+                                      ["U2", "S"]
+  ],
+
+  "add_product" :  [
+                                      ["U2", "S", "Apple", "Scategory1", 20, "new product", 10]
+  ],
+
+  "logout":         [
+                                      ["U2"]
+  ]
+}

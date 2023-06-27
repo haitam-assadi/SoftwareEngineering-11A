@@ -5,12 +5,31 @@ import DomainLayer.BagConstraints.PositiveBagConstraint;
 import DomainLayer.Category;
 import DomainLayer.Product;
 
+import javax.persistence.*;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class CategoryDiscountPolicy implements DiscountPolicy{
+@Entity
+@Table
+@PrimaryKeyJoinColumns({
+        @PrimaryKeyJoinColumn(name = "id", referencedColumnName = "id"),
+        @PrimaryKeyJoinColumn(name = "storeName", referencedColumnName = "storeName")
+})
+public class CategoryDiscountPolicy extends DiscountPolicy{
     int discountPercentage;
+    @OneToOne
+    @JoinColumns({
+            @JoinColumn(name = "categoryName", referencedColumnName = "categoryName"),
+            @JoinColumn(name = "categoryStoreName", referencedColumnName = "storeName")
+    })
     Category category;
+    @OneToOne
+    @JoinColumns({
+            @JoinColumn(name = "constraintId", referencedColumnName = "id"),
+            @JoinColumn(name = "constraintStoreName", referencedColumnName = "storeName")
+    })
     BagConstraint bagConstraint;
+
+    public CategoryDiscountPolicy(){}
 
     public CategoryDiscountPolicy(Category category, int discountPercentage){
         this.category=category;
@@ -67,5 +86,21 @@ public class CategoryDiscountPolicy implements DiscountPolicy{
 
         return ret;
 
+    }
+
+    public BagConstraint getBagConstraint() {
+        return bagConstraint;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public void setBagConstraint(BagConstraint bagConstraint) {
+        this.bagConstraint = bagConstraint;
     }
 }

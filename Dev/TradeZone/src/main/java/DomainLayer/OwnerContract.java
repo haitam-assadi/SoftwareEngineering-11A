@@ -1,17 +1,41 @@
 package DomainLayer;
 
 import DTO.OwnerContractDTO;
+import DataAccessLayer.Controller.MemberMapper;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+@Entity
+@Table
 public class OwnerContract {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    int contractId;
+
+    @Transient
     private AbstractStoreOwner triggerOwner;
+
+    private String triggerOwnerName;
+    @Enumerated(value = EnumType.STRING)
+    private RoleEnum triggerOwnerType;
+
+    @OneToOne
+    @JoinColumn(name = "newOwnerName")
     private Member newOwner;
-    private ConcurrentHashMap<String, Boolean> storeOwnersDecisions;
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "storeOwnersDecisions")
+    @Column(name = "otherOwner")
+    private Map<String, Boolean> storeOwnersDecisions;
     private String declinedOwner;
+
+    @OneToOne
+    @JoinColumn(name = "storeName")
     private Store store;
 
 
@@ -19,15 +43,24 @@ public class OwnerContract {
 
     private boolean contractIsDone;
 
+    @Transient
+    private boolean isLoaded;
+
     public OwnerContract(AbstractStoreOwner triggerOwner, Member newOwner, Store store, ConcurrentHashMap<String, Boolean> storeOwnersDecisions){
         this.triggerOwner=triggerOwner;
+        this.triggerOwnerName = triggerOwner.getUserName();
+        this.triggerOwnerType = triggerOwner.myRole;
         this.newOwner=newOwner;
         this.store = store;
         this.storeOwnersDecisions = storeOwnersDecisions;
         this.contractIsDone= false;
         contractStatus = "in progress";
         declinedOwner = "";
+        isLoaded = true;
     }
+
+    public OwnerContract(){}
+
 
 
     public boolean fillOwnerContract(String memberUserName, Boolean decisions) throws Exception {
@@ -35,7 +68,7 @@ public class OwnerContract {
             throw new Exception("decision can't be null");
         assertStringIsNotNullOrBlank(memberUserName);
         memberUserName = memberUserName.strip().toLowerCase();
-
+        loadContract();
         if(contractIsDone)
             throw new Exception("you cant fill done contracts");
 
@@ -65,7 +98,14 @@ public class OwnerContract {
             triggerOwner.appointOtherMemberAsStoreOwner(store,newOwner);
             contractStatus = "all owners have accepted this contract and it is done";
             contractIsDone = true;
+
+            String msg = " "+ newOwner.userName +" you now owner for store " + store.getStoreName();
+            NotificationService.getInstance().notifyMember(newOwner.userName,msg,NotificationType.ownerDone);
+
         }
+
+        String msg = memberUserName + " is fill to the contract for " + newOwner.userName;
+        NotificationService.getInstance().notifyMember(triggerOwnerName,msg,NotificationType.decisionForContract);
         return true;
     }
 
@@ -79,8 +119,8 @@ public class OwnerContract {
             throw new Exception("string is null or empty");
     }
 
-    public String getTriggerOwnerName(){
-        return triggerOwner.getUserName();
+    public String getTriggerOwnerName() {
+        return triggerOwnerName;
     }
 
 
@@ -98,7 +138,7 @@ public class OwnerContract {
         if (!declinedOwner.equals(""))
             pendingOwners.remove(declinedOwner);
 
-        return new OwnerContractDTO(triggerOwner.getUserName(), newOwner.getUserName(), store.getStoreName(),
+        return new OwnerContractDTO(triggerOwnerName, newOwner.getUserName(), store.getStoreName(),
                 contractStatus, alreadyAcceptedOwners, pendingOwners, contractIsDone);
     }
 
@@ -119,5 +159,18 @@ public class OwnerContract {
         contractIsDone = true;
     }
 
+    public void loadContract() throws Exception {
+        if (isLoaded || !Market.dbFlag) return;
+        if (triggerOwnerType.equals(RoleEnum.StoreFounder)){
+            triggerOwner = MemberMapper.getInstance().getStoreFounder(triggerOwnerName);
+        }
+        if (triggerOwnerType.equals(RoleEnum.StoreOwner)){
+            triggerOwner = MemberMapper.getInstance().getStoreOwner(triggerOwnerName);
+        }
+        isLoaded = true;
+    }
 
+    public Member getNewOwner() {
+        return newOwner;
+    }
 }

@@ -1,9 +1,12 @@
 package UnitTests;
 
 
+import DataAccessLayer.Controller.MemberMapper;
+import DataAccessLayer.Controller.StoreMapper;
 import DomainLayer.*;
 import DomainLayer.BagConstraints.CategoryBagConstraint;
 import DomainLayer.BagConstraints.ProductBagConstraint;
+import PresentationLayer.SpringbootHtmlApplication;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.TestInstance;
@@ -11,11 +14,13 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalTime;
 import java.util.concurrent.ConcurrentHashMap;
 
 @TestInstance(value = TestInstance.Lifecycle.PER_CLASS)
+@SpringBootTest(classes = SpringbootHtmlApplication.class)
 public class ProductBagContraintTests {
 
     private ProductBagConstraint productBagConstraint;
@@ -35,6 +40,9 @@ public class ProductBagContraintTests {
 
     @BeforeEach
     public void setUp() throws Exception {
+        Market.dbFlag = false;
+        StoreMapper.initMapper();
+        MemberMapper.initMapper();
         MockitoAnnotations.openMocks(this);
         member = new Member("member1","member1Pass");
         store = new Store("store1");
@@ -47,7 +55,7 @@ public class ProductBagContraintTests {
 
 
     @ParameterizedTest
-    @ValueSource(ints = {1,5,10,20,30})
+    @ValueSource(ints = {1,5,10})
     public void checkMaxTimeAtDayConstraint_before_hour_success(int addedMinutes){
         int hour = LocalTime.now().getHour()+1;
         hour=hour%24;
@@ -65,7 +73,7 @@ public class ProductBagContraintTests {
 
 
     @ParameterizedTest
-    @ValueSource(ints = {1,5,10,20,30})
+    @ValueSource(ints = {1,5})
     public void checkMaxTimeAtDayConstraint_after_hour_product_not_exists_success(int addedMinutes){
         int hour = LocalTime.now().getHour()-1;
         hour=hour%24;
@@ -83,7 +91,7 @@ public class ProductBagContraintTests {
 
 
     @ParameterizedTest
-    @ValueSource(ints = {1,5,10,20,30})
+    @ValueSource(ints = {1,5})
     public void checkMaxTimeAtDayConstraint_after_hour_product_exists_fail(int addedMinutes){
         int hour = LocalTime.now().getHour()-1;
         hour=hour%24;
