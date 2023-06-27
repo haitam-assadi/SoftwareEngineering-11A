@@ -162,7 +162,7 @@ public class Member extends User{
         addRole(RoleEnum.StoreOwner);
         roles.putIfAbsent(RoleEnum.StoreOwner,storeOwner);
         subscribeOwnerForNotifications(store.getStoreName());
-        subscribeMemberForNotifications(userName);
+        subscribeMemberForNotifications(this.userName);
         StoreOwner storeOwnerRole =  (StoreOwner) roles.get(RoleEnum.StoreOwner);
         storeOwnerRole.appointMemberAsStoreOwner(store,myBoss);
         store.appointMemberAsStoreOwner(storeOwnerRole);
@@ -329,12 +329,9 @@ public class Member extends User{
     public void subscribeOwnerForNotifications(String storeName) throws Exception {
         NotificationService.getInstance().subscribe(storeName,NotificationType.storeClosed,this);
         NotificationService.getInstance().subscribe(storeName,NotificationType.productBought,this);
-        NotificationService.getInstance().subscribe(storeName,NotificationType.RemovedFromOwningStore,this);
+        //NotificationService.getInstance().subscribe(storeName,NotificationType.RemovedFromOwningStore,this);
         NotificationService.getInstance().subscribe(storeName,NotificationType.storeOpenedAfterClose,this);
         NotificationService.getInstance().subscribe(storeName,NotificationType.storeClosedBySystemManager,this);
-        NotificationService.getInstance().subscribe(storeName,NotificationType.decisionForContract,this);
-        NotificationService.getInstance().subscribe(storeName,NotificationType.fillAppointContract,this);
-        NotificationService.getInstance().subscribe(storeName,NotificationType.ownerDone,this);
 
     }
 
@@ -342,6 +339,11 @@ public class Member extends User{
         NotificationService.getInstance().subscribeMember(memberUserName,NotificationType.decisionForContract,this);
         NotificationService.getInstance().subscribeMember(memberUserName,NotificationType.fillAppointContract,this);
         NotificationService.getInstance().subscribeMember(memberUserName,NotificationType.ownerDone,this);
+        NotificationService.getInstance().subscribeMember(memberUserName,NotificationType.RemovedFromOwningStore,this);
+        //NotificationService.getInstance().subscribeMember(memberUserName,NotificationType.storeOpenedAfterClose,this);
+        //NotificationService.getInstance().subscribeMember(memberUserName,NotificationType.storeClosedBySystemManager,this);
+        //NotificationService.getInstance().subscribeMember(memberUserName,NotificationType.storeClosed,this);
+        //NotificationService.getInstance().subscribeMember(memberUserName,NotificationType.productBought,this);
 
     }
 

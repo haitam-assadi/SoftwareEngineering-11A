@@ -477,6 +477,7 @@ public class StoreController {
     }
 
     public boolean hasRole(String memberUserName) throws Exception {
+        getAllStoresNames();// we call this function to update store controller with all stores in the mapper
         for(Store store : stores.values()){
             return store.hasRole(memberUserName);
         }

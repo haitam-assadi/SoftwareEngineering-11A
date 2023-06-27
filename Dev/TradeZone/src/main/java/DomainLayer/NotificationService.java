@@ -35,11 +35,20 @@ public class NotificationService {
     private ConcurrentHashMap<String,ConcurrentHashMap<NotificationType, Member>> memberNotificator; // userName,<type,member>
 
     private static NotificationService instance;
+
+    private boolean isStoreRulesNotificatorLoaded;
+    private boolean isMemberNotificatorLoaded;
     public NotificationService(){
         storeRulesNotificator = new ConcurrentHashMap<>();
         memberNotificator = new ConcurrentHashMap<>();
+        isMemberNotificatorLoaded = false;
+        isStoreRulesNotificatorLoaded = false;
     }
 
+    public static NotificationService initNotificationService(){
+        instance = new NotificationService();
+        return instance;
+    }
     public static NotificationService getInstance(){
         if(instance == null){
             instance = new NotificationService();
@@ -47,15 +56,18 @@ public class NotificationService {
         return instance;
     }
     public void subscribe(String storeName,NotificationType notificationType,Member member) throws Exception {
-        loadStoreRulesNotificator();
+        loadNotification();
         ConcurrentHashMap<NotificationType, LinkedList<Member>> type_memberList = new ConcurrentHashMap<>();
         if(storeRulesNotificator.containsKey(storeName)){
             type_memberList = storeRulesNotificator.get(storeName);
             if(type_memberList.containsKey(notificationType)){
                 type_memberList.get(notificationType).add(member);
                 storeRulesNotificator.put(storeName,type_memberList);
-                if (Market.dbFlag)
-                    DALService.rolerNotificatorRepository.save(new RolerNotificator(new StoreRules(storeName,notificationType),member.getUserName()));
+                if (Market.dbFlag) {
+                    StoreRules storeRule = DALService.storeRulesRepository.findByStoreNameAndNotificationType(notificationType.toString(),storeName);
+                    DALService.rolerNotificatorRepository.save(new RolerNotificator(storeRule, member.getUserName()));
+
+                }
             }
             else{
                 LinkedList<Member> members = new LinkedList<>();
@@ -82,7 +94,7 @@ public class NotificationService {
     }
 
     public void subscribeMember(String newMemberUserName, NotificationType notificationType, Member member) throws Exception {
-        loadMemberNotificator();
+        loadNotification();
         ConcurrentHashMap<NotificationType,Member> type_member = new ConcurrentHashMap<>();
         if(memberNotificator.containsKey(newMemberUserName)){
             type_member = memberNotificator.get(newMemberUserName);
@@ -101,7 +113,7 @@ public class NotificationService {
     }
 
     public void notify(String storeName,String msg,NotificationType notificationType) throws Exception {
-        loadStoreRulesNotificator();
+        loadNotification();
         ConcurrentHashMap<NotificationType, LinkedList<Member>> type_memberList = storeRulesNotificator.get(storeName);
         if(type_memberList.containsKey(notificationType)) {
             LinkedList<Member> members = type_memberList.get(notificationType);
@@ -112,7 +124,7 @@ public class NotificationService {
     }
 
     public void notifyMember(String userName,String msg,NotificationType notificationType) throws Exception{
-        loadMemberNotificator();
+        loadNotification();
         ConcurrentHashMap<NotificationType, Member> type_member = memberNotificator.get(userName);
         if(type_member.containsKey(notificationType)) {
             type_member.get(notificationType).send(msg);
@@ -133,7 +145,7 @@ public class NotificationService {
         }
     }
     public void send(String userName,String msg) throws Exception{
-
+        Server.getInstance().sendMessage(userName,msg);
     }
 
     public void removeRule(String storeName, Member member) throws Exception {
@@ -149,18 +161,39 @@ public class NotificationService {
     }
 
     public void removeAllRulers(String storeName) throws Exception {
-        loadStoreRulesNotificator();
+        loadNotification();
         storeRulesNotificator.remove(storeName);
 
     }
 
     public void unsubscribeMember(String memberUserName) throws Exception {
-        loadMemberNotificator();
+        loadNotification();
         memberNotificator.remove(memberUserName);
         if (Market.dbFlag) {
             List<Integer> ids = DALService.memberNotificatorRepository.findIdsByMemberName(memberUserName);
             for (int id : ids)
                 DALService.memberNotificatorRepository.deleteById(id);
+        }
+    }
+
+    public void unsubscribeMemberInStore(String memberName,String storeName) throws Exception{
+        loadNotification();
+        ConcurrentHashMap<NotificationType, LinkedList<Member>> type_memberList = storeRulesNotificator.get(storeName);
+        for (NotificationType notificationType: type_memberList.keySet()){
+            for (Member member: type_memberList.get(notificationType)){
+                if(member.getUserName().equals(memberName)){
+                    storeRulesNotificator.get(storeName).get(notificationType).remove(member);
+                }
+            }
+        }
+        if (Market.dbFlag) {
+            List<Integer> storeRulesIds = DALService.storeRulesRepository.findIdsByStoreName(storeName);
+            for (Integer id : storeRulesIds) {
+                List<Integer> roleNotificatorId = DALService.rolerNotificatorRepository.findIdsByStoreId(id);
+                for (Integer roleId : roleNotificatorId) {
+                    DALService.rolerNotificatorRepository.deleteById(roleId);
+                }
+            }
         }
     }
 
@@ -170,35 +203,41 @@ public class NotificationService {
         loadStoreRulesNotificator();
     }
     public void loadMemberNotificator() throws Exception {
-        if (Market.dbFlag){
+        if (Market.dbFlag && !isMemberNotificatorLoaded){
             List<MemberNotificator> memberNotificators = DALService.memberNotificatorRepository.findAll();
             for (MemberNotificator memberNotificator1: memberNotificators){
-                ConcurrentHashMap<NotificationType,Member> ntm = new ConcurrentHashMap<>();
                 String memberName = memberNotificator1.getMemberName();
-                ntm.put(memberNotificator1.getNotificationType(), MemberMapper.getInstance().getMember(memberName));
-                memberNotificator.put(memberName,ntm);
+                Member member = MemberMapper.getInstance().getMember(memberName);
+                if (!this.memberNotificator.containsKey(memberName)){
+                    ConcurrentHashMap<NotificationType,Member> ntm = new ConcurrentHashMap<>();
+                    ntm.put(memberNotificator1.getNotificationType(),member);
+                    this.memberNotificator.put(memberName, ntm);
+                }
+                this.memberNotificator.get(memberName).putIfAbsent(memberNotificator1.getNotificationType(),member);
             }
         }
+        isMemberNotificatorLoaded = true;
     }
 
     public void loadStoreRulesNotificator() throws Exception{
-        if (!Market.dbFlag) return;
+        if (!Market.dbFlag || isStoreRulesNotificatorLoaded) return;
+
         List<StoreRules> storeRules = DALService.storeRulesRepository.findAll();
         List<RolerNotificator> rolerNotificators = DALService.rolerNotificatorRepository.findAll();
         for (StoreRules storeRule: storeRules){
             if (!storeRulesNotificator.containsKey(storeRule.getStoreName())){
                 storeRulesNotificator.put(storeRule.getStoreName(),new ConcurrentHashMap<>());
             }
-            ConcurrentHashMap<NotificationType, LinkedList<Member>> type_member_list = new ConcurrentHashMap<>();
+
             LinkedList<Member> members = new LinkedList<>();
             for (RolerNotificator rolerNotificator: rolerNotificators){
                 if (rolerNotificator.getStoreRules().id == storeRule.id){
                     members.add(MemberMapper.getInstance().getMember(rolerNotificator.getMemberName()));
                 }
             }
-            type_member_list.put(storeRule.getNotificationType(),members);
-            storeRulesNotificator.put(storeRule.getStoreName(),type_member_list);
+            storeRulesNotificator.get(storeRule.getStoreName()).putIfAbsent(storeRule.getNotificationType(), members);
         }
+        isStoreRulesNotificatorLoaded = true;
     }
 
     public ConcurrentHashMap<String, ConcurrentHashMap<NotificationType, LinkedList<Member>>> getStoreRulesNotificator() {

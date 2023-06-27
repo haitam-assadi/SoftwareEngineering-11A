@@ -99,10 +99,13 @@ public class OwnerContract {
             contractStatus = "all owners have accepted this contract and it is done";
             contractIsDone = true;
 
-            String msg = "you now owner for store " + store.getStoreName();
+            String msg = " "+ newOwner.userName +" you now owner for store " + store.getStoreName();
             NotificationService.getInstance().notifyMember(newOwner.userName,msg,NotificationType.ownerDone);
 
         }
+
+        String msg = memberUserName + " is fill to the contract for " + newOwner.userName;
+        NotificationService.getInstance().notifyMember(triggerOwnerName,msg,NotificationType.decisionForContract);
         return true;
     }
 

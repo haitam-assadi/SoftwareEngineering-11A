@@ -116,7 +116,7 @@ public interface Bridge {
     Map<String,List<StoreDTO>> myStores(String memberUserName) throws Exception;
     // II.2.3 + II.2.4
     public boolean addToCart(String userName, String storeName, String productName, Integer amount) throws Exception;
-
+    Boolean hasRole(String memberUserName) throws Exception;
     public List<String> getBag(String userName, String storeName) throws Exception; // list<produceName>
 
     public int getProductAmountInCart(String userName, String storeName, String productName) throws Exception;

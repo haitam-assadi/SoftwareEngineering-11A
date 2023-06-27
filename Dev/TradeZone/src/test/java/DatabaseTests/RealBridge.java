@@ -18,7 +18,7 @@ public class RealBridge implements Bridge {
     public SystemService systemService;
 
     public RealBridge(){
-        systemService = new SystemService("externalSystemsFiles/externalSystemsData.json");
+        systemService = new SystemService();
     }
 
     @Override
@@ -937,6 +937,15 @@ public class RealBridge implements Bridge {
 
     public StoreDTO getStoreInfo(String userName, String storeName) throws Exception {
         ResponseT<StoreDTO> response = systemService.getStoreInfo(userName,storeName);
+        if (response.ErrorOccurred){
+            throw new Exception(response.errorMessage);
+        }
+        return response.getValue();
+    }
+
+
+    public Boolean hasRole(String memberUserName) throws Exception {
+        ResponseT<Boolean> response = systemService.hasRole(memberUserName);
         if (response.ErrorOccurred){
             throw new Exception(response.errorMessage);
         }

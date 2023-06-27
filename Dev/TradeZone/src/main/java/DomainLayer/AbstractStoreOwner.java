@@ -53,8 +53,8 @@ public abstract class AbstractStoreOwner extends Role{
         otherMember.getStoreOwner().removeMemberAsStoreOwner(store, this);
         appointedOwners.get(storeName).remove(otherMember.getStoreOwner());
 
-        String msg = getUserName() + " remove your appointed to owner";
-        NotificationService.getInstance().notify(storeName,msg,NotificationType.RemovedFromOwningStore);
+        //String msg = getUserName() + " remove your appointed to owner for store " ;
+        //NotificationService.getInstance().notify(storeName,msg,NotificationType.RemovedFromOwningStore);
 
     }
 
@@ -63,9 +63,11 @@ public abstract class AbstractStoreOwner extends Role{
            return true;
         }else {
             for(StoreOwner storeOwner: appointedOwners.get(store.getStoreName()))
-                return storeOwner.isOwnerInChainAppointed(store,otherMember);
+                if(storeOwner.isOwnerInChainAppointed(store,otherMember))
+                    return true;
+
+            return false;
         }
-        return false;
     }
 
     public Boolean isMyAncestorBoss(Store store, AbstractStoreOwner myBoss){

@@ -1,36 +1,402 @@
-יוני 26, 2023 6:59:00 אחה״צ DomainLayer.LoggerManager sendErrorLog
+יוני 26, 2023 5:20:11 אחה״צ DomainLayer.LoggerManager sendErrorLog
 WARNING: 
-fail in login: userName user1 does not exists!
-יוני 26, 2023 8:12:48 אחה״צ DomainLayer.LoggerManager sendErrorLog
+fail in login: userName baraa does not exists!
+יוני 26, 2023 5:20:41 אחה״צ DomainLayer.LoggerManager sendErrorLog
 WARNING: 
-fail in purchasing: Bag does not follow store: store1 payment policy: bag must contain maximum 10 product1_store1 product
-יוני 26, 2023 8:15:40 אחה״צ DomainLayer.LoggerManager sendErrorLog
+fail in login: incorrect password!
+יוני 26, 2023 5:22:11 אחה״צ DomainLayer.LoggerManager sendErrorLog
 WARNING: 
-fail in purchasing: Bag does not follow store: store1 payment policy: bag must contain maximum 10 product1_store1 product
-יוני 26, 2023 8:31:19 אחה״צ DomainLayer.LoggerManager sendErrorLog
+fail in login: userName alaa does not exists!
+יוני 26, 2023 6:09:22 אחה״צ DomainLayer.LoggerManager sendErrorLog
 WARNING: 
-fail in purchasing: Bag does not follow store: store1 payment policy: bag must contain maximum 10 product1_store1 product
-יוני 26, 2023 8:33:11 אחה״צ DomainLayer.LoggerManager sendErrorLog
+fail in creating store: store name is null or empty
+יוני 26, 2023 7:18:16 אחה״צ DomainLayer.LoggerManager sendErrorLog
 WARNING: 
-fail in changing product amount in cart: bag does not contain product1_store1 product
-יוני 26, 2023 8:41:50 אחה״צ DomainLayer.LoggerManager sendErrorLog
+fail in creating store: store name is null or empty
+יוני 26, 2023 7:42:53 אחה״צ DomainLayer.LoggerManager sendErrorLog
 WARNING: 
-fail in purchasing: Bag does not follow store: store1 payment policy: bag must contain maximum 10 product1_store1 product
-יוני 26, 2023 8:42:33 אחה״צ DomainLayer.LoggerManager sendErrorLog
+fail in login: userName aaaa does not exists!
+יוני 26, 2023 9:07:23 אחה״צ DomainLayer.LoggerManager sendErrorLog
 WARNING: 
-fail in purchasing: Bag does not follow store: store1 payment policy: bag must contain minimum 5 product1_store1 product
-יוני 26, 2023 8:45:29 אחה״צ DomainLayer.LoggerManager sendErrorLog
+fail in appointing member as store owner: org.hibernate.TransientPropertyValueException: object references an unsaved transient instance - save the transient instance before flushing : DomainLayer.RolerNotificator.storeRules -> DomainLayer.StoreRules; nested exception is java.lang.IllegalStateException: org.hibernate.TransientPropertyValueException: object references an unsaved transient instance - save the transient instance before flushing : DomainLayer.RolerNotificator.storeRules -> DomainLayer.StoreRules
+יוני 26, 2023 9:11:56 אחה״צ DomainLayer.LoggerManager sendErrorLog
 WARNING: 
-fail in purchasing: Bag does not follow store: store1 payment policy: (bag must contain maximum 10 product1_store1 product AND bag must contain minimum 5 product1_store1 product)
-יוני 26, 2023 8:49:12 אחה״צ DomainLayer.LoggerManager sendErrorLog
+fail in appointing member as store owner: org.hibernate.TransientPropertyValueException: object references an unsaved transient instance - save the transient instance before flushing : DomainLayer.RolerNotificator.storeRules -> DomainLayer.StoreRules; nested exception is java.lang.IllegalStateException: org.hibernate.TransientPropertyValueException: object references an unsaved transient instance - save the transient instance before flushing : DomainLayer.RolerNotificator.storeRules -> DomainLayer.StoreRules
+יוני 26, 2023 9:24:00 אחה״צ DomainLayer.LoggerManager sendErrorLog
 WARNING: 
-fail in purchasing: Bag does not follow store: store1 payment policy: bag must contain maximum 10 product1_store1 product
-יוני 26, 2023 8:49:56 אחה״צ DomainLayer.LoggerManager sendErrorLog
+fail in appointing member as store owner: org.hibernate.TransientPropertyValueException: object references an unsaved transient instance - save the transient instance before flushing : DomainLayer.RolerNotificator.storeRules -> DomainLayer.StoreRules; nested exception is java.lang.IllegalStateException: org.hibernate.TransientPropertyValueException: object references an unsaved transient instance - save the transient instance before flushing : DomainLayer.RolerNotificator.storeRules -> DomainLayer.StoreRules
+יוני 26, 2023 9:24:36 אחה״צ DomainLayer.LoggerManager sendErrorLog
 WARNING: 
-fail in purchasing: Bag does not follow store: store1 payment policy: bag must contain minimum 5 product1_store1 product
-יוני 26, 2023 8:52:33 אחה״צ DomainLayer.LoggerManager sendErrorLog
+fail in registeration: password must have at least 8 characters, at least one digit and one char
+יוני 26, 2023 9:24:40 אחה״צ DomainLayer.LoggerManager sendErrorLog
 WARNING: 
-fail in purchasing: Bag does not follow store: store1 payment policy: (bag must contain maximum 10 product1_store1 product AND bag must contain minimum 5 product1_store1 product)
-יוני 26, 2023 8:53:04 אחה״צ DomainLayer.LoggerManager sendErrorLog
+fail in registeration: password must have at least 8 characters, at least one digit and one char
+יוני 26, 2023 11:27:41 אחה״צ DomainLayer.LoggerManager sendErrorLog
 WARNING: 
-fail in purchasing: transaction has failed
+fail in registeration: password must have at least 8 characters, at least one digit and one char
+יוני 26, 2023 11:27:44 אחה״צ DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: password must have at least 8 characters, at least one digit and one char
+Jun 27, 2023 1:29:26 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: u1 is already a member
+Jun 27, 2023 1:29:26 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: u2 is already a member
+Jun 27, 2023 1:29:26 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: u3 is already a member
+Jun 27, 2023 1:29:26 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in logging out: u1 is not logged in
+Jun 27, 2023 1:29:26 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in logging out: u2 is not logged in
+Jun 27, 2023 1:29:26 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in logging out: u3 is not logged in
+Jun 27, 2023 1:29:26 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: incorrect password!
+Jun 27, 2023 1:29:26 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: incorrect password!
+Jun 27, 2023 1:29:26 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: incorrect password!
+Jun 27, 2023 1:29:26 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: userName u5 does not exists!
+Jun 27, 2023 1:29:26 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: u3 is not a founder/owner or an authorized manager
+Jun 27, 2023 1:29:27 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: member u3 already have a contract for this store ownership
+Jun 27, 2023 1:29:27 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: u1 is already a member
+Jun 27, 2023 1:29:27 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: u2 is already a member
+Jun 27, 2023 1:29:27 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: u3 is already a member
+Jun 27, 2023 1:29:27 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: u3 is not a founder/owner or an authorized manager
+Jun 27, 2023 1:29:27 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: member u3 already have a contract for this store ownership
+Jun 27, 2023 1:30:54 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: u1 is already a member
+Jun 27, 2023 1:30:54 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: u2 is already a member
+Jun 27, 2023 1:30:54 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: u3 is already a member
+Jun 27, 2023 1:30:54 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in logging out: u1 is not logged in
+Jun 27, 2023 1:30:54 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in logging out: u2 is not logged in
+Jun 27, 2023 1:30:54 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in logging out: u3 is not logged in
+Jun 27, 2023 1:30:54 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: incorrect password!
+Jun 27, 2023 1:30:55 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: incorrect password!
+Jun 27, 2023 1:30:55 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: incorrect password!
+Jun 27, 2023 1:30:55 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: userName u5 does not exists!
+Jun 27, 2023 1:30:55 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: u3 is not a founder/owner or an authorized manager
+Jun 27, 2023 1:30:55 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: member u3 already have a contract for this store ownership
+Jun 27, 2023 1:30:55 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: u1 is already a member
+Jun 27, 2023 1:30:55 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: u2 is already a member
+Jun 27, 2023 1:30:55 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: u3 is already a member
+Jun 27, 2023 1:30:56 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: u3 is not a founder/owner or an authorized manager
+Jun 27, 2023 1:30:56 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: member u3 already have a contract for this store ownership
+Jun 27, 2023 1:31:25 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: u1 is already a member
+Jun 27, 2023 1:31:25 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: u2 is already a member
+Jun 27, 2023 1:31:25 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: u3 is already a member
+Jun 27, 2023 1:31:25 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in logging out: u1 is not logged in
+Jun 27, 2023 1:31:25 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in logging out: u2 is not logged in
+Jun 27, 2023 1:31:25 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in logging out: u3 is not logged in
+Jun 27, 2023 1:31:25 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: incorrect password!
+Jun 27, 2023 1:31:25 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: incorrect password!
+Jun 27, 2023 1:31:25 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: incorrect password!
+Jun 27, 2023 1:31:25 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: userName u5 does not exists!
+Jun 27, 2023 1:31:25 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: u3 is not a founder/owner or an authorized manager
+Jun 27, 2023 1:31:26 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: member u3 already have a contract for this store ownership
+Jun 27, 2023 1:31:26 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: u1 is already a member
+Jun 27, 2023 1:31:26 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: u2 is already a member
+Jun 27, 2023 1:31:26 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: u3 is already a member
+Jun 27, 2023 1:31:26 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: u3 is not a founder/owner or an authorized manager
+Jun 27, 2023 1:31:26 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: member u3 already have a contract for this store ownership
+Jun 27, 2023 1:32:47 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: u1 is already a member
+Jun 27, 2023 1:32:47 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: u2 is already a member
+Jun 27, 2023 1:32:47 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: u3 is already a member
+Jun 27, 2023 1:32:47 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in logging out: u1 is not logged in
+Jun 27, 2023 1:32:47 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in logging out: u2 is not logged in
+Jun 27, 2023 1:32:47 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in logging out: u3 is not logged in
+Jun 27, 2023 1:32:47 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: incorrect password!
+Jun 27, 2023 1:32:47 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: incorrect password!
+Jun 27, 2023 1:32:47 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: incorrect password!
+Jun 27, 2023 1:32:47 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: userName u5 does not exists!
+Jun 27, 2023 1:32:48 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: u3 is not a founder/owner or an authorized manager
+Jun 27, 2023 1:32:48 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: member u3 already have a contract for this store ownership
+Jun 27, 2023 1:32:48 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: u1 is already a member
+Jun 27, 2023 1:32:48 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: u2 is already a member
+Jun 27, 2023 1:32:48 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: u3 is already a member
+Jun 27, 2023 1:32:48 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: u3 is not a founder/owner or an authorized manager
+Jun 27, 2023 1:32:48 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: member u3 already have a contract for this store ownership
+Jun 27, 2023 1:59:39 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: u1 is already a member
+Jun 27, 2023 1:59:39 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: u2 is already a member
+Jun 27, 2023 1:59:39 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: u3 is already a member
+Jun 27, 2023 1:59:39 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in logging out: u1 is not logged in
+Jun 27, 2023 1:59:39 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in logging out: u2 is not logged in
+Jun 27, 2023 1:59:39 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in logging out: u3 is not logged in
+Jun 27, 2023 1:59:39 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: incorrect password!
+Jun 27, 2023 1:59:40 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: incorrect password!
+Jun 27, 2023 1:59:40 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: incorrect password!
+Jun 27, 2023 1:59:40 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: userName u5 does not exists!
+Jun 27, 2023 1:59:40 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: u3 is not a founder/owner or an authorized manager
+Jun 27, 2023 1:59:40 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: member u3 already have a contract for this store ownership
+Jun 27, 2023 1:59:40 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: u1 is already a member
+Jun 27, 2023 1:59:40 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: u2 is already a member
+Jun 27, 2023 1:59:40 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: u3 is already a member
+Jun 27, 2023 1:59:41 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: u3 is not a founder/owner or an authorized manager
+Jun 27, 2023 1:59:41 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: member u3 already have a contract for this store ownership
+Jun 27, 2023 2:47:33 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: u1 is already a member
+Jun 27, 2023 2:47:33 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: u2 is already a member
+Jun 27, 2023 2:47:33 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: u3 is already a member
+Jun 27, 2023 2:47:33 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in logging out: u1 is not logged in
+Jun 27, 2023 2:47:33 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in logging out: u2 is not logged in
+Jun 27, 2023 2:47:33 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in logging out: u3 is not logged in
+Jun 27, 2023 2:47:33 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: incorrect password!
+Jun 27, 2023 2:47:33 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: incorrect password!
+Jun 27, 2023 2:47:33 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: incorrect password!
+Jun 27, 2023 2:47:33 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: userName u5 does not exists!
+Jun 27, 2023 2:47:33 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: u3 is not a founder/owner or an authorized manager
+Jun 27, 2023 2:47:34 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: member u3 already have a contract for this store ownership
+Jun 27, 2023 2:47:34 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: u1 is already a member
+Jun 27, 2023 2:47:34 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: u2 is already a member
+Jun 27, 2023 2:47:34 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: u3 is already a member
+Jun 27, 2023 2:47:34 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: u3 is not a founder/owner or an authorized manager
+Jun 27, 2023 2:47:34 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: member u3 already have a contract for this store ownership
+Jun 27, 2023 2:54:12 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: u1 is already a member
+Jun 27, 2023 2:54:12 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: u2 is already a member
+Jun 27, 2023 2:54:12 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: u3 is already a member
+Jun 27, 2023 2:54:13 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in logging out: u1 is not logged in
+Jun 27, 2023 2:54:13 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in logging out: u2 is not logged in
+Jun 27, 2023 2:54:13 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in logging out: u3 is not logged in
+Jun 27, 2023 2:54:13 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: incorrect password!
+Jun 27, 2023 2:54:13 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: incorrect password!
+Jun 27, 2023 2:54:13 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: incorrect password!
+Jun 27, 2023 2:54:13 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in login: userName u5 does not exists!
+Jun 27, 2023 2:54:13 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: u3 is not a founder/owner or an authorized manager
+Jun 27, 2023 2:54:14 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: member u3 already have a contract for this store ownership
+Jun 27, 2023 2:54:14 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: u1 is already a member
+Jun 27, 2023 2:54:14 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: u2 is already a member
+Jun 27, 2023 2:54:14 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in registeration: u3 is already a member
+Jun 27, 2023 2:54:14 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in adding product to stock: u3 is not a founder/owner or an authorized manager
+Jun 27, 2023 2:54:14 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: member u3 already have a contract for this store ownership
+Jun 27, 2023 2:54:16 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in appointing member as store owner: member u3 is already store owner
+Jun 27, 2023 2:54:17 AM DomainLayer.LoggerManager sendErrorLog
+WARNING: 
+fail in remove owner: u2 is not boss for u3 in store s1

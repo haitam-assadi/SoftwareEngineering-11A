@@ -1,6 +1,7 @@
 package ServiceLayer;
 
 import DTO.*;
+import DataAccessLayer.Controller.DealMapper;
 import DataAccessLayer.Controller.MemberMapper;
 import DataAccessLayer.Controller.StoreMapper;
 import DomainLayer.*;
@@ -20,12 +21,10 @@ public class SystemService {
 
     private Market market;
 
-    private String configFilePath;
 
     private boolean fileLoadFlag;
 
-    public SystemService(String configFilePath){
-        this.configFilePath = configFilePath;
+    public SystemService(){
         market = new Market();
         JsonNode data = connectToExternalSystems();
         String dataBaseUrl = data.get("dataBaseUrl").asText();
@@ -40,10 +39,12 @@ public class SystemService {
         market.setShipmentService(shipmentService);
         MemberMapper.initMapper();
         StoreMapper.initMapper();
+        DealMapper.initMapper();
+        NotificationService.initNotificationService();
     }
 
     private JsonNode connectToExternalSystems(){
-        String strJson = market.getJSONFromFile(configFilePath);
+        String strJson = market.getJSONFromFile("Dev/TradeZone/externalSystemsFiles/externalSystemsData.json");
         if(strJson.equals("")){
             strJson = market.getJSONFromFile("externalSystemsFiles/externalSystemsData.json");
         }
@@ -77,6 +78,10 @@ public class SystemService {
             return new ResponseT<>(e.getMessage());
         }
 
+    }
+
+    public void initMarketParsing(){
+        market.initMarketParsing();
     }
 
     public void setPaymentService(PaymentService paymentService){

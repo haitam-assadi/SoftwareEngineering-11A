@@ -602,6 +602,9 @@ public class Market {
     public void initMarketParsing(){
         HashMap memberName_guesName = new HashMap();
         String strJson = getJSONFromFile("Dev/TradeZone/initFiles/init_1.json");
+        if(strJson.equals("")){
+            strJson = getJSONFromFile("initFiles/init_1.json");
+        }
         ObjectMapper objectMapper = new ObjectMapper();
         try{
             JsonNode jsonNode = objectMapper.readTree(strJson);
@@ -683,7 +686,11 @@ public class Market {
                             if(node.isArray()){
                                 String user_name = node.get(0).asText();
                                 String user_pass = node.get(1).asText();
-                                createSystemManager(user_name, user_pass);
+                                String guestName = enterMarket();
+                                register(guestName, user_name, user_pass);
+                                login(guestName, "systemmanager1", "systemmanager1Pass");
+                                AppointMemberAsSystemManager("systemmanager1",user_name);
+                                memberLogOut("systemmanager1");
                             }
                         }
                         break;
@@ -735,7 +742,14 @@ public class Market {
                                         permissions.add(curr.intValue());
                                     }
                                 }
-                                updateManagerPermissionsForStore(member_name, store_name, manager_name, permissions);
+
+                                List<Integer> updatedPermissions = getManagerPermissionsForStore(member_name,store_name, manager_name);
+
+                                for(Integer newPer: permissions)
+                                    if(!updatedPermissions.contains(newPer))
+                                        updatedPermissions.add(newPer);
+
+                                updateManagerPermissionsForStore(member_name, store_name, manager_name, updatedPermissions);
                             }
                         }
                         break;

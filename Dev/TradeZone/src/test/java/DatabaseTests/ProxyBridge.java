@@ -190,6 +190,12 @@ public class ProxyBridge implements Bridge {
         return null;
     }
 
+    public Boolean hasRole(String memberUserName) throws Exception {
+        if(realBridge!=null){
+            return realBridge.hasRole(memberUserName);
+        }
+        return null;
+    }
     @Override
     public List<OwnerContractDTO> getPendingContractsForOwner(String memberUserName, String storeName) throws Exception {
         if(realBridge!=null){

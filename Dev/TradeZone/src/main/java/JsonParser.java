@@ -58,7 +58,7 @@ public class JsonParser {
 
 //    public void initMarketParsing(){
 //        HashMap memberName_guesName = new HashMap();
-//        String strJson = getJSONFromFile("Dev/TradeZone/initFiles/init_1.json");
+//        String strJson = getJSONFromFile("");
 //        ObjectMapper objectMapper = new ObjectMapper();
 //        try{
 //            JsonNode jsonNode = objectMapper.readTree(strJson);
@@ -194,7 +194,7 @@ public class JsonParser {
 //    }
 
     public static void main(String[] args) {
-        String strJson = getJSONFromFile("Dev/TradeZone/JsonFiles/externalSystemsData.json");
+        String strJson = getJSONFromFile("");
         ObjectMapper objectMapper = new ObjectMapper();
         try {
             // Parse the JSON string
