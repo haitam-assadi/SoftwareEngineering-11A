@@ -703,6 +703,14 @@ public class RealBridge implements Bridge {
         return response.getValue();
     }
 
+    public List<String> getAllBagConstraints(String memberUserName, String storeName) throws Exception{
+        ResponseT<List<String>> response = systemService.getAllBagConstraints(memberUserName,storeName);
+        if (response.ErrorOccurred){
+            throw new Exception(response.errorMessage);
+        }
+        return response.getValue();
+    }
+
     @Override
     public Integer createProductDiscountPolicy(String memberUserName, String storeName, String productName,  int discountPercentage, boolean addAsStoreDiscountPolicy) throws Exception {
         ResponseT<Integer> response = systemService.createProductDiscountPolicy(memberUserName,storeName,productName,discountPercentage,addAsStoreDiscountPolicy);
