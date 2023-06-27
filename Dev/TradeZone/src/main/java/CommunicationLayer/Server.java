@@ -29,7 +29,7 @@ public class Server {
 
 
     public ResponseT<String> initializeMarket(){
-        return service.initializeMarket();
+        return service.initializeMarket(true);
     }
 
     public ResponseT<String> enterMarket(){

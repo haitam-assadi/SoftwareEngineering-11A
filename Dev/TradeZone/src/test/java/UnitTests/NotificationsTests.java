@@ -1,9 +1,11 @@
 package UnitTests;
 
+import DataAccessLayer.Controller.DealMapper;
 import DataAccessLayer.Controller.MemberMapper;
 import DataAccessLayer.Controller.StoreMapper;
 import DomainLayer.Market;
 import DomainLayer.Member;
+import DomainLayer.NotificationService;
 import PresentationLayer.SpringbootHtmlApplication;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -36,6 +38,8 @@ public class NotificationsTests {
         Market.dbFlag = false;
         StoreMapper.initMapper();
         MemberMapper.initMapper();
+        DealMapper.initMapper();
+        NotificationService.initNotificationService();
         MockitoAnnotations.openMocks(this);
         market = new Market();
     }

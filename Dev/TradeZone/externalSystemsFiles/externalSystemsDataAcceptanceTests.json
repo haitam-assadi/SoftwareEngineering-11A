@@ -1,0 +1,9 @@
+{
+  "dataBaseUrl": "http:://localhost:data_base_card",
+  "port": 8080,
+  "paymentServiceUrl": "https://external-systems.000webhostapp.com/",
+  "shipmenServiceUrl": "https://external-systems.000webhostapp.com/",
+  "dataBaseLoadFlag": false,
+  "jsonFileLoadFlag": false
+}
+

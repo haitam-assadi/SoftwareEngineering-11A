@@ -14,16 +14,16 @@ import java.util.concurrent.ConcurrentHashMap;
 // string  null, int -1, boolean false, LinkedList<?> empty
 
 public class RealBridge implements Bridge{
-    private SystemService systemService; //TODO: = new or getinstance()
+    public SystemService systemService; //TODO: = new or getinstance()
 
     public RealBridge(){
         systemService = new SystemService();
-        Market.dbFlag=false;
     }
 
     @Override
     public String initializeMarket() throws Exception {
-        ResponseT<String> response = systemService.initializeMarket();
+        ResponseT<String> response = systemService.initializeMarket(false);
+
         if(response.ErrorOccurred){
             throw new Exception(response.errorMessage);
         }

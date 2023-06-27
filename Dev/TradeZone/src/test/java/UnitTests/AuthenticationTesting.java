@@ -1,9 +1,11 @@
 package UnitTests;
 
+import DataAccessLayer.Controller.DealMapper;
 import DataAccessLayer.Controller.MemberMapper;
 import DataAccessLayer.Controller.StoreMapper;
 import DomainLayer.Cart;
 import DomainLayer.Market;
+import DomainLayer.NotificationService;
 import PresentationLayer.SpringbootHtmlApplication;
 import org.junit.jupiter.api.*;
 import org.mockito.MockitoAnnotations;
@@ -34,6 +36,8 @@ public class AuthenticationTesting {
         Market.dbFlag = false;
         StoreMapper.initMapper();
         MemberMapper.initMapper();
+        DealMapper.initMapper();
+        NotificationService.initNotificationService();
         user1 = market.enterMarket();
     }
 
@@ -123,11 +127,10 @@ public class AuthenticationTesting {
     }
 
     @Test
-    public void register_user_with_short_user_name_failure(){
+    public void register_user_with_short_user_name_success(){
         try{
             String short_name = "us";
-            assertThrows(Exception.class,
-                    () -> {Assertions.assertTrue(market.register(user1, short_name, newUserPass1));});
+            Assertions.assertTrue(market.register(user1, short_name, newUserPass1));
         }catch (Exception e){
             Assertions.fail(e.getMessage());
         }

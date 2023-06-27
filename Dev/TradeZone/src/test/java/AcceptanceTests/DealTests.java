@@ -64,6 +64,7 @@ public class DealTests {
         MockitoAnnotations.openMocks(this);
         proxy = new ProxyBridge(new RealBridge());
         managerName = proxy.initializeMarket();
+
         if(managerName.isEmpty()){
             System.out.println("exception thrown");
         }

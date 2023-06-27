@@ -2,6 +2,7 @@ package UnitTests;
 
 import DTO.DealDTO;
 import DTO.OwnerContractDTO;
+import DataAccessLayer.Controller.DealMapper;
 import DataAccessLayer.Controller.MemberMapper;
 import DataAccessLayer.Controller.StoreMapper;
 import DomainLayer.*;
@@ -42,11 +43,13 @@ public class AppointOwnerTests {
         @Mock
         private Member member3name;
 
-        @BeforeAll
+        @BeforeEach
         public void setUp() throws Exception {
             Market.dbFlag = false;
             StoreMapper.initMapper();
             MemberMapper.initMapper();
+            DealMapper.initMapper();
+            NotificationService.initNotificationService();
             MockitoAnnotations.openMocks(this);
             member1name = new Member("member1","member1Pass");
             member2name = new Member("member2","member2Pass");
